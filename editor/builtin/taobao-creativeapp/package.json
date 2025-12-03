@@ -1,0 +1,16 @@
+{
+    "name": "taobao-creativeapp",
+    "version": "0.0.1",
+    "description": "构建淘宝创意互动小程序工程",
+    "author": "Cocos Creator",
+    "main-menu": {},
+    "license": "ISC",
+    "simple-build-target": "build.js",
+    "profiles": {
+        "project": {
+            "deviceOrientation": "portrait",
+            "remoteUrl": "",
+            "startSceneAssetBundle": false
+        }
+    }
+}
