@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.event=void 0;let base=require("./base");class event extends base{constructor(){super()}}exports.event=event;

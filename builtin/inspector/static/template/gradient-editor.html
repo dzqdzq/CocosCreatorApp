@@ -1,0 +1,61 @@
+<div class="gradient-editor">
+        <div class="ins-prop">
+            <div class="wrapper">
+                <div class="label">
+                    <span class="text">Mode</span>
+                </div>
+                <div class="wrapper-content">
+                    <ui-select :value="gradient.mode" @change="confirm('mode', $event)" class="flex-1">
+                        <option :value="item.value" v-for="(item, index) in enumList">{{item.name}}</option>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    <div class="gradient"></div>
+    <div class="prop-edit" v-if="selectedItem">
+        <template v-if="selectedItem.type === 'color'">
+            <div class="ins-prop">
+                <div class="wrapper">
+                    <div class="label">
+                        <span class="text">Color</span>
+                    </div>
+                    <div class="wrapper-content">
+                        <ui-color :value="getVal('color')" @change="confirm('color', $event)"></ui-color>
+                    </div>
+                </div>
+            </div>
+            <div class="ins-prop">
+                <div class="wrapper">
+                    <div class="label">
+                        <span class="text">Location</span>
+                    </div>
+                    <div class="wrapper-content">
+                        <ui-num-input class="flex-1" @change="confirm('time', $event)" preci="1" :value="getVal('time')" unit="%" min="0" max="100"></ui-num-input>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template v-else-if="selectedItem.type === 'alpha'">
+            <div class="ins-prop">
+                <div class="wrapper">
+                    <div class="label">
+                        <span class="text">Alpha</span>
+                    </div>
+                    <div class="wrapper-content">
+                        <ui-slider class="flex-1" @change="confirm('alpha', $event)" :value="getVal('alpha')" min="0" max="255"></ui-slider>
+                    </div>
+                </div>
+            </div>
+            <div class="ins-prop">
+                <div class="wrapper">
+                    <div class="label">
+                        <span class="text">Location</span>
+                    </div>
+                    <div class="wrapper-content">
+                        <ui-num-input class="flex-1" @change="confirm('time', $event)" preci="1" :value="getVal('time')" unit="%" min="0" max="100"></ui-num-input>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</div>

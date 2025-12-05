@@ -1,0 +1,26 @@
+.ins-null {
+    flex: 1;
+    display: flex;
+
+    > .prop-content {
+        > .info {
+            padding: 0 10px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        > .create {
+            padding: 0 10px;
+            background-color: var(--color-primary-fill);
+            border-radius: 4px;
+            color: var(--color-primary-contrast-weaker);
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+
+            &:hover {
+                background-color: var(--color-primary-fill-weaker);
+            }
+        }
+    }
+}

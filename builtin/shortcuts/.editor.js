@@ -1,0 +1,1 @@
+"use strict";module.exports={js:()=>["./"],css:()=>[{source:"./source/panel/default/index.less",dist:"./dist/panel/default/index.css"}]};

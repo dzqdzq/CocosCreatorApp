@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=void 0;const messages_1=require("./messages");async function load(){await messages_1.initialize()}async function unload(){}exports.load=load,exports.unload=unload;

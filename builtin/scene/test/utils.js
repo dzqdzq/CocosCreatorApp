@@ -1,0 +1,1 @@
+exports.queryNode=async function(e){return Editor.Message.request("scene","query-node",e)},exports.setProperty=async function(e){return Editor.Message.request("scene","set-property",e)},exports.queryNodeTree=async function(){return Editor.Message.request("scene","query-node-tree")};

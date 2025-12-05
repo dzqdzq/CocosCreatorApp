@@ -1,0 +1,68 @@
+ui-prop > *[slot='content'] {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .build-prop {
+        display: flex;
+        flex: 1;
+    }
+
+    > ui-select,
+    > ui-input,
+    > ui-color,
+    > ui-num-input,
+    > ui-num-input,
+    > ui-file,
+    > ui-section {
+        flex: 1;
+    }
+
+    > ui-image {
+        width: 60px;
+        height: 60px;
+        border: 1px dashed;
+    }
+}
+
+ui-prop.no-wrap > *[slot='content'] {
+    flex-direction: row;
+}
+
+.build-prop {
+    margin-bottom: 5px;
+
+    ui-prop {
+        flex: 1;
+        margin-bottom: 4px;
+    }
+}
+
+.build-prop .required {
+    position: absolute;
+    left: -2px;
+    color: var(--color-danger-fill-weaker);
+}
+
+.error-info {
+    font-size: 0.8em;
+    line-height: 12px;
+    margin-bottom: 8px;
+    color: var(--color-danger-fill-weaker);
+}
+
+ui-prop[error] {
+    > ui-label {
+        color: var(--color-danger-fill-weaker);
+    }
+
+    ui-input,
+    ui-select,
+    ui-file {
+        border-color: var(--color-danger-fill-weaker);
+    }
+
+    div[slot].scene-list {
+        border-color: var(--color-danger-fill-weaker);
+    }
+}

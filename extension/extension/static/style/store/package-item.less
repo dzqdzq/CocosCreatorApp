@@ -1,0 +1,35 @@
+.package-item {
+    display: flex;
+    padding: 10px 20px;
+    line-height: 24px;
+
+    > .info {
+        flex: 1;
+        overflow: hidden;
+
+        > .name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        > .date {
+            padding: 7px 0;
+
+            > ui-progress {
+                width: 100%;
+                line-height: 10px;
+            }
+        }
+    }
+
+    > .buttons {
+        margin-left: 6px;
+        padding: 12px 0;
+        box-sizing: border-box;
+
+        > ui-icon {
+            padding: 0 4px;
+            cursor: pointer;
+        }
+    }
+}

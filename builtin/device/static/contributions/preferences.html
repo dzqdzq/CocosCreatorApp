@@ -1,0 +1,85 @@
+<div class="device">
+
+    <div class="slider">
+        <ul>
+            <li
+                v-for="(device,index) in config.custom"
+                :key="index"
+                :active="type === 'custom' && num === index"
+                @click="type='custom',num=index"
+            >
+                <ui-checkbox
+                    :value="config.enable.includes(device.name)"
+                    @confirm="switchEnable($event.target.value, device.name)"
+                ></ui-checkbox>
+                <ui-label :value="device.name"></ui-label>
+            </li>
+            <li class="line"
+                v-if="config.custom.length"
+            ></li>
+            <li
+                v-for="device,index in config.builtin"
+                :active="type === 'builtin' && num === index"
+                @click="type = 'builtin', num = index"
+            >
+                <ui-checkbox
+                    :value="config.enable.includes(device.name)"
+                    @confirm="switchEnable($event.target.value, device.name)"
+                ></ui-checkbox>
+                <ui-label :value="device.name"></ui-label>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <ui-prop>
+            <ui-label slot="label" value="i18n:device.markname"></ui-label>
+            <ui-input slot="content"
+                :value="device.name"
+                @confirm="device.name = $event.target.value"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:device.resolution"></ui-label>
+            <div slot="content">
+                <ui-num-input step="1" preci="0"
+                    :disabled="type !== 'custom'"
+                    :value="device.width"
+                    @confirm="device.width = $event.target.value"
+                ></ui-num-input>
+                <ui-label value="x"></ui-label>
+                <ui-num-input step="1" preci="0"
+                    :disabled="type !== 'custom'"
+                    :value="device.height"
+                    @confirm="device.height = $event.target.value"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:device.pixelratio"></ui-label>
+            <ui-num-input slot="content" step="1" preci="0"
+                :disabled="type !== 'custom'"
+                :value="device.ratio"
+                @confirm="device.ratio = $event.target.value"
+            ></ui-num-input>
+        </ui-prop>
+        <div class="buttons">
+            <ui-button
+                :disabled="type !== 'custom'"
+                @confirm="deleteDevice()"
+            >
+                <ui-label i18n value="device.button.delete"></ui-label>
+            </ui-button>
+            <ui-button
+                :disabled="type !== 'custom'"
+                @confirm="changeDevice()"
+            >
+                <ui-label value="i18n:device.button.change"></ui-label>
+            </ui-button>
+            <ui-button class="blue"
+                @confirm="addDevice()"
+            >
+                <ui-label value="i18n:device.button.add"></ui-label>
+            </ui-button>
+        </div>
+    </div>
+</div>

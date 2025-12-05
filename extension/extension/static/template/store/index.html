@@ -1,0 +1,55 @@
+<div class="store"
+    @click.stop="toggleSilder(false)"
+>
+    <header>
+        <ui-icon class="left" value="arrow-triangle"
+            @click.stop="goBack()"
+        ></ui-icon>
+        <ui-icon class="right" value="arrow-triangle"
+            @click.stop="goForward()"
+        ></ui-icon>
+        <ui-icon value="refresh"
+            @click.stop="refresh()"
+        ></ui-icon>
+        <ui-icon value="home"
+            @click.stop="domReady&&goHome()"
+        ></ui-icon>
+
+        <ui-icon
+            :title = "i18n('extension.store.toggle_download_list')"
+            class="more" 
+            value="list"
+            @click.stop="toggleSilder(!show.slider)"
+        ></ui-icon>
+    </header>
+    <section
+    :slider="show.slider"
+    >
+    <ui-loading v-if="isloading" class="massive"></ui-loading>
+        <webview ref="webview"></webview>
+
+        <div class="slider"
+            @click.stop
+        >
+            <header>
+                <span>
+                    <ui-label value="i18n:extension.store.download"></ui-label>
+                </span>
+                <ui-icon 
+                    value="del"
+                    :tooltip="i18n('extension.store.delete_all')"
+                    @click="removeAll"
+                ></ui-icon>
+            </header>
+
+            <section>
+                <item
+                    v-for="(item,index) in list"
+                    :info="item"
+                    :language="language"
+                    :key="index"
+                ></item>
+            </section>
+        </div>
+    </section>
+</div>
