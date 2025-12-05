@@ -1,0 +1,1 @@
+"use strict";const fs=require("fs"),ps=require("path"),{t:t}=require("./../util");exports.template=fs.readFileSync(ps.join(__dirname,"../../template/header.html"),"utf-8"),exports.props=["tab","tabs"],exports.data=function(){return{}},exports.methods={t:t,_onTabClick(t,e){this.$root.$emit("change-tab",e)}},exports.ready=function(){};

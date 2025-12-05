@@ -1,0 +1,91 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host {
+  border: none;
+  cursor: pointer;
+  line-height: inherit;
+}
+:host > div {
+  display: flex;
+  white-space: nowrap;
+}
+:host > div .default-checkbox,
+:host > div slot {
+  display: inline-block;
+  vertical-align: top;
+  height: 1em;
+  line-height: inherit;
+}
+:host > div .default-checkbox {
+  vertical-align: middle;
+  width: 1em;
+  font-size: 1.2em;
+  border: 1px solid var(--color-normal-border-weaker);
+  box-sizing: border-box;
+  background-color: var(--color-normal-fill-emphasis);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  position: relative;
+  top: -1px;
+}
+:host > div .default-checkbox i {
+  position: absolute;
+  left: 0;
+  background: var(--color-focus-fill-weaker);
+}
+:host > div .default-checkbox i.value {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  clip-path: polygon(8% 55%, 20% 40%, 44% 60%, 80% 20%, 93% 35%, 44% 87%);
+}
+:host > div .default-checkbox i.invalid {
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  border-radius: 2px;
+  visibility: hidden;
+}
+:host > div > .slot {
+  padding-left: 4px;
+  flex: 1;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:host(:hover) > div .default-checkbox {
+  border-color: var(--color-hover-border-weaker);
+}
+:host([focused]) > div .default-checkbox {
+  border-color: var(--color-focus-border-weaker);
+}
+:host([checked]) > div .default-checkbox i.value {
+  visibility: visible;
+}
+:host([checked]) > div .default-checkbox i.invalid {
+  visibility: hidden;
+}
+:host([invalid]) > div .default-checkbox i.value {
+  visibility: hidden;
+}
+:host([invalid]) > div .default-checkbox i.invalid {
+  visibility: visible;
+  background: var(--color-warn-fill-normal);
+}

@@ -1,0 +1,122 @@
+<ui-drag-area class="node"
+    v-if="dump"
+    :droppable="dump.isScene ? '' : 'cc.Script'"
+    @dragover="_onDragOver($event)"
+    @drop="_onDrop($event)"
+>
+
+    <!-- 显示场景元素 -->
+    <template
+        v-if="dump.isScene"
+    >
+        <scene-node
+            :dump="dump"
+            :dumps="dumps"
+        ></scene-node>
+    </template>
+
+    <!-- 显示普通的节点 -->
+    <template
+        v-else
+    >
+        <!-- 节点上如果带有 prefab 信息，则显示 prefab 按钮栏 -->
+        <prefab-node
+            v-if="dump.__prefab__"
+            :dump="dump"
+            :dumps="dumps"
+        ></prefab-node>
+
+        <!-- 节点数据的头部区域 -->
+        <div class="header">
+            <ins-prop empty="true"
+                :dump="dump.active"
+            >
+                <ui-checkbox tooltip="i18n:inspector.enable_node"
+                    :invalid="dumps && dumps.some(item => item.active.value !== dump.active.value)"
+                    :value="dump.active.value"
+                    @change="dump.active.value = $event.target.value, dumps.forEach(item => item.active.value = $event.target.value)"
+                ></ui-checkbox>
+            </ins-prop>
+            <ins-prop empty="true"
+                :dump="dump.name"
+            >
+                <ui-input
+                    :invalid="dumps && dumps.some(item => item.name.value !== dump.name.value)"
+                    :value="dump.name.value"
+                    @change="dump.name.value = $event.target.value, dumps.forEach(item => item.name.value = $event.target.value)"
+                ></ui-input>
+            </ins-prop>
+        </div>
+
+        <ui-section class="node-attrs"
+            :expand-key="dump.uuid.value + 'node'"
+            :expand="$root.expand(dump.uuid.value + 'node', true)"
+        >
+            <div class="header" slot="header">
+                <div class="name">
+                    <span>Node</span>
+                </div>
+
+                <ui-link class="link"
+                    v-if="helpUrl"
+                    :value="helpUrl"
+                    tooltip="i18n:inspector.menu.help_url"
+                    @click.stop
+                >
+                    <ui-icon value="help"></ui-icon>
+                </ui-link>
+
+                <div class="setting">
+                    <ui-icon class="i-setting" value="setting"  tooltip="i18n:inspector.menu.node"
+                        @click.stop="_onClickNodeMenu($event)"
+                    ></ui-icon>
+                </div>
+            </div>
+            <ins-prop auto="true"
+                :dump="dump.position"
+                :dumps="dumps.map(item => item.position)"
+            ></ins-prop>
+            <ins-prop auto="true"
+                :dump="dump.rotation"
+                :dumps="dumps.map(item => item.rotation)"
+            ></ins-prop>
+            <ins-prop auto="true"
+                :dump="dump.scale"
+                :dumps="dumps.map(item => item.scale)"
+            ></ins-prop>
+            <ins-prop auto="true"
+                :dump="dump.layer"
+                :dumps="dumps.map(item => item.layer)"
+            ></ins-prop>
+        </ui-section>
+
+        <template
+            v-for="(list, index) in complist"
+        >
+            <comp
+                :key="list[0].cid + index" 
+                :uuids="uuids"
+                :index="index"
+                :total="complist.length"
+                :dump="list[0]"
+                :dumps="list"
+            ></comp>
+        </template>
+ 
+        <div class="footer">
+            <ui-button
+                @confirm="_onAddComponentMenu($event)"
+            >
+                <ui-label value="i18n:inspector.add_component"></ui-label>
+            </ui-button>
+        </div>
+
+        <asset v-for="(uuid, index) in subEditUuids" 
+            :key="uuid"
+            :uuids="[uuid]"
+            :ref="uuid"
+            from="node"
+            :expand-prefix="dump.uuid.value"
+        ></asset>
+    </template>
+</ui-drag-area>

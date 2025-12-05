@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+.device {
+  flex: 1;
+  display: flex;
+}
+.device .slider {
+  width: 30%;
+  min-width: 130px;
+  border-right: 1px solid var(--color-normal-border);
+  overflow-y: auto;
+  margin-right: 16px;
+}
+.device .slider ul {
+  margin: 0;
+  padding: 0;
+}
+.device .slider ul li {
+  padding-left: 5px;
+  padding-right: 10px;
+  margin-right: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+.device .slider ul li:hover,
+.device .slider ul li[active] {
+  background-color: var(--color-hover-fill);
+}
+.device .slider ul > .line {
+  height: 0;
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.device .content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.device .content > ui-prop {
+  --left-width: 35%;
+  margin-bottom: 6px;
+}
+.device .content > ui-prop > * {
+  flex: 1;
+}
+.device .content > ui-prop > div {
+  display: flex;
+}
+.device .content > ui-prop > div > ui-label {
+  padding: 0 4px;
+}
+.device .content > ui-prop > div > ui-num-input {
+  flex: 1;
+}
+.device .content > .buttons {
+  text-align: right;
+}
+.device .content > .buttons ui-button {
+  margin-left: 8px;
+}

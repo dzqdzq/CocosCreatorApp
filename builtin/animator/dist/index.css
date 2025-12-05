@@ -1,0 +1,988 @@
+:host {
+  display: flex;
+}
+.ani-prop {
+  display: flex;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+.ani-prop > .group > .name {
+  color: var(--color-focus-fill);
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  direction: rtl;
+}
+.disabled-word {
+  color: #96933b;
+}
+.group {
+  display: flex;
+  margin-right: 5px;
+  line-height: 22px;
+}
+.group .name {
+  margin-right: 5px;
+}
+.group ui-input,
+.group ui-num-input,
+.group ui-color,
+.group ui-section {
+  width: 60px;
+  height: 22px;
+}
+.group ui-section {
+  min-width: 60px;
+}
+.group ui-asset {
+  width: 120px;
+  height: 20px;
+  line-height: 16px;
+  align-self: flex-end;
+  --type-display: none;
+}
+.animator {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  background: var(--color-bormal-fill);
+}
+.animator ui-select {
+  max-width: 200px;
+  min-width: 80px;
+}
+.animator .chart {
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.animator .chart .x-axis {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+.animator .chart .x-axis span {
+  position: absolute;
+  font-size: 10px;
+  padding-top: 2px;
+}
+.animator #gridCanvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.animator .flex-1 {
+  flex: 1;
+}
+.animator .lock {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.animator .lock-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--color-normal-fill);
+  opacity: 0.3;
+}
+.animator .content-device {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+}
+.animator .content-device .duration {
+  z-index: 1;
+  width: 0;
+  height: 100%;
+  background: var(--color-normal-contrast-important);
+  pointer-events: none;
+  opacity: 0.4;
+}
+.animator .content {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+.animator .content .mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.animator .content-item {
+  line-height: 24px;
+  height: 24px;
+}
+.animator .content-item.dark {
+  background: rgba(20, 20, 20, 0.25);
+}
+.animator .content-item.light {
+  background: rgba(95, 90, 90, 0.25);
+}
+.animator .mask {
+  position: absolute;
+  z-index: 10;
+  background-color: #020202b5;
+  width: 100%;
+  height: 100%;
+}
+.animator .loading {
+  position: absolute;
+  z-index: 20;
+  background-color: #020202b5;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.animator .group {
+  line-height: 22px;
+}
+.animator .group span {
+  vertical-align: text-bottom;
+  margin-right: 4px;
+}
+.animator #header {
+  display: flex;
+  justify-content: space-between;
+  height: 24px;
+  padding: 0 4px;
+}
+.animator #header .left {
+  width: 260px;
+  display: flex;
+}
+.animator #header .right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.animator #header .right > div {
+  display: flex;
+}
+.animator #header .right > div > * {
+  margin-right: 8px;
+  display: flex;
+}
+.animator #header ui-icon {
+  cursor: pointer;
+  vertical-align: middle;
+}
+.animator #header ui-icon:hover {
+  color: #cccccc;
+}
+.animator #header ui-button {
+  padding: 0 4px;
+  margin: 2px 0;
+  height: 18px;
+  line-height: 16px;
+}
+.animator #header ui-input,
+.animator #header ui-num-input {
+  font: inherit;
+}
+.animator #header ui-num-input {
+  width: 60px;
+  --ctrl-btn-display: none;
+}
+.animator #header .time {
+  display: inline-block;
+  vertical-align: bottom;
+  padding: 0 4px;
+}
+.animator #header .time ui-input {
+  width: 60px;
+  text-align: center;
+}
+.animator .container {
+  height: 0;
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+.animator .container > .right,
+.animator .container > .left {
+  flex-direction: column;
+  line-height: 20px;
+  display: flex;
+}
+.animator .container > .right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.animator .container > .right .content {
+  overflow: hidden;
+}
+.animator .container > .right .content .box {
+  border: 1px solid #749ab9;
+  background: rgba(108, 139, 156, 0.2);
+  position: absolute;
+}
+.animator .container > .right .property-tools {
+  position: relative;
+  z-index: 2;
+}
+.animator .container > .right .property-tools span {
+  margin: 0 5px;
+}
+.animator .container > .right .control-pointer {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  height: 100%;
+  padding-top: 2px;
+  cursor: ew-resize;
+  border: 4px solid transparent;
+  z-index: 1;
+}
+.animator .container > .right .control-pointer > * {
+  pointer-events: none;
+}
+.animator .container > .right .control-pointer ui-icon[value='play'] {
+  transform: rotate(90deg);
+  position: absolute;
+  top: -10px;
+  left: -4px;
+  font-size: 8px;
+  color: var(--color-danger-contrast);
+}
+.animator .container > .right .control-pointer span {
+  display: inline-block;
+  width: 1px;
+  background-color: var(--color-danger-fill);
+  height: 100%;
+}
+.animator .container > .right .control-pointer.preview {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.animator .container > .left {
+  width: 260px;
+  border-right: 1px solid var(--color-normal-border);
+}
+.animator .container > .left .node-header {
+  background-color: var(--color-normal-fill-emphasis);
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.animator .container > .left .node-header ui-icon {
+  margin: 0 5px;
+  cursor: pointer;
+}
+.animator .container > .left .node-header ui-input {
+  flex: 1;
+  margin: 4px 0;
+  line-height: 22px;
+}
+.animator .resize {
+  position: absolute;
+  z-index: 2;
+}
+.animator .resize:hover {
+  background-color: var(--color-normal-border);
+}
+.animator .resize-v {
+  width: 4px;
+  height: 100%;
+}
+.animator .resize-h {
+  height: 3px;
+  width: 100%;
+}
+.animator .resize-v:hover {
+  cursor: e-resize;
+}
+.animator .resize-h:hover {
+  cursor: s-resize;
+}
+.animator .foot {
+  padding: 4px 10px 2px 10px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--color-normal-fill);
+  border-top: 1px solid var(--color-normal-border);
+  line-height: 20px;
+}
+.animator .foot ui-num-input {
+  width: 80px;
+}
+.animator .foot ui-button {
+  height: 22px;
+  line-height: 13px;
+}
+.animator .foot .right {
+  display: flex;
+  justify-content: flex-end;
+}
+.animator .foot span {
+  margin: 0 5px;
+}
+.animator .foot ui-select {
+  vertical-align: middle;
+  font-size: 12px;
+}
+.animator .keyframe-move-info,
+.animator .mouse-info {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid;
+  background: #919ea969;
+  color: #e2d6d6;
+  padding: 4px;
+  line-height: 14px;
+  pointer-events: none;
+}
+.animator .mouse-info {
+  opacity: 0.3;
+  border: none;
+}
+.animator .keyframe-move-info > div .name {
+  display: inline-block;
+  width: 28px;
+}
+.animator .nodes {
+  overflow-x: auto;
+}
+.animator .nodes .content {
+  overflow: auto;
+}
+.animator .nodes .wrap {
+  display: inline-block;
+  min-width: max-content;
+  width: 100%;
+}
+.animator .nodes .node {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 10px;
+}
+.animator .nodes .content-item {
+  width: 100%;
+  text-indent: 10px;
+  box-sizing: border-box;
+}
+.animator .nodes .content-item.moving[draggable='true'] .tips {
+  display: none;
+}
+.animator .nodes .content-item.moving[moving] {
+  background: repeating-linear-gradient(135deg, transparent, transparent 2px, #ffffff 2px, #ffffff 4px);
+  animation: shine 1s infinite linear;
+  overflow: hidden;
+}
+.animator .nodes .content-item.moving[moving] .node {
+  background: #6d6969;
+  height: 90%;
+  margin: 1px;
+}
+.animator .nodes .content-item.moving[moving] .operate {
+  display: none;
+}
+.animator .nodes .content-item.moving[moving='missing'] .node {
+  background: #96933b;
+}
+.animator .nodes .content-item .operate {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  cursor: pointer;
+}
+.animator .nodes .content-item .tips {
+  background-color: #689eca;
+  position: absolute;
+  text-indent: 0;
+  text-align: center;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  line-height: 24px;
+  width: 0;
+  transition: width 0.5s;
+}
+.animator .nodes .content-item.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.animator .nodes ui-icon[value='lock'] {
+  position: relative;
+  font-size: 8px;
+  top: -4px;
+  right: 3px;
+  color: #afa9a9;
+}
+.animator .nodes .content-item:hover {
+  background-color: #6d6969;
+  color: white;
+}
+.animator .nodes .content-item:hover .operate {
+  display: flex;
+}
+.animator .nodes .content-item[draggable='true'] {
+  background-color: #96933b;
+  border-left: 1px solid #e6cc42;
+  color: white;
+}
+.animator .nodes .content-item[hoving='true'] .tips,
+.animator .nodes .content-item[moving]:hover .tips {
+  width: 110px;
+}
+.animator .nodes .content-item[selected] {
+  background-color: var(--color-active-fill-weaker);
+  color: var(--color-focus-border-weakest);
+}
+:host([focused]) .content-item[active] {
+  background-color: var(--color-focus-fill);
+  color: var(--color-normal-contrast-weakest);
+}
+@keyframes shine {
+  0% {
+    background-position: -1px -1px;
+  }
+  100% {
+    background-position: -12px -12px;
+  }
+}
+.property-tools {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-normal-border);
+  border-bottom: 1px solid var(--color-normal-border);
+  height: 22px;
+  line-height: 22px;
+  background: var(--color-normal-fill-emphasis);
+  padding: 2px 8px;
+}
+.property-tools ui-icon {
+  vertical-align: middle;
+}
+.property-tools ui-icon:hover {
+  color: #cccccc;
+  cursor: pointer;
+}
+.events {
+  position: relative;
+  line-height: 16px;
+  z-index: 2;
+}
+.events ui-icon {
+  position: absolute;
+  bottom: -4px;
+  color: #d3c39b80;
+  font-size: 10px;
+}
+.events ui-icon:hover {
+  color: #f4f189;
+  cursor: pointer;
+}
+.events .preview {
+  color: #f2ed1a;
+  pointer-events: none;
+}
+.tips-mask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tips-mask .tips {
+  text-align: center;
+}
+.tips-mask .message {
+  margin-bottom: 15px;
+  display: block;
+}
+.preview-row {
+  width: 100%;
+  position: absolute;
+}
+.preview-row .stick {
+  position: absolute;
+  padding: 0 4px;
+  box-sizing: border-box;
+  background-color: #c3bfbf33;
+  height: 100%;
+  top: 0;
+}
+.preview-row .row-wrap {
+  height: 100%;
+}
+.preview-row .tips {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  background-color: #5d686b;
+  width: 100%;
+  opacity: 0.5;
+  text-align: center;
+}
+.preview-row .line {
+  height: 8px;
+  position: absolute;
+  top: 7px;
+  background-color: var(--color-primary-fill-important);
+  z-index: 2;
+  opacity: 0.4;
+}
+.preview-row .line.active,
+.preview-row .line:hover {
+  background: var(--color-primary-contrast-weaker);
+  cursor: pointer;
+  opacity: 0.3;
+}
+.preview-row .dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary-fill);
+  transform: rotate(45deg);
+  border-radius: 2.5px;
+  transition: background-color 0.3s;
+  pointer-events: none;
+}
+.preview-row .key,
+.preview-row .v-key {
+  position: absolute;
+  top: 7px;
+}
+.preview-row .key,
+.preview-row .image {
+  z-index: 2;
+}
+.preview-row .v-key {
+  opacity: 0.5;
+  z-index: 1;
+}
+.preview-row .key.active,
+.preview-row .key:hover {
+  cursor: pointer;
+}
+.preview-row .key.active .dot,
+.preview-row .key:hover .dot {
+  background-color: var(--color-primary-contrast);
+  pointer-events: none;
+}
+.preview-row .image {
+  position: absolute;
+  height: 100%;
+  border-left: 2px solid var(--color-primary-fill);
+}
+.preview-row .image ui-image {
+  height: 22px;
+  min-width: 22px;
+  border: 1px solid #aeadad;
+  pointer-events: none;
+  transition: all 0.5s;
+  display: inline-block;
+}
+.preview-row .image ui-image[value] {
+  width: auto;
+}
+.preview-row .key.active,
+.preview-row .image.active {
+  pointer-events: none;
+}
+.preview-row .image.active {
+  border-left-color: var(--color-primary-contrast);
+}
+.preview-row .sprite-key {
+  height: 100%;
+  min-width: 10px;
+  pointer-events: none;
+}
+.preview-row .image:hover {
+  cursor: pointer;
+}
+.preview-row .image:hover img {
+  border-color: var(--color-primary-contrast);
+}
+.preview-row div.image.active img {
+  border-color: var(--color-primary-contrast);
+}
+#properties .property {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#properties .property .arrow {
+  height: 24px;
+  margin-right: 5px;
+  text-align: center;
+  cursor: pointer;
+  transform: rotate(-90deg);
+}
+#properties .property .arrow[animate] {
+  transition: 0.2s transform;
+}
+#properties .property .arrow[expand='true'] {
+  transform: rotate(0);
+}
+#properties .property > .property-content {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+#properties .property > .property-content > .name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+#properties .property > .property-content > .group {
+  flex: 1;
+  overflow: hidden;
+  margin-top: 2px;
+}
+#properties .property > .property-content[part] > .name {
+  width: 50%;
+}
+#properties .property .operate {
+  display: flex;
+  width: 40px;
+  justify-content: space-around;
+  position: absolute;
+  right: 0;
+}
+#properties .property .operate .key {
+  margin-top: 7px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-primary-fill);
+  border: 1px solid var(--color-primary-fill);
+  transform: rotate(45deg);
+  border-radius: 2.5px;
+}
+#properties .property .operate .key:hover {
+  cursor: pointer;
+  border: 1px solid var(--color-primary-contrast);
+}
+#properties .property .operate .key[empty] {
+  background-color: transparent;
+}
+#properties .property .operate .key[empty]:hover {
+  background-color: var(--color-primary-contrast);
+}
+#properties .property[missing] {
+  background-color: #96933b;
+  border-left: 1px solid #e6cc42;
+  color: white;
+}
+#properties .property[selected] {
+  background-color: var(--color-active-fill-weaker);
+}
+:host([focused]) #properties .property[selected] {
+  background-color: var(--color-focus-fill);
+}
+#properties .property:hover {
+  background-color: var(--color-hover-fill);
+  color: var(--color-hover-contrast);
+}
+#properties .property:hover .operate {
+  display: flex;
+}
+#properties .property:hover ui-icon {
+  cursor: pointer;
+}
+#event-editor {
+  line-height: 24px;
+}
+#event-editor .content {
+  width: 400px;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  background: #312f2f;
+  display: flex;
+  flex-direction: column;
+}
+#event-editor .content > .header {
+  display: flex;
+  justify-content: space-between;
+  height: 24px;
+  background: var(--color-normal-fill-emphasis);
+  padding: 5px;
+}
+#event-editor .content > .header .name {
+  margin: 0 5px;
+}
+#event-editor .content > .header .dirty {
+  color: var(--color-focus-fill);
+  margin: 0 2px;
+}
+#event-editor .content > .functions {
+  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
+  height: 100%;
+  padding-top: 0;
+  background: var(--color-normal-fill-normal);
+}
+#event-editor ui-input,
+#event-editor ui-checkbox,
+#event-editor ui-num-input {
+  width: 100%;
+  height: 25px;
+}
+#event-editor ui-section {
+  width: 100%;
+}
+#event-editor ui-icon:hover {
+  cursor: pointer;
+  color: #cccccc;
+}
+#event-editor .tools {
+  display: flex;
+}
+#event-editor .tools ui-icon {
+  margin: 0 5px;
+}
+#event-editor .line {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  margin-bottom: 5px;
+}
+#event-editor .line .name {
+  min-width: 8px;
+}
+#event-editor .line > * {
+  margin-right: 5px;
+}
+#event-editor .line .operate {
+  visibility: hidden;
+}
+#event-editor .line:hover .operate {
+  visibility: visible;
+}
+#event-editor .params {
+  border: 1px rgba(136, 136, 136, 0.35) dashed;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+#event-editor .header ui-icon,
+#event-editor .params ui-icon {
+  margin: 0 5px;
+}
+#bezierEditor {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#bezierEditor .content {
+  width: 80%;
+  display: flex;
+  flex: none;
+  overflow: hidden;
+  flex-direction: column;
+}
+#bezierEditor .content .toolbar {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px;
+  background: #222222;
+  display: flex;
+  justify-content: space-between;
+}
+#bezierEditor .content .toolbar ui-icon {
+  cursor: pointer;
+}
+#bezierEditor .content .main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  background: #444242e3;
+}
+#bezierEditor .content .main ui-input {
+  background: #4d4b4b;
+  border-color: #333333;
+  color: var(--default-text-c);
+  font: inherit;
+}
+#bezierEditor .content .main .preview {
+  position: absolute;
+  left: 220px;
+  top: 40px;
+  z-index: 2;
+  display: flex;
+}
+#bezierEditor .content .main .preview ui-input {
+  margin-right: 10px;
+}
+#bezierEditor .content .main > .right {
+  width: 100%;
+  flex: 1;
+  position: relative;
+}
+#bezierEditor .content .main > .right svg {
+  width: 100%;
+  height: 100%;
+}
+#bezierEditor .content .main > .right .tips {
+  position: absolute;
+  padding: 3px;
+  border: 1px solid #888888;
+  background: #444444;
+}
+#bezierEditor .content .main > .left {
+  width: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background: #333333;
+}
+#bezierEditor .content .main > .left ui-select {
+  margin: 0 5px;
+}
+#bezierEditor .content .main > .left .name {
+  line-height: 30px;
+}
+#bezierEditor .content .main > .left .add {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+#bezierEditor .content .main > .left .presets {
+  height: 100%;
+  flex: 1;
+  margin: 10px;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+#bezierEditor .content .main > .left .presets .preset-item {
+  margin: 15px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+}
+#bezierEditor .content .main > .left .presets .preset-item[select] {
+  border-color: #929470;
+}
+#bezierEditor .content .main > .left .presets svg {
+  cursor: pointer;
+  border-bottom: 1px solid #7b7575;
+  border-left: 1px solid #7b7575;
+  width: 100px;
+  height: 100px;
+  stroke: #279dff;
+  stroke-width: 0.01px;
+  fill: none;
+}
+#bezierEditor .content .main > .left .presets .name {
+  position: relative;
+}
+#bezierEditor .content .main > .left .presets ui-icon[value='del'] {
+  position: absolute;
+  visibility: hidden;
+  right: -5px;
+  color: #bf4d4e;
+  cursor: pointer;
+}
+#bezierEditor .content .main > .left .presets .preset-item:hover ui-icon[value='del'] {
+  visibility: visible;
+}
+#bezierEditor .content .main > .left .info {
+  color: #7b7676;
+}
+#bezierEditor .content .bezier {
+  stroke-width: 0.01px;
+  stroke: #184c76;
+  fill: none;
+  position: relative;
+}
+#bezierEditor .content .bezier line {
+  stroke: rgba(156, 148, 145, 0.7);
+  stroke-width: 0.01px;
+}
+#bezierEditor .content .bezier circle:hover {
+  cursor: pointer;
+}
+#bezierEditor .content .bezier .ctrl-1 {
+  stroke-width: 0.02px;
+  stroke: rgba(156, 148, 145, 0.7);
+  fill: #ff9900;
+}
+#bezierEditor .content .bezier .ctrl-2 {
+  stroke-width: 0.02px;
+  stroke: rgba(156, 148, 145, 0.7);
+  fill: #658b3a;
+}
+#bezierEditor .content .axis {
+  stroke-width: 0.002px;
+  stroke: #cecdcd;
+  fill: none;
+}
+#bezierEditor .content .axis text {
+  font-size: 0.05px;
+}
+.toast {
+  position: absolute;
+  padding: 2px 8px;
+  border-radius: 4px;
+  bottom: 35px;
+  right: 10px;
+  z-index: 20;
+  background: var(--color-default-fill-normal);
+  border: solid 1px white;
+}
+.ctrl-stick {
+  position: absolute;
+}
+.ctrl-stick .left,
+.ctrl-stick .right {
+  padding: 0 1px;
+  background-color: white;
+  background-clip: padding-box;
+  height: 100%;
+  position: absolute;
+}
+.ctrl-stick .info {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid;
+  background: #919ea969;
+  color: #e2d6d6;
+  padding: 2px;
+  line-height: 8px;
+  font-size: 0.8em;
+  pointer-events: none;
+}
+.ctrl-stick .left:hover,
+.ctrl-stick .right:hover {
+  cursor: ew-resize;
+}
+.ctrl-stick .left {
+  left: 0;
+  border-right: 2px solid transparent;
+}
+.ctrl-stick .left .info {
+  right: 15px;
+}
+.ctrl-stick .right {
+  right: 0;
+  border-left: 2px solid transparent;
+}
+.ctrl-stick .right .info {
+  left: 15px;
+}

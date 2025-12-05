@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path");exports["build-typescript-develop"]=async function(){return[__dirname]},exports["build-less-develop"]=function(){return[{source:join(__dirname,"./static/joint/index.less"),dist:join(__dirname,"./dist/joint.css")},{source:join(__dirname,"./source/settings/index.less"),dist:join(__dirname,"./dist/settings/index.css")}]};

@@ -1,0 +1,35 @@
+.ins-object {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+
+    > .header {
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        background: var(--color-normal-fill-weaker);
+        border-radius: calc(var(--size-normal-radius) * 1px);
+        cursor: pointer;
+        user-select: none;
+        line-height: 22px;
+
+        > .ins-prop {
+            display: inline;
+
+            > ui-checkbox {
+                user-select: none;
+            }
+        }
+
+        ui-icon {
+            font-size: 9px;
+        }
+
+    }
+
+    > .object {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,158 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host {
+  --arrow-size: 8px;
+  --border-size: 1px;
+  --arrow-box-size: calc(var(--arrow-size) + var(--border-size));
+  padding: 0 0 var(--arrow-size) 0;
+}
+:host .content {
+  position: relative;
+  display: block;
+  background: var(--color-normal-fill-emphasis);
+  border: var(--border-size) solid var(--color-normal-border);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  padding: 0 var(--arrow-size);
+  min-height: 24px;
+}
+:host .content:after,
+:host .content:before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+}
+:host .content[direction='left']:before {
+  border-top: var(--arrow-box-size) solid transparent;
+  border-bottom: var(--arrow-box-size) solid transparent;
+  border-right: var(--arrow-box-size) solid var(--color-normal-border);
+  right: 100%;
+  top: calc(var(--direction-adjust) - var(--border-size));
+}
+:host .content[direction='left']:after {
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
+  border-right: var(--arrow-size) solid var(--color-normal-fill-emphasis);
+  right: calc(100% - 1px);
+  top: var(--direction-adjust);
+}
+:host .content[direction='right']:before {
+  border-top: var(--arrow-box-size) solid transparent;
+  border-bottom: var(--arrow-box-size) solid transparent;
+  border-left: var(--arrow-box-size) solid var(--color-normal-border);
+  left: 100%;
+  top: calc(var(--direction-adjust) - var(--border-size));
+}
+:host .content[direction='right']:after {
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
+  border-left: var(--arrow-size) solid var(--color-normal-fill-emphasis);
+  left: calc(100% - 1px);
+  top: var(--direction-adjust);
+}
+:host .content[direction='top']:before {
+  border-left: var(--arrow-box-size) solid transparent;
+  border-right: var(--arrow-box-size) solid transparent;
+  border-bottom: var(--arrow-box-size) solid var(--color-normal-border);
+  bottom: 100%;
+  left: calc(var(--direction-adjust) - var(--border-size));
+}
+:host .content[direction='top']:after {
+  border-left: var(--arrow-size) solid transparent;
+  border-right: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid var(--color-normal-fill-emphasis);
+  bottom: calc(100% - 1px);
+  left: var(--direction-adjust);
+}
+:host .content[direction='bottom']:before {
+  border-left: var(--arrow-box-size) solid transparent;
+  border-right: var(--arrow-box-size) solid transparent;
+  border-top: var(--arrow-box-size) solid var(--color-normal-border);
+  top: 100%;
+  left: calc(var(--direction-adjust) - var(--border-size));
+}
+:host .content[direction='bottom']:after {
+  border-left: var(--arrow-size) solid transparent;
+  border-right: var(--arrow-size) solid transparent;
+  border-top: var(--arrow-size) solid var(--color-normal-fill-emphasis);
+  top: calc(100% - 1px);
+  left: var(--direction-adjust);
+}
+:host([arrow^='top']) {
+  padding: var(--arrow-size) 0 0 0;
+}
+:host([arrow^='bottom']) {
+  padding: 0 0 var(--arrow-size) 0;
+}
+:host([arrow^='left']) {
+  padding: 0 0 0 var(--arrow-size);
+}
+:host([arrow^='right']) {
+  padding: 0 var(--arrow-size) 0 0;
+}
+:host([animation]) {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
+  will-change: transform, opacity;
+}
+@keyframes fadein-from-bottom {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadein-from-top {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadein-from-right {
+  from {
+    opacity: 0;
+    transform: translate3d(10px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadein-from-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-10px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

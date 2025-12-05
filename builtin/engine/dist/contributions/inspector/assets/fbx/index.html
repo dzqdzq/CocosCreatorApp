@@ -1,0 +1,65 @@
+<section class="asset-fbx">
+
+    <header>
+        <ui-tab
+            :value="tabs.indexOf(activeTab)"
+            @change.stop
+            @confirm.stop="activeTab = tabs[$event.target.value]"
+        >
+            <ui-button
+                v-for="(tabName, index) in tabs"
+                :key="tabName"
+            >{{t(tabName)}}</ui-button>
+        </ui-tab>
+    </header>
+
+    <!-- model 模块 -->
+    <model
+        v-if="activeTab === 'model'"
+        :readonly="readonly"
+        :meta="meta"
+        :metas="metas"
+        @data-confirm="changeData"
+    ></model>
+
+    <!-- material 模块 -->
+    <material
+        v-if="activeTab === 'material'"
+        :readonly="readonly"
+        :info="info"
+        :meta="meta"
+        :metas="metas"
+        @data-confirm="changeData"
+    ></material>
+
+    <!-- animation 模块 -->
+    <animation
+        v-if="activeTab === 'animation'"
+        :readonly="readonly"
+        :meta="meta"
+        :metas="metas"
+        :gridWidth="gridWidth"
+        :gridTableWith="gridTableWith"
+    ></animation>
+
+    <!-- fbx 自己的专属模块 -->
+    <fbx
+        v-if="activeTab === 'fbx'"
+        :readonly="readonly"
+        :meta="meta"
+        :metas="metas"
+        @data-confirm="changeData"
+    ></fbx>
+
+    <footer>
+        <div class="preview-info">
+            <ui-label value="Vertices:0" ref="verticesLabel"></ui-label>
+            <ui-label value="Triangles:0" ref="trianglesLabel"></ui-label>
+        </div>
+        <div class="imageDiv" ref="imageDiv">
+            <canvas class="image" ref="image"
+                @mousedown=onPreviewMouseDown($event)
+            ></canvas>
+        </div>
+    </footer>
+</section>

@@ -1,0 +1,1 @@
+"use strict";function createMatrix(){return new DOMMatrix}function smoothScale(e,t){return t=Math.pow(2,.002*e)*t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.smoothScale=exports.createMatrix=void 0,exports.createMatrix=createMatrix,exports.smoothScale=smoothScale;

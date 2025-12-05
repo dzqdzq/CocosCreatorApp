@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.css=function(){return[{source:"./source/panels/default/index.less",dist:"./dist/panels/default/index.css"},{source:"./source/panels/debug/index.less",dist:"./dist/panels/debug/index.css"}]};

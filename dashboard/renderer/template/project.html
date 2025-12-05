@@ -1,0 +1,77 @@
+<div class="content">
+
+    <div class="project-wrap">
+
+        <div class="project-group">
+
+            <div class="pro-wrap" tabindex="0">
+                <div class="img-wrap">
+                    <span class="iconfont icon-folder-open"></span>
+                </div>
+                <div class="name">{{t('open_project')}}</div>
+                <div class="hover-wrap">
+                    <span class="btn btn-blue"
+                        @click="openProject('')"
+                    >{{t('open')}}</span>
+                </div>
+            </div>
+
+            <div class="pro-wrap" tabindex="0"
+                v-for="(item, index) in list"
+                :key="index"
+                @mouseenter="_onMouseEnter($event, item)"
+                @mouseleave="_onMouseLeave($event)"
+            >
+                <div class="img-wrap">
+                    <img v-if="item.pic" src="item.pic"
+                        :alt="item.name"
+                    >
+                    <div v-else class="img-holder">
+                        <img src="./../img/cocos_logo.png">
+                    </div>
+                </div>
+                <div class="name">{{item.name}}</div>
+                <div class="hover-wrap"
+                    v-if="item.state===''"
+                >
+                    <span class="iconfont icon-del-b"
+                        :title="t('remove')"
+                        @click="removeProject(item)"
+                    ></span>
+                    
+                    <span class="btn btn-blue"
+                        v-if="item.state===''"
+                        @click="openProject(item.path)"
+                    >{{t('open')}}</span>
+                </div>
+                <div class="icon-deleting"
+                    v-else-if="item.state==='deleting'"
+                >
+                    <i></i>
+                </div>
+                <div class="opened"
+                    v-else-if="item.state==='opened'"
+                >
+                    <span>{{t('opened')}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="project-detail"
+        v-if="hover"
+    >
+        <div class="detail-line">
+            <span class="label">{{t('project_path')}}</span>
+            <span class="label">{{hover.path}}</span>
+        </div>
+        <div class="detail-line">
+            <span class="label">{{t('create_time')}}</span>
+            <span class="label">{{stamp2time(hover.ctime)}}</span>  
+        </div>
+        <div class="detail-line">
+            <span class="label">{{t('recent_modified')}}</span>
+            <span class="label">{{stamp2time(hover.otime)}}</span>
+        </div>
+    </div>
+</div>

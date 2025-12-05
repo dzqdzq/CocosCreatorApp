@@ -1,0 +1,66 @@
+<div class="wrap ui-icon-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-icon value="video"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon value="video"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>color</h2>
+            <div>
+                <ui-icon color="true" value="video"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon color="true" value="video"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>color="normal"</h2>
+            <div>
+                <ui-icon color="true" value="video"></ui-icon>
+            </div>
+            <div>
+                <ui-icon color="normal" value="video"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon color="true" value="video"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color="normal" value="video"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>size</h2>
+            <div>
+                <ui-icon color="true" value="video" style="font-size: 16px;"></ui-icon>
+                <ui-icon color="true" value="video" style="font-size: 24px;"></ui-icon>
+                <ui-icon color="true" value="video" style="font-size: 32px;"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon color="true" value="video" style="font-size: 16px;"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color="true" value="video" style="font-size: 24px;"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color="true" value="video" style="font-size: 32px;"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row"
+            v-for="list,name in iconMap"
+        >
+            <h2>{{name}}</h2>
+            <div class="all-icons">
+                <div class="icon-box"
+                    v-for="name in list"
+                >
+                    <ui-icon color="true"
+                        :value="name"
+                    ></ui-icon>
+                    <span>{{name}}</span>
+                </div>
+            </div>
+        </div>
+    </ui-section>
+</div>

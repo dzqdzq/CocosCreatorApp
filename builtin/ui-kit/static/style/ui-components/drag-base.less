@@ -1,0 +1,261 @@
+@import '../../../../../lib/source/ui-kit/renderer/components/base/base';
+
+:host {
+    position: relative;
+    border: none;
+
+    --type-display: flex;
+
+    .type {
+        display: var(--type-display);
+        cursor: pointer;
+        position: absolute;
+        background: var(--color-normal-fill-emphasis);
+        border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+        border-bottom: none;
+        border-top-right-radius: calc(var(--size-normal-radius) * 1px);
+        border-top-left-radius: calc(var(--size-normal-radius) * 1px);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 0 4px;
+        top: calc(-8px - var(--size-normal-border) * 1px + 1px);
+        height: 8px;
+        line-height: 10px;
+        font-size: 9px;
+        max-width: 80%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        ui-icon {
+            margin-right: 2px;
+            margin-top: 1px;
+            font-size: 7px;
+        }
+    }
+
+    .area {
+        display: flex;
+        line-height: inherit;
+        background: var(--color-normal-fill-emphasis);
+        border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+        border-radius: calc(var(--size-normal-radius) * 1px);
+        border-top-left-radius: 0;
+        box-sizing: border-box;
+        height: 100%;
+        pointer-events: auto;
+        cursor: default;
+
+        > ui-drag-area {
+            flex: 1;
+            display: flex;
+            padding: 0 6px;
+            margin: 2px;
+            border-radius: 0 0 0 2px;
+            background: none;
+            width: 90%;
+            min-width: 70px;
+            box-sizing: border-box;
+            overflow: hidden;
+            line-height: inherit;
+            position: relative;
+
+            > ui-icon {
+                position: absolute;
+                right: 5px;
+                display: inline;
+                top: -1px;
+            }
+
+            > span {
+                margin: -2px;
+            }
+
+            > .invalid {
+                display: none;
+            }
+
+            > .value {
+                display: none;
+                flex: 1;
+                width: 1px; // 激活 text-overflow: ellipsis;
+                max-width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            > .placeholder {
+                display: inline-block;
+                flex: 1;
+                color: var(--color-normal-contrast);
+                opacity: 0.3;
+            }
+        }
+
+        > ui-button {
+            border: none;
+            border-top-left-radius: 0;
+            border-top-right-radius: 3px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 3px;
+        }
+
+        .clear {
+            color: var(--color-danger-fill-normal);
+            visibility: hidden;
+        }
+
+        > div {
+            width: 1em;
+            cursor: pointer;
+            display: none;
+            padding: 0 0.3em;
+
+            svg {
+                display: flex;
+                height: 100%;
+                width: 0.8em;
+                margin: auto;
+            }
+        }
+    }
+
+    .select {
+        margin: 0 3px;
+    }
+}
+
+// :hover 和 [attr] 权重是平级的，:hover 放在 [attr] 前面样式可被覆盖，即优先 [attr] 样式
+:host(:hover:not([disabled]):not([readonly])) {
+    ui-drag-area {
+        cursor: pointer;
+        color: var(--color-hover-contrast-weaker);
+    }
+
+    .type {
+        border-color: var(--color-hover-border-weaker);
+    }
+
+    .area {
+        border-color: var(--color-hover-border-weaker);
+
+        .select {
+            cursor: pointer;
+        }
+    }
+}
+
+:host([value]:not([disabled]):not([readonly])) {
+    .area > ui-drag-area:hover .clear {
+        visibility: visible;
+    }
+}
+
+:host[draging] {
+    border: 1px solid var(--color-success-fill);
+    background: var(--color-success-fill);
+}
+
+:host([focused]:not([disabled]):not([readonly])) {
+    .type {
+        border-color: var(--color-focus-border-weaker);
+    }
+
+    .area {
+        border-color: var(--color-focus-border-weaker);
+    }
+}
+
+:host([effective]) {
+    .area {
+        > ui-drag-area {
+            background-color: var(--color-focus-fill);
+
+            > .value {
+                display: inline;
+            }
+
+            > .placeholder {
+                display: none;
+            }
+        }
+
+        > .clear {
+            display: var(--show-clear, inline);
+        }
+    }
+}
+
+:host([state='allow']) {
+    .type {
+        border-color: var(--color-success-fill);
+    }
+
+    .area {
+        border-color: var(--color-success-fill);
+
+        > ui-drag-area {
+            background: var(--color-success-fill);
+
+            &[hoving] {
+                > .value,
+                > .placeholder {
+                    color: var(--color-hover-contrast-weakest);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+:host([error]),
+:host([state='refused']) {
+    .type {
+        border-color: var(--color-danger-fill);
+    }
+
+    .area {
+        border-color: var(--color-danger-fill);
+
+        > ui-drag-area {
+            background: var(--color-danger-fill);
+            .clear {
+                color: var(--color-hover-contrast-weaker);
+            }
+        }
+    }
+}
+
+:host([invalid]) {
+    .area {
+        > ui-drag-area {
+            background-color: var(--color-danger-fill);
+
+            > .invalid {
+                display: inline-block;
+            }
+
+            > .value {
+                display: none;
+            }
+
+            > .placeholder {
+                display: none;
+            }
+        }
+
+        > .clear {
+            display: inline;
+        }
+    }
+}
+
+:host([missing]) .area ui-drag-area {
+    background-color: var(--color-warn-fill-normal);
+    color: var(--color-warn-contrast-weakest);
+}
+
+:host(:hover[missing]) .area ui-drag-area {
+    color: var(--color-default-contrast-weakest);
+}

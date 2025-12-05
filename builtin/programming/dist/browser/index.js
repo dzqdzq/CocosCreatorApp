@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.load=exports.methods=void 0;const messages_1=require("../packer-driver/messages"),load_1=require("../packer-driver/load");async function load(){await load_1.load()}exports.methods=Object.assign({},messages_1.messages),exports.load=load;

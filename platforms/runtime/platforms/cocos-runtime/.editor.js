@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.unpacked=function(){return["./static/build-template"]};

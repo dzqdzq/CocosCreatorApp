@@ -1,0 +1,203 @@
+<div class="lightmap">
+    <header>
+        <ui-tab
+            class="button_tab"
+            :value="mode"
+            @confirm="changeMode($event.target.value)"
+        >
+            <ui-button>Scene</ui-button>
+            <ui-button>Baked</ui-button>
+        </ui-tab>
+    </header>
+
+    <!-- Scene -->
+    <section
+        v-show="mode === 0"
+    >
+        <div class="properties">
+            <!-- <ui-prop>
+                <ui-label slot="label">Ambient Color</ui-label>
+                <div slot="content">
+                    <ui-color :value="ambient"></ui-color>
+                </div>
+            </ui-prop> -->
+            <!-- <ui-prop>
+                <ui-label slot="label">Sky Radiance</ui-label>
+                <div slot="content">
+                    <ui-color :value="skyRadiance"></ui-color>
+                </div>
+            </ui-prop> -->
+            <ui-prop>
+                <ui-label slot="label" value="MSAA"></ui-label>
+                <div slot="content">
+                    <ui-select :value="msaa"
+                        @confirm.stop="msaa = $event.target.value;saveEdit()"
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="8">8</option>
+                    </ui-select>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="Resolution"></ui-label>
+                <div slot="content">
+                    <ui-select
+                        :value="size"
+                        @confirm.stop="size = $event.target.value;saveEdit()"
+                    >
+                        <option value="128">128</option>
+                        <option value="256">256</option>
+                        <option value="512">512</option>
+                        <option value="1024">1024</option>
+                        <option value="2048">2048</option>
+                    </ui-select>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="Gamma"></ui-label>
+                <div slot="content">
+                    <ui-num-input 
+                        :value="gamma" 
+                        state="" 
+                        preci="2" 
+                        step="0.1"
+                        @change="gamma = $event.target.value;saveEdit()"
+                    >
+                    </ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="GIScale"></ui-label>
+                <div slot="content">
+                    <ui-num-input 
+                        :value="giScale" 
+                        state="" 
+                        preci="2" 
+                        step="0.1"
+                        @change="giScale = $event.target.value;saveEdit()"
+                    >
+                    </ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="GISamples"></ui-label>
+                <div slot="content">
+                    <ui-num-input 
+                        :value="giSamples"
+                        @change="giSamples = $event.target.value;saveEdit()"
+                    >
+                    </ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="Bounces"></ui-label>
+                <div slot="content">
+                    <ui-select :value="giPathLength"
+                        @confirm.stop="giPathLength = $event.target.value;saveEdit()"
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </ui-select>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="AOLevel"></ui-label>
+                <div slot="content">
+                    <ui-select :value="aoLevel"
+                        @confirm.stop="aoLevel = $event.target.value;saveEdit()"
+                    >
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </ui-select>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="AOStrength"></ui-label>
+                <div slot="content">
+                    <ui-num-input
+                        :value="aoStrength"
+                        state=""
+                        preci="2"
+                        step="0.1"
+                        @change="aoStrength = $event.target.value;saveEdit()"
+                        >
+                    </ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="AORadius"></ui-label>
+                <div slot="content">
+                    <ui-num-input
+                        :value="aoRadius"
+                        state=""
+                        preci="2"
+                        step="0.1"
+                        @change="aoRadius = $event.target.value;saveEdit()"
+                        >
+                    </ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="AOColor"></ui-label>
+                <div slot="content">
+                    <ui-color
+                        :value="aoColor"
+                        @confirm.stop="changeColor($event)"
+                        >
+                    </ui-color>
+                </div>
+            </ui-prop>
+        </div>
+        <ui-button @click="!isGenerate?onConfirm():onCancel()" class="generate">
+            <ui-label class="label" 
+                :value="!isGenerate?'i18n:lightmap.generate':'i18n:lightmap.cancel'"
+            ></ui-label>
+        </ui-button>
+        <ui-progress v-show="isGenerate" class="progress" :value="progress"></ui-progress>
+        <div class="output">
+            <div v-for="(item, index) in logInfos"
+                :key="index"
+            >
+                <div>{{item}}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baked -->
+    <section
+        v-show="mode === 1"
+    >
+        <div class="properties">
+            <ui-label value="i18n:lightmap.bakedResult"></ui-label>
+            <div class="image-content">
+                <ui-image 
+                    v-for="(img, i) in picInfos"
+                    :key="i"
+                    @click="onItemClick(i)"
+                    :value="img.path" 
+                ></ui-image>
+            </div>
+        </div>
+        <ui-button class="clear"
+            @click="onClear()"
+        >
+            <ui-label i18n class="label" value="lightmap.clear"></ui-label>
+        </ui-button>
+        <div class="output">
+            <div 
+                v-for="(val, key) in selectInfos"
+                :key="key"
+            >
+                <ui-label class="label" i18n
+                    :value="`lightmap.${key}`"
+                ></ui-label>
+                {{val}}
+            </div>
+        </div>
+    </section>
+</div>

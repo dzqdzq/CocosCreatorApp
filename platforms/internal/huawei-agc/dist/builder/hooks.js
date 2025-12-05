@@ -1,0 +1,1 @@
+"use strict";async function onAfterInit(t,r){}async function onAfterBuild(t,r){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.onAfterBuild=exports.onAfterInit=exports.throwError=void 0,exports.throwError=!0,exports.onAfterInit=onAfterInit,exports.onAfterBuild=onAfterBuild;

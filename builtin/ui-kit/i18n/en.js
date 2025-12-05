@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"UI Component",preview:{initialize:"Initialize",parameters:"Parameters",getSet:"Get/Set Value",events:"Events",style:"Styles",ui:{file:{placeholder_app:"select an application"},input:{placeholder:"Please input account name"},textarea:{placeholder:"Please input content"}}},searcher:{placeholder:"Search Name",empty:"No results"}};

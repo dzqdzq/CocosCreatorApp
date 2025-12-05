@@ -1,0 +1,38 @@
+{
+    "name": "server",
+    "title": "i18n:server.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Web Server",
+    "main": "./dist/index.js",
+
+    "contributions": {
+        "messages": {
+            "query-ip-list": {
+                "public": true,
+                "methods": ["queryIPList"]
+            },
+            "query-port": {
+                "public": true,
+                "methods": ["queryPort"]
+            },
+            "scan-lan": {
+                "methods": ["scanLAN"]
+            },
+            "change-preview-port": {
+                "methods": ["change-preview-port"]
+            }
+        },
+
+        "profile": {
+            "editor": {
+                "preview_port": {
+                    "label": "i18n:server.preview_port",
+                    "default": 7456,
+                    "message": "change-preview-port"
+                }
+            }
+        }
+    }
+}

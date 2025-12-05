@@ -1,0 +1,16 @@
+<div class="preview">
+    <!-- 初始预览场景 -->
+    <ui-setting type="local" package="preview">
+        <ui-icon value="warn" tooltip="i18n:preferences.menu.position_info"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:preview.project.general.start_scene"></ui-label>
+            <ui-select slot="content" path="general.start_scene" @click.stop="onSelectClick">
+                <option value="current_scene">{{t('current_scene')}}</option>
+                <option
+                    v-for="scene in scenes"
+                    :value="scene.uuid"
+                >{{scene.name}}</option>
+            </ui-select>
+        </ui-prop>
+    </ui-setting>
+</div>

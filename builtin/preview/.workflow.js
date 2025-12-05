@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path");exports["build-typescript-develop"]=async function(){return[__dirname,join(__dirname,"./preview-app")]},exports["build-less-develop"]=function(){return[]};

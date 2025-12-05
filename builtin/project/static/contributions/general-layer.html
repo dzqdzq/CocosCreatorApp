@@ -1,0 +1,23 @@
+<div class="layer">
+    <div class="info">
+        <p>
+            <ui-label value="i18n:project.layers.tips1"></ui-label>
+        </p>
+        <p>
+            <ui-label value="i18n:project.layers.tips2"></ui-label>
+        </p>
+    </div>
+    <ui-prop
+        v-for="(layer,index) in layers"
+        :key="index"
+    >
+        <ui-label slot="label"
+            :value="layer.label"
+        ></ui-label>
+        <ui-input slot="content" 
+            :disabled="index>=20"
+            :value="layer.name"
+            @change.stop="_onSettingsChanged($event, index)"
+        ></ui-input>
+    </ui-prop>
+</div>

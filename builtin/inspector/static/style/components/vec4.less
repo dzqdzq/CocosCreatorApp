@@ -1,0 +1,22 @@
+.ins-vec4 {
+    flex: 1;
+    display: flex;
+
+    & > .prop-content {
+        flex: 1;
+        display: block;
+
+        & > div {
+            display: flex;
+            margin-top: 2px;
+
+            & > ui-num-input {
+                flex: 1;
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

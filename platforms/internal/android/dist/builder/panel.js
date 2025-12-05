@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.buttonConfig=exports.component=void 0,exports.component=require("./component"),exports.buttonConfig={configs:{make:{label:"i18n:android.make.label",hookHandle:"make"},run:{label:"i18n:android.run.label",hookHandle:"run"}}};

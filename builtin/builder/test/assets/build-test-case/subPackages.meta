@@ -1,0 +1,15 @@
+{
+  "ver": "0.0.1",
+  "importer": "*",
+  "imported": true,
+  "uuid": "d7f64a5d-5bfc-41d2-9889-4afd1cef4d8d",
+  "name": "",
+  "id": "",
+  "displayName": "",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isSubpackage": true,
+    "subpackageName": "packages"
+  }
+}

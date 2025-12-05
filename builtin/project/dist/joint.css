@@ -1,0 +1,146 @@
+.joint-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.joint-wrap > header {
+  padding: 10px 26px;
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.joint {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.joint > .slider {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  border-right: 1px solid var(--color-normal-border);
+  margin-top: 2px;
+}
+.joint > .slider > div {
+  overflow: auto;
+}
+.joint > .slider > div > div {
+  padding: 6px 0 6px 12px;
+  text-align: center;
+  cursor: pointer;
+}
+.joint > .slider > div > div > ui-icon {
+  visibility: hidden;
+  float: right;
+  margin-right: 8px;
+}
+.joint > .slider > div > div[active],
+.joint > .slider > div > div:hover {
+  background: var(--color-active-fill);
+}
+.joint > .slider > div > div:hover > ui-icon {
+  visibility: visible;
+}
+.joint > .slider > footer {
+  width: 100%;
+  padding: 4px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-normal-fill);
+  box-sizing: border-box;
+}
+.joint > .slider > footer > ui-button {
+  width: 100%;
+}
+.joint > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.joint > .content > header {
+  padding: 2px 10px;
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.joint > .content > header > ui-icon {
+  color: var(--color-success-fill-normal);
+}
+.joint > .content > header > ui-icon[warn] {
+  color: var(--color-warn-fill-normal);
+}
+.joint > .content > header > ui-icon[error] {
+  color: var(--color-warn-fill-normal);
+}
+.joint > .content > section {
+  overflow: auto;
+}
+.joint > .content > section > div {
+  margin: 0 4px 1px 4px;
+}
+.joint > .content > section > div > header {
+  cursor: pointer;
+  padding: 0 16px;
+  background: var(--color-active-fill);
+  user-select: none;
+}
+.joint > .content > section > div > header > ui-icon {
+  display: none;
+  float: right;
+}
+.joint > .content > section > div > header:hover > ui-icon {
+  display: block;
+}
+.joint > .content > section > div > section {
+  padding: 6px 16px;
+  display: none;
+  margin: 0 10px 10px 10px;
+  border: 1px dashed var(--color-active-border-weakest);
+  border-top: none;
+}
+.joint > .content > section > div > section > ui-prop {
+  padding: 2px 0;
+}
+.joint > .content > section > div > section > ui-prop > span {
+  margin-top: 7px;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] {
+  flex: 1;
+  display: block;
+  flex-direction: column;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > header {
+  margin: 7px;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > section,
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > footer {
+  display: flex;
+  flex: 1;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > section > ui-asset,
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > footer > ui-asset,
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > section > ui-button,
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > footer > ui-button {
+  flex: 1;
+  margin-top: 7px;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > section > ui-icon,
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > footer > ui-icon {
+  visibility: hidden;
+  padding: 2px;
+  box-sizing: border-box;
+  margin: 7px 0 0 4px;
+  cursor: pointer;
+}
+.joint > .content > section > div > section > ui-prop > div[slot='content'] > section:hover > ui-icon {
+  visibility: visible;
+}
+.joint > .content > section > div[active] > section {
+  display: block;
+}
+.joint > .content > footer {
+  width: 100%;
+  padding: 4px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-normal-fill);
+  box-sizing: border-box;
+}
+.joint > .content > footer > ui-button {
+  width: 100%;
+}

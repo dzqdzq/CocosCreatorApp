@@ -1,0 +1,1 @@
+"use strict";let map={};function record(){map={}}function receive(e,...t){map[e]=map[e]||[],map[e].push({time:Date.now(),params:t})}function count(e){return map[e]?map[e].length:0}function get(e,t){return t=t||0,map[e]&&map[e][t]||null}exports.record=record,exports._receive=receive,exports.count=count,exports.get=get;

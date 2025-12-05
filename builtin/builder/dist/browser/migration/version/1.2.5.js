@@ -1,0 +1,1 @@
+"use strict";async function run(){const r=await Editor.Profile.getProject("builder","splash-setting.clearColor");if(!r)return;const{r:e,g:t,b:o,a:s}=r,i={x:e,y:t,z:o,w:s};await Editor.Profile.setProject("builder","splash-setting.clearColor",i)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.run=void 0,exports.run=run;

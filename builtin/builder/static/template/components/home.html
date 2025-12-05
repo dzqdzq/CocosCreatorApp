@@ -1,0 +1,55 @@
+<div class="builder container">
+    <div class="toolbar">
+        <ui-button
+        :disabled="!free || scenes.length === 0"
+        @confirm.stop="onNewBuildTask"
+        >
+            <ui-label value="i18n:builder.new_build_task"></ui-label>
+        </ui-button>
+
+        <div class="tools">
+            <ui-button class="transparent"
+                @click="onOpenDevTools"
+                tooltip="i18n:builder.debug_mode"
+            >
+                <ui-icon value="dev-tools"></ui-icon>
+            </ui-button>
+            <span>|</span>
+            <ui-button class="transparent"
+                @click="clearCache"
+                tooltip="i18n:builder.clear_cache.title"
+            >
+                <ui-icon value="clear"></ui-icon>
+            </ui-button>
+        </div>
+    </div>
+
+    <section>
+        <div 
+            v-if="isDBReady && (!scenes || scenes.length === 0)" 
+            class="empty-task"
+        ><ui-label value="i18n:builder.empty_scene"></ui-label></div>
+        <template v-if="Object.keys(taskMap).length !== 0">
+            <task
+                v-for="(taskItem, id) in taskMap"
+                :task="taskItem"
+                :key="id"
+                :free="(free && isDBReady)"
+                :db-ready="isDBReady"
+            ></task>
+        </template>
+        <div v-else class="empty-task">
+            <ui-label value="i18n:builder.empty_task_holder"></ui-label>
+        </div>
+    </section>
+
+    <settings
+        v-if="showSettings"
+        :type="settingsType"
+        :scenes="scenes"
+        :task="task"
+        :free="(free && isDBReady)"
+    ></settings>
+
+    <build-mask v-if="maskInfo" :value="maskInfo"></build-mask>
+</div>

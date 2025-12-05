@@ -1,0 +1,59 @@
+.prop-content {
+    > .ins-prop {
+        margin: 0;
+    }
+    ui-asset,
+    ui-node,
+    ui-component {
+        width: 100%;
+    }
+}
+
+.ins-prop {
+    margin: 4px 0;
+    display: flex;
+    flex-flow: wrap;
+
+    > .name {
+        width: 30%;
+        overflow: hidden;
+        padding-right: 4px;
+        box-sizing: border-box;
+        display: flex;
+
+        > span {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    > .prop-content {
+        ui-select {
+            flex: 1;
+        }
+    }
+
+    > .content {
+        width: 70%;
+        flex: none;
+        display: flex;
+    }
+
+    &[asset] {
+        padding-top: 10px;
+    }
+
+    &[node] {
+        padding-top: 10px;
+    }
+
+    &[component] {
+        padding-top: 10px;
+    }
+
+    &[array] {
+        padding-top: 0;
+    }
+}

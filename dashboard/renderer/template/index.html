@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" spellcheck="false">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./../style/index.css">
+    <link rel="stylesheet" href="./../style/icon-font.css">
+</head>
+
+<body>
+    <div class="window">
+        <div class="window-row" id="window-row">
+            <div class="window-title flex-1">
+                <img class="logo-img" src="./../img/logo_white.png" alt="dashboard">
+                <span class="logo-title">
+                    Dashboard
+                </span>
+            </div>
+            <div class="window-control flex-1" id="windowContron">
+                <span class="iconfont icon-mini" name="mini"></span>
+                <span class="iconfont icon-maxi" name="maxi"></span>
+                <span class="iconfont icon-close" name="close"></span>
+            </div>
+        </div>
+        <div class="dashboard" id="dashboard">
+            <!-- tab 内容项 -->
+            <div class="tab-content" v-if="type === '3d'">
+
+                <!-- 顶部的项目、模版、帮助选择 -->
+                <content-header
+                    :tab="tab"
+                    :tabs="tabs"
+                ></content-header>
+                
+                <!-- 打开最近项目 -->
+                <content-project
+                    v-if="tab === 0"
+                    :type="type"
+                ></content-project>
+
+                <!-- 基于模板新建 -->
+                <content-template
+                    v-if="tab === 1"
+                    :type="type"
+                ></content-template>
+
+                <!-- 帮助 -->
+                <content-help
+                    v-if="tab === 2"
+                    :type="type"
+                ></content-help>
+            </div>
+
+            <!-- 2d 项目 临时 hack -->
+            <div class="tab-content" v-else>
+                <div class="stay-tuned">
+                    {{t('stay_tuned')}}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    require('../../../lib/require');
+    require('../script/main.js');
+</script>
+
+</html>

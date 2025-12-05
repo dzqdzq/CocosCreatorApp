@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"设备管理器",button:{add:"新增",change:"修改",delete:"删除"},invalid:{name:"设备名无效",exists:"设备已经存在"}};

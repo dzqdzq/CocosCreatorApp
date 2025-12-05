@@ -1,0 +1,1 @@
+"use strict";async function run(){const e=await Editor.Profile.getProject("engine","macroConfig","project");e&&!1===e.ENABLE_WEBGL_ANTIALIAS&&(e.ENABLE_WEBGL_ANTIALIAS=!0,await Editor.Profile.setProject("engine","macroConfig",e,"project"))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.run=void 0,exports.run=run;

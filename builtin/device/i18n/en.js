@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Device manager",button:{add:"Add",change:"Change",delete:"Delete"},invalid:{name:"Invalid device name",exists:"The device already exists"}};
