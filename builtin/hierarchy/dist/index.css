@@ -1,0 +1,432 @@
+:host {
+  position: relative;
+  display: flex;
+}
+:host > .hierarchy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+:host .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+:host .loading.center {
+  margin: auto;
+}
+:host .loading ui-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: calc(var(--size-large-font) * 1px);
+  height: calc(var(--size-large-font) * 1px);
+}
+.header {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  box-sizing: border-box;
+  padding: calc(var(--size-normal-font) * 0.15px);
+  overflow: hidden;
+  font-size: calc(var(--size-normal-font) * 1px);
+  background-color: var(--color-normal-fill);
+  border-bottom: solid 1px var(--color-normal-border);
+  white-space: nowrap;
+}
+.header .icon {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 20px;
+  padding: 0 4px;
+  line-height: 20px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+.header > ui-input {
+  flex: 1;
+  margin: 0 2px;
+  font-size: calc(var(--size-normal-font) * 1px);
+}
+.header .search-type {
+  padding-right: 3px;
+}
+.header .search-type::after {
+  position: absolute;
+  left: 0;
+  top: -7px;
+  z-index: 1;
+  color: var(--color-danger-fill);
+  font-family: sans-serif;
+  transform: scale(0.7);
+  font-size: 12px;
+}
+.header .search-type[type='uuid']::after {
+  content: 'U';
+  left: -1px;
+}
+.header .search-type[type='path']::after {
+  content: 'P';
+  left: -1px;
+}
+.header .search-type[type='component']::after {
+  content: 'C';
+  left: -1px;
+}
+.header .search-type[type='asset']::after {
+  content: 'A';
+  left: -1px;
+}
+.header .icon-triangle {
+  position: absolute;
+  bottom: 0;
+  right: -1px;
+  font-size: 8px;
+  line-height: 12px;
+}
+.content {
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.content .scroll-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 2px;
+  height: 0;
+  overflow: hidden;
+}
+.content .drop-box {
+  display: none;
+  height: 2px;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--color-focus-fill-weaker);
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+.content .drop-box > .vertical-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  width: 1px;
+  border-left: 1px dashed var(--color-focus-fill-weaker);
+}
+.tree {
+  display: table;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 4px 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  will-change: top;
+}
+.tree:hover {
+  transform: translateZ(0);
+}
+.tree[hoving] + .drop-box {
+  display: block;
+}
+.tree[searching] + .drop-box {
+  width: 100% !important;
+  left: 0 !important;
+}
+.tree[searching] + .drop-box > .vertical-line {
+  display: none;
+}
+.tree-node {
+  line-height: 20px;
+}
+.tree-node[twinkle] {
+  background-color: var(--color-hover-fill-emphasis);
+}
+.tree-node[twinkle] .name {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+.tree-node[twinkle='shake'] .name {
+  animation-name: shake;
+}
+.tree-node[twinkle='shrink'] .name {
+  animation-name: shrink;
+}
+.tree-node[twinkle='light'] .name {
+  animation-name: light;
+}
+.tree-node[is-scene] {
+  color: var(--color-normal-contrast) !important;
+}
+.tree-node[is-prefab-node='1'] {
+  color: var(--color-success-fill);
+}
+.tree-node[is-prefab-node='2'] {
+  color: var(--color-success-fill-weakest);
+}
+.tree-node[is-prefab-node='3'] {
+  color: var(--color-danger-fill);
+}
+.tree-node[is-selected='true'] .drag-item {
+  background-color: var(--color-active-fill-emphasis);
+}
+.tree-node[is-parent] .arrow {
+  visibility: visible;
+}
+.tree-node[is-expand='true'] .arrow {
+  transform: rotate(0deg);
+}
+.tree-node[is-expand='false'] .lock[value="lock"] {
+  display: inline-block;
+}
+.tree-node[is-active='false'] .drag-item > ui-icon,
+.tree-node[is-active='false'] .drag-item > .name {
+  opacity: 0.5;
+}
+.tree-node[state='rename'] .drag-item {
+  background-color: transparent !important;
+}
+.tree-node[state='rename'] .drag-item .edit {
+  display: none;
+}
+.tree-node .rename {
+  position: relative;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid var(--color-focus-contrast);
+  height: 20px;
+  border-radius: 2px;
+  padding-left: 2px;
+  margin-left: 0;
+  box-sizing: border-box;
+  width: calc(100% - 20px);
+}
+.tree-node .rename > input {
+  width: 100%;
+  min-width: 100px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: var(--color-focus-contrast);
+  font-size: 12px;
+  vertical-align: top;
+  line-height: 16px;
+}
+.tree-node .rename[state^='error'] {
+  border-color: var(--color-danger-fill);
+}
+.tree-node .rename[state^='error']::after {
+  content: attr(title);
+  padding: 0 4px;
+  background-color: var(--color-danger-fill);
+  color: var(--color-danger-contrast-weaker);
+  position: absolute;
+  top: 20px;
+  left: -1px;
+  z-index: 1;
+  min-width: calc(100% - 6px);
+}
+.tree-node:hover {
+  background-color: var(--color-hover-fill-emphasis);
+}
+.tree-node:hover .lock {
+  display: inline-block;
+}
+.tree-node:hover .edit {
+  display: inline-block;
+}
+.drag-item {
+  position: relative;
+  display: flex;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+.drag-item[draggable='false'] {
+  user-select: none;
+}
+.drag-item .arrow {
+  visibility: hidden;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: element;
+  color: var(--color-normal-contrast);
+  transform: rotate(-90deg);
+}
+.drag-item .arrow[animate] {
+  transition: 0.2s transform;
+}
+.drag-item .arrow + .name {
+  margin-left: 0;
+}
+.drag-item .arrow + .rename {
+  margin-left: -5px;
+}
+.drag-item .root {
+  text-align: center;
+  cursor: pointer;
+  margin-top: -1px;
+  margin-left: -3px;
+  width: 16px;
+  font-size: 14px;
+}
+.drag-item .root + .name {
+  margin-left: 2px;
+}
+.drag-item .prefab-added-node {
+  font-size: 8px;
+  margin-top: 4px;
+  margin-left: -5px;
+  height: 14px;
+}
+.drag-item > .lock {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  z-index: 1;
+  font-size: 9px;
+  cursor: pointer;
+  color: var(--color-normal-contrast);
+}
+.drag-item > .lock:hover {
+  color: var(--color-warn-fill);
+}
+.drag-item > .lock[locked="true"] {
+  display: inline-block;
+  color: var(--color-active-contrast);
+}
+.drag-item > .edit {
+  display: none;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--color-normal-contrast);
+  background-color: var(--color-hover-fill-emphasis);
+  padding: 0 5px;
+}
+.drag-item > .edit:hover {
+  color: var(--color-warn-fill);
+}
+.drag-item > .name {
+  cursor: default;
+  margin-left: 22px;
+  white-space: nowrap;
+  padding-right: 6px;
+  -webkit-user-drag: element;
+}
+.drag-item > .loading {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  top: -1px;
+  left: 0;
+  transform: scale(0.8);
+}
+.tree[searching] .drag-item {
+  padding-left: 20px !important;
+}
+.tree[searching] .drag-item .name {
+  margin-left: 6px;
+}
+.tree[searching] .drag-item .arrow {
+  display: none;
+}
+.tree[hoving] .tree-node:hover {
+  background: none;
+}
+.tree[hoving] .drag-item[insert] {
+  color: var(--color-focus-contrast);
+}
+.tree[hoving] .drag-item[insert='inside'] {
+  color: var(--color-focus-contrast);
+  opacity: 0.5;
+}
+.tree[animating] .tree-node {
+  pointer-events: none;
+}
+.tree[animating] .tree-node .drag-item > ui-icon,
+.tree[animating] .tree-node .drag-item > .name {
+  opacity: 0.5;
+}
+.tree[animating] .tree-node[is-animating] {
+  pointer-events: auto;
+  -webkit-user-drag: none;
+}
+.tree[animating] .tree-node[is-animating] .drag-item > ui-icon,
+.tree[animating] .tree-node[is-animating] .drag-item > .name {
+  -webkit-user-drag: none;
+  opacity: 1;
+}
+:host([focused]) .tree .tree-node[is-selected='true'] .drag-item {
+  background-color: var(--color-focus-fill);
+  color: var(--color-focus-contrast);
+}
+:host([focused]) .tree .tree-node[is-selected='true'] .drag-item > .edit {
+  background-color: var(--color-focus-fill);
+}
+@keyframes shake {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    color: var(--color-warn-fill);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes shrink {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0.9, 0.9, 0.9);
+    color: var(--color-warn-fill);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes light {
+  50% {
+    color: var(--color-warn-fill);
+  }
+}

@@ -1,0 +1,1 @@
+"use strict";exports.query=function(e,o,t){const l=document.querySelector("#dock").shadowRoot;let n=null;if(l){const t=l.querySelector(`panel-frame[name="${e}"]`);if(!t||!t.shadowRoot)return null;n=t.shadowRoot;for(let e=0;e<o.length;e++){const t=o[e];if("number"==typeof t?n=n[t]||null:(void 0!==n.length&&(n=n[0]),n=n.querySelectorAll(t)||null),!n)return null}}return n};

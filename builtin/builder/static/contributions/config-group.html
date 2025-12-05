@@ -1,0 +1,58 @@
+<div class="group-item">
+    <div
+        class="group-tab"
+    >
+    <div
+        class="group-header"
+        v-for="(group, groupName) in compressInfo.configGroups"
+        :key="groupName"
+        :active="groupName === currentPlatform"
+        :tooltip="group.displayName"
+        @click="currentPlatform = groupName"
+    >
+        <ui-icon :value="group.icon"></ui-icon>
+        <span>{{group.displayName}}</span>
+    </div>
+
+    </div>
+<div class="formats">
+    <div v-if="config && config[currentPlatform] && Object.keys(config[currentPlatform]).length">
+        <ui-prop class="format-item"
+            v-for="(value, format) in config[currentPlatform]"
+            :key="format"
+        >
+            <div class="format-name" slot="label">
+                <span>{{compressInfo.formatsInfo[format].displayName}}</span>
+                <!-- <span :class="compressInfo.formatsInfo[format].alpha ? 'rgba' : 'rgb'"
+                >{{compressInfo.formatsInfo[format].alpha ? 'rgba' : 'rgb'}}</span
+                > -->
+            </div>
+            <div class="quality flex-spacing-between child-margin-right" slot="content"
+                @confirm="onChangeQuality($event, format)"
+            >
+                <ui-select
+                    v-if="['etc', 'pvr', 'astc'].includes(compressInfo.formatsInfo[format].qualityType)"
+                    :value="value"
+                    :disabled="disabled"
+                >
+                    <option
+                        v-for="(quality, qualityName) in compressInfo.qualityOptions[compressInfo.formatsInfo[format].qualityType].options"
+                        :value="qualityName || compressInfo.qualityOptions[compressInfo.formatsInfo[format].qualityType].default"
+                        >{{quality}}</option
+                    >
+                </ui-select>
+                <ui-num-input step="1" preci="0" min="1" max="100" unit="%"
+                    v-if="compressInfo.formatsInfo[format].qualityType === 'number'"
+                    :value="value || compressInfo.qualityOptions[compressInfo.formatsInfo[format].qualityType].default"
+                    :disabled="disabled"
+                ></ui-num-input>
+                <ui-icon v-if="!disabled" class="operate" value="del" color="true" @click.stop="removeFormat(currentPlatform, format)"></ui-icon>
+            </div>
+        </ui-prop>
+    </div>
+    <div class="empty-content" v-else>
+        ( No Format )
+    </div>
+    <ui-button v-if="!disabled" @confirm="addFormat($event, currentPlatform)">Add Format</ui-button>
+</div>
+</div>

@@ -1,0 +1,31 @@
+.click-event {
+    flex: 1;
+    display: flex;
+
+    > .prop-content {
+        display: block;
+
+        .ins-prop {
+            margin-top: 5px;
+        }
+
+        .line {
+            margin-top: 15px;
+
+            > * {
+                flex: 1;
+                margin-right: 8px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            > ui-button {
+                flex: none;
+                padding: 0 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}

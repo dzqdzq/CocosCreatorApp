@@ -1,0 +1,1 @@
+module.exports={description:"管理项目内源代码以及外部脚本的导入、执行、构建。",clear_code_cache:"清除代码缓存"};

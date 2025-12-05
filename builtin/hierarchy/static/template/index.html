@@ -1,0 +1,66 @@
+<div class="hierarchy">
+    <header class="header">
+        <ui-button class="transparent icon" tooltip="i18n:hierarchy.menu.createMenu"
+            @click="popupCreateMenu"
+        >
+            <ui-icon value="add"></ui-icon>
+        </ui-button>
+        <ui-button class="transparent icon triangle"
+            :tooltip="searchTypeTip"
+            @click="popupSearchMenu"
+        >
+            <ui-icon value="search" class="search-type"
+                :type="searchType"
+            ></ui-icon>
+            <ui-icon value="arrow-triangle" class="icon-triangle"></ui-icon>
+        </ui-button>
+        <ui-input tabindex="-1" ref="searchInput" show-clear="true"
+            tooltip="i18n:hierarchy.menu.searchTip"
+            :placeholder="searchPlaceholder"
+            @change="searchChange"
+            @keydown.up.stop="searchArrowDown($event,'up')"
+            @keydown.down.stop="searchArrowDown($event,'down')"
+            @keydown.left.stop
+            @keydown.right.stop
+            @keydown.enter.stop
+        ></ui-input>
+        <ui-button class="transparent icon expand" 
+            :tooltip="'i18n:hierarchy.menu.'+(!allExpand?'allExpand':'allCollapse')"
+            @click="allToggle"
+        >
+            <ui-icon class="expand" ref="toggleExpandIcon"
+                :value="!allExpand ? 'expand' : 'collapse'"
+            ></ui-icon>
+        </ui-button>
+        <ui-button class="transparent icon" tooltip="i18n:hierarchy.menu.refresh"
+            @click="refresh()"
+        >
+            <ui-icon value="refresh"></ui-icon>
+        </ui-button>
+    </header>
+
+    <div class="loading center"
+        v-if="!sceneReady || isRefreshing"
+    >
+        <ui-loading></ui-loading>
+    </div>
+
+    <section class="content" ref="viewBox"
+        @click.right="popupPanelMenu()"
+    >
+        <tree ref="tree"></tree>
+
+        <div class="drop-box" 
+            :style="dropBox.style"
+        >
+            <div class="vertical-line"
+                v-if="dropBox.position==='after'"
+                :style="dropBox.vertical"
+            ></div>
+        </div>
+        
+        <div class="scroll-bar"
+            :style="{ height: treeHeight + 'px'}"
+        ></div>
+    </section>
+</div>

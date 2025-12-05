@@ -1,0 +1,741 @@
+:host {
+    position: relative;
+    display: flex;
+
+    > .container {
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        padding: 10px;
+
+        > .main {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            overflow: auto;
+
+            > .aside {
+                position: relative;
+                width: 20%;
+                min-width: 220px;
+                max-width: 500px;
+                overflow: auto;
+
+                > .header {
+                    padding-right: 14px;
+                    display: flex;
+                    flex-direction: column;
+
+                    > .tabs {
+                        text-align: center;
+                    }
+                }
+
+                > .content {
+                    flex: 1;
+                    width: 100%;
+                    overflow-y: scroll;
+
+                    > .layers {
+                        > .buttons {
+                            > .button {
+                                width: 100%;
+
+                                .icon {
+                                    margin-right: 5px;
+                                }
+                            }
+                        }
+
+                        > .layer {
+                            display: flex;
+                            padding: 1px 8px;
+                            margin: 8px 0;
+                            border-bottom: 1px solid var(--color-normal-border);
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            border-radius: 4px;
+
+                            &:hover {
+                                background-color: var(--color-normal-border);
+                            }
+
+                            &[active] {
+                                background-color: var(--color-focus-fill);
+                                color: var(--color-normal-contrast-weakest);
+                            }
+
+                            > .name {
+                                flex: 1;
+                                margin-right: 8px;
+                            }
+                        }
+                    }
+
+                    > .variables {
+                        > .add {
+                            display: flex;
+                            flex-direction: column;
+
+                            > .prop {
+                                flex: 1;
+                                margin-top: 8px;
+                            }
+
+                            > .button {
+                                margin-top: 8px;
+                            }
+                        }
+
+                        > .title {
+                            display: flex;
+                            color: var(--color-normal-contrast-important);
+                            padding-top: 8px;
+                            border-top: 1px solid var(--color-normal-border);
+
+                            > .prop {
+                                margin-right: 22px;
+                                flex: 1;
+
+                                --left-width: 50%;
+                            }
+                        }
+
+                        > .variable {
+                            margin-top: 8px;
+                            display: flex;
+
+                            > .prop {
+                                flex: 1;
+
+                                --left-width: 50%;
+
+                                .tip {
+                                    color: var(--color-normal-contrast-important);
+                                }
+                            }
+
+                            > .menu {
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+
+                    > .inspector {
+                        padding-top: 10px;
+
+                        > .state {
+                            margin-bottom: 5px;
+
+                            &.motion {
+                                .prop {
+                                    margin: 4px 0 0 0;
+                                }
+
+                                > .threshold {
+                                    .blend1D {
+                                        --left-width: 65%;
+                                    }
+
+                                    .blend2D {
+                                        --left-width: 42%;
+                                    }
+
+                                    ui-label {
+                                        direction: rtl;
+                                    }
+                                }
+
+                                > .parameter {
+                                    margin-top: 10px;
+
+                                    .prop {
+                                        > .name {
+                                            line-height: 24px;
+                                        }
+
+                                        > .content {
+                                            line-height: 24px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            > .name {
+                                flex: 1;
+                                text-align: left;
+                                word-break: break-word;
+                                font-size: 14px;
+                            }
+
+                            > ui-input {
+                                &.name {
+                                    margin-right: 10px;
+                                    margin-top: 2px;
+                                    height: 20px;
+                                    line-height: 16px;
+                                    font-size: 12px;
+                                }
+                            }
+
+                            .prop {
+                                margin: 8px 0 0 0;
+
+                                > .name {
+                                    flex: 1;
+                                    text-align: left;
+                                }
+
+                                > .edit {
+                                    margin-top: 8px;
+                                }
+                            }
+
+                            .edit-btn {
+                                margin-top: 8px;
+                            }
+                        }
+
+                        > .transition {
+                            margin-bottom: 12px;
+
+                            > .name {
+                                flex: 1;
+                                text-align: left;
+                            }
+
+                            .prop {
+                                margin: 8px 0 0 0;
+
+                                --left-width: 40%;
+
+                                > .name {
+                                    flex: 1;
+                                    text-align: left;
+                                }
+                            }
+
+                            .state-name {
+                                font-size: 14px;
+                            }
+
+                            .state-arrow {
+                                font-family: cursive;
+                                color: var(--color-focus-contrast-weakest);
+                            }
+
+                            .conditions {
+                                margin-top: 10px;
+
+                                > .name {
+                                    flex: 1;
+                                    text-align: left;
+                                }
+
+                                > .content {
+                                    margin-left: -9px;
+                                    width: calc(100% + 18px);
+
+                                    .condition {
+                                        &.header {
+                                            color: var(--color-normal-contrast-important);
+                                        }
+
+                                        td {
+                                            vertical-align: bottom;
+                                            text-align: center;
+                                            padding-top: 0;
+                                            padding-bottom: 0;
+                                        }
+
+                                        ui-select {
+                                            width: 100%;
+                                        }
+
+                                        .type {
+                                            text-decoration: underline;
+                                            cursor: pointer;
+                                        }
+
+                                        .lhs {
+                                            width: 40%;
+                                            min-width: 60px;
+                                        }
+
+                                        .operator {
+                                            min-width: 50px;
+                                        }
+
+                                        .rhs {
+                                            min-width: 60px;
+                                        }
+
+                                        .button {
+                                            padding: 0 5px;
+                                            margin-bottom: 8px;
+                                        }
+
+                                        .constant {
+                                            margin-bottom: 8px;
+                                        }
+                                    }
+                                }
+
+                                > .tips {
+                                    margin: 0 -10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .paint {
+                position: relative;
+                flex: 1;
+                overflow: hidden;
+                user-select: none;
+
+                > .header {
+                    width: 100%;
+                    height: 20px;
+                    line-height: 20px;
+                    margin-bottom: 10px;
+                    display: flex;
+
+                    > .crumbs {
+                        display: flex;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        flex: 1;
+                        text-align: left;
+                        padding-right: 10px;
+
+                        > .name {
+                            cursor: pointer;
+                            max-width: 200px;
+                            white-space: nowrap;
+
+                            &.readonly {
+                                pointer-events: none;
+                                color: var(--color-normal-contrast-important);
+                            }
+                        }
+
+                        > .tip {
+                            color: var(--color-normal-contrast-important);
+                            font-family: cursive;
+                            padding: 0 5px;
+                        }
+                    }
+
+                    > .tiny {
+                        padding: 0 6px;
+                        margin-left: 10px;
+                    }
+                }
+
+                > .layer {
+                    position: absolute;
+                    top: 30px;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1;
+                    overflow: hidden;
+                    background-color: var(--color-normal-fill-emphasis);
+                    border: 1px solid var(--color-normal-border);
+                    border-radius: calc(var(--size-normal-radius) * 1px);
+
+                    &[hoving] {
+                        outline: 2px solid var(--color-focus-fill-weaker);
+                        outline-offset: -2px;
+                    }
+
+                    > .grid {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: -1;
+                        width: 100%;
+                        height: 100%;
+
+                        &.animationIn {
+                            animation-name: grid-in;
+                            animation-duration: 1s;
+                        }
+
+                        &.animationOut {
+                            animation-name: grid-out;
+                            animation-duration: 1s;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .loading {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+
+            &.center {
+                margin: auto;
+            }
+
+            ui-loading {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    .mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        > .button {
+            min-width: 150px;
+            margin-left: 20%;
+            margin-top: 27px;
+        }
+    }
+
+    .menu {
+        &:hover {
+            color: var(--color-focus-contrast-weakest);
+        }
+    }
+
+    .tips {
+        text-align: center;
+        color: var(--color-normal-contrast-important);
+        line-height: 20px;
+        margin-top: 5px;
+        word-break: break-word;
+    }
+
+    .layer {
+        &[sub-state-machine] {
+            > .graph {
+                > .state {
+                    &[type='exitState'] {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+
+    .graph {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        &[operating] {
+            > * {
+                pointer-events: none;
+            }
+        }
+
+        > .state {
+            display: flex;
+            position: absolute;
+            z-index: 20;
+            padding: 0 8px;
+            border-radius: 4px;
+            background-color: var(--color-focus-fill-weaker);
+            cursor: default;
+            border: 2px solid transparent;
+            min-width: 36px;
+            text-align: center;
+            box-sizing: content-box;
+            white-space: nowrap;
+
+            // 颜色
+            &[type='anyState'] {
+                background-color: var(--color-info-fill);
+            }
+
+            &[type='entryState'] {
+                background-color: var(--color-success-fill-important);
+            }
+
+            &[type='exitState'] {
+                display: none;
+                background-color: var(--color-danger-fill);
+            }
+
+            &[type='ClipMotion'],
+            &[type='AnimationBlend1D'],
+            &[type='AnimationBlend2D'] {
+                background: var(--color-normal-fill);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                width: 150px;
+                padding: 0;
+                border: none;
+
+                &[active='true'] {
+                    border: 2px solid var(--color-focus-contrast-weakest);
+                }
+
+                &[level='0'] {
+                    > .name {
+                        color: var(--color-primary-fill-weaker);
+                    }
+                }
+
+                > .name {
+                    display: block;
+                    background-color: var(--color-focus-fill-weaker);
+                }
+
+                > .motion {
+                    padding: 8px 12px;
+                }
+            }
+
+            &[type='SubStateMachine'] {
+                background-color: var(--color-normal-fill-emphasis);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                border-color: var(--color-normal-fill);
+                padding: 0;
+
+                > .name {
+                    background-color: var(--color-normal-fill);
+                }
+
+                > .layer {
+                    position: relative;
+                    pointer-events: none;
+                    min-height: 26px;
+                    margin: 8px;
+
+                    > .graph {
+                        transform-origin: 0 0;
+
+                        > .state {
+                            &[active] {
+                                border-color: transparent !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &[active] {
+                border-color: var(--color-focus-contrast-weakest);
+            }
+
+            > .name {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                color: var(--color-normal-contrast-weakest);
+
+                > .label {
+                    white-space: nowrap;
+                    max-width: 200px;
+                }
+
+                > .icon {
+                    margin-left: 5px;
+                    font-size: 10px;
+                }
+            }
+        }
+
+        > .line {
+            position: absolute;
+            z-index: 10;
+            cursor: default;
+            transform-origin: left center;
+            height: 16px;
+
+            &.circle {
+                box-shadow: var(--color-primary-contrast-weaker) 0 0 0 2px inset;
+
+                &::before {
+                    display: none;
+                }
+
+                &:hover {
+                    box-shadow: var(--color-focus-border-weakest) 0 0 0 2px inset;
+                }
+
+                &[active] {
+                    box-shadow: var(--color-focus-border-weakest) 0 0 0 2px inset;
+                }
+
+                > .triangle {
+                    top: -11px;
+                    transform: rotateZ(-90deg);
+                }
+
+                > .count {
+                    top: -25px;
+                    left: calc(50% - 3px);
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 7px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--color-primary-contrast-weaker);
+            }
+
+            &[active],
+            &:hover {
+                z-index: 11;
+
+                &::before {
+                    background-color: var(--color-focus-contrast-weakest);
+                }
+
+                > .triangle {
+                    color: var(--color-focus-contrast-weaker);
+                }
+            }
+
+            > .triangle {
+                position: absolute;
+                left: calc(50% - 8px);
+                top: -4px;
+                font-size: 12px;
+                color: var(--color-focus-fill-weakest);
+                transform: rotateZ(90deg);
+            }
+
+            > .count {
+                position: absolute;
+                left: calc(50% - 17px);
+                top: -12px;
+                font-size: 14px;
+                color: var(--color-focus-border-weaker);
+            }
+        }
+
+        > svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+
+            > path {
+                fill: none;
+                stroke: var(--color-primary-contrast-weaker);
+                stroke-width: 2px;
+                stroke-dasharray: 20, 5, 5, 5, 5, 5;
+                animation: strokeMove 12s linear infinite;
+            }
+        }
+
+        .triangle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+            color: var(--color-focus-fill-weakest);
+        }
+    }
+
+    .motion {
+        > .prop {
+            --left-width: 20px;
+
+            padding: 5px 0;
+            font-size: 12px;
+
+            > .name {
+                display: block;
+            }
+
+            > .content {
+                margin-top: 5px;
+                display: block;
+                width: 100%;
+                line-height: 20px;
+            }
+
+            // 暂时不显示，等 3.5 开启
+            > ui-slider {
+                display: none !important;
+            }
+        }
+    }
+
+    // 视图组件切换时的动画
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+        transition: opacity 0.5s ease;
+    }
+
+    .component-fade-enter,
+    .component-fade-leave-to {
+        opacity: 0;
+    }
+
+    @keyframes grid-out {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+    }
+
+    @keyframes grid-in {
+        from {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes strokeMove {
+        from {
+            stroke-dashoffset: 0;
+        }
+
+        to {
+            stroke-dashoffset: 360;
+        }
+    }
+}

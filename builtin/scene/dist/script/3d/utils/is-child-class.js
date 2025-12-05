@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=((e,...s)=>s.some(s=>cc.js.isChildClassOf(e,s)));
