@@ -1,0 +1,1 @@
+import _UTIL from"../../util";_UTIL.exportTo("getFileSystemManager",qg,ral);let fs=ral.getFileSystemManager(),readFileSync=fs.readFileSync;fs.readFileSync=function(e,r){try{return readFileSync.bind(this)(e,r).data}catch(e){throw e}};

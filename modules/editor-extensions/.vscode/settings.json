@@ -1,0 +1,46 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "vue"
+    ],
+    "i18n-ally.localesPaths": [
+        "extensions/about/i18n",
+        "extensions/console/i18n",
+        "extensions/assets/i18n",
+        "extensions/device/i18n",
+        "extensions/extension/i18n",
+        "extensions/hierarchy/i18n",
+        "extensions/inspector/i18n",
+        "extensions/lightmap/i18n",
+        "extensions/localization-editor/i18n",
+        "extensions/node-library/i18n",
+        "extensions/package-asset/i18n",
+        "extensions/process/i18n",
+        "extensions/reference-image/i18n",
+        "extensions/ui-kit/i18n",
+        "extensions/extension/static/extension-template/blank/i18n",
+        "extensions/extension/static/extension-template/html-panel/i18n",
+        "extensions/extension/static/extension-template/vue2.x-panel/i18n",
+        "extensions/extension/static/extension-template/vue3.x-panel/i18n",
+        "extensions/localization-editor/src/core/entity/messages"
+    ],
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "eslint.format.enable": true,
+}

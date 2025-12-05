@@ -1,0 +1,213 @@
+.detail {
+    overflow-y: auto;
+    height: 100%;
+    position: relative;
+    user-select: text;
+}
+
+.detail-layout {
+    > .header {
+        padding: 16px;
+
+        > .title {
+            display: flex;
+            align-items: flex-start;
+
+            > .logo {
+                flex: none;
+                position: relative;
+                width: 64px;
+                height: 64px;
+
+                > img {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 2px;
+                    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.6);
+                    overflow: hidden;
+                }
+
+                > .tag {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 19px;
+                    height: 14px;
+                    border-radius: 1px 0 8px 0;
+                    background: rgba(64, 170, 202, 0.7);
+                    backdrop-filter: blur(1px);
+                    line-height: 14px;
+                    text-align: center;
+
+                    > .text {
+                        color: rgba(255, 255, 255, 1);
+                        font-size: 12px;
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            > .info {
+                margin-left: 8px;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-width: 0;
+
+                > .top {
+                    display: flex;
+                    align-items: center;
+
+                    > .name {
+                        color: var(--color-default-contrast);
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+
+                    > .tip {
+                        margin-left: 8px;
+                        color: var(--color-normal-contrast-emphasis);
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 22px;
+                    }
+                }
+
+                > .bottom {
+                    display: flex;
+                    margin-top: 8px;
+
+                    > div {
+                        padding: 1px 4px;
+                        border-radius: 2px;
+                        background: var(--color-primary-fill-emphasis);
+                        color: var(--color-info-contrast);
+                        font-size: 12px;
+                        font-weight: 400;
+                        text-align: left;
+                        line-height: 16px;
+
+                        // FIXME: 按照设计要求，描述的内容区应该换行而不是显示省略号。
+                        // 但是按照目前实现的 DOM 结构，换行就无法保证 label-value 水平对齐。暂时显示省略号
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+
+        > .desc {
+            margin-top: 12px;
+            display: flex;
+            align-items: flex-start;
+
+            > .prop {
+                flex: none;
+                padding-left: 2px;
+
+                > div {
+                    height: 20px;
+                    color: var(--color-normal-contrast-emphasis);
+                    font-size: 12px;
+                    font-weight: 400;
+                    text-align: right;
+                    line-height: 20px;
+                }
+            }
+
+            > .value {
+                flex: 1;
+                min-width: 0;
+                margin-left: 8px;
+
+                > div {
+                    height: 20px;
+                    color: var(--color-default-contrast);
+                    font-size: 12px;
+                    font-weight: 400;
+                    text-align: left;
+                    line-height: 20px;
+                }
+
+                > .platform {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    > .item {
+                        > span {
+                            color: var(--color-default-border-weakest);
+                            margin: 0 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > .tabs {
+        display: flex;
+        margin: 16px 0 8px 16px;
+        border-bottom: 1px solid rgba(66, 66, 66, 1);
+
+        .tab {
+            position: relative;
+            bottom: -1px;
+            padding-bottom: 9px;
+            border-bottom: 2px solid transparent;
+            margin-right: 19px;
+            color: rgba(163, 163, 163, 1);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 14px;
+            cursor: pointer;
+
+            &[active] {
+                border-bottom: 2px solid var(--color-default-contrast);
+                color: var(--color-default-contrast);
+            }
+        }
+    }
+
+    > .desc {
+        padding: 16px;
+    }
+
+    > .history {
+        .item {
+            padding: 8px 0;
+
+            .version {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+
+                .ver {
+                    color: var(--color-default-contrast);
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 14px;
+                }
+
+                .date {
+                    margin-left: 8px;
+                    color: var(--color-normal-contrast-emphasis);
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 14px;
+                }
+            }
+
+            .title {
+                margin-bottom: 4px;
+                color: var(--color-default-contrast);
+                font-size: 12px;
+                font-weight: 400;
+                text-align: left;
+                line-height: 20px;
+            }
+        }
+    }
+}

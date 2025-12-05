@@ -1,0 +1,1 @@
+"use strict";function adaptDirectives(e){return e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.adaptDirectives=void 0,exports.adaptDirectives=adaptDirectives;

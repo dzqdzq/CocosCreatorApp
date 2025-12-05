@@ -1,0 +1,203 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-input value="test"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="test"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>password</h2>
+            <div>
+                <ui-input password value="xxxx"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input password value="xxxx"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <div>
+                <ui-input placeholder="name"></ui-input>
+                <ui-input placeholder="i18n:ui-kit.preview.ui.input.placeholder"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input placeholder="name"&gt;&lt;/ui-input&gt;
+                &lt;ui-input placeholder="i18n:ui-kit.preview.ui.input.placeholder"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>prefix</h2>
+            <div>
+                <ui-input>
+                    <ui-icon slot="prefix" value="search"></ui-icon>
+                </ui-input>
+            </div>
+            <ui-code language="html">
+                <ui-input>
+                    <ui-icon slot="prefix" value="search"></ui-icon>
+                </ui-input>
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>suffix</h2>
+            <div>
+                <ui-input>
+                    <span slot="suffix">RMB</span>
+                </ui-input>
+            </div>
+            <ui-code language="html">
+                <ui-input>
+                    <span slot="suffix">RMB</span>
+                </ui-input>
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>show-clear</h2>
+            <div>
+                <ui-input value="show-clear" show-clear></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="show-clear" show-clear&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>auto-select="false"</h2>
+            <div>
+                <ui-input value="auto-select" auto-select="false"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="auto-select" auto-select="false"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-input invalid></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input invalid&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-input readonly value="readonly"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input readonly&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-input disabled value="disabled"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input disabled&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-input hidden></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input hidden&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                show-clear
+                password
+                auto-select
+                disabled
+                readonly
+                invalid
+                placeholder
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <ui-input
+                @change="onChange($event.target.value)"
+                @confirm="onConfirm($event.target.value)"
+                @cancel="onCancel($event.target.value)"
+            ></ui-input>
+        </div>
+
+        <div class="row">
+            <h2>Events</h2>
+            <ui-code language="typescript">
+                change // general case use this event
+                confirm
+                cancel
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>VUE JS</h2>
+            <ui-code language="html">
+                &lt;ui-input
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                    @cancel="onCancel($event.target.value)"
+                &gt;&lt;/ui-input&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                // vue object
+                methods = {
+                    onConfirm(value: string) {
+                        console.log('onConfirm', value);
+                    },
+                    onChange(value: string) {
+                        console.log('onChange', value);
+                    },
+                    onCancel(value: string) {
+                        console.log('onCancel', value);
+                    }
+                };
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Vanilla JS</h2>
+            <ui-code language="html">
+                &lt;ui-input id="input"&gt;&lt;/ui-input&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#input');
+                element.addEventListener('confirm', () => {
+                    console.log('onConfirm', value);
+                });
+                element.addEventListener('change', () => {
+                    console.log('onChange', value);
+                });
+                element.addEventListener('cancel', () => {
+                    console.log('onCancel', value);
+                });
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

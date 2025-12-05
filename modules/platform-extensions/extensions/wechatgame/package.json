@@ -1,0 +1,54 @@
+{
+    "name": "wechatgame",
+    "title": "i18n:wechatgame.title",
+    "version": "1.0.4",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Wechat game platform plugin",
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "main": "./dist/main.js",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        },
+        {
+            "version": "1.0.4",
+            "profile": "./dist/migrations/1.0.4.js"
+        }
+    ],
+    "contributions": {
+        "builder": "./dist/build.js",
+        "program": {
+            "properties": {
+                "wechatDevtools": {
+                    "label": "i18n:wechatgame.program.wechatDevtools",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "app"
+                        }
+                    }
+                }
+            }
+        },
+        "messages": {
+            "run": {
+                "methods": [
+                    "run"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+<ui-section expand>
+    <header slot="header" class="header">
+        <div class="bone-title">
+            <ui-label value="i18n:project.joint.bone"></ui-label>: {{index}} ({{getPercent(pixels, size)}}%)
+        </div>
+        <ui-button icon class="transparent" tooltip="i18n:project.joint.removeSkeletonTip">
+            <ui-icon color
+                @click.stop="removeSelf($event)"
+                value="del"
+            ></ui-icon>
+        </ui-button>
+    </header>
+    <section class="list"
+        v-if="content"
+    >
+        <ui-prop>
+            <ui-label slot="label" value="cc.Skeleton"></ui-label>
+            <section  slot="content" class="section">
+                <ui-asset droppable="cc.Skeleton"
+                    :value="content.skeleton"
+                    @confirm="content.skeleton = $event.target.value"
+                ></ui-asset>
+            </section>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="cc.Animation"></ui-label>
+            <div slot="content">
+                <section class="section clip"
+                    v-for="(clip,index) in content.clips"
+                >
+                    <ui-asset droppable="cc.AnimationClip"
+                        :value="clip"
+                        @confirm="content.clips.splice(index, 1, $event.target.value)"
+                    ></ui-asset>
+                    <ui-button icon class="transparent" tooltip="i18n:project.joint.removeSkeletonClipTip">
+                        <ui-icon color="red"
+                            @click="removeClip(index)"
+                            value="del"
+                        ></ui-icon>
+                    </ui-button>
+                </section>
+                <footer>
+                    <ui-button 
+                        @confirm="addClip($event);"
+                    >
+                        <ui-icon value="add" class="icon"></ui-icon>
+                        <ui-label value="Animation Clip"></ui-label>
+                    </ui-button>
+                </footer>
+            </div>
+        </ui-prop>
+    </section>
+</ui-section>

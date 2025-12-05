@@ -1,0 +1,1 @@
+exports.clear=function(){return["./dist","./static/adapter","./runtime-web-adapter-private"]};

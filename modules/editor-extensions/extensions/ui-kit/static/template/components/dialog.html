@@ -1,0 +1,117 @@
+<div class="wrap dialog-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>message</h2>
+            <ui-button @click="show('info')">info</ui-button>
+            <ui-button @click="show('warn')">warn</ui-button>
+            <ui-button @click="show('error')">error</ui-button>
+
+            <ui-code language="html">
+                &lt;ui-button @click="show('info')"&gt;info&lt;/ui-button&gt;
+                &lt;ui-button @click="show('warn')"&gt;warn&lt;/ui-button&gt;
+                &lt;ui-button @click="show('error')"&gt;error&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                async show(type: string) {
+                    const config: any = {
+                        title: type,
+                        detail: 'detail',
+                    };
+                    const code = await Editor.Dialog[type](`${type} + message`, config);
+                    console.log(code);
+                },
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>buttons</h2>
+            <ui-button @click="show('buttons')">buttons</ui-button>
+            <ui-code language="html">
+                &lt;ui-button @click="buttons()"&gt;buttons&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                async buttons() {
+                    const config: any = {
+                        title: 'buttons',
+                        detail: 'detail',
+                        buttons: ['a', 'b', 'c', 'd'],
+                    };
+                    const code = await Editor.Dialog.info('info + message', config);
+                    console.log(code);
+                }
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>open file</h2>
+            <ui-button @click="openFile()">default</ui-button>
+            <ui-button @click="openFile('root')">Designated folder</ui-button>
+            <ui-button @click="openFile('filters')">filters</ui-button>
+            <ui-code language="html">
+                &lt;ui-button @click="openFile()"&gt;default&lt;/ui-button&gt;
+                &lt;ui-button @click="openFile('root')"&gt;Designated folder&lt;/ui-button&gt;
+                &lt;ui-button @click="openFile('filters')"&gt;filters&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                async openFile(type: string) {
+                    const config: any = {};
+            
+                    switch (type) {
+                        case 'root':
+                            config.path = __dirname;
+                            break;
+                        case 'filters':
+                            config.filters = [
+                                { name: 'Images', extensions: ['jpg', 'png', 'gif'] },
+                            ];
+                            break;
+                    }
+            
+                    const data = await Editor.Dialog.select(config);
+                    console.log(data);
+                }
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>open folder</h2>
+            <ui-button @click="openDirectory()">default</ui-button>
+            <ui-code language="html">
+                &lt;ui-button @click="openDirectory()"&gt;default&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                async openDirectory() {
+                    const config: any = {
+                        type: 'directory',
+                    };
+                    const data = await Editor.Dialog.select(config);
+                    console.log(data);
+                }
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>save</h2>
+            <ui-button @click="save()">default</ui-button>
+            <ui-button @click="save('root')">Designated folder</ui-button>
+            <ui-code language="html">
+                &lt;ui-button @click="save()"&gt;default&lt;/ui-button&gt;
+                &lt;ui-button @click="save('root')"&gt;Designated folder&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                async save(type: string) {
+                    const config: any = {};
+            
+                    switch (type) {
+                        case 'root':
+                            config.path = __dirname;
+                            break;
+                    }
+            
+                    const data = await Editor.Dialog.save(config);
+                    console.log(data);
+                }
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

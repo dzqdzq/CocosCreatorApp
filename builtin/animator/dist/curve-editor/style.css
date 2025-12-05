@@ -1,0 +1,73 @@
+.curve-editor {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-normal-fill);
+  position: relative;
+  display: flex;
+}
+.curve-editor .left {
+  width: 25%;
+  max-width: 150px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px;
+}
+.curve-editor .canvas-wrap {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.curve-editor .canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+}
+.curve-editor .x-axis,
+.curve-editor .y-axis {
+  position: absolute;
+  left: 0;
+}
+.curve-editor .x-axis span,
+.curve-editor .y-axis span {
+  position: absolute;
+  white-space: nowrap;
+}
+.curve-editor .x-axis {
+  bottom: 20px;
+}
+.curve-editor .presets {
+  flex: 1;
+  flex-direction: column;
+}
+.curve-editor .presets .tab {
+  display: flex;
+  justify-content: space-between;
+}
+.curve-editor .presets .tab span {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+}
+.curve-editor .presets .tab > span[active] {
+  color: var(--color-focus-fill);
+}
+.curve-editor .presets .wrap {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2px;
+}
+.curve-editor .presets .wrap .wrap > div {
+  width: 100%;
+  height: 100%;
+}
+.curve-editor .presets canvas {
+  background-color: var(--color-hover-fill-normal);
+  cursor: pointer;
+  margin-top: 10px;
+}

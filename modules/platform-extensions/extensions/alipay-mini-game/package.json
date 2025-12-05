@@ -1,0 +1,20 @@
+{
+    "name": "alipay-mini-game",
+    "title": "i18n:alipay-mini-game.title",
+    "version": "1.0.2",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Alipay mini game platform plugin",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },{
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        }
+    ],
+    "contributions": {
+        "builder": "./dist/builder.js"
+    }
+}

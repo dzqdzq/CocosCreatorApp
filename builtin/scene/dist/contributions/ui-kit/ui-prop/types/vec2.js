@@ -1,0 +1,5 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const utils_1=require("../utils"),dum_element_base_1=require("../dum-element-base");class Vec2 extends dum_element_base_1.DumpElementBase{constructor(){super(...arguments),this.type=["cc.Vec2"],this.$x=null,this.$y=null,this._listeners=["change"],this.template=`
+        <ui-label slot="label"></ui-label>
+        <ui-num-input preci="6" label="X" slot="content" style="margin-right: 4px;" local="x"></ui-num-input>
+        <ui-num-input preci="6" label="Y" slot="content" local="y"></ui-num-input>
+    `,this.style=""}parseAndSetData(u,e){return Object.keys(u).forEach(t=>{t&&t in e.value&&(e.value[t]=u[t],Reflect.has(e,"values"))&&e.values.forEach(e=>{e[t]=u[t]})}),!0}change(e,t){var u;e.target&&(u=e.target.getAttribute("local"),e=e.target.value,u)&&this.parseAndSetData({[u]:e},t)}mounted(e){e=e.querySelectorAll("ui-num-input");e&&(this.$x=e[0],this.$y=e[1])}ready(){super.ready()}update(e){super.update(e),this.$x&&(0,utils_1.setVecInput)(e,this.$x),this.$y&&(0,utils_1.setVecInput)(e,this.$y)}}exports.default=Vec2;

@@ -1,0 +1,457 @@
+{
+    "name": "project",
+    "title": "i18n:project.title",
+    "version": "1.0.6",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:project.description",
+    "main": "./dist/browser/index.js",
+    "panels": {
+        "settings": {
+            "title": "i18n:project.title",
+            "icon": "./static/icon-2x.png",
+            "main": "./dist/settings/index.js",
+            "size": {
+                "min-width": 580,
+                "min-height": 430,
+                "width": 800,
+                "height": 550
+            },
+            "menu": [
+                {
+                    "label": "i18n:project.menu.importConfig",
+                    "message": "import-config"
+                },
+                {
+                    "label": "i18n:project.menu.exportConfig",
+                    "message": "export-config"
+                }
+            ]
+        }
+    },
+    "migrations": [
+        {
+            "version": "0.0.0",
+            "profile": "./dist/migrations/0.0.0.js"
+        },
+        {
+            "version": "1.0.0",
+            "profile": "./hooks/project-1.0.0.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./hooks/project-1.0.2.js"
+        },
+        {
+            "version": "1.0.4",
+            "profile": "./dist/migrations/1.0.4.js"
+        },
+        {
+            "version": "1.0.5",
+            "profile": "./dist/migrations/1.0.5.js"
+        },
+        {
+            "version": "1.0.6",
+            "profile": "./dist/migrations/1.0.6.js"
+        }
+    ],
+    "contributions": {
+        "toolbar": {
+            "right": "./static/toolbar.js"
+        },
+        "asset-db": {
+            "script": "./static/contributions/scene.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:project.title",
+                "message": "open-settings",
+                "icon": "./static/icon.png"
+            }
+        ],
+        "profile": {
+            "project": {
+                "layer": {
+                    "default": [],
+                    "message": "change-custom-layer"
+                },
+                "sorting-layer": {
+                    "default": {},
+                    "message": "change-sorting-layer"
+                },
+                "general.designResolution.width": {
+                    "label": "i18n:project.general.width",
+                    "default": 1280,
+                    "message": "change-design-resolution"
+                },
+                "general.designResolution.height": {
+                    "label": "i18n:project.general.height",
+                    "default": 720,
+                    "message": "change-design-resolution"
+                },
+                "general.designResolution.fitWidth": {
+                    "label": "i18n:project.general.fit_width",
+                    "default": true
+                },
+                "general.designResolution.fitHeight": {
+                    "label": "i18n:project.general.fit_height",
+                    "default": false
+                },
+                "general.renderPipeline": {
+                    "default": "fd8ec536-a354-4a17-9c74-4f3883c378c8"
+                },
+                "general.highQuality": {
+                    "label": "i18n:project.general.quality",
+                    "default": false,
+                    "message": "change-hight-quality"
+                },
+                "general.downloadMaxConcurrency": {
+                    "label": "i18n:project.general.downloadMaxConcurrency",
+                    "default": 15
+                },
+                "custom_joint_texture_layouts": {
+                    "default": []
+                },
+                "physics.gravity.x": {
+                    "label": "i18n:project.physics.gravity.x",
+                    "default": 0
+                },
+                "physics.gravity.y": {
+                    "label": "i18n:project.physics.gravity.y",
+                    "default": -10
+                },
+                "physics.gravity.z": {
+                    "label": "i18n:project.physics.gravity.z",
+                    "default": 0
+                },
+                "physics.allowSleep": {
+                    "label": "i18n:project.physics.allowSleep",
+                    "default": true
+                },
+                "physics.sleepThreshold": {
+                    "label": "i18n:project.physics.sleepThreshold",
+                    "default": 0.1
+                },
+                "physics.autoSimulation": {
+                    "label": "i18n:project.physics.autoSimulation",
+                    "default": true
+                },
+                "physics.fixedTimeStep": {
+                    "label": "i18n:project.physics.fixedTimeStep",
+                    "default": 0.0166667
+                },
+                "physics.maxSubSteps": {
+                    "label": "i18n:project.physics.maxSubSteps",
+                    "default": 1
+                },
+                "physics.defaultMaterial": {
+                    "label": "i18n:project.physics.defaultMaterial",
+                    "default": "ba21476f-2866-4f81-9c4d-6e359316e448"
+                },
+                "script.useDefineForClassFields": {
+                    "label": "i18n:project.scripts.useDefineForClassFields",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.useDefineForClassFieldsTips"
+                },
+                "script.allowDeclareFields": {
+                    "label": "i18n:project.scripts.allowDeclareFields",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.allowDeclareFieldsTips"
+                },
+                "script.loose": {
+                    "label": "i18n:project.scripts.loose",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.loose_description"
+                },
+                "script.exportsConditions": {
+                    "label": "Exports Conditions",
+                    "default": [
+                        "browser"
+                    ],
+                    "description": "Specifies resolution conditions for conditional exports, please refer to Cocos Creator Module Resolution."
+                },
+                "script.importMap": {
+                    "label": "Import Map",
+                    "default": "",
+                    "description": "Specify import map to control the imports."
+                },
+                "script.previewBrowserslistConfigFile": {
+                    "label": "i18n:project.scripts.preview_browserslist_config_file",
+                    "default": "",
+                    "description": "i18n:project.scripts.preview_browserslist_config_file_description"
+                },
+                "script.preserveSymlinks": {
+                    "label": "i18n:programming.profile.script.preserveSymlinks.label",
+                    "default": false,
+                    "type": "boolean",
+                    "description": "i18n:programming.profile.script.preserveSymlinks.description",
+                    "message": "change-script-config"
+                },
+                "script.sortingPlugin": {
+                    "default": []
+                },
+                "fbx.legacyFbxImporter.visible": {
+                    "label": "i18n:ENGINE.assets.fbx.legacyFbxImporter.name",
+                    "default": false,
+                    "description": "i18n:ENGINE.assets.fbx.legacyFbxImporter.title"
+                },
+                "fbx.material.smart": {
+                    "label": "i18n:ENGINE.assets.fbx.smartMaterialEnabled.name",
+                    "default": true,
+                    "description": "i18n:ENGINE.assets.fbx.smartMaterialEnabled.title"
+                }
+            }
+        },
+        "project": {
+            "general": {
+                "label": "i18n:project.general.title",
+                "content": {
+                    "general.designResolution.width": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 1
+                        }
+                    },
+                    "general.designResolution.height": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 1
+                        }
+                    },
+                    "general.designResolution.fitWidth": {
+                        "ui": "ui-checkbox"
+                    },
+                    "general.designResolution.fitHeight": {
+                        "ui": "ui-checkbox"
+                    },
+                    "general.highQuality": {
+                        "ui": "ui-checkbox"
+                    },
+                    "general.downloadMaxConcurrency": {
+                        "ui": "ui-num-input"
+                    }
+                },
+                "custom": "./dist/contributions/project-general.js"
+            },
+            "layer": {
+                "label": "Layers",
+                "custom": "./dist/contributions/project-layer.js"
+            },
+            "sortingLayer": {
+                "label": "Sorting Layers",
+                "custom": "./dist/contributions/project-sorting-layer.js"
+            },
+            "physics": {
+                "label": "i18n:project.physics.title",
+                "content": {
+                    "physics.gravity.x": {
+                        "ui": "ui-num-input"
+                    },
+                    "physics.gravity.y": {
+                        "ui": "ui-num-input"
+                    },
+                    "physics.gravity.z": {
+                        "ui": "ui-num-input"
+                    },
+                    "physics.allowSleep": {
+                        "ui": "ui-checkbox"
+                    },
+                    "physics.sleepThreshold": {
+                        "ui": "ui-num-input"
+                    },
+                    "physics.autoSimulation": {
+                        "ui": "ui-checkbox"
+                    },
+                    "physics.fixedTimeStep": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "min": 0
+                        }
+                    },
+                    "physics.maxSubSteps": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 1
+                        }
+                    },
+                    "physics.defaultMaterial": {
+                        "ui": "ui-asset",
+                        "attributes": {
+                            "droppable": "cc.PhysicsMaterial"
+                        }
+                    }
+                },
+                "custom": "./dist/contributions/project-physics.js"
+            },
+            "script": {
+                "label": "i18n:project.scripts.title",
+                "content": {
+                    "script.useDefineForClassFields": {
+                        "ui": "ui-checkbox"
+                    },
+                    "script.allowDeclareFields": {
+                        "ui": "ui-checkbox",
+                        "tooltip": "i18n:project.scripts.allowDeclareFieldsTips"
+                    },
+                    "script.loose": {
+                        "ui": "ui-checkbox",
+                        "tooltip": "i18n:project.scripts.loose_description"
+                    },
+                    "script.importMap": {
+                        "ui": "ui-file",
+                        "tooltip": "i18n:project.scripts.import_map_description",
+                        "attributes": {
+                            "type": "file",
+                            "protocols": "project",
+                            "extensions": "json"
+                        }
+                    },
+                    "script.previewBrowserslistConfigFile": {
+                        "ui": "ui-file",
+                        "tooltip": "i18n:project.scripts.preview_browserslist_config_file_description",
+                        "attributes": {
+                            "type": "file",
+                            "protocols": "project"
+                        }
+                    },
+                    "script.preserveSymlinks": {
+                        "ui": "ui-checkbox",
+                        "tooltip": "i18n:programming.profile.script.preserveSymlinks.description"
+                    }
+                },
+                "custom": "./dist/contributions/project-script.js"
+            },
+            "model": {
+                "label": "i18n:project.model.title",
+                "content": {
+                    "fbx.material.smart": {
+                        "ui": "ui-checkbox"
+                    }
+                }
+            },
+            "joint": {
+                "label": "i18n:project.joint.title",
+                "custom": "./dist/contributions/joint/index.js"
+            }
+        },
+        "messages": {
+            "asset-db:ready": {
+                "methods": [
+                    "settings.assetDbReady"
+                ]
+            },
+            "open-settings": {
+                "public": true,
+                "description": "i18n:project.contributions.messages.description.open_settings",
+                "doc": "i18n:project.contributions.messages.doc.open_settings",
+                "example": "i18n:project.contributions.messages.example.open_settings",
+                "methods": [
+                    "openSettings"
+                ]
+            },
+            "open-joint": {
+                "methods": [
+                    "openJoint"
+                ]
+            },
+            "change-settings-tab": {
+                "methods": [
+                    "settings.changeTab"
+                ]
+            },
+            "refresh-settings-tab": {
+                "methods": [
+                    "settings.refreshTab"
+                ]
+            },
+            "query-settings-tab": {
+                "methods": [
+                    "settings.queryTab"
+                ]
+            },
+            "change-script-config": {
+                "methods": [
+                    "changeScriptConfig"
+                ]
+            },
+            "change-design-resolution": {
+                "methods": [
+                    "changeDesignResolution"
+                ]
+            },
+            "query-design-resolution": {
+                "methods": [
+                    "queryDesignResolution"
+                ]
+            },
+            "change-custom-layer": {
+                "methods": [
+                    "changeCustomLayer"
+                ]
+            },
+            "change-sorting-layer": {
+                "methods": [
+                    "changeSortingLayer"
+                ]
+            },
+            "change-hight-quality": {
+                "methods": [
+                    "changeHighQuality"
+                ]
+            },
+            "calc-joint-layout": {
+                "methods": [
+                    "calcJointLayouts"
+                ]
+            },
+            "query-project-configs": {
+                "methods": [
+                    "queryProjectConfigs"
+                ]
+            },
+            "query-configs-from-path": {
+                "methods": [
+                    "queryConfigsFromPath"
+                ]
+            },
+            "query-config": {
+                "public": true,
+                "description": "i18n:project.contributions.messages.description.queryConfig",
+                "doc": "i18n:project.contributions.messages.doc.queryConfig",
+                "example": "i18n:project.contributions.messages.example.queryConfig",
+                "methods": [
+                    "queryConfig"
+                ]
+            },
+            "set-config": {
+                "public": true,
+                "description": "i18n:project.contributions.messages.description.setConfig",
+                "doc": "i18n:project.contributions.messages.doc.setConfig",
+                "example": "i18n:project.contributions.messages.example.setConfig",
+                "methods": [
+                    "setConfig"
+                ]
+            },
+            "import-config": {
+                "methods": [
+                    "importConfig"
+                ]
+            },
+            "export-config": {
+                "methods": [
+                    "exportConfig"
+                ]
+            }
+        }
+    }
+}

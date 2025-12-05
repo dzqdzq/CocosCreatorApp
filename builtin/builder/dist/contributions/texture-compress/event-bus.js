@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.EventBus=void 0;const Vue=require("vue/dist/vue.js");exports.EventBus=new Vue;

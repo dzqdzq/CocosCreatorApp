@@ -1,0 +1,1 @@
+const _initRenderer=cc.game._initRenderer;cc.game._initRenderer=function(){_initRenderer.call(cc.game),cc.game.frame||(cc.game.frame=window.__canvas)},ral.onHide(function(){cc.game.emit(cc.game.EVENT_HIDE)}),ral.onShow(function(){cc.game.emit(cc.game.EVENT_SHOW)});

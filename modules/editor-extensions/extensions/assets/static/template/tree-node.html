@@ -1,0 +1,81 @@
+<div class="tree-node" :twinkle="twinkle">
+    <ui-drag-item
+        class="drag-item"
+        :draggable="draggable"
+        :state="state"
+        :style="style"
+        :expand="expand"
+        :select="select"
+        :type="asset.type"
+        :invalid="!asset.imported || showInvalid"
+        :class="{
+            'inner-invalid': !asset.invalid && showInnerInvalid,
+        }"
+        @click.right.stop="popupMenu(asset)"
+        @click.stop="click(asset,$event)"
+        @dragstart="dragStart(asset,$event)"
+        @dragover="dragOver(asset,$event)"
+        @dragleave="dragLeave(asset,$event)"
+        @drop="drop(asset,$event)"
+        @dblclick="dblclick(asset)"
+    >
+        <ui-icon
+            class="error"
+            value="warn-triangle"
+            v-if="!asset.imported || showInvalid"
+            tooltip="i18n:assets.menu.invalidError"
+        ></ui-icon>
+        <ui-icon
+            class="arrow"
+            value="arrow-triangle"
+            v-if="asset.isParent"
+            @click.stop="toggle(asset,$event)"
+            @dblclick.stop
+            @click.right.stop
+        ></ui-icon>
+        <section class="loading" v-if="state==='loading'">
+            <ui-loading></ui-loading>
+        </section>
+        <tree-node-icon :asset="asset" :key="asset.refreshTime+asset.uuid" :expand="expand" v-else></tree-node-icon>
+        <ui-rename-input
+            style="--focus-bg-color: transparent"
+            ref="renameInput"
+            :class="{name: state !== 'rename', 'rename': state === 'rename'}"
+            :state="renameInputState"
+            :title="t('operate.' + renameInputState)"
+            :value="displayName"
+            @change="renameChange"
+            @confirm="renameSubmit"
+            @rename="rename(asset,$event)"
+            :canRename.prop="canRename(asset)"
+            :showValueSuffix.prop="styleState.showSuffix"
+        >
+            <span slot="value-suffix" class="sub-asset-name">{{asset.fileExt}}</span>
+        </ui-rename-input>
+        <ui-icon
+            class="readonly"
+            value="lock"
+            tooltip="i18n:assets.menu.readonly"
+            v-if="!asset.isDB && asset.readonly && !showInvalid"
+        ></ui-icon>
+    </ui-drag-item>
+    <div class="drag-item" :style="addInputStyle" v-if="asset.isDirectory && state.startsWith('add')">
+        <section class="loading" v-if="state==='add-loading'">
+            <ui-loading></ui-loading>
+        </section>
+        <tree-node-icon :asset="addInfo" :key="asset.importer+asset.uuid" :expand="expand" v-else></tree-node-icon>
+        <div class="rename" :state="addInputState.state" :title="addInputState.title">
+            <input
+                ref="addInput"
+                :disabled="state==='add-loading'"
+                :value="addInfo.fileName"
+                @input="addChange()"
+                @blur="addSubmit()"
+                @keydown.stop
+                @keydown.enter="addSubmit()"
+                @keydown.esc="addCancel()"
+                @dblclick.stop
+            />
+        </div>
+    </div>
+</div>

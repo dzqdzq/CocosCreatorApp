@@ -1,0 +1,169 @@
+<div class="bundle-config-group">
+    <header class="tab">
+        <div class="group-header"
+            v-for="(currentPlatformInfo, name) in platformTypes"
+            :key="name"
+            :active="name === currentPlatform"
+            :tooltip="currentPlatformInfo.displayName"
+            :value="currentPlatform"
+            @click.stop="changePlatform(name)"
+        >
+            <ui-icon :value="currentPlatformInfo.icon"></ui-icon>
+            <ui-label :value="currentPlatformInfo.displayName"></ui-label>
+        </div>
+    </header>
+    <div class="content" v-if="renderConfig && renderConfig[currentPlatform] && currentPlatform !== 'miniGame'">
+        <ui-prop class="label tip">
+            <ui-label slot="label"></ui-label>
+            <div slot="content">
+                <div class="platform-container">
+                    <ui-label
+                        value="i18n:builder.asset_bundle.compression_type"
+                        tooltip="i18n:builder.asset_bundle.compression_type_tooltip"
+                    ></ui-label>
+                    <div>
+                        <ui-label
+                            value="i18n:builder.asset_bundle.is_remote_bundle"
+                            tooltip="i18n:builder.asset_bundle.remote_bundle_invalid_tooltip"
+                        ></ui-label>
+                    </div>
+                </div>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <div slot="label">
+                <ui-label value="i18n:builder.asset_bundle.preferredOptions"></ui-label>
+                <ui-icon value="info-i" tooltip="i18n:builder.asset_bundle.preferredOptionsTips"></ui-icon>
+            </div>
+            <config-item class="platform-container" type="preferredOptions" slot="content"
+                :option="customConfig[currentPlatform].preferredOptions"
+                :readonly="readonly"
+                :support-options="renderConfig[currentPlatform].maxOptionList"
+                @update="onBundleConfigChange"
+            >
+            </config-item>
+        </ui-prop>
+        <ui-prop
+            v-if="renderConfig[currentPlatform].minOptionList"
+        >
+            <div slot="label">
+                <ui-label value="i18n:builder.asset_bundle.fallbackOptions"></ui-label>
+                <ui-icon value="info" tooltip="i18n:builder.asset_bundle.fallbackOptionsTips"></ui-icon>
+            </div>
+            <div slot="content">
+                <config-item class="platform-container" type="fallbackOptions"
+                    :option="customConfig[currentPlatform].fallbackOptions || {}"
+                    :readonly="readonly"
+                    :support-options="renderConfig[currentPlatform].minOptionList"
+                    :filter-list="['isRemote']"
+                    @update="onBundleConfigChange"
+                >
+                </config-item>
+            </div>
+        </ui-prop>
+
+        <div
+            v-if="!!customConfig[currentPlatform].overwriteSettings || !readonly"
+        >
+            <header class="row">
+                <ui-label value="i18n:builder.asset_bundle.platformOverride"></ui-label>
+                <div class="toolbar" v-if="!readonly">
+                    <ui-button type="icon" class="transparent"
+                        :disabled="readonly"
+                        @click.stop="deletePlatformOverwrite"
+                    >
+                        <ui-icon value="mini"></ui-icon>
+                    </ui-button>
+                    <ui-button type="icon" class="transparent"
+                        :disabled="readonly"
+                        @click.stop="addPlatformOverwriteMenu"
+                    >
+                        <ui-icon value="add-more"></ui-icon>
+                    </ui-button>
+                </div>
+            </header>
+            <platform-group
+                v-if="customConfig[currentPlatform].overwriteSettings"
+                :platform-settings="customConfig[currentPlatform].overwriteSettings"
+                :platform-configs="renderConfig[currentPlatform].platformConfigs"
+                :select-platform="selectPlatform"
+                :readonly="readonly"
+                @update="onPlatformSettingsChange"
+            ></platform-group>
+            <div class="empty" v-else>
+                <ui-label value="i18n:builder.asset_bundle.platformOverrideEmptyTip"></ui-label>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" v-if="renderConfig && renderConfig[currentPlatform] && currentPlatform === 'miniGame'">
+        <div class="header">
+            <ui-checkbox
+                :value="customConfig[currentPlatform].configMode === 'overwrite'"
+                :disabled="readonly"
+                @confirm="onChangeConfigMode($event.target.value, 'overwrite')"
+            > 
+                <ui-label value="i18n:builder.asset_bundle.separateConfig"></ui-label>
+            </ui-checkbox>
+            <div v-if="!readonly">
+                <ui-button class="mr4" :disabled="resetUniDisabledState" @confirm="onOverwriteSettingsReset()">
+                    <ui-label value="i18n:builder.asset_bundle.resetUni"></ui-label>
+                </ui-button>
+                <ui-button :disabled="resetDisabledState" @click.stop="onOverwriteSettingsReset(true)">
+                    <ui-label value="i18n:builder.asset_bundle.reset"></ui-label>
+                </ui-button>
+            </div>
+        </div>
+        <platform-group
+            :platform-settings="customConfig[currentPlatform].overwriteSettings"
+            :platform-configs="renderConfig[currentPlatform].platformConfigs"
+            :show-all="true"
+            :readonly="readonly"
+            @update="onPlatformSettingsChange"
+        ></platform-group>
+
+        <div class="header">
+            <ui-checkbox 
+                :value="!customConfig[currentPlatform].configMode || customConfig[currentPlatform].configMode === 'fallback'"
+                :disabled="readonly"
+                @confirm="onChangeConfigMode($event.target.value, 'fallback')"
+            ><ui-label value="i18n:builder.asset_bundle.uniConfig"></ui-label> </ui-checkbox>
+            <div v-if="!readonly">
+                <ui-button :disabled="resetAllDisabledState" @confirm="onFallbackOptionsReset">
+                    <ui-label value="i18n:builder.asset_bundle.reset"></ui-label>
+                </ui-button>
+            </div>
+        </div>
+
+        <div class="container">
+            <ui-prop class="label tip">
+                <ui-label slot="label" value="i18n:builder.asset_bundle.platform"></ui-label>
+                <div slot="content">
+                    <div class="platform-container">
+                        <ui-label
+                            value="i18n:builder.asset_bundle.compression_type"
+                            tooltip="i18n:builder.asset_bundle.compression_type_tooltip"
+                        ></ui-label>
+                        <ui-label
+                            value="i18n:builder.asset_bundle.is_remote_bundle"
+                            tooltip="i18n:builder.asset_bundle.remote_bundle_invalid_tooltip"
+                        ></ui-label>
+                    </div>
+                </div>
+            </ui-prop>
+
+            <ui-prop>
+                <ui-label slot="label" value="i18n:builder.asset_bundle.allMiniGames"></ui-label>
+                <div slot="content">
+                    <config-item class="platform-container" type="fallbackOptions" slot="content"
+                        :option="customConfig[currentPlatform].fallbackOptions || {}"
+                        :readonly="readonly"
+                        :support-options="renderConfig[currentPlatform].minOptionList"
+                        @update="onBundleConfigChange"
+                    >
+                    </config-item>
+                </div>
+            </ui-prop>
+        </div>
+    </div>
+</div>

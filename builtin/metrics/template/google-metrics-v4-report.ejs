@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= googleG4ID %>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        let eventList = [];
+
+        const INTERVAL = 2000;
+        const MAX_COUNT = 5;
+        function sendToEvents() {
+            const subList = eventList.splice(0, MAX_COUNT);
+            if (subList.length > 0) {
+                for (const event of subList) {
+                    sendToEvent(event);
+                }
+            }
+        }
+
+        function sendToEvent(event) {
+            if (!event) return
+            if (event.name === 'init') {
+                const date = new Date();
+                gtag('js', date);
+                gtag('config', '<%= googleG4ID %>');
+                return;
+            }
+            gtag('event', event.name, event.params);
+        }
+
+        window.addEventListener('message', (messageEvent) => {
+            const data = messageEvent.data;
+            if (!data || data.tag !== 'g4') return;
+
+            const events = data.events || [];
+            for (const event of events) {
+                if (event.name === 'init') {
+                    sendToEvent(event);
+                } else {
+                    eventList.push(event);
+                }
+            }
+        });
+
+        window.addEventListener('load', () => {
+            setInterval(sendToEvents, INTERVAL);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

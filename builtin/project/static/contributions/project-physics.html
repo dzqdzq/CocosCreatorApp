@@ -1,0 +1,147 @@
+<ui-section expand class="config">
+    <ui-label slot="header" value="i18n:project.physics.collisionMatrix"></ui-label>
+    
+    <table class="table" 
+        :state="!!state"
+    >
+        <thead>
+            <tr>
+                <td class="td mini gray">Index</td>
+                <td class="td name gray">Name</td>
+                <td class="td operation"></td>
+                <td class="td horizontal"
+                    v-for="(reverseGroup,key) in reverseGroups"
+                    :key="key"
+                >
+                    <label class="transform">{{reverseGroup.name}}</label>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                v-for="(group,index) in groups.slice()"
+                :key="group.index"
+                :y="group.index"
+                @change="onChanged"
+            >
+                <td class="td gray">{{group.index}}</td>
+                <td class="td">
+                    <ui-input class="input name"
+                        @focus="error=''"
+                        :value="group.name"
+                        :title="t('project.physics.add.name')"
+                        v-if="state==='edit' && stateIndex===group.index"
+                    ></ui-input>
+                    <ui-label
+                        v-else
+                        :value="group.name"
+                    ></ui-label>
+                </td>
+                <td class="td operation">
+                    <template
+                        v-if="state==='edit' && stateIndex !== 0 && stateIndex=== group.index"
+                    >
+                        <ui-button type="icon" class="transparent"
+                            tooltip="i18n:project.cancel"
+                            @click="cancelEdit()"
+                        >
+                            <ui-icon value="close" color="true"></ui-icon>
+                        </ui-button>
+                        <ui-button type="icon" class="transparent"
+                            tooltip="i18n:project.save"
+                            @click="saveEdit($event)"
+                        >
+                            <ui-icon value="check-b" color="true"></ui-icon>
+                        </ui-button>
+                    </template>
+                    <ui-button type="icon" class="transparent"
+                        tooltip="i18n:project.edit"
+                        v-if="state==='' && group.index !== 0"
+                        @click="startEdit($event)"
+                    >
+                        <ui-icon value="edit"></ui-icon>
+                    </ui-button>
+                    <ui-button type="icon" class="transparent"
+                        tooltip="i18n:project.delete"
+                        v-if="state==='' && group.index !== 0"
+                        @click="deleteIndex(group.index)"
+                    >
+                        <ui-icon value="del" color="true"></ui-icon>
+                    </ui-button>
+                </td>
+                <td class="td horizontal"
+                    v-for="(reverseGroup,key) in reverseGroups"
+                    :key="key"
+                >
+                    <ui-checkbox 
+                        :x="reverseGroup.index"
+                        :checked="checked(reverseGroup.index,group.index)"
+                        :disabled="group.index > reverseGroup.index"
+                    ></ui-checkbox>
+                </td>
+            </tr>
+            <tr ref="errorRow">
+                <td class="td"></td>
+                <td class="td error"
+                    :colspan="groups.length + 2"
+                >
+                    {{error}}
+                </td>
+            </tr>   
+        </tbody>
+        <tfoot
+            v-if="groups.length<32"
+        >
+            <tr ref="addRow"
+                v-if="state==='add'"
+            >
+                <td class="td gray">
+                    <ui-num-input class="input" step="1" min="1" max="31" ref="addIndex"
+                        @focus="error=''"
+                        :value="addIndexValue()"
+                    ></ui-num-input>
+                </td>
+                <td class="td">
+                    <ui-input class="input" ref="addName"
+                        @focus="error=''"
+                        :title="t('project.physics.add.name')"
+                    ></ui-input>
+                </td>
+                <td class="td operation">
+                    <template>
+                        <ui-button type="icon" class="transparent"
+                            tooltip="i18n:project.cancel"
+                            @click="cancelAdd()"
+                        >
+                            <ui-icon value="close" color="true"></ui-icon>
+                        </ui-button>
+                        <ui-button type="icon" class="transparent"
+                            tooltip="i18n:project.save"
+                            @click="saveAdd()"
+                        >
+                            <ui-icon value="check-b" color="true"></ui-icon>
+                        </ui-button>
+                    </template>
+                </td>
+                <td class="td"
+                    :colspan="groups.length"
+                ></td>
+            </tr>     
+            <tr 
+                v-if="state===''"
+            >
+                <td class="td first" colspan="3">
+                    <ui-button class="add blue"
+                        @click="startAdd()"
+                    >
+                        <ui-icon value="add" class="icon"></ui-icon>
+                        <ui-label value="i18n:project.add"></ui-label>
+                    </ui-button>
+                </td>
+                <td class="td"
+                    :colspan="groups.length"
+                ></td>
+            </tr>
+        </tfoot>
+    </table>
+</ui-section>

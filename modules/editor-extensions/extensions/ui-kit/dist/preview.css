@@ -1,0 +1,110 @@
+:host {
+  display: flex;
+}
+.settings {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  overflow: hidden;
+}
+.settings > .slider {
+  width: 150px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.settings > .slider::-webkit-scrollbar {
+  display: block;
+  border-left: 1px solid var(--color-normal-border-weaker);
+}
+.settings > .slider > ul > li {
+  padding-top: 6px;
+}
+.settings > .slider > ul > li > ui-label {
+  opacity: 0.5;
+  margin-left: 10px;
+  font-size: 11px;
+}
+.settings > .slider > ul > li > ul > li {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 4px 4px 4px 22px;
+}
+.settings > .slider > ul > li > ul > li:hover,
+.settings > .slider > ul > li > ul > li[active] {
+  background-color: var(--color-active-fill-emphasis);
+  color: var(--color-active-contrast-emphasis);
+}
+.settings > .content {
+  flex: 1;
+  margin-left: 6px;
+  padding: 25px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: auto;
+  user-select: text;
+}
+.settings > .content .section {
+  display: block;
+  margin-bottom: 16px;
+  user-select: text;
+}
+.settings > .content .row {
+  margin: 16px 0;
+  user-select: text;
+}
+.settings > .content h2,
+.settings > .content h3,
+.settings > .content h4,
+.settings > .content h5 {
+  padding-bottom: 8px;
+}
+.settings > .content ui-code {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.settings > .content .mb-10 {
+  margin-bottom: 10px;
+}
+.settings .ui-checkbox-wrap ui-checkbox {
+  margin-right: 20px;
+}
+.settings ui-color,
+.settings ui-file,
+.settings ui-gradient,
+.settings ui-input,
+.settings ui-num-input,
+.settings ui-select,
+.settings ui-slider,
+.settings ui-node,
+.settings ui-component,
+.settings ui-asset {
+  width: 100%;
+}
+.settings .ui-drag-wrap ui-drag-item {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  background-color: var(--color-normal-fill-important);
+}
+.settings .ui-drag-wrap ui-drag-area {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border: dashed 1px var(--color-normal-border-important);
+}
+.settings .ui-drag-wrap ui-drag-area[hoving] {
+  border-color: var(--color-success-border);
+}
+.settings .ui-icon-wrap .icon-box {
+  display: inline-block;
+  width: 160px;
+  font-size: 12px;
+}
+.settings .dialog-wrap ui-button {
+  margin-right: 20px;
+}

@@ -1,0 +1,99 @@
+.float-window {
+    position: absolute;
+    opacity: 0.6;
+    width: 200px;
+    height: 200px;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    background: var(--color-normal-fill);
+    border-radius: calc(var(--size-normal-radius) * 1px);
+
+    &[hidden] {
+        display: none;
+    }
+
+    &:not([simple]) {
+        z-index: 100; // 需要拖拽，所以层级给最高(场景范围内)
+    }
+
+    &[simple] {
+        > header {
+            display: none;
+        }
+
+        > section {
+            margin: 2px;
+            padding: 0;
+            overflow: hidden;
+        }
+    }
+
+    &[camera] {
+        background: none;
+
+        > header {
+            display: none;
+        }
+
+        > section {
+            padding: 0;
+            margin: 0;
+            overflow: visible;
+        }
+    }
+
+    > header {
+        display: flex;
+        line-height: 24px;
+        height: 24px;
+        text-align: right;
+        margin: 4px 8px;
+        cursor: move;
+
+        > span {
+            text-align: center;
+            flex: 1;
+        }
+
+        > ui-icon {
+            cursor: pointer;
+        }
+    }
+
+    > section {
+        flex: 1;
+        margin: 5px 0 5px 12px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    &[dock] {
+        &[left] {
+            margin: 0 0 0 10px;
+            transform: translateX(-100%);
+        }
+
+        &[top] {
+            margin: 10px 0 0 0;
+            transform: translateY(-100%);
+        }
+
+        &[right] {
+            margin: 0 10px 0 0;
+            transform: translateX(100%);
+        }
+
+        &[bottom] {
+            margin: 0 0 10px 0;
+            transform: translateY(100%);
+        }
+    }
+
+    &:hover {
+        opacity: 1 !important;
+        margin: 0 !important;
+        transform: translate(0, 0) !important;
+    }
+}

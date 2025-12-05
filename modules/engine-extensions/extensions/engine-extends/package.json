@@ -1,0 +1,479 @@
+{
+    "name": "engine-extends",
+    "version": "1.0.0",
+    "description": "",
+    "package_version": 2,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "main": "./dist/browser.js",
+    "license": "ISC",
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:engine-extends.menu.refresh_all_effect",
+                "message": "refresh-all-effect"
+            }
+        ],
+        "asset-db": {
+            "global-hook": [
+                "beforePreStart",
+                "afterPreStart",
+                "afterRefresh"
+            ],
+            "mount-hook": [
+                "afterStartDB",
+                "afterStopDB"
+            ],
+            "script": "./dist/contributions/asset-db-script",
+            "asset-handler": [
+                {
+                    "handler": "registerUnknownHandler",
+                    "name": "*",
+                    "extnames": [
+                        "*"
+                    ]
+                },
+                {
+                    "handler": "registerDirectoryHandler",
+                    "name": "directory",
+                    "extnames": [
+                        "*"
+                    ]
+                },
+                {
+                    "handler": "registerTextHandler",
+                    "name": "text",
+                    "extnames": [
+                        ".txt",
+                        ".html",
+                        ".htm",
+                        ".xml",
+                        ".css",
+                        ".less",
+                        ".scss",
+                        ".stylus",
+                        ".yaml",
+                        ".ini",
+                        ".csv",
+                        ".proto",
+                        ".ts",
+                        ".tsx",
+                        ".md",
+                        ".markdown"
+                    ]
+                },
+                {
+                    "handler": "registerJSONHandler",
+                    "name": "json",
+                    "extnames": [
+                        ".json"
+                    ]
+                },
+                {
+                    "handler": "registerSpineHandler",
+                    "name": "spine-data",
+                    "extnames": [
+                        ".json",
+                        ".skel"
+                    ]
+                },
+                {
+                    "handler": "registerDragonBonesHandler",
+                    "name": "dragonbones",
+                    "extnames": [
+                        ".json",
+                        ".dbbin"
+                    ]
+                },
+                {
+                    "handler": "registerDragonBonesAtlasHandler",
+                    "name": "dragonbones-atlas",
+                    "extnames": [
+                        ".json"
+                    ]
+                },
+                {
+                    "handler": "registerTerrainHandler",
+                    "name": "terrain",
+                    "extnames": [
+                        ".terrain"
+                    ]
+                },
+                {
+                    "handler": "registerJavascriptHandler",
+                    "name": "javascript",
+                    "extnames": [
+                        ".js",
+                        ".cjs",
+                        ".mjs"
+                    ]
+                },
+                {
+                    "handler": "registerTypescriptHandler",
+                    "name": "typescript",
+                    "extnames": [
+                        ".ts"
+                    ]
+                },
+                {
+                    "handler": "registerSceneHandler",
+                    "name": "scene",
+                    "extnames": [
+                        ".scene",
+                        ".fire"
+                    ]
+                },
+                {
+                    "handler": "registerPrefabHandler",
+                    "name": "prefab",
+                    "extnames": [
+                        ".prefab"
+                    ]
+                },
+                {
+                    "handler": "registerSpriteFrameHandler",
+                    "name": "sprite-frame",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerTiledMapHandler",
+                    "name": "tiled-map",
+                    "extnames": [
+                        ".tmx"
+                    ]
+                },
+                {
+                    "handler": "registerBufferHandler",
+                    "name": "buffer",
+                    "extnames": [
+                        ".bin"
+                    ]
+                },
+                {
+                    "handler": "registerImageHandler",
+                    "name": "image",
+                    "extnames": [
+                        ".jpg",
+                        ".png",
+                        ".jpeg",
+                        ".webp",
+                        ".tga",
+                        ".hdr",
+                        ".bmp",
+                        ".psd",
+                        ".tif",
+                        ".tiff",
+                        ".exr",
+                        ".znt"
+                    ]
+                },
+                {
+                    "handler": "registerSignImageHandler",
+                    "name": "sign-image",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerAlphaImageHandler",
+                    "name": "alpha-image",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerTextureHandler",
+                    "name": "texture",
+                    "extnames": [
+                        ".texture"
+                    ]
+                },
+                {
+                    "handler": "registerTextureCubeHandler",
+                    "name": "texture-cube",
+                    "extnames": [
+                        ".cubemap"
+                    ]
+                },
+                {
+                    "handler": "registerERPTextureCubeHandler",
+                    "name": "erp-texture-cube",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerRenderTextureHandler",
+                    "name": "render-texture",
+                    "extnames": [
+                        ".rt"
+                    ]
+                },
+                {
+                    "handler": "registerTextureCubeFaceHandler",
+                    "name": "texture-cube-face",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerRenderTextureSpriteFrameHandler",
+                    "name": "rt-sprite-frame",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfHandler",
+                    "name": "gltf",
+                    "extnames": [
+                        ".gltf",
+                        ".glb"
+                    ]
+                },
+                {
+                    "handler": "registerGltfMeshHandler",
+                    "name": "gltf-mesh",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfAnimationHandler",
+                    "name": "gltf-animation",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfSkeletonHandler",
+                    "name": "gltf-skeleton",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfMaterialHandler",
+                    "name": "gltf-material",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfPrefabHandler",
+                    "name": "gltf-scene",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfImageHandler",
+                    "name": "gltf-embeded-image",
+                    "extnames": []
+                },
+                {
+                    "handler": "registerGltfFbxHandler",
+                    "name": "fbx",
+                    "extnames": [
+                        ".fbx"
+                    ]
+                },
+                {
+                    "handler": "registerMaterialHandler",
+                    "name": "material",
+                    "extnames": [
+                        ".mtl"
+                    ]
+                },
+                {
+                    "handler": "registerPhysicsMaterialHandler",
+                    "name": "physics-material",
+                    "extnames": [
+                        ".pmtl"
+                    ]
+                },
+                {
+                    "handler": "registerEffectHandler",
+                    "name": "effect",
+                    "extnames": [
+                        ".effect"
+                    ]
+                },
+                {
+                    "handler": "registerEffectHeaderHandler",
+                    "name": "effect-header",
+                    "extnames": [
+                        ".chunk"
+                    ]
+                },
+                {
+                    "handler": "registerAudioHandler",
+                    "name": "audio-clip",
+                    "extnames": [
+                        ".mp3",
+                        ".wav",
+                        ".ogg",
+                        ".aac",
+                        ".pcm",
+                        ".m4a"
+                    ]
+                },
+                {
+                    "handler": "registerAnimationHandler",
+                    "name": "animation-clip",
+                    "extnames": [
+                        ".anim"
+                    ]
+                },
+                {
+                    "handler": "registerAnimationGraphHandler",
+                    "name": "animation-graph",
+                    "extnames": [
+                        ".animgraph"
+                    ]
+                },
+                {
+                    "handler": "registerAnimationGraphVariantHandler",
+                    "name": "animation-graph-variant",
+                    "extnames": [
+                        ".animgraphvari"
+                    ]
+                },
+                {
+                    "handler": "registerAnimationMaskHandler",
+                    "name": "animation-mask",
+                    "extnames": [
+                        ".animask"
+                    ]
+                },
+                {
+                    "handler": "registerTTFFontHandler",
+                    "name": "ttf-font",
+                    "extnames": [
+                        ".ttf"
+                    ]
+                },
+                {
+                    "handler": "registerBitmapHandler",
+                    "name": "bitmap-font",
+                    "extnames": [
+                        ".fnt"
+                    ]
+                },
+                {
+                    "handler": "registerParticleHandler",
+                    "name": "particle",
+                    "extnames": [
+                        ".plist"
+                    ]
+                },
+                {
+                    "handler": "registerTexturePackerHandler",
+                    "name": "sprite-atlas",
+                    "extnames": [
+                        ".plist"
+                    ]
+                },
+                {
+                    "handler": "registerAutoAtlasHandler",
+                    "name": "auto-atlas",
+                    "extnames": [
+                        ".pac"
+                    ]
+                },
+                {
+                    "handler": "registerLabelAtlasHandler",
+                    "name": "label-atlas",
+                    "extnames": [
+                        ".labelatlas"
+                    ]
+                },
+                {
+                    "handler": "registerRenderPipelineHandler",
+                    "name": "render-pipeline",
+                    "extnames": [
+                        ".rpp"
+                    ]
+                },
+                {
+                    "handler": "registerRenderStageHandler",
+                    "name": "render-stage",
+                    "extnames": [
+                        ".stg"
+                    ]
+                },
+                {
+                    "handler": "registerRenderFlowHandler",
+                    "name": "render-flow",
+                    "extnames": [
+                        ".flow"
+                    ]
+                },
+                {
+                    "handler": "registerInstantiationMaterialHandler",
+                    "name": "instantiation-material",
+                    "extnames": [
+                        ".material"
+                    ]
+                },
+                {
+                    "handler": "registerInstantiationMeshHandler",
+                    "name": "instantiation-mesh",
+                    "extnames": [
+                        ".mesh"
+                    ]
+                },
+                {
+                    "handler": "registerInstantiationSkeletonHandler",
+                    "name": "instantiation-skeleton",
+                    "extnames": [
+                        ".skeleton"
+                    ]
+                },
+                {
+                    "handler": "registerInstantiationAnimationHandler",
+                    "name": "instantiation-animation",
+                    "extnames": [
+                        ".animation"
+                    ]
+                },
+                {
+                    "handler": "registerVideoHandler",
+                    "name": "video-clip",
+                    "extnames": [
+                        ".mp4"
+                    ]
+                }
+            ]
+        },
+        "assets": {
+            "menu": {
+                "methods": "./dist/contributions/asset-menu.js",
+                "assetMenu": "assetMenu"
+            }
+        },
+        "inspector": {
+            "drop": {
+                "node": [
+                    {
+                        "type": "cc.Script",
+                        "message": "inspector-drop-script"
+                    },
+                    {
+                        "type": "cc.animation.AnimationGraph",
+                        "message": "inspector-drop-asset-onto-node"
+                    }
+                ]
+            }
+        },
+        "messages": {
+            "inspector-drop-script": {
+                "methods": [
+                    "inspectorDropScript"
+                ]
+            },
+            "inspector-drop-asset-onto-node": {
+                "methods": [
+                    "onInspectorDropAssetOntoNode"
+                ]
+            },
+            "refresh-all-effect": {
+                "methods": [
+                    "refreshAllEffect"
+                ]
+            }
+        },
+        "scene": {
+            "script": "./dist/scene/index.js"
+        },
+        "project": {
+            "auto-material": {
+                "label": "i18n:engine-extends.menu.autoGenerateMaterialConfig",
+                "custom": "./dist/contributions/auto-material.js"
+            }
+        }
+    }
+}

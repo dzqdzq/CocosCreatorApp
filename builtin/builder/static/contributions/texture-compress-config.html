@@ -1,0 +1,30 @@
+<ui-section class="config-item" expand v-if="initialized" :id="id">
+    <div class="config-header flex-spacing-between" slot="header">
+        <div>
+            <span v-if="readonly || !inEdit">{{name}}</span>
+            <ui-input
+                v-else
+                :value="name"
+                :tooltip="name"
+                @click.stop
+                @confirm="onChangeFormatName($event.target.value)"
+            ></ui-input>
+            <ui-icon v-if="readonly" value="lock"></ui-icon>
+        </div>
+        <ui-button type="icon" class="transparent child-margin-right">
+            <ui-icon value="menu" @click.stop="showEditMenu"></ui-icon>
+        </ui-button>
+    </div>
+    <config-group
+        v-if="config && compressConfig"
+        :compress-config="compressConfig"
+        :overwrite-formats="overwriteFormats"
+        :config="config"
+        :readonly="readonly"
+        @add="onAddFormat"
+        @add-platform="onAddOverwritePlatform"
+        @remove="onRemoveFormat"
+        @update="updateFormatQuality"
+    >
+    </config-group>
+</ui-section>

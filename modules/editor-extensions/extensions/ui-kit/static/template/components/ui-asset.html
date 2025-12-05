@@ -1,0 +1,213 @@
+<div class="wrap">
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.initialize"
+    >
+        <div class="row">
+            <h2>droppable</h2>
+            <ui-asset droppable="cc.ImageAsset"></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.ImageAsset"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>
+                <ui-label value="i18n:ui-kit.preview.ui.asset.droppableMultiple"></ui-label>
+            </h2>
+            <ui-asset droppable="cc.AnimationClip,cc.ImageAsset"></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.AnimationClip, cc.ImageAsset"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-asset
+                droppable="cc.ImageAsset"
+                placeholder="i18n:ui-kit.preview.ui.asset.placeholder"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.ImageAsset" placeholder="i18n:ui-kit.preview.ui.asset.placeholder"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>value</h2>
+            <p>uuid format</p>
+            <ui-asset
+                droppable="cc.ImageAsset"
+                :value="validImageUuid"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.ImageAsset" value="{{validImageUuid}}"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+
+            <p>url format</p>
+            <ui-asset
+                droppable="cc.ImageAsset"
+                :value="validImageUrl"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.ImageAsset" value="{{validImageUrl}}"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>
+                <ui-label value="i18n:ui-kit.preview.ui.asset.valueMissing"></ui-label>
+            </h2>
+            <ui-asset
+                droppable="cc.ImageAsset"
+                :value="invalidImageUuid"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset droppable="cc.ImageAsset" value="{{invalidImageUuid}}"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Invalid</h2>
+            <ui-asset
+                invalid
+                droppable="cc.ImageAsset"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset invalid droppable="cc.ImageAsset"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Readonly</h2>
+            <ui-asset
+                readonly
+                droppable="cc.ImageAsset"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset readonly droppable="cc.ImageAsset"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Readonly with value</h2>
+            <ui-asset
+                readonly
+                droppable="cc.ImageAsset"
+                :value="validImageUuid"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset readonly droppable="cc.ImageAsset" value="{{validImageUuid}}"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-asset
+                disabled
+                droppable="cc.ImageAsset"
+                :value="validImageUuid"
+            ></ui-asset>
+            <ui-code language="html">
+                &lt;ui-asset disabled droppable="cc.ImageAsset" value="{{validImageUuid}}"&gt;&lt;/ui-asset&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.parameters"
+    >
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="json">
+                droppable = ''; // asset type, using ',' join multiple types
+                placeholder = '';
+                value = ''; // asset uuid, single，not support multiple
+                disabled; // statement
+                readonly; // statement
+                invalid; // statement
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.events"
+    >
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-asset
+                droppable="cc.ImageAsset"
+                ref="image"
+                :value="validImageUuid"
+                @change="onChange($event.target.value)"
+                @confirm="onConfirm($event.target.value)"
+                @preview="onPreview"
+            ></ui-asset>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    preview
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-asset droppable="cc.ImageAsset" ref="image" value="{{validImageUuid}}"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @preview="onPreview"
+                    &gt;&lt;/ui-asset&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-asset droppable="cc.ImageAsset" id="asset" value="{{validImageUuid}}"&gt;&lt;/ui-asset&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#asset');
+
+                    // addEventListener
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        const assetUuid = event.target.value;
+                    });
+                    element.addEventListener('change', (event) => {
+                        // change value
+                        const assetUuid = event.target.value;
+                    });
+                    element.addEventListener('preview', (event) => {
+                        console.log('onPreview');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.getSet"
+    >
+        <div class="row">
+            <ui-code language="typescript">
+                const element = document.getElementById('#asset');
+                // set value
+                element.value = '{{validImageUuid}}';
+
+                // get value
+                const assetUuid = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

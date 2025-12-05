@@ -1,0 +1,3 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.style=void 0;const lodash=require("lodash");let panel;async function update(e,t){panel=this,t&&!t.startsWith("packages."+panel.pkgName)||(panel.options=e,panel.vm.init())}function ready(e,t,a,p){panel=this;var n=BuildPanel.Vue;panel.options=e,panel.pkgName=a,panel.errorMap=p,panel.vm=new n({el:panel.$.root,data(){return{pkgName:a,pkgOptions:{},verifyRes:{}}},mounted(){this.init()}})}exports.style=`
+.new-certificate { margin-left: 4px; }
+`,exports.$={root:".migu-mini-game"},exports.update=update,exports.ready=ready;

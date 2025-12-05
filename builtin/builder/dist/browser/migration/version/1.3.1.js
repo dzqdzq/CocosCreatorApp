@@ -1,0 +1,1 @@
+"use strict";async function migrateProject(e){e["splash-setting"]&&"string"==typeof e["splash-setting"].url&&e["splash-setting"].url.includes("app.asar")&&delete e["splash-setting"].url}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0,exports.migrateProject=migrateProject;

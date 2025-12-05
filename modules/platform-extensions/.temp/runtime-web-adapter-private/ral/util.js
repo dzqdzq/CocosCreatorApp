@@ -1,0 +1,1 @@
+export default{exportTo(o,t,e,n,r){var f;"object"!=typeof t||"object"!=typeof e?console.warn("invalid exportTo: ",o):void 0!==(f=t[o])?("function"==typeof f?(e[o]=f.bind(t),Object.assign(e[o],f)):e[o]=f,"function"==typeof r&&r()):(e[o]=function(){return console.error(o+" is not support!"),{}},"function"==typeof n&&n())}};

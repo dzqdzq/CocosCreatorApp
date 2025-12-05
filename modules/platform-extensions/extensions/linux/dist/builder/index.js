@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.configs=void 0,exports.configs={linux:{platformName:"Linux",hooks:"./hook",options:{renderBackEnd:{label:"Render BackEnd",default:{vulkan:!1,gles3:!0,gles2:!0}}},commonOptions:{nativeCodeBundleMode:{default:"wasm"}}}};

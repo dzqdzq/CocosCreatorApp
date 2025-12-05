@@ -1,0 +1,141 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <div>
+                <ui-color value="[22,244,55,99]" class="mb-10"></ui-color>
+                <ui-color value="#6997f8" class="mb-10"></ui-color>
+                <ui-color value="rgba(255,144,137,1)"></ui-color>
+            </div>
+            <ui-code language="html">
+                &lt;ui-color value="[22,244,55,99]"&gt;&lt;/ui-color&gt;
+                &lt;ui-color value="#6997f8"&gt;&lt;/ui-color&gt;
+                &lt;ui-color value="rgba(255,144,137,1)"&gt;&lt;/ui-color&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-color value="red" invalid></ui-color>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-color value="red" invalid&gt;&lt;/ui-color&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-color value="[22,244,55,99]" readonly></ui-color>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-color value="[22,244,55,99]" readonly&gt;&lt;/ui-color&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-color value="[22,244,55,99]" disabled></ui-color>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-color value="[22,244,55,99]" disabled&gt;&lt;/ui-color&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-color value="[22,244,55,99]" hidden></ui-color>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-color value="[22,244,55,99]" hidden&gt;&lt;/ui-color&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value // support format: [255,255,255,255], #hex, rgba(255,255,255,1)
+                readonly
+                disabled
+                invalid
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-color ref="color"
+                :value="value"
+                @confirm="onConfirm($event.target.value)"
+                @change="onChange($event.target.value)"
+                @cancel="onCancel($event.target.value)"
+            ></ui-color>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change
+                    confirm
+                    cancel  // ESC cancel, restore the last value
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-color ref="color" value="{{value}}"
+                        @confirm="onConfirm($event.target.value)"
+                        @change="onChange($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-color&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-color id="color" value="{{value}}"&gt;&lt;/ui-color&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#color');
+
+                    element.addEventListener('confirm', (event) => {
+                        const colorValue = event.target.value;
+                    });
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange', event.target.value);
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        console.log('onCancel', event.target.value);
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.methods">
+        <div class="row">
+            <h2>get/set value</h2>
+            <ui-code language="typescript">
+                const element = document.getElementById('#color');
+                // set value
+                element.value = '{{value}}';
+
+                // get value
+                const colorValue = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

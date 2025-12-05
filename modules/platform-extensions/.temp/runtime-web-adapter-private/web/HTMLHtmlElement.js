@@ -1,0 +1,1 @@
+import HTMLElement from"./HTMLElement";export default class HTMLHtmlElement extends HTMLElement{constructor(){super("HTML")}get version(){return""}}

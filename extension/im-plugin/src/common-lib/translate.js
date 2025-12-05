@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.tr=void 0;const namespace_1=require("../constant/namespace");function tr(e){return Editor.I18n.t(namespace_1.ns+"."+e)}exports.tr=tr;

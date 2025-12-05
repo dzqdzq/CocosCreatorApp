@@ -1,0 +1,125 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>droppable</h2>
+            <ui-node droppable="cc.Node"></ui-node>
+            <ui-code language="html">
+                &lt;ui-node droppable="cc.Node"&gt;&lt;/ui-node&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>
+                <ui-label value="i18n:ui-kit.preview.ui.node.valueMissing"></ui-label>
+            </h2>
+            <ui-node droppable="cc.Node" value="xxx"></ui-node>
+            <ui-code language="html">
+                &lt;ui-node droppable="cc.Node" value="xxx"&gt;&lt;/ui-node&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-node droppable="cc.Node" placeholder="i18n:ui-kit.preview.ui.node.placeholder"></ui-node>
+            <ui-code language="html">
+                &lt;ui-node droppable="cc.Node" placeholder="i18n:ui-kit.preview.ui.node.placeholder"&gt;&lt;/ui-node&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-node readonly droppable="cc.Node"></ui-node>
+            <ui-code language="html">
+                &lt;ui-node readonly droppable="cc.Node"&gt;&lt;/ui-node&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-node disabled droppable="cc.Node"></ui-node>
+            <ui-code language="html">
+                &lt;ui-node disabled" droppable="cc.Node"&gt;&lt;/ui-node&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+          
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="json">
+                droppable = ''; // 'cc.Node', not support multiple types
+                placeholder = '';
+                value = ''; // node uuid, not support multiple
+                disabled; // statement
+                readonly; // statement
+                invalid; // statement
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-node droppable="cc.Node" ref="node"
+                @change="opnChange($event.target.value)"
+                @confirm="onConfirm($event.target.value)"
+                @cancel="onCancel($event.target.value)"
+            ></ui-node>
+
+            <div class="row">
+                <h2>events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-node droppable="cc.Node" ref="node"
+                        @change="opnChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-node&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-node droppable="cc.Node" id="node"&gt;&lt;/ui-node&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#node');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        const nodeUuid = event.target.value;
+                    });
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange', event.target.value);
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        console.log('onCancel', event.target.value);
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.getSet">
+        <div class="row">
+            <ui-code language="typescript">
+                const element = document.getElementById('#node');
+                // set value
+                element.value = nodeUuid; // nodeUuid already exist
+
+                // get value
+                const nodeUuid = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

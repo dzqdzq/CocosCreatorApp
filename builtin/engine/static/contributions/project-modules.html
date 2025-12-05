@@ -1,0 +1,164 @@
+<div class="modules">
+    <header class="configs-header">
+        <ui-prop>
+            <ui-label slot="label" value="i18n:engine.project.modules.title"></ui-label>
+            <div slot="content"></div>
+        </ui-prop>
+        <ui-prop>
+            <div slot="label">
+                <ui-label value="i18n:engine.project.modules.globalConfig"></ui-label>
+                <ui-label tooltip="i18n:engine.project.modules.globalConfigTip" value="<ui-icon value='info-i'></ui-icon>"> </ui-label>
+            </div>
+
+            <div slot="content">
+                <ui-select-pro @confirm="onChangeOtherConfig('modules.globalConfigKey', $event.target.value)">
+                    <ui-select-option-pro
+                        v-for="(item, key) in configs"
+                        :key="key"
+                        :selected="globalConfigKey === key"
+                        :value="key"
+                        :label="item.name"
+                    />
+                </ui-select-pro>
+            </div>
+        </ui-prop>
+    </header>
+    <div class="configs-list">
+        <div class="configs-list-nav">
+            <div class="add-config" @click="addDefaultConfig">
+                <ui-icon value="add"></ui-icon>
+                <ui-label value="i18n:engine.project.modules.addConfig"></ui-label>
+            </div>
+            <div class="scroll-box">
+                <div
+                    :class="{'nav-item': true, selected: key === selectedConfigKey, global: key === globalConfigKey}"
+                    @click="selectConfig(key)"
+                    v-for="(item, key) in configs"
+                    :key="key"
+                >
+                    <ui-icon class="global-icon" v-if="key === globalConfigKey" value="pin"></ui-icon>
+
+                    {{item.name}}
+
+                    <div @click.stop="showMoreOperation(key)" class="operation">
+                        <ui-icon value="menu"></ui-icon>
+                    </div>
+                </div>
+                <div ref="focus-dom"></div>
+            </div>
+        </div>
+        <div class="configs-list-content">
+            <section class="control-features">
+                <ui-prop>
+                    <ui-label slot="label" value="i18n:engine.project.modules.configName"></ui-label>
+                    <ui-input
+                        slot="content"
+                        style="flex: 1"
+                        :value="currentConfig.name"
+                        @confirm="onChangeOtherConfig(`modules.configs.${selectedConfigKey}.name`, $event.target.value)"
+                    ></ui-input>
+                </ui-prop>
+                <!-- 禁用废弃接口 -->
+                <ui-prop>
+                    <ui-label
+                        slot="label"
+                        value="i18n:engine.project.modules.noDeprecatedFeatures"
+                        tooltip="i18n:engine.project.modules.noDeprecatedFeatures_tooltip"
+                    ></ui-label>
+                    <ui-checkbox
+                        slot="content"
+                        :value="noDeprecatedFeatures.value"
+                        @confirm="onChangeOtherConfig(`modules.configs.${selectedConfigKey}.noDeprecatedFeatures.value`, $event.target.value)"
+                    ></ui-checkbox>
+                </ui-prop>
+                <ui-prop v-if="noDeprecatedFeatures.value === true">
+                    <ui-label slot="label" value="i18n:engine.project.modules.noDeprecatedFeatures_version"></ui-label>
+                    <ui-input
+                        slot="content"
+                        style="flex: 1"
+                        :value="noDeprecatedFeatures.version"
+                        @confirm="onChangeOtherConfig(`modules.configs.${selectedConfigKey}.noDeprecatedFeatures.version`, $event.target.value)"
+                        placeholder="i18n:engine.project.modules.noDeprecatedFeatures_version_tip"
+                    ></ui-input>
+                </ui-prop>
+                <ui-prop>
+                    <div slot="label">
+                        <ui-label value="i18n:engine.project.modules.useEngineModule"></ui-label>
+                        <ui-label tooltip="i18n:engine.project.modules.useEngineModuleTip" value="<ui-icon value='info-i'></ui-icon>">
+                        </ui-label>
+                    </div>
+
+                    <div slot="content">
+                        <ui-button @click="restoreConfig" class="restore">
+                            <ui-label value="i18n:engine.project.modules.restoreTheDefault"></ui-label>
+                        </ui-button>
+                    </div>
+                </ui-prop>
+            </section>
+
+            <section class="scroll-box" @confirm="_onConfirm($event)">
+                <div class="modules-header">
+                    <div class="modules-item">
+                        <!-- 这个选项比较特殊，因为它不可能有全部未选中的状态，因为我们有不能改动的必选，所以只要非全选，就一定是 indeterminate 的状态-->
+                        <ui-checkbox :invalid="!allChecked" :value="allChecked" @confirm="_onSelectAllChanged($event)">
+                            <ui-label value="i18n:engine.project.modules.inquiry_all"></ui-label>
+                        </ui-checkbox>
+                    </div>
+                </div>
+
+                <div class="modules-section" v-if="moduleTreeDump">
+                    <module-item
+                        v-for="(module, moduleId) in moduleTreeDump.default"
+                        v-if="module.label && moduleCache"
+                        :key="moduleId"
+                        :module="module"
+                        :module-id="moduleId"
+                        :module-cache="moduleCache"
+                        category="default"
+                        @change="_onModuleChanged"
+                    ></module-item>
+                    <template v-for="(categoryDetail, category) in moduleTreeDump.categories">
+                        <ui-section expand v-if="category !== 'default'" :key="category">
+                            <div slot="header" v-if="categoryDetail.checkable" style="font-weight: bold">
+                                <ui-checkbox
+                                    :tooltip="categoryDetail.description || category"
+                                    :value="calcCategoryAllChecked(category)"
+                                    :invalid="!calcCategoryAllChecked(category) && calcCategoryIndeterminate(category)"
+                                    @confirm="_onCategoryConfirm($event, category)"
+                                    @click.stop
+                                >
+                                    <ui-label :value="categoryDetail.label || category"></ui-label>
+                                </ui-checkbox>
+                                <ui-label
+                                    v-if="categoryDetail.required"
+                                    value="i18n:engine.project.modules.categoryRequired"
+                                    class="require-tip"
+                                ></ui-label>
+                            </div>
+                            <ui-label
+                                v-else
+                                slot="header"
+                                :value="categoryDetail.label || category"
+                                :tooltip="categoryDetail.description || category"
+                            ></ui-label>
+                            <div class="modules-section-content">
+                                <module-item
+                                    v-for="(module, moduleId) in categoryDetail.modules"
+                                    v-if="moduleCache"
+                                    :key="moduleId"
+                                    :module="module"
+                                    :module-id="moduleId"
+                                    :module-cache="moduleCache"
+                                    :category="category"
+                                    :category-detail="categoryDetail"
+                                    @change="_onModuleChanged"
+                                    @change-flag="onChangeFlag"
+                                ></module-item>
+                            </div>
+                        </ui-section>
+                    </template>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

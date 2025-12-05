@@ -1,0 +1,1 @@
+"use strict";exports.register=async function(e){var r,i=Editor.App.version.replace(/\./g,""),t=e.contributions.profile.editor;for(r in t){var o=r.replace(/{{VERSION}}/,i);o!==r&&(t[o]=t[r],delete t[r])}var n,p=e.contributions.preferences.properties;for(n in p){var s=n.replace(/{{VERSION}}/,i);s!==n&&(p[s]=p[n],delete p[n])}};

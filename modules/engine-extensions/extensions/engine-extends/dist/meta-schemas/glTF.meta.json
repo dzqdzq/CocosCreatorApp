@@ -1,0 +1,520 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "AnimationImportSetting": {
+            "properties": {
+                "duration": {
+                    "description": "原始动画的长度，单位为秒。",
+                    "type": "number"
+                },
+                "fps": {
+                    "description": "用户查看、切割原始动画时的 FPS 设定。",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "glTf 中原始动画资源的名称。",
+                    "type": "string"
+                },
+                "splits": {
+                    "description": "对原始动画的划分，由用户配置。\n若此资源存在，所有划分出的动画成为 glTf 资源下的独立动画并将被导出；\n否则，直接导入原始动画资源。",
+                    "items": {
+                        "properties": {
+                            "additive": {
+                                "description": "加性动画导入设置。",
+                                "properties": {
+                                    "enabled": {
+                                        "description": "是否将动画导入为加性动画。",
+                                        "type": "boolean"
+                                    },
+                                    "refClip": {
+                                        "description": "参考动画。\n若设置，将参考该动画第 0 帧的姿势计算加性动画；\n否则，则将参考第动画本身第 0 帧的姿势进行计算。",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "enabled"
+                                ],
+                                "type": "object"
+                            },
+                            "auxiliaryCurves": {
+                                "$ref": "#/definitions/Record<string,{curve:unknown;}>",
+                                "description": "额外的动画辅助曲线信息。"
+                            },
+                            "fps": {
+                                "description": "用户查看划分出的子动画时的 FPS 设定。",
+                                "type": "number"
+                            },
+                            "from": {
+                                "description": "划分的起始时刻，单位为秒。",
+                                "type": "number"
+                            },
+                            "name": {
+                                "description": "划分出的动画的名称。",
+                                "type": "string"
+                            },
+                            "previousId": {
+                                "description": "以前的 ID。如果存在，优先使用这个 ID 来创建子资源，以防止改名后 UUID 变化。",
+                                "type": "string"
+                            },
+                            "speed": {
+                                "description": "速度。",
+                                "type": "number"
+                            },
+                            "to": {
+                                "description": "划分的终止时刻，单位为秒。",
+                                "type": "number"
+                            },
+                            "wrapMode": {
+                                "description": "动画循环模式。",
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "from",
+                            "name",
+                            "to"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "duration",
+                "fps",
+                "name",
+                "splits"
+            ],
+            "type": "object"
+        },
+        "GltfpackOptions": {
+            "type": "object"
+        },
+        "IFbxSetting": {
+            "properties": {
+                "animationBakeRate": {
+                    "default": [
+                        {
+                            "kind": "text",
+                            "text": "24"
+                        }
+                    ],
+                    "description": "动画烘焙速率。单位为 FPS。\n一般来说有以下几种 FPS 选项。\n- NTSC video 30/60\n- PAL video 25\n- Film 24\n见 https://knowledge.autodesk.com/support/3ds-max/learn-explore/caas/CloudHelp/cloudhelp/2020/ENU/3DSMax-Reference/files/GUID-92B75FD6-C112-44D6-AB89-DB50D11AE0DE-htm.html 。\n为了以后的拓展性，我们目前仅支持用户从这几种选项中选择。",
+                    "enum": [
+                        0,
+                        24,
+                        25,
+                        30,
+                        60
+                    ],
+                    "type": "number"
+                },
+                "matchMeshNames": {
+                    "description": "匹配 DCC 原始模型名称。",
+                    "type": "boolean"
+                },
+                "preferLocalTimeSpan": {
+                    "default": [
+                        {
+                            "kind": "text",
+                            "text": "true"
+                        }
+                    ],
+                    "description": "在导出动画时，是否优先使用 FBX 内记录的时间范围。",
+                    "type": "boolean"
+                },
+                "smartMaterialEnabled": {
+                    "description": "是否为导入的材质匹配DCC的光照模型.\n在导入时,若此字段为 `undefined` 时,该字段将被初始化为当前配置的\"是否开启智能材质转换\".",
+                    "type": "boolean"
+                },
+                "unitConversion": {
+                    "description": "https://github.com/cocos-creator/FBX-glTF-conv/pull/26",
+                    "enum": [
+                        "disabled",
+                        "geometry-level",
+                        "hierarchy-level"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ImageMeta": {
+            "properties": {
+                "name": {
+                    "description": "图片名字。",
+                    "type": "string"
+                },
+                "remap": {
+                    "description": "用户设置的图片对象。\n3.8.0 以前使用路径，3.8.0 之后使用 UUID。",
+                    "type": "string"
+                },
+                "uri": {
+                    "description": "模型文件中该图片的 URI，可能是以下形式：\n  - Database URL，这种路径的图片存在项目目录中；\n  - uuid URI，这种路径的图片已经作为子资源导入，路径代表子资源的 uuid。\n如果未定义，表示此图片未指定源或指定的源无法解析。",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LODsOption": {
+            "properties": {
+                "faceCount": {
+                    "type": "number"
+                },
+                "screenRatio": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "faceCount",
+                "screenRatio"
+            ],
+            "type": "object"
+        },
+        "MeshClusterOptions": {
+            "properties": {
+                "coneCluster": {
+                    "type": "boolean"
+                },
+                "enable": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enable"
+            ],
+            "type": "object"
+        },
+        "MeshCompressOptions": {
+            "properties": {
+                "compress": {
+                    "type": "boolean"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "encode": {
+                    "type": "boolean"
+                },
+                "quantize": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enable"
+            ],
+            "type": "object"
+        },
+        "MeshOptimizeOptions": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "overdraw": {
+                    "type": "boolean"
+                },
+                "vertexCache": {
+                    "type": "boolean"
+                },
+                "vertexFetch": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enable"
+            ],
+            "type": "object"
+        },
+        "MeshOptimizerOption": {
+            "properties": {
+                "algorithm": {
+                    "enum": [
+                        "gltfpack",
+                        "simplify"
+                    ],
+                    "type": "string"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "gltfpackOptions": {
+                    "$ref": "#/definitions/GltfpackOptions"
+                },
+                "simplifyOptions": {
+                    "$ref": "#/definitions/SimplifyOptions"
+                }
+            },
+            "required": [
+                "enable"
+            ],
+            "type": "object"
+        },
+        "MeshSimplifyOptions": {
+            "properties": {
+                "autoErrorRate": {
+                    "type": "boolean"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "errorRate": {
+                    "type": "number"
+                },
+                "lockBoundary": {
+                    "type": "boolean"
+                },
+                "targetRatio": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "enable"
+            ],
+            "type": "object"
+        },
+        "NormalImportSetting": {
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "type": "number"
+        },
+        "Record<string,string>": {
+            "description": "Construct a type with a set of properties K of type T",
+            "type": "object"
+        },
+        "Record<string,{curve:unknown;}>": {
+            "description": "Construct a type with a set of properties K of type T",
+            "type": "object"
+        },
+        "SerializedAssetFinder": {
+            "properties": {
+                "animations": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "materials": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "meshes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "scenes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "skeletons": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "textures": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "SimplifyOptions": {
+            "properties": {
+                "agressiveness": {
+                    "type": "number"
+                },
+                "enableSmartLink": {
+                    "type": "boolean"
+                },
+                "maxIterationCount": {
+                    "type": "number"
+                },
+                "targetRatio": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "TangentImportSetting": {
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "type": "number"
+        }
+    },
+    "properties": {
+        "addVertexColor": {
+            "default": [
+                {
+                    "kind": "text",
+                    "text": "false"
+                }
+            ],
+            "description": "是否添加填充顶点色",
+            "type": "boolean"
+        },
+        "allowMeshDataAccess": {
+            "description": "允许数据访问。",
+            "type": "boolean"
+        },
+        "animationImportSettings": {
+            "description": "整个数组由导入器创建。`name` 和 `duration` 也都由导入器写入修改，外部不允许修改。\n`splits` 是允许用户配置的。",
+            "items": {
+                "$ref": "#/definitions/AnimationImportSetting"
+            },
+            "type": "array"
+        },
+        "assetFinder": {
+            "$ref": "#/definitions/SerializedAssetFinder"
+        },
+        "depthWriteInAlphaModeBlend": {
+            "default": [
+                {
+                    "kind": "text",
+                    "text": "false"
+                }
+            ],
+            "description": "Whether to enable depth-write if the material specify the `BLEND` mode.\nSee https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#alpha-coverage",
+            "type": "boolean"
+        },
+        "disableMeshSplit": {
+            "description": "禁用 Mesh 分割，默认勾选",
+            "type": "boolean"
+        },
+        "dumpMaterials": {
+            "type": "boolean"
+        },
+        "fbx": {
+            "$ref": "#/definitions/IFbxSetting",
+            "description": "关于 FBX 的配置。仅当 `legacyFbxImporter === false` 时有效。"
+        },
+        "generateLightmapUVNode": {
+            "type": "boolean"
+        },
+        "imageMetas": {
+            "items": {
+                "$ref": "#/definitions/ImageMeta"
+            },
+            "type": "array"
+        },
+        "legacyFbxImporter": {
+            "description": "使用旧的 FBX 导入器。（在非 FBX 导入器上是 `undefined`）",
+            "type": "boolean"
+        },
+        "lods": {
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "hasBuiltinLOD": {
+                    "type": "boolean"
+                },
+                "options": {
+                    "items": {
+                        "$ref": "#/definitions/LODsOption"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "enable",
+                "hasBuiltinLOD",
+                "options"
+            ],
+            "type": "object"
+        },
+        "materialDumpDir": {
+            "type": "string"
+        },
+        "meshCluster": {
+            "$ref": "#/definitions/MeshClusterOptions",
+            "description": "MeshCluster Options"
+        },
+        "meshCompress": {
+            "$ref": "#/definitions/MeshCompressOptions",
+            "description": "Mesh compression options"
+        },
+        "meshOptimize": {
+            "$ref": "#/definitions/MeshOptimizeOptions",
+            "description": "mesh 优化配置"
+        },
+        "meshOptimizer": {
+            "$ref": "#/definitions/MeshOptimizerOption",
+            "description": "减面配置"
+        },
+        "meshSimplify": {
+            "$ref": "#/definitions/MeshSimplifyOptions",
+            "description": "是否开启 mesh 减面"
+        },
+        "morphNormals": {
+            "default": [
+                {
+                    "kind": "text",
+                    "text": "Exclude."
+                }
+            ],
+            "description": "Controls how to import morph normals.",
+            "enum": [
+                0,
+                1
+            ],
+            "type": "number"
+        },
+        "mountAllAnimationsOnPrefab": {
+            "default": [
+                {
+                    "kind": "text",
+                    "text": "false"
+                }
+            ],
+            "description": "是否将所有动画挂载到生成的预制体上。",
+            "type": "boolean"
+        },
+        "normals": {
+            "$ref": "#/definitions/NormalImportSetting"
+        },
+        "promoteSingleRootNode": {
+            "description": "若开启并且模型场景顶部仅有一个节点，那么以该节点作为根节点转换为 Prefab。\n否则，以场景为根节点转换为 Prefab。见 cocos/cocos-engine#11858 。",
+            "type": "boolean"
+        },
+        "redirectMaterialMap": {
+            "$ref": "#/definitions/Record<string,string>"
+        },
+        "skipValidation": {
+            "type": "boolean"
+        },
+        "tangents": {
+            "$ref": "#/definitions/TangentImportSetting"
+        },
+        "useVertexColors": {
+            "default": [
+                {
+                    "kind": "text",
+                    "text": "false"
+                }
+            ],
+            "description": "Whether to use vertex colors(if valid) in material.",
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "imageMetas"
+    ],
+    "type": "object"
+}
+

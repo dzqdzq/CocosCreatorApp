@@ -1,0 +1,1 @@
+"use strict";exports.migrateGlobal=async function(t){if(t&&"object"==typeof t)for(const o in t){var e;"__version__"!==o&&"string"==typeof(e=t[o])&&(delete t[o],t[o]={path:e})}};

@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Paths=exports.PLATFORM=void 0;const path_1=require("path");exports.PLATFORM="fb-instant-games",exports.Paths={internalTemplateDir:(0,path_1.join)(__dirname,"../../../../../../resources/3d/engine/templates/"+exports.PLATFORM)};

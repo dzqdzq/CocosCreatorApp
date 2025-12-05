@@ -1,0 +1,571 @@
+:host {
+  position: relative;
+  display: flex;
+}
+:host .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  opacity: 1;
+}
+:host .loading > .background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+:host .loading ui-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -0.5em;
+}
+:host .loading[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+:host .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+:host .content > engine-view {
+  outline: none;
+  flex: 1;
+  display: flex;
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+}
+:host .content > engine-view[loading] {
+  background-color: var(--color-normal-fill);
+}
+:host .content > engine-view[game-view] {
+  overflow: auto;
+}
+:host .content > engine-view[game-view] > webview {
+  flex: none;
+  margin: auto;
+}
+:host .content > engine-view > webview {
+  pointer-events: none;
+  outline: none;
+  flex: 1;
+}
+:host .content > engine-view > webview:focus {
+  outline: none;
+}
+:host #GameDiv,
+:host #Cocos3dGameContainer,
+:host #GameCanvas {
+  width: 100%;
+  height: 100%;
+}
+#TerrainWindow {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  user-select: none;
+  border-left: 1px solid var(--color-normal-border);
+  border-right: 1px solid var(--color-normal-border);
+  width: 208px;
+  transition: opacity 0.3s ease;
+}
+#TerrainWindow .createAsset {
+  width: 100%;
+  display: none;
+}
+#TerrainWindow .top_contain {
+  margin-top: -8px;
+}
+#TerrainWindow .container {
+  background: var(--color-normal-fill-emphasis);
+}
+#TerrainWindow .container .control {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+}
+#TerrainWindow .container .control ui-button {
+  line-height: 1;
+  padding: 5px;
+}
+#TerrainWindow .container .header {
+  text-align: center;
+  background: var(--color-normal-fill-emphasis);
+  line-height: 1.7;
+  color: var(--color-focus-fill-weaker);
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain {
+  background: var(--main-bg);
+  padding: 0 5px 5px 5px;
+}
+#TerrainWindow .container .terrain .tabs {
+  width: 158px;
+  margin: 15px auto 15px;
+  background: var(--color-normal-fill-weakest);
+}
+#TerrainWindow .container .terrain .tabs > div {
+  padding: 4px 8px;
+  cursor: pointer;
+  display: inline-block;
+}
+#TerrainWindow .container .terrain .tabs > div[active] {
+  background: var(--color-active-fill-emphasis);
+}
+#TerrainWindow .container .terrain .tabs > div:nth-child(1) {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#TerrainWindow .container .terrain .tabs > div:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#TerrainWindow .container .terrain .tabs > div:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+#TerrainWindow .container .terrain .layer_hor_line {
+  margin-top: 5px;
+  width: 1000px;
+  height: 1px;
+  border-top: solid #2d313d 1px;
+}
+#TerrainWindow .container .terrain .asset_content {
+  width: 100%;
+  margin-top: 7px;
+}
+#TerrainWindow .container .terrain .asset_label {
+  position: relative;
+  top: 7px;
+}
+#TerrainWindow .container .terrain .texture-warp {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  display: flex;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  max-height: 104px;
+  overflow-y: hidden;
+}
+#TerrainWindow .container .terrain .texture-warp .add-texture {
+  border: 1px dashed var(--color-normal-border);
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .texture-warp .add-texture span {
+  font-size: 1.5em;
+  line-height: 30px;
+}
+#TerrainWindow .container .terrain .texture-warp .texture {
+  margin: 10px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+}
+#TerrainWindow .container .terrain .texture-warp .texture[active] {
+  outline: 1px solid var(--color-active-contrast);
+}
+#TerrainWindow .container .terrain .texture-warp img {
+  height: 100%;
+}
+#TerrainWindow .container .terrain .texture-warp ui-drag-object {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  --show-clear: none;
+}
+#TerrainWindow .container .terrain .texture-warp .icon {
+  width: 30px;
+  margin-left: -2px;
+}
+#TerrainWindow .container .terrain ui-prop {
+  margin: 5px 0;
+}
+#TerrainWindow .container .terrain .contrl {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: flex;
+  margin: 0 0 0 auto;
+  width: 50px;
+  margin-top: -1px;
+  border-top: none;
+  cursor: pointer;
+  justify-content: space-evenly;
+}
+#TerrainWindow .container .terrain .contrl span {
+  padding: 0 8px;
+  display: inline-block;
+  font-weight: 700;
+}
+#TerrainWindow .container .terrain .contrl span:hover {
+  background: var(--color-normal-fill);
+}
+#TerrainWindow .container .terrain .mini-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-focus-fill);
+  color: var(--color-normal-contrast);
+  padding: 3px 5px 0 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .mini-btn .mini-icon {
+  transform: rotate(90deg);
+}
+#TerrainWindow .container .terrain .min {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-focus-fill);
+  color: var(--color-normal-contrast);
+  padding: 3px 5px 0 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .min:active {
+  transform: scale(1.2);
+}
+#TerrainWindow .container .terrain .min:active svg {
+  color: var(--color-normal-contrast-weakest);
+}
+#TerrainWindow .container .terrain .min svg {
+  transform: rotate(90deg);
+}
+.float-window {
+  position: absolute;
+  opacity: 0.6;
+  width: 200px;
+  height: 200px;
+  transition: opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  background: var(--color-normal-fill);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+.float-window[hidden] {
+  display: none;
+}
+.float-window:not([simple]) {
+  z-index: 100;
+}
+.float-window[simple] > header {
+  display: none;
+}
+.float-window[simple] > section {
+  margin: 2px;
+  padding: 0;
+  overflow: hidden;
+}
+.float-window[camera] {
+  background: none;
+}
+.float-window[camera] > header {
+  display: none;
+}
+.float-window[camera] > section {
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+.float-window > header {
+  display: flex;
+  line-height: 24px;
+  height: 24px;
+  text-align: right;
+  margin: 4px 8px;
+  cursor: move;
+}
+.float-window > header > span {
+  text-align: center;
+  flex: 1;
+}
+.float-window > header > ui-icon {
+  cursor: pointer;
+}
+.float-window > section {
+  flex: 1;
+  margin: 5px 0 5px 12px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.float-window[dock][left] {
+  margin: 0 0 0 10px;
+  transform: translateX(-100%);
+}
+.float-window[dock][top] {
+  margin: 10px 0 0 0;
+  transform: translateY(-100%);
+}
+.float-window[dock][right] {
+  margin: 0 10px 0 0;
+  transform: translateX(100%);
+}
+.float-window[dock][bottom] {
+  margin: 0 0 10px 0;
+  transform: translateY(100%);
+}
+.float-window:hover {
+  opacity: 1 !important;
+  margin: 0 !important;
+  transform: translate(0, 0) !important;
+}
+.toolbar .default-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+  padding: 0 4px;
+  margin-top: 4px;
+}
+.toolbar .default-toolbar ui-button[type="icon"] {
+  height: 24px;
+}
+.toolbar .default-toolbar > .left {
+  flex: 1;
+  display: flex;
+}
+.toolbar .default-toolbar > .right {
+  display: flex;
+}
+.toolbar .game-view-toolbar {
+  display: flex;
+  height: 20px;
+  line-height: 18px;
+  padding: 4px 2px;
+  background-color: var(--color-normal-fill);
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.toolbar .game-view-toolbar ui-button[selected] {
+  background-color: var(--color-info-fill-important);
+  color: var(--color-info-contrast-important);
+}
+.toolbar .game-view-toolbar .item {
+  white-space: nowrap;
+  padding: 0 4px;
+}
+.toolbar .game-view-toolbar > .left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.toolbar .game-view-toolbar > .left .item {
+  border-right: 1px solid var(--color-normal-fill-weaker);
+}
+.toolbar .game-view-toolbar > .left .fps > ui-num-input {
+  width: 50px;
+}
+.toolbar .game-view-toolbar > .right {
+  display: flex;
+  align-items: center;
+}
+.toolbar .game-view-toolbar > .right .item {
+  text-align: right;
+}
+.toolbar .game-view-toolbar > .right .item:last-child {
+  padding: 0;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container {
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--color-normal-fill-weaker);
+  width: 145px;
+  height: 20px;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select {
+  display: flex;
+  flex: 1;
+  padding-left: 6px;
+  padding-right: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select #placeholder {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-4px, -50%);
+  padding: 0 2em 0 0.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .arrow-triangle {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-4px, -50%);
+  font-size: 12px;
+  pointer-events: none;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .label {
+  overflow: hidden;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .label > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select:hover {
+  color: var(--color-focus-contrast-emphasis);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options {
+  background-color: var(--color-normal-fill);
+  position: absolute;
+  will-change: top, left;
+  transform-origin: center top 0;
+  top: 24px;
+  right: 10px;
+  max-height: 300px;
+  max-width: 396px;
+  overflow: auto;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  z-index: 99;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > li {
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  clear: both;
+  font-size: inherit;
+  list-style: none;
+  cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > li:hover {
+  background-color: var(--color-hover-fill);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > .selected {
+  background-color: var(--color-info-fill-important);
+  color: var(--color-info-contrast-important);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > .separator {
+  font-size: 0;
+  height: 1px;
+  width: calc(100% - 8px);
+  overflow: hidden;
+  background-color: var(--color-default-border-weakest);
+  pointer-events: none;
+  margin: 4px 0;
+  align-self: center;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul .no_options {
+  display: inline-block;
+  min-width: 98px;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[focused] {
+  border-color: var(--color-focus-border);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[readonly] {
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[hidden] {
+  display: none;
+}
+.toolbar .game-view-toolbar > .right .item.scale ui-slider {
+  width: 80px;
+  height: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar > .right .item.scale .add {
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar .rotate-wrap {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar .track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+  width: 80px;
+  cursor: pointer;
+}
+.toolbar .game-view-toolbar .track .wrapper {
+  width: 100%;
+  background: var(--color-normal-fill-emphasis);
+  height: 3px;
+  border-radius: 3px;
+  border-top: 1px solid var(--color-normal-fill-important);
+  border-bottom: 1px solid var(--color-normal-border-weaker);
+}
+.toolbar .game-view-toolbar .track .cursor {
+  position: absolute;
+}
+.toolbar .game-view-toolbar .track .cursor div {
+  background: var(--color-active-fill-important);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 2px solid var(--color-normal-contrast-important);
+  box-shadow: 0 0 2px 2px var(--color-normal-fill-important) inset;
+}
+.toolbar .game-view-toolbar .track .cursor:hover div {
+  border-color: var(--color-active-contrast);
+}
+.infobar {
+  line-height: calc(var(--size-small-line) * 1px);
+  font-size: calc(var(--size-small-font) * 1px);
+  display: flex;
+  position: absolute;
+  top: 30px;
+  padding: 10px;
+}
+.infobar > .left {
+  flex: 1;
+  display: flex;
+}
+.infobar > .right {
+  display: flex;
+}

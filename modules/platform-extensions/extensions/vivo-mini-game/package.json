@@ -1,0 +1,54 @@
+{
+    "name": "vivo-mini-game",
+    "title": "i18n:vivo-mini-game.title",
+    "version": "1.0.3",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser/index.js",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        }
+    ],
+    "panels": {
+        "preview": {
+            "title": "vivo-preview",
+            "main": "./dist/vivo-preview/index.js",
+            "type": "simple",
+            "flags": {
+                "resizable": true
+            },
+            "size": {
+                "min-width": 500,
+                "min-height": 300,
+                "width": 500,
+                "height": 300
+            }
+        }
+    },
+    "description": "vivo mini game platform plugin",
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "messages": {
+            "update-rpk-path": {
+                "methods": [
+                    "preview.update-rpk-path"
+                ]
+            },
+            "run": {
+                "methods": [
+                    "run"
+                ]
+            }
+        }
+    }
+}

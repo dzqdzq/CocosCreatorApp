@@ -1,0 +1,1 @@
+module.exports={extension:["ts","js"],require:"ts-node/register"};

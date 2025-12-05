@@ -1,0 +1,25 @@
+.debug-tools {
+  padding: 10px;
+}
+.debug-tools main {
+  overflow-y: auto;
+  height: 78vh;
+  background-color: var(--color-normal-fill-emphasis);
+  padding: 10px;
+}
+.debug-tools ui-prop {
+  margin: 5px 0;
+}
+.debug-tools ui-section {
+  display: inline-block;
+  width: 100%;
+}
+.debug-tools ui-section > ui-checkbox {
+  display: inline-block;
+  width: 100%;
+}
+.debug-tools footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}

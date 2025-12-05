@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(a){if(a.BuildTaskManager&&a.BuildTaskManager.taskMap)for(const e of Object.keys(a.BuildTaskManager.taskMap)){var o=a.BuildTaskManager.taskMap[e];o&&o.options&&void 0===o.options.buildMode&&(o.options.buildMode="normal")}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

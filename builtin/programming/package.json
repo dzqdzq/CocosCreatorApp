@@ -1,0 +1,110 @@
+{
+    "name": "programming",
+    "title": "i18n:programming.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:programming.description",
+    "main": "./dist/browser/index",
+    "scripts": {
+        "build-export-dts": "node ./scripts/build-export-dts.js"
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop/i18n:menu.cache",
+                "label": "i18n:programming.clear_code_cache",
+                "message": "clear-code-cache"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:programming.openDevtools",
+                "message": "open-dev-tools",
+                "group": "operation",
+                "order": 9
+            }
+        ],
+        "messages": {
+            "packer-driver/start": {
+                "methods": [
+                    "packer-driver/start"
+                ]
+            },
+            "packer-driver/get-loader-context": {
+                "methods": [
+                    "packer-driver/get-loader-context"
+                ]
+            },
+            "packer-driver/ready": {
+                "methods": [
+                    "packer-driver/ready"
+                ]
+            },
+            "packer-driver/update-auto-update-import-config": {
+                "methods": [
+                    "packer-driver/update-auto-update-import-config"
+                ]
+            },
+            "packer-driver/query-script-deps": {
+                "methods": [
+                    "packer-driver/query-script-deps"
+                ]
+            },
+            "packer-driver/query-cc-editor-module-map": {
+                "methods": [
+                    "packer-driver/query-cc-editor-module-map"
+                ]
+            },
+            "query-shared-settings": {
+                "methods": [
+                    "query-shared-settings"
+                ]
+            },
+            "clear-code-cache": {
+                "methods": [
+                    "clear-code-cache"
+                ]
+            },
+            "open-dev-tools": {
+                "methods": [
+                    "open-dev-tools"
+                ]
+            },
+            "engine:engine-custom-macro-changed": {
+                "methods": [
+                    "custom-macro-changed"
+                ]
+            },
+            "query-sorted-plugins": {
+                "methods": [
+                    "querySortedPlugins"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "updateAutoUpdateImportConfig": {
+                    "label": "i18n:programming.auto_update_import",
+                    "default": false,
+                    "type": "boolean",
+                    "message": "packer-driver/update-auto-update-import-config"
+                }
+            }
+        },
+        "preferences": {
+            "laboratory": [
+                "updateAutoUpdateImportConfig"
+            ]
+        },
+        "asset-db": {
+            "script": "./dist/contributions/asset-db-script",
+            "global-hook": [
+                "beforePreStart",
+                "afterPreStart"
+            ]
+        },
+        "footer": {
+            "right": "./dist/contributions/footer-right.js"
+        }
+    }
+}

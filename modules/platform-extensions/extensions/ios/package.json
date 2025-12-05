@@ -1,0 +1,25 @@
+{
+    "name": "ios",
+    "title": "iOS",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "iOS platform plugin",
+    "main": "./dist/browser/index",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        }
+    ],
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "messages": {
+            "query-team-info": {
+                "methods": [
+                    "queryTeamInfo"
+                ]
+            }
+        }
+    }
+}

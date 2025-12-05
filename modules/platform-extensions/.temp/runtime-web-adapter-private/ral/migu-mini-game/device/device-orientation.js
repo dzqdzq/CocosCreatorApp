@@ -1,0 +1,1 @@
+import _UTIL from"../../util";let _rt=loadRuntime();_rt.onDeviceOrientationChange&&(_UTIL.exportTo("onDeviceOrientationChange",_rt,ral),_UTIL.exportTo("offDeviceOrientationChange",_rt,ral));

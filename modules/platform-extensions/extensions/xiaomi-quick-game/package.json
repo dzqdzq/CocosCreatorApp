@@ -1,0 +1,55 @@
+{
+    "name": "xiaomi-quick-game",
+    "title": "i18n:xiaomi-quick-game.title",
+    "version": "1.0.2",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Xiaomi quick game platform plugin",
+    "main": "./dist/browser.js",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        }
+    ],
+    "panels": {
+        "preview": {
+            "title": "i18n:xiaomi-quick-game.panelTitle",
+            "main": "./dist/preview/index.js",
+            "type": "simple",
+            "flags": {
+                "resizable": true
+            },
+            "size": {
+                "min-width": 200,
+                "min-height": 240,
+                "width": 450,
+                "height": 240
+            }
+        }
+    },
+    "contributions": {
+        "builder": "./dist/build.js",
+        "messages": {
+            "run": {
+                "methods": [
+                    "run"
+                ]
+            },
+            "update-rpk-path": {
+                "methods": [
+                    "preview.update-rpk-path"
+                ]
+            },
+            "certificate:generate-certificate-success": {
+                "methods": [
+                    "preview.update-rpk-path"
+                ]
+            }
+        }
+    }
+}

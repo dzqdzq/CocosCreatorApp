@@ -1,0 +1,1 @@
+import HTMLMediaElement from"./HTMLMediaElement";export default class HTMLVideoElement extends HTMLMediaElement{constructor(){super("VIDEO")}canPlayType(e){return"video/mp4"===e}}

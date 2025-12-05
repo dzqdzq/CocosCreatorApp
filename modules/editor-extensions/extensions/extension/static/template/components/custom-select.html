@@ -1,0 +1,63 @@
+<div class="custom-select">
+    <div
+        class="header"
+        @click.stop="showOption"
+    >
+        <div
+            v-if="!curTitle"
+            class="placeholder text"
+        >
+            {{ placeholder }}
+        </div>
+        <div
+            v-else
+            class="content text"
+        >
+            <div
+                class="title"
+                v-if="curTitle"
+            >V{{ curTitle }}</div>
+            <div
+                class="label"
+                v-if="curLabel"
+            >{{ curLabel }}</div>
+            <div
+                class="empty-line"
+                v-else
+            ></div>
+        </div>
+        <div class="icon">
+            <ui-icon value="arrow-triangle"></ui-icon>
+        </div>
+    </div>
+    <div
+        v-show="isShow"
+        ref="options"
+        :style="'max-height:' + height * maxCount + 'px;' + 'min-height:' + height * 5 + 'px;'"
+        class="options"
+        @scroll="scrollHandle($event)"
+    >
+        <slot :value="curValue"></slot>
+        <div
+            ref="loading"
+            :class="{'empty': true, 'loading': options.length === 0}"
+            :style="'min-height:' + height * (options.length === 0 ? 5 : 1) + 'px;'"
+            v-show="loading"
+        >
+            <ui-loading></ui-loading>
+        </div>
+        <div
+            class="empty error"
+            v-show="!loading && errorMessage"
+            :style="'min-height:' + height * (options.length === 0 ? 5 : 1) + 'px;'"
+        >
+            <ui-label :value="errorMessage"></ui-label>
+            <ui-button
+                outline
+                @click.stop="refresh"
+            >
+                <ui-label value="i18n:extension.manager.refresh"></ui-label>
+            </ui-button>
+        </div>
+    </div>
+</div>

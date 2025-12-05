@@ -1,0 +1,377 @@
+<div class="scene-terrain">
+    <header>
+        <ui-tab
+            :value="mode"
+            @confirm="changeToolMode($event.target.value)"
+        >
+            <ui-button>
+                <ui-label value="i18n:scene.terrain.manage"></ui-label>
+            </ui-button>
+            <ui-button>
+                <ui-label value="i18n:scene.terrain.sculpt"></ui-label>
+            </ui-button>
+            <ui-button>
+                <ui-label value="i18n:scene.terrain.paint"></ui-label>
+            </ui-button>
+            <ui-button>
+                <ui-label value="i18n:scene.terrain.select"></ui-label>
+            </ui-button>
+        </ui-tab>
+    </header>
+
+    <!-- Manager -->
+    <section class="manager"
+        v-show="mode === 0"
+    >
+        <div class="manager-toolbar"
+            v-show="info.isChanged"
+        >
+            <ui-button tooltip="Reset" @click="resetInfos()" class="tiny red transparent" tabindex="0"><ui-icon value="reset" tabindex="0"></ui-icon></ui-button>
+            <ui-button tooltip="Save" @click="applyInfos()" class="tiny green transparent" tabindex="0"><ui-icon value="check-b" tabindex="0"></ui-icon></ui-button>
+        </div>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.tileSize"></ui-label>
+            <div slot="content">
+                <ui-num-input
+                    preci="1" 
+                    step="0.1" 
+                    min="0.1"
+                    :value="info.tileSize"
+                    @confirm="info.tileSize=parseFloat($event.target.value);changeInfo()"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.weightMapSize"></ui-label>
+            <div slot="content">
+                <ui-select 
+                    :value="info.weightMapSize"
+                    @confirm="info.weightMapSize=parseInt($event.target.value);changeInfo()">
+                    <option value="128">128</option>
+                    <option value="256">256</option>
+                    <option value="512">512</option>
+                    <option value="1024">1024</option>
+                </ui-select>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.lightMapSize"></ui-label>
+            <div slot="content">
+                <ui-select 
+                    :value="info.lightMapSize"
+                    @confirm="info.lightMapSize=parseInt($event.target.value);changeInfo()">
+                    <option value="128">128</option>
+                    <option value="256">256</option>
+                    <option value="512">512</option>
+                    <option value="1024">1024</option>
+                </ui-select>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.blockCount"></ui-label>
+            <div slot="content">
+                <ui-num-input class="row"
+                    label="W"
+                    min="1"
+                    step="1"
+                    preci="0"
+                    :value="info.blockCount[0]"
+                    @confirm="info.blockCount[0]=parseInt($event.target.value);changeInfo()"   
+                ></ui-num-input>
+                <ui-num-input class="row"
+                    label="H"
+                    min="1"
+                    step="1"
+                    preci="0"
+                    :value="info.blockCount[1]"
+                    @confirm="info.blockCount[1]=parseInt($event.target.value);changeInfo()"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+        
+    </section>
+
+    <!-- Sculpt -->
+    <section
+        v-show="mode === 1"
+    >
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushSize"></ui-label>
+            <div slot="content">
+                <ui-num-input
+                    preci="1"
+                    step="0.1"
+                    :value="sculpt.radius"
+                    :min="0" 
+                    @confirm="changeSculpt('radius', $event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushStrength"></ui-label>
+            <div slot="content">
+                <ui-num-input 
+                    min="0.1"
+                    preci="1" 
+                    step="0.1" 
+                    :value="sculpt.strength"
+                    @confirm="changeSculpt('strength', $event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushMode"></ui-label>
+            <div slot="content">
+                <ui-select
+                    :value="sculpt.mode"
+                    @confirm="changeSculptMode(parseInt($event.target.value))"
+                >
+                    <option value="1">Bulge</option>
+                    <option value="2">Sunken</option>
+                    <option value="3">Smooth</option>
+                    <option value="6">Flatten</option>
+                    <option value="7">SetHeight</option>
+                </ui-select>
+            </div>
+        </ui-prop>
+        <ui-prop
+            v-if="sculpt.mode===7"
+        >
+            <ui-label slot="label" value="i18n:scene.terrain.brushHeight"></ui-label>
+            <div slot="content">
+                <ui-num-input 
+                    preci="1" 
+                    step="0.1" 
+                    :value="sculpt._setHeight"
+                    @change="changeSculpt('_setHeight', $event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brush"></ui-label>
+            <div slot="content">
+                <ui-asset droppable="cc.Texture2D"
+                    :value="sculpt.currBrush"
+                    @confirm="setSculptBrush($event.target.value)"
+                ></ui-asset>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushRotation"></ui-label>
+            <div slot="content">
+                <ui-num-input min="0"  max="360"
+                    :value="sculpt.rotation"
+                    @confirm="setSculptBrushRotation($event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+    </section>
+
+    <!-- Paint -->
+    <section
+        v-show="mode === 2"
+    >
+        <ui-drag-area class="layers" ref="area" droppable="cc.Texture2D"
+            @drop="_onLayerDrop($event)"
+        >
+            <header>
+                <ui-label value="i18n:scene.terrain.layer"></ui-label>
+                <ui-label>({{select}})</ui-label>
+                <ui-button tooltip="Add" @click="createLayer()">
+                    <ui-icon value="add"></ui-icon>
+                </ui-button>
+                <ui-button tooltip="Remove" @click="removeLayer(select)">
+                    <ui-icon value="mini"></ui-icon>
+                </ui-button>
+            </header>
+
+            <section>
+                <template
+                    v-for="(layer, index) in layers"
+                >
+                    <texture
+                        v-if="layer !== null"
+                        :active="select === index"
+                        :layer="layer"
+                        :index="index"
+                        @confirm="setLayerTexture($event.target.value)"
+                    ></texture>
+                </template>
+            </section>
+
+            <ui-prop>
+                <ui-asset droppable="cc.Texture2D"
+                    :invalid="!layers[select]"
+                    :disabled="!layers[select]"
+                    :value="layers[select] ? layers[select].uuid : ''"
+                    @confirm="setLayerTexture($event.target.value)"
+                ></ui-asset>
+            </ui-prop>
+
+            <ui-prop>
+                <ui-label slot="label" value="i18n:scene.terrain.normalMap"></ui-label>
+                <div slot="content">
+                    <ui-asset droppable="cc.Texture2D"
+                        :invalid="!layers[select]"
+                        :disabled="!layers[select]"
+                        :value="layers[select] ? layers[select].normalMap : ''"
+                        @confirm="setLayerNormalMap($event.target.value)"
+                    ></ui-asset>
+                </div>
+            </ui-prop>
+
+            <ui-prop>
+                <ui-label slot="label" value="i18n:scene.terrain.metallic"></ui-label>
+                <div slot="content">
+                    <ui-num-input
+                        min="0"
+                        max="1.0"
+                        step="0.01"
+                        preci="2"
+                        :invalid="!layers[select]"
+                        :disabled="!layers[select]"
+                        :value="layers[select] ? layers[select].metallic : 0"
+                        @confirm="setLayerMetallic($event.target.value)"
+                    ></ui-num-input>
+                </div>
+            </ui-prop>
+
+            <ui-prop>
+                <ui-label slot="label" value="i18n:scene.terrain.roughness"></ui-label>
+                <div slot="content">
+                    <ui-num-input
+                        min="0"
+                        max="1.0"
+                        step="0.01"
+                        preci="2"
+                        :invalid="!layers[select]"
+                        :disabled="!layers[select]"
+                        :value="layers[select] ? layers[select].roughness : 1"
+                        @confirm="setLayerRoughness($event.target.value)"
+                    ></ui-num-input>
+                </div>
+            </ui-prop>
+    
+            <ui-prop class="layer">
+                <ui-label slot="label" value="i18n:scene.terrain.paintTileSize"></ui-label> 
+                <div slot="content">
+                    <ui-num-input
+                        min="0"
+                        :invalid="!layers[select]"
+                        :disabled="!layers[select]"
+                        :value="layers[select] ? layers[select].tileSize : 0"
+                        @confirm="setLayerTileSize($event.target.value)"
+                    ></ui-num-input>
+                </div>
+            </ui-prop>
+        </ui-drag-area>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushSize"></ui-label> 
+            <div slot="content">
+                <ui-num-input
+                    preci="1" 
+                    step="0.1"
+                    :value="paint.radius" 
+                    :min="0" 
+                    @confirm="changePaint('radius', $event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushStrength"></ui-label> 
+            <div slot="content">
+                <ui-num-input 
+                    min="0.1" 
+                    preci="1" 
+                    step="0.1"
+                    :value="paint.strength"
+                    @confirm="changePaint('strength', $event.target.value)"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brushFalloff"></ui-label>
+            <div slot="content">
+                <ui-num-input 
+                    min="0.0" 
+                    max="1.0"
+                    step="0.1" 
+                    preci="1"
+                    :value="paint.falloff"
+                    @confirm="changePaint('falloff', $event.target.value)" 
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.brush"></ui-label>
+            <div slot="content">
+                <ui-asset droppable="cc.Texture2D"
+                    :value="paint.currBrush"
+                    @confirm="setPaintBrush($event.target.value)"
+                ></ui-asset>
+            </div>
+        </ui-prop>
+    </section>
+
+    <!-- Block -->
+    <section class="blocks"
+        v-if="mode === 3"
+    >
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.index"></ui-label>
+            <div slot="content" class="block-index">
+                <ui-num-input disabled
+                    :value="block.index.x"
+                ></ui-num-input>
+                <ui-num-input disabled
+                    :value="block.index.y"
+                ></ui-num-input>
+            </div>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.layers"></ui-label>
+            <div slot="content" class="block-layers"
+                v-if="block.layers.length"
+            >
+                <template
+                    v-for="(uuid, index) in block.layers"
+                >
+                    <ui-image class="image"
+                        v-if="uuid"
+                        :key="index"
+                        :value="uuid"
+                    ></ui-image>
+                    <div class="image"
+                        :key="index"
+                        v-else
+                    ></div>
+                </template>
+            </div>
+            <ui-label slot="content" value="i18n:scene.terrain.noImageData"
+                v-else
+            ></ui-label>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:scene.terrain.weight"></ui-label>
+            <div slot="content" class="block-weight"
+                v-if="block.weight"
+            >
+                <ui-image channel="r" :value="block.weight"></ui-image>
+                <ui-image channel="g" :value="block.weight"></ui-image>
+                <ui-image channel="b" :value="block.weight"></ui-image>
+                <ui-image channel="a" :value="block.weight"></ui-image>
+            </div>
+            <ui-label slot="content" value="i18n:scene.terrain.noImageData"
+                v-else
+            ></ui-label>
+        </ui-prop>
+    </section>
+</div>
