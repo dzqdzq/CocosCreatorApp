@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const ipc=require("@base/electron-base-ipc");ipc.on("editor-lib-ui-kit:drag-start",(i,e)=>{ipc.broadcast("editor-lib-ui-kit:drag-start",e)}),ipc.on("editor-lib-ui-kit:drag-end",i=>{ipc.broadcast("editor-lib-ui-kit:drag-end")});

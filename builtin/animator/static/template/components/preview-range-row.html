@@ -1,0 +1,38 @@
+<ui-drag-area :class="previewClass"
+    :style="previewStyle"
+    :droppable="trackInfo.type"
+    @mouseup.right.stop="showContextMenu"
+    @drop="onDrop"
+    @dragover="onDragOver"
+>
+    <div class="row-wrap"
+        :style="{transform: 'translateX('+ offset +'px)'}"
+    >
+        <!-- 关键帧显示 -->
+        <template
+            v-if="displayEmbeddedPlayerInfo"
+        >
+            <div name="range"
+                v-for="embeddedPlayer in displayEmbeddedPlayerInfo"
+                :class="['range', selectEmbeddedPlayerKeys && selectEmbeddedPlayerKeys.includes(embeddedPlayer.key) ? 'active' : '']"
+                :style="queryKeyStyle(embeddedPlayer)"
+                :index="index"
+                :key="embeddedPlayer.key"
+                @mousedown.right.stop="showRangePopMenu($event, embeddedPlayer, selectEmbeddedPlayerKeys && selectEmbeddedPlayerKeys.includes(embeddedPlayer.key))"
+                @mousedown.stop="onRangeMouseDown($event, embeddedPlayer)"
+            >
+                <span class="left" name="left" @dragstart.stop></span>
+                <ui-drag-item :type="embeddedPlayer.playable.type" @dragstart="onDragStart($event, embeddedPlayer)">
+                    <ui-icon name="center"
+                        :value="embeddedPlayer.icon"
+                        :style="{color: embeddedPlayer.color}"
+                    ></ui-icon>
+                </ui-drag-item>
+                <ui-label name="center" :value="embeddedPlayer.displayName"></ui-label>
+                <span class="right" name="right" @dragstart.stop></span>
+                <div class="color" :style="{background: embeddedPlayer.color}"></div>
+            </div>
+        </template>
+    </div>
+    <div class="tips" v-if="draggable">{{tips}}</div>
+</ui-drag-area>

@@ -1,0 +1,104 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>link</h2>
+            <div>will open browser</div>
+            <div>
+                <ui-link>https://www.cocos.com/products</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link&gt;https://www.cocos.com/products&lt;/ui-link&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>link + ui-icon</h2>
+            <div>will open browser</div>
+            <div>
+                <ui-link value="https://www.cocos.com/products">
+                    <ui-icon value="help"></ui-icon>
+                </ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link value="https://www.cocos.com/products"&gt;
+                    &lt;ui-icon value="help"&gt;&lt;/ui-icon&gt;
+                &lt;/ui-link&gt;
+            </ui-code>
+        </div>
+
+
+        <div class="row">
+            <h2>Ctrl + link</h2>
+            <div>must press ctrl key, or it would not work</div>
+            <div>
+                <ui-link ctrl>https://www.cocos.com/products</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link ctrl&gt;https://www.cocos.com/products&lt;/ui-link&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>filepath</h2>
+            <div>will open filepath</div>
+            <div>
+                <ui-link>{{projectPath}}</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link&gt;{{projectPath}}&lt;/ui-link&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>filepath + ui-button</h2>
+            <div>
+                <ui-link :value="projectPath">
+                    <ui-button>Reveal in Explorer</ui-button>
+                </ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link value="{{projectPath}}"&gt;
+                    &lt;ui-button&gt;Reveal in Explorer&lt;/ui-button&gt;
+                &lt;/ui-link&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type</h2>
+            <div>Click it will twinkle the asset in assets panel.</div>
+            <div>
+                <ui-link type="assetUuid">57520716-48c8-4a19-8acf-41c9f8777fb0</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link type="assetUuid"&gt;57520716-48c8-4a19-8acf-41c9f8777fb0&lt;/ui-link&gt;
+            </ui-code>
+
+            <div>Click it will twinkle the asset in assets panel.</div>
+            <div>
+                <ui-link type="assetUrl">db://internal/default_prefab/Camera.prefab</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link type="assetUrl"&gt;db://internal/default_prefab/Camera.prefab&lt;/ui-link&gt;
+            </ui-code>
+
+            <div>Click it will twinkle the node in hierarchy panel.</div>
+            <div>
+                <ui-link type="nodeUuid">de4bfb99-632a-4c8b-b4d1-ad84baaa2f5f</ui-link>
+            </div>
+            <ui-code language="html">
+                &lt;ui-link type="nodeUuid"&gt;de4bfb99-632a-4c8b-b4d1-ad84baaa2f5f&lt;/ui-link&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                ctrl // must press CTRL key, or it would not work
+                type // different asset url
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

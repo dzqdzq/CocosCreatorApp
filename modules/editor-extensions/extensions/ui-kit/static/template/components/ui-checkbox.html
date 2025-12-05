@@ -1,0 +1,138 @@
+<div class="wrap ui-checkbox-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-checkbox>Empty</ui-checkbox>
+                <ui-checkbox value="false">False</ui-checkbox>
+                <ui-checkbox value="true">True</ui-checkbox>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-checkbox&gt;Empty&lt;/ui-checkbox&gt;
+                &lt;ui-checkbox value="false"&gt;False&lt;/ui-checkbox&gt;
+                &lt;ui-checkbox value="true"&gt;True&lt;/ui-checkbox&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-checkbox value="false" readonly>false</ui-checkbox>
+                <ui-checkbox value="true" readonly>true</ui-checkbox>
+            </div>
+            <ui-code language="html">
+                &lt;ui-checkbox value="false" readonly&gt;false&lt;/ui-checkbox&gt;
+                &lt;ui-checkbox value="true" readonly&gt;true&lt;/ui-checkbox&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-checkbox disabled>disabled</ui-checkbox>
+                <ui-checkbox value="true" disabled>disabled</ui-checkbox>
+            </div>
+            <ui-code language="html">
+                &lt;ui-checkbox disabled&gt;disabled&lt;/ui-checkbox&gt;
+                &lt;ui-checkbox value="true" disabled&gt;disabled&lt;/ui-checkbox&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-checkbox invalid>invalid</ui-checkbox>
+            </div>
+            <ui-code language="html">
+                &lt;ui-checkbox invalid&gt;invalid&lt;/ui-checkbox&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-checkbox hidden>hidden</ui-checkbox>
+            </div>
+            <ui-code language="html">
+                &lt;ui-checkbox hidden&gt;hidden&lt;/ui-checkbox&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>attributes</h2>
+            <ui-code language="typescript">
+                value = 'true' | 'false'
+                readonly
+                disabled
+                invalid
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4>toggle value: <span ref="value"></span></h4>
+            <div>
+                <ui-checkbox ref="checkbox"
+                    @confirm="onConfirm"
+                    @change="onChange"
+                >
+                    click me
+                </ui-checkbox>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>events</h2>
+            <ui-code language="typescript">
+                change // general case use this event
+                confirm
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>VUE JS</h2>
+            <ui-code language="html">
+                &lt;ui-checkbox ref="checkbox"
+                    @confirm="onConfirm"
+                    @change="onChange"
+                &gt;
+                    click me
+                &lt;/ui-checkbox&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                // vue object
+                methods = {
+                    onConfirm(event) {
+                        this.$refs.value.innerHTML = event.target.value;
+                    },
+                    onChange(event) {
+                        console.log('onChange', event.target.value);
+                    }
+                };
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Vanilla JS</h2>
+            <ui-code language="html">
+                &lt;ui-checkbox id="checkbox"&gt;click me&lt;/ui-checkbox&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#checkbox');
+
+                // addEventListener
+                element.addEventListener('confirm', (event) => {
+                    document.getElementById('#value').innerHTML = event.target.value;
+                });
+                element.addEventListener('change', (event) => {
+                    console.log('onChange', event.target.value);
+                });
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

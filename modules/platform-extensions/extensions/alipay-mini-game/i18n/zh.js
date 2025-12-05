@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"支付宝小游戏",options:{orientation:"设备方向",portrait:"竖屏",landscape:"横屏",start_scene_asset_bundle:"初始场景分包",start_scene_asset_bundle_tooltip:"将所有初始场景依赖的资源打包进独立的分包，分包命名为 'start-scene'"}};

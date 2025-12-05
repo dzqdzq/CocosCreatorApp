@@ -1,0 +1,1 @@
+"use strict";async function changeImageDefaultType(e,a){e&&!1===e.imported&&!1===e.init&&e.task>0&&(e.userData.type=a)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.changeImageDefaultType=void 0,exports.changeImageDefaultType=changeImageDefaultType;

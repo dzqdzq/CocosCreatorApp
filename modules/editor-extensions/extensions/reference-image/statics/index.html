@@ -1,0 +1,36 @@
+<div class="reference-image">
+    <div class="content">
+        <div class="btn-layout horizontal item">
+            <ui-label value="i18n:reference-image.name"></ui-label>
+            <div class="item-content">
+                <ui-select class="images"></ui-select>
+                <ui-button class="add-image" type="default" outline>
+                    <ui-label value="i18n:reference-image.add_image"></ui-label>
+                </ui-button>
+                <ui-button class="del-image" type="default" outline>
+                    <ui-label value="i18n:reference-image.del_image"></ui-label>
+                </ui-button>
+            </div>
+        </div>
+        <div class="config">
+            <div class="item" class="config">
+                <ui-label value="i18n:reference-image.edit.x"></ui-label>
+                <div class="item-content">
+                    <ui-num-input class="x" slot="content"></ui-num-input>
+                </div>
+            </div>
+            <div class="item">
+                <ui-label value="i18n:reference-image.edit.y"></ui-label>
+                <div class="item-content">
+                    <ui-num-input class="y" slot="content"></ui-num-input>
+                </div>
+            </div>
+            <div class="item">
+                <ui-label value="i18n:reference-image.edit.opacity"></ui-label>
+                <div class="item-content">
+                    <ui-slider slot="content" class="opacity" style="width: 100%;" value="1" min="0" max="255" step="1"></ui-slider>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

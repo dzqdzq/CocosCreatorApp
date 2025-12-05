@@ -1,0 +1,78 @@
+<div class="curve-editor">
+    <!-- <div class="name">{{dump.name}}</div> -->
+    <!-- <ui-num-input class="multiplier" :value="multiplier" @confirm="onMulti"></ui-num-input> -->
+    <!-- 工具栏 -->
+    <div class="left">
+        <!-- <div class="toolbar" @confirm="onWrapMode">
+            <ui-prop>
+                <span slot="label">preWrapMode</span>
+                <ui-select
+                    name="preWrapMode"
+                    slot="content"
+                    :value="curveConfig ? curveConfig.preWrapMode : 0"
+                >
+                    <option value="0">Default</option>
+                    <option value="1">Once</option>
+                    <option value="2">Loop</option>
+                    <option value="22">PingPong</option>
+                    <option value="4">ClampForever</option>
+                </ui-select>
+            </ui-prop>
+            <ui-prop>
+                <span slot="label">postWrapMode</span>
+                <ui-select
+                    name="postWrapMode"
+                    slot="content"
+                    :value="curveConfig ? curveConfig.postWrapMode : 0"
+                >
+                    <option value="0">Default</option>
+                    <option value="1">Once</option>
+                    <option value="2">Loop</option>
+                    <option value="22">PingPong</option>
+                    <option value="4">ClampForever</option>
+                </ui-select>
+            </ui-prop>
+        </div> -->
+        <!-- 预设菜单 -->
+        <div class="presets">
+            <div class="tab">
+                <span 
+                    :active="presetConfig.tab === 'default'"
+                    @click="presetConfig.tab = 'default'"
+                >Presets</span>
+                <span
+                :active="presetConfig.tab === 'user'"
+                @click="presetConfig.tab = 'user'"
+                >User</span>
+            </div>
+            <div class="wrap default" ref="presets"
+                v-show="presetConfig.tab === 'default'"
+                @click="onPreset"
+            >
+
+            </div>
+            <div class="wrap default" ref="user-presets"
+                v-show="presetConfig.tab === 'user'"
+                @click="onPreset"
+            >
+                <div class="add">
+                    <span>New</span>
+                    <canvas></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="canvas-wrap " ref="curve-wrap">
+        <!-- 网格线/坐标轴层 -->
+        <!-- <canvas ref="gridCanvas" class="canvas"></canvas> -->
+        <!-- 曲线绘制层 -->
+        <canvas ref="curve" class="canvas" @mousewheel="onMouseWheel"></canvas>
+        <!-- 控制辅助线层 -->
+        <!-- <canvas ref="controlCanvas" class="canvas"></canvas> -->
+        <div class="x-axis" ref="curveX"></div>
+        <div class="y-axis" ref="curveY"></div>
+    </div>
+
+
+</div>

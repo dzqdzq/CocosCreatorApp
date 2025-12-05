@@ -1,0 +1,1 @@
+const fs=require("fs"),{join:join}=require("path");fs.rmSync(join(__dirname,"../dist"),{recursive:!0});

@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class ScanOption{constructor(e,t=[],s=[]){this.dirs=e,this.extNames=t,this.excludes=s}static parse(e){return new ScanOption(e.dirs,e.extNames,e.excludes)}clone(){return new ScanOption(this.dirs,this.extNames,this.excludes)}}exports.default=ScanOption;

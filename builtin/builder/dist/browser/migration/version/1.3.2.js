@@ -1,0 +1,1 @@
+"use strict";async function migrateProject(e){e.textureCompressConfig&&e.textureCompressConfig.userPreset&&Object.values(e.textureCompressConfig.userPreset).forEach(e=>{Object.values(e.options).forEach(e=>{Object.keys(e).forEach(t=>{e[t]={quality:e[t]}})})})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0,exports.migrateProject=migrateProject;

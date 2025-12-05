@@ -1,0 +1,35 @@
+.reference-image > .content {
+  flex: 1;
+  padding: 8px;
+  overflow: auto;
+}
+.reference-image > .content > .btn-layout {
+  display: flex;
+}
+.reference-image > .content > .btn-layout > .item-content {
+  display: flex;
+}
+.reference-image > .content > .btn-layout > .item-content > .images {
+  width: 100%;
+  margin-right: 8px;
+}
+.reference-image > .content > .btn-layout > .item-content > .del-image {
+  width: 100px;
+}
+.reference-image > .content > .btn-layout > .item-content > .add-image {
+  width: 100px;
+  margin-right: 4px;
+}
+.reference-image > .content > .item,
+.reference-image > .content > .config > .item {
+  display: flex;
+  margin-bottom: 4px;
+}
+.reference-image > .content > .item > ui-label,
+.reference-image > .content > .config > .item > ui-label {
+  width: 150px;
+}
+.reference-image > .content > .item .item-content,
+.reference-image > .content > .config > .item .item-content {
+  flex: 1;
+}

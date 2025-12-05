@@ -1,0 +1,45 @@
+.modules {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.8em;
+}
+.modules section {
+  display: flex;
+  flex-direction: column;
+}
+.modules .flex {
+  display: flex;
+}
+.modules .modules-item {
+  margin-top: 4px;
+  flex: 1;
+}
+.modules .modules-item .modules-item {
+  padding-left: 14px;
+  height: 21px;
+}
+.modules .modules-item div {
+  height: 21px;
+}
+.modules .checkbox {
+  margin-right: 10px;
+}
+.modules ui-checkbox[disabled] {
+  pointer-events: auto;
+}
+.modules .name {
+  flex: 1;
+}
+.modules .name ui-prop {
+  --left-width: 85%;
+}
+.modules .modules-header {
+  padding-right: 14px;
+  border-bottom: 1px #7b7979 dashed;
+}
+.modules .modules-section {
+  overflow: auto;
+}
+.modules ui-section.config {
+  flex: 1;
+}

@@ -1,0 +1,61 @@
+<div >
+    <ui-section v-if="config && config.wrapWithFold"
+        expand
+        :key="options.platform + config.pkgName"
+    >
+        <div class="header" slot="header">
+            <ui-label :value="config.displayName"></ui-label>
+            <ui-link v-if="config.doc" :value="config.doc" @click.stop @mousedown.stop>
+                <ui-icon value="help"></ui-icon>
+            </ui-link>
+        </div>
+        <div :disabled="disabledPkg.includes(name) && type === 'edit'">
+            <template v-if="config.options">
+                <build-prop v-for="(configItem, name) in config.options"
+                    v-if="configItem.render || configItem.itemConfigs"
+                    :key="name"
+                    :path="name"
+                    :pkg-name="config.pkgName"
+                    :config="configItem"
+                    :value="pkgOptions && pkgOptions[name]"
+                    @update="onDataUpdate"
+                ></build-prop>
+            </template>
+            <div
+                :ref="config.pkgName"
+                @update="onPanelUpdate(...$event.args)"
+            ></div>
+            <!-- 原生平台不允许修改对应字段 -->
+            <ui-label class="mask"
+                v-if="disabledPkg.includes(name) && type === 'edit'"
+                tooltip="i18n:builder.disabled_native_tips"
+            >
+            </ui-label>
+        </div>
+    </ui-section>
+
+    <div v-else :disabled="disabledPkg.includes(name) && type === 'edit'">
+        <template v-if="config.options">
+            <build-prop v-for="(configItem, name) in config.options"
+                v-if="configItem.render || configItem.itemConfigs"
+                auto="true"
+                :key="name"
+                :path="name"
+                :pkg-name="config.pkgName"
+                :config="configItem"
+                :value="pkgOptions && pkgOptions[name]"
+                @update="onDataUpdate"
+            ></build-prop>
+        </template>
+        <div
+            :ref="config.pkgName"
+            @update="onPanelUpdate(...$event.args)"
+        ></div>
+        <!-- 原生平台不允许修改对应字段 -->
+        <ui-label class="mask"
+            v-if="disabledPkg.includes(name) && type === 'edit'"
+            tooltip="i18n:builder.disabled_native_tips"
+        >
+        </ui-label>
+    </div>
+</div>

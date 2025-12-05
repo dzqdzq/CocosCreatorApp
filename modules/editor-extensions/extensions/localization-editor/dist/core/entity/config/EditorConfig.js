@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class EditorConfig{constructor(e){this.currentPreview=e}static parse(e){return new EditorConfig(e.currentPreview)}}exports.default=EditorConfig,EditorConfig.ConfigName="EditorConfig";

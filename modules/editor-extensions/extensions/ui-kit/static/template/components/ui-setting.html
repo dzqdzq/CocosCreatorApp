@@ -1,0 +1,26 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>package + type + path</h2>
+            <ui-setting package="scene" type="global">
+                <ui-num-input path="test.num"></ui-num-input>
+            </ui-setting>
+            <ui-code language="html">
+                &lt;ui-setting package="scene" type="global"&gt;
+                    &lt;ui-num-input path="test.num"&gt;&lt;/ui-num-input&gt;
+                &lt;/ui-setting&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                package // package name
+                type // default、global、local、project、temp
+                path // setting's key
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

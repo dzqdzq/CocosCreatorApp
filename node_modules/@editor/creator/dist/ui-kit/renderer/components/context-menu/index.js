@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.contextMenu=void 0;class ContextMenu{constructor(){this.hasListenning=!1}init(){this.hasListenning=!0}destroy(){}}exports.contextMenu=new ContextMenu;

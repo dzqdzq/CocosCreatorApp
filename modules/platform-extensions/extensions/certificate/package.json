@@ -1,0 +1,23 @@
+{
+    "package_version": 2,
+    "version": "1.0.0",
+    "name": "certificate",
+    "description": "i18n:certificate.description",
+    "author": "Cocos Creator",
+    "panels": {
+        "default": {
+            "title": "i18n:certificate.title",
+            "type": "simple",
+            "main": "./dist/panel.js",
+            "flags": {
+                "resizable": true
+            },
+            "size": {
+                "min-width": 336,
+                "min-height": 420,
+                "width": 400,
+                "height": 412
+            }
+        }
+    }
+}

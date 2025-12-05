@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ReaderTransform=void 0;class ReaderTransform{transform(e,r){const s=new Map;for(const r of e)s.set(r.type,r);return s}}exports.ReaderTransform=ReaderTransform;

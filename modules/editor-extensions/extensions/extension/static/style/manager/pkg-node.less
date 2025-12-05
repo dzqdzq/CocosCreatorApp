@@ -1,0 +1,120 @@
+@keyframes blink{
+    from {
+        background-color: inherit;
+    }
+    to {
+        background-color: var(--color-normal-fill-weakest);
+    }
+}
+.pkg-node {
+    background-color: var(--color-normal-fill-emphasis);
+    border: 1px solid var(--color-normal-border);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border-radius: calc(var(--size-normal-radius) * 1px);
+    position: relative;
+    transition: box-shadow 0.5s;
+    margin-bottom: 6px;
+    
+    > .header {
+        display: flex;
+        justify-content: space-between;
+        line-height: 30px;
+
+        > div {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+
+            .title {
+                font-size: 1.8em;
+                color: var(--color-active-contrast);
+                padding-right: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex: 1;
+            }
+
+            .content {
+                font-size: 1.2em;
+            }
+        }
+
+        > .name {
+            cursor: pointer;
+
+            > .control {
+                line-height: 20px;
+
+                > ui-button {
+                    font-size: 14px;
+                    padding: 0 8px;
+                    margin: 0 4px;
+                }
+            }
+        }
+
+        > .toggle {
+            background: var(--color-normal-fill-weaker);
+            border: 1px solid var(--color-normal-fill-emphasis);
+            margin-left: 10px;
+            flex: none;
+            border-radius: 1em;
+            width: 3em;
+            height: 1.5em;
+            position: relative;
+            cursor: pointer;
+
+            > div {
+                display: inline-block;
+                height: 100%;
+                background: var(--color-normal-fill);
+                border-radius: 1.5em;
+                overflow: hidden;
+                position: absolute;
+                transition: left 0.4s;
+
+                > span {
+                    display: block;
+                    background: var(--color-normal-fill);
+                    height: 1.5em;
+                    width: 1.5em;
+                    border-radius: 50%;
+                    border: 2px solid var(--color-normal-contrast-important);
+                    box-sizing: border-box;
+                }
+            }
+
+            &[enable] {
+                background: var(--color-success-fill);
+                > div {
+                    left: 1.5em;
+
+                    > span {
+                        background: var(--color-success-contrast);
+                        border: 2px solid var(--color-normal-contrast);
+                    }
+                }
+            }
+
+            &[disabled] {
+                opacity: 0.6;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .info {
+        .title {
+            opacity: 0.7;
+        }
+    }
+}
+.pkg-node[blink]{
+    animation: blink 0.25s ;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+}

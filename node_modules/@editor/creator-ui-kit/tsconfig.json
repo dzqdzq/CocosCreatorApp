@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/tsconfig.json",
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "inlineSourceMap": false,
+        "inlineSources": false,
+        "esModuleInterop": true,
+        "strict": true,
+        "experimentalDecorators": true,
+        "outDir": "./dist",
+        "rootDir": "./source",
+        "types": [
+            "node",
+            "electron"
+        ],
+        "lib": [
+            "dom",
+            "es7"
+        ]
+    },
+    "exclude": ["./example"]
+}

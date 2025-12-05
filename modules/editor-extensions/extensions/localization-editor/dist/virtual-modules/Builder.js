@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};const builder_1=__importDefault(require("../builder/builder")),Content={builder:builder_1.default};module.exports=Content;

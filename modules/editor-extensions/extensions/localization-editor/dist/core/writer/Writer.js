@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.WriterTransform=void 0;class WriterTransform{transform(r,e){const t=new Map;for(const e of r)t.set(e.type,e);return t}}exports.WriterTransform=WriterTransform;
