@@ -1,0 +1,29 @@
+<div class="tools">
+    <i class="fa fa-plus"
+        :title="t('HIERARCHY.tab.create')"
+        @click="createPopup"
+    ></i>
+    <ui-input
+        v-el:input
+        :placeholder="t('SHARED.enterToSearch') + '...'"
+        :value="filter"
+        @confirm="onFilterAssets"
+        @focus="oInputnFocus"
+        @blur="onInputBlur"
+    ></ui-input>
+    <span class="fa fa-times-circle tool-cancel" v-if="filter" @click="emptyFilter"></span>
+    <i class="fa fa-search"
+        :title="t('HIERARCHY.tab.search')"
+        @click="searchPopup"
+    ></i>
+    <i class="fa fa-sort-amount-desc"
+       :title="t('HIERARCHY.tab.sort')"
+       @click="showSortMenu"
+    ></i>
+    <!-- todo 先关闭，等 db 刷新优化后在开启 -->
+    <i class="fa fa-refresh"
+        v-if="false"
+        :title="t('HIERARCHY.tab.refresh')"
+        @click="showRefreshMenu"
+    ></i>
+</div>
