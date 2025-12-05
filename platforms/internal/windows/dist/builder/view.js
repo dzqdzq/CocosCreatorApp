@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.buttonConfig=void 0,exports.buttonConfig={configs:{make:{label:"i18n:windows.make.label",hookHandle:"make"},run:{label:"i18n:windows.run.label",hookHandle:"run"}}};

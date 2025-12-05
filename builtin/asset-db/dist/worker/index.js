@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),window.Editor=require("editor"),require("./messages/database"),require("./messages/operation"),require("./messages/query");const ipc_1=require("./ipc");window.Manager={AssetWorker:{}},ipc_1.ipcSend("asset-worker:startup");

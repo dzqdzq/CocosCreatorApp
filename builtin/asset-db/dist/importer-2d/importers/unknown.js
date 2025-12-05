@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const asset_db_1=require("@editor/asset-db");class UnknownImporter extends asset_db_1.Importer{get version(){return"1.0.0"}get name(){return"*"}async validate(e){return!0}async import(e){return!1}}exports.default=UnknownImporter;

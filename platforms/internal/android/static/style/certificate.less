@@ -1,0 +1,46 @@
+#certificate {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    ui-prop > *[slot='content'] {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    ui-prop > *[slot='content'] > ui-prop {
+        --left-width: 20%; // 内部嵌套 ui-prop 组件的 label 长度,如若不希望面板变宽时 label 变得越来越宽，可以给它指定一个固定值
+        max-width: 48%; // 内部嵌套 ui-prop 组件的最大宽度
+        width: 200px;
+        height: 2em;
+        flex-grow: 1; // 设置为可伸缩
+        margin-right: 2%;
+        margin-bottom: 5px; // 内部组件的 margin-bottom
+    }
+    ui-prop {
+        margin: 10px 0;
+    }
+    ui-prop[error] {
+        > ui-label {
+            color: var(--color-danger-fill-weaker);
+        }
+        ui-input,
+        ui-select,
+        ui-file,
+         {
+            border-color: var(--color-danger-fill-weaker);
+        }
+    }
+    main {
+        margin: 15px;
+        hr {
+            border-color: var(--color-default-border-normal);
+        }
+    }
+    footer {
+        ui-button {
+            float: right;
+        }
+    }
+}

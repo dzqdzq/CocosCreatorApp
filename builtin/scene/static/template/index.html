@@ -1,0 +1,46 @@
+<section class="loading">
+    <ui-loading></ui-loading>
+</section>
+<div class="content">
+    <header class="toolbar">
+        <div class="left">
+            <template
+                v-for="item in left"
+            >
+                <plugin
+                    :option="item"
+                ></plugin>
+            </template>
+        </div>
+        <div class="right">
+            <template
+                v-for="item in right"
+            >
+                <plugin
+                    :option="item"
+                ></plugin>
+            </template>
+        </div>
+    </header>
+    <engine-view class="scene"></engine-view>
+    <section class="infobar">
+        <div class="left">
+            <template
+                v-for="item in left"
+            >
+                <plugin
+                    :option="item"
+                ></plugin>
+            </template>
+        </div>
+        <div class="right">
+            <template
+                v-for="item in right"
+            >
+                <plugin
+                    :option="item"
+                ></plugin>
+            </template>
+        </div>
+    </section>
+</div>

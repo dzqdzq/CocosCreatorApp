@@ -1,0 +1,238 @@
+<section @confirm="onConfirm"
+    v-if="options && scenes.length"
+    :disabled="type === 'check'"
+>
+    <ui-prop
+        :error="!!errorMap.name"
+    >
+        <ui-label slot="label" value="i18n:builder.options.name"></ui-label>
+        <div slot="content">
+            <ui-input path="name"
+                :value="options.name"
+            ></ui-input>
+        </div>
+    </ui-prop>
+    <error-info :value="errorMap.name"></error-info>
+
+    <ui-prop
+        :error="!!errorMap.platform"
+    >
+        <ui-label slot="label" value="i18n:builder.options.platform"></ui-label>
+        <div slot="content">
+            <ui-select path="platform"
+                :value="options.platform"
+                :disabled="type !== 'new'"
+            >
+                <option
+                    v-for="(name) in platformOrder"
+                    v-if="platforms[name]"
+                    :key="name"
+                    :value="name"
+                >{{platforms[name]}}</option>
+            </ui-select>
+        </div>
+    </ui-prop>
+    <error-info :value="errorMap.platform"></error-info>
+
+    <ui-prop
+        class="build-path no-wrap"
+        v-if="enableConfig.buildPath !== false"
+        :error="!!errorMap.buildPath"
+    >
+        <ui-label slot="label" value="i18n:builder.options.build_path"></ui-label>
+        <div slot="content">
+            <ui-file
+                style="flex: 2; --open-btn-display: none;"
+                :value="options.buildPath"
+                :tooltip="options.buildPath"
+                path="buildPath"
+                type="directory"
+                protocols="project,file"
+            ></ui-file>
+            <ui-label style="width: 10px; text-align: center;"> / </ui-label>
+            <ui-input
+                :value="options.outputName"
+                :tooltip="options.outputName"
+                path="outputName"
+            ></ui-input>
+            <ui-button
+                @confirm.stop="revealInExplorer"
+            ><ui-icon value="folder-open"></ui-icon></ui-button>
+        </div>
+    </ui-prop>
+    <error-info :value="errorMap.buildPath"></error-info>
+
+    <ui-prop
+        :error="!!errorMap.startScene"
+    >
+        <ui-label slot="label" value="i18n:builder.options.start_scene"></ui-label>
+        <div slot="content">
+            <ui-select path="startScene"
+                :value="options.startScene"
+            >
+                <option
+                    v-for="scene in sceneList"
+                    v-if="!scene.inBundle"
+                    :value="scene.uuid"
+                >{{scene.url}}</option>
+            </ui-select>
+        </div>
+    </ui-prop>
+    <error-info :value="errorMap.startScene"></error-info>
+
+    <ui-prop
+        :error="!!errorMap.scenes"
+    >
+        <ui-label slot="label" value="i18n:builder.options.scenes"></ui-label>
+        <div class="scene-list" slot="content">
+            <div>
+                <div class="fix-box">
+                    <ui-input placeholder="Search..." @change="sceneSearchName = $event.target.value"></ui-input>
+                    <ui-checkbox
+                        :value="_checkSelectAllScenes(scenes, options.scenes)"
+                        @confirm.stop="_onSelectAllScenesConfirm($event)"
+                    >
+                    <ui-label value="i18n:builder.options.select_all"></ui-label>
+                    </ui-checkbox>
+                </div>
+                <div class="scenes-box">
+                    <div
+                        v-for="scene in sceneList"
+                        v-if="!scene.hide"
+                        :home="scene.uuid === options.startScene"
+                        :missing="scene.missing"
+                    >
+                        <ui-checkbox
+                            :disabled="scene.uuid === options.startScene || scene.inBundle"
+                            :value="_checkSelectScene(scene, options.scenes)"
+                            :tooltip="scene.url"
+                            @confirm.stop="_onSelectSceneConfirm($event, scene)"
+                        >
+                            <span class="name">{{scene.url.match(/([^\/.]*).scene$/)[1]}}</span>
+                            <span class="url">({{scene.url}})</span>
+                            <i class="missing" v-if="scene.missing">(missing)</i>
+                        </ui-checkbox>
+                        <ui-button class="transparent"
+                            tooltip="i18n:builder.tips.set_start_scene"
+                            path="startScene"
+                            v-if="!scene.inBundle"
+                            :value="scene.uuid"
+                            :disabled="scene.uuid === options.startScene"
+                        >
+                            <ui-icon class="i-home" value="home"></ui-icon>
+                        </ui-button>
+                        <ui-label v-else tooltip="i18n:builder.tips.scene_in_bundle">Bundle</ui-label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui-prop>
+    <error-info :value="errorMap.scenes"></error-info>
+
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.options.md5_cache"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="md5Cache"
+                :value="options.md5Cache"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.options.main_bundle_compression_type"></ui-label>
+        <div slot="content">
+            <ui-select
+                :value="options.mainBundleCompressionType"
+                @confirm.stop="_onCompressionTypeConfirm($event)"
+            >
+                <option
+                    v-for="(val, key) in compressionTypes"
+                    :value="val"
+                    :title="t('asset_bundle.' + val + '_tooltip')">
+                        {{t('asset_bundle.' + val)}}
+                </option>
+            </ui-select>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.options.main_bundle_is_remote"></ui-label>
+        <div slot="content">
+            <ui-checkbox
+                :disabled="_isRemoteLocked()"
+                path="mainBundleIsRemote"
+                :value="options.mainBundleIsRemote"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label" i18n>builder.options.debug</ui-label>
+        <div slot="content">
+            <ui-checkbox path="debug"
+                :value="options.debug"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label">Source Maps</ui-label>
+        <div slot="content">
+            <ui-checkbox path="sourceMaps"
+                :value="options.sourceMaps"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop class="splash no-wrap">
+        <ui-label i18n slot="label">builder.replace_splash_screen</ui-label>
+        <div slot="content">
+            <ui-checkbox path="replaceSplashScreen"
+                :value="options.replaceSplashScreen"
+            ></ui-checkbox>
+            <ui-icon @click="onSetSplashSetting" value="edit"></ui-icon>
+        </div>
+    </ui-prop>
+
+    <!-- <ui-prop>
+        <ui-label slot="label" i18n>builder.compress_texture</ui-label>
+        <div slot="content">
+            <ui-checkbox
+                :value="options.compressTexture"
+                path="compressTexture"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label" i18n>builder.options.pack_autoAtlas</ui-label>
+        <div slot="content">
+            <ui-checkbox path="packAutoAtlas"
+                :value="options.packAutoAtlas"
+            ></ui-checkbox>
+        </div>
+    </ui-prop> -->
+
+    <ui-prop>
+        <ui-label slot="label" i18n tooltip="i18n:builder.options.experimental_erase_modules_tips">builder.options.experimental_erase_modules</ui-label>
+        <div slot="content">
+            <ui-checkbox path="experimentalEraseModules"
+                :value="options.experimentalEraseModules"
+            ></ui-checkbox>
+            <ui-icon color>experiment</ui-icon>
+        </div>
+    </ui-prop>
+
+    <build-plugin class="plugins"
+        v-for="compInfo in compInfos"
+        :config="compInfo"
+        :options="options"
+        :free="free"
+        :key="compInfo.pkgName + options.platform"
+        :error-map="errorMap"
+        :name="compInfo.pkgName"
+        :type="type"
+    >
+    </build-plugin>
+
+</section>

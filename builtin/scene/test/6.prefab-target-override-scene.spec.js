@@ -1,0 +1,1 @@
+"use strict";const{expect:expect}=require("chai");describe("Prefab的TargetOverride操作测试(直接在场景中测试)",async()=>{const e=await Editor.Message.request("scene","unit-test",{name:"targetOverrideTest"});expect(e).to.true});

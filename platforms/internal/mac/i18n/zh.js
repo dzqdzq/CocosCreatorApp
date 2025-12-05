@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"渲染后端"},make:{label:"生成"},run:{label:"运行"},error:{m1_with_physic_x:"原生 PhysX 暂时不支持苹果 M1 架构设备"}};

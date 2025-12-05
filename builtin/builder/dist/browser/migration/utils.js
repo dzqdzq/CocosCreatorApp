@@ -1,0 +1,1 @@
+"use strict";function compareVersion(e,r,o="."){return"string"!=typeof e||"string"!=typeof r||(e=e.replace(o,"").padStart(3,"0"),r=r.replace(o,"").padStart(3,"0"),Number(e)>Number(r))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.compareVersion=void 0,exports.compareVersion=compareVersion;

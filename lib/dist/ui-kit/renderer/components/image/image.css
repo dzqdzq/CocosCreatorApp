@@ -1,0 +1,105 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+:host {
+  border-radius: 0;
+}
+:host .area,
+:host ui-drag-area {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+:host img {
+  display: none;
+}
+:host img[src] {
+  display: block;
+}
+:host .invalid {
+  display: none;
+}
+:host .placeholder {
+  display: inline-block;
+  flex: 1;
+  color: var(--color-normal-contrast);
+  opacity: 0.3;
+}
+:host(:hover) ui-drag-area {
+  cursor: pointer;
+  color: var(--color-hover-contrast-weaker);
+}
+:host(:hover) .area {
+  border-color: var(--color-hover-border-weaker);
+}
+:host([value]) .area > ui-drag-area:hover .clear {
+  visibility: visible;
+}
+:host([value]) .placeholder {
+  display: none;
+}
+:host[draging] {
+  border: 1px solid var(--color-success-fill);
+  background: var(--color-success-fill);
+}
+:host([focused]) {
+  border-color: var(--color-focus-border-weaker);
+}
+:host([effective]) .area > ui-drag-area {
+  background-color: var(--color-focus-fill);
+}
+:host([effective]) .area > ui-drag-area .value {
+  display: inline;
+}
+:host([effective]) .area > ui-drag-area .placeholder {
+  display: none;
+}
+:host([effective]) .area > .clear {
+  display: var(--show-clear, inline);
+}
+:host([state='allow']) {
+  border-color: var(--color-success-fill);
+}
+:host([state='refused']) {
+  border-color: var(--color-danger-fill);
+}
+:host([invalid]) .area > ui-drag-area {
+  background-color: var(--color-danger-fill);
+}
+:host([invalid]) .area > ui-drag-area .invalid {
+  display: inline-block;
+}
+:host([invalid]) .area > ui-drag-area .value {
+  display: none;
+}
+:host([invalid]) .area > ui-drag-area .placeholder {
+  display: none;
+}
+:host([invalid]) .area > .clear {
+  display: inline;
+}
+:host([missing]) .area ui-drag-area {
+  border-color: var(--color-warn-fill-normal);
+}
+:host([show-alpha]) .area img {
+  background-image: url('ui-kit://image/checkerboard-32x32.png');
+}

@@ -1,0 +1,93 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+:host {
+  display: inline-flex;
+  position: relative;
+  contain: content;
+  cursor: pointer;
+  border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+}
+:host(:last-child) {
+  margin-right: 0;
+}
+::slotted(option) {
+  display: none;
+}
+::slotted(optgroup) {
+  display: none;
+}
+#placeholder {
+  position: absolute;
+  top: calc(var(--size-normal-border) * -1px + 1px);
+  left: 0;
+  padding: 0 2em 0 0.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+select {
+  -webkit-appearance: none;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  outline: 0;
+  border: 0;
+  padding: 0 2em 0 0.8em;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  background: var(--color-normal-fill-weaker);
+  width: 100%;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: calc(var(--size-normal-border) * -1px) 0;
+}
+select option {
+  background: var(---color-normal-fill-emphasis);
+}
+select optgroup {
+  background: var(--color-normal-fill-emphasis);
+}
+:host::after {
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  right: 0.8em;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 7px solid var(--color-normal-contrast);
+  margin-top: -3px;
+}
+:host(:hover) {
+  border-color: var(--color-hover-border);
+}
+:host([focused]) {
+  border-color: var(--color-focus-border);
+}

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"光照贴图",generate:"生成光照贴图",description:"",output:"输出烘焙信息",bakedResult:"烘焙结果",clear:"清空光照贴图",bakedInfo:"烘焙图片结果输出",cancel:"取消烘焙",start:"开始烘焙",end:"烘焙结束",filename:"文件名",birthtime:"创建时间",size:"文件大小",mtime:"修改时间",openWarn:"请在 CocosCreator/偏好设置/实验室中开启烘焙功能"};

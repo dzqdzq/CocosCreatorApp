@@ -1,0 +1,188 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-file></ui-file>
+            <ui-code language="html">
+                &lt;ui-file&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>value</h2>
+            <ui-file :value="filepath"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file value={{filepath}}&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="directory"</h2>
+            <ui-file type="directory"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="directory" protocols="project"</h2>
+            <ui-file type="directory" protocols="project"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="directory" protocols="file, project"</h2>
+            <ui-file type="directory" protocols="file,project"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory" protocols="file,project" &gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="directory" protocols="project" value="project://assets/test"</h2>
+            <ui-file type="directory" protocols="project" value="project://assets/test"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory" protocols="project" value="project://assets/test"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="file"</h2>
+            <ui-file type="file"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="file"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="app"</h2>
+            <ui-file type="app"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="app"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-file type="app" placeholder="i18n:ui-kit.preview.ui.file.placeholder_app"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="app" placeholder="i18n:ui-kit.preview.ui.file.placeholder_app"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>multi</h2>
+            <ui-file multi></ui-file>
+            <ui-code language="html">
+                &lt;ui-file multi&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>extensions</h2>
+            <ui-file extensions="js,ts,txt"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file extensions="js,ts,txt"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-file readonly></ui-file>
+            <ui-code language="html">
+                &lt;ui-file readonly&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-file disabled></ui-file>
+            <ui-code language="html">
+                &lt;ui-file disabled&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <ui-file invalid></ui-file>
+            <ui-code language="html">
+                &lt;ui-file invalid&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>attributes</h2>
+            <ui-code language="typescript">
+                value = ''; // system file path, you can set default value
+                extensions = ''; // filter files by extensions, using ',' join multiple ones
+                type =  "directory" | "file" | "app";
+                multi; // support multiple files selected
+                disabled; // 
+                readonly; // 
+                invalid; // 
+                protocols; // support protocols types, like: 'project'
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>events</h2>
+            <ui-code language="typescript">
+                'change'
+                'confirm' // general case use this event
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.getSet">
+        <div class="row">
+            <h2>file path:</h2>
+            <h4 ref="value"></h4>
+            <ui-file ref="file"
+                :value="filepath"
+                @confirm="confirm($event.target.value)"
+            ></ui-file>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-file ref="file" value="{{filepath}}"
+                        @confirm="confirm($event.target.value)"
+                    &gt;&lt;/ui-file&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    // set value
+                    this.$refs.file.value = '{{filepath}}';
+
+                    // get value
+                    const filepath = this.$refs.file.value;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-file id="file" value="{{filepath}}"&gt;&lt;/ui-file&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#file');
+
+                    // addEventListener
+                    element.addEventListener('confirm', (event)=>{
+                        // get value
+                        const filepath = event.target.value;
+                    });
+
+                    // set value
+                    element.value = '{{filepath}}';
+
+                    // get value
+                    const filepath = element.value;
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

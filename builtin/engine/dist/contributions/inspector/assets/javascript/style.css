@@ -1,0 +1,41 @@
+.asset-javascript {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.asset-javascript .line {
+  display: flex;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.asset-javascript .line > .content {
+  flex: 1;
+}
+.asset-javascript .indent {
+  padding-left: 20px;
+}
+.asset-javascript .indent > ui-label {
+  width: 100px;
+}
+.asset-javascript .indent > ui-select,
+.asset-javascript .indent > ui-input {
+  flex: 1;
+}
+.asset-javascript .assets > ui-asset {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 100%;
+}
+.asset-javascript ui-code {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  border: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+  margin: 0;
+  padding: 10px;
+  font-size: 12px;
+  user-select: text;
+  cursor: auto;
+}

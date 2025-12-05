@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.template=void 0,exports.template='\n<div class="icon">\n    <span class="line"></span>\n    <span class="long"></span>\n    <span class="short"></span>\n    <span class="line second"></span>\n</div>\n';
