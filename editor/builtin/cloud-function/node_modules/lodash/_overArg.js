@@ -1,0 +1,1 @@
+module.exports=function(n,r){return function(t){return n(r(t))}};

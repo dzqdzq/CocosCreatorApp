@@ -1,0 +1,1 @@
+var l="object"==typeof global&&global&&global.Object===Object&&global;module.exports=l;

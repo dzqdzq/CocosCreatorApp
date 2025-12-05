@@ -1,0 +1,56 @@
+<div style="position: absolute; width: 100%; height: 100%; top: 0%; left: 0%; background: rgba(0,0,0,0.6); z-index: 1000;">
+    <style>
+
+        ::-webkit-scrollbar {
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-track {
+	        background-color: transparent;
+        }
+
+        .popup-rectangle {
+            position: relative;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            transform: translate(-50%, -50%);
+            min-height: 24px;
+            max-width: 300px;
+            max-height: 400px;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .confirm-container {
+            background-color: #454545;
+            border: 1px solid #a5a5a5;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .confirm-container>#message {
+            margin: 10px 0 10px 10px;
+            overflow-y: scroll;
+            flex: 1;
+        }
+
+        .confirm-container>#buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px;
+        }
+
+        .confirm-container>#buttons>ui-button {
+            margin-left: 10px;
+        }
+    </style>
+    <div class="popup-rectangle confirm-container">
+        <div id="message" v-html="message"></div>
+        <div id="buttons">
+            <ui-button class="gray" @click="cancelBtnClick">{{cancelbtnstring}}</ui-button>
+            <ui-button class="blue" @click="okBtnClick">{{okbtnstring}}</ui-button>
+        </div>
+    </div>
+</div>
