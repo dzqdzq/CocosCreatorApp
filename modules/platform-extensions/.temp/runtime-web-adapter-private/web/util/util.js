@@ -1,0 +1,1 @@
+export default{compareVersion(t,e){t=t.split("."),e=e.split(".");for(var n=Math.max(t.length,e.length);t.length<n;)t.push("0");for(;e.length<n;)e.push("0");for(let r=0;r<n;r++){var a=parseInt(t[r]),l=parseInt(e[r]);if(l<a)return 1;if(a<l)return-1}return 0}};

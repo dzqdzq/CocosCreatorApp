@@ -1,0 +1,38 @@
+{
+    "name": "feedback",
+    "title": "i18n:feedback.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.help",
+                "group": "engine",
+                "order": 1,
+                "label": "i18n:feedback.title",
+                "message": "open"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            }
+        }
+    },
+    "panels": {
+        "default": {
+            "title": "i18n:feedback.title",
+            "main": "./dist/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 300,
+                "width": 500,
+                "height": 700
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+require("./engine-adapter/window"),window.ccOverride=function(){require("./engine-override/index")};

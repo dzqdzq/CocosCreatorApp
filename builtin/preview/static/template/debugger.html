@@ -1,0 +1,18 @@
+<div id='container'>
+    <div id="designResolutionSizeList">
+        <ui-label value="i18n:preview.project.general.resolution_size"></ui-label>
+        <ui-select
+            :value="resolutionIndex"
+            :index="resolutionIndex"
+            @change="onSelectResolutionSize($event.target.value)">
+            <option v-for="(item, index) in devices" :value="index">{{item}}</option>
+        </ui-select>
+        <ui-label value="i18n:preview.project.general.orientation"></ui-label>
+        <ui-select
+            :value="orientation"
+            @change="onSelectOrientation($event.target.value)">
+            <option v-for="item in optionalOrientation" :value="item">{{item}}</option>
+        </ui-select>
+    </div>
+    <webview id="debugger" src='devtools://devtools/bundled/inspector.html?v8only=true&ws=127.0.0.1:5086/00010002-0003-4004-8005-000600070008'></webview>
+</div>

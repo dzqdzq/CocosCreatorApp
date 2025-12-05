@@ -1,0 +1,1 @@
+import Event from"./Event";export default class TouchEvent extends Event{constructor(t){super(t),this.touches=[],this.targetTouches=[],this.changedTouches=[]}}

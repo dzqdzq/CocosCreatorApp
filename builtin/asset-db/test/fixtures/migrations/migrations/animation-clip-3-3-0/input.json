@@ -1,0 +1,979 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 1,
+    "wrapMode": 1,
+    "events": [],
+    "enableTrsBlending": false,
+    "_duration": 0,
+    "_keys": [
+      [],
+      [
+        0.1
+      ],
+      [
+        0.1,
+        0.2
+      ],
+      [
+        0.1,
+        0.2,
+        0.3
+      ],
+      [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          1
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          }
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 2
+          }
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [],
+        "valueAdapter": {
+          "__id__": 3
+        },
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [],
+        "valueAdapter": {
+          "__id__": 4
+        },
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 5
+          },
+          {
+            "__id__": 6
+          },
+          "materials",
+          0
+        ],
+        "valueAdapter": {
+          "__id__": 7
+        },
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            0.1,
+            0.2
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.1,
+              "y": 0.2
+            },
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.3,
+              "y": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec4",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3,
+              "w": 0.4
+            },
+            {
+              "__type__": "cc.Vec4",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6,
+              "w": 0.7
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Quat",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3,
+              "w": 0.4
+            },
+            {
+              "__type__": "cc.Quat",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6,
+              "w": 0.7
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Color",
+              "r": 1,
+              "g": 2,
+              "b": 3,
+              "a": 4
+            },
+            {
+              "__type__": "cc.Color",
+              "r": 5,
+              "g": 6,
+              "b": 7,
+              "a": 8
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Size",
+              "width": 1,
+              "height": 2
+            },
+            {
+              "__type__": "cc.Size",
+              "width": 3,
+              "height": 4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            0.1,
+            0.2
+          ],
+          "interpolate": false
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.1,
+              "y": 0.2
+            },
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.3,
+              "y": 0.4
+            }
+          ],
+          "interpolate": false
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__id__": 8
+            },
+            {
+              "__id__": 9
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__id__": 10
+            },
+            {
+              "__id__": 11
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__id__": 12
+            },
+            {
+              "__id__": 13
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__id__": 14
+            },
+            {
+              "__id__": 15
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__id__": 16
+            },
+            {
+              "__id__": 17
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "x"
+        ],
+        "data": {
+          "keys": 0,
+          "values": []
+        }
+      },
+      {
+        "modifiers": [
+          "x"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.1,
+              "y": 0.2
+            },
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.3,
+              "y": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "y"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.1,
+              "y": 0.2
+            },
+            {
+              "__type__": "cc.Vec2",
+              "x": 0.3,
+              "y": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "x"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "y"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "x"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec4",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3,
+              "w": 0.4
+            },
+            {
+              "__type__": "cc.Vec4",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6,
+              "w": 0.7
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "y"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Quat",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3,
+              "w": 0.4
+            },
+            {
+              "__type__": "cc.Quat",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6,
+              "w": 0.7
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "r"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Color",
+              "r": 1,
+              "g": 2,
+              "b": 3,
+              "a": 4
+            },
+            {
+              "__type__": "cc.Color",
+              "r": 5,
+              "g": 6,
+              "b": 7,
+              "a": 8
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "b"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Color",
+              "r": 1,
+              "g": 2,
+              "b": 3,
+              "a": 4
+            },
+            {
+              "__type__": "cc.Color",
+              "r": 5,
+              "g": 6,
+              "b": 7,
+              "a": 8
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "width"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Size",
+              "width": 1,
+              "height": 2
+            },
+            {
+              "__type__": "cc.Size",
+              "width": 3,
+              "height": 4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "y"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Size",
+              "width": 1,
+              "height": 2
+            },
+            {
+              "__type__": "cc.Size",
+              "width": 3,
+              "height": 4
+            }
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            0.1,
+            0.2
+          ],
+          "easingMethod": [
+            0.1,
+            0.2,
+            0.3,
+            0.4
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            0.1,
+            0.2
+          ],
+          "easingMethods": [
+            [
+              0.1,
+              0.2,
+              0.3,
+              0.4
+            ],
+            [
+              0.11,
+              0.22,
+              0.33,
+              0.44
+            ]
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6
+            }
+          ],
+          "easingMethod": [
+            0.1,
+            0.2,
+            0.3,
+            0.4
+          ]
+        }
+      },
+      {
+        "modifiers": [
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.1,
+              "y": 0.2,
+              "z": 0.3
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 0.4,
+              "y": 0.5,
+              "z": 0.6
+            }
+          ],
+          "easingMethods": [
+            [
+              0.1,
+              0.2,
+              0.3,
+              0.4
+            ],
+            [
+              0.11,
+              0.22,
+              0.33,
+              0.44
+            ]
+          ]
+        }
+      }
+    ],
+    "_commonTargets": [
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      },
+      {
+        "modifiers": [
+          "position"
+        ]
+      }
+    ],
+    "_hash": 0
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "child"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.MeshRenderer"
+  },
+  {
+    "__type__": "cc.animation.UniformProxyFactory",
+    "passIndex": 2,
+    "uniformName": "color",
+    "channelIndex": 1
+  },
+  {
+    "__type__": "cc.animation.MorphWeightsValueProxy",
+    "subMeshIndex": 1
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "child"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.MeshRenderer"
+  },
+  {
+    "__type__": "cc.animation.UniformProxyFactory",
+    "passIndex": 2,
+    "uniformName": "color",
+    "channelIndex": 1
+  },
+  {
+    "__type__": "cc.CubicSplineNumberValue",
+    "dataPoint": 0.1,
+    "inTangent": 0.2,
+    "outTangent": 0.3
+  },
+  {
+    "__type__": "cc.CubicSplineNumberValue",
+    "dataPoint": -0.4,
+    "inTangent": 0.5,
+    "outTangent": -0.6
+  },
+  {
+    "__type__": "cc.CubicSplineVec2Value",
+    "dataPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.1,
+      "y": 0.2
+    },
+    "inTangent": {
+      "__type__": "cc.Vec2",
+      "x": 0.1,
+      "y": 0.2
+    },
+    "outTangent": {
+      "__type__": "cc.Vec2",
+      "x": 0.1,
+      "y": 0.2
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineVec2Value",
+    "dataPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.2,
+      "y": 0.3
+    },
+    "inTangent": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": -0.9
+    },
+    "outTangent": {
+      "__type__": "cc.Vec2",
+      "x": -0.1,
+      "y": 0.2
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineVec3Value",
+    "dataPoint": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    },
+    "inTangent": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    },
+    "outTangent": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineVec3Value",
+    "dataPoint": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    },
+    "inTangent": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    },
+    "outTangent": {
+      "__type__": "cc.Vec3",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineVec4Value",
+    "dataPoint": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "inTangent": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "outTangent": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineVec4Value",
+    "dataPoint": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "inTangent": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "outTangent": {
+      "__type__": "cc.Vec4",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineQuatValue",
+    "dataPoint": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "inTangent": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "outTangent": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    }
+  },
+  {
+    "__type__": "cc.CubicSplineQuatValue",
+    "dataPoint": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "inTangent": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    },
+    "outTangent": {
+      "__type__": "cc.Quat",
+      "x": 0.1,
+      "y": 0.2,
+      "z": 0.3,
+      "w": 0.4
+    }
+  }
+]

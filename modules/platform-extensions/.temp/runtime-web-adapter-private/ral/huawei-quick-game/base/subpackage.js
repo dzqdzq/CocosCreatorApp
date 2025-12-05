@@ -1,0 +1,1 @@
+let _loadSubpackage=hbs.loadSubpackage.bind(hbs);ral.loadSubpackage=function(a){let e=a;return"object"==typeof a&&((e=Object.assign({},a)).subpackage=a.name),_loadSubpackage.call(this,e)};

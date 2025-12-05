@@ -1,0 +1,1 @@
+import AudioNode from"./AudioNode";class MediaElementAudioSourceNode extends AudioNode{constructor(e,o){super(e),this._options=o}get mediaElement(){return this._options?this._options.mediaElement:null}}export default MediaElementAudioSourceNode;

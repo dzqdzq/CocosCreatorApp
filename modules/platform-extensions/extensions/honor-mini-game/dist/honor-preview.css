@@ -1,0 +1,11 @@
+.honor-preview {
+  margin: 8vw;
+}
+.honor-preview .main {
+  display: flex;
+  justify-content: space-between;
+}
+.honor-preview canvas {
+  width: 100px;
+  height: 100px;
+}

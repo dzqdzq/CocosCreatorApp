@@ -1,0 +1,87 @@
+<html lang="zh" spellcheck="false">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        :root {
+            height: 100%;
+            font-size: 16px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            font-family: sans-serif;
+            line-height: 1.4;
+        }
+
+        .container {
+            min-height: 520px;
+            margin: 0px auto;
+            background-color: #ffffff;
+            max-width: 460px;
+            min-width: 270px;
+            padding: 36px;
+        }
+
+        .container > .body {
+            display: block;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 300px;
+            text-align: center;
+        }
+
+        .container > .body > .row {
+            margin: 24px;
+        }
+        .container > .body > .row.icon .checked {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #edf7e4;
+            color: #5ccc08;
+            font-size: 24px;
+            line-height: 44px;
+            display: inline-block;
+        }
+
+        .container > .body > .row.text {
+            font-weight: 600;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.72);
+        }
+    </style>
+</head>
+<body>
+<div id="container" class="container">
+    <div class="body">
+        <div class="row icon">
+            <span class="checked">✔</span>
+        </div>
+        <div class="row text">
+            <p>Thank you for your participation.The survey has already been completed by you!</p>
+            <p>感谢您的提交，此表单已经被您填写过了！</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 主进程在 window.close() 被调用之后，页面的一些资源和对象已经被销毁了，没有销毁 dom-ready 监听导致报错
+    setTimeout(() => {
+        window.close();
+    }, 10);
+</script>
+</body>
+</html>

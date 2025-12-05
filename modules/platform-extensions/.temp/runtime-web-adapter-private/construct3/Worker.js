@@ -1,0 +1,1 @@
+class Worker{constructor(o,s){this.postMessage=function(o,s){}}}module.exports=Worker;

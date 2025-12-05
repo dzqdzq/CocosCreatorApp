@@ -1,0 +1,1 @@
+import AudioNode from"./AudioNode";import AudioParam from"./AudioParam";class GainNode extends AudioNode{constructor(o,i){super(o),this._gain=i&&i.gain||new AudioParam}get gain(){return this._gain}}export default GainNode;

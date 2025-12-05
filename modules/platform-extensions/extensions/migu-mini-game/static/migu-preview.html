@@ -1,0 +1,16 @@
+<div class="migu-preview">
+    <h2><ui-label value="i18n:migu-mini-game.migu_preview.title"></ui-label></h2>
+    <div class="main">
+        <div class="left">
+            <div>{{tips}}</div>
+        </div>
+        <div class="right">
+            <ui-qrcode 
+                class="preview"
+                size="220px"
+                v-if="previewUrl"
+                :value="previewUrl"
+            ></ui-qrcode>
+        </div>
+    </div>
+</div>

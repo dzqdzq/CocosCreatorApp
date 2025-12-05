@@ -1,0 +1,1 @@
+class PeriodicWave{constructor(e,c){}}export default PeriodicWave;

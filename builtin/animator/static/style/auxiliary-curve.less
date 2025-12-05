@@ -1,0 +1,82 @@
+// 因为辅助曲线区域的实现方式和其它区域不一样，它的 header 和 content 整合在一个组件内，
+// 因此需要给整个区域一个最小高度，以确保折叠的时候还能显示出 header
+@min-height: 30px; 
+
+.auxiliary-left() {
+    .auxiliary-curves {
+        display: flex;
+        flex-direction: column;
+        min-height: @min-height; // required in parent flex layout
+
+        &__header {
+            flex: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__list {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+
+    .auxiliary-curves-list {
+        box-sizing: border-box;
+
+        &-item {
+            box-sizing: border-box;
+            height: 24px;
+            padding: 0 4px 0 22px;
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &:hover {
+                background-color: var(--color-hover-fill);
+                color: var(--color-hover-contrast);
+            }
+
+            &.selected {
+                background-color: #094a5d;
+            }
+
+            &__name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                flex: 1;
+                min-width: 0;
+                margin-right: 16px; // space between `operate` and `name`
+            }
+
+            &__operate {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.auxiliary-right() {
+    .auxiliary-curves-frames {
+        display: flex;
+        flex-direction: column;
+        min-height: @min-height; // required in parent flex layout
+
+        &__header {
+            flex: none;
+        }
+
+        &__content {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+}

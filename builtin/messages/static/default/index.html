@@ -1,0 +1,96 @@
+<div class="content">
+
+    <header>
+        <ui-input></ui-input>
+    </header>
+
+    <section>
+
+        <div class="slider">
+            <ul>
+                <li
+                    v-for="item in map"
+                    :active="message === item"
+                    @click="onTabClick(item)"
+                >{{item.name}}</li>
+            </ul>
+        </div>
+
+        <div class="list">
+            <div class="conditions">
+                <ui-tab value="0"
+                    @confirm="onChangeType($event.target.value)"
+                >
+                    <ui-button>Message</ui-button>
+                    <ui-button>Broadcast</ui-button>
+                </ui-tab>
+            </div>
+
+            <!-- 普通 -->
+            <div class="block"
+               v-if="show"
+            >
+                <header>
+                    <div class="row">
+                        <div class="info">
+                            <div class="message">Message</div>
+                            <div class="description">Description</div>
+                        </div>
+                        <ui-button class="expand"
+                           @click="onChangeExpandState"
+                           tooltip="i18n:messages.tools.expand_or_collapse">
+                            <ui-icon :value="isExpand ? 'collapse' : 'expand'"></ui-icon>
+                        </ui-button>
+                    </div>
+                </header>
+
+                <section
+                    v-if="message"
+                >
+                    <div class="row"
+                        v-for="info,name in message.messages"
+                        v-if="checkShowFlag(name, info)"
+                        :key=`${message.name}:${name}`
+                    >
+                        <div class="background"></div>
+                        <!-- 基础信息 -->
+                        <div class="info">
+                            <ui-icon value="arrow-triangle"
+                                :param="info.doc"
+                                :fold="info.fold"
+                                @click="info.fold = !info.fold"
+                            ></ui-icon>
+                            <div class="message">{{name}}</div>
+                            <div class="description">
+                                <ui-label
+                                    v-if="info.description"
+                                    :value="info.description"
+                                ></ui-label>
+                                <ui-label value="UNKNOWN"
+                                    v-else
+                                ></ui-label>
+                            </div>
+                        </div>
+                        <!-- 展开后显示的参数信息 -->
+                        <div class="doc"
+                             v-show="!info.fold"
+                        >
+                            <ui-markdown>{{info.doc}}</ui-markdown>
+                        </div>
+                        <!-- 展开后显示的代码范例 -->
+                        <div class="example" v-if="!!info.example && !info.fold">
+                            <ui-code language="typescript">
+                                {{ info.example }}
+                            </ui-code>
+                            <ui-button class="copy-code transparent"
+                                @click="onCopyCode(info.example)"
+                            >
+                                <ui-label value="i18n:messages.tools.copy"></ui-label>
+                            </ui-button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>

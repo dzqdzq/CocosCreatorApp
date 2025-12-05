@@ -1,0 +1,101 @@
+{
+    "name": "metrics",
+    "package_version": 2,
+    "version": "1.0.0",
+    "description": "",
+    "author": "Cocos Creator",
+    "editor": ">=3.8.0",
+    "scripts": {
+        "build": "node ./unpack/index.js",
+        "build:x2json": "tsc && node ./dist/convertXlsx2Json.js",
+        "watch": "tsc -w"
+    },
+    "main": "./dist/main.js",
+    "contributions": {
+        "server": "./dist/contributions/server.js",
+        "footer": {
+            "left": "./dist/contributions/left.js"
+        },
+        "messages": {
+            "metrics:init": {
+                "methods": [
+                    "init"
+                ]
+            },
+            "metrics:trackEvent": {
+                "methods": [
+                    "trackEvent"
+                ]
+            },
+            "metrics:trackException": {
+                "methods": [
+                    "trackException"
+                ]
+            },
+            "metrics:trackProcessMemory": {
+                "methods": [
+                    "trackProcessMemory"
+                ]
+            },
+            "metrics:trackTimeStart": {
+                "methods": [
+                    "trackTimeStart"
+                ]
+            },
+            "metrics:trackTimeEnd": {
+                "methods": [
+                    "trackTimeEnd"
+                ]
+            },
+            "metrics:_trackEventWithTimer": {
+                "methods": [
+                    "_trackEventWithTimer"
+                ]
+            },
+            "metrics:_sendEventGroup": {
+                "methods": [
+                    "_sendEventGroup"
+                ]
+            },
+            "metrics:_trackCrashEvent": {
+                "methods": [
+                    "_trackCrashEvent"
+                ]
+            },
+
+            "query-google-v4-data": {
+                "methods": [
+                    "query-google-v4-data"
+                ]
+            },
+            "query-google-metrics-v4-html": {
+                "methods": [
+                    "query-google-metrics-v4-html"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "appID": {
+                    "default": "681395864"
+                },
+                "googleG4.openDevTools": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "googleG4.id": {
+                    "type": "String",
+                    "default": ""
+                },
+                "analytics-debug": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "disable-analytics-ga": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        }
+    }
+}

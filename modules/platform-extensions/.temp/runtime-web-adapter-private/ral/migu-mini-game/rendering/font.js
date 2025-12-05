@@ -1,0 +1,1 @@
+import _UTIL from"../../util";let _rt=loadRuntime();_UTIL.exportTo("loadFont",_rt,ral,function(){window.jsb&&"function"==typeof jsb.loadFont&&(ral.loadFont=jsb.loadFont)});

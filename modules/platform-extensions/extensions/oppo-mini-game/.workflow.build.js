@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.file=function(){return[{source:"../../.temp/runtime-web-adapter-private/dist/common",dist:"./static/adapter"},{source:"../../.temp/runtime-web-adapter-private/dist/platforms/oppo-mini-game",dist:"./static/adapter/oppo-mini-game"}]},exports.unpacked=function(){return["./static/build-template"]};

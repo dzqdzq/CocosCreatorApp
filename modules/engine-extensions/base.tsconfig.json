@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/tsconfig.json",
+    "types": ["node", "@editor/library-type/protected"],
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["dom", "esnext"],
+        "module": "CommonJS",
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "experimentalDecorators": true
+    }
+}

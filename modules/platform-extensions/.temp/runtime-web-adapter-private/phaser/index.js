@@ -1,0 +1,1 @@
+window.HTMLCanvasElement=require("./HTMLCanvasElement.js");let oldCreateElement=document.createElement;document.createElement=function(e){return"canvas"===e?new window.HTMLCanvasElement:oldCreateElement(e)},window.scrollTo=function(){console.warn("The HTML DOM scrollTo() method is not supported!")};

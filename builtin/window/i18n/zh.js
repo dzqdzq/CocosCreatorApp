@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"窗口管理器",description:"窗口管理器",configure:{zoomLevel:"默认窗口缩放级别",zoomLevelTips:"调整所有窗口的默认缩放级别。\n数值每增加或减少 1，表示放大或缩小 20%，即缩放倍数 =1.2^ 默认窗口缩放级别（支持输入小数以使用更细的粒度调整缩放级别）"}};

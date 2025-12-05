@@ -1,0 +1,1 @@
+"use strict";const join=require("path")["join"],writeFileSync=require("fs-extra")["writeFileSync"];exports.tsc=function(){return[]},exports.less=function(){return[]},exports.file=function(){return[{source:"./modules/editor",dist:"../../node_modules/editor"}]},exports.npm=function(){return[]};

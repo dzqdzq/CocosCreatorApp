@@ -1,0 +1,1 @@
+let _rt=loadRuntime();window.jsb&&jsb.setPreferredFramesPerSecond?ral.setPreferredFramesPerSecond=jsb.setPreferredFramesPerSecond.bind(jsb):_rt.setPreferredFramesPerSecond?ral.setPreferredFramesPerSecond=_rt.setPreferredFramesPerSecond.bind(_rt):ral.setPreferredFramesPerSecond=function(){console.error("The setPreferredFramesPerSecond is not define!")};

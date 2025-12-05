@@ -1,0 +1,1 @@
+import HTMLElement from"./HTMLElement.js";export default class HTMLHeadElement extends HTMLElement{parentNode=null;constructor(e){super("HEAD"),this.parentNode=e}}

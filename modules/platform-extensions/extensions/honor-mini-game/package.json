@@ -1,0 +1,40 @@
+{
+    "name": "honor-mini-game",
+    "title": "i18n:honor-mini-game.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "honor mini game platform plugin",
+    "main": "./dist/browser/index.js",
+    "contributions": {
+        "builder": "./dist/build.js",
+        "messages": {
+            "update-rpk-path": {
+                "methods": [
+                    "preview.update-rpk-path"
+                ]
+            },
+            "run": {
+                "methods": [
+                    "run"
+                ]
+            }
+        }
+    },
+    "panels": {
+        "preview": {
+            "title": "honor-preview",
+            "main": "./dist/preview/index.js",
+            "type": "simple",
+            "flags": {
+                "resizable": true
+            },
+            "size": {
+                "min-width": 500,
+                "min-height": 400,
+                "width": 500,
+                "height": 400
+            }
+        }
+    }
+}

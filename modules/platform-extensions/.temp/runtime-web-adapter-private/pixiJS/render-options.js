@@ -1,0 +1,1 @@
+Object.defineProperty(PIXI.settings.RENDER_OPTIONS,"width",{get(){return window.innerWidth},set(e){}}),Object.defineProperty(PIXI.settings.RENDER_OPTIONS,"height",{get(){return window.innerHeight},set(e){}});

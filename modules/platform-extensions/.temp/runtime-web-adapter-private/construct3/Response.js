@@ -1,0 +1,1 @@
+import _UTIL from"../util.js";class Response{constructor(r,t){this._blob=r,this._arrayBuffer=this._blob.arrayBuffer(),this._text=_UTIL.arraybufferToString(this._arrayBuffer)}blob=function(){return this._blob};text=function(){return this._text};arrayBuffer=function(){return this._arrayBuffer}}module.exports=Response;

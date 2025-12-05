@@ -1,0 +1,11 @@
+{
+    "name": "fb-instant-games",
+    "title": "i18n:fb-instant-games.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Facebook Instant Games platform plugin",
+    "contributions": {
+        "builder": "./dist/builder.js"
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "name": "window",
+    "title": "i18n:window.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:window.description",
+
+    "main": "./dist/browser.js",
+
+    "contributions": {
+        "messages": {
+            "focus-window-zoom-in": {
+                "methods": [
+                    "onFocusWindowZoomIn"
+                ]
+            },
+            "focus-window-zoom-out": {
+                "methods": [
+                    "onFocusWindowZoomOut"
+                ]
+            },
+            "focus-window-zoom-to-initial": {
+                "methods": [
+                    "onFocusWindowZoomToInitial"
+                ]
+            },
+            "window-zoom-level-change": {
+                "methods": [
+                    "onWindowZoomLevelChange"
+                ]
+            }
+        },
+        "preferences": {
+            "custom": "./dist/contributions/window.js"
+        },
+        "shortcuts": [
+            {
+                "message": "focus-window-zoom-in",
+                "win": "ctrl+shift++",
+                "mac": "cmd+shift++"
+            },
+            {
+                "message": "focus-window-zoom-in",
+                "win": "ctrl+shift+=",
+                "mac": "cmd+shift+="
+            },
+            {
+                "message": "focus-window-zoom-out",
+                "win": "ctrl+shift+-",
+                "mac": "cmd+shift+-"
+            },
+            {
+                "message": "focus-window-zoom-to-initial",
+                "win": "ctrl+shift+0",
+                "mac": "cmd+shift+0"
+            }
+        ]
+    }
+}

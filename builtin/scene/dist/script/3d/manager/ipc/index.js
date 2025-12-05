@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const ipc=(isSceneNative?require("./native/ipc"):require("./web/ipc")).default;exports.default=ipc;

@@ -1,0 +1,325 @@
+:host {
+  height: 100%;
+  overflow: hidden;
+}
+.texture-compress {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.texture-compress .flex-spacing-between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.texture-compress .flex-spacing-between > span:first-child {
+  flex: 1;
+  display: flex;
+}
+.texture-compress .flex-spacing-between ui-input {
+  flex: 1;
+}
+.texture-compress .operate {
+  visibility: hidden;
+}
+.texture-compress .operate:hover {
+  cursor: pointer;
+}
+.texture-compress > header {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-default-border);
+}
+.texture-compress > header .tab-item {
+  padding: 4px 4px 2px 0;
+  margin-right: 4px;
+  border-bottom: 2px solid transparent;
+  box-sizing: border-box;
+  height: 24px;
+  display: inline-block;
+}
+.texture-compress > header .tab-item[active] {
+  border-bottom-color: var(--color-normal-contrast-emphasis);
+  color: var(--color-primary-contrast-weaker);
+}
+.texture-compress > header .tab-item:hover {
+  color: var(--color-primary-contrast-weaker);
+  cursor: pointer;
+}
+.texture-compress > .content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  position: relative;
+}
+.texture-compress > .content > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.texture-compress .toolbar {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  color: var(--color-normal-contrast-emphasis);
+}
+.texture-compress .toolbar ui-prop {
+  flex: 1;
+}
+.texture-compress .toolbar ui-prop > div {
+  display: flex;
+  position: relative;
+}
+.texture-compress .toolbar ui-prop > div ui-button[active] {
+  color: var(--color-primary-fill-weaker);
+}
+.texture-compress .toolbar ui-input {
+  flex: 1;
+}
+.texture-compress .toolbar ui-button {
+  margin-left: 8px;
+}
+.texture-compress .config-wrap {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 24px;
+  height: 100%;
+  position: relative;
+}
+.texture-compress .config-wrap > ui-section {
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+.texture-compress .config-wrap > ui-section[twinkle='shake'] {
+  animation-name: shake;
+}
+.texture-compress .config-header {
+  display: flex;
+  justify-content: space-between;
+}
+.texture-compress .config-header div {
+  flex: 1;
+  width: 100%;
+}
+.texture-compress .config-header ui-icon[value='lock'] {
+  margin-left: 4px;
+}
+.texture-compress .config-header .child-margin-right {
+  display: flex;
+  justify-content: space-around;
+}
+.compress-presets {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.group-tab {
+  display: flex;
+  border: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+  border-right: none;
+}
+.group-tab > div {
+  border-right: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 4px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-normal-contrast-emphasis);
+}
+.group-item .formats header ui-icon {
+  cursor: pointer;
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  padding: 2px 4px 2px;
+  --ui-prop-margin-left: 0;
+  border: 1px transparent;
+}
+.group-item .formats .format-item .build-prop,
+.group-item .formats .format-item ui-prop {
+  width: 100%;
+  --left-width: 0;
+}
+.group-item .formats .format-item .custom.missing {
+  font-style: italic;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: var(--color-warn-fill);
+}
+.group-item .formats .format-item:hover {
+  background-color: var(--color-active-border-normal);
+  cursor: pointer;
+}
+.group-item .formats .format-item[active] {
+  background-color: var(--color-info-fill-important);
+}
+.group-item .formats .format-name {
+  width: 100%;
+}
+.group-item .formats .format-name__label {
+  max-width: 100%;
+}
+.group-item .formats .format-name .custom {
+  font-style: italic;
+  opacity: 0.6;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+.group-item .formats ui-prop {
+  margin-top: 0;
+}
+.group-item .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+  width: 100%;
+  margin-top: 10px;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}
+.group-item .format-item[readonly="true"],
+.group-item .format-item[disabled="true"] {
+  pointer-events: none;
+}
+.group-item .overwrite header {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.group-item .overwrite .container {
+  margin-top: 4px;
+}
+.group-item .overwrite .container .platform {
+  display: flex;
+  padding: 4px 4px 0 6px;
+}
+.group-item .overwrite .container .platform:hover {
+  background-color: var(--color-default-fill-important);
+}
+.group-item .overwrite .container .platform[active] {
+  background-color: var(--color-info-fill-important);
+}
+.group-item .overwrite .container .platform[readonly="readonly"] {
+  pointer-events: none;
+}
+.group-item .overwrite .formats {
+  width: 75%;
+}
+.group-item .overwrite .formats ui-prop {
+  --left-width: 25%;
+  margin-top: 0;
+}
+@keyframes shake {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  20% {
+    transform: scale3d(0.98, 0.98, 0.98) rotate3d(0, 0, 1, -2deg);
+  }
+  40% {
+    transform: scale3d(1.02, 1.02, 1.02) rotate3d(0, 0, 1, 2deg);
+  }
+  60% {
+    transform: scale3d(1.02, 1.02, 1.02) rotate3d(0, 0, 1, -2deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+.compress-format header {
+  display: flex;
+}
+.compress-format header ui-input {
+  flex: 1;
+}
+.compress-format .empty-content {
+  height: 30px;
+  color: var(--color-default-fill-weaker);
+  text-align: center;
+  margin-top: 18px;
+}
+.compress-format .custom-format {
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+.compress-format .custom-format[twinkle='shake'] {
+  animation-name: shake;
+}
+.compress-format .custom-format .config-content {
+  padding-top: 4px;
+}
+.compress-format .custom-format ui-prop.config-item {
+  margin-bottom: 4px;
+}
+.compress-format .custom-format ui-prop.config-item > div {
+  display: flex;
+  flex: 1;
+}
+.compress-format .custom-format .mask {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.compress-format .custom-format ui-select {
+  display: flex;
+  flex: 1;
+}
+.compress-format .custom-format ui-input {
+  flex: 1;
+}

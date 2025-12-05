@@ -1,0 +1,1 @@
+class ImageData{constructor(t,e,a){"number"==typeof t&&"number"==typeof e&&(a=e,e=t,t=null),this._data=null===t?new Uint8ClampedArray(e*a*4):t,this._width=e,this._height=a}get data(){return this._data}get width(){return this._width}get height(){return this._height}}module.exports=ImageData;

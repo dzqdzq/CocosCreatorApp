@@ -1,0 +1,1 @@
+import resolve from"@rollup/plugin-node-resolve";import typescript from"@rollup/plugin-typescript";import commonjs from"@rollup/plugin-commonjs";export default{input:"./dist/script/3d/manager/startup/init-manager.js",output:{file:"./dist/script/3d/manager/startup/init-manager-rollup.js",format:"cjs"},plugins:[commonjs()]};

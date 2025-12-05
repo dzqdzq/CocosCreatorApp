@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "module": "System",
+        "strict": true,
+        "esModuleInterop": true,
+        "inlineSources": true,
+        "declaration": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "types": [],
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "tests",
+        "dist",
+        "distribution"
+    ]
+}

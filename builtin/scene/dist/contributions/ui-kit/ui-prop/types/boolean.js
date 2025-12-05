@@ -1,0 +1,4 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const dum_element_base_1=require("../dum-element-base"),utils_1=require("../utils");class Boolean extends dum_element_base_1.DumpElementBase{type=["Boolean"];$checkbox=null;_listeners=["change"];parseAndSetData(l,a){return a.value=l,Reflect.has(a,"values")&&a.values.forEach((e,t)=>{a.values[t]=l}),!0}change(e,t){e.target&&void 0!==(e=e.target.value)&&this.parseAndSetData(e,t)}template=`
+        <ui-label slot="label"></ui-label>
+        <ui-checkbox slot="content"></ui-checkbox>
+    `;style="";mounted(e){this.$checkbox=e.querySelector("ui-checkbox")}ready(){super.ready()}update(e){super.update(e),this.$checkbox&&(this.$checkbox.value=e.value,(0,utils_1.setElementReadonly)(e,this.$checkbox),(0,utils_1.setElementInvalid)(e,this.$checkbox))}}exports.default=Boolean;
