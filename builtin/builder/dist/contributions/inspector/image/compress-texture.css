@@ -1,0 +1,174 @@
+.group-tab {
+  display: flex;
+  border: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+  border-right: none;
+}
+.group-tab > div {
+  border-right: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 4px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-normal-contrast-emphasis);
+}
+.group-item .formats header ui-icon {
+  cursor: pointer;
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  padding: 2px 4px 2px;
+  --ui-prop-margin-left: 0;
+  border: 1px transparent;
+}
+.group-item .formats .format-item .build-prop,
+.group-item .formats .format-item ui-prop {
+  width: 100%;
+  --left-width: 0;
+}
+.group-item .formats .format-item .custom.missing {
+  font-style: italic;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: var(--color-warn-fill);
+}
+.group-item .formats .format-item:hover {
+  background-color: var(--color-active-border-normal);
+  cursor: pointer;
+}
+.group-item .formats .format-item[active] {
+  background-color: var(--color-info-fill-important);
+}
+.group-item .formats .format-name {
+  width: 100%;
+}
+.group-item .formats .format-name__label {
+  max-width: 100%;
+}
+.group-item .formats .format-name .custom {
+  font-style: italic;
+  opacity: 0.6;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+.group-item .formats ui-prop {
+  margin-top: 0;
+}
+.group-item .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+  width: 100%;
+  margin-top: 10px;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}
+.group-item .format-item[readonly="true"],
+.group-item .format-item[disabled="true"] {
+  pointer-events: none;
+}
+.group-item .overwrite header {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.group-item .overwrite .container {
+  margin-top: 4px;
+}
+.group-item .overwrite .container .platform {
+  display: flex;
+  padding: 4px 4px 0 6px;
+}
+.group-item .overwrite .container .platform:hover {
+  background-color: var(--color-default-fill-important);
+}
+.group-item .overwrite .container .platform[active] {
+  background-color: var(--color-info-fill-important);
+}
+.group-item .overwrite .container .platform[readonly="readonly"] {
+  pointer-events: none;
+}
+.group-item .overwrite .formats {
+  width: 75%;
+}
+.group-item .overwrite .formats ui-prop {
+  --left-width: 25%;
+  margin-top: 0;
+}
+.compress-texture {
+  margin-bottom: 10px;
+}
+.platform-setting {
+  margin: 4px;
+  border: 1px solid var(--color-default-border);
+  background: var(--color-normal-fill-emphasis);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  position: relative;
+}
+.platform-setting > ui-icon {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+ui-prop > div[slot="content"] {
+  display: flex;
+}
+ui-prop > div[slot="content"] ui-select {
+  flex: 1;
+}
+ui-prop > div[slot="content"] ui-select + ui-button {
+  margin-left: 10px;
+}
+.warn {
+  color: #fbd461;
+}

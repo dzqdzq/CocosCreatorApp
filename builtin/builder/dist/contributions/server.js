@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.get=void 0;const fs_extra_1=require("fs-extra"),path_1=require("path");exports.get=[{url:"/build/**/*",async handle(e,t,r){e=(0,path_1.join)(Editor.Project.path,e.url);if(!(0,fs_extra_1.existsSync)(e))return r();t.sendFile(e)}}];

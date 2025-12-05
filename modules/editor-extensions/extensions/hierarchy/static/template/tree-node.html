@@ -1,0 +1,100 @@
+<div
+    class="tree-node"
+    :state="state"
+    :is-scene="node.isScene"
+    :is-prefab-root="node.isPrefabRoot"
+    :is-prefab-node="node.prefab.state"
+    @click.right.stop="popupMenu(node)"
+    @click.stop="click(node, $event)"
+    @dblclick="dblclick(node)"
+    @dragenter="dragEnter($event)"
+    @mouseenter="calcEditPrefabIconStyle"
+>
+    <ui-drag-item
+        class="drag-item"
+        type="cc.Node"
+        :draggable="draggable"
+        :style="style"
+        @dragstart="dragStart(node, $event)"
+        @dragover="dragOver(node, $event)"
+        @dragleave="dragLeave(node, $event)"
+        @drop="drop(node, $event)"
+    >
+        <ui-icon class="arrow" value="arrow-triangle" @click.stop="toggle(node,$event)" @dblclick.stop></ui-icon>
+
+        <ui-icon
+            class="root"
+            value="scene"
+            color="true"
+            tooltip="i18n:hierarchy.menu.locateAsset"
+            v-if="node.isScene"
+            @click="twinkle(node)"
+        ></ui-icon>
+
+        <ui-icon
+            class="root"
+            value="prefab"
+            color="true"
+            tooltip="i18n:hierarchy.menu.locateAsset"
+            v-if="node.isPrefabRoot"
+            @click="twinkle(node)"
+        ></ui-icon>
+
+        <div class="name" v-if="state!=='rename'" @click="rename(node,$event)">
+            <label class="label">{{node.name}}</label>
+            <ui-icon
+                class="prefab-added-node"
+                value="add"
+                tooltip="i18n:hierarchy.menu.added_prefab_node_tooltip"
+                v-if="node.prefab.isAddedChild"
+            ></ui-icon>
+        </div>
+
+        <div class="rename" v-else :state="renameInputState" :title="t('menu.' + renameInputState)">
+            <input
+                ref="renameInput"
+                :value="renameValue"
+                @input="renameChange()"
+                @blur="renameSubmit()"
+                @keydown.stop
+                @keydown.enter="renameSubmit()"
+                @keydown.esc="renameCancel()"
+            />
+        </div>
+
+        <section class="loading" v-if="state==='loading'">
+            <ui-loading></ui-loading>
+        </section>
+
+        <ui-icon
+            class="lock"
+            tooltip="i18n:hierarchy.menu.lockInScene"
+            v-if="!node.isScene && !node.isPrefabRoot"
+            :value="(node.locked || showInsideLock(node))?'lock':'unlock'"
+            :locked="node.locked"
+            :inside-locked="showInsideLock(node)"
+            @click.stop="toggleLock(node, $event)"
+        ></ui-icon>
+        <ui-icon
+            class="edit"
+            value="edit"
+            tooltip="i18n:hierarchy.menu.edit_prefab"
+            v-if="showEditPrefabIcon"
+            :style="editPrefabIconStyle"
+            @click.stop="editPrefab(node)"
+        ></ui-icon>
+    </ui-drag-item>
+    <div class="tree-node" :style="addInputStyle" v-if="state==='add'">
+        <div class="rename" :state="addInputState" :title="t('menu.' + addInputState)">
+            <input
+                ref="addInput"
+                :value="addValue"
+                @input="addChange()"
+                @blur="addSubmit()"
+                @keydown.stop
+                @keydown.enter="addSubmit()"
+                @keydown.esc="addCancel()"
+            />
+        </div>
+    </div>
+</div>

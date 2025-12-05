@@ -1,0 +1,5 @@
+"use strict";function update(t){var e=this;e._dump=t;const u=e.$this.renderInfo.panel;var l=e.$.label;u.setLabel(t,l),e.$.numList.forEach(e=>{u.setVecInput(t,e)})}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){var t=this;const u=e.target.getAttribute("local"),l=e.target.value;u&&u in t._dump.value&&(t._dump.value[u]=l,"values"in t._dump)&&t._dump.values.forEach(e=>{e[u]=l})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-num-input preci="6" label="X" slot="content" style="margin-right: 4px;" local="x"></ui-num-input>
+<ui-num-input preci="6" label="Y" slot="content" local="y"></ui-num-input>
+`,exports.$={label:"ui-label",numList:"ui-num-input"},exports.update=update,exports.ready=ready;

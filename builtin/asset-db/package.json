@@ -1,0 +1,478 @@
+{
+    "name": "asset-db",
+    "title": "i18n:asset-db.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:asset-db.description",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "server": "./contributions/server.js",
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:asset-db.debug-mode",
+                "message": "open-devtools",
+                "group": "operation"
+            }
+        ],
+        "messages": {
+            "asset-db:ready": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.asset_db_ready",
+                "example": "i18n:asset-db.contributions.messages.example.asset_db_ready",
+                "methods": [
+                    "ready"
+                ]
+            },
+            "asset-db:close": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.asset_db_close",
+                "example": "i18n:asset-db.contributions.messages.example.asset_db_close",
+                "methods": [
+                    "close"
+                ]
+            },
+            "asset-db:asset-add": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.asset_db_asset_add",
+                "example": "i18n:asset-db.contributions.messages.example.asset_db_asset_add"
+            },
+            "asset-db:asset-change": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.asset_db_asset_change",
+                "example": "i18n:asset-db.contributions.messages.example.asset_db_asset_change"
+            },
+            "asset-db:asset-delete": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.asset_db_asset_delete",
+                "example": "i18n:asset-db.contributions.messages.example.asset_db_asset_delete"
+            },
+            "project:change-high-quality": {
+                "methods": [
+                    "projectChangeHighQuality"
+                ]
+            },
+            "query-ready": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_ready",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_ready",
+                "example": "i18n:asset-db.contributions.messages.example.query_ready",
+                "methods": [
+                    "queryReady"
+                ]
+            },
+            "create-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.create_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.create_asset",
+                "example": "i18n:asset-db.contributions.messages.example.create_asset",
+                "methods": [
+                    "createAsset"
+                ]
+            },
+            "new-asset": {
+                "description": "i18n:asset-db.contributions.messages.description.create_asset",
+                "methods": [
+                    "newAsset"
+                ]
+            },
+            "import-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.import_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.import_asset",
+                "example": "i18n:asset-db.contributions.messages.example.import_asset",
+                "methods": [
+                    "importAsset"
+                ]
+            },
+            "copy-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.copy_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.copy_asset",
+                "example": "i18n:asset-db.contributions.messages.example.copy_asset",
+                "methods": [
+                    "copyAsset"
+                ]
+            },
+            "move-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.move_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.move_asset",
+                "example": "i18n:asset-db.contributions.messages.example.move_asset",
+                "methods": [
+                    "moveAsset"
+                ]
+            },
+            "rename-asset": {
+                "description": "i18n:asset-db.contributions.messages.description.rename_asset",
+                "methods": [
+                    "renameAsset"
+                ]
+            },
+            "delete-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.delete_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.delete_asset",
+                "example": "i18n:asset-db.contributions.messages.example.delete_asset",
+                "methods": [
+                    "deleteAsset"
+                ]
+            },
+            "open-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.open_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.open_asset",
+                "example": "i18n:asset-db.contributions.messages.example.open_asset",
+                "methods": [
+                    "openAsset"
+                ]
+            },
+            "save-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.save_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.save_asset",
+                "example": "i18n:asset-db.contributions.messages.example.save_asset",
+                "methods": [
+                    "saveAsset"
+                ]
+            },
+            "save-asset-meta": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.save_asset_meta",
+                "doc": "i18n:asset-db.contributions.messages.doc.save_asset_meta",
+                "example": "i18n:asset-db.contributions.messages.example.save_asset_meta",
+                "methods": [
+                    "saveAssetMeta"
+                ]
+            },
+            "reimport-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.reimport_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.reimport_asset",
+                "example": "i18n:asset-db.contributions.messages.example.reimport_asset",
+                "methods": [
+                    "reimportAsset"
+                ]
+            },
+            "refresh-asset": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.refresh_asset",
+                "doc": "i18n:asset-db.contributions.messages.doc.refresh_asset",
+                "example": "i18n:asset-db.contributions.messages.example.refresh_asset",
+                "methods": [
+                    "refreshAsset"
+                ]
+            },
+            "refresh-all-effect": {
+                "methods": [
+                    "refreshAllEffect"
+                ]
+            },
+            "query-path": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_path",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_path",
+                "example": "i18n:asset-db.contributions.messages.example.query_path",
+                "methods": [
+                    "queryPath"
+                ]
+            },
+            "query-url": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_url",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_url",
+                "example": "i18n:asset-db.contributions.messages.example.query_url",
+                "methods": [
+                    "queryUrl"
+                ]
+            },
+            "query-uuid": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_uuid",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_uuid",
+                "example": "i18n:asset-db.contributions.messages.example.query_uuid",
+                "methods": [
+                    "queryUUID"
+                ]
+            },
+            "query-assets": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_assets",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_assets",
+                "example": "i18n:asset-db.contributions.messages.example.query_assets",
+                "methods": [
+                    "queryAssets"
+                ]
+            },
+            "query-asset-info": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_asset_info",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_asset_info",
+                "example": "i18n:asset-db.contributions.messages.example.query_asset_info",
+                "methods": [
+                    "queryAssetInfo"
+                ]
+            },
+            "query-missing-asset-info": {
+                "methods": [
+                    "queryMissingAssetInfo"
+                ]
+            },
+            "query-asset-meta": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.query_asset_meta",
+                "doc": "i18n:asset-db.contributions.messages.doc.query_asset_meta",
+                "example": "i18n:asset-db.contributions.messages.example.query_asset_meta",
+                "methods": [
+                    "queryAssetMeta"
+                ]
+            },
+            "query-asset-dependinces": {
+                "methods": [
+                    "queryAssetDependencies"
+                ]
+            },
+            "query-asset-used": {
+                "methods": [
+                    "queryAssetUsed"
+                ]
+            },
+            "query-asset-dependencies": {
+                "methods": [
+                    "queryAssetDependencies"
+                ]
+            },
+            "query-asset-users": {
+                "methods": [
+                    "queryAssetUsed"
+                ]
+            },
+            "query-asset-data": {
+                "methods": [
+                    "queryAssetData"
+                ]
+            },
+            "generate-available-url": {
+                "public": true,
+                "description": "i18n:asset-db.contributions.messages.description.generate_available_url",
+                "doc": "i18n:asset-db.contributions.messages.doc.generate_available_url",
+                "example": "i18n:asset-db.contributions.messages.example.generate_available_url",
+                "methods": [
+                    "generateAvailableUrl"
+                ]
+            },
+            "query-asset-mtime": {
+                "methods": [
+                    "queryAssetMtime"
+                ]
+            },
+            "refresh": {
+                "methods": [
+                    "refresh"
+                ]
+            },
+            "is-busy": {
+                "methods": [
+                    "isBusy"
+                ]
+            },
+            "pause": {
+                "methods": [
+                    "pause"
+                ]
+            },
+            "resume": {
+                "methods": [
+                    "resume"
+                ]
+            },
+            "open-devtools": {
+                "methods": [
+                    "open-devtools"
+                ]
+            },
+            "query-db-info": {
+                "methods": [
+                    "query-db-info"
+                ]
+            },
+            "query-db-list": {
+                "methods": [
+                    "query-db-list"
+                ]
+            },
+            "create-asset-dialog": {
+                "methods": [
+                    "create-asset-dialog"
+                ]
+            },
+            "init-asset": {
+                "methods": [
+                    "init-asset"
+                ]
+            },
+            "query-all-importer": {
+                "methods": [
+                    "query-all-importer"
+                ]
+            },
+            "query-all-asset-types": {
+                "methods": [
+                    "query-all-asset-types"
+                ]
+            },
+            "execute-script": {
+                "methods": [
+                    "executeScript"
+                ]
+            },
+            "execute-custom-operation": {
+                "methods": [
+                    "executeCustomOperation"
+                ]
+            },
+            "start-db": {
+                "methods": [
+                    "startDatabase"
+                ]
+            },
+            "stop-db": {
+                "methods": [
+                    "stopDatabase"
+                ]
+            },
+            "notice-reload-editor": {
+                "methods": [
+                    "noticeReloadEditor"
+                ]
+            },
+            "update-config": {
+                "methods": [
+                    "updateConfig"
+                ]
+            },
+            "refresh-all-database": {
+                "methods": [
+                    "refreshAllDatabase"
+                ]
+            },
+            "refresh-default-user-data-config": {
+                "methods": [
+                    "refreshDefaultUserDataConfig"
+                ]
+            },
+            "update-default-user-data": {
+                "methods": [
+                    "updateDefaultUserData"
+                ]
+            },
+            "query-create-list": {
+                "methods": [
+                    "queryCreateList"
+                ]
+            },
+            "query-icon-config-map": {
+                "methods": [
+                    "queryIconConfigMap"
+                ]
+            },
+            "query-asset-config-map": {
+                "methods": [
+                    "queryAssetConfigMap"
+                ]
+            },
+            "query-create-menu-list": {
+                "methods": [
+                    "queryCreateMenuList"
+                ]
+            },
+            "query-asset-userData-config": {
+                "methods": [
+                    "queryAssetUserDataConfig"
+                ]
+            },
+            "query-asset-thumbnail": {
+                "methods": [
+                    "queryAssetThumbnail"
+                ]
+            },
+            "batch-message-handler": {
+                "methods": [
+                    "batchMessageHandler"
+                ]
+            },
+            "show-asset-template-dir": {
+                "methods": [
+                    "showAssetTemplateDir"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "log.level": {
+                    "label": "i18n:asset-db.preferences.log_level",
+                    "default": 3
+                },
+                "ignoreGlob": {
+                    "label": "i18n:asset-db.preferences.ignore_glob",
+                    "default": "",
+                    "message": "notice-reload-editor"
+                },
+                "autoScan": {
+                    "label": "i18n:asset-db.preferences.auto_scan",
+                    "default": true,
+                    "message": "update-config"
+                },
+                "autoOverwriteMeta": {
+                    "label": "i18n:asset-db.preferences.autoOverwriteMeta",
+                    "tooltip": "i18n:asset-db.preferences.autoOverwriteMetaTooltip",
+                    "default": false
+                },
+                "flagReimportCheck": {
+                    "label": "i18n:asset-db.preferences.flagReimportCheck",
+                    "tooltip": "i18n:asset-db.preferences.flagReimportCheckTooltip",
+                    "default": false
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "log.level": {
+                    "ui": "ui-select",
+                    "items": [
+                        {
+                            "label": "i18n:asset-db.preferences.log_level_error",
+                            "value": 1
+                        },
+                        {
+                            "label": "i18n:asset-db.preferences.log_level_warn",
+                            "value": 2
+                        },
+                        {
+                            "label": "i18n:asset-db.preferences.log_level_log",
+                            "value": 3
+                        },
+                        {
+                            "label": "i18n:asset-db.preferences.log_level_debug",
+                            "value": 4
+                        }
+                    ]
+                },
+                "ignoreGlob": {
+                    "ui": "ui-input"
+                },
+                "autoScan": {
+                    "ui": "ui-checkbox"
+                },
+                "autoOverwriteMeta": {
+                    "ui": "ui-checkbox"
+                }
+            },
+            "custom": "./dist/contributions/settings.js",
+            "laboratory": [
+                "flagReimportCheck"
+            ]
+        }
+    }
+}

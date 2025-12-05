@@ -1,0 +1,398 @@
+<section
+    v-if="options && scenes.length"
+    :disabled="type === 'check'"
+>
+    <div class="common" @confirm="onConfirm">
+        <build-prop
+            v-if="!optionConfigs.name.hidden"
+            path="name"
+            :config="optionConfigs.name"
+            :value="options.name"
+            @update="onCommonDataChange"
+        ></build-prop>
+
+        <ui-prop
+            :class="calcPropClass('platform', errorMap.platform)"
+            :message="errorMap.platform"
+        >
+            <ui-label slot="label" :value="optionConfigs.platform.label"></ui-label>
+            <div slot="content">
+                <ui-select path="platform"
+                    :value="options.platform"
+                    :disabled="type !== 'new'"
+                >
+                    <option
+                        v-for="(name) in platformOrder"
+                        v-if="platforms[name]"
+                        :key="name"
+                        :value="name"
+                    >{{t(platforms[name], false)}}</option>
+                    <option
+                        v-if="!platforms[options.platform]"
+                        :value="options.platform"
+                    >{{options.platform}}(missing)</option>
+                </ui-select>
+            </div>
+        </ui-prop>
+
+        <ui-prop
+            :class="'build-path no-wrap ' + calcPropClass('buildPath', errorMap.buildPath || errorMap.outputName)"
+            :message="errorMap.buildPath || errorMap.outputName"
+        >
+            <ui-label slot="label" :value="optionConfigs.buildPath.label"></ui-label>
+            <div slot="content">
+                <ui-file ref="build-path"
+                    style="flex: 2; --open-btn-display: none;"
+                    :tooltip="options.buildPath"
+                    path="buildPath"
+                    type="directory"
+                    protocols="project,file"
+                    @confirm.stop="onBuildPathConfirm"
+                ></ui-file>
+                <ui-label style="width: 10px; text-align: center;"> / </ui-label>
+                <ui-input
+                    :value="options.outputName"
+                    :tooltip="options.outputName || optionConfigs.outputName.description"
+                    path="outputName"
+                ></ui-input>
+                <ui-button class="transparent" type="icon"
+                    @confirm.stop="revealInExplorer"
+                    :disabled="type === 'new'"
+                >
+                    <ui-icon value="folder-open"></ui-icon>
+                </ui-button>
+            </div>
+        </ui-prop>
+
+        <ui-prop
+            :class="calcPropClass('startScene', errorMap.startScene)"
+            :message="errorMap.startScene"
+        >
+            <ui-label slot="label" :value="optionConfigs.startScene.label"></ui-label>
+            <div slot="content">
+                <ui-select path="startScene"
+                    :value="options.startScene"
+                >
+                    <option
+                        v-for="scene in options.scenes"
+                        v-if="!scene.bundle"
+                        :value="scene.uuid"
+                    >{{scene.url}}</option>
+                </ui-select>
+            </div>
+        </ui-prop>
+
+        <ui-prop
+            :class="errorMap.scenes ? 'danger' : ''"
+            :message="errorMap.scenes"
+        >
+            <ui-label slot="label" :value="optionConfigs.scenes.label"></ui-label>
+            <div class="scene-list" slot="content">
+                <div>
+                    <div class="fix-box">
+                        <ui-checkbox
+                            :value="_checkSelectAllScenes(scenes, options.scenes)"
+                            @confirm.stop="_onSelectAllScenesConfirm($event)"
+                        >
+                            <ui-label value="i18n:builder.options.select_all"></ui-label>
+                        </ui-checkbox>
+                        <ui-input placeholder="Search..." @change="sceneSearchName = $event.target.value"></ui-input>
+                    </div>
+                    <div class="scenes-box">
+                        <div
+                            v-for="scene in sceneList"
+                            v-if="!scene.hide"
+                            :home="scene.uuid === options.startScene"
+                            :missing="scene.missing"
+                        >
+                            <ui-checkbox
+                                :disabled="scene.uuid === options.startScene || scene.bundle"
+                                :value="!!scene.bundle || _checkSelectScene(scene, options.scenes)"
+                                :tooltip="scene.url"
+                                @confirm.stop="_onSelectSceneConfirm($event, scene)"
+                            >
+                                <span class="name">{{scene.url.match(/([^\/]*).scene$/)[1]}}</span>
+                                <span class="url">({{scene.url}})</span>
+                                <i class="missing" v-if="scene.missing">(missing)</i>
+                            </ui-checkbox>
+                            <ui-button class="transparent" type="icon"
+                                path="startScene"
+                                v-if="!scene.bundle"
+                                :tooltip="optionConfigs.startScene.label"
+                                :value="scene.uuid"
+                                :disabled="scene.uuid === options.startScene"
+                            >
+                                <ui-icon class="i-home" value="home"></ui-icon>
+                            </ui-button>
+                            <ui-label v-else tooltip="i18n:builder.tips.scene_in_bundle">Bundle</ui-label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui-prop>
+        <ui-section expand>
+            <ui-label slot="header" value="Bundles"></ui-label>
+            <div>
+                <ui-prop
+                    :class="errorMap.bundleConfigs ? 'danger' : ''"
+                    :message="errorMap.bundleConfigs"
+                >
+                    <ui-label slot="label" :value="optionConfigs.bundleConfigs.label"></ui-label>
+                    <div slot="content" class="bundle-list">
+                        <ui-checkbox
+                            :value="_checkSelectAllBundles(bundleList, options.bundleConfigs)"
+                            @confirm.stop="_onSelectAllBundlesConfirm($event)"
+                        >
+                            <ui-label value="i18n:builder.options.select_all"></ui-label>
+                        </ui-checkbox>
+                        <div class="scene-list" v-if="!_checkSelectAllBundles(bundleList, options.bundleConfigs)">
+                            <div class="fix-box">
+                                <ui-input placeholder="Search..." @change="bundleSearchName = $event.target.value"></ui-input>
+                            </div>
+                            <div class="scenes-box">
+                                <div
+                                    v-for="bundle in bundleList"
+                                    v-if="!(bundle.hide)"
+                                    :missing="bundle.missing"
+                                >
+                                    <ui-checkbox
+                                        :disabled="options.buildMode !== 'bundle' && internalBundleList[bundle.name]"
+                                        :value="_checkSelectBundle(bundle, options.bundleConfigs)"
+                                        :tooltip="bundle.root || bundle.name"
+                                        @confirm.stop="_onSelectBundleConfirm($event, bundle)"
+                                    >
+                                        <span class="name">{{ bundle.name === 'main' ? 'Main Bundle' : bundle.name}}</span>
+                                        <span class="url">({{bundle.root || 'internal'}})</span>
+                                        <i class="missing" v-if="bundle.missing">(missing)</i>
+                                    </ui-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </ui-prop>
+
+                <ui-prop
+                    :disabled="!_checkSelectBundle({ name: 'main', output: true }, options.bundleConfigs)"
+                >
+                    <ui-label slot="label" value="i18n:builder.options.main_bundle_config"></ui-label>
+                    <div slot="content">
+                        <ui-prop>
+                            <ui-label slot="label" :value="optionConfigs.mainBundleCompressionType.label"></ui-label>
+                            <div slot="content">
+                                <ui-select
+                                    :value="options.mainBundleCompressionType"
+                                    @confirm.stop="_onCompressionTypeConfirm($event)"
+                                >
+                                    <option
+                                        v-for="(val, key) in compressionTypes"
+                                        :value="val"
+                                        :title="t('asset_bundle.' + val + '_tooltip')">
+                                            {{t('asset_bundle.' + val)}}
+                                    </option>
+                                </ui-select>
+                            </div>
+                        </ui-prop>
+
+                        <ui-prop
+                            v-if="!optionConfigs.mainBundleIsRemote.hidden"
+                            :class="mainBundleIsRemoteWarnTip && type !== 'check' ? 'warn' : ''"
+                            :message="type !== 'check' ? mainBundleIsRemoteWarnTip : ''"
+                        >
+                            <ui-label slot="label" :value="optionConfigs.mainBundleIsRemote.label"></ui-label>
+                            <div slot="content">
+                                <ui-checkbox
+                                    path="mainBundleIsRemote"
+                                    :disabled="_isRemoteLocked()"
+                                    :value="options.mainBundleIsRemote"
+                                ></ui-checkbox>
+                            </div>
+                        </ui-prop>
+                    </div>
+                </ui-prop>
+
+                <build-prop
+                    v-if="!optionConfigs.startSceneAssetBundle.hidden"
+                    path="startSceneAssetBundle"
+                    :config="optionConfigs.startSceneAssetBundle"
+                    :value="options.startSceneAssetBundle"
+                    @update="onCommonDataChange"
+                ></build-prop>
+
+                <ui-prop>
+                    <ui-label slot="label" value="i18n:builder.options.resources_server"></ui-label>
+                    <div slot="content">
+                        <build-prop
+                            v-if="!optionConfigs.useBuiltinServer.hidden"
+                            path="useBuiltinServer"
+                            :config="optionConfigs.useBuiltinServer"
+                            :value="options.useBuiltinServer"
+                            @update="onCommonDataChange"
+                        ></build-prop>
+                        <build-prop
+                            v-if="!optionConfigs.server.hidden"
+                            path="server"
+                            :config="optionConfigs.server"
+                            :value="options.server"
+                            @update="onCommonDataChange"
+                        ></build-prop>
+                    </div>
+                </ui-prop>
+
+                <ui-prop disabled="true">
+                    <ui-label slot="label"
+                        value="i18n:builder.bundleCommonChunk"
+                        tooltip="i18n:builder.bundleCommonChunkTips"
+                    ></ui-label>
+                    <ui-checkbox slot="content"
+                        :value="options.buildMode === 'bundle' ? true : options.bundleCommonChunk"
+                        @confirm="onCommonDataChange('bundleCommonChunk', $event.target.value)"
+                    ></ui-checkbox>
+                </ui-prop>
+            </div>
+        </ui-section>
+        <template v-for="key in commonOptionsKeys"
+            v-if="optionConfigs[key] && !optionConfigs[key].hidden"
+        >
+            <build-prop :path="key"
+                :config="optionConfigs[key]"
+                :value="options[key]"
+                :key="key"
+                @update="onCommonDataChange"
+            ></build-prop>
+        </template>
+
+        <ui-prop class="splash no-wrap"
+            v-if="!optionConfigs.useSplashScreen.hidden"
+        >
+            <ui-label slot="label" :value="optionConfigs.useSplashScreen.label"></ui-label>
+            <div slot="content">
+                <ui-checkbox path="useSplashScreen"
+                    :value="options.useSplashScreen"
+                    :disabled="optionConfigs.useSplashScreen.render.attributes && optionConfigs.useSplashScreen.render.attributes.disabled"
+                ></ui-checkbox>
+                <ui-icon value="edit" @click="onSetSplashSetting" tooltip="i18n:builder.tips.setSplashSetting"></ui-icon>
+            </div>
+        </ui-prop>
+
+        <ui-section expand>
+            <ui-label slot="header" value="i18n:builder.engineConfig"></ui-label>
+            <div class="engine">
+                <div v-if="options.overwriteProjectSettings">
+                    <div class="macroConfig" @confirm.stop="onMacrosConfirm">
+                        <ui-prop tooltip="i18n:builder.options.cleanupImageCacheDesc">
+                            <ui-label slot="label" value="CLEANUP_IMAGE_CACHE"></ui-label>
+                            <ui-select slot="content" path="cleanupImageCache"
+                                :value="overwriteProjectSettings.macroConfig && overwriteProjectSettings.macroConfig.cleanupImageCache || 'inherit-project-setting'"
+                            >
+                                <option value="inherit-project-setting">
+                                    {{ t('inheritProjectSetting') }}
+                                </option>
+                                <option value="on">
+                                    {{ t('on') }}
+                                </option>
+                                <option value="off">
+                                    {{ t('off') }}
+                                </option>
+                            </ui-select>
+                        </ui-prop>
+                    </div>
+                    <div class="includeModules"
+                        @confirm.stop="onModulesConfirm"
+                    >
+                        <ui-prop class="no-wrap"
+                            v-for="(item, physicsType) in physicsConfig"
+                            v-if="item.enable"
+                            :key="physicsType"
+                        >
+                            <ui-label slot="label"
+                                :value="item.config.label"
+                                :tooltip="item.config.description"
+                            ></ui-label>
+                            <div slot="content">
+                                <ui-select :path="physicsType"
+                                    :value="overwriteProjectSettings.includeModules[physicsType] || 'inherit-project-setting'"
+                                >
+                                    <option value="inherit-project-setting">
+                                        {{ t('inheritProjectSetting') }} 
+                                    </option>
+                                    <option 
+                                        v-for="(item, optionKey) in item.config.options"
+                                        :value="optionKey"
+                                    >
+                                        {{ t(item.label, false) || item.label }}
+                                    </option>
+                                </ui-select>
+                            </div>
+                        </ui-prop>
+                        <ui-prop class="modules-item no-wrap" v-if="!nativePlatforms.includes(options.platform) && webGL2DisplayDump && options.overwriteProjectSettings">
+                            <ui-label slot="label"
+                                :value="webGL2DisplayDump.label"
+                                :tooltip="webGL2DisplayDump.description"
+                            ></ui-label>
+                            <ui-select path="gfx-webgl2" slot="content"
+                                :value="options.overwriteProjectSettings.includeModules && options.overwriteProjectSettings.includeModules['gfx-webgl2'] || 'inherit-project-setting'"
+                            >
+                                <option value="inherit-project-setting">
+                                    {{ t('inheritProjectSetting') }}
+                                </option>
+                                <option value="on">
+                                    {{ t('on') }}
+                                </option>
+                                <option value="off">
+                                    {{ t('off') }}
+                                </option>
+                            </ui-select>
+                        </ui-prop>
+                    </div>
+                </div>
+
+                <ui-prop v-if="showNativeBundleMode">
+                    <ui-label slot="label"
+                        value="i18n:builder.options.nativeCodeBundleMode"
+                        tooltip="i18n:builder.options.nativeCodeBundleModeTip"
+                    ></ui-label>
+                    <div slot="content">
+                        <ui-select
+                            path="nativeCodeBundleMode"
+                            :value="options.nativeCodeBundleMode"
+                        >  
+                            <option value="wasm">Wasm</option>
+                            <option value="asmjs">AsmJS</option>
+                            <option value="both">Wasm + AsmJS</option>
+                        </ui-select>
+                    </div>
+                </ui-prop>
+
+                <ui-prop v-if="!optionConfigs.wasmCompressionMode.hidden && showNativeBundleMode && options.nativeCodeBundleMode !== 'asmjs'">
+                    <ui-label slot="label" 
+                        value="i18n:builder.options.wasmCompressionMode"
+                        tooltip="i18n:builder.options.wasmCompressionModeTip"
+                    ></ui-label>
+                    <ui-checkbox slot="content" path="wasmCompressionMode"
+                        :value="wasmCompressionModeValue"
+                        @confirm.stop="onCommonDataChange('wasmCompressionMode', $event.target.value ? 'brotli' : '')"
+                    ></ui-checkbox>
+                </ui-prop>
+            </div>
+        </ui-section>
+
+    </div>
+
+    <build-plugin class="plugins"
+        v-for="compInfo in compInfos"
+        v-if="optionsReady && (compInfo.options || compInfo.panelInfo)"
+        :config="compInfo"
+        :options="options"
+        :free="free"
+        :key="compInfo.pkgName + options.platform"
+        :error-map="errorMap"
+        :name="compInfo.pkgName"
+        :type="type"
+        ref="plugins"
+        @datachange="onPluginUpdate"
+    >
+    </build-plugin>
+
+</section>

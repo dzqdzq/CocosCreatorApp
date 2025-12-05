@@ -1,0 +1,81 @@
+<div class="openharmony">
+    <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.packageName ? 'danger' : ''"
+        :message="pkgErrorMap.packageName"
+    >
+        <ui-label slot="label" value="i18n:openharmony.options.package_name"></ui-label>
+        <ui-input
+            slot="content"
+            path="packageName"
+            :value="pkgOptions.packageName"
+            :placeholder="getDefaultPackageName()"
+        ></ui-input>
+    </ui-prop>
+
+    <!-- <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.apiLevel ? 'danger' : ''"
+        :message="pkgErrorMap.apiLevel"
+    >
+        <ui-label slot="label">Target API Level</ui-label>
+        <div slot="content" style="display: block">
+            <ui-select path="apiLevel" :value="pkgOptions.apiLevel || apiLevels[0]">
+                <template v-for="item in apiLevels">
+                    <option :value="item">{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button @click="onSetSDK">
+                <ui-label value="i18n:openharmony.tips.set_openharmony_sdk"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop> -->
+
+    <ui-prop :class="pkgErrorMap.appABIs ? 'danger' : ''" :message="pkgErrorMap.appABIs">
+        <ui-label slot="label" value="APP ABI" tooltip="i18n:openharmony.tips.appABIs"></ui-label>
+        <div slot="content">
+            <div v-for="abi in appABIList">
+                <ui-checkbox
+                    :value="pkgOptions.appABIs && pkgOptions.appABIs.includes(abi)"
+                    @change.stop="onChangeABI($event, abi)"
+                >
+                    {{abi}}
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- Orientation -->
+    <ui-prop :class="pkgErrorMap.orientation ? 'danger' : ''" :message="pkgErrorMap.orientation"  @change="onChange">
+        <ui-label slot="label" value="i18n:openharmony.options.orientation"></ui-label>
+        <div slot="content" style="display: block">
+            <div>
+                <ui-checkbox
+                    path="orientation.portrait"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.portrait"
+                    tooltip="i18n:openharmony.tips.orientation_portrait"
+                >
+                    <ui-label value="i18n:openharmony.options.portrait"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeLeft"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                    tooltip="i18n:openharmony.tips.orientation_landscape_left"
+                >
+                    <ui-label value="i18n:openharmony.options.landscape_left"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeRight"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                    tooltip="i18n:openharmony.tips.orientation_landscape_right"
+                >
+                    <ui-label value="i18n:openharmony.options.landscape_right"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+</div>

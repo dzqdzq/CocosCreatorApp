@@ -1,0 +1,116 @@
+<div class="build-bundle">
+    <header>
+        <ui-button
+            @click="openBuildPanel()"
+        >
+            <ui-label value="i18n:builder.openBuildPanel"></ui-label>
+        </ui-button>
+        <ui-button
+            :disabled="!logFile"
+            @confirm="openLog"
+            type="icon"
+        >
+            <ui-icon value="log"></ui-icon>
+        </ui-button>
+    </header>
+    <div class="container" v-if="taskMap.length">
+        <ui-prop v-if="bundles && bundles.length">
+            <ui-label slot="label" value="Bundle"></ui-label>
+            <ui-select slot="content"
+                :value="currentBundle && currentBundle.root || bundles[0].root"
+                @confirm="onSelectBundle"
+            >
+                <option v-for="bundle in bundles" 
+                    :value="bundle.root"
+                    :key="bundle.root"
+                >{{bundle.root}}</option>
+            </ui-select>
+        </ui-prop>
+
+        <ui-prop>
+            <ui-label slot="label" value="i18n:builder.options.build_path"></ui-label>
+            <ui-file slot="content" protocols="file, project" type="directory"
+                :value="taskInfo.dest"
+                @confirm="taskInfo.dest == $event.target.value"
+            ></ui-file>
+        </ui-prop>
+
+        <ui-prop>
+            <div slot="label">
+                <ui-label value="i18n:builder.asset_bundle.publishConfig"></ui-label>
+                <ui-icon value="info" :tooltip="bundleBuildPlatformTips"></ui-icon>
+            </div>
+            <div slot="content" class="tasks">
+                <div v-for="task in taskMap">
+                    <ui-checkbox
+                        :value="taskInfo.buildTaskIds.includes(task.id)"
+                        @confirm="onToggleTask($event.target.value, task.id)"
+                    >{{task.options.taskName || task.options.outputName}}</ui-checkbox>
+                    <ui-icon value="edit" @click="openBuildPanel('edit', task.id)"></ui-icon>
+                </div>
+            </div>
+        </ui-prop>
+
+        <div class="tips">
+            <ui-label value="i18n:builder.asset_bundle.bundleBuildTips"></ui-label>
+        </div>
+
+        <footer>
+            <ui-button class="blue"
+                :disabled="!buildTaskFree || !taskInfo.buildTaskIds.length"
+                @confirm="onBuild"
+            ><ui-label value="i18n:builder.build"></ui-label></ui-button>
+        </footer>
+    </div>
+
+    <div class="container empty" v-else>
+        <div class="empty-tips">
+            <div class="tips">
+                <ui-label value="i18n:builder.empty_task_holder"></ui-label>
+            </div>
+            <ui-button class="blue" @click="openBuildPanel('new')">
+                <ui-label value="i18n:builder.new_build_task"></ui-label>
+            </ui-button>
+        </div>
+    </div>
+
+    <div class="mask mask-dark" v-if="maskInfo">
+        <ui-label class="mask-info" :value="maskInfo"></ui-label>
+    </div>
+    <div class="mask" v-else-if="taskInfo.state !== 'none'">
+        <div class="dialog build-process">
+            <header>
+                <ui-label value="i18n:builder.build"></ui-label>
+            </header>
+            <div class="info">
+                <div class="progress" v-if="taskInfo.state !== 'failure'">
+                    <ui-progress
+                        :state="taskInfo.state"
+                        :success="taskInfo.state === 'success'"
+                        :value="((taskInfo.progress || 0) * 100).toFixed(0)"
+                    ></ui-progress>
+                    <ui-label :value="taskInfo.message"></ui-label>
+                </div>
+
+                <div class="error" v-else>
+                    <div class="title">
+                        <ui-label value="i18n:builder.buildFailed"></ui-label>
+                    </div>
+                    <div class="container">{{taskInfo.message}}</div>
+                </div>
+            </div>
+
+            <footer>
+                <ui-button outline @click="onButtonClick">
+                    <ui-label v-if="taskInfo.state === 'processing' || taskInfo.state === 'waiting'"
+                        value="i18n:builder.cancel"
+                    ></ui-label>
+                    <ui-label v-else
+                        value="i18n:builder.confirm"
+                    ></ui-label>
+                </ui-button>
+            </footer>
+        </div>
+    </div>
+
+</div>

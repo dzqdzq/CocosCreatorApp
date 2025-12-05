@@ -1,0 +1,40 @@
+@import url(../../../../jsoneditor/dist/jsoneditor.css);
+.container {
+  --left-width: 40%;
+  padding: 2px 0;
+}
+ui-section {
+  margin-top: 4px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.script-item {
+  display: flex;
+  padding: 0 6px;
+  --item-space: 0;
+}
+.script-item[missing] {
+  color: var(--color-warn-border-weaker);
+}
+.script-item:hover {
+  background-color: var(--color-active-border-normal);
+  cursor: pointer;
+}
+.script-item[selected] {
+  background-color: var(--color-info-fill-important);
+}
+.script-item .index {
+  width: 20px;
+}
+.script-item .script {
+  flex: 1;
+}
+.script-content {
+  margin-top: 4px;
+}
+.script-content ui-textarea {
+  height: 350px;
+}

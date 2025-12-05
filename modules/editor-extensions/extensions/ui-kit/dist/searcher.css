@@ -1,0 +1,123 @@
+.searcher {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.searcher .toolbar {
+  display: flex;
+  margin: 10px 5px 2px 5px;
+  line-height: 24px;
+  align-items: center;
+}
+.searcher .toolbar ui-input {
+  flex: 1;
+}
+.searcher .toolbar ui-button {
+  margin-left: 8px;
+}
+.searcher .container {
+  margin: 5px;
+  background: var(--color-normal-fill-emphasis);
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+.searcher .container > .loading {
+  background: var(--color-normal-fill-emphasis);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.searcher .container > .loading > ui-loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -10px;
+}
+.searcher .container .section {
+  padding: 5px;
+}
+.searcher .container .section .line {
+  margin-left: 10px;
+}
+.searcher .container .line {
+  padding: 3px 4px;
+  display: flex;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  border-bottom: solid 1px var(--color-normal-fill);
+}
+.searcher .container .line.script {
+  padding-left: 20px;
+}
+.searcher .container .line[selected] {
+  background-color: var(--color-info-fill-normal);
+  color: var(--color-info-contrast-normal);
+}
+.searcher .container .line[selected] .select {
+  display: inline-block;
+}
+.searcher .container .line:hover {
+  background: var(--color-hover-fill-normal);
+}
+.searcher .container .line:hover .select {
+  display: inline-block;
+}
+.searcher .container .line > ui-icon {
+  margin-right: 10px;
+  font-size: 14px;
+}
+.searcher .container .line .left {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  margin-right: 10px;
+  text-align: center;
+}
+.searcher .container .line .left .image {
+  width: 100%;
+  height: 100%;
+}
+.searcher .container .line .left ui-icon {
+  font-size: 48px;
+}
+.searcher .container .line .right {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.searcher .container .line .name {
+  color: #ffffff;
+  font-size: 12px;
+}
+.searcher .container .line .name .type {
+  opacity: 0.55;
+  margin-left: 4px;
+}
+.searcher .container .line .path {
+  line-height: 13px;
+  font-size: 11px;
+}
+.searcher .container .line .select {
+  display: none;
+  position: absolute;
+  right: 20px;
+}
+.searcher .container .line .location {
+  font-size: 12px;
+}
+.searcher .container .line .location:hover {
+  color: var(--color-focus-border-weakest);
+}
+.searcher .container .empty {
+  padding: 16px;
+}

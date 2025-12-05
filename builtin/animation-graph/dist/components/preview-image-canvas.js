@@ -1,0 +1,15 @@
+"use strict";function data(){return{isDirty:!1}}async function mounted(){this.init()}async function destroyed(){cancelAnimationFrame(this.animationId),this.close()}Object.defineProperty(exports,"__esModule",{value:!0}),exports.destroyed=exports.mounted=exports.methods=exports.watch=exports.data=exports.props=exports.template=void 0,exports.template=`
+<ui-drag-area class="image" droppable="cc.Asset"
+    @drop="drop($event)"
+>
+    <canvas class="canvas" ref="canvas"
+        @mousedown="mousedown($event)"
+        @wheel="mousewheel($event)"
+    ></canvas>
+    <div class="drag-tip"
+        :active="state===$root.queryData.previewState.NO_MODEL"
+    >
+        <ui-label value="i18n:animation-graph.preview.NO_MODEL"></ui-label>
+    </div>
+</ui-drag-area>
+`,exports.props=["config","play","state"],exports.data=data,exports.watch={state(){var e,t,i=this;i.state!==i.$root.queryData.previewState.NO_ERROR&&(e=(t=i.$refs.canvas).clientWidth,t=t.clientHeight,e)&&t&&i.glPreview.drawGL({buffer:new Uint8Array(e*t*4),width:e,height:t})}},exports.methods={async init(){const e=this;var t=Editor._Module.require("PreviewExtends").default;e.glPreview=new t(e.config.GLPreview.name,e.config.GLPreview.method),await e.glPreview.init({width:e.$el.clientWidth,height:e.$el.clientHeight}),e.resizeObserver=new window.ResizeObserver(()=>{e.isDirty=!0}),e.resizeObserver.observe(e.$el),e.refresh()},close(){var e=this;e.resizeObserver&&e.resizeObserver.unobserve(e.$el)},async callPreviewFunction(e,...t){return Editor.Message.request("scene","call-preview-function",this.config.GLPreview.name,e,...t)},async refresh(){const e=this;if(e.isDirty){try{var t=e.$refs.canvas,i=e.$el,r=i.clientWidth,a=i.clientHeight,n=(t.width===r&&t.height===a||(t.width=r,t.height=a,await e.glPreview.initGL(t,{width:r,height:a}),await e.glPreview.resizeGL(r,a)),await e.glPreview.queryPreviewData({width:t.width,height:t.height}));e.glPreview.drawGL(n)}catch(e){console.warn(e)}e.isDirty=!1}cancelAnimationFrame(e.animationId),e.animationId=requestAnimationFrame(()=>{e.refresh()})},drop(){const t=[];var{additional:e,value:i}=JSON.parse(JSON.stringify(Editor.UI.__protected__.DragArea.currentDragInfo))||{};e&&e.forEach(e=>{"cc.Prefab"===e.type&&t.push(e.value)}),i&&!t.includes(i)&&t.push(i),t.length&&this.$parent.setModel(t[0])},async mousedown(e){const i=this;async function r(e){await i.callPreviewFunction("onMouseMove",{movementX:e.movementX,movementY:e.movementY}),i.isDirty=!0}await i.callPreviewFunction("onMouseDown",{x:e.x,y:e.y,button:e.button}),document.addEventListener("mousemove",r),document.addEventListener("mouseup",async function e(t){await i.callPreviewFunction("onMouseUp",{x:t.x,y:t.y}),document.removeEventListener("mousemove",r),document.removeEventListener("mouseup",e),i.isDirty=!1}),i.isDirty=!0},async mousewheel(e){await this.callPreviewFunction("onMouseWheel",{wheelDeltaY:0-e.deltaY,wheelDeltaX:0-e.deltaX}),this.isDirty=!0}},exports.mounted=mounted,exports.destroyed=destroyed;

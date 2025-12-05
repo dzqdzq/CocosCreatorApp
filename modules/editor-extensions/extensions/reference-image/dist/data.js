@@ -1,0 +1,1 @@
+"use strict";function getDefaultImageData(){return{path:"",x:0,y:0,sx:1,sy:1,opacity:50}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getDefaultImageData=exports.defaultConfig=void 0,exports.defaultConfig={images:[],sceneUUID:{},scene:""},exports.getDefaultImageData=getDefaultImageData;

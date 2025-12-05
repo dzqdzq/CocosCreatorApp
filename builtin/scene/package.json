@@ -1,0 +1,2261 @@
+{
+    "name": "scene",
+    "version": "1.0.0",
+    "package_version": 2,
+    "title": "i18n:scene.title",
+    "author": "Cocos Creator",
+    "description": "i18n:scene.description",
+    "main": "./dist/browser/index",
+    "panels": {
+        "default": {
+            "title": "i18n:scene.title",
+            "main": "./dist/panel/index",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "close": false,
+                "popup": false,
+                "save": true
+            },
+            "size": {
+                "min-width": 400,
+                "min-height": 300,
+                "width": 500,
+                "height": 400
+            }
+        },
+        "preview": {
+            "title": "i18n:scene.preview_title",
+            "main": "./dist/panel/native/preview",
+            "flags": {
+                "close": false,
+                "popup": false,
+                "save": false
+            },
+            "size": {
+                "min-width": 400,
+                "min-height": 300,
+                "width": 960,
+                "height": 640
+            }
+        }
+    },
+    "contributions": {
+        "toolbar": {
+            "left": "./static/toolbar/left.js"
+        },
+        "scene": {
+            "custom": "./dist/contributions/scene/index.js"
+        },
+        "menu": [
+            {
+                "path": "Cocos Creator",
+                "label": "i18n:menu.quit",
+                "message": "quit-editor",
+                "group": "quit"
+            },
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:scene.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -98
+            },
+            {
+                "path": "i18n:menu.file",
+                "label": "i18n:scene.new",
+                "message": "open-scene",
+                "group": "scene"
+            },
+            {
+                "path": "i18n:menu.file",
+                "label": "i18n:scene.save",
+                "message": "save-scene",
+                "group": "scene"
+            },
+            {
+                "path": "i18n:menu.file",
+                "label": "i18n:scene.save_as",
+                "message": "save-as-scene",
+                "group": "scene"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:scene.develop",
+                "message": "open-devtools",
+                "group": "operation"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:scene.preview_develop",
+                "message": "open-preview-devtools",
+                "group": "operation"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:scene.graphical_tools",
+                "message": "graphical-tools",
+                "group": "tools"
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:scene.align_with_view",
+                "message": "align-with-view",
+                "accelerator": "Shift+Ctrl+f"
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:scene.align_view_with_node",
+                "message": "align-view-with-node"
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:scene.menu.newNodeEmpty",
+                "group": "create",
+                "params": [
+                    {
+                        "name": "Node",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "order": 0
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:scene.menu.new3dObject",
+                "group": "create",
+                "when": "ProjectType === '3d'",
+                "order": 1
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dCapsule",
+                "params": [
+                    {
+                        "name": "Capsule",
+                        "assetUuid": "73ce1f7f-d1f4-4942-ad93-66ca3b3041ab",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dCone",
+                "params": [
+                    {
+                        "name": "Cone",
+                        "assetUuid": "6350d660-e888-4acf-a552-f3b719ae9110",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dCube",
+                "params": [
+                    {
+                        "name": "Cube",
+                        "assetUuid": "30da77a1-f02d-4ede-aa56-403452ee7fde",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dCylinder",
+                "params": [
+                    {
+                        "name": "Cylinder",
+                        "assetUuid": "ab3e16f9-671e-48a7-90b7-d0884d9cbb85",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dPlane",
+                "params": [
+                    {
+                        "name": "Plane",
+                        "assetUuid": "40563723-f8fc-4216-99ea-a81636435c10",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dQuad",
+                "params": [
+                    {
+                        "name": "Quad",
+                        "assetUuid": "34a07346-9f62-4a84-90ae-cb83f7a426c1",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dSphere",
+                "params": [
+                    {
+                        "name": "Sphere",
+                        "assetUuid": "655c9519-1a37-472b-bae6-29fefac0b550",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.new3dObject",
+                "label": "i18n:scene.menu.new3dTorus",
+                "params": [
+                    {
+                        "name": "Torus",
+                        "assetUuid": "d47f5d5e-c931-4ff4-987b-cc818a728b82",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newRenderUI",
+                "order": 2
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newSpriteRenderer",
+                "sublabel": "i18n:scene.menu.experimental",
+                "params": [
+                    {
+                        "name": "SpriteRenderer",
+                        "assetUuid": "279ed042-5a65-4efe-9afb-2fc23c61e15a",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUIGraphics",
+                "params": [
+                    {
+                        "name": "Graphics",
+                        "assetUuid": "c96e159e-43ea-4a16-8279-05bc39119d1a",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUILabel",
+                "params": [
+                    {
+                        "name": "Label",
+                        "assetUuid": "36008810-7ad3-47c0-8112-e30aee089e45",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUIMask",
+                "params": [
+                    {
+                        "name": "Mask",
+                        "assetUuid": "7fa63aed-f3e2-46a5-8a7c-c1a1adf6cea6",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUIParticle2D",
+                "params": [
+                    {
+                        "name": "Particle2D",
+                        "assetUuid": "f396261e-3e06-41ec-bdd6-9a8b6d99026f",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUISprite",
+                "params": [
+                    {
+                        "name": "Sprite",
+                        "assetUuid": "9db8cd0b-cbe4-42e7-96a9-a239620c0a9d",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUISpriteSplash",
+                "params": [
+                    {
+                        "name": "SpriteSplash",
+                        "assetUuid": "e5f21aad-3a69-4011-ac62-b74352ac025e",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newRenderUI",
+                "label": "i18n:scene.menu.newUITiledMap",
+                "params": [
+                    {
+                        "name": "TiledMap",
+                        "assetUuid": "3139fa4f-8c42-4ce6-98be-15e848d9734c",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newUI",
+                "order": 3
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIButton",
+                "params": [
+                    {
+                        "name": "Button",
+                        "assetUuid": "90bdd2a9-2838-4888-b66c-e94c8b7a5169",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUICanvas",
+                "params": [
+                    {
+                        "name": "Canvas",
+                        "assetUuid": "f773db21-62b8-4540-956a-29bacf5ddbf5",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUICanvas",
+                "params": [
+                    {
+                        "name": "Canvas",
+                        "assetUuid": "4c33600e-9ca9-483b-b734-946008261697",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '2d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIEditBox",
+                "params": [
+                    {
+                        "name": "EditBox",
+                        "assetUuid": "05e79121-8675-4551-9ad7-1b901a4025db",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUILayout",
+                "params": [
+                    {
+                        "name": "Layout",
+                        "assetUuid": "a9ef7dfc-ea8b-4cf8-918e-36da948c4de0",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIPageView",
+                "params": [
+                    {
+                        "name": "PageView",
+                        "assetUuid": "20a5d8cb-ccad-4543-a937-fccd98c9f3de",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIProgressBar",
+                "params": [
+                    {
+                        "name": "ProgressBar",
+                        "assetUuid": "0d9353c4-6fb9-49bb-bc62-77f1750078c2",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIRichText",
+                "params": [
+                    {
+                        "name": "RichText",
+                        "assetUuid": "fc6bfcfa-8086-4326-809b-0ba1226bac7d",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIScrollView",
+                "params": [
+                    {
+                        "name": "ScrollView",
+                        "assetUuid": "c1baa707-78d6-4b89-8d5d-0b7fdf0c39bc",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUISlider",
+                "params": [
+                    {
+                        "name": "Slider",
+                        "assetUuid": "2bd7e5b6-cd8c-41a1-8136-ddb8efbf6326",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIToggle",
+                "params": [
+                    {
+                        "name": "Toggle",
+                        "assetUuid": "0e89afe7-56de-4f99-96a1-cba8a75bedd2",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIToggleGroup",
+                "params": [
+                    {
+                        "name": "ToggleGroup",
+                        "assetUuid": "2af73429-41d1-4346-9062-7798e42945dd",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIVideoPlayer",
+                "params": [
+                    {
+                        "name": "VideoPlayer",
+                        "assetUuid": "7e089eaf-fa97-40d7-8a20-741a152585df",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIWebView",
+                "params": [
+                    {
+                        "name": "WebView",
+                        "assetUuid": "9c541fa2-1dc8-4d8b-813a-aec89133f5b1",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newUI",
+                "label": "i18n:scene.menu.newUIWidget",
+                "params": [
+                    {
+                        "name": "Widget",
+                        "assetUuid": "36ed4422-3542-4cc4-bf02-dc4bfc590836",
+                        "canvasRequired": true,
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node"
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newLightObject",
+                "when": "ProjectType === '3d'",
+                "order": 4
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newLightObject",
+                "label": "i18n:scene.menu.newLightDirectional",
+                "params": [
+                    {
+                        "name": "Directional Light",
+                        "assetUuid": "a0e9756d-9128-4f49-8097-e041c8b733b8",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newLightObject",
+                "label": "i18n:scene.menu.newLightSphere",
+                "params": [
+                    {
+                        "name": "Sphere Light",
+                        "assetUuid": "4182ee46-ffa0-4de2-b66b-c93cc6c7e9b8",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newLightObject",
+                "label": "i18n:scene.menu.newLightSpot",
+                "params": [
+                    {
+                        "name": "Spot Light",
+                        "assetUuid": "7a49aa24-bd7a-40a8-b31a-b2a9da85abcd",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newLightObject",
+                "label": "i18n:scene.menu.newLightProbe",
+                "params": [
+                    {
+                        "name": "Light Probe Group",
+                        "assetUuid": "50dfda40-7c45-4868-a876-2fe2a4c782f4",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newLightObject",
+                "label": "i18n:scene.menu.newReflectionProbe",
+                "params": [
+                    {
+                        "name": "Reflection Probe",
+                        "assetUuid": "d8b49b64-cfba-4cfa-be53-1e469547b28b",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newEffects",
+                "when": "ProjectType === '3d'",
+                "order": 5
+            },
+            {
+                "path": "i18n:menu.node/i18n:scene.menu.newEffects",
+                "label": "i18n:scene.menu.newEffectsParticle",
+                "params": [
+                    {
+                        "name": "Particle",
+                        "assetUuid": "f09a0597-10e6-49e5-8759-a148b5e85395",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'"
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newCameraObject",
+                "params": [
+                    {
+                        "name": "Camera",
+                        "assetUuid": "bb0a6472-cd67-4afb-a031-94fca8f4cc92",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'",
+                "order": 6
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newCameraObject",
+                "params": [
+                    {
+                        "name": "Camera",
+                        "assetUuid": "3487d118-0158-4983-93fe-c3822790e7c5",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '2d'",
+                "order": 6
+            },
+            {
+                "path": "i18n:menu.node",
+                "group": "create",
+                "label": "i18n:scene.menu.newTerrain",
+                "params": [
+                    {
+                        "name": "Terrain",
+                        "assetUuid": "90e8b0d4-12dc-412d-9156-ea1fdb18c15b",
+                        "snapshot": true,
+                        "nameIncrease": true
+                    }
+                ],
+                "message": "create-node",
+                "when": "ProjectType === '3d'",
+                "order": 7
+            },
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:scene.menu.undo",
+                "message": "undo",
+                "group": "undo"
+            },
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:scene.menu.redo",
+                "message": "redo",
+                "group": "undo"
+            }
+        ],
+        "builder": "./dist/contributions/asset-build/index",
+        "ui-kit": {
+            "element": {
+                "node": "./dist/contributions/ui-kit/node.js",
+                "component": "./dist/contributions/ui-kit/component.js",
+                "asset": "./dist/contributions/ui-kit/asset.js"
+            },
+            "ui-prop": {
+                "render": {
+                    "dump": "./dist/contributions/ui-kit/ui-prop/dump"
+                }
+            }
+        },
+        "profile": {
+            "editor": {
+                "gizmos-infos.is2D": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "gizmos-infos.is3DIcon": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "gizmos-infos.iconSize": {
+                    "type": "number",
+                    "default": 2
+                },
+                "gizmos-infos.gridVisible": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "gizmos-infos.gridColor": {
+                    "type": "array",
+                    "itemType": "itemType",
+                    "default": [
+                        166,
+                        166,
+                        166,
+                        255
+                    ]
+                },
+                "wireframe.mode": {
+                    "type": "number",
+                    "default": 1
+                },
+                "wireframe.color": {
+                    "type": "array",
+                    "itemType": "itemType",
+                    "default": [
+                        255,
+                        255,
+                        255,
+                        255
+                    ]
+                },
+                "camera.color": {
+                    "type": "array",
+                    "itemType": "itemType",
+                    "default": [
+                        48,
+                        48,
+                        48,
+                        255
+                    ]
+                },
+                "camera.fov": {
+                    "type": "number",
+                    "default": 45
+                },
+                "camera.far": {
+                    "type": "number",
+                    "default": 10000
+                },
+                "camera.near": {
+                    "type": "number",
+                    "default": 0.01
+                },
+                "camera.wheelSpeed": {
+                    "type": "number",
+                    "default": 0.01
+                },
+                "camera.wanderSpeed": {
+                    "type": "number",
+                    "default": 10
+                },
+                "camera.enableAcceleration": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "camera.size": {
+                    "type": "string",
+                    "default": "__default_design__"
+                },
+                "scene_view.output_device": {
+                    "type": "string",
+                    "default": ""
+                },
+                "scene.native-engine": {
+                    "label": "i18n:scene.contributions.preferences.scene.native",
+                    "type": "boolean",
+                    "default": false,
+                    "message": "change-native-config"
+                },
+                "scene.debug-native": {
+                    "label": "i18n:scene.contributions.preferences.scene.debug_native",
+                    "type": "boolean",
+                    "default": false
+                },
+                "scene.tick": {
+                    "label": "i18n:scene.contributions.preferences.scene.tick",
+                    "type": "boolean",
+                    "default": false
+                },
+                "scene_cache.use": {
+                    "label": "i18n:scene.contributions.preferences.scene_cache.use",
+                    "type": "boolean",
+                    "default": true,
+                    "message": "update-cache-config"
+                },
+                "scene_cache.interval": {
+                    "label": "i18n:scene.contributions.preferences.scene_cache.interval",
+                    "type": "number",
+                    "default": 5000,
+                    "message": "update-cache-config"
+                },
+                "scene_cache.maxFileNum": {
+                    "label": "i18n:scene.contributions.preferences.scene_cache.interval",
+                    "type": "number",
+                    "default": 3,
+                    "message": "update-cache-config"
+                }
+            },
+            "project": {
+                "current-scene": {
+                    "type": "boolean",
+                    "default": ""
+                }
+            }
+        },
+        "preferences": {
+            "laboratory": [
+                "scene_cache.use",
+                "scene.tick",
+                "scene.native-engine",
+                "scene.debug-native"
+            ]
+        },
+        "shortcuts": [
+            {
+                "message": "select-all-nodes",
+                "mac": "cmd+a",
+                "win": "ctrl+a",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "copy-node",
+                "mac": "cmd+c",
+                "win": "ctrl+c",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "paste-node",
+                "mac": "cmd+v",
+                "win": "ctrl+v",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "cut-node",
+                "mac": "cmd+x",
+                "win": "ctrl+x",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "duplicate-node",
+                "mac": "cmd+d",
+                "win": "ctrl+d",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "remove-node",
+                "mac": "cmd+backspace",
+                "win": "ctrl+backspace",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "remove-node",
+                "win": "delete",
+                "mac": "delete",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "remove-node",
+                "win": "backspace",
+                "mac": "backspace",
+                "when": "['scene'].includes(PanelName)"
+            },
+            {
+                "message": "quit-editor",
+                "mac": "cmd+q",
+                "win": "ctrl+q"
+            },
+            {
+                "message": "open",
+                "mac": "cmd+1",
+                "win": "ctrl+1"
+            },
+            {
+                "message": "open-scene",
+                "mac": "cmd+n",
+                "win": "ctrl+n"
+            },
+            {
+                "message": "save-scene",
+                "mac": "cmd+s",
+                "win": "ctrl+s"
+            },
+            {
+                "message": "save-as-scene",
+                "mac": "cmd+shift+s",
+                "win": "ctrl+shift+s"
+            },
+            {
+                "message": "undo",
+                "mac": "cmd+z",
+                "win": "ctrl+z",
+                "when": "['animator','scene','hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "redo",
+                "mac": "cmd+shift+z",
+                "win": "ctrl+shift+z",
+                "when": "['animator','scene','hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "full-screen",
+                "mac": "shift+space",
+                "win": "shift+space"
+            },
+            {
+                "message": "align-with-view",
+                "mac": "cmd+shift+f",
+                "win": "ctrl+shift+f",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "align-view-with-node",
+                "mac": "alt+shift+f",
+                "win": "alt+shift+f",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "zoom-scene-view-down",
+                "mac": "cmd+=",
+                "win": "ctrl+=",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "zoom-scene-view-up",
+                "mac": "cmd+-",
+                "win": "ctrl+-",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "toggle-active-selected-node",
+                "mac": "h",
+                "win": "h",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "toggle-active-unselected-node",
+                "mac": "shift+h",
+                "win": "shift+h",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            },
+            {
+                "message": "toggle-active-all-nodes",
+                "win": "alt+h",
+                "mac": "alt+h",
+                "when": "['scene', 'hierarchy'].includes(PanelName)"
+            }
+        ],
+        "messages": {
+            "query-scene-bounds": {
+                "methods": [
+                    "default.query-scene-bounds"
+                ]
+            },
+            "change-native-config": {
+                "methods": [
+                    "default.change-native-config"
+                ]
+            },
+            "debug-view": {
+                "methods": [
+                    "default.change-debug-view-option"
+                ]
+            },
+            "quit-editor": {
+                "methods": [
+                    "default.quit-editor"
+                ]
+            },
+            "scene:preview-stop": {
+                "methods": [
+                    "preview.onEditorPreviewStop"
+                ]
+            },
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "full-screen": {
+                "methods": [
+                    "default.fullScreen"
+                ]
+            },
+            "i18n:change": {
+                "methods": [
+                    "default.i18n:change"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "onSceneReady",
+                    "default.scene:ready"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.scene_ready",
+                "doc": "i18n:scene.contributions.messages.doc.scene_ready",
+                "example": "i18n:scene.contributions.messages.example.scene_ready"
+            },
+            "scene:close": {
+                "methods": [
+                    "default.scene:close",
+                    "onSceneClosed"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.scene_close",
+                "example": "i18n:scene.contributions.messages.example.scene_close"
+            },
+            "asset-db:ready": {
+                "methods": [
+                    "default.asset-db:ready"
+                ]
+            },
+            "asset-db:close": {
+                "methods": [
+                    "default.asset-db:close"
+                ]
+            },
+            "selection:hover": {
+                "methods": [
+                    "default.selection:hover"
+                ]
+            },
+            "selection:select": {
+                "methods": [
+                    "default.selection:select"
+                ]
+            },
+            "selection:unselect": {
+                "methods": [
+                    "default.selection:unselect"
+                ]
+            },
+            "asset-db:asset-add": {
+                "methods": [
+                    "default.asset-db:asset-add"
+                ]
+            },
+            "asset-db:asset-change": {
+                "methods": [
+                    "default.asset-db:asset-change"
+                ]
+            },
+            "asset-db:asset-delete": {
+                "methods": [
+                    "default.asset-db:asset-delete"
+                ]
+            },
+            "programming:pack-build-end": {
+                "methods": [
+                    "default.programming:pack-build-end"
+                ]
+            },
+            "project:change-design-resolution": {
+                "methods": [
+                    "default.project:change-design-resolution"
+                ]
+            },
+            "project:change-custom-layer": {
+                "methods": [
+                    "default.project:change-custom-layer"
+                ]
+            },
+            "project:change-sorting-layer": {
+                "methods": [
+                    "default.project:change-sorting-layer"
+                ]
+            },
+            "project:update-physics-group": {
+                "methods": [
+                    "default.project:update-physics-group"
+                ]
+            },
+            "project:change-high-quality": {
+                "methods": [
+                    "default.project:change-high-quality"
+                ]
+            },
+            "engine:engine-modules-config-changed": {
+                "methods": [
+                    "default.engine:engine-modules-config-changed"
+                ]
+            },
+            "open-devtools": {
+                "methods": [
+                    "default.open-devtools"
+                ]
+            },
+            "open-preview-devtools": {
+                "methods": [
+                    "default.open-preview-devtools"
+                ]
+            },
+            "graphical-tools": {
+                "methods": [
+                    "default.graphicalTools"
+                ]
+            },
+            "open-scene": {
+                "public": true,
+                "methods": [
+                    "default.open-scene"
+                ],
+                "description": "i18n:scene.contributions.messages.description.open_scene",
+                "doc": "i18n:scene.contributions.messages.doc.open_scene",
+                "example": "i18n:scene.contributions.messages.example.open_scene"
+            },
+            "save-scene": {
+                "public": true,
+                "methods": [
+                    "default.save-scene"
+                ],
+                "description": "i18n:scene.contributions.messages.description.save_scene",
+                "example": "i18n:scene.contributions.messages.example.save_scene"
+            },
+            "save-as-scene": {
+                "public": true,
+                "methods": [
+                    "default.save-as-scene"
+                ],
+                "description": "i18n:scene.contributions.messages.description.save_as_scene",
+                "example": "i18n:scene.contributions.messages.example.save_as_scene"
+            },
+            "close-scene": {
+                "public": true,
+                "methods": [
+                    "default.close-scene"
+                ],
+                "description": "i18n:scene.contributions.messages.description.close_scene",
+                "example": "i18n:scene.contributions.messages.example.close_scene"
+            },
+            "set-property": {
+                "public": true,
+                "methods": [
+                    "default.set-property"
+                ],
+                "description": "i18n:scene.contributions.messages.description.set_property",
+                "doc": "i18n:scene.contributions.messages.doc.set_property",
+                "example": "i18n:scene.contributions.messages.example.set_property"
+            },
+            "reset-property": {
+                "public": true,
+                "methods": [
+                    "default.reset-property"
+                ],
+                "description": "i18n:scene.contributions.messages.description.reset_property",
+                "doc": "i18n:scene.contributions.messages.doc.reset_property",
+                "example": "i18n:scene.contributions.messages.example.reset_property"
+            },
+            "preview-set-property": {
+                "methods": [
+                    "default.preview-set-property"
+                ]
+            },
+            "cancel-preview-set-property": {
+                "methods": [
+                    "default.cancel-preview-set-property"
+                ]
+            },
+            "update-property-from-null": {
+                "methods": [
+                    "default.update-property-from-null"
+                ]
+            },
+            "set-node-and-children-layer": {
+                "methods": [
+                    "default.set-node-and-children-layer"
+                ]
+            },
+            "move-array-element": {
+                "methods": [
+                    "default.move-array-element"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.move_array_element",
+                "doc": "i18n:scene.contributions.messages.doc.move_array_element",
+                "example": "i18n:scene.contributions.messages.example.move_array_element"
+            },
+            "remove-array-element": {
+                "methods": [
+                    "default.remove-array-element"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.remove_array_element",
+                "doc": "i18n:scene.contributions.messages.doc.remove_array_element",
+                "example": "i18n:scene.contributions.messages.example.remove_array_element"
+            },
+            "select-all-nodes": {
+                "methods": [
+                    "default.select-all-nodes"
+                ]
+            },
+            "copy-node": {
+                "methods": [
+                    "default.copy-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.copy_node",
+                "doc": "i18n:scene.contributions.messages.doc.copy_node",
+                "example": "i18n:scene.contributions.messages.example.copy_node"
+            },
+            "duplicate-node": {
+                "methods": [
+                    "default.duplicate-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.duplicate_node",
+                "doc": "i18n:scene.contributions.messages.doc.duplicate_node",
+                "example": "i18n:scene.contributions.messages.example.duplicate_node"
+            },
+            "paste-node": {
+                "methods": [
+                    "default.paste-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.paste_node",
+                "doc": "i18n:scene.contributions.messages.doc.paste_node",
+                "example": "i18n:scene.contributions.messages.example.paste_node"
+            },
+            "cut-node": {
+                "methods": [
+                    "default.cut-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.cut_node",
+                "doc": "i18n:scene.contributions.messages.doc.cut_node",
+                "example": "i18n:scene.contributions.messages.example.cut_node"
+            },
+            "set-parent": {
+                "methods": [
+                    "default.set-parent"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.set_parent",
+                "doc": "i18n:scene.contributions.messages.doc.set_parent",
+                "example": "i18n:scene.contributions.messages.example.set_parent"
+            },
+            "create-node": {
+                "methods": [
+                    "default.create-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.create_node",
+                "doc": "i18n:scene.contributions.messages.doc.create_node",
+                "example": "i18n:scene.contributions.messages.example.create_node"
+            },
+            "reset-node": {
+                "methods": [
+                    "default.reset-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.reset_node",
+                "doc": "i18n:scene.contributions.messages.doc.reset_node",
+                "example": "i18n:scene.contributions.messages.example.reset_node"
+            },
+            "reset-component": {
+                "methods": [
+                    "default.reset-component"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.reset_component",
+                "doc": "i18n:scene.contributions.messages.doc.reset_component",
+                "example": "i18n:scene.contributions.messages.example.reset_component"
+            },
+            "restore-prefab": {
+                "methods": [
+                    "default.restore-prefab"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.restore_prefab",
+                "doc": "i18n:scene.contributions.messages.doc.restore_prefab",
+                "example": "i18n:scene.contributions.messages.example.restore_prefab"
+            },
+            "remove-node": {
+                "methods": [
+                    "default.remove-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.remove_node",
+                "doc": "i18n:scene.contributions.messages.doc.remove_node",
+                "example": "i18n:scene.contributions.messages.example.remove_node"
+            },
+            "create-component": {
+                "methods": [
+                    "default.create-component"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.create_component",
+                "doc": "i18n:scene.contributions.messages.doc.create_component",
+                "example": "i18n:scene.contributions.messages.example.create_component"
+            },
+            "remove-component": {
+                "methods": [
+                    "default.remove-component"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.remove_component",
+                "doc": "i18n:scene.contributions.messages.doc.remove_component",
+                "example": "i18n:scene.contributions.messages.example.remove_component"
+            },
+            "execute-component-method": {
+                "methods": [
+                    "default.execute-component-method"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.execute_component_method",
+                "doc": "i18n:scene.contributions.messages.doc.execute_component_method",
+                "example": "i18n:scene.contributions.messages.example.execute_component_method"
+            },
+            "execute-scene-script": {
+                "methods": [
+                    "default.execute-scene-script"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.execute_scene_script",
+                "doc": "i18n:scene.contributions.messages.doc.execute_scene_script",
+                "example": "i18n:scene.contributions.messages.example.execute_scene_script"
+            },
+            "snapshot": {
+                "methods": [
+                    "default.snapshot"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.snapshot",
+                "example": "i18n:scene.contributions.messages.example.snapshot"
+            },
+            "snapshot-abort": {
+                "methods": [
+                    "default.snapshot-abort"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.snapshot_abort",
+                "example": "i18n:scene.contributions.messages.example.snapshot_abort"
+            },
+            "begin-recording": {
+                "methods": [
+                    "default.begin-recording"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.begin_recording",
+                "example": "i18n:scene.contributions.messages.example.begin_recording"
+            },
+            "end-recording": {
+                "methods": [
+                    "default.end-recording"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.end_recording",
+                "example": "i18n:scene.contributions.messages.example.end_recording"
+            },
+            "cancel-recording": {
+                "methods": [
+                    "default.cancel-recording"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.cancel_recording",
+                "example": "i18n:scene.contributions.messages.example.cancel_recording"
+            },
+            "undo": {
+                "methods": [
+                    "default.undo"
+                ]
+            },
+            "redo": {
+                "methods": [
+                    "default.redo"
+                ]
+            },
+            "soft-reload": {
+                "methods": [
+                    "default.soft-reload"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.soft_reload",
+                "example": "i18n:scene.contributions.messages.example.soft_reload"
+            },
+            "preview-material": {
+                "methods": [
+                    "default.preview-material"
+                ]
+            },
+            "light-probe-update-tetrahedron": {
+                "methods": [
+                    "default.light-probe-update-tetrahedron"
+                ]
+            },
+            "change-gizmo-tool": {
+                "methods": [
+                    "default.change-gizmo-tool"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.change_gizmo_tool",
+                "doc": "i18n:scene.contributions.messages.doc.change_gizmo_tool",
+                "example": "i18n:scene.contributions.messages.example.change_gizmo_tool"
+            },
+            "query-gizmo-tool-name": {
+                "methods": [
+                    "default.query-gizmo-tool-name"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_gizmo_tool_name",
+                "doc": "i18n:scene.contributions.messages.doc.query_gizmo_tool_name",
+                "example": "i18n:scene.contributions.messages.example.query_gizmo_tool_name"
+            },
+            "change-gizmo-pivot": {
+                "methods": [
+                    "default.change-gizmo-pivot"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.change_gizmo_pivot",
+                "doc": "i18n:scene.contributions.messages.doc.change_gizmo_pivot",
+                "example": "i18n:scene.contributions.messages.example.change_gizmo_pivot"
+            },
+            "query-gizmo-pivot": {
+                "methods": [
+                    "default.query-gizmo-pivot"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_gizmo_pivot",
+                "doc": "i18n:scene.contributions.messages.doc.query_gizmo_pivot",
+                "example": "i18n:scene.contributions.messages.example.query_gizmo_pivot"
+            },
+            "change-gizmo-coordinate": {
+                "methods": [
+                    "default.change-gizmo-coordinate"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.change_gizmo_coordinate",
+                "doc": "i18n:scene.contributions.messages.doc.change_gizmo_coordinate",
+                "example": "i18n:scene.contributions.messages.example.change_gizmo_coordinate"
+            },
+            "query-gizmo-coordinate": {
+                "methods": [
+                    "default.query-gizmo-coordinate"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_gizmo_coordinate",
+                "doc": "i18n:scene.contributions.messages.doc.query_gizmo_coordinate",
+                "example": "i18n:scene.contributions.messages.example.query_gizmo_coordinate"
+            },
+            "change-is2D": {
+                "methods": [
+                    "default.change-is2D"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.change_is2D",
+                "doc": "i18n:scene.contributions.messages.doc.change_is2D",
+                "example": "i18n:scene.contributions.messages.example.change_is2D"
+            },
+            "query-is2D": {
+                "methods": [
+                    "default.query-is2D"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_is2D",
+                "doc": "i18n:scene.contributions.messages.doc.query_is2D",
+                "example": "i18n:scene.contributions.messages.example.query_is2D"
+            },
+            "set-grid-visible": {
+                "methods": [
+                    "default.set-grid-visible"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.set_grid_visible",
+                "doc": "i18n:scene.contributions.messages.doc.set_grid_visible",
+                "example": "i18n:scene.contributions.messages.example.set_grid_visible"
+            },
+            "query-is-grid-visible": {
+                "methods": [
+                    "default.query-is-grid-visible"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_is_grid_visible",
+                "doc": "i18n:scene.contributions.messages.doc.query_is_grid_visible",
+                "example": "i18n:scene.contributions.messages.example.query_is_grid_visible"
+            },
+            "set-icon-gizmo-3d": {
+                "methods": [
+                    "default.set-icon-gizmo-3d"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.set_icon_gizmo_3d",
+                "doc": "i18n:scene.contributions.messages.doc.set_icon_gizmo_3d",
+                "example": "i18n:scene.contributions.messages.example.set_icon_gizmo_3d"
+            },
+            "query-is-icon-gizmo-3d": {
+                "methods": [
+                    "default.query-is-icon-gizmo-3d"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_is_icon_gizmo_3d",
+                "doc": "i18n:scene.contributions.messages.doc.query_is_icon_gizmo_3d",
+                "example": "i18n:scene.contributions.messages.example.query_is_icon_gizmo_3d"
+            },
+            "set-icon-gizmo-size": {
+                "methods": [
+                    "default.set-icon-gizmo-size"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.set_icon_gizmo_size",
+                "doc": "i18n:scene.contributions.messages.doc.set_icon_gizmo_size",
+                "example": "i18n:scene.contributions.messages.example.set_icon_gizmo_size"
+            },
+            "query-icon-gizmo-size": {
+                "methods": [
+                    "default.query-icon-gizmo-size"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_icon_gizmo_size",
+                "doc": "i18n:scene.contributions.messages.doc.query_icon_gizmo_size",
+                "example": "i18n:scene.contributions.messages.example.query_icon_gizmo_size"
+            },
+            "query-transform-snap-configs": {
+                "methods": [
+                    "default.query-transform-snap-configs"
+                ]
+            },
+            "set-transform-snap-configs": {
+                "methods": [
+                    "default.set-transform-snap-configs"
+                ]
+            },
+            "query-rect-snapping-configs": {
+                "methods": [
+                    "default.query-rect-snapping-configs"
+                ]
+            },
+            "set-rect-snapping-configs": {
+                "methods": [
+                    "default.set-rect-snapping-configs"
+                ]
+            },
+            "focus-camera": {
+                "methods": [
+                    "default.focus-camera"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.focus_camera",
+                "doc": "i18n:scene.contributions.messages.doc.focus_camera",
+                "example": "i18n:scene.contributions.messages.example.focus_camera"
+            },
+            "align-with-view": {
+                "methods": [
+                    "default.align-with-view"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.align_with_view",
+                "doc": "i18n:scene.contributions.messages.doc.align_with_view",
+                "example": "i18n:scene.contributions.messages.example.align_with_view"
+            },
+            "align-view-with-node": {
+                "methods": [
+                    "default.align-view-with-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.align_view_with_node",
+                "doc": "i18n:scene.contributions.messages.doc.align_view_with_node",
+                "example": "i18n:scene.contributions.messages.example.align_view_with_node"
+            },
+            "zoom-scene-view-down": {
+                "methods": [
+                    "default.zoom-scene-view-down"
+                ]
+            },
+            "zoom-scene-view-up": {
+                "methods": [
+                    "default.zoom-scene-view-up"
+                ]
+            },
+            "toggle-active-selected-node": {
+                "methods": [
+                    "default.toggle-active-selected-node"
+                ]
+            },
+            "toggle-active-unselected-node": {
+                "methods": [
+                    "default.toggle-active-unselected-node"
+                ]
+            },
+            "toggle-active-all-nodes": {
+                "methods": [
+                    "default.toggle-active-all-nodes"
+                ]
+            },
+            "apply-material": {
+                "methods": [
+                    "default.apply-material"
+                ]
+            },
+            "query-physics-material": {
+                "methods": [
+                    "default.query-physics-material"
+                ]
+            },
+            "change-physics-material": {
+                "methods": [
+                    "default.change-physics-material"
+                ]
+            },
+            "apply-physics-material": {
+                "methods": [
+                    "default.apply-physics-material"
+                ]
+            },
+            "query-animation-graph-variant": {
+                "methods": [
+                    "default.query-animation-graph-variant"
+                ]
+            },
+            "change-animation-graph-variant": {
+                "methods": [
+                    "default.change-animation-graph-variant"
+                ]
+            },
+            "apply-animation-graph-variant": {
+                "methods": [
+                    "default.apply-animation-graph-variant"
+                ]
+            },
+            "query-animation-mask": {
+                "methods": [
+                    "default.query-animation-mask"
+                ]
+            },
+            "change-animation-mask": {
+                "methods": [
+                    "default.change-animation-mask"
+                ]
+            },
+            "apply-animation-mask": {
+                "methods": [
+                    "default.apply-animation-mask"
+                ]
+            },
+            "apply-render-texture": {
+                "methods": [
+                    "default.apply-render-texture"
+                ]
+            },
+            "copy-camera-data-to-nodes": {
+                "methods": [
+                    "default.copy-camera-data-to-nodes"
+                ]
+            },
+            "record-animation": {
+                "methods": [
+                    "default.record-animation"
+                ]
+            },
+            "change-animation-root": {
+                "methods": [
+                    "default.change-animation-root"
+                ]
+            },
+            "set-edit-time": {
+                "methods": [
+                    "default.set-edit-time"
+                ]
+            },
+            "change-clip-state": {
+                "methods": [
+                    "default.change-clip-state"
+                ]
+            },
+            "change-edit-clip": {
+                "methods": [
+                    "default.change-edit-clip"
+                ]
+            },
+            "save-clip": {
+                "methods": [
+                    "default.save-clip"
+                ]
+            },
+            "animation-operation": {
+                "methods": [
+                    "default.animation-operation"
+                ]
+            },
+            "create-prefab": {
+                "methods": [
+                    "default.create-prefab"
+                ],
+                "description": "i18n:scene.contributions.messages.description.create_prefab"
+            },
+            "getdata-prefab": {
+                "methods": [
+                    "default.getdata-prefab"
+                ]
+            },
+            "link-prefab": {
+                "methods": [
+                    "default.link-prefab"
+                ]
+            },
+            "unlink-prefab": {
+                "methods": [
+                    "default.unlink-prefab"
+                ]
+            },
+            "apply-prefab": {
+                "methods": [
+                    "default.apply-prefab"
+                ],
+                "description": "i18n:scene.contributions.messages.description.apply_prefab"
+            },
+            "apply-removed-component": {
+                "methods": [
+                    "default.apply-removed-component"
+                ],
+                "description": "i18n:scene.contributions.messages.description.apply_removed_component"
+            },
+            "revert-removed-component": {
+                "methods": [
+                    "default.revert-removed-component"
+                ],
+                "description": "i18n:scene.contributions.messages.description.revert_removed_component"
+            },
+            "query-is-ready": {
+                "methods": [
+                    "default.query-is-ready"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_is_ready",
+                "example": "i18n:scene.contributions.messages.example.query_is_ready"
+            },
+            "query-node": {
+                "methods": [
+                    "default.query-node"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_node",
+                "doc": "i18n:scene.contributions.messages.doc.query_node",
+                "example": "i18n:scene.contributions.messages.example.query_node"
+            },
+            "query-component": {
+                "methods": [
+                    "default.query-component"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_component",
+                "doc": "i18n:scene.contributions.messages.doc.query_component",
+                "example": "i18n:scene.contributions.messages.example.query_component"
+            },
+            "query-node-tree": {
+                "methods": [
+                    "default.query-node-tree"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_node_tree",
+                "doc": "i18n:scene.contributions.messages.doc.query_node_tree",
+                "example": "i18n:scene.contributions.messages.example.query_node_tree"
+            },
+            "query-nodes-by-asset-uuid": {
+                "methods": [
+                    "default.query-nodes-by-asset-uuid"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_node_by_asset_uuid",
+                "doc": "i18n:scene.contributions.messages.doc.query_node_by_asset_uuid",
+                "example": "i18n:scene.contributions.messages.example.query_node_by_asset_uuid"
+            },
+            "query-nodes-miss-assets": {
+                "methods": [
+                    "default.query-nodes-miss-assets"
+                ],
+                "public": false
+            },
+            "query-component-function-of-node": {
+                "methods": [
+                    "default.query-component-function-of-node"
+                ]
+            },
+            "query-all-effects": {
+                "methods": [
+                    "default.query-all-effects"
+                ]
+            },
+            "query-material": {
+                "methods": [
+                    "default.query-material"
+                ]
+            },
+            "query-effect": {
+                "methods": [
+                    "default.query-effect"
+                ]
+            },
+            "query-serialized-material": {
+                "methods": [
+                    "default.query-serialized-material"
+                ]
+            },
+            "query-render-pipeline": {
+                "methods": [
+                    "default.query-render-pipeline"
+                ]
+            },
+            "change-render-pipeline": {
+                "methods": [
+                    "default.change-render-pipeline"
+                ]
+            },
+            "apply-render-pipeline": {
+                "methods": [
+                    "default.apply-render-pipeline"
+                ]
+            },
+            "query-creatable-asset-types": {
+                "methods": [
+                    "default.query-creatable-asset-types"
+                ]
+            },
+            "query-scene-json": {
+                "methods": [
+                    "default.query-scene-json"
+                ]
+            },
+            "query-current-scene": {
+                "methods": [
+                    "default.query-current-scene"
+                ]
+            },
+            "query-dirty": {
+                "methods": [
+                    "default.query-dirty"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_dirty",
+                "example": "i18n:scene.contributions.messages.example.query_dirty"
+            },
+            "query-classes": {
+                "methods": [
+                    "default.query-classes"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_classes",
+                "doc": "i18n:scene.contributions.messages.doc.query_classes",
+                "example": "i18n:scene.contributions.messages.example.query_classes"
+            },
+            "query-components": {
+                "methods": [
+                    "default.query-components"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_components",
+                "doc": "i18n:scene.contributions.messages.doc.query_components",
+                "example": "i18n:scene.contributions.messages.example.query_components"
+            },
+            "query-component-has-script": {
+                "methods": [
+                    "default.query-component-has-script"
+                ],
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.query_component_has_script",
+                "doc": "i18n:scene.contributions.messages.doc.query_component_has_script",
+                "example": "i18n:scene.contributions.messages.example.query_component_has_script"
+            },
+            "query-script-name": {
+                "methods": [
+                    "default.query-script-name"
+                ]
+            },
+            "query-script-cid": {
+                "methods": [
+                    "default.query-script-cid"
+                ]
+            },
+            "query-layer-builtin": {
+                "methods": [
+                    "default.query-layer-builtin"
+                ]
+            },
+            "query-sorting-layer-builtin": {
+                "methods": [
+                    "default.query-sorting-layer-builtin"
+                ]
+            },
+            "query-scene-mode": {
+                "methods": [
+                    "default.query-scene-mode"
+                ]
+            },
+            "query-animation-state": {
+                "methods": [
+                    "default.query-animation-state"
+                ]
+            },
+            "query-current-animation-info": {
+                "methods": [
+                    "default.query-current-animation-info"
+                ]
+            },
+            "query-animation-root": {
+                "methods": [
+                    "default.query-animation-root"
+                ]
+            },
+            "query-animation-root-info": {
+                "methods": [
+                    "default.query-animation-root-info"
+                ]
+            },
+            "query-animation-edit-info": {
+                "methods": [
+                    "default.query-animation-edit-info"
+                ]
+            },
+            "query-animation-clip": {
+                "methods": [
+                    "default.query-animation-clip"
+                ]
+            },
+            "query-animation-properties": {
+                "methods": [
+                    "default.query-animation-properties"
+                ]
+            },
+            "query-animation-clips-info": {
+                "methods": [
+                    "default.query-animation-clips-info"
+                ]
+            },
+            "query-animation-clips-time": {
+                "methods": [
+                    "default.query-animation-clips-time"
+                ]
+            },
+            "query-property-value-at-frame": {
+                "methods": [
+                    "default.query-property-value-at-frame"
+                ]
+            },
+            "query-aux-curve-value-at-frame": {
+                "methods": [
+                    "default.query-aux-curve-value-at-frame"
+                ]
+            },
+            "query-auxiliary-curves": {
+                "methods": [
+                    "default.query-auxiliary-curves"
+                ]
+            },
+            "generate-available-name": {
+                "methods": [
+                    "default.generate-available-name"
+                ]
+            },
+            "editor-preview-set-play": {
+                "methods": [
+                    "default.editor-preview-set-play"
+                ]
+            },
+            "editor-refresh-gizmo-config": {
+                "methods": [
+                    "default.editor-refresh-gizmo-config"
+                ]
+            },
+            "editor-preview-call-method": {
+                "methods": [
+                    "default.editor-preview-call-method"
+                ]
+            },
+            "editor-preview-change-style-web": {
+                "methods": [
+                    "default.editor-preview-change-style"
+                ]
+            },
+            "editor-preview-change-style-native": {
+                "methods": [
+                    "preview.editorPreviewChangeStyle"
+                ]
+            },
+            "editor-preview-change-config": {
+                "methods": [
+                    "default.editor-preview-change-config",
+                    "preview.editorPreviewChangeConfig"
+                ]
+            },
+            "scene:show-loading": {
+                "methods": [
+                    "default.scene:show-loading"
+                ]
+            },
+            "scene:hide-loading": {
+                "methods": [
+                    "default.scene:hide-loading"
+                ]
+            },
+            "execute-model-preview-animation-operation": {
+                "methods": [
+                    "default.execute-model-preview-animation-operation"
+                ]
+            },
+            "regenerate-polygon-2d-points": {
+                "methods": [
+                    "default.regenerate-polygon-2d-points"
+                ]
+            },
+            "export-particle-plist": {
+                "methods": [
+                    "default.export-particle-plist"
+                ]
+            },
+            "change-node-lock": {
+                "methods": [
+                    "default.change-node-lock"
+                ]
+            },
+            "unit-test": {
+                "methods": [
+                    "default.unit-test"
+                ]
+            },
+            "change-target-resolution": {
+                "methods": [
+                    "default.change-target-resolution"
+                ]
+            },
+            "query-latest-cache": {
+                "methods": [
+                    "queryLatestCache"
+                ]
+            },
+            "clear-scene-cache": {
+                "methods": [
+                    "clearSceneCache"
+                ]
+            },
+            "save-scene-cache-to-file": {
+                "methods": [
+                    "saveSceneCacheToFile"
+                ]
+            },
+            "update-cache-config": {
+                "methods": [
+                    "updateCacheConfig"
+                ]
+            },
+            "query-enum-list-with-path": {
+                "methods": [
+                    "default.query-enum-list-with-path"
+                ]
+            },
+            "query-wrap-mode-enum-list": {
+                "methods": [
+                    "default.query-wrap-mode-enum-list"
+                ]
+            },
+            "set-scene-light-on": {
+                "methods": [
+                    "default.set-scene-light-on"
+                ]
+            },
+            "query-scene-light-on": {
+                "methods": [
+                    "default.query-scene-light-on"
+                ]
+            },
+            "native-ipc": {
+                "methods": [
+                    "default.native-ipc"
+                ]
+            },
+            "native-scene": {
+                "methods": [
+                    "default.native-scene"
+                ]
+            },
+            "panel-browser": {
+                "methods": [
+                    "panelToBrowser"
+                ]
+            },
+            "browser-panel": {
+                "methods": [
+                    "default.on-browser-panel"
+                ]
+            },
+            "is-native": {
+                "methods": [
+                    "default.query-is-native"
+                ]
+            },
+            "query-preview-data": {
+                "methods": [
+                    "default.query-preview-data"
+                ]
+            },
+            "call-preview-function": {
+                "methods": [
+                    "default.call-preview-function"
+                ]
+            },
+            "query-thumbnail": {
+                "methods": [
+                    "default.query-thumbnail"
+                ]
+            },
+            "query-preview-game-view-data": {
+                "methods": [
+                    "preview.getGameViewData"
+                ]
+            },
+            "set-preview-window-visible": {
+                "methods": [
+                    "preview.setPreviewWindowVisible",
+                    "setPreviewWindowVisible"
+                ]
+            },
+            "create-preview-window": {
+                "methods": [
+                    "preview.createPreviewWindow"
+                ]
+            },
+            "resize-native-window": {
+                "methods": [
+                    "resizeNativeWindow"
+                ]
+            },
+            "create-native-window": {
+                "methods": [
+                    "createNativeWindow"
+                ]
+            },
+            "preview-panel-ready": {
+                "methods": [
+                    "onPreviewPanelReady"
+                ]
+            },
+            "preview-panel-stop": {
+                "methods": [
+                    "onPreviewPanelStop"
+                ]
+            },
+            "toggle-light-probe-edit-mode": {
+                "methods": [
+                    "default.toggle-light-probe-edit-mode"
+                ]
+            },
+            "query-light-probe-edit-mode": {
+                "methods": [
+                    "default.query-light-probe-edit-mode"
+                ]
+            },
+            "toggle-light-probe-bounding-box-edit-mode": {
+                "methods": [
+                    "default.toggle-light-probe-bounding-box-edit-mode"
+                ]
+            },
+            "query-light-probe-bounding-box-edit-mode": {
+                "methods": [
+                    "default.query-light-probe-bounding-box-edit-mode"
+                ]
+            },
+            "scene:light-probe-edit-mode-changed": {
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.light_probe_edit_mode_changed",
+                "doc": "i18n:scene.contributions.messages.doc.light_probe_edit_mode_changed",
+                "example": "i18n:scene.contributions.messages.example.light_probe_edit_mode_changed"
+            },
+            "scene:light-probe-bounding-box-edit-mode-changed": {
+                "public": true,
+                "description": "i18n:scene.contributions.messages.description.light_probe_bounding_box_edit_mode_changed",
+                "doc": "i18n:scene.contributions.messages.doc.light_probe_bounding_box_edit_mode_changed",
+                "example": "i18n:scene.contributions.messages.example.light_probe_bounding_box_edit_mode_changed"
+            },
+            "lod-apply-current-camera-size": {
+                "methods": [
+                    "default.lod-apply-current-camera-size"
+                ]
+            },
+            "lod-insert": {
+                "methods": [
+                    "default.lod-insert"
+                ]
+            },
+            "lod-erase": {
+                "methods": [
+                    "default.lod-erase"
+                ]
+            }
+        },
+        "console": {
+            "extendConfig": [
+                {
+                    "label": "i18n:scene.contributions.console.clearOnPlay",
+                    "key": "console.extend.clearOnPlay"
+                }
+            ]
+        }
+    }
+}

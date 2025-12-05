@@ -1,0 +1,17 @@
+#oauth {
+  height: 100%;
+  display: flex;
+  background-color: #ffffff;
+}
+#oauth .flex1 {
+  flex: 1;
+}
+#oauth .toast {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}

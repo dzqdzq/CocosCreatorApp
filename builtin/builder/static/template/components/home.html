@@ -1,0 +1,151 @@
+<div class="builder container">
+    <div class="toolbar">
+        <ui-button
+            :disabled="!free || scenes.length === 0"
+            @confirm.stop="onNewBuildTask"
+        >
+            <ui-label value="i18n:builder.new_build_task"></ui-label>
+        </ui-button>
+        <div class="tools">
+            <ui-button type="icon" class="transparent" tooltip="i18n:builder.open_worker_dev_tools"
+                @click="onOpenDevTools"
+            >
+                <ui-icon value="dev-tools"></ui-icon>
+            </ui-button>
+            <ui-button type="icon" class="transparent" tooltip="i18n:builder.clear_cache.title"
+                @click="clearCache"
+            >
+                <ui-icon value="clear"></ui-icon>
+            </ui-button>
+        </div>
+    </div>
+
+    <section ref="taskWrap" @scroll="handleScroll">
+        <template v-if="taskList.length">
+            <task
+                v-for="(taskItem, id) in taskList"
+                :task="taskItem"
+                :key="id"
+                :ref="'task_' + taskItem.id"
+                :free="(free && isDBReady)"
+                :db-ready="isDBReady" 
+                :active="activeTask.includes(id)"
+                :running-task-id="runningTaskIdId"
+            ></task>
+                <!-- @click.native="toggleSelectTask($event, id)" -->
+        </template>
+        <div v-else class="empty-task">
+            <ui-label value="i18n:builder.empty_task_holder"></ui-label>
+        </div>
+    </section>
+
+    <div class="settings" v-if="showSettings">
+        <div class="content">
+            <ui-icon class="i-close" value="close"
+                @click="showSettings = false"
+            ></ui-icon>
+
+            <header>
+                <div class="task-name"
+                    v-if="!editingTaskName"
+                >
+                    <ui-label :value="options.taskName || options.outputName"></ui-label>
+                    <ui-icon value="edit" tooltip="i18n:builder.editTaskName"
+                        v-if="settingsType !== 'check'"
+                        @click.stop="renameTask"
+                    ></ui-icon>
+                </div>
+                <ui-prop class="task-rename" no-label
+                    v-else
+                >
+                    <ui-input ref="renameTaskInput" slot="content"
+                        :value="options.taskName"
+                        @click.stop
+                        @blur="submitTaskName"
+                        @keydown.stop
+                        @keydown.enter="submitTaskName"
+                    ></ui-input>
+                </ui-prop>
+                <div class="tools">
+                    <ui-button class="transparent" type="icon"
+                        tooltip="i18n:builder.import_build_config"
+                        @confirm="importBuildConfig"
+                    >
+                        <ui-icon value="import"></ui-icon>
+                    </ui-button>
+                    <span> | </span>
+                    <ui-button class="transparent" type="icon"
+                        tooltip="i18n:builder.export_build_config"
+                        @confirm="exportBuildConfig"
+                    >
+                        <ui-icon value="export"></ui-icon>
+                    </ui-button>
+                </div>
+            </header>
+            <settings
+                v-if="options"
+                ref="settings"
+                :type="settingsType"
+                :options="options"
+                :task="task"
+                :scenes="scenes"
+                :bundles="bundles"
+                :error-map="task.errorMap"
+                :free="(free && isDBReady)"
+                :platforms="supportPlatformMap"
+            ></settings>
+            <!-- <ui-section expand
+                class="recompile-config"
+                v-if="type === 'check' && options.recompileConfig"
+             >
+                <ui-checkbox slot="header"
+                    :value="options.recompileConfig.enable"
+                    @confirm.stop="onRecompileConfig('enable', $event.target.value)"
+                    @click.stop
+                >ReCompile Config <ui-icon color value="experiment"></ui-icon></ui-checkbox>
+                <div :class="options.recompileConfig.enable ? '' : 'disable'">
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_assets</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateAssets"
+                            @confirm.stop="onRecompileConfig('generateAssets', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_scripts</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateScripts"
+                            @confirm.stop="onRecompileConfig('generateScripts', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_engine</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateEngine"
+                            @confirm.stop="onRecompileConfig('generateEngine', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_engine_by_cache</ui-label>
+                        <ui-checkbox slot="content"
+                            :disabled="!options.recompileConfig.generateEngine"
+                            :value="options.recompileConfig.generateEngineByCache"
+                            @confirm.stop="onRecompileConfig('generateEngineByCache', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                </div>
+            </ui-section> -->
+            <buttons
+                ref="settingsButtonsWrap"
+                class="footer"
+                :task="task"
+                :type="settingsType"
+                :free="free"
+                :check-res="checkRes"
+                :running-task-id="runningTaskIdId"
+            ></buttons>
+        </div>
+    </div>
+
+    <build-mask v-if="maskInfo" :value="maskInfo"></build-mask>
+</div>

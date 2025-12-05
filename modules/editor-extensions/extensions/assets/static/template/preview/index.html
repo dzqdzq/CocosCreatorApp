@@ -1,0 +1,52 @@
+<section class="preview">
+    <header>
+        <ui-icon class="prev" value="arrow-triangle"
+            :disable="prev.length <= 1"
+            @click="prevClick($event)"
+        ></ui-icon>
+        <ui-icon class="next" value="arrow-triangle"
+            :disable="next.length <= 0"
+            @click="nextClick($event)"
+        ></ui-icon>
+
+        <template
+            v-if="crumbs && crumbs.length"
+        >
+            <ui-icon class="icon-database" color="true" value="database" image></ui-icon>
+            <template
+                v-for="(item, index) in crumbs"
+            >
+                <span
+                    :title="item"
+                    @click="crumbsClick(index)"
+                >{{item}}</span>
+                <strong> / </strong>
+            </template>
+        </template>
+    </header>
+
+    <section>
+        <ui-drag-item class="item"
+            v-for="(asset, index) in list"
+            :key="index"
+            :active="asset.uuid === active"
+            :type="asset.type"
+            :value="asset.uuid"
+            :additional="getAdditional(asset)"
+            @click="active = asset.uuid"
+            @click.right.stop="popupMenu(asset)"
+            @dblclick.stop="dblClick(asset)"
+        >
+            <ui-asset-image
+                :value="asset.uuid"
+                :importer="asset.importer"
+                size="middle"
+            ></ui-asset-image>
+            <div class="name"><span>{{asset.name}}</span></div>
+        </ui-drag-item>
+    </section>
+
+    <footer>
+        <span>{{path}}</span>
+    </footer>
+</section>

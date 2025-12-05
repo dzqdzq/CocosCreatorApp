@@ -1,0 +1,4 @@
+"use strict";async function update(e){var t=this,a=(t._dump=e,t.$this.renderInfo.panel),l=t.$.label,l=(a.setLabel(e,l),t.$.bit);let s="";if(e.bitmaskList)for(const i of e.bitmaskList)s+=`<option value="${i.value}">${i.name}</option>`;l.innerHTML=s,l.value=e.value,void 0!==e.default&&l.setAttribute("default",e.default),a.setInvalid(e,l),a.setReadonly(e,l)}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){const a=this,l=e.target.value;a._dump.value=l,"values"in a._dump&&a._dump.values.forEach((e,t)=>{a._dump.values[t]=l})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-bit slot="content"></ui-bit>
+`,exports.$={label:"ui-label",bit:"ui-bit"},exports.update=update,exports.ready=ready;

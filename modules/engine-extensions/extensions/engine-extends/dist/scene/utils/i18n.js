@@ -1,0 +1,1 @@
+"use strict";function translate(t){return Editor.I18n.t(t)||t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.translate=void 0,exports.translate=translate;

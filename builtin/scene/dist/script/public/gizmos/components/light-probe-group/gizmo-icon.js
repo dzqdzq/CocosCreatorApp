@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const base_1=require("../base");class LightProbeIconGizmo extends base_1.IconGizmo{constructor(){super(...arguments),this.disableOnSelected=!0}createController(){super.createController(),this._controller.setTextureByUUID("9e0cc8d3-a76b-4bee-b53e-f3abab91c4b8@6c48a")}}exports.default=LightProbeIconGizmo;

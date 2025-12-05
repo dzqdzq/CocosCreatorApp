@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.less=function(){return[]},exports.file=function(){return[]},exports.npm=function(){return[{message:"构建编辑器导出接口定义",params:["run","build-export-dts"],path:__dirname,detail:"构建编辑器导出接口定义失败"}]};

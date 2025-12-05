@@ -1,0 +1,227 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Default Style</h2>
+            <div>
+                <ui-tab>
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html">
+                &lt;ui-tab&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Set value="number" to active button; The number is the index of the button.</h2>
+            <div>
+                <ui-tab value="2">
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html">
+                &lt;ui-tab value="2"&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Underline Style</h2>
+            <div>
+                <ui-tab underline>
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html">
+                &lt;ui-tab underline&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Disabled</h2>
+            <div>
+                <ui-tab disabled>
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html">
+                &lt;ui-tab disabled&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+
+            <div>
+                <ui-tab disabled underline>
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html" >
+                &lt;ui-tab disabled underline&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Width Overflow</h2>
+            <div>
+                <ui-tab style="width: 100px">
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html">
+                &lt;ui-tab style="width: 100px"&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+
+            <div>
+                <ui-tab underline style="width: 100px">
+                    <ui-button>Web</ui-button>
+                    <ui-button>IOS</ui-button>
+                    <ui-button>Android</ui-button>
+                    <ui-button>Mini Game</ui-button>
+                </ui-tab>
+            </div>
+            <ui-code language="html" >
+                &lt;ui-tab underline style="width: 100px"&gt;
+                    &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                    &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                    &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                &lt;/ui-tab&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                disabled
+                underline
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-tab 
+                :value="value"
+                @change="onChange($event.target.value)"
+                @confirm="onConfirm($event.target.value)"
+            >
+                <ui-button>Web</ui-button>
+                <ui-button>IOS</ui-button>
+                <ui-button>Android</ui-button>
+                <ui-button>Mini Game</ui-button>
+            </ui-tab>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-tab value="{{value}}"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                    &gt;
+                        &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                        &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                        &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                        &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                    &lt;/ui-tab&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-tab id="ui-tab" value="{{value}}"&gt;
+                        &lt;ui-button&gt;Web&lt;/ui-button&gt;
+                        &lt;ui-button&gt;IOS&lt;/ui-button&gt;
+                        &lt;ui-button&gt;Android&lt;/ui-button&gt;
+                        &lt;ui-button&gt;Mini Game&lt;/ui-button&gt;
+                    &lt;/ui-tab&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-tab');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.methods">
+        <div class="row">
+            <h2>get/set value</h2>
+            <ui-code language="typescript">
+                const element = document.getElementById('#ui-tab');
+                // set value
+                element.value = '{{value}}';
+
+                // get value
+                const tabValue = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

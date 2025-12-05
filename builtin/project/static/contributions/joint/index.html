@@ -1,0 +1,96 @@
+<div class="joint-wrap">
+    <header>
+        <ui-label value="i18n:project.joint.info"></ui-label>
+        <ui-link
+            :tooltip="doc"
+            :value="doc"
+        >
+            <ui-icon value="help"></ui-icon>
+        </ui-link>
+    </header>
+    
+    <div class="joint">
+        <!-- 侧边栏 -->
+        <div class="slider">
+            <header>
+                <div class="layout"
+                    v-for="(layout, index) in layouts"
+                    :active="joint === layout"
+                    @click="joint = layout"
+                >
+                    <ui-label class="name"
+                        v-show="index !== renameIndex"
+                        :value="getName(index)"
+                    ></ui-label>
+                    <ui-input class="name" auto-select="false" ref="renameInput"
+                        v-show="index === renameIndex"
+                        @blur="renameConfirm($event)"
+                        @keyup.enter.stop="$event.target.blur()"
+                    ></ui-input>
+                    <ui-button type="icon" class="btn transparent" tooltip="i18n:project.rename"
+                        @click.stop="renameStart(index)"
+                    >
+                        <ui-icon value="edit"></ui-icon>
+                    </ui-button>
+                    <ui-button type="icon" class="btn transparent" tooltip="i18n:project.joint.removeTextureTip"
+                        @click.stop="removeLayout(index)"
+                    >
+                        <ui-icon color="true" value="del"></ui-icon>
+                    </ui-button>
+                </div>
+            </header>
+    
+            <footer>
+                <ui-button class="blue"
+                    @click="addLayout"
+                >
+                    <ui-icon value="add"></ui-icon>
+                    <ui-label value="Texture"></ui-label>
+                </ui-button>
+            </footer>
+        </div>
+        <!-- 内容区域 -->
+        <section class="content">
+            <header>
+                <ui-icon
+                    :warn="size >= 1024 && size <= 2048"
+                    :error="size > 2048"
+                    :tooltip="info"
+                    value="warn"
+                ></ui-icon>
+                <span>
+                    <ui-label value="i18n:project.joint.size"></ui-label>:
+                </span>
+                <span>{{size}} x {{size}}</span>
+            </header>
+
+            <section>
+                <template
+                    v-if="joint"
+                >
+                    <layout
+                        v-for="(content, index) in joint.contents"
+                        :key="index"
+                        :content="content"
+                        :index="index"
+                        :blocks="blocks"
+                        :size="size"
+                        @remove="removeContent(index)"
+                    ></layout>
+                </template>
+            </section>
+            <footer>
+                <ui-button class="blue"
+                    v-if="joint"
+                    @confirm="addContent($event);"
+                >
+                    <ui-icon value="add"></ui-icon>
+                    <ui-label value="Skeleton"></ui-label>
+                </ui-button>
+                <ui-label value="i18n:project.joint.missing_joint"
+                    v-else
+                ></ui-label>
+            </footer>
+        </section>
+    </div>
+</div>

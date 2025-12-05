@@ -1,0 +1,261 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+:host .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+:host .content > .keyboard {
+  display: flex;
+  width: 646px;
+  margin: auto;
+  line-height: 24px;
+}
+:host .content > .keyboard > .left {
+  width: 530px;
+}
+:host .content > .keyboard > .right {
+  margin-left: 6px;
+  width: 110px;
+}
+:host .content > .keyboard div.keys {
+  display: flex;
+  margin: 4px 0;
+  height: 34px;
+  justify-content: center;
+}
+:host .content > .keyboard div.keys > span {
+  display: inline-block;
+  border: 1px solid var(--color-normal-border);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  margin: 4px;
+  min-width: 26px;
+  min-height: 16px;
+  text-align: center;
+  transition: background 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+:host .content > .keyboard div.keys > span:hover {
+  background-color: var(--color-hover-fill);
+  color: var(--color-hover-contrast);
+}
+:host .content > .keyboard div.keys > span[active] {
+  background-color: var(--color-active-fill);
+  color: var(--color-active-contrast);
+}
+:host .content > .keyboard div.keys > span[empty] {
+  border: none;
+  min-width: 0;
+  padding: 0;
+  margin: 6px;
+}
+:host .content > .list {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+}
+:host .content > .list > div.slider {
+  width: 200px;
+  margin-right: 10px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+:host .content > .list > div.slider .package {
+  padding: 0 20px;
+}
+:host .content > .list > div.section {
+  flex: 1;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+:host .content > .list > div.section .message {
+  padding: 0 20px;
+}
+:host .content > .list > div > header {
+  border-bottom: 1px solid var(--color-normal-border-weaker);
+  background-color: var(--color-normal-fill-weaker);
+}
+:host .content > .list > div > header > div {
+  display: flex;
+}
+:host .content > .list > div > header > div > .message {
+  flex: 1;
+}
+:host .content > .list > div > header > div > .shortcut {
+  min-width: 80px;
+  flex: 1;
+}
+:host .content > .list > div > header > div > .handle {
+  width: 50px;
+}
+:host .content > .list > div section {
+  flex: 1;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+:host .content > .list > div section > div {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+}
+:host .content > .list > div section > div.edit {
+  border: 1px solid transparent;
+  border-color: #436b8e;
+}
+:host .content > .list > div section > div.warn {
+  border-color: var(--color-warn-fill-weaker);
+}
+:host .content > .list > div section > div.error {
+  border-color: var(--color-danger-fill-weaker);
+}
+:host .content > .list > div section > div .shortcut-content ui-icon {
+  position: absolute;
+  right: 0;
+  padding: 0 2px;
+}
+:host .content > .list > div section > div .shortcut-content .warn {
+  display: flex;
+  flex: 1;
+  font-style: italic;
+  color: var(--color-warn-fill-weaker);
+  padding-left: 4px;
+}
+:host .content > .list > div section > div[active] {
+  background-color: var(--color-active-fill);
+  color: var(--color-active-contrast);
+}
+:host .content > .list > div section > div:hover {
+  background-color: var(--color-hover-fill);
+  color: var(--color-hover-contrast);
+}
+:host .content > .list > div section > div > .handle {
+  width: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 2;
+  visibility: hidden;
+}
+:host .content > .list > div section > div > .handle ui-icon {
+  cursor: pointer;
+}
+:host .content > .list > div section > div > .message {
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+:host .content > .list > div section > div > .shortcut {
+  min-width: 80px;
+  flex: 1;
+}
+:host .content > .list > div .shortcuts {
+  height: 90%;
+}
+:host .content > .list > div .shortcuts > div {
+  transition: background 0.2s;
+}
+:host .content > .list > div .shortcuts > div > .shortcut-edit {
+  display: none;
+}
+:host .content > .list > div .shortcuts > div .shortcut-label {
+  text-align: left;
+  position: relative;
+  color: inherit;
+  font: inherit;
+  border-bottom: transparent 1px solid;
+  outline: none;
+}
+:host .content > .list > div .shortcuts > div .shortcut-label > .shortcut-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px transparent solid;
+}
+:host .content > .list > div .shortcuts > div .shortcut-label > .shortcut-content.error {
+  border-color: var(--color-danger-fill-weaker);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label > .shortcut-content.warn {
+  border-color: var(--color-warn-fill-weaker);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .tips {
+  font-style: italic;
+  color: var(--color-default-border-weakest);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .holder {
+  position: absolute;
+  left: 20px;
+  visibility: hidden;
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .start-edit {
+  position: relative;
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .conflict {
+  border-radius: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  text-align: center;
+  color: var(--color-warn-contrast-weaker);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .conflict.warn {
+  background-color: var(--color-warn-fill-weaker);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label .conflict.error {
+  background-color: var(--color-danger-fill-weaker);
+}
+:host .content > .list > div .shortcuts > div .shortcut-label:hover .holder {
+  visibility: visible;
+}
+:host .content > .list > div .shortcuts > div[edit] > .shortcut-edit {
+  display: flex;
+}
+:host .content > .list > div .shortcuts > div[edit] > .shortcut-label {
+  display: none;
+}
+:host .content > .list > div .shortcuts > div:hover .handle {
+  visibility: visible;
+}
+:host .content > .list > div .search-map {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid var(--color-warn-fill-weaker);
+  background-color: var(--color-normal-fill-weakest);
+}
+:host .content > .list > div .search-map header {
+  text-align: center;
+  border-bottom: 1px solid;
+}
+:host .content > .list > div .search-map header ui-icon {
+  position: absolute;
+  right: 10px;
+}
+:host .content > .list > div .search-map div {
+  display: flex;
+  line-height: 22px;
+  border: none;
+}
+:host .content > .list > div .search-map div.error {
+  border: none;
+  color: var(--color-danger-fill-weaker);
+}

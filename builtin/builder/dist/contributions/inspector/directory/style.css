@@ -1,0 +1,320 @@
+.asset-directory {
+  padding-top: 4px;
+  padding-right: 4px;
+  overflow: auto;
+}
+.asset-directory > .path {
+  display: flex;
+  line-height: 20px;
+  margin-left: 4px;
+}
+.asset-directory > .path > .name {
+  flex: 1;
+  overflow: hidden;
+}
+.asset-directory > .path > .name > span {
+  word-break: break-word;
+}
+.asset-directory > .content .bundle-filter-wrap {
+  margin-top: 0;
+}
+.asset-directory > .content ui-icon[value='help'] {
+  cursor: pointer;
+}
+.asset-directory > .content ui-icon[value='lock'] {
+  font-size: 10px;
+  padding-left: 5px;
+}
+.asset-directory > .content .indent {
+  padding-left: 20px;
+}
+.asset-directory .bundle-filter-wrap .config-content {
+  margin-top: 4px;
+  margin-left: var(--ui-prop-margin-left, unset);
+}
+.asset-directory .bundle-filter-wrap .include {
+  margin-bottom: 8px;
+}
+.asset-directory .bundle-filter-wrap .empty {
+  color: var(--color-normal-fill-weakest);
+  padding: 10px;
+  line-height: 12px;
+  text-align: center;
+}
+.asset-directory .filter-header {
+  display: flex;
+  justify-content: space-between;
+}
+.asset-directory .filter-header ui-button {
+  margin-left: 4px;
+}
+.asset-directory .filter-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px;
+}
+.asset-directory .filter-item ui-input {
+  flex: 1;
+  margin-left: 4px;
+}
+.asset-directory .filter-item ui-asset {
+  margin-top: 0;
+  width: 100%;
+}
+.asset-directory .filter-item .content {
+  margin-top: 5px;
+}
+.asset-directory .filter-item ui-icon {
+  cursor: pointer;
+}
+.asset-directory .filter-item .operate {
+  width: 0;
+  transition: 0.5s;
+  overflow: hidden;
+  display: flex;
+}
+.asset-directory .filter-item .url:hover .operate,
+.asset-directory .filter-item .assets:hover .operate {
+  width: auto;
+}
+.asset-directory .filter-item .url,
+.asset-directory .filter-item .assets,
+.asset-directory .filter-item ui-input,
+.asset-directory .filter-item ui-assets {
+  flex: 1;
+}
+.asset-directory .filter-item .url > *,
+.asset-directory .filter-item .asset-item > *,
+.asset-directory .filter-item .operate > * {
+  margin-left: 4px;
+}
+.asset-directory .filter-item .url {
+  display: flex;
+}
+.asset-directory .filter-item .asset-item {
+  display: flex;
+  position: relative;
+}
+.asset-directory .filter-item .asset-item ui-asset {
+  flex: 1;
+}
+.asset-directory .filter-item:hover,
+.asset-directory .filter-item[active] {
+  background: #094a5d;
+}
+.asset-directory .preview {
+  margin-top: 8px;
+}
+.asset-directory .preview .header {
+  display: flex;
+}
+.asset-directory .preview .header > ui-button {
+  margin: 8px 36px;
+  width: 100%;
+  flex: 1;
+}
+.asset-directory .preview .content {
+  padding: 4px 20px 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.asset-directory .preview .content ui-label {
+  width: 100%;
+}
+.asset-directory .build-bundle {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  padding: 8px 16px 8px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--color-normal-fill);
+  border-top: 1px solid var(--color-normal-fill-emphasis);
+}
+.asset-directory .build-bundle ui-button {
+  flex: 1;
+}
+.asset-directory .build-bundle ui-button ui-label {
+  width: unset;
+  margin-left: 4px;
+}
+.asset-directory .warning {
+  display: flex;
+}
+@keyframes shake {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  20% {
+    transform: scale3d(0.98, 0.98, 0.98) rotate3d(0, 0, 1, -2deg);
+  }
+  40% {
+    transform: scale3d(1.02, 1.02, 1.02) rotate3d(0, 0, 1, 2deg);
+  }
+  60% {
+    transform: scale3d(1.02, 1.02, 1.02) rotate3d(0, 0, 1, -2deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+header .toolbar {
+  color: var(--color-normal-contrast-emphasis);
+}
+header .toolbar > ui-button {
+  margin-left: 4px;
+  font-size: 14px;
+}
+.mr4 {
+  margin-right: 4px;
+}
+.config-groups > ui-section {
+  margin-top: 10px;
+}
+.bundle-config-group {
+  margin-top: 6px;
+}
+.bundle-config-group ui-prop {
+  padding: 2px 0;
+  margin-left: 20px;
+  margin-top: 0;
+}
+.bundle-config-group ui-prop > ui-label {
+  padding-left: 2em;
+}
+.bundle-config-group .row {
+  margin-left: 20px;
+}
+.bundle-config-group .label.tip {
+  color: var(--color-default-fill-weakest);
+}
+.bundle-config-group > div .header {
+  display: flex;
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-bottom: 4px;
+}
+.bundle-config-group > div .header ui-checkbox {
+  width: 40%;
+}
+.bundle-config-group > div .header > div {
+  display: flex;
+  white-space: nowrap;
+  flex: 1;
+  justify-content: flex-end;
+}
+.bundle-config-group > div .container {
+  margin-top: 4px;
+}
+.bundle-config-group ui-section > div {
+  margin-left: 20px;
+}
+.bundle-config-group .empty {
+  text-align: center;
+  padding: 16px 0;
+  color: var(--color-default-fill-weakest);
+}
+.bundle-config-group .platform-config {
+  padding: 2px 0;
+}
+.bundle-config-group .platform-config[selectable][active],
+.bundle-config-group .platform-config[selectable]:hover {
+  background: #094a5d;
+}
+.bundle-config-group > .tab {
+  border: 1px solid var(--color-default-border);
+}
+.bundle-config-group > .tab > .group-header {
+  border-right: 1px solid var(--color-default-border);
+  flex: 1;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-normal-contrast-emphasis);
+}
+.bundle-config-group > .tab > .group-header > ui-icon {
+  margin-right: 4px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.bundle-config-group > .tab > .group-header:hover,
+.bundle-config-group > .tab > .group-header[active] {
+  background-color: var(--color-default-fill-important);
+  color: var(--color-normal-contrast);
+}
+.bundle-config-group > .tab > .group-header:last-child {
+  border-right-width: 0;
+}
+.bundle-config-group > .content {
+  margin-top: 4px;
+}
+.bundle-config-group .bundle-config-group > .content {
+  padding: 4px 4px 6px 4px;
+  border-right: 1px solid var(--color-default-border);
+  border-left: 1px solid var(--color-default-border);
+  border-bottom: 1px solid var(--color-default-border);
+}
+.bundle-config {
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+.bundle-config[twinkle='shake'] {
+  animation-name: shake;
+}
+.platform-header {
+  height: 24px;
+  margin-top: 4px;
+}
+.platform-header:hover ui-label {
+  display: none;
+}
+.platform-header:hover ui-select {
+  display: inline-block;
+}
+.platform-container {
+  display: flex;
+  white-space: nowrap;
+}
+.platform-container :first-child {
+  flex: 0.7;
+}
+.platform-container :last-child {
+  max-width: 100px;
+  min-width: 30px;
+  flex: 1;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+.tips {
+  color: #525252;
+  font-size: 11px;
+  margin-top: 6px;
+}
+.settings .option {
+  text-indent: 5px;
+}
+:host {
+  height: 100%;
+}
+:host > * {
+  height: 100%;
+}
+:host .config-groups {
+  overflow: scroll;
+}
+.bundle-config > .header > div[slot="content"] {
+  display: flex;
+}
+.bundle-config > .header ui-select {
+  flex: 1;
+  margin-right: 4px;
+}

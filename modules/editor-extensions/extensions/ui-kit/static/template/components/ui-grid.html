@@ -1,0 +1,106 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Default</h2>
+            <ui-grid style="width: 500px; height: 400px;"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 500px; height: 400px;" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Only Show X</h2>
+            <ui-grid style="width: 400px; height: 200px;"
+                :config="showXConfig"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 400px; height: 200px;" :config="showXConfig" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Only Show Y</h2>
+            <ui-grid style="width: 400px; height: 200px;"
+                :config="showYConfig"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 400px; height: 200px;" :config="showYConfig" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                config
+            </ui-code>
+
+            <ui-code language="typescript">
+                // attribute config description
+
+                interface IAxisConfig {
+                    maxValue?: number;
+                    maxScale?: number;
+                    minScale?: number;
+                    $container?: HTMLElement;
+                    format?: (vale: number) => number;
+                    preci?: number;
+                }
+                interface IGridConfig {
+                    lineWidth?: number;
+                    axisXConfig?: IAxisConfig;
+                    axisYConfig?: IAxisConfig;
+                    showX?: boolean;
+                    showY?: boolean;
+                    readonly?: boolean;
+                    axisMargin?: number;
+                    lineColor?: string;
+                    precision?: number;
+                }
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-grid style="width: 500px; height: 400px;"
+                    @change="onChange"
+                ></ui-grid>
+            </div>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-grid style="width: 500px; height: 400px;"
+                        @change="onChange"
+                    &gt;&lt;/ui-grid&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-grid style="width: 500px; height: 400px;" id="ui-grid"&gt;&lt;/ui-grid&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-grid');
+
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

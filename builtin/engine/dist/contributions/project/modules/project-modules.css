@@ -1,0 +1,58 @@
+.modules {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.modules section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.modules .content {
+  overflow: scroll;
+}
+.modules .tip {
+  opacity: 0.55;
+}
+.modules .flex {
+  display: flex;
+}
+.modules .checkbox {
+  margin-right: 10px;
+}
+.modules ui-checkbox[disabled] {
+  pointer-events: auto;
+}
+.modules .name {
+  flex: 1;
+}
+.modules .name ui-prop {
+  --left-width: 85%;
+}
+.modules .modules-header {
+  padding-right: 14px;
+  border-bottom: 1px #7b7979 dashed;
+}
+.modules .modules-section {
+  overflow: auto;
+}
+.modules .module-section-content {
+  padding-left: 12px;
+}
+.modules ui-section.config {
+  flex: 1;
+  margin-top: 8px;
+}
+.modules-item {
+  flex: 1;
+}
+.modules-item .modules-item {
+  padding-left: 20px;
+  height: 20px;
+}
+.modules-item ui-section > .modules-item {
+  margin-left: 8px;
+}
+.modules-item div {
+  height: 20px;
+}

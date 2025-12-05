@@ -1,0 +1,4 @@
+"use strict";function update(e){var t=this,u=(t._dump=e,t.$this.renderInfo.panel),a=t.$.label,a=(u.setLabel(e,a),t.$this),t=t.$.node,a=a.getAttribute("array-type")||e.type||"";a&&t.setAttribute("droppable",a);const l=e.value;t.value=l.uuid,e.values&&e.values.some(e=>e.uuid!==l.uuid)?t.invalid=!0:t.invalid=!1,u.setReadonly(e,t)}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){var t=this;const u=e.target.value;t._dump.value.uuid=u,"values"in t._dump&&t._dump.values.forEach(e=>{e.uuid=u})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-node slot="content"></ui-node>
+`,exports.$={label:"ui-label",node:"ui-node"},exports.update=update,exports.ready=ready;

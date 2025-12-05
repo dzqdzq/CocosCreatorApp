@@ -1,0 +1,48 @@
+<div class="console-panel">
+    <header class="header flex-center">
+        <!-- 清除的按钮 -->
+        <ui-button class="transparent" @click="onHeaderChange('clear', $event)" tooltip="i18n:console.clearTip">
+            <ui-icon value="clear"></ui-icon>
+            <ui-label class="label" value="i18n:console.clear"></ui-label>
+        </ui-button>
+
+        <!-- 预览时清空 -->
+        <div class="extends" v-if="extendsList.length">
+            <div class="extends-item" v-for="item in extendsList" :key="item.label + item.name">
+                <ui-checkbox :value="item.value" @change="onClearChange(item, $event)">
+                    <ui-label class="label" :value="item.label"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+
+        <!-- 过滤条件 -->
+        <ui-input @change="onHeaderChange('filterText', $event)" placeholder="i18n:console.search" show-clear>
+            <ui-icon slot="prefix" value="search"></ui-icon>
+        </ui-input>
+
+        <!-- 是否启用正则 -->
+        <ui-checkbox :value="tabbar.filterRegex" @change="onHeaderChange('filterRegex', $event)">
+            <ui-label class="label" value="i18n:console.tabbar.regex"></ui-label>
+        </ui-checkbox>
+
+        <!-- PM 决定不现实 all 先屏蔽，请勿删除，万一后面突然又要 -->
+        <!-- <div class="filter-type">
+            <ui-checkbox :value="tabbar.filterTypes.length === logTypes.length" @change="onHeaderChange('filterTypeAll', $event)">
+                <ui-label class="label" value="All"></ui-label>
+            </ui-checkbox>
+        </div> -->
+        <div class="line" ></div>
+        <div v-for="item in logTypes" class="filter-type" :key="item.label">
+            <ui-checkbox :data-value="item.value" :value="tabbar.filterTypes.includes(item.value)" @change="onHeaderChange('filterType', $event)">
+                <ui-label class="label" :value="item.label"></ui-label>
+            </ui-checkbox>
+        </div>
+        <div class="line" ></div>    
+
+        <!-- 打开日志 -->
+        <ui-button class="transparent" @click="onHeaderChange('openLog', $event)" tooltip="i18n:console.openTip">
+            <ui-icon value="log"></ui-icon>
+        </ui-button>
+    </header>
+    <console-list ref="list" :font-size="tabbar.fontSize" :line-height="tabbar.lineHeight"></console-list>
+</div>

@@ -1,0 +1,82 @@
+<div class="task"
+    @dblclick.stop="_onEditOptions('dblclick')"
+    v-if="task && task.options && task.type === 'build'"
+    :missing="missing"
+    :disabled="isPluginTaskBusy"
+>
+    <ui-icon class="i-close transparent" value="close"
+        @click="_onRemoveTask($event)"
+        @dblclick.stop
+    ></ui-icon>
+
+    <header>
+        <div>
+            <span class="name">
+                {{ task.options.taskName || task.options.outputName || task.id }}
+            </span>
+            <ui-label class="time" v-if="task.options.debug" value="debug"></ui-label>
+            <ui-label class="time" v-if="task.options.md5Cache" value="md5"></ui-label>
+            <i v-if="missing">missing</i>
+        </div>
+        <ui-loading
+            v-if="task.progress < 1 && task.progress >= 0 && task.state === 'normal'"
+        ></ui-loading>
+    </header>
+
+    <section>
+        <div class="build-process" v-if="task.state !== 'success' && task.state !== 'failure'">
+            <ui-progress class="label"
+                :state="task.state"
+                :success="task.state === 'success'"
+                :value="((task.progress || 0) * 100).toFixed(0)"
+                percent
+            ></ui-progress>
+            <ui-label
+                :value="task.message"
+            ></ui-label>
+            <ui-label class="detail-message"
+                :value="task.detailMessage"
+            ></ui-label>
+        </div>
+
+        <div v-else :class="['build-log', task.state]">
+            <ui-icon :value="task.state === 'success' ? 'success' : 'error'"></ui-icon>
+            <ui-label
+                :value="task.message || `Build ${task.state === 'success' ? 'Success!' : 'Failed!'}!`"
+                :tooltip="task.message || `Build ${task.state === 'success' ? 'Success!' : 'Failed!'}!`"
+            ></ui-label>
+        </div>
+    </section>
+
+    <footer>
+        <div class="left" @dblclick.stop>
+            <ui-button class="transparent" type="icon"
+                @click.stop="revealInExplorer"
+             >
+                <ui-icon value="folder-open"></ui-icon>
+            </ui-button>
+            <ui-button class="transparent" type="icon"
+                :disabled="!free || isPlatformDisabled"
+                @confirm="_onEditOptions($event)"
+                tooltip="i18n:builder.build_config"
+            >
+                <ui-icon value="edit"></ui-icon>
+            </ui-button>
+            <ui-button class="transparent" type="icon"
+                @click.stop="showBuildLog"
+             >
+                <ui-icon tooltip="i18n:builder.open_log_file" value="log"></ui-icon>
+            </ui-button>
+        </div>
+
+        <div class="right">
+            <buttons
+                :task="task"
+                :free="free"
+                :running-task-id-id="runningTaskId"
+                :running-task-id="runningTaskId"
+                type="list"
+            ></buttons>
+        </div>
+    </footer>
+</div>

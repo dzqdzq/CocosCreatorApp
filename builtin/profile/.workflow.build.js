@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.less=function(){return[]},exports.file=function(){return[]},exports.npm=function(){return[]};

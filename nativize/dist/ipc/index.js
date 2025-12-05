@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const id=1;class NativizeIpc{constructor(){}send(e=!1,s,...t){Editor.Message.send("scene","native-scene",e,s,...t)}async request(e=!1,s,...t){return Editor.Message.request("scene","native-scene",e,s,...t)}on(e,s){}}exports.default=new NativizeIpc;

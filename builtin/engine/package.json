@@ -1,0 +1,215 @@
+{
+    "name": "engine",
+    "title": "i18n:engine.title",
+    "version": "1.0.9",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:engine.description",
+    "main": "./dist/browser/index",
+    "migrations": [
+        {
+            "version": "0.0.0",
+            "profile": "./dist/migrations/0.0.0.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        },
+        {
+            "version": "1.0.4",
+            "profile": "./dist/migrations/1.0.4.js"
+        },
+        {
+            "version": "1.0.5",
+            "profile": "./dist/migrations/1.0.5.js"
+        },
+        {
+            "version": "1.0.6",
+            "profile": "./dist/migrations/1.0.6.js"
+        },
+        {
+            "version": "1.0.7",
+            "profile": "./dist/migrations/1.0.6.js"
+        },
+        {
+            "version": "1.0.8",
+            "profile": "./dist/migrations/1.0.8.js"
+        },
+        {
+            "version": "1.0.9",
+            "profile": "./dist/migrations/1.0.9.js"
+        }
+    ],
+    "creator": {
+        "hookScript": "./static/hooks.js"
+    },
+    "contributions": {
+        "preview": {
+            "simulator": {
+                "methods": "./dist/contributions/hooks.js",
+                "hooks": {
+                    "settings": "onPreviewSettings"
+                }
+            },
+            "browser": {
+                "methods": "./dist/contributions/hooks.js",
+                "hooks": {
+                    "settings": "onPreviewSettings"
+                }
+            }
+        },
+        "builder": "./dist/contributions/builder.js",
+        "footer": {
+            "right": "./static/footer/right.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:engine.compile_engine",
+                "message": "rebuild",
+                "group": "engine"
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "rebuild",
+                "mac": "cmd+f7",
+                "win": "ctrl+f7"
+            }
+        ],
+        "project": {
+            "macroConfig": {
+                "label": "i18n:engine.project.macroConfig.title",
+                "custom": "./dist/contributions/project/modules/marco-custom.js"
+            },
+            "modules": {
+                "label": "i18n:engine.project.modules.title",
+                "custom": "./dist/contributions/project/modules/project-modules.js"
+            }
+        },
+        "profile": {
+            "editor": {
+                "engine.{{VERSION}}.javascript.builtin": {
+                    "label": "i18n:engine.preferences.use_builtin_engine",
+                    "default": true,
+                    "message": "change-custom-engine-config"
+                },
+                "engine.{{VERSION}}.javascript.custom": {
+                    "label": "i18n:engine.preferences.custom_engine_path",
+                    "default": "",
+                    "message": "change-custom-engine-config"
+                },
+                "engine.{{VERSION}}.native.builtin": {
+                    "label": "i18n:engine.preferences.use_builtin_native_engine",
+                    "default": true,
+                    "message": "change-custom-engine-config"
+                },
+                "deferred_pipeline": {
+                    "label": "i18n:engine.deferred_pipeline",
+                    "type": "boolean",
+                    "default": true,
+                    "message": "pipeline-config-change"
+                },
+                "physics-2d-box2d": {
+                    "label": "i18n:ENGINE.features.physics_2d_box2d_wasm.label",
+                    "description": "i18n:ENGINE.features.physics_2d_box2d_wasm.description",
+                    "type": "boolean",
+                    "default": false,
+                    "message": "physics-2d-box2d-wasm-changed"
+                }
+            },
+            "project": {
+                "macroConfig": {
+                    "default": {}
+                },
+                "macroCustom": {
+                    "default": [],
+                    "message": "engine-custom-macro-changed"
+                },
+                "modules.cache": {
+                    "default": {}
+                },
+                "modules.includeModules": {
+                    "label": "i18n:engine.project.modules.title",
+                    "default": [],
+                    "message": "engine-modules-config-changed"
+                },
+                "modules.flags": {
+                    "default": {}
+                },
+                "modules.noDeprecatedFeatures": {
+                    "label": "i18n:engine.project.modules.noDeprecatedFeatures",
+                    "default": {
+                        "value": false,
+                        "version": ""
+                    },
+                    "description": "i18n:engine.project.modules.noDeprecatedFeatures_tooltip"
+                }
+            }
+        },
+        "preferences": {
+            "custom": "./dist/contributions/preferences/engine.js",
+            "laboratory": [
+                "deferred_pipeline",
+                "physics-2d-box2d"
+            ]
+        },
+        "messages": {
+            "rebuild": {
+                "methods": [
+                    "rebuild"
+                ]
+            },
+            "relaunch": {
+                "methods": [
+                    "relaunch"
+                ]
+            },
+            "import-engine-error": {
+                "methods": [
+                    "importEngineError"
+                ]
+            },
+            "pipeline-config-change": {
+                "methods": [
+                    "onPipelineConfigChange"
+                ]
+            },
+            "query-info": {
+                "methods": [
+                    "query-info"
+                ]
+            },
+            "query-engine-info": {
+                "methods": [
+                    "query-engine-info"
+                ]
+            },
+            "query-modules-config": {
+                "methods": [
+                    "query-modules-config"
+                ]
+            },
+            "change-custom-engine-config": {
+                "methods": [
+                    "changeCustomEngineConfig"
+                ]
+            },
+            "engine-modules-config-changed": {
+                "methods": [
+                    "onEngineModulesChanged"
+                ]
+            },
+            "engine-custom-macro-changed": {
+                "methods": [
+                    "onCustomMacroChanged"
+                ]
+            },
+            "physics-2d-box2d-wasm-changed": {
+                "methods": [
+                    "onPhysics2DBox2dWasmChanged"
+                ]
+            }
+        }
+    }
+}

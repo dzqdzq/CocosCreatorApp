@@ -1,0 +1,88 @@
+<div class="modules">
+    <!-- 禁用废弃接口 -->
+    <section @confirm="_onConfirm($event)">
+        <ui-prop>
+            <ui-label slot="label"
+                value="i18n:engine.project.modules.noDeprecatedFeatures"
+                tooltip="i18n:engine.project.modules.noDeprecatedFeatures_tooltip"
+            ></ui-label>
+            <ui-checkbox 
+                slot="content"
+                :value="noDeprecatedFeatures.value"
+                @confirm="onDeprecatedAPI('value', $event.target.value)"
+            ></ui-checkbox>
+        </ui-prop>
+        <div v-if="noDeprecatedFeatures.value === true">
+            <ui-prop>
+                <ui-label slot="label" value="i18n:engine.project.modules.noDeprecatedFeatures_version"></ui-label>
+                <ui-input
+                    slot="content"
+                    style="flex: 1;"
+                    :value="noDeprecatedFeatures.version"
+                    @confirm="onDeprecatedAPI('version', $event.target.value)"
+                    placeholder="i18n:engine.project.modules.noDeprecatedFeatures_version_tip"
+                ></ui-input>
+            </ui-prop>
+        </div>
+    </section>
+    <div class="tip">
+        <ui-label value="i18n:engine.project.modules.info"></ui-label>
+    </div>
+    <div class="tip">
+        <ui-label value="i18n:engine.project.modules.warn"></ui-label>
+    </div>
+    <section class="content" @confirm="_onConfirm($event)">
+        <div class="modules-header">
+            <div class="modules-item">
+                <ui-checkbox :value="all" @confirm="_onSelectAllChanged($event)">
+                    <ui-label value="i18n:engine.project.modules.inquiry_all"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+
+        <div class="modules-section" v-if="modulesDump">
+            <module-item
+                v-for="(module, moduleId) in modulesDump.default"
+                :key="moduleId"
+                :module="module"
+                :module-id="moduleId"
+                :module-cache="moduleCache"
+                :select-all="true"
+                category="default"
+                @change="_onModuleChanged"
+            ></module-item>
+            <template v-for="(categoryDetail, category) in modulesDump.categories">
+                <ui-section expand
+                    v-if="category !== 'default'"
+                >
+                    <ui-checkbox v-if="modulesDump.categories[category].checkable" slot="header"
+                        :tooltip="modulesDump.categories[category].description || category"
+                        :value="categoriesCache[category] ?? calcCategoryValue(category)"
+                        @confirm="_onCategoryConfirm($event, category)"
+                        @click.stop
+                    >
+                        <ui-label
+                            :value="modulesDump.categories[category].label || category"
+                        ></ui-label>
+                    </ui-checkbox>
+                    <ui-label v-else slot="header"
+                        :value="modulesDump.categories[category].label || category"
+                        :tooltip="modulesDump.categories[category].description || category"
+                    ></ui-label>
+                    <div class="module-section-content">
+                        <module-item
+                            v-for="(module, moduleId) in categoryDetail.modules"
+                            :key="moduleId"
+                            :module="module"
+                            :module-id="moduleId"
+                            :module-cache="moduleCache"
+                            :select-all="true"
+                            :category="category"
+                            @change="_onModuleChanged"
+                        ></module-item>
+                    </div>
+                </ui-section>
+            </template>
+        </div>
+    </section>
+</div>

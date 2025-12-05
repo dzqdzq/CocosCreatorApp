@@ -1,0 +1,75 @@
+{
+    "name": "reflection-probe",
+    "title": "i18n:reflection-probe.title",
+    "version": "1.0.4",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "description": "i18n:reflection-probe.description",
+    "panels": {
+        "default": {
+            "title": "i18n:reflection-probe.panel.title",
+            "main": "./dist/renderer.js",
+            "icon": "./static/icon-2x.png",
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene/index.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel/i18n:light-probe.menuTitle",
+                "label": "i18n:reflection-probe.title",
+                "message": "open-panel",
+                "icon": "./static/icon.png"
+            }
+        ],
+        "messages": {
+            "open-panel": {
+                "methods": [
+                    "openPanel"
+                ]
+            },
+            "reflection-probe:update-bake-info": {
+                "methods": [
+                    "default.onBakeUpdate"
+                ]
+            },
+
+            "reflection-probe:bake-end": {
+                "methods": [
+                    "default.onBakeEnd"
+                ]
+            },
+            "reflection-probe:bake-start": {
+                "methods": [
+                    "default.onBakeStart"
+                ]
+            },
+            "reflection-probe:clear-end": {
+                "methods": [
+                    "default.onClearUpdated"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "default.init"
+                ]
+            }
+        },
+        "inspector" :{
+            "footer": {
+                "node": {
+                    "cc.ReflectionProbe": "./dist/inspector/reflection-probe-footer.js"
+                }
+            }
+        }
+    }
+}

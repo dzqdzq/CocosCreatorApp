@@ -1,0 +1,92 @@
+<div class="engine">
+    <div v-if="pkgOptions.overwriteProjectSettings">
+        <div class="macroConfig" @confirm.stop="onMacrosConfirm">
+            <ui-prop tooltip="i18n:engine.builder.cleanupImageCacheDesc">
+                <ui-label slot="label" value="CLEANUP_IMAGE_CACHE"></ui-label>
+                <ui-select slot="content" path="cleanupImageCache"
+                    :value="overwriteProjectSettings.macroConfig && overwriteProjectSettings.macroConfig.cleanupImageCache || 'inherit-project-setting'"
+                >
+                    <option value="inherit-project-setting">
+                        {{ t('builder.inheritProjectSetting') }}
+                    </option>
+                    <option value="on">
+                        {{ t('builder.on') }}
+                    </option>
+                    <option value="off">
+                        {{ t('builder.off') }}
+                    </option>
+                </ui-select>
+            </ui-prop>
+        </div>
+        <div class="includeModules"
+            @confirm.stop="onModulesConfirm"
+        >
+            <ui-prop class="no-wrap"
+                v-for="(item, physicsType) in physicsConfig"
+                v-if="item.enable"
+                :key="physicsType"
+            >
+                <ui-label slot="label"
+                    :value="item.config.label"
+                    :tooltip="item.config.description"
+                ></ui-label>
+                <div slot="content">
+                    <ui-select :path="physicsType"
+                        :value="overwriteProjectSettings.includeModules[physicsType] || 'inherit-project-setting'"
+                    >
+                        <option value="inherit-project-setting">
+                            {{ t('builder.inheritProjectSetting') }} 
+                        </option>
+                        <option 
+                            v-for="(item, optionKey) in item.config.options"
+                            :value="optionKey"
+                        >
+                            {{ t(item.label, false) || item.label }}
+                        </option>
+                    </ui-select>
+                </div>
+            </ui-prop>
+        </div>
+    </div>
+    <ui-prop class="modules-item no-wrap" v-if="webGLDisplayDump && pkgOptions.overwriteProjectSettings">
+        <ui-label slot="label"
+            :value="webGLDisplayDump.label"
+            :tooltip="webGLDisplayDump.description"
+        ></ui-label>
+        <div class="modules-item"
+            v-for="(option, optionName) in webGLDisplayDump.options"
+        >
+            <ui-checkbox class="checkbox"
+                :path="optionName"
+                :disabled="option.required"
+                :value="option.required ? true : overwriteProjectSettings.includeModules[optionName]"
+                @confirm="onModulesConfirm"
+            >
+                <ui-icon tooltip="i18n:engine.required" value="lock"
+                    v-if="option.required"
+                ></ui-icon>
+                <ui-label class="name"
+                    :value="option.label"
+                    :tooltip="option.description"
+                ></ui-label>
+            </ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop v-if="showNativeBundleMode" @confirm="onConfigConfirm">
+        <ui-label slot="label"
+            value="i18n:engine.builder.nativeCodeBundleMode"
+            tooltip="i18n:engine.builder.nativeCodeBundleModeTip"
+        ></ui-label>
+        <div slot="content">
+            <ui-select
+                path="nativeCodeBundleMode"
+                :value="pkgOptions.nativeCodeBundleMode"
+            >  
+                <option value="wasm">Wasm</option>
+                <option value="asmjs">AsmJS</option>
+                <option value="both">Wasm + AsmJS</option>
+            </ui-select>
+        </div>
+    </ui-prop>
+</div>

@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/tsconfig.json",
+    "types": [
+        "node",
+        "@editor/library-type/protected"
+    ],
+    "compilerOptions": {
+        "target": "es2021",
+        "module": "CommonJS",
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "experimentalDecorators": true
+    }
+}

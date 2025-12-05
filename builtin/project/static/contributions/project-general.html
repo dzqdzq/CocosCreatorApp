@@ -1,0 +1,22 @@
+<div expand class="general">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:project.general.render_pipeline"></ui-label>
+        <ui-select slot="content"
+            :value="renderPipeline"
+            @confirm="renderPipelineChanged($event)"
+        >
+            <option
+                v-for="(renderPipeline, index) in renderPipelines"
+                :key="renderPipeline.uuid"
+                :value="renderPipeline.uuid"
+            >{{renderPipeline.name + (renderPipeline.contributed ? ' (contributed by ' + renderPipeline.contributed + ')': '')}}</option>
+        </ui-select>
+    </ui-prop>
+    <ui-prop>
+        <ui-label slot="label" value="i18n:project.general.default_scene" tooltip="i18n:project.general.default_scene_tooltip"></ui-label>
+        <ui-asset droppable="cc.SceneAsset" slot="content"
+            :value="defaultScene"
+            @confirm="defaultSceneChanged($event)"
+        ></ui-asset>
+    </ui-prop>
+</div>

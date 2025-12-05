@@ -1,0 +1,19 @@
+<div class="icon">
+    <ui-icon 
+        v-if="directoryIcon"
+        :value="directoryIcon"
+        class="icon directory"
+        color="true" 
+    ></ui-icon>
+    <ui-icon 
+        v-else-if="asset.isDB"
+        value="database"
+        class="icon"
+        color="true" 
+    ></ui-icon>
+    <ui-asset-image v-else
+        :value="asset.uuid"
+        :importer="asset.importer"
+        size="small"
+    ></ui-asset-image>
+</div>

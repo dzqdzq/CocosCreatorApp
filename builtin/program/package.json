@@ -1,0 +1,105 @@
+{
+    "name": "program",
+    "title": "i18n:program.title",
+    "version": "1.0.4",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:program.description",
+    "main": "./dist/browser.js",
+    "migrations": [
+        {
+            "version": "0.0.0",
+            "profile": "./dist/migrations/0.0.0.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        },
+        {
+            "version": "1.0.4",
+            "profile": "./dist/migrations/1.0.4.js"
+        }
+    ],
+    "contributions": {
+        "profile": {
+            "editor": {
+                "scriptEditor": {
+                    "label": "i18n:program.label.script_editor",
+                    "default": {}
+                },
+                "browserV2": {
+                    "label": "i18n:program.label.browser",
+                    "default": {}
+                },
+                "pictureEditor": {
+                    "label": "i18n:program.label.picture_editor",
+                    "default": {}
+                }
+            }
+        },
+        "program": {
+            "properties": {
+                "scriptEditor": {
+                    "label": "i18n:program.label.script_editor",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "app"
+                        }
+                    }
+                },
+                "browserV2": {
+                    "label": "i18n:program.label.browser",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "app"
+                        }
+                    }
+                },
+                "pictureEditor": {
+                    "label": "i18n:program.label.picture_editor",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "app"
+                        }
+                    }
+                }
+            }
+        },
+        "preferences": {
+            "custom": "./dist/contributions/preferences/index.js"
+        },
+        "messages": {
+            "query-program-info": {
+                "methods": [
+                    "queryProgramInfo"
+                ]
+            },
+            "query-program-config": {
+                "methods": [
+                    "queryProgramConfig"
+                ]
+            },
+            "open-program": {
+                "methods": [
+                    "openProgram"
+                ]
+            },
+            "execute-program": {
+                "methods": [
+                    "executeProgram"
+                ]
+            },
+            "open-url": {
+                "methods": [
+                    "openUrl"
+                ]
+            }
+        }
+    }
+}

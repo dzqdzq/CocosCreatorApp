@@ -1,0 +1,11 @@
+"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r);var a=Object.getOwnPropertyDescriptor(t,r);a&&("get"in a?t.__esModule:!a.writable&&!a.configurable)||(a={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,i,a)}:function(e,t,r,i){e[i=void 0===i?r:i]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&__createBinding(t,e,r);return __setModuleDefault(t,e),t};Object.defineProperty(exports,"__esModule",{value:!0}),exports.queryVisualStudioVersion=void 0;const path_1=require("path"),fs_extra_1=require("fs-extra"),child_process_1=require("child_process"),os=__importStar(require("os"));async function queryCmake(){var e=await Editor.Message.request("program","query-program-info","cmake"),e=e?e.path:"";return e||(0,path_1.join)(Editor.App.path,"../tools/cmake/bin/cmake.exe")}async function queryVisualStudioVersion(){const a=await queryCmake();var o,e=os.tmpdir(),t=[["-G",'"Visual Studio 17 2022"'],"2022",["-G",'"Visual Studio 16 2019"'],"2019",["-G",'"Visual Studio 15 2017"',"-A","x64"],"2017",["-G",'"Visual Studio 14 2015"',"-A","x64"],"2015"],e=await(0,fs_extra_1.mkdtemp)((0,path_1.join)(e,"cmake-vs")),r=(console.log("Create temp dir "+e),(0,path_1.join)(e,"CMakeLists.txt")),i=(0,path_1.join)(e,"hello.cpp"),u=(await(0,fs_extra_1.writeFile)(r,`
+	cmake_minimum_required(VERSION 3.8)
+	project(hello CXX)
+	add_executable(hello hello.cpp)
+	`),await(0,fs_extra_1.writeFile)(i,`
+	#include <iostream>
+	int main(int argc, char **argv) {
+	std::cout << "hello cocos" << std::endl;
+	return 0;
+	}
+	`),[]),n=(o=e,async(t,i)=>new Promise((r,e)=>{return(0,child_process_1.spawn)(a,t.concat("-B build_"+i),{cwd:o,shell:!0}).on("close",(e,t)=>{r(0==e)}),!1}));for(let e=0;e<t.length;e+=2){var s=t[e],l=t[e+1];await n(s.concat("-S."),l)&&u.push({name:"Visual Studio "+l,value:l})}return u}exports.queryVisualStudioVersion=queryVisualStudioVersion;

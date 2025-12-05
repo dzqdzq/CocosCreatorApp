@@ -1,0 +1,21 @@
+<div class="toolbar">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.project.texture_compress.presetName"></ui-label>
+        <div slot="content">
+            <ui-input
+                placeholder="i18n:builder.project.texture_compress.tips.input_config_name_to_search"
+                show-clear
+                @change="onConfigNameChange"
+            ></ui-input>
+        </div>
+    </ui-prop>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'add-config')" tooltip="i18n:builder.project.texture_compress.add_config">
+        <ui-icon value="add"></ui-icon>
+    </ui-button>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'import-config')" tooltip="i18n:builder.project.texture_compress.import_config">
+        <ui-icon value="import"></ui-icon>
+    </ui-button>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'export-config')" tooltip="i18n:builder.project.texture_compress.export_config">
+        <ui-icon value="export"></ui-icon>
+    </ui-button>
+</div>

@@ -1,0 +1,44 @@
+{
+    "web-mobile": {
+        "embedWebDebugger": true,
+        "orientation": "portrait"
+    },
+    "web-desktop": {
+        "designHeight": 640,
+        "designWidth": 480
+    },
+    "wechatgame": {
+        "useSplashScreen": true,
+        "appid": ""
+    },
+    "oppo-mini-game": {
+        "package": "com.example.demo",
+        "icon": "C:\\Users\\SERVERUI\\Desktop\\3ed3561a80bb83b20ddbb0656c86849.png",
+        "versionName": "oppo",
+        "versionCode": "1",
+        "minPlatformVersion": "1050",
+        "tinyPackageServer": "http://127.0.0.1/",
+        "packFirstScreenRes": true
+    },
+    "huawei-mini-game": {
+        "icon": "C:\\Users\\SERVERUI\\Desktop\\3ed3561a80bb83b20ddbb0656c86849.png",
+        "versionName": "huawei",
+        "versionCode": "1",
+        "minPlatformVersion": "1050",
+        "manifestPath": "1222",
+        "tinyPackageServer": "123",
+        "packFirstScreenRes": true,
+        "package": "com.example.demo"
+    },
+    "vivo-mini-game": {
+        "package": "com.example.demo",
+        "icon": "C:\\Users\\SERVERUI\\Desktop\\3ed3561a80bb83b20ddbb0656c86849.png",
+        "versionName": "vivo",
+        "versionCode": "1",
+        "minPlatformVersion": "1050",
+        "tinyPackageServer": "12",
+        "packFirstScreenRes": true,
+        "certificatePemPath": "D:\\project\\certificate.pem",
+        "privatePemPath": "D:\\project\\private.pem"
+    }
+}

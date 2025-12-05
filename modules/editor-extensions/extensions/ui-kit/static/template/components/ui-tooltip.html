@@ -1,0 +1,149 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Use in attribute with text</h2>
+            <ui-label tooltip="Hello" value="I have tooltip attribute. Hover me."></ui-label>
+            <br>
+            <ui-label tooltip="i18n:ui-kit.title" value="Support i18n"></ui-label>
+            <ui-code language="html">
+                &lt;ui-label tooltip="Hello" value="I have tooltip attribute. Hover me."&gt;&lt;/ui-label&gt;
+                &lt;ui-label tooltip="i18n:ui-kit.title" value="Support i18n"&gt;&lt;/ui-label&gt;
+            </ui-code>
+        </div>
+        
+        <div class="row">
+            <h2>As an element. Custom Content</h2>
+            <ui-tooltip></ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+            <ui-tooltip>Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>arrow</h2>
+            <ui-tooltip arrow="top">Hello</ui-tooltip>
+            <ui-tooltip arrow="right">Hello</ui-tooltip>
+            <ui-tooltip arrow="bottom">Hello</ui-tooltip>
+            <ui-tooltip arrow="left">Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top"&gt;Hello&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right"&gt;Hello&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom"&gt;Hello&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left"&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Custom tooltip</h2>
+            <ui-tooltip arrow="top">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top"&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Custom arrow</h2>
+            <ui-tooltip arrow="top left">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="top center">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="right middle">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="bottom right">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="left top+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="left middle+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top left"&gt;...&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="top center"&gt;...&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right middle"&gt;...&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom right"&gt;...&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left top+15px"&gt;...&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left middle+15px"&gt;...&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>animation</h2>
+            <ui-tooltip animation>
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip animation&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-tooltip disabled>Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip disabled&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-tooltip hidden>Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip hidden&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                arrow
+                disabled
+                readonly
+                animation
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

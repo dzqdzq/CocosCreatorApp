@@ -1,0 +1,480 @@
+:host {
+  display: flex;
+  position: relative;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  font-size: 12px;
+}
+.container > .toolbar {
+  padding: 4px 8px;
+  line-height: 20px;
+  border-bottom: 1px solid var(--color-normal-border);
+  display: flex;
+  justify-content: space-between;
+  height: 28px;
+  box-sizing: border-box;
+}
+.container > section {
+  flex: 1;
+  background: var(--color-normal-fill);
+  padding: 8px;
+  overflow-y: auto;
+}
+.container .empty-task {
+  text-align: center;
+  margin-top: 35px;
+}
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1b1d1db0;
+  z-index: 10;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.mask ui-label {
+  font-size: 14px;
+  font-weight: bolder;
+}
+.icon-button {
+  width: 24px;
+  padding: 2px 4px;
+  line-height: 24px;
+}
+ui-icon[disabled] {
+  pointer-events: none;
+}
+ui-icon {
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+}
+.buttons .select {
+  margin-right: 8px;
+  display: flex;
+}
+.buttons .select ui-icon {
+  margin-right: 5px;
+}
+.buttons ui-label {
+  display: inline-flex;
+}
+.buttons .group ui-icon[value="unlink"] {
+  display: none;
+}
+.buttons .group ui-button {
+  margin: 0 6px;
+  line-height: 22px;
+}
+.buttons .single {
+  padding: 0 9px;
+  white-space: nowrap;
+}
+.buttons .icon-button:hover ui-icon[value="to-right-arrow"] {
+  display: none;
+}
+.buttons .icon-button:hover ui-icon[value="unlink"] {
+  display: inline-block;
+}
+.task {
+  position: relative;
+  padding: 15px;
+  margin-bottom: 8px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  border: 1px solid var(--color-normal-fill-important);
+  background-color: var(--color-normal-fill-important);
+}
+.task .time {
+  color: var(--color-default-fill-weakest);
+}
+.task > .i-close {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+.task > header {
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.task > header > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 16px;
+}
+.task > header > span {
+  margin-right: 6px;
+}
+.task > header .name {
+  font-size: 16px;
+}
+.task > header > ui-loading {
+  position: relative;
+  top: 2px;
+}
+.task > section {
+  margin-bottom: 16px;
+  margin-top: 8px;
+  height: 56px;
+  line-height: 56px;
+}
+.task > section .build-process {
+  display: flex;
+  flex-direction: column;
+}
+.task > section .build-process ui-label {
+  line-height: 16px;
+}
+.task > section .build-process > ui-progress {
+  flex: 1;
+  border-radius: 4px;
+  opacity: 0.8;
+  line-height: 16px;
+}
+.task > section .build-process .detail-message {
+  font-size: inherit;
+  margin-top: 8px;
+  color: var(--color-default-fill-weakest);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.task > section .build-log {
+  display: flex;
+}
+.task > section .build-log ui-label {
+  padding-left: 4px;
+  white-space: nowrap;
+}
+.task > section .build-log.success {
+  color: var(--color-success-fill);
+}
+.task > section .build-log.failure {
+  color: var(--color-danger-fill);
+}
+.task > footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.task > footer .right,
+.task > footer .left {
+  display: flex;
+}
+.task > footer .left ui-button {
+  margin-right: 8px;
+}
+.task[missing] {
+  background: rgba(251, 240, 111, 0.14);
+}
+.task[missing] header i {
+  color: #f1c64f;
+}
+.task[active] {
+  border-color: var(--color-normal-contrast);
+}
+.task:hover {
+  border-color: #3d3d3d;
+}
+.task:hover .i-close {
+  display: inline-block;
+}
+.shrink {
+  animation-name: shrink;
+  animation-duration: 0.6s;
+  animation-iteration-count: 3;
+}
+@keyframes shrink {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0.99, 0.99, 0.99);
+    border-color: var(--color-warn-fill);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+.settings {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  display: flex;
+  box-sizing: border-box;
+  background: var(--color-normal-fill-important);
+}
+.settings > .content {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--color-normal-fill);
+  border: 1px solid var(--color-normal-border);
+  border-radius: 4px;
+}
+.settings > .content > .i-close {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  cursor: pointer;
+}
+.settings > .content > .i-close:hover {
+  color: var(--color-danger-fill);
+}
+.settings > .content > header {
+  border-bottom: 1px solid var(--color-normal-border);
+  padding: 0 5px 5px 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.settings > .content > header .task-name > ui-icon {
+  display: none;
+}
+.settings > .content > header .task-name:hover > ui-icon {
+  display: inline-block;
+}
+.settings > .content > header > * {
+  margin-right: 4px;
+}
+.settings > .content > header ui-icon {
+  cursor: pointer;
+}
+.settings > .content > header .dirty {
+  color: var(--color-warn-border-normal);
+}
+.settings > .content > .tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.settings > .content > .tools .split {
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.settings > .content > .tools ui-button {
+  margin: 0;
+  vertical-align: middle;
+  font-size: 10px;
+}
+.settings > .content > section {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.settings > .content > section ui-section {
+  width: 100%;
+}
+.settings > .content > section ui-section > div {
+  padding-left: 12px;
+  margin-top: 6px;
+}
+.settings > .content > section ui-section > div[slot='header'] {
+  padding-left: 0;
+  margin-top: 0;
+}
+.settings > .content > section > ui-prop,
+.settings > .content > section .common ui-prop,
+.settings > .content > section > .plugins ui-prop {
+  margin-bottom: 6px;
+  flex: 1;
+  text-align: left;
+}
+.settings > .content > section > .plugins > ui-section {
+  margin-top: 6px;
+}
+.settings > .content > section ui-prop > *[slot='content'] {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.settings > .content > section ui-prop > *[slot='content'] > ui-select,
+.settings > .content > section ui-prop > *[slot='content'] > ui-input,
+.settings > .content > section ui-prop > *[slot='content'] > ui-color,
+.settings > .content > section ui-prop > *[slot='content'] > ui-num-input,
+.settings > .content > section ui-prop > *[slot='content'] > ui-file {
+  flex: 1;
+}
+.settings > .content > section ui-prop > *[slot='content'] > ui-section {
+  flex: 1;
+}
+.settings > .content > section ui-prop > *[slot='content'] > ui-image {
+  width: 60px;
+  height: 60px;
+  border: 1px dashed;
+}
+.settings > .content > section ui-prop[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.settings > .content > section .scene-list {
+  display: block;
+  background: var(--color-normal-fill-important);
+  border: 1px solid var(--color-normal-fill-important);
+  border-radius: 4px;
+  padding: 10px;
+  overflow: hidden;
+  width: 200px;
+  position: relative;
+  box-sizing: border-box;
+}
+.settings > .content > section .scene-list > div {
+  position: relative;
+}
+.settings > .content > section .scene-list .fix-box {
+  position: relative;
+  width: 100%;
+}
+.settings > .content > section .scene-list .fix-box ui-input {
+  width: 100%;
+}
+.settings > .content > section .scene-list .fix-box ui-checkbox {
+  border-bottom: 1px solid var(--color-normal-border-emphasis);
+  width: 100%;
+}
+.settings > .content > section .scene-list .scenes-box {
+  display: block;
+  max-height: 120px;
+  overflow: auto;
+}
+.settings > .content > section .scene-list .scenes-box ui-label {
+  font-style: italic;
+  color: #4a4141;
+  font-weight: 700;
+}
+.settings > .content > section .scene-list .scenes-box > div {
+  display: flex;
+}
+.settings > .content > section .scene-list .scenes-box > div > ui-checkbox {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.settings > .content > section .scene-list .scenes-box > div > ui-checkbox .name {
+  margin-left: 2px;
+  color: var(--color-info-contrast-important);
+}
+.settings > .content > section .scene-list .scenes-box > div > ui-checkbox .url {
+  color: var(--color-default-fill-weaker);
+}
+.settings > .content > section .scene-list .scenes-box > div .i-home {
+  visibility: hidden;
+}
+.settings > .content > section .scene-list .scenes-box > div[home] .i-home,
+.settings > .content > section .scene-list .scenes-box > div:hover .i-home {
+  visibility: visible;
+}
+.settings > .content > section .scene-list .scenes-box .i-home:hover {
+  cursor: pointer;
+  color: var(--color-focus-fill-weakest);
+  background: none;
+}
+.settings > .content > section .scene-list .scenes-box > div[missing] {
+  background: #bac77e2b;
+}
+.settings > .content > section .scene-list .scenes-box > div[missing] i {
+  color: yellow;
+}
+.settings > .content > section ui-prop.no-wrap > *[slot='content'] {
+  flex-direction: row;
+}
+.settings > .content > section ui-prop.error {
+  margin: 0;
+  font-size: 10px;
+}
+.settings > .content .bundle-list .scene-list {
+  width: 100%;
+}
+.settings > .content .build-prop {
+  position: relative;
+}
+.settings > .content .build-prop .required {
+  position: absolute;
+  left: -10px;
+  top: 2px;
+  color: var(--color-danger-fill-weaker);
+}
+.settings > .content > section[disabled] {
+  opacity: 0.6;
+}
+.settings > .content > section[disabled] > * {
+  pointer-events: none;
+}
+.settings > .content ui-prop.danger div[slot].scene-list {
+  border-color: var(--color-danger-fill-weaker);
+}
+.settings > .content .plugins {
+  width: 100%;
+  position: relative;
+}
+.settings > .content .plugins .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background: #1b1d1d1f;
+  padding: 0;
+  box-sizing: border-box;
+}
+.settings > .content .plugins[disabled] {
+  opacity: 0.7;
+}
+.settings > .content .plugins .check {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.settings > .content > .footer {
+  padding: 10px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.build-button {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+.build-button span {
+  display: inline-block;
+  width: 24px;
+}
+.build-button ui-icon {
+  transform: rotate(90deg) scaleY(0.8);
+}
+.build-button ui-button {
+  width: 124px;
+}
+.build-button .force-compile {
+  position: absolute;
+  top: 24px;
+  right: 0;
+}

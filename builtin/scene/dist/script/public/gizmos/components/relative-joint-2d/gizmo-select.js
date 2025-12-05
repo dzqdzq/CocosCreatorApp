@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const joint_2d_1=require("../joint-2d");class RelativeJoint2DGizmo extends joint_2d_1.SelectGizmo{}exports.default=RelativeJoint2DGizmo;

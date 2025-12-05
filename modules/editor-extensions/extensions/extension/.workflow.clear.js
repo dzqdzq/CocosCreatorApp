@@ -1,0 +1,1 @@
+exports.clear=function(){return["./dist","./static/extension-template/html-panel/node_modules","./static/extension-template/vue2.x-panel/node_modules","./static/extension-template/vue3.x-panel/node_modules"]};

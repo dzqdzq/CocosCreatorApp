@@ -1,0 +1,117 @@
+.joint-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.joint-wrap > header {
+  padding-bottom: 10px;
+}
+.joint-wrap > header > ui-label {
+  display: inline;
+}
+.joint {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.joint > .slider {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  min-width: 140px;
+  border-right: 1px solid var(--color-normal-border);
+  padding: 4px 8px;
+}
+.joint > .slider > header {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2px;
+}
+.joint > .slider > header > .layout {
+  display: flex;
+  padding: 2px 4px 2px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+.joint > .slider > header > .layout[active],
+.joint > .slider > header > .layout:hover {
+  background-color: var(--color-normal-fill-emphasis);
+}
+.joint > .slider > header > .layout .name {
+  flex: 1;
+}
+.joint > .slider > header > .layout .btn {
+  margin-left: 4px;
+}
+.joint > .slider > footer {
+  width: 100%;
+  padding: 4px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-normal-fill);
+  box-sizing: border-box;
+}
+.joint > .slider > footer > ui-button {
+  width: 100%;
+}
+.joint > .slider > footer > ui-button ui-icon {
+  margin-right: 8px;
+}
+.joint > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 0 8px;
+}
+.joint > .content > header {
+  padding: 2px 4px 8px 4px;
+}
+.joint > .content > section > ui-section {
+  margin-left: 3px;
+}
+.joint > .content > section > ui-section:hover > .header > ui-button {
+  display: inline-flex;
+}
+.joint > .content > section > ui-section > .header {
+  flex: 1;
+}
+.joint > .content > section > ui-section > .header .bone-title {
+  display: flex;
+  flex: 1;
+}
+.joint > .content > section > ui-section > .header > ui-button {
+  display: none;
+}
+.joint > .content > section > ui-section > .list {
+  margin-left: 20px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.joint > .content > section > ui-section > .list > ui-prop .section {
+  display: flex;
+  margin-bottom: 4px;
+}
+.joint > .content > section > ui-section > .list > ui-prop .section ui-asset {
+  flex: 0 0 calc(100% - 24px);
+}
+.joint > .content > section > ui-section > .list > ui-prop .section ui-button {
+  margin-left: 4px;
+}
+.joint > .content > section > ui-section > .list > ui-prop footer ui-button {
+  width: 100%;
+}
+.joint > .content > section > ui-section > .list > ui-prop footer ui-button ui-icon {
+  margin-right: 8px;
+}
+.joint > .content > footer {
+  width: 100%;
+  text-align: center;
+}
+.joint > .content > footer > ui-button {
+  width: 200px;
+  margin-top: 4px;
+}
+.joint > .content > footer > ui-button ui-icon {
+  margin-right: 8px;
+}

@@ -1,0 +1,134 @@
+{
+    "name": "utils",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Utils Tools",
+    "main": "./browser/index",
+    "contributions": {
+        "footer": {
+            "right": "./static/footer/right.js"
+        },
+        "messages": {
+            "export-dts": {
+                "methods": [
+                    "exportDTS"
+                ]
+            },
+            "tester-tag": {
+                "methods": [
+                    "testerTag"
+                ]
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "Export.d.ts",
+                "message": "export-dts",
+                "group": "help",
+                "order": -99
+            }
+        ],
+        "profile": {
+            "editor": {
+                "features.adsense-h5g-plugin": {
+                    "default": true
+                },
+                "features.xiaomi-quick-game": {
+                    "default": true
+                },
+                "features.alipay-mini-game": {
+                    "default": false
+                },
+                "features.alipay-mini-game-v2": {
+                    "default": true
+                },
+                "features.taobao-mini-game": {
+                    "default": true
+                },
+                "features.taobao-creative-app": {
+                    "default": true
+                },
+                "features.oppo-mini-game": {
+                    "default": true
+                },
+                "features.huawei-quick-game": {
+                    "default": true
+                },
+                "features.vivo-mini-game": {
+                    "default": true
+                },
+                "features.qtt": {
+                    "default": false
+                },
+                "features.cocos-play": {
+                    "default": true
+                },
+                "features.link-sure": {
+                    "default": false
+                },
+                "features.link-sure-subpackages": {
+                    "default": false
+                },
+                "features.wechatgame": {
+                    "default": true
+                },
+                "features.wechatprogram": {
+                    "default": false
+                },
+                "features.baidu-mini-game": {
+                    "default": false
+                },
+                "features.wechat-separation-engine": {
+                    "default": true
+                },
+                "features.cloud-function": {
+                    "default": true
+                },
+                "features.huawei-agc": {
+                    "default": true
+                },
+                "features.ohos": {
+                    "default": true
+                },
+                "features.linux": {
+                    "default": false
+                },
+                "features.openharmony": {
+                    "default": true
+                },
+                "features.bytedance-mini-game": {
+                    "default": true
+                },
+                "features.fb-instant-games": {
+                    "default": true
+                },
+                "features.analytics-debug": {
+                    "default": false
+                },
+                "features.disable-analytics-ga": {
+                    "default": false
+                },
+                "3_0_0_package_dir_info": {
+                    "default": false
+                },
+                "features.must-crash-report": {
+                    "default": false
+                },
+                "features.webgpu": {
+                    "default": false
+                },
+                "information": {
+                    "default": {
+                        "url": "https://creator-api.cocos.com/information_url",
+                        "features": {
+                            "customSplash": true,
+                            "removeSplash": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

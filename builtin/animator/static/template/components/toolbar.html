@@ -1,0 +1,57 @@
+<div id="header">
+    <div class="left">
+        <div class="group clip">
+            <ui-label value="i18n:animator.toolbar.clips" style="margin-right: 5px;"></ui-label>
+            <ui-select v-if="clipsMenu && clipsMenu.length > 0" name="clip" 
+                :value="currentClip"
+                @confirm="setCurrentClip"
+            >
+                <option v-if="aniComp !== 'cc.animation.AnimationController'" value="addClip">{{t('create_animation_clip', 'mask.')}}</option>
+                <option v-for="(item, index) in clipsMenu" :key="item.name + item.uuid + index" :value="item.uuid">{{item.name}}</option>
+            </ui-select>
+        </div>
+    </div>
+    <div class="right" @mousedown="onMouseDown">
+        <div>
+            <div class="group">
+                <ui-icon tooltip="i18n:animator.toolbar.jump_first_frame" value="rewind"  name="jump_first_frame"></ui-icon>
+                <ui-icon tooltip="i18n:animator.toolbar.jump_prev_frame" value="prev-play"  name="jump_prev_frame"></ui-icon>
+                <ui-icon v-if="state !== 'play'" tooltip="i18n:animator.toolbar.play_animation" value="play" name="play"></ui-icon>
+                <ui-icon v-if="state === 'play'" tooltip="i18n:animator.toolbar.pause_animation" value="pause" name="pause"></ui-icon>
+                <ui-icon tooltip="i18n:animator.toolbar.jump_next_frame" value="next-play"  name="jump_next_frame"></ui-icon>
+                <ui-icon tooltip="i18n:animator.toolbar.jump_last_frame" value="forward"  name="jump_last_frame"></ui-icon>
+                <ui-icon :disable="state !== 'playing'" tooltip="i18n:animator.toolbar.stop_animation" value="stop" name="stop"></ui-icon>
+            </div>
+
+            <div class="time group">
+                <ui-select :value="showType" @change="changeFrameShowType($event.target.value)">
+                    <option value="time">{{t('show_type.time')}}</option>
+                    <option value="frame">{{t('show_type.frame')}}</option>
+                    <option value="time_s">{{t('show_type.time_s')}}</option>
+                </ui-select>
+                <ui-input :value="currentTime" @confirm="onTimeConfirm"></ui-input>
+            </div>
+            <div class="group"
+                tooltip="i18n:animator.toolbar.spacing_frame"
+            >
+                <ui-label value="i18n:animator.toolbar.spacing"></ui-label>
+                <ui-num-input 
+                    :value="spacingFrame"
+                    step="1"
+                    preci="0"
+                    min="1"
+                    ref="spacingFrame"
+                    @change="onSpacingFrame"
+                ></ui-num-input>
+            </div>
+            <ui-icon tooltip="i18n:animator.toolbar.arrange" value="arrange" name="arrange"></ui-icon>
+            <ui-icon tooltip="i18n:animator.toolbar.insert_event" value="event" name="addEvent"></ui-icon>        
+            <ui-icon tooltip="i18n:animator.toolbar.save_clip" value="save" name="saveClip"></ui-icon>        
+            <ui-icon tooltip="i18n:animator.toolbar.shortcuts" value="shortcuts" name="shortcuts" ></ui-icon>
+            <ui-icon tooltip="i18n:animator.clip_cache.use_another_clip" value="log" name="applyClipCache" ></ui-icon>
+        </div>
+        <div>
+            <ui-icon tooltip="i18n:animator.toolbar.exit" value="exit" name="exit"></ui-icon>
+        </div>
+    </div>
+</div>

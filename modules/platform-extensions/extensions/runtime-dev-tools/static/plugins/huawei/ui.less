@@ -1,0 +1,46 @@
+.huawei-ui {
+    margin: 10px 10px;
+    padding: 0 10px;
+    flex: 1;
+    overflow-y: auto;
+
+    ui-prop {
+        margin: 5px 0;
+    }
+
+    ui-prop > div[slot='content'] {
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+    }
+
+    ui-prop > div[slot='content'] > ui-input,
+    ui-textarea,
+    ui-file {
+        width: 100%;
+    }
+
+    .play {
+        text-align: center;
+    }
+
+    .play-layout {
+        display: flex;
+        justify-content: center;
+    }
+
+    .play-btn {
+        width: 30px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-color: #474747;
+        cursor: pointer;
+    }
+
+    .play-btn:hover {
+        background-color: var(--color-hover-fill-weaker);
+    }
+}

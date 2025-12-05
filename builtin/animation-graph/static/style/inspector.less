@@ -1,0 +1,694 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    ui-prop,
+    ui-section { margin-top: 4px; }
+
+    ui-prop > ui-section,
+    ui-prop > ui-prop,
+    ui-section > ui-prop[slot="header"],
+    ui-prop [slot="content"] ui-prop {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    ui-prop[ui-section-config][dump="cc.Object"] + ui-section.config,
+    ui-prop[ui-section-config][dump="cc.Object"] + ui-prop[ui-section-config][dump="cc.Object"],
+    ui-section.config + ui-prop[ui-section-config][dump="cc.Object"],
+    ui-section.config + ui-section.config { margin-top: 0; }
+
+    > .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        font-size: 12px;
+
+        > .layers,
+        > .states {
+            > .config {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                overflow: hidden;
+
+                > .header {
+                    display: flex;
+                    align-items: center;
+                    height: 28px;
+                    border-bottom: solid 1px var(--color-normal-fill-emphasis);
+
+                    > .name {
+                        flex: 1;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        cursor: default;
+                        padding-left: 4px;
+                    }
+                }
+
+                > .content {
+                    display: flex;
+                    flex: 1;
+                    flex-direction: column;
+                    overflow: auto;
+
+                    ui-prop:not([ui-section-config][dump="cc.Object"]) {
+                        margin-right: 4px;
+                    }
+
+                    ui-section ui-prop:not([ui-section-config][dump="cc.Object"]) {
+                        margin-right: 0;
+                    }
+
+                    ui-prop[ui-section-config],
+                    ui-section.config {
+                        &:first-child {
+                            margin-top: -1px;
+                        }
+
+                        &:last-child {
+                            border-bottom: solid 1px var(--color-normal-fill-emphasis);
+                        }
+                    }
+                }
+            }
+        }
+
+        > .layers {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+
+            > .layer {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                > .name {
+                    flex: 1;
+                    text-align: left;
+                    word-break: break-word;
+                    color: var(--color-default-contrast-important);
+                    margin-left: 4px;
+                }
+
+                > .content {
+                    > ui-prop {
+                        margin-right: 4px;
+                    }
+
+                    > .stashes {
+                        .prop {
+                            margin-bottom: 4px;
+
+                            .content {
+                                display: flex;
+
+                                .name-input {
+                                    flex: 1;
+                                    margin-right: 4px;
+                                }
+
+                                ui-button {
+                                    margin: 0 2px;
+                                }
+                            }
+                        }
+
+                        .add {
+                            width: 200px;
+                            margin: 8px auto;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .states {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: auto;
+
+            > .state {
+                &.motion {
+                    .threshold {
+                        .blend2D {
+                            .first {
+                                margin-right: 4px;
+                            }
+                        }
+                    }
+                }
+
+                &.pose-node {
+                    > .parameter {
+                        .row {
+                            padding-top: 8px;
+                        }
+                    }
+                }
+
+                > .name {
+                    flex: 1;
+                    text-align: left;
+                    word-break: break-word;
+                    color: var(--color-default-contrast-important);
+                    margin-left: 4px;
+                }
+
+                > ui-input {
+                    &.name {
+                        margin-bottom: 2px;
+                        margin-right: 8px;
+                    }
+                }
+
+                .prop {
+                    > .name {
+                        flex: 1;
+                        text-align: left;
+                    }
+
+                    > .edit {
+                        width: 200px;
+                        margin: 16px auto;
+                    }
+
+                    > .list {
+                        .per {
+                            position: relative;
+                            display: flex;
+                            cursor: pointer;
+                            margin-top: 4px;
+
+                            &:hover {
+                                background-color: var(--color-active-fill-normal);
+                            }
+
+                            &[drag-over] {
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: var(--color-info-fill-weakest);
+                                }
+                            }
+
+                            &[drag-over='top'] {
+                                &::before {
+                                    top: 0;
+                                }
+                            }
+
+                            &[drag-over='bottom'] {
+                                &::before {
+                                    bottom: 0;
+                                }
+                            }
+
+                            > .drag {
+                                width: 6px;
+                                margin: 2px 6px 2px 0;
+                                cursor: move;
+                                background: linear-gradient(45deg, var(--color-active-fill-normal) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-active-fill-normal) 0, var(--color-active-fill-normal) 75%, var(--color-normal-fill) 0);
+                                background-size: 6px 6px;
+
+                                &:hover {
+                                    background: linear-gradient(45deg, var(--color-info-fill-weakest) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-info-fill-weakest) 0, var(--color-info-fill-weakest) 75%, var(--color-normal-fill) 0);
+                                    background-size: 6px 6px;
+                                }
+                            }
+
+                            > .name {
+                                flex: 1;
+                            }
+                        }
+                    }
+                }
+
+                .edit-btn {
+                    margin-top: 8px;
+                }
+            }
+
+            > .transition {
+                > .content {
+                    > .list {
+                        margin-bottom: 1px;
+
+                        .per {
+                            &:hover,
+                            &[active] {
+                                background: var(--color-info-fill-important);
+                                color: var(--color-info-contrast-important);
+                            }
+
+                            position: relative;
+                            display: flex;
+                            cursor: pointer;
+                            padding: 2px 0 2px 8px;
+                            border-bottom: 1px solid var(--color-normal-fill-emphasis);
+
+                            > .name {
+                                flex: 1;
+                            }
+
+                            > .menu {
+                                display: none;
+                            }
+
+                            &:hover {
+                                > .menu {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+
+                    > .view {
+                        > ui-prop {
+                            margin-right: 4px;
+                        }
+
+                        .conditions {
+                            > .name {
+                                flex: 1;
+                                text-align: left;
+                            }
+
+                            > .tips {
+                                margin-top: 16px;
+                                margin-bottom: 16px;
+                            }
+
+                            .condition {
+                                margin-top: 8px;
+                                margin-left: 20px;
+                                border-spacing: 0;
+
+                                tr {
+                                    &:hover {
+                                        .remove {
+                                            ui-icon {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                td {
+                                    vertical-align: top;
+                                    text-align: center;
+                                    padding-top: 0;
+                                    padding-bottom: 0;
+                                }
+
+                                ui-select {
+                                    width: 100%;
+                                }
+
+                                .lhs {
+                                    width: 40%;
+                                    text-align: left;
+
+                                    .variable {
+                                        display: flex;
+
+                                        .switch {
+                                            margin-right: 4px;
+                                        }
+
+                                        .content {
+                                            display: flex;
+                                            flex: 1;
+
+                                            .name {
+                                                flex: 1;
+                                            }
+
+                                            .element {
+                                                flex: 2;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .rhs {
+                                    &[colspan="2"] {
+                                        ui-select {
+                                            margin-left: 3px;
+                                        }
+                                    }
+                                }
+
+                                .operator {
+                                    min-width: 50px;
+                                    padding-left: 4px;
+                                    padding-right: 4px;
+                                    text-align: left;
+
+                                    .label {
+                                        margin-left: 6px;
+                                    }
+                                }
+
+                                .remove {
+                                    width: 16px;
+
+                                    ui-icon {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .motion {
+                > .prop {
+                    > .name {
+                        flex: 1;
+                        display: flex;
+                    }
+
+                    > .content {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    ui-asset {
+                        margin-top: 8px;
+                    }
+                }
+            }
+
+            > .preview {
+                position: relative;
+                padding-top: 4px;
+                max-height: 80vh;
+
+                inspector-resize-preview {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    z-index: 10;
+                }
+
+                > .toolbar {
+                    margin-bottom: 4px;
+
+                    &[disable] {
+                        pointer-events: none;
+                    }
+
+                    .icon {
+                        padding: 0 4px;
+                        border-radius: 2px;
+
+                        &:hover {
+                            background: var(--color-hover-fill-normal);
+                        }
+                    }
+
+                    .text {
+                        margin-left: 16px;
+                    }
+                }
+
+                > .image {
+                    position: relative;
+                    display: block;
+                    height: var(--inspector-footer-preview-height, 200px);
+                    margin-top: 4px;
+
+                    .canvas {
+                        max-height: 100%;
+                    }
+
+                    .drag-tip {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        z-index: 1;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: var(--color-default-fill);
+
+                        &:hover {
+                            background-color: var(--color-active-fill-normal);
+                        }
+
+                        &[active] {
+                            display: flex;
+                        }
+                    }
+                }
+
+                > .operation {
+                    padding: 8px;
+                    margin: 8px 0;
+                    background-color: var(--color-normal-fill-normal);
+                }
+
+                > .handle-2d {
+                    position: relative;
+                    padding: 30px 20px 0 20px;
+                    margin: 8px 0;
+                    background-color: var(--color-normal-fill-important);
+                    overflow: hidden;
+
+                    .pointers {
+                        position: relative;
+                        max-height: 150px;
+                        aspect-ratio: 2;
+                        margin: 0 auto;
+                        border: 1px dashed var(--color-default-border-emphasis);
+                        box-sizing: border-box;
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            right: 0;
+                            height: 1px;
+                            z-index: 0;
+                            background-color: var(--color-default-border-emphasis);
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 50%;
+                            width: 1px;
+                            z-index: 0;
+                            background-color: var(--color-default-border-emphasis);
+                        }
+
+                        &[ctrl] {
+                            .pointer {
+                                pointer-events: none;
+                            }
+                        }
+
+                        .pointer {
+                            position: absolute;
+                            z-index: 1;
+                            width: 10px;
+                            height: 10px;
+                            background: var(--color-active-fill-important);
+                            border: 1px solid var(--color-default-border-emphasis);
+                            box-sizing: border-box;
+                            transform: rotate(45deg);
+
+                            --weight: 0;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: -1px;
+                                right: -1px;
+                                bottom: -1px;
+                                left: -1px;
+                                z-index: 1;
+                                opacity: var(--weight);
+                                background: var(--color-primary-fill);
+                            }
+
+                            &:hover {
+                                box-shadow: 0 0 6px 4px rgb(255 255 255 / 100%);
+                            }
+                        }
+
+                        .threshold {
+                            pointer-events: none;
+                            position: absolute;
+                            z-index: 2;
+                            width: 10px;
+                            height: 10px;
+                            background: var(--color-warn-fill-normal);
+                            border-radius: 100%;
+                            box-sizing: border-box;
+                        }
+                    }
+
+                    .threshold-text {
+                        margin: 4px auto;
+                        text-align: center;
+                        user-select: text;
+                        color: var(--color-warn-fill-normal);
+                    }
+
+                    .threshold-tip {
+                        align-items: center;
+                        display: flex;
+
+                        .text {
+                            color: var(--color-default-fill-weakest);
+                        }
+
+                        .point {
+                            display: inline-block;
+                            margin-left: 4px;
+                            width: 10px;
+                            height: 10px;
+                            background: var(--color-warn-fill-normal);
+                            border-radius: 100%;
+                        }
+                    }
+
+                    .threshold-y {
+                        position: absolute;
+                        top: 4px;
+                        left: calc(50% - 30px);
+                    }
+
+                    .threshold-x {
+                        position: absolute;
+                        bottom: 2px;
+                        right: 4px;
+                    }
+
+                    .threshold-input {
+                        width: 60px;
+                        height: 20px;
+                    }
+                }
+
+                .timelines {
+                    margin: 4px 8px;
+                    text-align: center;
+                    line-height: 20px;
+
+                    .timeline {
+                        position: relative;
+                        margin: 4px 0;
+
+                        &.target,
+                        &.transit {
+                            .content {
+                                cursor: grab;
+                            }
+                        }
+                    }
+
+                    .content {
+                        position: relative;
+                        height: 20px;
+                        text-align: center;
+                        color: var(--color-normal-contrast);
+                        background-color: var(--color-info-fill-important);
+
+                        .name {
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+
+                        .transit-i {
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            width: 4px;
+                            z-index: 1;
+                            cursor: ew-resize;
+                            border-radius: 2px;
+                            background-color: var(--color-info-fill-weakest);
+
+                            &.start {
+                                left: -2px;
+                            }
+
+                            &.end {
+                                right: -2px;
+                            }
+
+                            &.destination-start {
+                                background: rgba(0, 0, 0, 0.2);
+                                background-size: 5px 5px;
+                                left: 0;
+                                border-radius: 0;
+                                pointer-events: none;
+                            }
+                        }
+                    }
+
+                    .repeat {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        width: 1px;
+                        z-index: 1;
+                        background-color: var(--color-default-fill-emphasis);
+                    }
+                }
+
+                > .error-tip {
+                    display: block;
+                    text-align: center;
+                    padding: 20px 0;
+                }
+            }
+        }
+
+        .menu {
+            padding-right: 4px;
+            color: var(--color-default-contrast);
+
+            &:hover {
+                color: var(--color-primary-contrast-emphasis);
+            }
+        }
+
+        .tips {
+            text-align: center;
+            color: var(--color-default-fill-weakest);
+        }
+
+        .state-name {
+            color: var(--color-default-contrast-important);
+        }
+
+        .state-arrow {
+            color: var(--color-default-fill-weakest);
+            margin: 0 4px;
+        }
+    }
+}

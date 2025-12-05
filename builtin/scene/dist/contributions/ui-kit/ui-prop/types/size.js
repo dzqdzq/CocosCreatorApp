@@ -1,0 +1,5 @@
+"use strict";function update(t){var e=this;e._dump=t;const l=e.$this.renderInfo.panel;var a=e.$.label;l.setLabel(t,a);const i=t.value;a=e.$.numList;a[0].value=i.width,t.values&&t.values.some(e=>e.width!==i.width)?a[0].invalid=!0:a[0].invalid=!1,a[1].value=i.height,t.values&&t.values.some(e=>e.height!==i.height)?a[1].invalid=!0:a[1].invalid=!1,a.forEach(e=>{l.setReadonly(t,e)})}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){var t=this;const l=e.target.getAttribute("local"),a=e.target.value;l&&l in t._dump.value&&(t._dump.value[l]=a,"values"in t._dump)&&t._dump.values.forEach(e=>{e[l]=a})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-num-input preci="6" label="W" slot="content" style="margin-right: 4px;" local="width"></ui-num-input>
+<ui-num-input preci="6" label="H" slot="content" local="height"></ui-num-input>
+`,exports.$={label:"ui-label",numList:"ui-num-input"},exports.update=update,exports.ready=ready;

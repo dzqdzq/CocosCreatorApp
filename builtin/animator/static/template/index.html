@@ -1,0 +1,517 @@
+<div class="animator">
+    <tool-bar
+        :current-frame="currentFrame"
+        :state="animationState"
+        :clips-menu="clipsMenu"
+        :current-clip="currentClip"
+        :sample="clipConfig && clipConfig.sample || 60"
+        :ani-comp="aniCompType"
+    >
+    </tool-bar>
+    <div class="container" ref="container">
+        <div class="left" ref="left" :style="{width: displayLayout.leftPec + '%'}">
+            <div class="content-device embedded-player-track-header">
+                <div class="header"
+                    :disabled="!enableEmbeddedPlayer"
+                >
+                    <ui-icon value="arrow-triangle"
+                        :class="expandLayout.embeddedPlayer ? 'expand' : 'collapse'"
+                        @click="toggleExpandLayoutChange('embeddedPlayer')"
+                    ></ui-icon>
+                    <ui-label value="i18n:animator.embeddedPlayer.embeddedPlayerTrack"></ui-label>
+                    <ui-icon color="true" value="experiment" tooltip="i18n:animator.embeddedPlayer.tips"></ui-icon>
+                </div>
+                <ui-button class="transparent icon-btn"
+                    @click="onShowEmbeddedPlayerMenu"
+                    :disabled="!enableEmbeddedPlayer"
+                >
+                    <ui-icon value="add"></ui-icon>
+                </ui-button>
+                <ui-label v-if="!enableEmbeddedPlayer"
+                    tooltip="i18n:animator.embeddedPlayer.disabledTips"
+                ></ui-label>
+            </div>
+            <div ref="embeddedPlayer" class="content embedded-player-track-tree"
+                :style="{height: displayLayout.topPec + '%'}"
+                :disabled="!enableEmbeddedPlayer"
+            >
+                <control-track-tree
+                    v-for="(group, index) in embeddedPlayerGroups"
+                    :key="group.key"
+                    :track-info="group"
+                    :index ="index"
+                    :current-frame="currentFrame"
+                    :adding="isEmbeddedPlayerAdding(group.key)"
+                    @add-player="onAddEmbeddedPlayer"
+                ></control-track-tree>
+            </div>
+            <div class="content-device node-header ns-resize"
+                @mousedown="onStartResize($event, 'top')"
+            >
+                <ui-icon value="arrow-triangle"
+                    :class="expandLayout.node ? 'expand' : 'collapse'"
+                    @click="toggleExpandLayoutChange('node')"
+                ></ui-icon>
+                <ui-label
+                    class="prop-name"
+                    :value="nodeTitle"
+                ></ui-label>
+                <div class="right">
+                    <div class="search" tabindex="0">
+                        <ui-icon @click="toggleInvalidNode"
+                            :value="filterInvalid ? 'eye-close' : 'eye-open'"
+                            :tooltip="filterInvalid ? 'i18n:animator.node.show_all_node' : 'i18n:animator.node.show_invalid_node'"
+                        ></ui-icon>
+                        <ui-input
+                            placeholder="i18n:animator.node.search_placeholder"
+                            tooltip="i18n:animator.node.search_placeholder"
+                            :value="filterName"
+                            @change="onFilter"
+                            show-clear
+                        ></ui-input>
+                    </div>
+                </div>
+            </div>
+            <div class="content nodes"
+                ref="nodes"
+                :style="{height: displayLayout.centerPec + '%'}"
+                @scroll="onScroll($event, 'node')"
+            >
+                <div class="wrap"
+                    v-if="nodeDump && nodeDump.length"
+                    :style="{height:nodesHeight+'px'}"
+                >
+                    <template v-if="nodeDump">
+                        <node-tree
+                            v-for="(item, index) of nodeDump"
+                            v-if="!item.hidden"
+                            :style="{transform: 'translateY('+nodeDump[0].top+'px)'}"
+                            :dumps="item"
+                            :index="index"
+                            :selected-ids="selectedIds"
+                            :select-path="computeSelectPath"
+                            :key="item.index + item.uuid + item.name + index"
+                            :move-path = "moveNodePath"
+                            :lock="clipConfig && clipConfig.isLock"
+                            :show-type="showAnimEmbeddedPlayer ? 'embeddedPlayer' : 'key'"
+                            :current-frame="currentFrame"
+                        ></node-tree>
+                    </template>
+                </div>
+            </div>
+            <property-tools
+                class="content-device ns-resize"
+                :menu="displayPropertiesMenu"
+                :lock="clipConfig && clipConfig.isLock || computeSelectPath && computeSelectPath.includes('//')"
+                :select-node="selectedId"
+                :node-path="computeSelectPath"
+                :selected-ids="selectedIds"
+            >
+            </property-tools>
+            <div
+                id="properties"
+                ref="property"
+                class="flex-1 properties tw-min-h-0"
+                @scroll="onScroll($event, 'property')"
+                @mousedown="onPropertyListContextMouseDown"
+            >
+                <template
+                    v-if="properties && Object.keys(properties).length > 0"
+                >
+                    <property-tree v-for="(item, name, index) in properties"
+                        v-if="!item.hidden"
+                        :index="item.index"
+                        :key="name + index"
+                        :prop="item.prop"
+                        :type="item.type"
+                        :missing="item.missing || !selectedId"
+                        :node-path="computeSelectPath"
+                        :frame="currentFrame"
+                        :select="selectProperty"
+                        :key-frames="item.keyFrames"
+                        :is-expand="expandInfo[name]"
+                        :lock="!selectedId || (clipConfig && clipConfig.isLock)"
+                        :color="item.color"
+                        :empty="currentKeyEmptyInfo[item.prop]"
+                    ></property-tree>
+                </template>
+                <ui-label v-if="!computeSelectPath" value="i18n:animator.property.should_select_node_first"></ui-label>
+            </div>
+
+            <auxiliary-curves
+                v-if="enableAuxCurve"
+                :current-clip="currentClip"
+                :current-frame="currentFrame"
+                :style="{height: toPercent(displayLayout.auxCurvePec)}"
+                :expand="expandLayout.auxiliaryCurve"
+                @scroll="onScroll($event, 'auxiliaryCurve')"
+                @toggle-expand="toggleExpandLayoutChange('auxiliaryCurve')"
+            >
+            </auxiliary-curves>
+        </div>
+        <div class="right control" ref="right"
+            @mousewheel="onMouseWheel"
+            @mousedown="onMouseDown"
+        >
+            <!-- 坐标网格线 -->
+            <div class="chart" ref="chart">
+                <canvas
+                    ref="gridCanvas"
+                    id="gridCanvas"
+                ></canvas>
+                <div v-if="showType !== 'time_s'" class="time-axis">
+                    <div class="wrap" :style="'transform: translateX(' + offset + 'px)'">
+                        <span
+                            v-for="info in timeInfos"
+                            :key="`${info.value}__${info.x}`"
+                            :style="{
+                                '--time-axis-x': `${info.x}px`,
+                             }"
+                        >{{info.value}}s</span>
+                    </div>
+                </div>
+                <div class="x-axis" ref="xAxis"><span>10:00</span></div>
+            </div>
+            <div class="content-device"
+                name="time-pointer"
+            >
+                <div class="duration"
+                    v-if="lastFrameInfo"
+                    :style="queryDurationStyle(lastFrameInfo.frame)"
+                ></div>
+            </div>
+            <div class="control-pointer"
+                name = "pointer"
+                :style="'transform: translateX('+ pointerPosition(offset) +'px)'"
+            >
+                <!-- <div class="current-info">
+                    <div v-if="clipConfig && (currentFrame <= clipConfig.duration * sample)">{{'(' + (currentFrame / (clipConfig.duration * sample)).toFixed(2) * 100 + '%)'}}</div>
+                </div> -->
+                <div class="pointer-header">
+                    {{currentFrame}}
+                </div>
+                <span class="line"></span>
+            </div>
+            <events
+                :events="eventsDump"
+                :offset="offset"
+                :select-info="selectEventInfo"
+            >
+            </events>
+            <div class="content embedded-players" ref="embeddedPlayer-content"
+                :style="{height: displayLayout.topPec + '%'}"
+            >
+                <template
+                    v-if="embeddedPlayerGroups"
+                >
+                    <preview-range-row
+                        v-for="(group, index) in embeddedPlayerGroups"
+                        :index="index"
+                        :track-info="group"
+                        :key="group.key"
+                        :offset="offset"
+                        :scroll="embeddedPlayerScrollInfo"
+                        :update-position="updatePosition"
+                        :select-players="selectEmbeddedPlayerInfo"
+                    ></preview-range-row>
+                </template>
+            </div>
+            <div class="content-device property-tools ns-resize" @mousedown.stop="onStartResize($event, 'top')">
+                <div v-if="showUseBakedAnimationWarn"
+                    class="transparent use-baked-animation-by-ska"
+                    @click="onShowUseBakedAnimationWarn"
+                >
+                    <ui-icon default="operation" value="info-i"></ui-icon>
+                    <ui-label value="i18n:animator.tips.use_baked_animation.warn_by_ska"></ui-label>
+                </div>
+            </div>
+            <div class="content"
+                ref="node-content"
+                name="node"
+                :style="{height: displayLayout.centerPec + '%'}"
+            >
+                <div class="wrap"
+                    :style="{height:nodesHeight+'px'}"
+                >
+                    <template
+                        v-if="nodeDump"
+                    >
+                        <preview-row
+                            v-for="(item, index) in nodeDump"
+                            v-show="!item.hidden"
+                            :param="[item.path]"
+                            :key-frames="item.keyFrames"
+                            :index="index"
+                            :list-index="item.listIndex"
+                            :select-info="selectKeyInfo"
+                            :scroll="nodeScrollInfo"
+                            :key="item.uuid + item.path"
+                            :offset="offset"
+                            :lock="clipConfig && clipConfig.isLock"
+                            :update-position="updatePosition"
+                            :update-frame="updateKeyFrame"
+                            :update-select="updateSelectKey"
+                        ></preview-row>
+                    </template>
+                </div>
+                <template v-if="boxStyle && boxInfo && boxInfo.type === 'node'">
+                    <div class="box" :style="boxStyle"></div>
+                </template>
+                <div class="lock-mask" v-if="clipConfig && clipConfig.isLock"></div>
+            </div>
+            <div class="content-device property-tools ns-resize"
+                @mousedown.stop="onStartResize($event, 'center')"
+            >
+                <div class="ani-prop" @mousedown.stop>
+                    <ui-label
+                        v-if="selectProperty"
+                        :value="selectProperty.prop"
+                    ></ui-label>
+                    <ui-prop
+                        type="dump"
+                        @change-dump="onPropChange"
+                        @confirm-dump="onPropConfirm"
+                        v-if="selectPropertyRenderDump"
+                        :render="selectPropertyRenderDump"
+                    ></ui-prop>
+                </div>
+                <div class="right">
+                    <ui-icon v-if="showAnimCurve"
+                        value="all-keyframe"
+                        tooltip="i18n:animator.toolbar.show_selected_keys"
+                        @click="showSelectedKeys"
+                    ></ui-icon>
+                    <ui-icon v-if="showAnimCurve"
+                        value="all-keyframe"
+                        tooltip="i18n:animator.toolbar.show_all_keys"
+                        @click="showAllKeys"
+                    ></ui-icon>
+                    <div class="icon-group">
+                        <ui-icon
+                            :active="showAnimCurve"
+                            value="curve"
+                            tooltip="i18n:animator.property.change_to_curve"
+                            @click="toggleAniCurve"
+                        ></ui-icon>
+                        <ui-icon
+                            :active="!showAnimCurve"
+                            value="slider"
+                            tooltip="i18n:animator.property.change_to_key"
+                            @click="toggleAniCurve"
+                        ></ui-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="content flex-1 tw-min-h-0"
+                ref="property-content"
+                name="property"
+            >
+                <div v-show="!showAnimCurve">
+                    <div
+                        class="wrap"
+                        v-if="!showAnimCurve && properties && computeSelectPath"
+                        :style="{height:propertyHeight+'px'}"
+                    >
+                        <template
+                            v-for="(item, name, index) in properties"
+                        >
+                            <preview-row
+                                v-if="!item.hidden"
+                                :key-frames="item.keyFrames"
+                                :param="[item.nodePath, item.prop]"
+                                :select-info="selectKeyInfo"
+                                :type="item.type"
+                                :list-index="item.index"
+                                :index="item.index"
+                                :scroll="propertyScrollInfo"
+                                :key="item.nodePath + item.prop"
+                                :box="boxData"
+                                :lock="clipConfig && clipConfig.isLock"
+                                :offset="offset"
+                                :hidden="item.hidden"
+                                :update-position="updatePosition"
+                                :update-frame="updateKeyFrame"
+                                :update-select="updateSelectKey"
+                            ></preview-row>
+                        </template>
+                    </div>
+                    <div class="mask" v-if="computeSelectPath && computeSelectPath.includes('//')">
+                        <ui-label value="i18n:animator.mask.empty_node_tips"></ui-label>
+                    </div>
+                    <div v-if="stickBoxStyle && !showAnimCurve" class="stick" name="stick" :style="stickBoxStyle"></div>
+                    <ctrl-stick
+                        v-if="stickInfo"
+                        :select-key="selectKeyInfo"
+                        :stick-info="stickInfo"
+                        name="left"
+                    ></ctrl-stick>
+                    <ctrl-stick
+                        v-if="stickInfo"
+                        :select-key="selectKeyInfo"
+                        :stick-info="stickInfo"
+                        name="right"
+                    ></ctrl-stick>
+                    <template v-if="boxStyle && boxInfo && boxInfo.type === 'property'">
+                        <div class="box" :style="boxStyle"></div>
+                    </template>
+                    <div class="lock-mask" v-if="clipConfig && clipConfig.isLock"></div>
+                </div>
+                <div class="content flex-1 tw-min-h-0" v-show="showAnimCurve">
+                    <property-curve ref="curve" :style="curveStyle" class="">
+                    </property-curve>
+                    <curve-presets
+                        v-show="expandTab === 'curve'"
+                        :presets="presetArr"
+                        :disabled="!hasSelectedCurveClip"
+                        :search.sync="searchPresetName"
+                        class=""
+                        @apply-preset="onClipCurvePreset"
+                        @hide="expandTab = ''"
+                    >
+                    </curve-presets>
+                    <div
+                        class="curve-setting-switch"
+                        :active="expandTab === 'curve'"
+                        :class="{
+                            'active': expandTab === 'curve',
+                        }"
+                        @click="expandTab = (expandTab === 'curve' ? '' : 'curve')"
+                    >
+                        <ui-icon
+                            tooltip="i18n:animator.curvePresetTabTips"
+                            value="curve-preset"
+                            class="tw-leading-0 tw-mb-1"
+                        >
+                        </ui-icon>
+                        <ui-label value="i18n:animator.curvePreset"></ui-label>
+                    </div>
+                    
+                    <div class="mask" v-if="showAnimCurve && !selectProperty">
+                        <ui-label value="i18n:animator.tips.select_prop_first"></ui-label>
+                    </div>
+                    <div class="mask" v-if="curveData && showAnimCurve && curveData.hasUserEasingMethod" @mousedown="onEditEasingMethodCurve">
+                        <ui-label value="i18n:animator.tips.has_easing_method"></ui-label>
+                    </div>
+                    <div class="mask" v-if="showAnimCurve && selectProperty && !selectProperty.isCurveSupport">
+                        <ui-label value="i18n:animator.tips.curve_disabled"></ui-label>
+                    </div>
+                    <div class="mask" v-if="showAnimCurve && selectProperty && selectProperty.missing">
+                        <ui-label value="i18n:animator.tips.has_missing_property"></ui-label>
+                    </div>
+                </div>
+                <div class="mask" v-if="clipConfig && clipConfig.isLock">
+                    <ui-label value="i18n:animator.tips.skeletal_animation"></ui-label>
+                </div>
+            </div>
+
+            <auxiliary-curve-frames
+                v-if="enableAuxCurve"
+                ref="auxCurve"
+                :current-frame="currentFrame"
+                :offset="offset"
+                :style="{height: toPercent(displayLayout.auxCurvePec)}"
+            >
+            </auxiliary-curve-frames>
+
+            <!-- 辅助小红线 -->
+            <template
+                v-if="previewPointer"
+            >
+                <div class="control-pointer preview"
+                    :style="'transform: translateX('+ previewPointer.x +'px)'"
+                >
+                    <!-- <ui-icon value="play"></ui-icon> -->
+                    <span></span>
+                </div>
+                <div class="mouse-info"
+                    :style="'transform: translate('+previewPointer.x+'px,'+previewPointer.y+'px)'"
+                >
+                    {{previewPointer.frame}}
+                </div>
+            </template>
+            <!-- 显示当前鼠标 moveInfo 移动过程中的关键帧信息 -->
+            <template v-if="moveInfo">
+                <div class="keyframe-move-info"
+                    :style="'transform: translate('+moveInfo.x+'px,'+moveInfo.y+'px)'"
+                >
+                    <div v-if="typeof(moveInfo.frame) === 'number'">
+                        <span class="name">frame</span>
+                        <span>: {{moveInfo.frame}}</span>
+                    </div>
+                    <div v-if="typeof(moveInfo.offsetFrame) === 'number'">
+                        <span class="name">offset</span>
+                        <span>: {{moveInfo.offsetFrame}}</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="resize resize-v" :moving="leftResizeMoving" :style="{left: displayLayout.leftPec + '%'}" @mousedown.stop="onStartResize($event, 'left')"></div>
+    </div>
+    <div class="foot" v-if="clipConfig" @confirm="onConfirm">
+        <div class="left">
+            <ui-label class="prop-name" value="i18n:animator.animationCurve.WrapMode.label"></ui-label>
+            <ui-select
+                :value="clipConfig.wrapMode || 0"
+                name="wrapMode"
+                :disabled="clipConfig && clipConfig.isLock"
+            >
+                <option v-for="item in wrapModeList"
+                    :value="item.value"
+                    :title="item.tip"
+                >{{item.name}}</option>
+            </ui-select>
+        </div>
+        <div class="right">
+            <ui-slider
+                v-set:value="scale"
+                :step="1"
+                :min="5"
+                :max="100"
+                @change="onScale($event.target.value)"
+            ></ui-slider>
+            <ui-label class="prop-name" value="i18n:animator.toolbar.sample"></ui-label>
+            <ui-num-input class="prop-value"
+                :value="clipConfig.sample || 60"
+                :disabled="clipConfig && clipConfig.isLock"
+                step="1"
+                min="1"
+                preci="0"
+                name="sample"
+            ></ui-num-input>
+            <ui-label class="prop-name" value="i18n:animator.toolbar.speed"></ui-label>
+            <ui-num-input class="prop-value" :value="clipConfig.speed" name="speed"></ui-num-input>
+            <template
+            >
+                <ui-label class="prop-name" value="i18n:animator.toolbar.duration"></ui-label>
+                <span class="prop-value">
+                    {{clipConfig.duration.toFixed(2)}}({{(clipConfig.duration / clipConfig.speed).toFixed(2)}})s
+                </span>
+            </template>
+        </div>
+    </div>
+    <ani-mask
+        v-if="maskPanel === 'event'"
+    >
+        <event-editor
+            name="i18n:animator.event.title"
+            :events="eventsDump"
+            :frame="editEventFrame"
+            :uuid="currentClip"
+            @update="onUpdateEvent"
+            @close="maskPanel = ''"
+        ></event-editor>
+    </ani-mask>
+    <tips-mask
+        v-if = "!animationMode && !loading"
+        :root = "root"
+        :animation-mode = "animationMode"
+        :ani-comp = "aniCompType"
+        :current-clip = "currentClip"
+        :active="active"
+        :current-scene-mode="currentSceneMode"
+    ></tips-mask>
+    <div class="loading" v-if="loading">
+        <ui-label :value="'i18n:animator.loading.' + loading"></ui-label>
+    </div>
+    <ui-label class="toast" v-if="toast.message" :value="toast.message"></ui-label>
+</div>

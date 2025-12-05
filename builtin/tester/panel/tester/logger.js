@@ -1,0 +1,1 @@
+"use strict";const EventEmitter=require("events")["EventEmitter"];class Logger extends EventEmitter{log(e){this.emit("print",{type:"log",message:e})}error(e){"script"==typeof e?this.emit("print",{type:"error",message:e}):this.emit("print",{type:"error",message:e.message,stack:e.stack})}rollback(){this.emit("rollback")}}module.exports=new Logger;

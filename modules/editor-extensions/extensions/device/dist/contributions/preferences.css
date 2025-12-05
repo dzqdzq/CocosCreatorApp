@@ -1,0 +1,99 @@
+:host {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+.device {
+  flex: 1;
+  display: flex;
+}
+.device .slider {
+  width: 30%;
+  min-width: 150px;
+  border-right: 1px solid var(--color-normal-border);
+  overflow-y: auto;
+  margin-right: 16px;
+  position: relative;
+}
+.device .slider ul {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  height: 100%;
+}
+.device .slider ul .device-type {
+  padding-bottom: 10px;
+  cursor: default;
+}
+.device .slider ul li {
+  padding-left: 5px;
+  padding-right: 10px;
+  margin-right: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+.device .slider ul li:hover,
+.device .slider ul li[active] {
+  background-color: var(--color-hover-fill);
+}
+.device .slider ul li:hover .delete_custom_device {
+  display: block;
+}
+.device .slider ul li > ui-label {
+  flex: 1;
+}
+.device .slider ul li .delete_custom_device:hover {
+  color: #ffffff;
+}
+.device .slider ul > .line {
+  height: 0;
+  border-bottom: 2px solid var(--color-normal-border);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.device .delete_custom_device {
+  display: none;
+}
+.device .content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+.device .content .device-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.device .content .device-form > ui-prop {
+  --left-width: 35%;
+  padding: 2px 0;
+}
+.device .content .device-form > ui-prop > * {
+  flex: 1;
+}
+.device .content .device-form > ui-prop > div {
+  display: flex;
+}
+.device .content .device-form > ui-prop > div > ui-label {
+  padding: 0 4px;
+}
+.device .content .device-form > ui-prop > div > ui-num-input {
+  flex: 1;
+}
+.device .content .device-form > .buttons {
+  text-align: right;
+  margin-top: 20px;
+}
+.device .content .device-form > .buttons ui-button {
+  margin-left: 16px;
+}
+.device .content .add-device-button {
+  margin-top: 20px;
+  width: 200px;
+}

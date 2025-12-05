@@ -1,0 +1,74 @@
+<div class="bytedance-mini-game">
+    <ui-prop v-if="physicsX">
+        <div slot="label">
+            <ui-label value="i18n:bytedance-mini-game.options.physX" ></ui-label>
+            <ui-icon color="true" value="experiment" tooltip="i18n:builder.experiment"></ui-icon>
+        </div>
+        <div slot="content" v-if="pkgOptions" @change="onChange">
+            <ui-checkbox path="use"
+                :value="pkgOptions.physX.use"
+                tooltip="i18n:bytedance-mini-game.options.physX_tips"
+            >
+            </ui-checkbox>
+            <ui-prop
+                style="--left-width: 80%"
+                tooltip="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs_tips"
+            >
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs"
+                ></ui-label>
+                <ui-checkbox
+                    slot="content"
+                    path="notPackPhysXLibs"
+                    tooltip="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs_tips"
+                    :value="pkgOptions.physX.notPackPhysXLibs"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-checkbox>
+            </ui-prop>
+            <ui-prop
+                style="--left-width: 80%"
+                tooltip="i18n:bytedance-mini-game.options.physics.multi_thread_tips"
+            >
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.multi_thread"
+                ></ui-label>
+                <ui-checkbox
+                    slot="content"
+                    path="multiThread"
+                    :value="pkgOptions.physX.multiThread"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-checkbox>
+            </ui-prop>
+            <ui-prop tooltip="i18n:bytedance-mini-game.options.physics.sub_thread_tips">
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.sub_thread"
+                ></ui-label>
+                <ui-num-input
+                    slot="content"
+                    path="subThreadCount"
+                    step="1"
+                    preci="0"
+                    min="1"
+                    :value="pkgOptions.physX.subThreadCount"
+                    :disabled="!pkgOptions.physX.use || !pkgOptions.physX.multiThread"
+                ></ui-num-input>
+            </ui-prop>
+            <ui-prop tooltip="i18n:bytedance-mini-game.options.physics.epsilon_tips">
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.epsilon"
+                ></ui-label>
+                <ui-num-input
+                    slot="content"
+                    path="epsilon"
+                    min="0"
+                    :value="pkgOptions.physX.epsilon"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-num-input>
+            </ui-prop>
+        </div>
+    </ui-prop>
+</div>

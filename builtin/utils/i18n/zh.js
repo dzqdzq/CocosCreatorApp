@@ -1,0 +1,1 @@
+"use strict";exports.info={package_dir_info_title:"插件迁移说明",package_dir_info_detail:"3.0.0 插件目录由原来的 packages 迁移到了 extensions. 如有需要，请将插件复制到新的目录",notice:{hide:"隐藏",clear:"全部清空",missing:{target:"按钮没有指定目标插件名(target)，无法触发消息",message:"按钮没有指定消息名(message)，无法触发消息"},default:{button_name:"未知"}}};

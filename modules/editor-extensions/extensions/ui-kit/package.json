@@ -1,0 +1,168 @@
+{
+    "name": "ui-kit",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator UI Kit",
+    "main": "./dist/browser.js",
+    "windows": "./static/scripts/windows.js",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        }
+    ],
+    "panels": {
+        "panel": {
+            "title": "i18n:ui-kit.title",
+            "main": "./dist/panels/preview/index.js",
+            "size": {
+                "min-width": 600,
+                "min-height": 600,
+                "width": 1000,
+                "height": 700
+            }
+        },
+        "color-picker": {
+            "title": "color-picker",
+            "main": "./dist/panels/color-picker/index.js",
+            "type": "kit",
+            "flags": {
+                "resizable": false
+            },
+            "size": {
+                "width": 224,
+                "height": 357
+            }
+        },
+        "gradient-picker": {
+            "title": "gradient-picker",
+            "main": "./dist/panels/gradient-picker/index.js",
+            "type": "kit",
+            "flags": {
+                "resizable": false
+            },
+            "size": {
+                "width": 444,
+                "height": 320
+            }
+        },
+        "curve-editor": {
+            "title": "curve-editor",
+            "main": "./dist/panels/curve-editor/index.js",
+            "type": "kit",
+            "flags": {
+                "resizable": false
+            },
+            "size": {
+                "width": 600,
+                "height": 340
+            }
+        },
+        "searcher": {
+            "type": "kit",
+            "main": "./dist/panels/searcher/index.js",
+            "flags": {
+                "resizable": false
+            },
+            "size": {
+                "min-width": 125,
+                "min-height": 225,
+                "width": 350,
+                "height": 450
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:ui-kit.title",
+                "message": "open",
+                "group": "help"
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "searcher-up",
+                "win": "up",
+                "mac": "up",
+                "when": "PanelName === 'ui-kit.searcher'"
+            },
+            {
+                "message": "searcher-down",
+                "win": "down",
+                "mac": "down",
+                "when": "PanelName === 'ui-kit.searcher'"
+            },
+            {
+                "message": "searcher-enter",
+                "win": "enter",
+                "mac": "enter",
+                "when": "PanelName === 'ui-kit.searcher'"
+            },
+            {
+                "message": "searcher-esc",
+                "win": "esc",
+                "mac": "esc",
+                "when": "PanelName === 'ui-kit.searcher'"
+            },
+            {
+                "message": "delete-curve-keys",
+                "win": "delete",
+                "mac": "cmd+backspace",
+                "when": "PanelName === 'ui-kit.curve-editor'"
+            },
+            {
+                "message": "copy-curve-keys",
+                "win": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "PanelName === 'ui-kit.curve-editor'"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "reset": {
+                "methods": [
+                    "searcher.reset",
+                    "gradient-picker.reset",
+                    "color-picker.reset"
+                ]
+            },
+            "searcher-up": {
+                "methods": [
+                    "searcher.up"
+                ]
+            },
+            "searcher-down": {
+                "methods": [
+                    "searcher.down"
+                ]
+            },
+            "searcher-enter": {
+                "methods": [
+                    "searcher.enter"
+                ]
+            },
+            "searcher-esc": {
+                "methods": [
+                    "searcher.esc"
+                ]
+            },
+            "delete-curve-keys": {
+                "methods": [
+                    "curve-editor.deleteSelectedKeys"
+                ]
+            },
+            "copy-curve-keys": {
+                "methods": [
+                    "curve-editor.copySelectedKeys"
+                ]
+            }
+        }
+    }
+}

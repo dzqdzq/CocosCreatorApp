@@ -1,0 +1,36 @@
+{
+    "name": "ohos",
+    "title": "i18n:ohos.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "HarmonyOS platform plugin",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "program": {
+            "properties": {
+                "ohosNDK": {
+                    "label": "i18n:ohos.program.ohosNDK",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "directory"
+                        }
+                    }
+                },
+                "ohosSDK": {
+                    "label": "i18n:ohos.program.ohosSDK",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "directory"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<div class="layer">
+    <div class="info">
+        <div>
+            <ui-label value="i18n:project.layers.tips1"></ui-label>
+        </div>
+        <div>
+            <ui-label value="i18n:project.layers.tips2"></ui-label>
+        </div>
+    </div>
+    <div class="content">
+        <ui-prop
+            v-for="(layer,index) in layers"
+            :key="index"
+        >
+            <ui-label slot="label"
+                :value="layer.label"
+            ></ui-label>
+            <ui-input slot="content" 
+                :disabled="index>=20"
+                :value="layer.name"
+                @confirm.stop="_onSettingsConfirm($event, index)"
+            ></ui-input>
+        </ui-prop>
+    </div>
+</div>

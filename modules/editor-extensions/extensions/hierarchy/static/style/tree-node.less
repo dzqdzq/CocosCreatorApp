@@ -1,0 +1,406 @@
+.tree-node {
+    line-height: 20px;
+
+    &[twinkle] {
+        background-color: var(--color-hover-fill-emphasis);
+
+        // v3.8.1 恢复 2.x 的闪动效果，它是作用在整个 drag-item 的，不是里面的 .name 元素
+        .drag-item {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            transform-origin: center;
+        }
+
+        .name {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            transform-origin: center;
+        }
+    }
+
+    &[twinkle='hint'] {
+        .drag-item {
+            animation-name: hint;
+        }
+    }
+
+    &[twinkle='shake'] {
+        .name {
+            animation-name: shake;
+        }
+    }
+
+    &[twinkle='shrink'] {
+        .name {
+            animation-name: shrink;
+        }
+    }
+
+    &[twinkle='light'] {
+        .name {
+            animation-name: light;
+        }
+    }
+
+    &[is-scene] {
+        color: var(--color-normal-contrast) !important;
+    }
+
+    &[is-prefab-node='1'] {
+        color: var(--color-success-fill);
+    }
+
+    &[is-prefab-node='2'] {
+        color: var(--color-success-fill-emphasis);
+    }
+
+    &[is-prefab-node='3'] {
+        color: var(--color-danger-fill);
+    }
+
+    &[is-selected='true'] {
+        .drag-item {
+            background-color: var(--color-active-fill);
+        }
+    }
+
+    &[is-parent] {
+        .arrow {
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+
+    &[is-expand='true'] {
+        .arrow {
+            transform: rotate(0deg);
+        }
+    }
+
+    &[is-expand='false'] {
+        .lock {
+            &[value='lock'] {
+                display: inline-block;
+            }
+
+            &[inside-locked] {
+                opacity: 0.55;
+            }
+
+            &[locked] {
+                opacity: 1;
+            }
+        }
+    }
+
+    &[is-active='false'] {
+        .drag-item {
+            > .name {
+                opacity: 0.55;
+            }
+        }
+    }
+
+    &[state='rename'] {
+        .drag-item {
+            background-color: transparent !important;
+
+            .edit {
+                display: none;
+            }
+        }
+    }
+
+    .rename {
+        position: relative;
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid var(--color-focus-contrast);
+        height: 20px;
+        border-radius: 2px;
+        padding-left: 2px;
+        padding-right: 6px;
+        margin-left: 0;
+        box-sizing: border-box;
+        width: 100%;
+
+        > input {
+            display: block;
+            margin-top: -1px;
+            margin-left: -3px;
+            line-height: 18px;
+            font-family: inherit;
+            width: 100%;
+            min-width: 100px;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            color: var(--color-focus-contrast);
+            font-size: 12px;
+        }
+
+        &[state^='error'] {
+            border-color: var(--color-danger-fill);
+
+            &::after {
+                content: attr(title);
+                padding: 0 4px;
+                background-color: var(--color-danger-fill);
+                color: var(--color-danger-contrast-weaker);
+                position: absolute;
+                top: 20px;
+                left: -1px;
+                z-index: 1;
+                min-width: calc(100% - 6px);
+            }
+        }
+    }
+
+    &:hover {
+        background-color: var(--color-hover-fill-weaker);
+        color: var(--color-focus-contrast-emphasis);
+
+        .lock {
+            display: inline-block;
+        }
+
+        .edit {
+            display: inline-block;
+        }
+    }
+}
+
+.drag-item {
+    position: relative;
+    display: flex;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+
+    &[draggable='false'] {
+        user-select: none;
+    }
+
+    .arrow {
+        visibility: hidden;
+        text-align: center;
+        cursor: pointer;
+        -webkit-user-drag: element;
+        transform: rotate(-90deg);
+
+        &[animate] {
+            transition: 0.2s transform;
+        }
+    }
+
+    .root {
+        text-align: center;
+        cursor: pointer;
+        width: 16px;
+        font-size: 12px;
+    }
+
+    .prefab-added-node {
+        font-size: 9px;
+        margin-left: -2px;
+        line-height: 9px;
+        vertical-align: bottom;
+    }
+
+    > .lock {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 6px;
+        z-index: 1;
+        font-size: 10px;
+        cursor: pointer;
+        color: var(--color-normal-contrast);
+
+        &:hover {
+            color: var(--color-warn-fill);
+        }
+
+        &[locked='true'] {
+            display: inline-block;
+            color: var(--color-active-contrast);
+
+            &:hover {
+                color: var(--color-warn-fill);
+            }
+        }
+    }
+
+    > .edit {
+        display: none;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--color-normal-contrast);
+        background-color: var(--color-hover-fill-weaker);
+        padding: 0 5px;
+
+        &:hover {
+            color: var(--color-warn-fill);
+        }
+    }
+
+    > .name {
+        cursor: default;
+        margin-left: 2px;
+        white-space: nowrap;
+        padding-right: 6px;
+        min-width: 32px;
+        -webkit-user-drag: element;
+    }
+
+    > .loading {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        top: -1px;
+        left: 0;
+        transform: scale(0.8);
+    }
+}
+
+.tree {
+    &[searching] {
+        .drag-item {
+            padding-left: 20px !important;
+
+            .name {
+                margin-left: 6px;
+            }
+
+            .arrow {
+                display: none;
+            }
+        }
+    }
+
+    &[hoving] {
+        .tree-node:hover {
+            background: none;
+
+            .drag-item {
+                > .edit {
+                    display: none;
+                }
+            }
+        }
+
+        .drag-item {
+            &[insert='inside'] {
+                color: var(--color-focus-contrast);
+                opacity: 0.55;
+            }
+        }
+    }
+
+    &[animating] {
+        .tree-node {
+            pointer-events: none;
+
+            .drag-item {
+                > ui-icon,
+                > .name {
+                    opacity: 0.55;
+                }
+            }
+
+            &[is-animating] {
+                pointer-events: auto;
+                -webkit-user-drag: none;
+
+                .drag-item {
+                    > ui-icon,
+                    > .name {
+                        -webkit-user-drag: none;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+:host([focused]) {
+    .tree {
+        .tree-node[is-selected='true'] {
+            .drag-item {
+                background-color: var(--color-info-fill-important);
+                color: var(--color-info-contrast-important);
+
+                > .edit {
+                    background-color: var(--color-info-fill-important);
+                }
+            }
+        }
+    }
+}
+
+@keyframes shake {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    10%,
+    20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        color: var(--color-warn-fill);
+    }
+
+    40%,
+    60%,
+    80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes shrink {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(0.9, 0.9, 0.9);
+        color: var(--color-warn-fill);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes light {
+    50% {
+        color: var(--color-warn-fill);
+    }
+}
+
+// 2.x 的聚焦效果，用户更喜欢，更明显。
+@keyframes hint {
+    0% {
+        background-color: var(--color-warn-fill);
+        color: var(--ui-button-color-base);
+    }
+
+    100% {
+        background-color: unset;
+        color: unset;
+    }
+}

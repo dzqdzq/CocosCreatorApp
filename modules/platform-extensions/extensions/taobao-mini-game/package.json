@@ -1,0 +1,1 @@
+{"name":"taobao-mini-game","title":"i18n:taobao-mini-game.title","version":"1.0.1","package_version":2,"author":"Cocos Creator","description":"Taobao mini game platform plugin","migrations":[{"version":"1.0.1","profile":"./dist/migrations/1.0.1.js"}],"contributions":{"builder":"./dist/builder.js","profile":{"editor":{"plugin-version":{"default":"2024.511.383"}}}}}

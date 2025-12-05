@@ -1,0 +1,9 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.mounted=exports.methods=exports.name=exports.watch=exports.computed=exports.props=exports.template=void 0;const lodash=require("lodash");function mounted(){var e=this;e.$refs.this&&e.updateRender(e.dump)}exports.template=`
+<ui-prop type="build"
+    ref="this"
+    v-if="config"
+    class="build-prop"
+    @change.stop="onChange"
+    @confirm.stop="onConfirm"
+></ui-prop>
+`,exports.props=["config","path","value","pkgName","configKey"],exports.computed={show(){var e=this;return e.config&&e.config.ui||"object"!==e.config.type&&"array"!==e.config.type},disabled(){var e=this;if(!Array.isArray(e.config.disabledWhen))return!1;for(const t of e.config.disabledWhen)if(!e.pkgOptions[t])return!1;return!0},dump(){var e=this;return"object"==typeof e.configKey?null:Object.assign(Object.assign({},e.config),{value:e.value})}},exports.watch={dump(e,t){var o=this;JSON.stringify(o.$refs.this.dump)!==JSON.stringify(e)&&o.$refs.this&&o.updateRender(o.dump)}},exports.name="build-prop",exports.methods={onChange(e){const o=e.target.dump;let r="error"===o.verifyLevel&&o.message||"";o.itemConfigs&&(r={},Object.keys(o.itemConfigs).forEach(e=>{var t=o.itemConfigs[e];t.message&&"error"===t.verifyLevel&&(r[e]=t.message)})),this.$emit("update",this.path,o.value,r)},onConfirm(e){e=e.target.dump;this.$emit("data-confirm",this.path,e.value)},updateRender(e){var t=this;t.$root.options&&(t.$refs.this.customInfo={options:JSON.parse(JSON.stringify(t.$root.options)),pkgKey:e.verifyKey||t.$root.options.platform+(t.pkgName||"common")}),t.$refs.this.dump=e,t.$refs.this.render()}},exports.mounted=mounted;

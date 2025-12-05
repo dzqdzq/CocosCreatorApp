@@ -1,0 +1,42 @@
+.buttons {
+    display: flex;
+
+    .select {
+        margin-right: 8px;
+        display: flex;
+
+        ui-icon {
+            margin-right: 5px;
+        }
+    }
+
+    ui-label {
+        display: inline-flex;
+    }
+
+    .group {
+        ui-icon[value="unlink"] {
+            display: none;
+        }
+
+        ui-button {
+            margin: 0 6px;
+            line-height: 22px;
+        }
+    }
+
+    .single {
+        padding: 0 9px;
+        white-space: nowrap;
+    }
+
+    .icon-button:hover {
+        ui-icon[value="to-right-arrow"] {
+            display: none;
+        }
+
+        ui-icon[value="unlink"] {
+            display: inline-block;
+        }
+    }
+}

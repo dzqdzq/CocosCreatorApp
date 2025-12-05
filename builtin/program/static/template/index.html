@@ -1,0 +1,17 @@
+<div class="program">
+    <template v-for="(pkg, name) in config">
+        <program
+            v-for="(item, key) in pkg.properties"
+            v-if="item.render"
+            :key="key"
+            :program="key"
+            :item="item"
+            :pkg="name"
+        ></program>
+
+        <ui-panel
+            v-if="pkg.custom"
+            :src="pkg.custom"
+        ></ui-panel>
+    </template>
+</div>

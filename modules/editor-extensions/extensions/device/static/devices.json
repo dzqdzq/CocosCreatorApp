@@ -1,0 +1,316 @@
+{
+    "devices": [
+        {
+            "name": "Apple iPhone 14 Pro Max",
+            "width": 430,
+            "height": 932,
+            "ratio": 3
+        },
+        {
+            "name": "Apple iPhone 14 Pro",
+            "width": 393,
+            "height": 852,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Apple iPhone 12/13 Pro Max; 14 Plus",
+            "width": 428,
+            "height": 926,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Apple iPhone 12; 13; 14; 12/13 Pro",
+            "width": 390,
+            "height": 844,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Apple iPhone 5; 5S; SE",
+            "width": 320,
+            "height": 568,
+            "ratio": 2
+        },
+        {
+            "name": "Apple iPhone XS Max; 11 Pro Max",
+            "width": 414,
+            "height": 896,
+            "ratio": 3
+        },
+        {
+            "name": "Apple iPhone X; XS; 11 Pro; 12/13 Mini",
+            "width": 375,
+            "height": 812,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Apple iPhone XR; 11",
+            "width": 414,
+            "height": 896,
+            "ratio": 2,
+            "default": true
+        },
+        {
+            "name": "Apple iPhone 6/7/8 Plus",
+            "width": 414,
+            "height": 736,
+            "ratio": 3
+        },
+        {
+            "name": "Apple iPhone 6; 7; 8",
+            "width": 375,
+            "height": 667,
+            "ratio": 2
+        },
+        {
+            "name": "Apple iPad Mini 7.9",
+            "width": 1536,
+            "height": 2048,
+            "ratio": 0
+        },
+        {
+            "name": "Apple iPad Mini 8.3",
+            "width": 1488,
+            "height": 2266,
+            "ratio": 0
+        },
+        {
+            "name": "Apple iPad 10.2",
+            "width": 1620,
+            "height": 2160,
+            "ratio": 0,
+            "default": true
+        },
+        {
+            "name": "Apple Air 10.9",
+            "width": 1640,
+            "height": 2360,
+            "ratio": 0,
+            "default": true
+        },
+        {
+            "name": "Apple iPad Pro 10.5",
+            "width": 1668,
+            "height": 2224,
+            "ratio": 0,
+            "default": true
+        },
+        {
+            "name": "Apple iPad Pro 11",
+            "width": 1668,
+            "height": 2388,
+            "ratio": 0
+        },
+        {
+            "name": "Apple iPad Pro 12.9",
+            "width": 2048,
+            "height": 2732,
+            "ratio": 0
+        },
+        {
+            "name": "OPPO Reno 2",
+            "width": 360,
+            "height": 800,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Xiaomi 12",
+            "width": 360,
+            "height": 800,
+            "ratio": 3
+        },
+        {
+            "name": "Samsung Galaxy A70",
+            "width": 360,
+            "height": 800,
+            "ratio": 3
+        },
+        {
+            "name": "HUAWEI Nova 5",
+            "width": 360,
+            "height": 780,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "OnePlus 7",
+            "width": 360,
+            "height": 780,
+            "ratio": 3
+        },
+        {
+            "name": "vivo iQOO",
+            "width": 360,
+            "height": 780,
+            "ratio": 3
+        },
+        {
+            "name": "OPPO Find X",
+            "width": 360,
+            "height": 780,
+            "ratio": 3
+        },
+        {
+            "name": "realme C33",
+            "width": 360,
+            "height": 800,
+            "ratio": 2
+        },
+        {
+            "name": "LG K42",
+            "width": 360,
+            "height": 800,
+            "ratio": 2
+        },
+        {
+            "name": "vivo Y35",
+            "width": 360,
+            "height": 802,
+            "ratio": 3
+        },
+        {
+            "name": "HONOR X8",
+            "width": 360,
+            "height": 796,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "vivo Y36",
+            "width": 360,
+            "height": 796,
+            "ratio": 3
+        },
+        {
+            "name": "HUAWEI Nova 8i",
+            "width": 360,
+            "height": 792,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Samsung Galaxy S20",
+            "width": 360,
+            "height": 800,
+            "ratio": 4
+        },
+        {
+            "name": "HUAWEI Mate 40 Pro",
+            "width": 448,
+            "height": 924,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "OPPO Reno9",
+            "width": 360,
+            "height": 804,
+            "ratio": 3
+        },
+        {
+            "name": "HUAWEI Mate30 Pro",
+            "width": 392,
+            "height": 800,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "realme C30",
+            "width": 360,
+            "height": 780,
+            "ratio": 2
+        },
+        {
+            "name": "HONOR X5",
+            "width": 360,
+            "height": 780,
+            "ratio": 2
+        },
+        {
+            "name": "vivo Y16",
+            "width": 360,
+            "height": 780,
+            "ratio": 2
+        },
+        {
+            "name": "ZTE Blade A7",
+            "width": 360,
+            "height": 780,
+            "ratio": 2
+        },
+        {
+            "name": "Xiaomi Redmi 8",
+            "width": 360,
+            "height": 760,
+            "ratio": 2,
+            "default": true
+        },
+        {
+            "name": "Sony Xperia 5",
+            "width": 360,
+            "height": 840,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Motorola Edge S",
+            "width": 360,
+            "height": 840,
+            "ratio": 3
+        },
+        {
+            "name": "OPPO A77",
+            "width": 360,
+            "height": 806,
+            "ratio": 2,
+            "default": true
+        },
+        {
+            "name": "Nokia C2",
+            "width": 360,
+            "height": 720,
+            "ratio": 2,
+            "default": true
+        },
+        {
+            "name": "Asus ROG Phone 6",
+            "width": 360,
+            "height": 816,
+            "ratio": 3,
+            "default": true
+        },
+        {
+            "name": "Lenovo Legion 2 Pro",
+            "width": 360,
+            "height": 820,
+            "ratio": 3,
+            "default": true
+        }
+    ],
+    "default": [
+        "Apple iPhone 14 Pro",
+        "Apple iPhone 12/13 Pro Max; 14 Plus",
+        "Apple iPhone 12; 13; 14; 12/13 Pro",
+        "Apple iPhone X; XS; 11 Pro; 12/13 Mini",
+        "Apple iPhone XR; 11",
+        "Apple iPad 10.2",
+        "Apple Air 10.9",
+        "Apple iPad Pro 10.5",
+        "OPPO Reno 2",
+        "HUAWEI Nova 5",
+        "HONOR X8",
+        "HUAWEI Nova 8i",
+        "HUAWEI Mate 40 Pro",
+        "HUAWEI Mate30 Pro",
+        "Xiaomi Redmi 8",
+        "Sony Xperia 5",
+        "OPPO A77",
+        "Nokia C2",
+        "Asus ROG Phone 6",
+        "Lenovo Legion 2 Pro"
+    ]
+}

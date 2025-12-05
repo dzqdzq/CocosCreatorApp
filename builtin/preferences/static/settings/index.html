@@ -1,0 +1,74 @@
+<div class="settings">
+    <!-- 左侧列表 -->
+    <div class="slider">
+
+        <!-- 分类
+            <header>设置</header>
+        -->
+
+        <ul>
+            <li
+                :active="tab === 'general'"
+                @click="changeTab('general')"
+            >
+                <ui-label value="i18n:preferences.nav.general"></ui-label>
+            </li>
+
+            <template
+                v-for="item,label in data"
+            >
+                <li
+                    v-if="item.custom || item.properties"
+                    :active="tab === label"
+                    @click="changeTab(label)"
+                    :title="t(item.title)"
+                >
+                    <ui-label slot="label"
+                        :value="item.title"
+                    ></ui-label>
+                </li>
+            </template>
+
+            <li
+                :active="tab === 'laboratory'"
+                @click="changeTab('laboratory')"
+            >
+                <ui-label value="i18n:preferences.nav.laboratory"></ui-label>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- 右侧详细设置 -->
+    <div class="content">
+        <template
+            v-if="data && data[tab]"
+        >
+            <template
+                v-if="data[tab].properties"
+            >
+                <item
+                    v-for="item,key in data[tab].properties"
+                    :key="key"
+                    :path="key"
+                    :item="item"
+                    :tab="tab"
+                ></item>
+            </template>
+
+            <div
+                :ref="tab"
+                v-if="data[tab].custom"
+            ></div>
+        </template>
+
+        <general
+            v-else-if="tab === 'general'"
+        ></general>
+
+        <laboratory
+            v-else-if="tab === 'laboratory'"
+            :data="data"
+        ></laboratory>
+    </div>
+</div>

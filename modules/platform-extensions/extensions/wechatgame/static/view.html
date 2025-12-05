@@ -1,0 +1,45 @@
+<div class="wechatgame"
+    @change="onChange($event)"
+>
+    <ui-prop
+        :class="{ 'separate-engine-warning': !!separateEngineWarningTip, 'separate-engine-invalid': !!isDebugMode }"
+        :tooltip="separateEngineWarningTip ? separateEngineWarningTip : isNormalVersion ? 'i18n:wechatgame.options.separate_engine_tips' : 'i18n:wechatgame.tips.separate_engine_only_in_normal_version'"
+    >
+        <ui-label
+            slot="label"
+            value="i18n:wechatgame.options.separate_engine"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="separateEngine"
+                :value="pkgOptions.separateEngine"
+                :disabled="!isNormalVersion"
+            ></ui-checkbox>
+        </div>
+        <div slot="message"
+            v-if="separateEngineWarningTip"
+        >
+            <ui-label :value="separateEngineWarningTip"></ui-label>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label
+            slot="label"
+            value="i18n:wechatgame.options.highPerformanceMode"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="highPerformanceMode"
+                :value="pkgOptions.highPerformanceMode"
+            ></ui-checkbox>
+        </div>
+        <div slot="message" class="high-performance-mode-message"
+            v-if="pkgOptions.highPerformanceMode"
+        >
+            <ui-label value="i18n:wechatgame.tips.pleaseRead"></ui-label>
+            <ui-link value="https://developers.weixin.qq.com/minigame/dev/guide/performance/perf-high-performance.html">
+                <ui-label value="i18n:wechatgame.tips.weixinDocs"></ui-label>
+            </ui-link>
+            <ui-label value="i18n:wechatgame.tips.enableHighPerformanceMode"></ui-label>
+        </div>
+    </ui-prop>
+</div>

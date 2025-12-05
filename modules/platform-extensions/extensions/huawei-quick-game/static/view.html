@@ -1,0 +1,61 @@
+<div class="huawei-quick-game">
+    <ui-prop @change="onChange" tooltip="i18n:huawei-quick-game.options.separate_engine_tips">
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.separate_engine"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="separateEngine" :value="pkgOptions.separateEngine"></ui-checkbox>
+        </div>
+    </ui-prop>
+    <ui-prop :class="verifyRes.minPlatformVersion ? 'danger' : ''" :message="verifyRes.minPlatformVersion" tooltip="i18n:huawei-quick-game.options.support_min_platform_hint">
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.support_min_platform"></ui-label>
+        <div slot="content">
+            <ui-num-input path="minPlatformVersion" :value="pkgOptions.minPlatformVersion" min="1056" step="1" preci="0" @change.stop="onChange">
+            </ui-num-input>
+        </div>
+    </ui-prop>
+    <ui-prop @change="onChange">
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.use_debug_keystore"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="useDebugKey" :value="pkgOptions.useDebugKey"></ui-checkbox>
+        </div>
+    </ui-prop>
+    <ui-prop
+        class="no-wrap"
+        :class="verifyRes.certificatePemPath ? 'danger' : ''"
+        :message="verifyRes.certificatePemPath"
+    >
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.certificate_pem_path"></ui-label>
+        <div slot="content">
+            <ui-file
+                path="certificatePemPath"
+                :value="pkgOptions.certificatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes && verifyRes.certificatePemPath"
+                @change.stop="onChange"
+            ></ui-file>
+            <ui-button class="new-certificate"
+                @confirm.stop="onNewCertificate"
+                :disabled="pkgOptions.useDebugKey"
+            >
+                <ui-label value="i18n:huawei-quick-game.options.new"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop>
+    <ui-prop :class="verifyRes.privatePemPath ? 'danger' : ''" :message="verifyRes.privatePemPath">
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.private_pem_path"></ui-label>
+        <div slot="content">
+            <ui-file
+                path="privatePemPath"
+                :value="pkgOptions.privatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes.privatePemPath"
+                @change.stop="onChange"
+            ></ui-file>
+            <ui-button class="print-finger"
+                :disabled="pkgOptions.useDebugKey || !!(verifyRes.certificatePemPath)"
+                @confirm.stop="onPrintFinger"
+            >
+                <ui-label value="i18n:huawei-quick-game.options.print_finger"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop>
+</div>

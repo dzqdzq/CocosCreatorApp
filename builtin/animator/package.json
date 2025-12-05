@@ -1,0 +1,436 @@
+{
+    "name": "animator",
+    "title": "i18n:animator.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:animator.description",
+    "main": "./dist/browser/index.js",
+    "panels": {
+        "default": {
+            "title": "i18n:animator.title",
+            "main": "./dist/panel/index.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true
+            },
+            "size": {
+                "width": 800,
+                "height": 550,
+                "min-width": 200,
+                "min-height": 100
+            },
+            "menu": [
+                {
+                    "label": "i18n:animator.toolbar.help",
+                    "message": "open-docs"
+                }
+            ]
+        },
+        "curve-editor": {
+            "title": "Curve Editor",
+            "main": "./dist/curve-editor/index.js",
+            "width": 800,
+            "height": 550,
+            "min-width": 200,
+            "min-height": 100
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:animator.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -93
+            }
+        ],
+        "scene": {
+            "script": "./dist/contributions/scene/index.js"
+        },
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+6",
+                "mac": "cmd+6"
+            },
+            {
+                "message": "delete",
+                "win": "delete",
+                "mac": "delete",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "delete",
+                "win": "ctrl+backspace",
+                "mac": "cmd+backspace",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "delete",
+                "win": "backspace",
+                "mac": "backspace",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "create",
+                "win": "k",
+                "mac": "k",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "focus",
+                "win": "f",
+                "mac": "f",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "show-selected-keys",
+                "win": "s",
+                "mac": "s",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "copy",
+                "win": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "paste",
+                "win": "ctrl+v",
+                "mac": "cmd+v",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "select-all",
+                "win": "ctrl+a",
+                "mac": "cmd+a",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "play-or-pause",
+                "win": "p",
+                "mac": "p",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "next-step",
+                "win": "right",
+                "mac": "right",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "prev-step",
+                "win": "left",
+                "mac": "left",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "jump-to-next-key",
+                "win": "ctrl+shift+right",
+                "mac": "cmd+shift+right",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "jump-to-prev-key",
+                "win": "ctrl+shift+left",
+                "mac": "cmd+shift+left",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "jump-to-first-frame",
+                "win": "ctrl+left",
+                "mac": "cmd+left",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "jump-to-last-frame",
+                "win": "ctrl+right",
+                "mac": "cmd+right",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "stop",
+                "win": "alt+s",
+                "mac": "alt+s",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "clear-selected",
+                "win": "esc",
+                "mac": "esc",
+                "when": "PanelName === 'animator'"
+            },
+            {
+                "message": "switch-animation-mode",
+                "win": "ctrl+e",
+                "mac": "cmd+e",
+                "when": "PanelName === 'animator'"
+            }
+        ],
+        "inspector": {
+            "type": {
+                "animation-embeddedPlayer": "./dist/contributions/inspector/embedded-player.js"
+            },
+            "drop": {
+                "node": [
+                    {
+                        "type": "cc.AnimationClip",
+                        "message": "inspector-drop-animation"
+                    }
+                ]
+            }
+        },
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "default.scene:ready"
+                ]
+            },
+            "scene:close": {
+                "methods": [
+                    "default.scene:close"
+                ]
+            },
+            "scene:change-node": {
+                "methods": [
+                    "default.scene:change-node"
+                ]
+            },
+            "scene:animation-start": {
+                "methods": [
+                    "default.scene:animation-start"
+                ]
+            },
+            "scene:animation-end": {
+                "methods": [
+                    "default.scene:animation-end"
+                ]
+            },
+            "scene:animation-change": {
+                "methods": [
+                    "default.scene:animation-change"
+                ]
+            },
+            "scene:animation-state-change": {
+                "methods": [
+                    "default.scene:animation-state-change"
+                ]
+            },
+            "scene:change-mode": {
+                "methods": [
+                    "default.scene:change-mode"
+                ]
+            },
+            "scene:animation-clip-change": {
+                "methods": [
+                    "default.scene:animation-clip-change"
+                ]
+            },
+            "selection:activated": {
+                "methods": [
+                    "default.selection:activated"
+                ]
+            },
+            "asset-db:asset-change": {
+                "methods": [
+                    "default.asset-db:asset-change"
+                ]
+            },
+            "inspector-drop-animation": {
+                "methods": [
+                    "dropClipToNode"
+                ]
+            },
+            "change-debug-mode": {
+                "methods": [
+                    "default.change-debug-mode"
+                ]
+            },
+            "copy": {
+                "methods": [
+                    "default.copy"
+                ]
+            },
+            "paste": {
+                "methods": [
+                    "default.paste"
+                ]
+            },
+            "select-all": {
+                "methods": [
+                    "default.selectAll"
+                ]
+            },
+            "delete": {
+                "methods": [
+                    "default.deleteSelected"
+                ]
+            },
+            "create": {
+                "methods": [
+                    "default.createKey"
+                ]
+            },
+            "focus": {
+                "methods": [
+                    "default.showAllKeys"
+                ]
+            },
+            "show-selected-keys": {
+                "methods": [
+                    "default.showSelectedKeys"
+                ]
+            },
+            "next-step": {
+                "methods": [
+                    "default.nextStep"
+                ]
+            },
+            "prev-step": {
+                "methods": [
+                    "default.prevStep"
+                ]
+            },
+            "jump-to-next-key": {
+                "methods": [
+                    "default.jumpToNextKey"
+                ]
+            },
+            "jump-to-prev-key": {
+                "methods": [
+                    "default.jumpToPrevKey"
+                ]
+            },
+            "jump-to-first-frame": {
+                "methods": [
+                    "default.jumpFirstFrame"
+                ]
+            },
+            "jump-to-last-frame": {
+                "methods": [
+                    "default.jumpLastFrame"
+                ]
+            },
+            "play-or-pause": {
+                "methods": [
+                    "default.playOrPause"
+                ]
+            },
+            "stop": {
+                "methods": [
+                    "default.stop"
+                ]
+            },
+            "clear-selected": {
+                "methods": [
+                    "default.clearSelect"
+                ]
+            },
+            "switch-animation-mode": {
+                "methods": [
+                    "default.changeRecordState"
+                ]
+            },
+            "open-docs": {
+                "methods": [
+                    "openDocs"
+                ]
+            },
+            "query-last-clip-cache": {
+                "methods": [
+                    "queryLatestClipCache"
+                ]
+            },
+            "save-clip-cache": {
+                "methods": [
+                    "saveClipCacheToFile"
+                ]
+            },
+            "update-cache-config": {
+                "methods": [
+                    "updateCacheConfig"
+                ]
+            },
+            "enable-embedded-player": {
+                "methods": [
+                    "default.enableEmbeddedPlayer"
+                ]
+            },
+            "enable-auxiliary-curve": {
+                "methods": [
+                    "default.enableAuxiliaryCurve"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "clip_cache.use": {
+                    "label": "i18n:animator.preferences.clip_cache.use",
+                    "type": "boolean",
+                    "default": true,
+                    "message": "update-cache-config"
+                },
+                "clip_cache.interval": {
+                    "label": "i18n:animator.preferences.clip_cache.interval",
+                    "type": "number",
+                    "default": 5000,
+                    "message": "update-cache-config"
+                },
+                "clip_cache.maxFileNum": {
+                    "label": "i18n:animator.preferences.clip_cache.maxFileNum",
+                    "type": "number",
+                    "default": 5,
+                    "message": "update-cache-config"
+                },
+                "enableEmbeddedPlayer": {
+                    "label": "i18n:animator.preferences.animationPlayer",
+                    "type": "boolean",
+                    "default": true,
+                    "message": "enable-embedded-player"
+                },
+                "enableAuxiliaryCurve": {
+                    "label": "i18n:animator.preferences.auxiliaryCurve",
+                    "type": "boolean",
+                    "message": "enable-auxiliary-curve",
+                    "default": false
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "clip_cache.use": {
+                    "ui": "ui-checkbox"
+                },
+                "clip_cache.interval": {
+                    "ui": "ui-num-input",
+                    "attributes": {
+                        "step": 1,
+                        "preci": 0,
+                        "min": 1,
+                        "unit": "ms"
+                    }
+                },
+                "clip_cache.maxFileNum": {
+                    "ui": "ui-num-input",
+                    "attributes": {
+                        "step": 1,
+                        "preci": 0,
+                        "min": 1
+                    }
+                }
+            },
+            "laboratory": [
+                "enableEmbeddedPlayer",
+                "enableAuxiliaryCurve"
+            ]
+        }
+    }
+}
