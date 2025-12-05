@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const scene_1=require("./scene"),previewUndoManager=new scene_1.SceneUndoManager;previewUndoManager.name="preview",exports.default=previewUndoManager;

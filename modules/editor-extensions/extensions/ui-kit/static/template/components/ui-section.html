@@ -1,0 +1,197 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>header</h2>
+            <ui-section header="Here is title">
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Here is title"&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>expand</h2>
+            <ui-section header="Here is title" expand>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Here is title" expand&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>no-border</h2>
+            <ui-section no-border>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section no-border&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>whole</h2>
+            <ui-section header="Here is title" whole>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Here is title" whole&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-section expand disabled>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section expand disabled&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-section expand readonly>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section expand readonly&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+       
+        <div class="row">
+            <h2>class="config"</h2>
+            <ui-section class="config" header="Here is title" expand>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+    
+            <ui-code language="html">
+                &lt;ui-section class="config" header="Here is title"&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-section hidden>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section hidden&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                header
+                expand // whether to expand
+                no-border // header do not display border
+                whole // can not collapse
+                disabled
+                readonly
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <ui-section
+                @expand="onExpand"
+                @uiscroll="onUIScroll"
+            >
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-section header="Here is title"
+                        @expand="onExpand"
+                        @uiscroll="onUIscroll"
+                    &gt;
+                        &lt;div&gt;one&lt;/div&gt;
+                        &lt;div&gt;two&lt;/div&gt;
+                        &lt;div&gt;three&lt;/div&gt;
+                    &lt;/ui-section&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-section id="ui-section" header="Here is title"&gt;
+                        &lt;div&gt;one&lt;/div&gt;
+                        &lt;div&gt;two&lt;/div&gt;
+                        &lt;div&gt;three&lt;/div&gt;
+                    &lt;/ui-section&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-section');
+
+                    // addEventListener
+                    element.addEventListener('expand', () => {
+                        console.log('onExpand');
+                    });
+                    element.addEventListener('uiscroll', () => {
+                        console.log('onUIScroll');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

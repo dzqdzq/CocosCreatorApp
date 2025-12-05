@@ -1,0 +1,1 @@
+"use strict";async function handler(e,r){const t=require("path"),o=(require("fs"),require("url").parse(decodeURIComponent(e.url))),n=t.join(o.hostname,o.pathname);r({path:t.join(Editor.Project.tmpDir,n)})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.handler=exports.type=void 0,exports.type="registerFileProtocol",exports.handler=handler;

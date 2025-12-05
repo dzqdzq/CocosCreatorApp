@@ -1,0 +1,151 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.console-panel {
+  width: 100%;
+  height: 100%;
+  background: var(--color-normal-fill);
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 4px 0;
+  height: 20px;
+  flex-wrap: nowrap;
+  background: var(--color-normal-fill);
+  color: var(--color-default-contrast-emphasis);
+}
+.header > * {
+  margin: 2px 4px;
+  line-height: 20px;
+}
+.header ui-input {
+  padding: 0;
+}
+.header ui-button {
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 0 4px;
+}
+.header .line {
+  width: 1px;
+  height: 12px;
+  background-color: #141414;
+}
+.select-label {
+  margin-right: 5px;
+}
+.collapse {
+  position: absolute;
+  right: 0;
+}
+.console {
+  flex: 1;
+  width: 100%;
+  overflow: overlay;
+  border-top: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+  user-select: text;
+  padding-bottom: 8px;
+}
+.console-list {
+  display: table;
+  min-width: 100%;
+}
+.item {
+  list-style: none;
+  box-sizing: border-box;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+.item .wrap {
+  height: var(--line-height);
+  padding: 0 7px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.item .wrap > .bg {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.item .wrap .text {
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 100%;
+}
+.item .wrap .text ui-link {
+  border: none;
+}
+.item .wrap .text .count {
+  color: var(--color-active-border-weakest);
+  display: inline-block;
+  border: 1px solid var(--color-default-border-weaker);
+  min-width: 14px;
+  height: 14px;
+  text-align: center;
+  line-height: 14px;
+  padding: 0 4px 0 2px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+.item .wrap .text .count.is-circle {
+  border-radius: 50%;
+  padding: 0;
+}
+.item.dark .wrap > .bg {
+  background: var(--color-default-fill-emphasis);
+}
+.item .details,
+.item .stack {
+  height: var(--line-height);
+  margin-left: 25px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item .details .text,
+.item .stack .text {
+  height: var(--line-height);
+}
+.item .details .text ui-link,
+.item .stack .text ui-link {
+  border: none;
+}
+.item .details ~ .stack {
+  margin-left: 40px;
+}
+.item .arrow {
+  display: inline-block;
+  user-select: none;
+  transform: rotate(270deg);
+  cursor: pointer;
+}
+.item .arrow[unfold] {
+  transform: rotate(0deg);
+}
+.item ui-image {
+  height: 24px;
+  vertical-align: top;
+  line-height: 0;
+}
+.item[fold] {
+  overflow-x: hidden;
+}
+.item[fold] .text {
+  overflow: hidden;
+}
+.item[type='warn'] {
+  color: var(--color-warn-fill);
+}
+.item[type='error'] {
+  color: var(--color-danger-fill-normal);
+}
+.item[type='info'] {
+  color: var(--color-focus-fill-normal);
+}

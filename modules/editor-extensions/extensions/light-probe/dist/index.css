@@ -1,0 +1,47 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 8px 16px 16px 16px;
+  overflow: auto;
+}
+.container .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--color-normal-fill);
+}
+.container .loading ui-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: calc(var(--size-large-font) * 1px);
+  height: calc(var(--size-large-font) * 1px);
+}
+.container .main ui-section ui-prop {
+  margin-top: 5px;
+}
+.container .command {
+  margin: 12px 0;
+  display: flex;
+  justify-content: space-around;
+}
+.container .command .btn {
+  flex: 0.45;
+}
+.container .footer {
+  flex: 1;
+  min-height: 120px;
+  padding: 8px;
+  background-color: var(--color-normal-fill-emphasis);
+  border-radius: 4px;
+  overflow: auto;
+}

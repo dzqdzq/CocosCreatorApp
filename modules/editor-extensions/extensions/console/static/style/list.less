@@ -1,0 +1,132 @@
+.console {
+    flex: 1;
+    width: 100%;
+    overflow: overlay;
+    border-top: 1px solid var(--color-normal-border);
+    background: var(--color-normal-fill-emphasis);
+    user-select: text;
+    padding-bottom: 8px;
+}
+
+.console-list {
+    display: table; // 非常重要，否则内容宽度无法撑开
+    min-width: 100%; // 辅助 display: table; 属性
+}
+
+.item {
+    list-style: none;
+    box-sizing: border-box;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+
+    .wrap {
+        height: var(--line-height);
+        padding: 0 7px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        > .bg {
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        .text {
+            flex: 1;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            height: 100%;
+
+            ui-link {
+                border: none;
+            }
+
+            .count {
+                color: var(--color-active-border-weakest);
+                display: inline-block;
+                border: 1px solid var(--color-default-border-weaker);
+                min-width: 14px;
+                height: 14px;
+                text-align: center;
+                line-height: 14px;
+                padding: 0 4px 0 2px;
+                border-radius: 10px;
+                font-size: 11px;
+
+                &.is-circle {
+                    border-radius: 50%;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    &.dark {
+        .wrap {
+            > .bg {
+                background: var(--color-default-fill-emphasis);
+            }
+        }
+    }
+
+    .details,
+    .stack {
+        height: var(--line-height);
+        margin-left: 25px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .text {
+            height: var(--line-height);
+
+            ui-link {
+                border: none;
+            }
+        }
+    }
+
+    .details ~ .stack {
+        margin-left: 40px;
+    }
+
+    .arrow {
+        display: inline-block;
+        user-select: none;
+        transform: rotate(270deg);
+        cursor: pointer;
+    }
+
+    .arrow[unfold] {
+        transform: rotate(0deg);
+    }
+
+    ui-image {
+        height: 24px;
+        vertical-align: top;
+        line-height: 0;
+    }
+}
+
+.item[fold] {
+    overflow-x: hidden;
+
+    .text {
+        overflow: hidden;
+    }
+}
+
+.item[type='warn'] {
+    color: var(--color-warn-fill);
+}
+
+.item[type='error'] {
+    color: var(--color-danger-fill-normal);
+}
+
+.item[type='info'] {
+    color: var(--color-focus-fill-normal);
+}

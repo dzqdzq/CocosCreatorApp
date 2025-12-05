@@ -1,0 +1,96 @@
+{
+    "name": "messages",
+    "title": "i18n:messages.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:messages.description",
+
+    "main": "./dist/browser.js",
+    "windows": "./static/windows.js",
+
+    "panels": {
+        "default": {
+            "title": "i18n:messages.title",
+            "main": "./dist/panels/default/index.js",
+            "size": {
+                "min-width": 580,
+                "min-height": 430,
+                "width": 800,
+                "height": 550
+            }
+        },
+        "debug": {
+            "title": "i18n:messages.title",
+            "main": "./dist/panels/debug/index.js",
+            "type": "simple",
+            "size": {
+                "min-width": 580,
+                "min-height": 430,
+                "width": 800,
+                "height": 550
+            }
+        }
+    },
+
+    "contributions": {
+        "messages": {
+            "start-record": {
+                "methods": ["addListener"]
+            },
+            "stop-record": {
+                "methods": ["removeListener"]
+            },
+            "start-auto-save": {
+                "methods": [
+                    "startAutoSave"
+                ]
+            },
+            "stop-auto-save": {
+                "methods": [
+                    "stopAutoSave"
+                ]
+            },
+            "open": {
+                "methods": ["open"]
+            },
+            "open-debug": {
+                "methods": ["openDebug"]
+            },
+
+            "broadcast": {
+                "methods": ["debug.broadcast"]
+            },
+            "request": {
+                "methods": ["debug.request"]
+            },
+            "send": {
+                "methods": ["debug.send"]
+            },
+            "reply": {
+                "methods": ["debug.reply"]
+            },
+            "query-message-state": {
+                "methods": [
+                    "queryMessageState"
+                ]
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:messages.default.title",
+                "message": "open",
+                "group": "help",
+                "order": -99
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:messages.debug.title",
+                "message": "open-debug",
+                "group": "tools",
+                "order": -99
+            }
+        ]
+    }
+}

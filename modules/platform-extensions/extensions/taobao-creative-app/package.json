@@ -1,0 +1,11 @@
+{
+    "name": "taobao-creative-app",
+    "title": "i18n:taobao-creative-app.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Taobao creative app platform plugin",
+    "contributions": {
+        "builder": "./dist/builder.js"
+    }
+}

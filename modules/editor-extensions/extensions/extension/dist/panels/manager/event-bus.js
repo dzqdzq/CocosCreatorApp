@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.INTERNAL_EVENTS=void 0,exports.INTERNAL_EVENTS={search:"__internal-handle-search"};

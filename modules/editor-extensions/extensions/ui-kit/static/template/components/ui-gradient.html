@@ -1,0 +1,129 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-gradient></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>value</h2>
+            <ui-gradient value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":0.2},{"value":0,"progress":0.4},{"value":1,"progress":0.6},{"value":0,"progress":0.8},{"value":1,"progress":1}],"color":[{"value":"#000000","progress":0},{"value":"#909999","progress":0.5},{"value":"#102399","progress":1}]}'></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":0.2},{"value":0,"progress":0.4},{"value":1,"progress":0.6},{"value":0,"progress":0.8},{"value":1,"progress":1}],"color":[{"value":"#000000","progress":0},{"value":"#909999","progress":0.5},{"value":"#102399","progress":1}]}'&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-gradient readonly value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":1}]}'></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient readonly value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":1}]}'&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-gradient disabled value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":1}]}'></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient disabled value='{"alpha":[{"value":0,"progress":0},{"value":1,"progress":1}]}'&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <ui-gradient invalid value='xxx'></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient invalid value='xxx'&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-gradient hidden></ui-gradient>
+            <ui-code language="html">
+                &lt;ui-gradient hidden&gt;&lt;/ui-gradient&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value  // { "alpha":[{"value":0,"progress":0}], "color":[{"value":"#000000","progress":0}] }
+                disabled
+                readonly
+                invalid
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-gradient ref="gradient"
+                :value='JSON.stringify(colorValue)'
+                @confirm="onConfirm($event.target.value)"
+                @change="onChange($event.target.value)"
+                @open="onOpen()"
+            ></ui-gradient>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change
+                    confirm // general case use this event
+                    open
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-gradient ref="gradient" value='{{JSON.stringify(colorValue)}}'
+                        @confirm="onConfirm($event.target.value)"
+                        @change="onChange($event.target.value)"
+                        @open="onOpen"
+                    &gt;&lt;/ui-gradient&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-gradient id="gradient"&gt;&lt;/ui-gradient&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#gradient');
+
+                    element.addEventListener('confirm', (event) => {
+                        const colorObject = event.target.value;
+                    });
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange', event.target.value);
+                    });
+                    element.addEventListener('open', () => {
+                        console.log('onOpen');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.methods">
+        <div class="row">
+            <h2>get/set value</h2>
+            <ui-code language="typescript">
+                const element = document.getElementById('#gradient');
+                // set value
+                element.value = '{{JSON.stringify(colorValue)}}';
+
+                // get value
+                const colorObject = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

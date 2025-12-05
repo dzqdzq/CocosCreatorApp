@@ -1,0 +1,36 @@
+:host {
+  display: inline-block;
+  transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s;
+  user-select: none;
+  overflow: hidden;
+}
+:host .grid {
+  position: relative;
+}
+:host canvas {
+  top: 0;
+  left: 0;
+  user-select: none;
+}
+:host .ctrl,
+:host .curve {
+  position: absolute;
+}
+:host .curve,
+:host .x-axis,
+:host .y-axis {
+  position: absolute;
+  left: 0;
+}
+:host .curve span,
+:host .x-axis span,
+:host .y-axis span {
+  position: absolute;
+  white-space: nowrap;
+}
+:host .x-axis {
+  bottom: 30px;
+}
+:host .y-axis {
+  top: 2px;
+}

@@ -1,0 +1,1 @@
+const{join:join}=require("path");module.exports=function(e,i){require("./widget-manager")(e);const r=require(join(i.editor,"./builtin/engine/dist/editor-extends/utils/serialize/index"));EditorExtends.serialize=r.serialize,EditorExtends.serializeCompiled=r.serializeCompiled};

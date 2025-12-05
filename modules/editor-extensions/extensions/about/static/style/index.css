@@ -1,0 +1,64 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+:host > .content {
+    flex: 1;
+    display: flex;
+}
+
+:host > footer {
+    text-align: center;
+    color: var(--color-normal-contrast-emphasis);
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+:host > .content > .logo {
+    width: 135px;
+    overflow: hidden;
+    margin: 0 36px 0 50px;
+}
+
+:host > .content > .logo > .img {
+    width: 100%;
+    margin-top: 36px;
+}
+
+:host > .content > .info {
+    flex: 1;
+    font-size: 11px;
+    margin-top: 24px;
+}
+
+:host > .content > .info > .version > .time {
+    opacity: 0.6;
+    padding-left: 10px;
+    font-size: 0.7em;
+}
+
+:host > .content > .info > .name {
+    font-size: 24px;
+}
+
+:host > .content > .info > .commit {
+    margin-top: 6px;
+}
+
+:host > .content > .info > .commit > div {
+    display: flex;
+    line-height: 18px;
+}
+
+:host > .content > .info > .commit > div > ui-label {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 5px;
+    width: 120px;
+}
+
+:host > .content > .info > .commit > div > span {
+    display: inline-block;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}

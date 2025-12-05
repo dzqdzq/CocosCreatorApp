@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.lessc=function(){return[{source:"./static/contributions/preferences.less",dist:"./dist/contributions/preferences.css"}]};

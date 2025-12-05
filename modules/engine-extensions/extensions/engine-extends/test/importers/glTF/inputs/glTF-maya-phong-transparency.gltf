@@ -1,0 +1,2389 @@
+{
+    "materials":[
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 1024
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_0"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 724.077331542969
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.050000011920929,
+                                    0.050000011920929,
+                                    0.050000011920929
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_1"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 512
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.100000023841858,
+                                    0.100000023841858,
+                                    0.100000023841858
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_2"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 362.038665771484
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.149999976158142,
+                                    0.149999976158142,
+                                    0.149999976158142
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_3"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 256
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.199999988079071,
+                                    0.199999988079071,
+                                    0.199999988079071
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_4"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 181.019332885742
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.25,
+                                    0.25,
+                                    0.25
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_5"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 128
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.300000011920929,
+                                    0.300000011920929,
+                                    0.300000011920929
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_6"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 90.5096664428711
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.350000023841858,
+                                    0.350000023841858,
+                                    0.350000023841858
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_7"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 64
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.399999976158142,
+                                    0.399999976158142,
+                                    0.399999976158142
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_8"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 45.2548332214355
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.449999988079071,
+                                    0.449999988079071,
+                                    0.449999988079071
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_9"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 32
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.5,
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_10"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 22.6274166107178
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.550000011920929,
+                                    0.550000011920929,
+                                    0.550000011920929
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_11"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 16
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.600000023841858,
+                                    0.600000023841858,
+                                    0.600000023841858
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_12"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 11.3137083053589
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.649999976158142,
+                                    0.649999976158142,
+                                    0.649999976158142
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_13"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 8
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.699999988079071,
+                                    0.699999988079071,
+                                    0.699999988079071
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_14"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 5.65685415267944
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.75,
+                                    0.75,
+                                    0.75
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_15"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 4
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_16"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 2.82842707633972
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.850000023841858,
+                                    0.850000023841858,
+                                    0.850000023841858
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_17"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 2
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.899999976158142,
+                                    0.899999976158142,
+                                    0.899999976158142
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_18"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 2
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0.949999988079071,
+                                    0.949999988079071,
+                                    0.949999988079071
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_19"
+        },
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "value": [
+                                    0.587999999523163,
+                                    0.587999999523163,
+                                    0.587999999523163
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 1
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 2
+                            },
+                            "specular": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "specularFactor": {
+                                "value": 1
+                            },
+                            "transparencyFactor": {
+                                "value": 1
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "standard1_20"
+        }
+    ],
+    "extras": {
+        "FBX-glTF-conv": {
+            "fbxFileHeaderInfo": {
+                "sceneInfo": {
+                    "original": {
+                        "applicationName": "Maya maya"
+                    }
+                }
+            }
+        }
+    }
+
+}

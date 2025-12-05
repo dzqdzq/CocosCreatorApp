@@ -1,0 +1,224 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-file></ui-file>
+            <ui-code language="html">
+                &lt;ui-file&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>value</h2>
+            <ui-file :value="filepath"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file value={{filepath}}&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type</h2>
+            <ui-file type="directory" class="mb-10"></ui-file>
+            <ui-file type="file" class="mb-10"></ui-file>
+            <ui-file type="app"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory"&gt;&lt;/ui-file&gt;
+                &lt;ui-file type="file"&gt;&lt;/ui-file&gt;
+                &lt;ui-file type="app"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>protocols="project"</h2>
+            <ui-file type="directory" protocols="project"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory"&gt;&lt;/ui-file&gt;
+            </ui-code>
+
+            <h2>protocols="file, project"</h2>
+            <ui-file type="directory" protocols="file,project"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory" protocols="file,project" &gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type="directory" protocols="project" value="project://assets/test"</h2>
+            <ui-file type="directory" protocols="project" value="project://assets/test"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="directory" protocols="project" value="project://assets/test"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-file type="app" placeholder="i18n:ui-kit.preview.ui.file.placeholder_app"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file type="app" placeholder="i18n:ui-kit.preview.ui.file.placeholder_app"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>multi</h2>
+            <ui-file multi></ui-file>
+            <ui-code language="html">
+                &lt;ui-file multi&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>extensions</h2>
+            <ui-file extensions="js,ts,txt"></ui-file>
+            <ui-code language="html">
+                &lt;ui-file extensions="js,ts,txt"&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-file readonly></ui-file>
+            <ui-code language="html">
+                &lt;ui-file readonly&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-file disabled></ui-file>
+            <ui-code language="html">
+                &lt;ui-file disabled&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <ui-file invalid></ui-file>
+            <ui-code language="html">
+                &lt;ui-file invalid&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-file hidden></ui-file>
+            <ui-code language="html">
+                &lt;ui-file hidden&gt;&lt;/ui-file&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value = '' // system file path, you can set default value
+                extensions = '' // filter files by extensions, using ',' join multiple ones
+                type =  "directory" | "file" | "app";
+                multi // support multiple files selected
+                disabled
+                readonly
+                invalid
+                protocols // support protocols types, like: 'project'
+                placeholder
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-file ref="file"
+                :value="filepath"
+                @confirm="onConfirm($event.target.value)"
+                @change="onChange($event.target.value)"
+            ></ui-file>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-file ref="file"
+                        value="{{filepath}}"
+                        @confirm="confirm($event.target.value)"
+                        @change="onChange($event.target.value)"
+                    &gt;&lt;/ui-file&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-file id="file" value="{{filepath}}"&gt;&lt;/ui-file&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#file');
+
+                    // addEventListener
+                    element.addEventListener('confirm', (event) => {
+                        // get value
+                        console.log('onConfirm', event.target.value);
+                    });
+                    element.addEventListener('change', (event) => {
+                        // get value
+                        const filepath = event.target.value;
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+    
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.methods">
+        <div class="row">
+            <h2>get/set value</h2>
+            <ui-code language="typescript">
+                const element = document.getElementById('#file');
+                // set value
+                element.value = '{{filepath}}';
+
+                // get value
+                const filepath = element.value;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Editor.UI.File.resolveToRaw</h2>
+            <p>resolve project path to raw path</p>
+            <ui-code language="typescript">
+                const element = document.getElementById('#file');
+                if (element.value.startsWith('project://')) {
+                    const path = Editor.UI.File.resolveToRaw(element.value);
+                    console.log(`raw path: ${path}`);
+                }
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Editor.UI.File.resolveToUrl</h2>
+            <p>resolve raw path to project path</p>
+            <ui-code language="typescript">
+                const element = document.getElementById('#file');
+                if (!element.value.startsWith('project://')) {
+                    // first param must be raw file path
+                    const path = Editor.UI.File.resolveToUrl(element.value, 'project');
+                    console.log(`project path: ${path}`);
+                }
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Editor.UI.File.getAllProtocolInfos</h2>
+            <ui-code language="typescript">
+                const protocolInfos = Editor.UI.File.getAllProtocolInfos();
+                console.log(protocolInfos[0].protocol);
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

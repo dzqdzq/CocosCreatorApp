@@ -1,0 +1,17 @@
+<div class="vivo-preview">
+    <h2><ui-label value="i18n:vivo-mini-game.vivo_preview.title"></ui-label></h2>
+    <div class="main">
+        <div class="left">
+            <div>{{tips}}</div>
+            <div>{{previewIp}}</div>
+        </div>
+        <div class="right">
+            <ui-qrcode 
+                class="preview"
+                size="150"
+                v-if="previewIp"
+                :value="previewIp"
+            ></ui-qrcode>
+        </div>
+    </div>
+</div>

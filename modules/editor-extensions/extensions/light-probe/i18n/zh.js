@@ -1,0 +1,1 @@
+"use strict";module.exports={menuTitle:"光照烘焙",title:"光照探针",description:"光照探针",start:"烘焙光照探针",cancel:"取消烘焙",clear:"清除烘焙结果",openWarn:"请在 Cocos Creator / 偏好设置 / 实验室 中开启光照探针功能"};

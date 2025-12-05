@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const scene_1=require("./scene"),prefabUndoManager=new scene_1.SceneUndoManager;prefabUndoManager.name="prefab",exports.default=prefabUndoManager;

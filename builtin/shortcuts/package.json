@@ -1,0 +1,60 @@
+{
+    "name": "shortcuts",
+    "title": "i18n:shortcuts.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser/index",
+    "windows": "./dist/windows.js",
+
+    "migrations": [{
+        "version": "1.0.1",
+        "profile": "./dist/migrations/1.0.1.js"
+    }],
+
+    "panels": {
+        "default": {
+            "title": "Shortcuts",
+            "type": "simple",
+            "main": "./dist/panel/default/index.js",
+            "size": {
+                "width": 720,
+                "height": 570,
+                "min-width": 720,
+                "min-height": 570
+            }
+        }
+    },
+
+    "contributions": {
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "query-shortcut-map": {
+                "methods": ["queryShortcutMap"]
+            },
+            "change-shortcut": {
+                "methods": ["changeShortcut"]
+            },
+            "change-tab": {
+                "methods": ["default.changeTab"]
+            },
+            "reset-shortcut": {
+                "methods": ["resetShortcut"]
+            },
+            "query-packages-shortcut-list": {
+                "methods": ["queryPackagesShortcutList"]
+            } 
+        },
+
+        "menu": [
+            {
+                "path": "Cocos Creator",
+                "label": "i18n:shortcuts.title",
+                "message": "open",
+                "order": -98
+            }
+        ]
+    }
+}
