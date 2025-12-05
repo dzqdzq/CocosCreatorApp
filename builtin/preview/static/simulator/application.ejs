@@ -1,0 +1,409 @@
+System.register([], function (_export, _context) {
+  "use strict";
+
+  function fetchText (url) {
+      return new Promise((resolve, reject) => {
+          let xhr = new XMLHttpRequest()
+          xhr.open('GET', url, true);
+          xhr.onload = (() => {
+              if (xhr.status !== 200) {
+                  return reject(`${url}: ${xhr.status}`);
+              }
+              resolve(xhr.response);
+          });
+          xhr.send(null);
+      });
+  }
+
+  (function() {
+    // TextEncoder/TextDecoder polyfills for utf-8 - an implementation of TextEncoder/TextDecoder APIs
+    // Written in 2013 by Viktor Mukhachev <vic99999@yandex.ru>
+    // To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
+    // You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+    // Some important notes about the polyfill below:
+    // Native TextEncoder/TextDecoder implementation is overwritten
+    // String.prototype.codePointAt polyfill not included, as well as String.fromCodePoint
+    // TextEncoder.prototype.encode returns a regular array instead of Uint8Array
+    // No options (fatal of the TextDecoder constructor and stream of the TextDecoder.prototype.decode method) are supported.
+    // TextDecoder.prototype.decode does not valid byte sequences
+    // This is a demonstrative implementation not intended to have the best performance
+
+    // http://encoding.spec.whatwg.org/#textencoder
+
+    // http://encoding.spec.whatwg.org/#textencoder
+
+    function TextEncoder() {
+    }
+
+    TextEncoder.prototype.encode = function (string) {
+      var octets = [];
+      var length = string.length;
+      var i = 0;
+      while (i < length) {
+        var codePoint = string.codePointAt(i);
+        var c = 0;
+        var bits = 0;
+        if (codePoint <= 0x0000007F) {
+          c = 0;
+          bits = 0x00;
+        } else if (codePoint <= 0x000007FF) {
+          c = 6;
+          bits = 0xC0;
+        } else if (codePoint <= 0x0000FFFF) {
+          c = 12;
+          bits = 0xE0;
+        } else if (codePoint <= 0x001FFFFF) {
+          c = 18;
+          bits = 0xF0;
+        }
+        octets.push(bits | (codePoint >> c));
+        c -= 6;
+        while (c >= 0) {
+          octets.push(0x80 | ((codePoint >> c) & 0x3F));
+          c -= 6;
+        }
+        i += codePoint >= 0x10000 ? 2 : 1;
+      }
+      return octets;
+    };
+
+    function TextDecoder() {
+    }
+
+    TextDecoder.prototype.decode = function (octets) {
+      var string = "";
+      var i = 0;
+      while (i < octets.length) {
+        var octet = octets[i];
+        var bytesNeeded = 0;
+        var codePoint = 0;
+        if (octet <= 0x7F) {
+          bytesNeeded = 0;
+          codePoint = octet & 0xFF;
+        } else if (octet <= 0xDF) {
+          bytesNeeded = 1;
+          codePoint = octet & 0x1F;
+        } else if (octet <= 0xEF) {
+          bytesNeeded = 2;
+          codePoint = octet & 0x0F;
+        } else if (octet <= 0xF4) {
+          bytesNeeded = 3;
+          codePoint = octet & 0x07;
+        }
+        if (octets.length - i - bytesNeeded > 0) {
+          var k = 0;
+          while (k < bytesNeeded) {
+            octet = octets[i + k + 1];
+            codePoint = (codePoint << 6) | (octet & 0x3F);
+            k += 1;
+          }
+        } else {
+          codePoint = 0xFFFD;
+          bytesNeeded = octets.length - i;
+        }
+        string += String.fromCodePoint(codePoint);
+        i += bytesNeeded + 1;
+      }
+      return string
+    };
+
+    globalThis.TextDecoder = TextDecoder;
+  }())
+
+  function createApplication({
+    loadJsListFile,
+    moduleLoader,
+    ammoJsFallback,
+    loadAmmoJsWasmBinary
+  }) {
+    /**
+     * There are restrictions on some platform that we can not use `System` as System JS global.
+     * The well-known platform is Baidu.
+     * Baidu uses webpack as their pack tool. Webpack by default recognize and transform
+     * `System.import`, `System.register` calls.
+     * However Baidu does not provide a mechanism to config webpack.
+     * So this HACK comes.
+     */
+    const System = globalThis.System;
+
+    if (moduleLoader) {
+      initializeModuleLoader(System, moduleLoader);
+    } // NOTE: before here we shall not import any module!
+
+
+    let promise = Promise.resolve();
+
+    <% if (hasPhysicsAmmo) { %>
+    promise = promise
+      .then(() => topLevelImport('wait-for-ammo-instantiation'))
+      .then(({default: waitForAmmoInstantiation}) => {
+          const {
+              isWasm,
+              wasmBinaryURL,
+          } = waitForAmmoInstantiation;
+          if (!isWasm) {
+              return waitForAmmoInstantiation();
+          } else {
+              return Promise.resolve(fetchWasm(wasmBinaryURL))
+                  .then((wasmBinary) => waitForAmmoInstantiation(wasmBinary));
+          }
+      });
+    <% } %>
+
+    return promise.then(() => {
+      return {
+        start,
+        ['import']: topLevelImport
+      };
+    });
+
+    function start({
+      findCanvas
+    }) {
+      let settings;
+      let cc;
+      return Promise.resolve().then(() => topLevelImport('cc')).then(engine => {
+        cc = engine;
+        return loadSettingsJson(cc);
+      }).then(() => {
+        settings = window._CCSettings;
+        return initializeGame(cc, settings, findCanvas).then(() => {
+          const cache = {};
+          const resolveMap = {};
+
+          async function queryExtension(uuid) {
+            if (uuid in cache) {
+              if (cache[uuid] !== null) {
+                return cache[uuid];
+              }
+              return new Promise((resolve) => {
+                resolveMap[uuid] = resolveMap[uuid] || [];
+                resolveMap[uuid].push(resolve);
+              });
+            }
+            cache[uuid] = null;
+            try {
+                const text = await fetchText(`http://<%= previewIp %>:<%= previewPort %>/query-extname/${uuid}`);
+                cache[uuid] = text;
+                if (resolveMap[uuid]) {
+                  resolveMap[uuid].forEach(func => func(text));
+                  resolveMap[uuid] = [];
+                }
+                return text;
+            } catch(error) {
+                console.error(error);
+                cache[uuid] = '';
+                return '';
+            }
+          }
+          function replaceExtension(task, done) {
+            task.output = task.input;
+            (async () => {
+                for (let i = 0; i < task.input.length; i++) {
+                    const item = task.input[i];
+                    if (!item.uuid || item.isNative) { continue; }
+                    try {
+                        const extension = await queryExtension(item.uuid);
+                        if (extension) {
+                            item.ext = extension;
+                            item.url = item.url.replace('.json', extension);
+                        }
+                    } catch (err) {
+                        continue;
+                    }
+                }
+            })().then(() => {
+                done(null);
+            }).catch((reason) => {
+                done(reason);
+            });
+          }
+          cc.assetManager.pipeline.insert(replaceExtension, 1);
+          cc.assetManager.fetchPipeline.insert(replaceExtension, 1);
+        }).then(() => {
+          if (settings.scriptPackages) {
+            return loadModulePacks(settings.scriptPackages);
+          }
+        }).then(() => loadJsList(settings.jsList)).then(() => loadAssetBundle(settings.hasResourcesBundle, settings.hasStartSceneBundle)).then(() => cc.game.run(() => onGameStarted(cc, settings)));
+      });
+    }
+
+    function topLevelImport(url) {
+      return System.import(url);
+    }
+
+    function loadAssetBundle(hasResourcesBundle, hasStartSceneBundle) {
+      const {
+        MAIN,
+        RESOURCES,
+        START_SCENE
+      } = cc.AssetManager.BuiltinBundleName;
+      const bundleRoot = hasResourcesBundle ? [RESOURCES, MAIN] : [MAIN];
+
+      if (hasStartSceneBundle) {
+        bundleRoot.push(START_SCENE);
+      }
+
+      return Promise.all(bundleRoot.map(name => loadBundle(name)));
+    }
+
+    function loadBundle(name) {
+      return new Promise((resolve, reject) => {
+        cc.assetManager.loadBundle(name, (err, bundle) => {
+          if (err) {
+            return reject(err);
+          }
+
+          resolve(bundle);
+        });
+      });
+    }
+
+    function loadModulePacks(packs) {
+      return Promise.all(packs.map(pack => topLevelImport(pack)));
+    }
+
+    function loadJsList(jsList) {
+      let promise = Promise.resolve();
+      jsList.forEach(jsListFile => {
+        promise = promise.then(() => loadJsListFile(jsListFile));
+      });
+      return promise;
+    }
+
+    function loadSettingsJson(cc) {
+      let server = '';
+      let settings = 'src/settings.json';
+
+      return new Promise((resolve, reject) => {
+        if (typeof fsUtils !== 'undefined' && !settings.startsWith('http')) {
+          let result = fsUtils.readJsonSync(settings);
+
+          if (result instanceof Error) {
+            reject(result);
+          } else {
+            window._CCSettings = result;
+            window._CCSettings.server = server;
+            resolve();
+          }
+        } else {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', settings);
+          xhr.responseType = 'text';
+
+          xhr.onload = () => {
+            window._CCSettings = JSON.parse(xhr.response);
+            window._CCSettings.server = server;
+            resolve();
+          };
+
+          xhr.onerror = () => {
+            reject(new Error('request settings failed!'));
+          };
+
+          xhr.send(null);
+        }
+      });
+    }
+  }
+
+  function initializeGame(cc, settings, findCanvas) {
+    if (settings.macros) {
+      for (let key in settings.macros) {
+        cc.macro[key] = settings.macros[key];
+      }
+    }
+
+    const gameOptions = getGameOptions(cc, settings, findCanvas);
+    const success = cc.game.init(gameOptions);
+    return success ? Promise.resolve() : Promise.reject();
+  }
+
+  function onGameStarted(cc, settings) {
+    window._CCSettings = undefined;
+    cc.view.enableRetina(true);
+    cc.view.resizeWithBrowserSize(true);
+
+    // launch scene
+    let previewSceneJson = jsb.fileUtils.getStringFromFile('<%= previewSceneJsonPath %>');
+    let previewSceneJsonObject = JSON.parse(previewSceneJson);
+    cc.assetManager.loadWithJson(previewSceneJsonObject, (err, sceneAsset) => {
+      if (err) {
+        console.error(error);
+        return;
+      }
+      cc.director.runSceneImmediate(sceneAsset, null, () => {
+        cc.view.setDesignResolutionSize(
+          <%= designResolution.width %>,
+          <%= designResolution.height %>,
+          <%= designResolution.resolutionPolicy %>
+        );
+        console.log('Success to load scene');
+      });
+    });
+  }
+
+  function getGameOptions(cc, settings, findCanvas) {
+    // asset library options
+    const assetOptions = {
+      bundleVers: settings.bundleVers,
+      remoteBundles: settings.remoteBundles,
+      server: settings.server,
+      subpackages: settings.subpackages,
+      assetOptions: settings.assetOptions,
+      importBase: '<%= libraryPath %>',
+      nativeBase: '<%= libraryPath %>',
+    };
+    const options = {
+      debugMode: settings.debug ? cc.DebugMode.INFO : cc.DebugMode.ERROR,
+      showFPS: !false && settings.debug,
+      frameRate: 60,
+      groupList: settings.groupList,
+      collisionMatrix: settings.collisionMatrix,
+      renderPipeline: settings.renderPipeline,
+      adapter: findCanvas('GameCanvas'),
+      assetOptions,
+      customJointTextureLayouts: settings.customJointTextureLayouts || [],
+      physics: settings.physics
+    };
+    return options;
+  }
+
+  function initializeModuleLoader(System, {
+    importMap,
+    importMapBaseUrl,
+    execMap,
+    execNoSchema
+  }) {
+    const noSchemaPlaceholder = 'no-schema:';
+    const systemJsPrototype = System.constructor.prototype;
+    const baseUrlSchema = importMapBaseUrl || noSchemaPlaceholder;
+    System.patches.setBaseUrl(`${baseUrlSchema}/`);
+    System.patches.setImportMap(importMap);
+
+    if (execNoSchema) {
+      System.patches.hookInstantiationOverSchema(noSchemaPlaceholder, function (urlNoSchema, firstParentUrl) {
+        execNoSchema.call(this, urlNoSchema, firstParentUrl);
+        return this.getRegister();
+      });
+    }
+
+    if (execMap) {
+      for (const schema in execMap) {
+        const exec = execMap[schema];
+        System.patches.hookInstantiationOverSchema(schema, function (urlNoSchema, firstParentUrl) {
+          exec.call(this, urlNoSchema, firstParentUrl);
+          return this.getRegister();
+        });
+      }
+    }
+  }
+
+  _export("createApplication", createApplication);
+
+  return {
+    setters: [],
+    execute: function () {}
+  };
+});

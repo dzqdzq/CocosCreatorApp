@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const DontSave=cc.Object.Flags.DontSave,HideInHierarchy=cc.Object.Flags.HideInHierarchy;class WireframeNode extends cc.Node{constructor(e){super(e),this._isWireframeNode=!0,this.objFlags|=DontSave|HideInHierarchy}get isWireframeNode(){return this._isWireframeNode}}exports.default=WireframeNode;

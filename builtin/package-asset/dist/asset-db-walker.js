@@ -1,0 +1,1 @@
+"use strict";exports.methods={async getDependMap(){try{return Manager.AssetWorker.assets.dependencyManager.dependMap}catch(e){return console.error(e),[]}}};

@@ -1,0 +1,43 @@
+<div class="texture-compress">
+    <div class="toolbar">
+        <ui-input placeholder="i18n:builder.project.texture_compress.tips.enter_config_name_to_add"
+            @change="newConfigName = $event.target.value"
+            @keydown.enter="addConfig($event.target.value)"
+        ></ui-input>
+        <ui-button @confirm="addConfig" tooltip="i18n:builder.project.texture_compress.add_config">
+            <ui-icon value="add"></ui-icon>
+        </ui-button>
+        <ui-button @confirm="importConfig" tooltip="i18n:builder.project.texture_compress.import_config">
+            <ui-icon value="import"></ui-icon>
+        </ui-button>
+        <ui-button @confirm="exportConfig" tooltip="i18n:builder.project.texture_compress.export_config">
+            <ui-icon value="export"></ui-icon>
+        </ui-button>
+    </div>
+    <div class="config-wrap" v-if="initialized">
+        <compress-config
+            v-for="(config, name) in defaultConfig"
+            :key="name"
+            :compress-info="textureCompressConfig"
+            :config="config.options"
+            :disabled="true"
+            :name="name + ' (builtin)'"
+            :id="name"
+        >
+        </compress-config>
+        <compress-config
+            v-for="(config, id) in configs"
+            v-if="config"
+            :key="id"
+            :compress-info="textureCompressConfig"
+            :config="config.options"
+            :name="config.name"
+            :id="id"
+            @add="onAddFormat"
+            @remove="onRemoveFormat"
+            @change="onChangeFormatName"
+            @update="onUpdateFormatQuality"
+        >
+        </compress-config>
+    </div>
+</div>

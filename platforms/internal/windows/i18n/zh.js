@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Windows",default_sdk_version:"默认 SDK 版本：",options:{server_mode:"服务器模式"},targetPlatform:"生成平台",make:{label:"生成"},run:{label:"运行"}};

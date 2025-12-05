@@ -1,0 +1,1 @@
+"use strict";exports.info={package_dir_info_title:"插件迁移说明",package_dir_info_detail:"3.0.0 插件目录由原来的 packages 迁移到了 extensions. 如有需要，请将插件复制到新的目录"};

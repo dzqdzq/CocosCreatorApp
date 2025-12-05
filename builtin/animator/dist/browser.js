@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=exports.methods=void 0;let pkg=null;function load(){pkg=this}function unload(){}exports.methods={open(){Editor.Panel.open("animator")}},exports.load=load,exports.unload=unload;

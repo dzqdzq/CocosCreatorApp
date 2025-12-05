@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDump=void 0;class NumberDump{encode(e,u,r){u.value=e}decode(e,u,r,s){const o=r.value-0;isNaN(o)||(r.value=o),e[u.key]=r.value}}exports.numberDump=new NumberDump;

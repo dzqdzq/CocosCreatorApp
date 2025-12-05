@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"Render BackEnd",developerTeam:"Developer Team",targetVersion:"Target iOS Version",queryAgain:"Query Again"},make:{label:"Make"},run:{label:"Run"},tips:{targetVersionDefault:"Default: 12.0",targetVersionError:"The version number is invalid, example: 12.0",developerTeamListError:"Developer team information not found"}};

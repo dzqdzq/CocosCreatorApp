@@ -1,0 +1,78 @@
+<div class="task" 
+    @dblclick="_onCheckOptions"
+    v-if="task && task.options"
+    :missing="missing"
+>
+    <ui-button class="i-close transparent" @confirm="_onRemoveTask($event)" :disabled="!free">
+        <ui-icon value="close"></ui-icon>
+    </ui-button>
+        
+
+    <header>
+        <div>
+            <span>{{task.rawOptions && task.rawOptions.outputName || task.options.outputName || task.id}}</span>
+            <span class="time" v-if="task.time">({{task.time}})</span>
+            <i v-if="missing">missing</i>
+        </div>
+        <ui-loading
+            v-if="task.progress < 1 && task.progress >= 0 && task.state === 'normal'"
+        ></ui-loading>
+    </header>
+
+    <section>
+        <ui-progress class="label"
+            :state="task.state"
+            :success="task.state === 'success'"
+            :failure="task.state === 'failure'"
+            :value="(task.progress || 0) * 100"
+            :message="task.message || task.state"
+        ></ui-progress>
+
+        <div class="build-log">
+            <!-- <ui-icon
+                v-if="task.logMap" 
+                @click="showBuildLog"
+                title="open log file"
+            >catalog</ui-icon> -->
+
+            <!-- <ui-icon color>warn</ui-icon>
+            <span>{{task.logMap && task.logMap.warn || 0}}</span>
+            
+            <ui-icon color>error</ui-icon>
+            <span>{{task.logMap && task.logMap.error || 0}}</span> -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="left">
+            <ui-button @click="revealInExplorer">
+                <ui-icon value="folder-open"></ui-icon>
+            </ui-button>
+            <ui-button
+                :disabled="!free"
+                @confirm="_onEditOptions($event)"
+                tooltip="i18n:builder.build_config"
+            >
+                <ui-icon value="edit"></ui-icon>
+            </ui-button>
+            <ui-button
+                v-if="task.rawOptions || task.options"
+                :disabled="!dbReady"
+                tooltip="i18n:builder.view_build_config"
+                @confirm="_onCheckOptions($event)"
+            >
+                <ui-icon value="eye-open"></ui-icon>
+            </ui-button>
+            <ui-button @click="showBuildLog">
+                <ui-icon tooltip="open log file" value="log"></ui-icon>
+            </ui-button>
+        </div>
+
+        <buttons
+            class="right"
+            :task="task"
+            :free="free"
+            type="list"
+        ></buttons>
+    </footer>
+</div>

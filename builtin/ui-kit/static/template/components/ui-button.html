@@ -1,0 +1,124 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-button>Button</ui-button>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-button&gt;Button&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-button readonly>readonly</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button readonly&gt;readonly&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-button disabled>disabled</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button disabled&gt;disabled&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>support some colors</h2>
+            <div>
+                <ui-button class="red">red</ui-button>
+                <ui-button class="green">green</ui-button>
+                <ui-button class="blue">blue</ui-button>
+                <ui-button class="yellow">yellow</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button class="red"&gt;red&lt;/ui-button&gt;
+                &lt;ui-button class="green"&gt;green&lt;/ui-button&gt;
+                &lt;ui-button class="blue"&gt;blue&lt;/ui-button&gt;
+                &lt;ui-button class="yellow"&gt;yellow&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>text style</h2>
+            <div>
+                <ui-button class="transparent red">red</ui-button>
+                <ui-button class="transparent green">green</ui-button>
+                <ui-button class="transparent blue">blue</ui-button>
+                <ui-button class="transparent yellow">yellow</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button class="transparent red"&gt;red&lt;/ui-button&gt;
+                &lt;ui-button class="transparent green"&gt;green&lt;/ui-button&gt;
+                &lt;ui-button class="transparent blue"&gt;blue&lt;/ui-button&gt;
+                &lt;ui-button class="transparent yellow"&gt;yellow&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>attributes</h2>
+            <ui-code language="typescript">
+                readonly;
+                disabled;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>events</h2>
+            <ui-code language="typescript">
+                'change'
+                'confirm' // general case use this event
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Button Clicked: {{clickedNumber}}</h2>
+            <div>
+                <ui-button @confirm="click">click me</ui-button>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>VUE JS</h2>
+            <ui-code language="html">
+                &lt;ui-button 
+                    @confirm="click"
+                &gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                // vue object
+                methods = {
+                    click(){
+                        this.clickedNumber++;
+                    }
+                };
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Vanilla JS</h2>
+            <ui-code language="html">
+                &lt;ui-button id="button"&gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#button');
+
+                // addEventListener
+                element.addEventListener('confirm', ()=>{
+                    clickedNumber++;
+                });
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

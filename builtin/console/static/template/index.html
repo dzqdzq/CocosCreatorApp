@@ -1,0 +1,31 @@
+<div class="console-panel">
+    <header class="header flex-center" @change="onHeaderChange">
+        <!-- 清除的按钮 -->
+        <ui-button class="transparent" path="clear" tooltip="Clear console">
+            <ui-icon value="clear"></ui-icon>
+            <label class="label">Clear</label>
+        </ui-button>
+
+        <!-- 过滤条件 -->
+        <ui-input path="filterText" show-clear></ui-input>
+
+        <!-- 是否启用正则 -->
+        <ui-checkbox :value="tabbar.filterRegex" path="filterRegex">
+            <span>{{t('tabbar.regex',tabbar.filterRegex)}}</span>
+        </ui-checkbox>
+
+        <!-- 筛选种类 -->
+        <ui-select :value="tabbar.filterType" path="filterType">
+            <option value="all">all</option>
+            <option value="log">log</option>
+            <option value="warn">warn</option>
+            <option value="error">error</option>
+        </ui-select>
+
+         <!-- 打开日志 -->
+         <ui-button class="transparent" path="openLog" tooltip="Open log file">
+            <ui-icon value="catalog"></ui-icon>
+        </ui-button>
+    </header>
+    <console-list v-model="change" :font-size="tabbar.fontSize" :line-height="tabbar.lineHeight"></console-list>
+</div>

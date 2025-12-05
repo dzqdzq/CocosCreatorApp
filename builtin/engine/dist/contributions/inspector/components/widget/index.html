@@ -1,0 +1,281 @@
+
+<div class="widget-component">
+    <div class="layout">
+        <div class="rect">
+            <div class="top"
+                v-show="dimensionVertical==='top' || dimensionVertical==='stretch'"
+            >top</div>
+            <div class="right"
+                v-show="dimensionHorizontal==='right' || dimensionHorizontal==='stretch'"
+            >right</div>
+            <div class="bottom"
+                v-show="dimensionVertical==='bottom' || dimensionVertical==='stretch'"
+            >bottom</div>
+            <div class="left"
+                v-show="dimensionHorizontal==='left' || dimensionHorizontal==='stretch'"
+            >left</div>
+    
+            <widget-rect
+                :dump="dump"
+            ></widget-rect>
+        </div>
+
+        <div class="right">
+            <div class="line">
+                <ui-label value="Horizontal Alignment"></ui-label>
+            </div>
+
+            <div class="line">
+                <div class="button-group"
+                    @click="select($event)"
+                >
+                    <div class="button" dimension="horizontal"
+                        :active="dimensionHorizontal === ''"
+                    >NONE</div>
+                    
+                    <div class="button" dimension="left"
+                        :active="dimensionHorizontal === 'left'"
+                    >
+                        <widget-icon class="left" title="Left"></widget-icon>
+                    </div>
+                    
+                    <div class="button" dimension="center"
+                        :active="dimensionHorizontal === 'center'"
+                    >
+                        <widget-icon class="center" title="Center"></widget-icon>
+                    </div>
+                    
+                    <div class="button" dimension="right"
+                        :active="dimensionHorizontal === 'right'"
+                    >
+                        <widget-icon class="right" title="Right"></widget-icon>
+                    </div>
+                    
+                    <div class="button" dimension="h-stretch"
+                        :active="dimensionHorizontal === 'stretch'"
+                    >
+                        <widget-icon class="horizontal" title="Horizontal Stretch"></widget-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line inputs"
+                v-if="dimensionHorizontal"
+            >
+                <ins-prop empty="true"
+                    :dump="dump.value.editorLeft"
+                    :active="dump.value.isAlignLeft.value"
+                >
+                    <div class="direction">
+                        <span class="name">Left</span>
+                        <div class="icon" title="Lock left value"
+                            @click="toggleLock('left')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('left')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorLeft')"
+                        :invalid="isInvalid('editorLeft')"
+                        :disabled="!dump.value.isAlignLeft.value"
+                        :value="dump.value.editorLeft.value"
+                        @change="change('editorLeft', $event.target.value)"
+                        @unit-click="changeUnit('editorLeft')"
+                    ></ui-num-input>
+                </ins-prop>
+
+                <ins-prop empty="true"
+                    :dump="dump.value.editorHorizontalCenter"
+                    :active="dump.value.isAlignHorizontalCenter.value"
+                >
+                    <div class="direction">
+                        <span class="name">Center</span>
+                        <div class="icon" title="Lock center value"
+                            @click="toggleLock('center')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('center')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorHorizontalCenter')"
+                        :invalid="isInvalid('editorHorizontalCenter')"
+                        :disabled="!dump.value.isAlignHorizontalCenter.value"
+                        :value="dump.value.editorHorizontalCenter.value"
+                        @change="change('editorHorizontalCenter', $event.target.value)"
+                        @unit-click="changeUnit('editorHorizontalCenter')"
+                    ></ui-num-input>
+                </ins-prop>
+
+                <ins-prop empty="true"
+                    :dump="dump.value.editorRight"
+                    :active="dump.value.isAlignRight.value"
+                >
+                    <div class="direction">
+                        <span class="name">Right</span>
+                        <div class="icon" title="Lock right value"
+                            @click="toggleLock('right')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('right')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorRight')"
+                        :invalid="isInvalid('editorRight')"
+                        :disabled="!dump.value.isAlignRight.value"
+                        :value="dump.value.editorRight.value"
+                        @change="change('editorRight', $event.target.value)"
+                        @unit-click="changeUnit('editorRight')"
+                    ></ui-num-input>
+                </ins-prop>
+
+            </div>
+
+            <div class="line m20-t">
+                <ui-label value="Vertical Alignment"></ui-label>
+            </div>
+
+            <div class="line">
+                <div class="button-group"
+                    @click="select($event)"
+                >
+                    <div class="button" dimension="vertical"
+                        :active="dimensionVertical === ''"
+                    >NONE</div>
+                    
+                    <div class="button" dimension="top"
+                        :active="dimensionVertical === 'top'"
+                    >
+                        <widget-icon class="top right" title="Top"></widget-icon>
+                    </div>
+                    
+                    <div class="button" dimension="middle"
+                        :active="dimensionVertical === 'middle'"
+                    >
+                        <widget-icon class="middle center" title="Middle"></widget-icon>
+                    </div>
+                    
+                    <div class="button" dimension="bottom"
+                        :active="dimensionVertical === 'bottom'"
+                    >
+                        <widget-icon class="bottom left" title="Bottom"></widget-icon>
+                    </div>
+
+                    <div class="button" dimension="v-stretch"
+                        :active="dimensionVertical === 'stretch'"
+                    >
+                        <widget-icon class="vertical horizontal" title="Vertical Stretch"></widget-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line inputs"
+                v-if="dimensionVertical"
+            >
+                <ins-prop empty="true"
+                    :dump="dump.value.editorTop"
+                    :active="dump.value.isAlignTop.value"
+                >
+                    <div class="direction">
+                        <span class="name">Top</span>
+                        <div class="icon" title="Lock top value"
+                            @click="toggleLock('top')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('top')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorTop')"
+                        :invalid="isInvalid('editorTop')"
+                        :disabled="!dump.value.isAlignTop.value"
+                        :value="dump.value.editorTop.value"
+                        @change="change('editorTop', $event.target.value)"
+                        @unit-click="changeUnit('editorTop')"
+                    ></ui-num-input>
+                </ins-prop>
+
+                <ins-prop empty="true"
+                    :dump="dump.value.editorVerticalCenter"
+                    :active="dump.value.isAlignVerticalCenter.value"
+                >
+                    <div class="direction">
+                        <span class="name">Middle</span>
+                        <div class="icon" title="Lock middle value"
+                            @click="toggleLock('middle')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('middle')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorVerticalCenter')"
+                        :invalid="isInvalid('editorVerticalCenter')"
+                        :disabled="!dump.value.isAlignVerticalCenter.value"
+                        :value="dump.value.editorVerticalCenter.value"
+                        @change="change('editorVerticalCenter', $event.target.value)"
+                        @unit-click="changeUnit('editorVerticalCenter')"
+                    ></ui-num-input>
+                </ins-prop>
+
+                <ins-prop empty="true"
+                    :dump="dump.value.editorBottom"
+                    :active="dump.value.isAlignBottom.value"
+                >
+                    <div class="direction">
+                        <span class="name">Bottom</span>
+                        <div class="icon" title="Lock bottom value"
+                            @click="toggleLock('bottom')"
+                        >
+                            <ui-icon class="lock" value="lock"
+                                v-if="isLock('bottom')"
+                            ></ui-icon>
+                            <ui-icon value="unlock"
+                                v-else
+                            ></ui-icon>
+                        </div>
+                    </div>
+                    <ui-num-input tabindex="0"
+                        :unit="getUnit('editorBottom')"
+                        :invalid="isInvalid('editorBottom')"
+                        :disabled="!dump.value.isAlignBottom.value"
+                        :value="dump.value.editorBottom.value"
+                        @change="change('editorBottom', $event.target.value)"
+                        @unit-click="changeUnit('editorBottom')"
+                    ></ui-num-input>
+                </ins-prop>
+            </div>
+        </div>
+    </div>
+
+    <ins-prop auto="true"
+        :dump="dump.value.target"
+        :dumps="dumps ? dumps.map(item => item.value.target) : null"
+    ></ins-prop>
+    <ins-prop auto="true"
+        :dump="dump.value.alignMode"
+        :dumps="dumps ? dumps.map(item => item.value.alignMode) : null"
+    ></ins-prop>
+</div>
