@@ -1,0 +1,197 @@
+{
+    "name": "reference-image",
+    "version": "1.0.0",
+    "package_version": 2,
+    "description": "i18n:reference-image.description",
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "scripts": {
+        "build:css": "node ./build/build-css.js",
+        "watch": " tsc --build tsconfig.json --watch"
+    },
+    "panels": {
+        "default": {
+            "title": "i18n:reference-image.name",
+            "main": "./dist/panel/index.js",
+            "icon": "./statics/icon-2x.png",
+            "flags": {
+                "save": false
+            },
+            "size": {
+                "width": 500,
+                "height": 300,
+                "min-width": 500,
+                "min-height": 300
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:reference-image.name",
+                "icon": "./statics/icon.png",
+                "message": "open"
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+9",
+                "mac": "cmd+9"
+            },
+            {
+                "message": "shortcutsMoveRight",
+                "win": "ctrl+right",
+                "mac": "cmd+right"
+            },
+            {
+                "message": "shortcutsMoveLeft",
+                "win": "ctrl+left",
+                "mac": "cmd+left"
+            },
+            {
+                "message": "shortcutsMoveUp",
+                "win": "ctrl+up",
+                "mac": "cmd+up"
+            },
+            {
+                "message": "shortcutsMoveDown",
+                "win": "ctrl+down",
+                "mac": "cmd+down"
+            }
+        ],
+
+        "scene": {
+            "custom": "./dist/contributions/scene-toolbars.js",
+            "script": "./dist/contributions/scene-walker.js"
+        },
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "scene:ready": {
+                "methods": [
+                    "scene:ready"
+                ]
+            },
+            "i18n:change": {
+                "methods": [
+                    "i18n:change"
+                ]
+            },
+            "add-image": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.add-image.description",
+                "doc": "i18n:reference-image.contributions.messages.add-image.doc",
+                "example": "i18n:reference-image.contributions.messages.add-image.example",
+                "methods": [
+                    "onAddImage"
+                ]
+            },
+            "remove-image": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.remove-image.description",
+                "doc": "i18n:reference-image.contributions.messages.remove-image.doc",
+                "example": "i18n:reference-image.contributions.messages.remove-image.example",
+                "methods": [
+                    "onRemoveImage"
+                ]
+            },
+            "switch-image": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.switch-image.description",
+                "doc": "i18n:reference-image.contributions.messages.switch-image.doc",
+                "example": "i18n:reference-image.contributions.messages.switch-image.example",
+                "methods": [
+                    "onSwitchImage"
+                ]
+            },
+            "set-image-data": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.set-image-data.description",
+                "doc": "i18n:reference-image.contributions.messages.set-image-data.doc",
+                "example": "i18n:reference-image.contributions.messages.set-image-data.example",
+                "methods": [
+                    "onSetImageData"
+                ]
+            },
+            "query-config": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.query-config.description",
+                "doc": "i18n:reference-image.contributions.messages.query-config.doc",
+                "example": "i18n:reference-image.contributions.messages.query-config.example",
+                "methods": [
+                    "onQueryConfig"
+                ]
+            },
+            "query-current": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.query-current.description",
+                "doc": "i18n:reference-image.contributions.messages.query-current.doc",
+                "example": "i18n:reference-image.contributions.messages.query-current.example",
+                "methods": [
+                    "onQueryCurrent"
+                ]
+            },
+            "refresh": {
+                "public": true,
+                "description": "i18n:reference-image.contributions.messages.refresh.description",
+                "doc": "i18n:reference-image.contributions.messages.refresh.doc",
+                "example": "i18n:reference-image.contributions.messages.refresh.example",
+                "methods": [
+                    "triggerRefresh"
+                ]
+            },
+            "shortcutsMoveRight": {
+                "methods": [
+                    "default.shortcutsMoveRight"
+                ]
+            },
+            "shortcutsMoveLeft": {
+                "methods": [
+                    "default.shortcutsMoveLeft"
+                ]
+            },
+            "shortcutsMoveUp": {
+                "methods": [
+                    "default.shortcutsMoveUp"
+                ]
+            },
+            "shortcutsMoveDown": {
+                "methods": [
+                    "default.shortcutsMoveDown"
+                ]
+            },
+            "notify-refresh": {
+                "methods": [
+                    "default.onDataChangeByRefresh"
+                ]
+            }
+        },
+
+        "profile": {
+            "reference-image": {
+                "show": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "root-path": {
+                    "type": "string",
+                    "default": ""
+                },
+                "config": {
+                    "images": [],
+                    "sceneUUID": {},
+                    "scene": ""
+                },
+                "opacity": {
+                    "type": "number",
+                    "default": 50
+                }
+            }
+        }
+    }
+}

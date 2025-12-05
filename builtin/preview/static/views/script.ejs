@@ -1,0 +1,134 @@
+<script>
+    try {
+        // 在启动加载之前先初始化显示错误遮罩的相关代码，才能更好的提示后续启动过程中可能出现的错误
+        // 3.6.0 之前的预览模板只有 error-main
+        const errorMain = document.querySelector('#error .error-main');
+        const errorStack = document.querySelector('#error .error-stack');
+        const errorWrap = document.querySelector('#error');
+        function transToErrorInfo(error) {
+            const errorInfo = {
+                message: '',
+                stack: '',
+            };
+            if (error instanceof ErrorEvent) {
+                errorInfo.message = error.error.message;
+                errorInfo.stack = error.error.stack;
+            }
+            else if (error instanceof PromiseRejectionEvent) {
+                errorInfo.message = error.reason;
+            }
+            else if (error instanceof Event && error.target && error.target.src) {
+                errorInfo.message = `Get ${error.target.src} failed!`;
+            } else {
+                errorInfo.message = error.message;
+                errorInfo.stack = error.stack;
+            }
+            return errorInfo;
+        }
+        function showError(errorInfo, message) {
+            if (!errorWrap) {
+                return;
+            }
+            message = message || '[Browser Preview]' + errorInfo.message + (errorInfo.stack ? '/n' + errorInfo.stack : '');
+            if (errorStack) {
+                errorMain.innerText = errorInfo.message;
+                errorInfo.stack && (errorStack.innerText = errorInfo.stack);
+            }
+            else {
+                // 兼容 3.6.0 之前的预览模板
+                errorMain.innerText = message;
+            }
+            errorWrap.style.display = 'block';
+            return {
+                errorInfo,
+                message,
+            };
+        }
+        window.__errorTools = {
+            transToErrorInfo,
+            showError,
+        }
+        function installDiagnosisRoutine() {
+            const errorHandle = function(error) {
+                if (error.message && error.message.includes('debug-evaluate')) {
+                    return;
+                }
+                console.error(error);
+                showError(transToErrorInfo(error));
+                // 注意，在返回 true 的时候，异常才不会继续向上抛出error;
+                return true;
+            };
+            // 全局捕获错误
+            window.addEventListener(
+                'error',
+                errorHandle,
+                true,
+            );
+            window.addEventListener(
+                'unhandledrejection',
+                (error) => {
+                    console.error(error);
+                    showError(transToErrorInfo(error));
+                },
+                true,
+            );
+        }
+        installDiagnosisRoutine();
+    }
+    catch (error) {
+        console.error(error);
+    }
+</script>
+<!-- v-console Support.(Optional) -->
+<% if(enableDebugger) { %>
+    <script src="/node_modules/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        window.VConsole && (window.vConsole = new VConsole());
+    </script>
+<% } %>
+
+<!-- Polyfills bundle. -->
+<script src="/scripting/polyfills/bundle.js"></script>
+
+<!-- Import map that map the engine feature unit modules. -->
+<script src="/scripting/engine/bin/.cache/dev/preview/import-map.json" type="systemjs-importmap"></script>
+
+<!-- Import map that map the entry of project module(s). -->
+<script src="<%=packImportMapURL%>" type="systemjs-importmap"></script>
+
+<!-- Import map that map 'cc', 'cc/env'. -->
+<script src="/scripting/import-map-global" type="systemjs-importmap"></script>
+
+<!-- SystemJS support. -->
+<script src="/scripting/systemjs/system.js"></script>
+
+<!-- Setup the detailed resolution. -->
+<script>
+    System.setResolutionDetailMapCallback(function() {
+        var url = new URL('<%=packResolutionDetailMapURL%>', window.location);
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            return { json, url: url.href };
+        });
+    });
+</script>
+
+<script src="/scripting/engine/bin/.cache/dev/preview/bundled/index.js"></script>
+
+<!-- Manifest file. -->
+<script name="setting" src="<%=settingsJs%>"></script>
+
+<script>
+    window.onload = function() {
+        System.import("/preview-app/index.js").then(function (mod) {
+            return mod.bootstrap({
+                engineBaseUrl: '/scripting/engine',
+                settings: window._CCSettings,
+                devices: <%-JSON.stringify(devices)%>,
+            });
+        }).catch(function(err) {
+            console.error(err);
+        });
+    };
+</script>

@@ -1,0 +1,45 @@
+{
+    "name": "channel-upload-tools",
+    "description": "Huawei AGC upload plugin",
+    "author": "Cocos Creator",
+    "version": "1.0.0",
+    "package_version": 2,
+    "panels": {
+        "default": {
+            "main": "./dist/ui/index.js",
+            "title": "i18n:channel-upload-tools.title",
+            "size": {
+                "width": 650,
+                "min-width": 520,
+                "height": 400,
+                "min-height": 500,
+                "save": false
+            }
+        },
+        "oauth": {
+            "main": "./dist/oauth/index.js",
+            "title": "i18n:channel-upload-tools.title",
+            "size": {
+                "width": 800,
+                "min-width": 520,
+                "height": 600,
+                "min-height": 400,
+                "save": false
+            }
+        }
+    },
+    "contributions": {
+        "messages": {
+            "loginResult": {
+                "methods": [
+                    "default.loginResult"
+                ]
+            },
+            "oAuthWindowClose": {
+                "methods": [
+                    "default.oAuthWindowClose"
+                ]
+            }
+        }
+    }
+}

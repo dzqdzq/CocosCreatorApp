@@ -1,0 +1,156 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-button>Button</ui-button>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-button&gt;Button&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-button disabled>disabled</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button disabled&gt;disabled&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type</h2>
+            <div>
+                <ui-button type="icon">
+                    <ui-icon value="move"></ui-icon>
+                </ui-button>
+                <ui-button type="default">default</ui-button>
+                <ui-button type="danger">danger</ui-button>
+                <ui-button type="success">success</ui-button>
+                <ui-button type="primary">primary</ui-button>
+                <ui-button type="warning">warning</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button type="icon"&gt;
+                    &lt;ui-icon value="move"&gt;&lt;/ui-icon&gt;
+                &lt;/ui-button&gt;
+                &lt;ui-button type="default"&gt;default&lt;/ui-button&gt;
+                &lt;ui-button type="danger"&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="success"&gt;success&lt;/ui-button&gt;
+                &lt;ui-button type="primary"&gt;primary&lt;/ui-button&gt;
+                &lt;ui-button type="warning"&gt;warning&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>outline</h2>
+            <div>
+                <ui-button outline>outline</ui-button>
+                <ui-button type="danger" outline>danger outline</ui-button>
+                <ui-button type="success" outline>success outline</ui-button>
+                <ui-button type="primary" outline>primary outline</ui-button>
+                <ui-button type="warning" outline>warning outline</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button outline&gt;outline&lt;/ui-button&gt;
+                &lt;ui-button type="danger" outline&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="danger" outline&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="success" outline&gt;success&lt;/ui-button&gt;
+                &lt;ui-button type="primary" outline&gt;primary&lt;/ui-button&gt;
+                &lt;ui-button type="warning" outline&gt;warning&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>text style</h2>
+            <div>
+                <ui-button class="transparent">transparent</ui-button>
+                <ui-button class="transparent red">danger transparent</ui-button>
+                <ui-button class="transparent green">success transparent</ui-button>
+                <ui-button class="transparent blue">primary transparent</ui-button>
+                <ui-button class="transparent yellow">warning transparent</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button class="transparent"&gt;transparent&lt;/ui-button&gt;
+                &lt;ui-button class="transparent red"&gt;danger transparent&lt;/ui-button&gt;
+                &lt;ui-button class="transparent green"&gt;success transparent&lt;/ui-button&gt;
+                &lt;ui-button class="transparent blue"&gt;primary transparent&lt;/ui-button&gt;
+                &lt;ui-button class="transparent yellow"&gt;warning transparent&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>loading</h2>
+            <div>
+                <ui-button loading>loading...</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button loading&gt;loading...&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                // 按钮类型 Button type
+                type: danger、success、primary、warning、default、icon
+                // 背景色透明 Make background transparent and invert text and border colors
+                outline 
+                // 禁用状态 Disable the button
+                disabled
+                // 加载状态 Set the button to loading status
+                loading
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <div>
+                <p>Button Clicked: {{clickedNumber}}</p>
+                <ui-button @confirm="click">click me</ui-button>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Events</h2>
+            <ui-code language="typescript">
+                'change'
+                'confirm' // general case use this event
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>VUE JS</h2>
+            <ui-code language="html">
+                &lt;ui-button @confirm="onConfirm"&gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                // vue object
+                methods = {
+                    onConfirm() {
+                        this.clickedNumber++;
+                    }
+                };
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Vanilla JS</h2>
+            <ui-code language="html">
+                &lt;ui-button id="button"&gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#button');
+                element.addEventListener('confirm', () => {
+                    clickedNumber++;
+                });
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

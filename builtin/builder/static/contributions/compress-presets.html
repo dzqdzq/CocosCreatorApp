@@ -1,0 +1,37 @@
+<div class="compress-presets">
+    <config-toolbar
+        @update="onToolBarChange"
+    ></config-toolbar>
+    <div class="config-wrap" ref="wrap" v-if="initialized">
+        <compress-config
+            v-for="(config, name) in defaultConfig"
+            v-show="name.includes(searchName)"
+            :key="name"
+            :compress-config="compressConfig"
+            :overwrite-formats="overwriteFormats"
+            :config="config"
+            :readonly="true"
+            :name="config.name"
+            :id="name"
+        >
+        </compress-config>
+        <!-- 注意 key 的指定，自定义配置的任何属性变化都需要更新界面显示 -->
+        <compress-config
+            v-for="(config, id) in displayConfigs"
+            v-if="config"
+            :key="id"
+            :compress-config="compressConfig"
+            :overwrite-formats="overwriteFormats"
+            :config="config"
+            :name="config.name"
+            :id="id" 
+            @add-config="addConfig"
+            @add-platform="onAddOverwritePlatform"
+            @add="onAddFormat"
+            @remove="onRemoveFormat"
+            @change="onChangeFormatName"
+            @update="onUpdateFormatQuality"
+        >
+        </compress-config>
+    </div>
+</div>

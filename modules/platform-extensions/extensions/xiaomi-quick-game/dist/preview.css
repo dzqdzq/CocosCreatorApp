@@ -1,0 +1,11 @@
+.preview {
+  margin: 8vw;
+}
+.preview .main {
+  display: flex;
+  justify-content: space-between;
+}
+.preview canvas {
+  width: 100px;
+  height: 100px;
+}

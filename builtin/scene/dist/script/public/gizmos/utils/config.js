@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class GizmoConfig{}GizmoConfig.toolsVisibility3d=!0,GizmoConfig.isIconGizmo3D=!1,GizmoConfig.iconGizmoSize=2,exports.default=GizmoConfig;

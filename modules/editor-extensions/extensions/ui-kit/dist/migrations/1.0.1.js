@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0;const lodash=require("lodash");function migrateProject(e){e=lodash.get(e,"curve-editor.customPresets");Array.isArray(e)&&e.length&&e.forEach(e=>{e.outTangentWeight=1,e.inTangentWeight=1,e.tangentWeightMode=0,e.interpMode=2})}exports.migrateProject=migrateProject;

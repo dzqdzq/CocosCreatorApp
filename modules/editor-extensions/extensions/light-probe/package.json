@@ -1,0 +1,101 @@
+{
+    "name": "light-probe",
+    "title": "i18n:light-probe.title",
+    "version": "1.0.4",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "description": "i18n:light-probe.description",
+    "panels": {
+        "default": {
+            "title": "i18n:light-probe.title",
+            "main": "./dist/renderer.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true
+            },
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene/index.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel/i18n:light-probe.menuTitle",
+                "label": "i18n:light-probe.title",
+                "message": "open"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "unstaging": {
+                "methods": [
+                    "unstaging"
+                ]
+            },
+            "refresh": {
+                "methods": [
+                    "default.refresh"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "default.refresh"
+                ]
+            },
+            "lightmap:light-probe-start": {
+                "methods": [
+                    "start",
+                    "default.start"
+                ]
+            },
+            "lightmap:light-probe-cancel": {
+                "methods": [
+                    "cancel",
+                    "default.cancel"
+                ]
+            },
+            "lightmap:light-probe-log": {
+                "methods": [
+                    "log",
+                    "default.log"
+                ]
+            },
+            "lightmap:light-probe-finished": {
+                "methods": [
+                    "finished",
+                    "default.finished"
+                ]
+            },
+            "lightmap:light-probe-end": {
+                "methods": [
+                    "end",
+                    "default.end"
+                ]
+            },
+            "lightmap:light-probe-progress": {
+                "methods": [
+                    "progress",
+                    "default.progress"
+                ]
+            },
+            "light-probe:clear": {
+                "methods": [
+                    "clear",
+                    "default.clear"
+                ]
+            }
+        }
+    }
+}

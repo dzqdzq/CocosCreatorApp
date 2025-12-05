@@ -1,0 +1,1 @@
+"use strict";function returnFalseWithLog(e){return console.error(e),!1}function getPrefabInfo(e){return e._prefab}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getPrefabInfo=exports.returnFalseWithLog=void 0,exports.returnFalseWithLog=returnFalseWithLog,exports.getPrefabInfo=getPrefabInfo;

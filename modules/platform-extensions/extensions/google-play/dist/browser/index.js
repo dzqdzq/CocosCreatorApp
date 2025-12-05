@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=exports.methods=void 0;const customIcon_1=require("../builder/customIcon");function load(){}function unload(){}exports.methods={async"builder-task-delete"(o,e){await(0,customIcon_1.removeCustomIcon)("custom",e.options.outputName)}},exports.load=load,exports.unload=unload;

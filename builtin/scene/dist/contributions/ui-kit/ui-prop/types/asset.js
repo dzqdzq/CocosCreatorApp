@@ -1,0 +1,4 @@
+"use strict";function update(e){var t=this,a=(t._dump=e,t.$this.renderInfo.panel),s=t.$.label,s=(a.setLabel(e,s),t.$this),t=t.$.asset,s=s.getAttribute("array-type")||e.type||"";s&&t.setAttribute("droppable",s),void 0!==e.default&&t.setAttribute("default",String(e.default));const u=e.value;t.value=u.uuid,e.values&&e.values.some(e=>e.uuid!==u.uuid)?t.invalid=!0:t.invalid=!1,a.setReadonly(e,t)}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){var t=this;const a=e.target.value;t._dump.value.uuid=a,"values"in t._dump&&t._dump.values.forEach(e=>{e.uuid=a})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-asset slot="content"></ui-asset>
+`,exports.$={label:"ui-label",asset:"ui-asset"},exports.update=update,exports.ready=ready;

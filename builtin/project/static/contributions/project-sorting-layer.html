@@ -1,0 +1,52 @@
+<main class="main">
+    <header class="header">
+        <ui-label value="i18n:project.sortingLayers.title"></ui-label>
+    </header>
+    <section class="list" ref="list"
+        @mouseenter="dragReset()"
+        :dragging="dragging"
+    >
+        <div class="per"
+            v-for="(layer,index) in layers"
+            :key="index"
+            @dragover="dragOver($event)"
+            @dragleave="dragLeave($event)"
+            @drop="drop($event, index)"
+        >
+            <ui-label class="drag" draggable="true" tooltip="i18n:project.sortingLayers.tip"
+                @dragstart="dragStart($event, index)"
+            ></ui-label>
+
+            <ui-prop class="layer"
+                :readonly="layer.value===0"
+                :tooltip="layer.value===0?'i18n:project.readonly':''"
+            >
+                <ui-label slot="label" class="name"
+                    :value="'Layer ' + layer.id"
+                ></ui-label>
+                <ui-input slot="content" 
+                    :value="layer.name"
+                    :disabled="layer.value===0"
+                    @confirm.stop="rename($event, index)"
+                ></ui-input>
+                <ui-button icon class="icon transparent" slot="content" 
+                    tooltip="i18n:project.delete"
+                    v-if="layer.value!==0"
+                    @click="remove(index)"
+                >
+                    <ui-icon value="del" color="true"></ui-icon>
+                </ui-button>
+            </ui-prop>
+        </div>
+    </section>
+    <footer class="footer">
+        <ui-prop>
+            <ui-button class="add blue" slot="content"
+                @click="add()"
+            >
+                <ui-icon value="add" class="icon"></ui-icon>
+                <ui-label value="i18n:project.add"></ui-label>
+            </ui-button>
+        </ui-prop>
+    </footer>
+</main>

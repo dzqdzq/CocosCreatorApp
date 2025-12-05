@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(e){var a;void 0!==(null==(a=null==(a=null==(a=e.builder)?void 0:a.options)?void 0:a["huawei-quick-game"])?void 0:a.wasmSubpackage)&&delete e.builder.options["huawei-quick-game"].wasmSubpackage}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

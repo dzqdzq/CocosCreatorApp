@@ -1,0 +1,76 @@
+System.register([], function (_export, _context) {
+  "use strict";
+  let cc;
+  class Application {
+    constructor () {
+      this.settingsPath = 'src/settings.json';
+      this.projectPath = '<%= projectPath %>';
+      this.libraryPath = '<%= libraryPath %>';
+      this.showFPS = true;
+      this.previewServer = 'http://<%= previewIp %>:<%= previewPort %>';
+      this.designResolution = {
+        width: <%= designResolution.width %>,
+        height: <%= designResolution.height %>,
+        policy: <%= designResolution.resolutionPolicy %>
+      };
+    }
+    
+    init (engine) {
+      cc = engine;
+      cc.game.onPostBaseInitDelegate.add(this.onPostInitBase.bind(this));
+      cc.game.onPostSubsystemInitDelegate.add(this.onPostSystemInit.bind(this));
+    }
+
+    onPostInitBase () {
+      // cc.settings.overrideSettings('assets', 'server', '');
+      // do custom logic
+    }
+
+    onPostSystemInit () {
+      // do custom logic
+    }
+
+    start () {
+      return cc.game.init({
+        debugMode: cc.DebugMode.INFO,
+        settingsPath: this.settingsPath,
+        overrideSettings: {
+          assets: {
+            importBase: this.libraryPath,
+            nativeBase: this.libraryPath,
+          },
+          path: {
+            projectPath: this.projectPath,
+            previewServer: this.previewServer,
+          },
+          profiling: {
+            showFPS: this.showFPS,
+          },
+          screen: {
+            designResolution: this.designResolution,
+          }
+        }
+      }).then(() => cc.game.run(this.onGameStarted.bind(this)));
+    }
+
+    onGameStarted () {
+      // launch scene
+      let previewSceneJson = jsb.fileUtils.getStringFromFile('<%= previewSceneJsonPath %>');
+      let previewSceneJsonObject = JSON.parse(previewSceneJson);
+      cc.assetManager.loadWithJson(previewSceneJsonObject, (err, sceneAsset) => {
+        if (err) {
+          console.error(error);
+          return;
+        }
+        cc.director.runSceneImmediate(sceneAsset);
+      });
+    }
+  }
+
+  _export("Application", Application);
+
+  return {
+    setters: [],
+    execute: function () {}
+  };
+});

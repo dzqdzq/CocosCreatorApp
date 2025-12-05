@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateGlobal=void 0;const KEY="scene",DEBUG_NATIVE="debug-native",NATIVE_ENGINE="native-engine";function migrateGlobal(e){for(const o in e){var t;o===KEY&&(delete(t=e[o])[DEBUG_NATIVE],delete t[NATIVE_ENGINE])}}exports.migrateGlobal=migrateGlobal;

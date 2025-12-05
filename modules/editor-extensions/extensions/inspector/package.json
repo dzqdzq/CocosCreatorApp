@@ -1,0 +1,180 @@
+{
+    "name": "inspector",
+    "title": "i18n:inspector.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:inspector.description",
+    "main": "./dist/browser/index",
+    "panels": {
+        "default": {
+            "title": "i18n:inspector.title",
+            "main": "./dist/panels/inspector/index.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true,
+                "multiple": true
+            },
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 300,
+                "height": 600
+            }
+        },
+        "gradient-editor": {
+            "type": "simple",
+            "title": "i18n:inspector.gradient.title",
+            "main": "./dist/gradient-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 310,
+                "width": 600,
+                "height": 600
+            }
+        },
+        "curve-editor": {
+            "title": "i18n:inspector.curve_editor.title",
+            "main": "./dist/curve-editor/panel.js",
+            "size": {
+                "min-width": 500,
+                "min-height": 250,
+                "width": 750,
+                "height": 550
+            }
+        },
+        "sprite-editor": {
+            "title": "i18n:inspector.sprite_editor.title",
+            "main": "./dist/sprite-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 400,
+                "width": 600,
+                "height": 600
+            }
+        }
+    },
+    "creator": {
+        "hookScript": "./static/hooks.js"
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene"
+        },
+        "inspector": {
+            "type": {},
+            "header": {},
+            "section": {},
+            "footer": {},
+            "drop": {}
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:inspector.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -96
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+3",
+                "mac": "cmd+3"
+            },
+            {
+                "message": "undo",
+                "mac": "cmd+z",
+                "win": "ctrl+z",
+                "when": "PanelName === 'inspector'"
+            },
+            {
+                "message": "redo",
+                "mac": "cmd+shift+z",
+                "win": "ctrl+shift+z",
+                "when": "PanelName === 'inspector'"
+            }
+        ],
+        "profile": {
+            "editor": {
+                "asset.auto_save": {
+                    "label": "i18n:inspector.profile.auto_save",
+                    "default": false
+                },
+                "panel.label_width": {
+                    "default": 0.3
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "asset.auto_save": {
+                    "ui": "ui-checkbox"
+                }
+            }
+        },
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "undo": {
+                "methods": [
+                    "default.undo"
+                ]
+            },
+            "redo": {
+                "methods": [
+                    "default.redo"
+                ]
+            },
+            "staging": {
+                "methods": [
+                    "staging"
+                ]
+            },
+            "unstaging": {
+                "methods": [
+                    "unstaging"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "default.sceneReady"
+                ]
+            },
+            "scene:close": {
+                "methods": [
+                    "default.sceneClose"
+                ]
+            },
+            "selection:select": {
+                "methods": [
+                    "default.selected"
+                ]
+            },
+            "selection:unselect": {
+                "methods": [
+                    "default.unselected"
+                ]
+            },
+            "gradient-data": {
+                "methods": [
+                    "gradient-editor.data"
+                ]
+            },
+            "curve-keys": {
+                "methods": [
+                    "curve-editor.currentKeys"
+                ]
+            },
+            "sprite-keys": {
+                "methods": [
+                    "sprite-editor.currentKeys"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+"use strict";function update(e){var t=this,a=(t._dump=e,t.$this.renderInfo.panel),l=t.$.label;a.setLabel(e,l);let u;u=e.multiline?t.$.textarea:t.$.input,t.$.input.style.display=e.multiline?"none":"flex",t.$.textarea.style.display=e.multiline?"block":"none",u.value=e.value,a.setInvalid(e,u),a.setReadonly(e,u)}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){const a=this,l=e.target.value;a._dump.value=l,"values"in a._dump&&a._dump.values.forEach((e,t)=>{a._dump.values[t]=l})}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-input slot="content"></ui-input>
+<ui-textarea slot="content" autoheight></ui-textarea>
+`,exports.$={label:"ui-label",input:"ui-input",textarea:"ui-textarea"},exports.update=update,exports.ready=ready;

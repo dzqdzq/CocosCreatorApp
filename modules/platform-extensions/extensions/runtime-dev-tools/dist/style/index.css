@@ -1,0 +1,145 @@
+:host {
+  display: flex;
+}
+:host .home {
+  color: var(--color-normal-contrast);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 3px;
+  width: 100%;
+}
+:host .home .top {
+  flex: 3;
+  display: flex;
+  margin-bottom: 3px;
+}
+:host .home .fl {
+  float: left;
+}
+:host .home .fr {
+  float: right;
+}
+:host .home .tc {
+  text-align: center;
+}
+:host .loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background-color: var(--color-normal-fill-important);
+}
+.main {
+  padding: 5px;
+  line-height: 24px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-normal-fill-emphasis);
+  flex: 3;
+  margin-left: 3px;
+}
+.main .title {
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 1.5em;
+  flex: 1;
+}
+.main .content {
+  flex: 6;
+}
+.console {
+  padding: 5px;
+  line-height: 1.5em;
+  overflow: scroll;
+  display: block;
+  background: var(--color-normal-fill-emphasis);
+  user-select: initial;
+  flex: 2;
+}
+.console .warn {
+  color: var(--color-warn-fill-normal);
+}
+.console .error {
+  color: var(--color-danger-fill-normal);
+}
+.console .debug {
+  color: var(--color-success-fill-normal);
+}
+.phone {
+  padding: 5px;
+  line-height: 24px;
+  background: var(--color-normal-fill-emphasis);
+  flex: 1;
+}
+.phone .title {
+  text-align: center;
+  font-size: 1.3em;
+  border-bottom: 1px solid var(--color-normal-fill-normal);
+}
+.phone .list > div {
+  padding: 5px;
+  font-size: 1em;
+  border-bottom: 1px solid #474747;
+}
+.phone .list > div[selected] {
+  background: var(--color-focus-fill-normal);
+}
+.info {
+  padding: 5px 15px;
+  line-height: 15px;
+  height: 15px;
+  text-align: right;
+}
+.warn {
+  color: var(--color-warn-fill-normal);
+}
+.error {
+  color: var(--color-danger-fill-normal);
+}
+.debug {
+  color: var(--color-success-fill-normal);
+}
+.huawei-ui {
+  margin: 10px 10px;
+  padding: 0 10px;
+  flex: 1;
+  overflow-y: auto;
+}
+.huawei-ui ui-prop {
+  margin: 5px 0;
+}
+.huawei-ui ui-prop > div[slot='content'] {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+.huawei-ui ui-prop > div[slot='content'] > ui-input,
+.huawei-ui ui-textarea,
+.huawei-ui ui-file {
+  width: 100%;
+}
+.huawei-ui .play {
+  text-align: center;
+}
+.huawei-ui .play-layout {
+  display: flex;
+  justify-content: center;
+}
+.huawei-ui .play-btn {
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #474747;
+  cursor: pointer;
+}
+.huawei-ui .play-btn:hover {
+  background-color: var(--color-hover-fill-weaker);
+}

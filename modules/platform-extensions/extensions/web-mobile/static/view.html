@@ -1,0 +1,21 @@
+<div class="web-mobile" @confirm.stop="onConfirm">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:web-mobile.options.preview_qrcode"></ui-label>
+        <div slot="content">
+            <div style="color: var(--color-warn-border-weaker);"
+                v-if="webGPUTips"
+            >
+                <ui-label :value="webGPUTips"></ui-label>
+                <ui-link :value="webGPULink"></ui-link>
+            </div>
+            <canvas v-else ref="canvas"></canvas>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label slot="label" value="i18n:web-mobile.options.preview_url"></ui-label>
+        <div slot="content">
+            <ui-link>{{preview_url}}</ui-link>
+        </div>
+    </ui-prop>
+</div>

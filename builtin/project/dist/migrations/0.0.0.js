@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0;const _1_0_5_1=require("./1.0.5"),_1_0_6_1=require("./1.0.6");async function migrateProject(e){try{await(0,_1_0_5_1.migrateDesignResolution)(e)}catch(e){console.error(e)}await(0,_1_0_6_1.migratePreserveSymlinks)(e)}exports.migrateProject=migrateProject;

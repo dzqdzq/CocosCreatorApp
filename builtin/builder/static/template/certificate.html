@@ -1,0 +1,93 @@
+<div id="certificate" class="certificate">
+    <main @confirm="onConfirm">
+        <ui-prop
+            :tooltip="verifyResult.country || 'i18n:builder.certificate.country_tip'"
+            :error="!!verifyResult.country"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.country"></ui-label>
+            <ui-input name="country" slot="content" unit="ms" step="1"
+                placeholder="i18n:builder.certificate.country_tip"
+                :tooltip="verifyResult.country"
+                :value="settings.country"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+            :tooltip="verifyResult.state || 'i18n:builder.certificate.state_tips'"
+            :error="!!verifyResult.state"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.state"></ui-label>
+            <ui-input name="state" slot="content"
+                placeholder="i18n:builder.certificate.state_tips"
+                :tooltip="verifyResult.state"
+                :value="settings.state"
+            ></ui-input>
+        </ui-prop>
+        <hr>
+        <ui-prop
+            :error="!!verifyResult.locality"
+            :tooltip="verifyResult.locality || 'i18n:builder.certificate.locality_tips'"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.locality"></ui-label>
+            <ui-input name="locality" slot="content"
+                placeholder="i18n:builder.certificate.locality_tips"
+                :tooltip="verifyResult.locality"
+                :value="settings.locality"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+            :error="!!verifyResult.organization"
+            :tooltip="verifyResult.organization || 'i18n:builder.certificate.organization_tips'"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.organization"></ui-label>
+            <ui-input name="organization" slot="content"
+                placeholder="i18n:builder.certificate.organization_tips"
+                :tooltip="verifyResult.organization"
+                :value="settings.organization"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+            :error="!!verifyResult.organizationalUnit"
+            :tooltip="verifyResult.organizationalUnit || 'i18n:builder.certificate.organizationalUnit_tips'"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.organizationalUnit"></ui-label>
+            <ui-input name="organizationalUnit" slot="content"
+                placeholder="i18n:builder.certificate.organizationalUnit_tips"
+                :tooltip="verifyResult.organizationalUnit"
+                :value="settings.organizationalUnit"
+            ></ui-input>
+        </ui-prop>
+        <hr>
+        <ui-prop
+            :error="!!verifyResult.commonName"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.commonName"></ui-label>
+            <ui-input name="commonName" slot="content"
+            :tooltip="verifyResult.commonName"
+            :value="settings.commonName"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+            :error="!!verifyResult.email"
+            :tooltip="verifyResult.email || 'i18n:builder.certificate.email'"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.email"></ui-label>
+            <ui-input name="email" slot="content"
+                :value="settings.email"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!verifyResult.certificatePath"
+        >
+            <ui-label slot="label" value="i18n:builder.certificate.certificatePath"></ui-label>
+            <ui-file name="certificatePath" slot="content" type="directory"
+            :tooltip="verifyResult.certificatePath"
+            :value="settings.certificatePath"
+            ></ui-file>
+        </ui-prop>
+        <footer>
+            <ui-button class="green" :disabled="saveBtnDisabled" @confirm="onGenerate">
+                <ui-label value="i18n:builder.certificate.generate"></ui-label>
+            </ui-button>
+        </footer>
+    </main>
+</div>

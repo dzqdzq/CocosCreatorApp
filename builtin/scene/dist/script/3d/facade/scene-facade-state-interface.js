@@ -1,0 +1,1 @@
+"use strict";var SceneModeType;Object.defineProperty(exports,"__esModule",{value:!0}),exports.SceneModeType=void 0,function(e){e.General="general",e.Prefab="prefab",e.Animation="animation",e.Preview="preview",e.Unset=""}(SceneModeType=SceneModeType||{}),exports.SceneModeType=SceneModeType;

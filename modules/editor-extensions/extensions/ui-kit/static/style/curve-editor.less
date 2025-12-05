@@ -1,0 +1,178 @@
+.curve-editor {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-normal-fill);
+    position: relative;
+    display: flex;
+
+    .flex {
+        display: flex;
+        justify-content: center;
+    }
+
+    .left {
+        width: 25%;
+        max-width: 150px;
+        height: 100%;
+
+        .handle-button,
+        .settings {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            z-index: 10;
+        }
+
+        .settings {
+            top: 32px;
+            width: 200px;
+            background: var(--color-normal-fill-normal);
+            padding: 8px;
+            border: 1px solid var(--color-normal-border);
+            border-radius: var(--size-normal-radius);
+            margin-bottom: -4px;
+
+            ui-prop {
+                width: 100%;
+                margin-bottom: 4px;
+
+                --left-width: 50%;
+            }
+
+            ui-select {
+                flex: 1;
+                width: 100%;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        padding-top: 28px; // 给绝对定位的 toolbar 留出空间
+        padding-bottom: 8px;
+
+        .toolbar {
+            position: absolute;
+            top: 8px;
+            width: 100%;
+            z-index: 3;
+
+            display: flex;
+            align-items: center;
+
+            .editor {
+                flex: 1;
+                min-height: 0;
+            }
+
+            ui-num-input {
+                width: 30px;
+            }
+
+            ui-num-input:hover {
+                width: 60px;
+            }
+
+            ui-label {
+                color: var(--color-danger-fill);
+                margin-right: 56px; // 留给绝对定位的 setting, handle-button
+            }
+
+            ui-icon {
+                margin-left: 10px;
+            }
+
+            ui-icon:hover {
+                cursor: pointer;
+                color: white;
+            }
+        }
+    }
+
+    .canvas-wrap {
+        flex: 1;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+
+        ui-curve-editor {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .presets {
+        display: flex;
+        height: 100%;
+        position: relative;
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+
+            span {
+                text-align: center;
+                flex: 1;
+                cursor: pointer;
+            }
+        }
+
+        .tab > span[active] {
+            // background-color: var(--color-normal-fill-emphasis);
+            color: var(--color-focus-fill);
+        }
+
+        .content {
+            overflow-y: auto;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 40px 10px 10px;
+            width: 100%;
+        }
+
+        .wrap {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+
+            ui-icon {
+                display: none;
+                position: absolute;
+                right: 4px;
+                top: 4px;
+                cursor: pointer;
+            }
+
+            .curve-item {
+                padding-bottom: 10px;
+                text-align: center;
+                line-height: 10px;
+                position: relative;
+            }
+
+            .curve-item:hover ui-icon {
+                display: inline-block;
+            }
+
+            ui-curve {
+                width: 100%;
+                height: 100px;
+                margin-bottom: 4px;
+            }
+        }
+
+        .add {
+            bottom: 0;
+            height: 30px;
+        }
+    }
+}

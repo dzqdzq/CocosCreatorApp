@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.MetricsObserverBase=void 0;class MetricsObserverBase{trackEvent(e,s){}trackException(e,s){}sendAppInfo(e){}close(e){}}exports.MetricsObserverBase=MetricsObserverBase;

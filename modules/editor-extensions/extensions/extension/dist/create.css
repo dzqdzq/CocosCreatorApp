@@ -1,0 +1,85 @@
+div.extension {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+div.extension > header {
+  padding: 10px 10px 0px 20px;
+}
+div.extension > main.extensionInfos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+div.extension > main.extensionInfos > div.empty {
+  padding: 40px 70px;
+  line-height: 30px;
+  color: var(--color-normal-contrast-weaker);
+  text-align: center;
+}
+div.extension > main.extensionInfos > div.content {
+  flex: 1;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+  margin-bottom: 10px;
+}
+div.extension > main.extensionInfos > div.content > div.templates > ui-label.tag {
+  opacity: 0.5;
+  text-align: left;
+  padding-left: 10px;
+  font-size: calc(var(--size-normal-font) * 1px);
+}
+div.extension > main.extensionInfos > div.content > div.templates > div.templateItem {
+  cursor: pointer;
+  padding: 8px 20px;
+  margin: 10px;
+  width: 100% -2px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+div.extension > main.extensionInfos > div.content > div.templates > div.templateItem[active],
+div.extension > main.extensionInfos > div.content > div.templates > div.templateItem:hover {
+  background-color: var(--color-active-fill-emphasis);
+}
+div.extension > main.extensionInfos > div.content > div.templates > div.templateItem > ui-label.name {
+  text-align: left;
+  color: var(--color-active-contrast);
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+}
+div.extension > main.extensionInfos > div.content > div.templates > div.templateItem > ui-label.description {
+  display: block;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+div.extension > main.extensionInfos > div.configure > ui-prop {
+  margin-top: 4px;
+}
+div.extension > main.extensionInfos > div.configure > ui-prop [wrong] {
+  border-color: var(--color-danger-fill-normal);
+}
+div.extension > main.extensionInfos > div.configure > ui-prop.tips {
+  margin-bottom: 2px;
+  margin-top: -4px;
+}
+div.extension > main.extensionInfos > div.configure ui-label.tips {
+  color: var(--color-danger-fill-normal);
+  display: block;
+  font-size: calc(var(--size-small-font)*1px);
+}
+div.extension > main.extensionInfos > div.configure footer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+div.extension > footer {
+  padding: 10px;
+}

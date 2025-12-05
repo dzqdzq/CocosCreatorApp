@@ -1,0 +1,3 @@
+function showError(r){q("#splash").style.display="none",q("#error").style.display="block",q("#error .error-main").innerText+=r,r="[preview-error]"+r,socket.emit("preview error",r)}window.socket=io(),window.q=document.querySelector.bind(document),window.hasError=!1,window.addEventListener("error",function(r){window.hasError=!0;var e=[].toString.call(r,r);return console.error(r),showError("[object Event]"===e?`load ${r.target.src} failed`:`${r.message} in ${r.filename}
+
+            `),!0},!0);

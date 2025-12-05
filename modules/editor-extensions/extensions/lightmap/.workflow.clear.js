@@ -1,0 +1,1 @@
+const tsconfig=require("./tsconfig.json");exports.clear=()=>[tsconfig.compilerOptions.outDir];

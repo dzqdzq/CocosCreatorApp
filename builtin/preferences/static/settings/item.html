@@ -1,0 +1,18 @@
+
+<ui-setting
+    v-if="item.render"
+    :type="type"
+    :package="tab"
+>
+    <div>
+        <ui-icon
+            value="setting"
+            @click="popup($event.target.pageX, $event.target.pageY, path)"
+        ></ui-icon>
+        <ui-prop type="ui"
+            :label="item.label"
+            :render="getRenderText(item.render)"
+            :tooltip="item.description"
+        ></ui-prop>
+    </div>
+</ui-setting>

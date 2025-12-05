@@ -1,0 +1,4 @@
+"use strict";function update(e){var a=this,l=(a._dump=e,a.$this.renderInfo.panel),t=a.$.label,t=(l.setLabel(e,t),a.$.color);const r=e.value;t.value=JSON.stringify([r.r,r.g,r.b,r.a]),e.values&&e.values.some(e=>e.r!==r.r||e.g!==r.g||e.b!==r.b||e.a!==r.a)?t.invalid=!0:t.invalid=!1,l.setReadonly(e,t)}function ready(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.listeners=void 0,exports.listeners={change(e){var a=this;const[l,t,r,s]=e.target.value;a._dump.value.r=l,a._dump.value.g=t,a._dump.value.b=r,a._dump.value.a=s,"values"in a._dump&&a._dump.values.forEach(e=>{e.r=l,e.g=t,e.b=r,e.a=s})},cancel(e){exports.listeners.change.call(this,e)}},exports.template=`
+<ui-label slot="label"></ui-label>
+<ui-color slot="content"></ui-color>
+`,exports.$={label:"ui-label",color:"ui-color"},exports.update=update,exports.ready=ready;

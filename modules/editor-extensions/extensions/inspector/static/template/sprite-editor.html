@@ -1,0 +1,67 @@
+<div class="sprite-editor">
+    <div class="header">
+        <table class="table">
+            <tr>
+                <td class="td-r">{{t('scale')}}</td>
+                <td colspan="4">
+                    <ui-slider ref="scale" step="1"
+                        @change="scaleChange($event)"
+                    ></ui-slider>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-r td-top" rowspan="2">{{t('border')}}</td>
+                <td class="td-r">{{t('top')}}</td>
+                <td>
+                    <ui-num-input
+                        :value="topPos"
+                        :max="topPosMax"
+                        :min="0"
+                        :preci="2"
+                        @change="positionChange($event,'topPos')"
+                    ></ui-num-input>
+                </td>
+                <td class="td-r">{{t('bottom')}}</td>
+                <td>
+                    <ui-num-input
+                        :value="bottomPos"
+                        :max="bottomPosMax"
+                        :min="0"
+                        :preci="2"
+                        @change="positionChange($event,'bottomPos')"
+                    ></ui-num-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-r">{{t('left')}}</td>
+                <td>
+                    <ui-num-input
+                        :value="leftPos"
+                        :max="leftPosMax"
+                        :min="0"
+                        :preci="2"
+                        @change="positionChange($event,'leftPos')"
+                    ></ui-num-input>
+                </td>
+                <td class="td-r">{{t('right')}}</td>
+                <td>
+                    <ui-num-input
+                        :value="rightPos"
+                        :max="rightPosMax"
+                        :min="0"
+                        :preci="2"
+                        @change="positionChange($event,'rightPos')"
+                    ></ui-num-input>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="content" ref="content">
+        <div class="scroll"
+            :horizontal="horizontal"
+        >
+            <canvas class="canvas" ref="canvas"></canvas>
+        </div>
+        <svg class="svg" ref="svg"></svg>
+    </div>
+</div>

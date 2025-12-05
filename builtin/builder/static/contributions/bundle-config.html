@@ -1,0 +1,72 @@
+<ui-section whole id="projectBundleConfig">
+    <header slot="header">
+        <ui-label value="i18n:builder.asset_bundle.bundleConfig"></ui-label>
+        <div class="toolbar">
+            <ui-button type="icon" class="transparent" tooltip="i18n:builder.asset_bundle.addConfig"
+                @click="newConfig()"
+            >
+                <ui-icon value="add"></ui-icon>
+            </ui-button>
+            <ui-button type="icon" class="transparent" tooltip="i18n:builder.asset_bundle.importConfig"
+                @click="importConfig"
+            >
+                <ui-icon value="import"></ui-icon>
+            </ui-button>
+            <ui-button type="icon" class="transparent" tooltip="i18n:builder.asset_bundle.exportConfig"
+                @click="exportConfig"
+            >
+                <ui-icon value="export"></ui-icon>
+            </ui-button>
+        </div>
+    </header>
+    <div class="config-groups">
+        <ui-section expand ref="default">
+            <header slot="header">
+                <div class="name">
+                    <ui-label :value="defaultConfig.displayName"></ui-label>
+                </div>
+                <div class="toolbar">
+                    <ui-button type="icon" class="transparent" @mousedown.stop="configMenu($event, 'default', defaultConfig)">
+                        <ui-icon value="menu"></ui-icon>
+                    </ui-button>
+                </div>
+            </header>
+            <config-group
+                :custom-config="defaultConfig.configs"
+                :render-config="renderConfigs"
+                @update="saveDefaultConfig"
+            ></config-group>
+        </ui-section>
+        <template>
+            <ui-section expand class="bundle-config"
+                v-for="(customConfig, key) in customConfigs"
+                v-if="key !== 'default'"
+                :ref="key"
+                :key="key"
+            >
+                <header slot="header">
+                    <ui-label v-if="!renameState[key]"
+                        :value="customConfig.displayName"
+                    ></ui-label>
+                    <ui-input v-else
+                        :ref="'renameInput' + key"
+                        :value="customConfig.displayName"
+                        @confirm="onRename($event.target.value, key, customConfig)"
+                        @mousedown.stop
+                        @click.stop
+                    ></ui-input>
+                    <div class="toolbar">
+                        <ui-button type="icon" class="transparent" @mousedown.stop="configMenu($event, key, customConfig)">
+                            <ui-icon value="menu"></ui-icon>
+                        </ui-button>
+                    </div>
+                </header>
+                <config-group
+                    :custom-config="customConfig.configs"
+                    :render-config="renderConfigs"
+                    @update="saveConfig"
+                ></config-group>
+            </ui-section>
+        </template>
+    </div>
+</ui-section>

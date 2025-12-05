@@ -1,0 +1,52 @@
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.console-panel {
+    width: 100%;
+    height: 100%;
+    background: var(--color-normal-fill);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 4px 0;
+    height: 20px;
+    flex-wrap: nowrap;
+    background: var(--color-normal-fill);
+    color: var(--color-default-contrast-emphasis);
+
+    > * {
+        margin: 2px 4px;
+        line-height: 20px;
+    }
+
+    ui-input {
+        padding: 0;
+    }
+
+    ui-button {
+        white-space: nowrap;
+        cursor: pointer;
+        padding: 0 4px;
+    }
+
+    .line {
+        width: 1px;
+        height: 12px;
+        background-color: #141414;
+    }
+}
+
+.select-label {
+    margin-right: 5px;
+}
+
+.collapse {
+    position: absolute;
+    right: 0;
+}
+
+@import "list.less";

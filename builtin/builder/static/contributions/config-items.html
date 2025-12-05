@@ -1,0 +1,59 @@
+<div class="formats">
+    <header v-if="!readonly">
+        <ui-label value="i18n:builder.project.texture_compress.compressFormat"></ui-label>
+        <div class="right">
+            <ui-button type="icon" class="transparent"
+                :disabled="!selectInfos.length"
+                @click.stop="removeFormat"
+            >
+                <ui-icon value="mini"></ui-icon>
+            </ui-button>
+            <ui-button type="icon" class="transparent"
+                @click.stop="addFormat"
+            >
+                <ui-icon value="add-more"></ui-icon>
+            </ui-button>
+        </div>
+    </header>
+    <div>
+        <ui-prop class="format-item"
+            v-for="(formatInfo, format) in formatInfos"
+            :key="format"
+            :active="selectInfos.includes(format)"
+            @click.stop="onSelect(format)"
+            :disabled="readonly"
+        >
+            <div class="format-name" slot="label">
+                <ui-label
+                    :value="formatInfo.displayName"
+                    class="format-name__label"
+                ></ui-label>
+                <span class="custom" v-if="formatInfo.custom">
+                    (<ui-label value="custom" tooltip="i18n:builder.project.texture_compress.customFormat.title"></ui-label>)
+                </span>
+                <span class="custom" v-if="formatInfo.overwritedInfo">
+                    (<ui-label tooltip="i18n:builder.project.texture_compress.customFormat.title"
+                        :value="formatInfo.overwritedInfo.displayName"
+                    ></ui-label>)
+                </span>
+            </div>
+            <div slot="content" class="quality flex-spacing-between child-margin-right">
+                <ui-label class="custom missing" v-if="formatInfo.missing" value="missing"></ui-label>
+                <template v-if="formatInfo.formatType">
+                    <template
+                        v-for="(config, name) in formatInfo.options"
+                    >
+                        <build-prop
+                            v-if="config.render || config.itemConfigs"
+                            :key="name"
+                            :path="name"
+                            :config="config"
+                            :value="formatInfo.value[name]"
+                            @data-confirm="onChangeQuality(arguments[0], arguments[1], format)"
+                        ></build-prop>
+                    </template>
+                </template>
+            </div>
+        </ui-prop>
+    </div>
+</div>

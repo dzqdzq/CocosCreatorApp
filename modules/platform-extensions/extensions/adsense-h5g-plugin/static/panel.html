@@ -1,0 +1,40 @@
+<div class="adsense-h5g-plugin" @change="onDataChange">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:adsense-h5g-plugin.options.AFPHostPropertyCode"></ui-label>
+        <ui-select-pro slot="content" path="AFPHostPropertyCode">
+            <template v-for="info in renderList">
+                <ui-select-option-pro :key="info.value" :value="info.value" :label="info.label"
+                    :selected="pkgOptions.AFPHostPropertyCode===info.value">
+                </ui-select-option-pro>
+            </template>
+        </ui-select-pro>
+    </ui-prop>
+
+    <ui-prop v-if="pkgOptions.AFPHostPropertyCode === 'other'"
+        :class="pkgErrorMap.otherAFPHostPropertyCode ? 'danger' : ''"
+        :message="pkgErrorMap.otherAFPHostPropertyCode"
+    >
+        <ui-label slot="label" value="i18n:adsense-h5g-plugin.options.otherAFPHostPropertyCode"
+            tooltip="i18n:adsense-h5g-plugin.options.otherAFPHostPropertyCodeTips"
+        ></ui-label>
+        <ui-input slot="content"
+            path="otherAFPHostPropertyCode"
+            :value="pkgOptions.otherAFPHostPropertyCode"
+        >
+        </ui-input>
+    </ui-prop>
+
+    <ui-prop v-if="pkgOptions.AFPHostPropertyCode === 'other'"
+        :class="pkgErrorMap.otherAFPDomain ? 'danger' : ''"
+        :message="pkgErrorMap.otherAFPDomain"
+    >
+        <ui-label slot="label" value="i18n:adsense-h5g-plugin.options.otherAFPDomain"
+            tooltip="i18n:adsense-h5g-plugin.options.otherAFPHostPropertyCodeTips"
+        ></ui-label>
+        <ui-input slot="content"
+            path="otherAFPDomain"
+            :value="pkgOptions.otherAFPDomain"
+        >
+        </ui-input>
+    </ui-prop>
+</div>

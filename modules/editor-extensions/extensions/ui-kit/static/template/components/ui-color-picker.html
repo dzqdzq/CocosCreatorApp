@@ -1,0 +1,142 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <ui-color-picker value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>simple</h2>
+            <ui-color-picker simple value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker simple value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>row</h2>
+            <ui-color-picker row value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker row value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled-color</h2>
+            <ui-color-picker disabled-color value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker disabled-color value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled-alpha</h2>
+            <ui-color-picker disabled-alpha value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker disabled-alpha value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-color-picker disabled value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker disabled value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-color-picker readonly value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker readonly value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-color-picker hidden value="[45,78,123,120]"></ui-color-picker>
+            <ui-code language="html">
+                &lt;ui-color-picker hidden value="[45,78,123,120]"&gt;&lt;/ui-color-picker&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                simple // just display hue box
+                row // hue box and value box horizontal layout
+                disabled-color // can not change color value
+                disabled-alpha // can not change alpha value
+                disabled
+                readonly
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <h4 ref="value"></h4>
+                <ui-color-picker ref="color-picker" value="[45,78,123,120]"
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                    @cancel="onCancel($event.target.value)"
+                ></ui-color-picker>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <p>value change</p>
+                <ui-code language="html">
+                    &lt;ui-color-picker ref="color-picker" value="[45,78,123,120]"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-color-picker&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-color-picker value="[45,78,123,120]" id="ui-color-picker"&gt;&lt;/ui-color-picker&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-color-picker');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        // cancel value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

@@ -1,0 +1,146 @@
+:host {
+  flex: 1;
+  display: flex;
+}
+:host > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: text;
+}
+:host > .content > header {
+  display: none;
+  margin: 10px 28px;
+}
+:host > .content > section {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  padding: 10px;
+}
+:host > .content > section > .slider {
+  width: 150px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+:host > .content > section > .slider::-webkit-scrollbar {
+  display: block;
+  border-left: 1px solid var(--color-normal-border-weaker);
+}
+:host > .content > section > .slider > ul > li {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 10px 20px;
+  text-align: center;
+}
+:host > .content > section > .slider > ul > li:hover,
+:host > .content > section > .slider > ul > li[active] {
+  background-color: var(--color-active-fill-emphasis);
+  color: var(--color-active-contrast-emphasis);
+}
+:host > .content > section > .list {
+  flex: 1;
+  margin-left: 6px;
+  padding: 10px 0;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+:host > .content > section > .list > .conditions {
+  border-bottom: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border-weaker);
+  padding: 0 20px 4px 20px;
+}
+:host > .content > section > .list > .block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0 10px;
+}
+:host > .content > section > .list > .block > header {
+  border-bottom: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border-weaker);
+  padding: 0 6px;
+}
+:host > .content > section > .list > .block > section {
+  overflow-y: auto;
+}
+:host > .content > section > .list > .block > section > .row {
+  padding: 6px;
+  position: relative;
+}
+:host > .content > section > .list > .block > section > .row > .background {
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: var(--color-normal-fill-emphasis);
+}
+:host > .content > section > .list > .block > section > .row:nth-child(even) > .background {
+  opacity: 0.3;
+}
+:host > .content > section > .list .row {
+  padding: 2px 20px;
+  display: flex;
+  flex-direction: column;
+}
+:host > .content > section > .list .row > .info {
+  display: flex;
+}
+:host > .content > section > .list .row > .info > ui-icon {
+  cursor: pointer;
+}
+:host > .content > section > .list .row > .info > ui-icon[fold] {
+  transform: rotate(-90deg);
+}
+:host > .content > section > .list .row > .info > ui-icon[param] {
+  visibility: visible;
+}
+:host > .content > section > .list .row > .doc {
+  margin-left: 6px;
+  padding: 0 10px;
+  border-top: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+  display: block;
+}
+:host > .content > section > .list .row > .example {
+  padding: 0 10px;
+  display: flex;
+}
+:host > .content > section > .list .row > .example > .copy-code {
+  opacity: 0;
+  position: absolute;
+  right: 16px;
+  transition: opacity 0.3s;
+}
+:host > .content > section > .list .row > .example:hover .copy-code {
+  opacity: 1;
+}
+:host > .content > section > .list .row > .expand {
+  position: absolute;
+  right: 22px;
+}
+:host > .content > section .source {
+  width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+:host > .content > section .message {
+  width: 40%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+:host > .content > section .description {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

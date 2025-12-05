@@ -1,0 +1,1 @@
+"use strict";async function register(e){!0!==await Editor.Profile.getConfig("utils","features.adsense-h5g-plugin")&&delete e.contributions}Object.defineProperty(exports,"__esModule",{value:!0}),exports.register=void 0,exports.register=register;

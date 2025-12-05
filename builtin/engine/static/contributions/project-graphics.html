@@ -1,0 +1,59 @@
+<div>
+    <ui-radio-group
+        :value="customPipeline ? 'customPipeline' : 'deprecatedPipeline'"
+        @change="customPipelineChanged"
+    >
+        <ui-radio value="customPipeline">
+            <ui-label value="i18n:ENGINE.features.custom_pipeline.label" tooltip="i18n:ENGINE.features.custom_pipeline.description"></ui-label>
+        </ui-radio>
+        <div class="ml" @change.stop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:engine.project.graphics.pipelineName"></ui-label>
+                <ui-input slot="content" placeholder="Builtin"
+                    :value="pipelineName"
+                    @change="pipelineNameChange"
+                ></ui-input>
+            </ui-prop>
+            <!-- <ui-prop disabled>
+                <ui-label slot="label" value="i18n:project.general.render_pipeline"></ui-label>
+                <ui-select slot="content"
+                    :value="renderPipeline"
+                >
+                <option
+                    v-for="(renderPipeline, index) in renderPipelines"
+                    :key="renderPipeline.uuid"
+                    :value="renderPipeline.uuid"
+                >{{renderPipeline.name + (renderPipeline.contributed ? ' (contributed by ' + renderPipeline.contributed + ')': '')}}</option>
+            </ui-select>
+            </ui-prop> -->
+            <ui-prop @confirm="postProcessRenderConfigChanged($event)">
+                <ui-label slot="label"
+                    :value="postProcessRenderConfig.label"
+                    :tooltip="postProcessRenderConfig.description"
+                ></ui-label>
+                <ui-checkbox slot="content"
+                    :value="includeModules.includes('custom-pipeline-post-process')"
+                ></ui-checkbox>
+            </ui-prop>
+        </div>
+    
+        <ui-radio value="deprecatedPipeline">
+            <ui-label value="i18n:ENGINE.features.legacy_pipeline.label" tooltip="i18n:ENGINE.features.legacy_pipeline.description"></ui-label>
+        </ui-radio>
+        <div class="ml" @change.stop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:project.general.render_pipeline"></ui-label>
+                <ui-select slot="content"
+                    :value="renderPipeline"
+                    @confirm="renderPipelineChanged($event)"
+                >
+                    <option
+                        v-for="(renderPipeline, index) in renderPipelines"
+                        :key="renderPipeline.uuid"
+                        :value="renderPipeline.uuid"
+                    >{{renderPipeline.name + (renderPipeline.contributed ? ' (contributed by ' + renderPipeline.contributed + ')': '')}}</option>
+                </ui-select>
+            </ui-prop>
+        </div>
+    </ui-radio-group>
+</div>

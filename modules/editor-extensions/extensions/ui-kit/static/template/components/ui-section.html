@@ -1,0 +1,189 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Default Style</h2>
+            <ui-section header="Content padding-left is 28px" expand>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Content padding-left is 28px" expand&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+
+            <ui-section>
+                <div slot="header">slot="header"</div>
+                <div>This is content</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section&gt;
+                    &lt;div slot="header"&gt;slot="header"&lt;/div&gt;
+                    &lt;div&gt;This is content&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>class="config" Style</h2>
+            <ui-section class="config" header="Header has background, content padding-left is 0px">
+                <div>This is content</div>
+            </ui-section>
+    
+            <ui-code language="html">
+                &lt;ui-section class="config" header="Header has background, content padding-left is 0px"&gt;
+                    &lt;div&gt;This is content&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>expand</h2>
+            <ui-section header="Header text" expand>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Header text" expand&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>whole</h2>
+            <ui-section header="Can not collapse, content padding-left is 8px" whole>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section header="Can not collapse, content padding-left is 8px" whole&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+
+            <ui-section class="config" whole>
+                <div slot="header">Can not collapse</div>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section class="config" whole&gt;
+                    &lt;div slot="header"&gt;Can not collapse&lt;/div&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-section expand disabled>
+                <div slot="header">header</div>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section expand disabled&gt;
+                    &lt;div slot="header"&gt;header&lt;/div&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-section expand readonly>
+                <div slot="header">header</div>
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+            <ui-code language="html">
+                &lt;ui-section expand readonly&gt;
+                    &lt;div slot="header"&gt;header&lt;/div&gt;
+                    &lt;div&gt;one&lt;/div&gt;
+                    &lt;div&gt;two&lt;/div&gt;
+                    &lt;div&gt;three&lt;/div&gt;
+                &lt;/ui-section&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="text">
+                header;
+                expand; // initial show with expand state
+                whole; // can not collapse
+                disabled; 
+                readonly; 
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <ui-section
+                @expand="onExpand"
+                @uiscroll="onUIScroll"
+            >
+                <div>one</div>
+                <div>two</div>
+                <div>three</div>
+            </ui-section>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-section header="Header text"
+                        @expand="onExpand"
+                        @uiscroll="onUIscroll"
+                    &gt;
+                        &lt;div&gt;one&lt;/div&gt;
+                        &lt;div&gt;two&lt;/div&gt;
+                        &lt;div&gt;three&lt;/div&gt;
+                    &lt;/ui-section&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-section id="ui-section" header="Header text"&gt;
+                        &lt;div&gt;one&lt;/div&gt;
+                        &lt;div&gt;two&lt;/div&gt;
+                        &lt;div&gt;three&lt;/div&gt;
+                    &lt;/ui-section&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-section');
+
+                    // addEventListener
+                    element.addEventListener('expand', () => {
+                        console.log('onExpand');
+                    });
+                    element.addEventListener('uiscroll', () => {
+                        console.log('onUIScroll');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

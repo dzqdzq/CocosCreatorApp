@@ -1,0 +1,25 @@
+<section class="compress-format">
+    <config-toolbar
+        @update="onToolBarChange"
+    ></config-toolbar>
+    <div class="config-wrap" ref="wrap" v-if="customConfigs && displayConfigs && Object.keys(displayConfigs).length">
+        <!-- 注意 key 的指定，自定义配置的任何属性变化都需要更新界面显示 -->
+        <custom-config
+            v-for="config in displayConfigs"
+            :id="config.id"
+            :key="config.id"
+            :formats-info="compressConfig && compressConfig.formatsInfo"
+            :config="config"
+            :overwrite-formats="overwriteFormats"
+            :custom-configs="customConfigs"
+            @add-config="addConfig"
+            @update="onConfigChange"
+            @remove="onRemoveFormat"
+        ></custom-config>
+    </div>
+    <div class="config-wrap" v-else>
+        <div class="empty-content">
+            <ui-label value="i18n:builder.project.texture_compress.empty"></ui-label>
+        </div>
+    </div>
+</section>

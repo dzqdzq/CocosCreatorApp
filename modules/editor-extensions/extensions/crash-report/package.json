@@ -1,0 +1,47 @@
+{
+  "name": "crash-reporter",
+  "title": "i18n:crash-reporter.title",
+  "version": "1.0.0",
+  "package_version": 2,
+  "author": "Cocos Creator",
+  "description": "i18n:crash-reporter.description",
+  "main": "./dist/browser/index.js",
+  "scripts": {
+    "build:css": "lessc static/style/index.less > dist/index.css",
+    "watch": " tsc --build tsconfig.json --watch"
+  },
+  "panels": {
+    "default": {
+      "type": "simple",
+      "title": "i18n:crash-reporter.title",
+      "main": "./dist/renderer/index.js",
+      "icon": "./static/images/icon.png",
+      "size": {
+        "min-width": 450,
+        "min-height":566,
+        "width": 450,
+        "height":566
+      }
+    }
+  },
+  "contributions": {
+    "messages": {
+      "refresh": {
+        "methods": ["default.refresh"]
+      },
+      "crash-reporter:report": {
+        "methods": [
+          "onCrashReport"
+        ]
+      },
+      "crash-reporter:upload": {
+        "methods": [
+          "onUpload"
+        ]
+      },
+      "query-crash-report-infos": {
+        "methods": ["queryCrashReportInfos"]
+      }
+    }
+  }
+}

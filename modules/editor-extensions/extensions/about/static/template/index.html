@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="logo">
+        <img class="img" src="packages://about/static/image/splash_portrait.png" />
+    </div>
+    <div class="info">
+        <div class="name">Cocos Creator</div>
+        <div class="version">
+            <ui-label value="i18n:about.version"></ui-label>
+            <span>{{version}}</span>
+            <span v-if="time" class="time">{{time}}</span>
+        </div>
+
+        <div class="commit">
+            <div v-for="key in Object.keys(commit)" :key="key">
+                <ui-label :value="`i18n:about.${key}`"></ui-label>
+                <span>{{commit[key] || 'unknown'}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>(c) 2024 Xiamen Yaji Software Co., Ltd. All rights reserved.</footer>

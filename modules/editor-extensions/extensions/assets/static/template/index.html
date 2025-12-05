@@ -1,0 +1,216 @@
+<div
+    class="assets"
+    :lock="operateLock"
+>
+    <header class="header">
+        <ui-button
+            class="transparent icon"
+            tooltip="i18n:assets.menu.createMenu"
+            @click="popupCreateMenu"
+        >
+            <ui-icon value="add-more"></ui-icon>
+        </ui-button>
+        <ui-button
+            class="transparent icon triangle"
+            :tooltip="'i18n:assets.menu.'+(sortType==='type'?'sortType':'sortName')"
+            @click="popupSortMenu"
+        >
+            <ui-icon
+                value="sort-more"
+                class="sort-type"
+                :type="sortType"
+            ></ui-icon>
+        </ui-button>
+        <ui-input
+            tabindex="-1"
+            ref="searchInput"
+            show-clear
+            tooltip="i18n:assets.menu.searchTip"
+            :placeholder="searchPlaceholder"
+            @change="searchChange"
+            @keydown.up.stop="searchArrowDown($event,'up')"
+            @keydown.down.stop="searchArrowDown($event,'down')"
+            @keydown.left.stop
+            @keydown.right.stop
+            @keydown.enter.stop
+        >
+            <div
+                class="transparent icon triangle prefix"
+                tooltip="i18n:assets.menu.search"
+                :type="!!searchAssetTypes.length"
+                @click.stop="popupSearchMenu"
+                slot="prefix"
+            >
+                <ui-icon
+                    value="search-more"
+                    class="search-type"
+                ></ui-icon>
+            </div>
+        </ui-input>
+        <ui-button
+            class="transparent icon expand"
+            :tooltip="'i18n:assets.menu.'+(!allExpand?'allExpand':'allCollapse')"
+            @click="allToggle"
+        >
+            <ui-icon
+                ref="toggleExpandIcon"
+                :value="!allExpand ? 'expand' : 'collapse'"
+            ></ui-icon>
+        </ui-button>
+        <ui-button
+            class="transparent icon"
+            tooltip="i18n:assets.menu.refresh"
+            @click="refreshDB"
+        >
+            <ui-icon value="refresh"></ui-icon>
+        </ui-button>
+    </header>
+
+    <div
+        class="search-tip"
+        v-if="searchType !== 'name' || searchInFolder || searchAssetTypes.length"
+    >
+        <div
+            class="condition"
+            case="search"
+            v-if="searchType !== 'name'"
+        >
+            <div class="item">
+                <ui-label
+                    class="name"
+                    :value="searchTypeLabel"
+                ></ui-label>
+            </div>
+            <ui-icon
+                class="cancel"
+                value="close"
+                color="true"
+                tooltip="i18n:assets.menu.cancelSearchType"
+                @click="cancelSearchType"
+            ></ui-icon>
+        </div>
+
+        <div
+            class="condition"
+            case="folder"
+            v-if="searchInFolder"
+            :title="t('menu.searchInFolderTitle')"
+        >
+            <div class="item">
+                <ui-label
+                    class="name"
+                    value="i18n:assets.menu.searchInTip"
+                ></ui-label>
+                <span
+                    class="value"
+                    :title="searchInFolder.url"
+                >
+                    {{searchInFolder.url.replace('db://','').replace(/\//g,' / ')}}
+                </span>
+            </div>
+            <ui-icon
+                class="cancel"
+                value="close"
+                color="true"
+                tooltip="i18n:assets.menu.cancelSearchInFolder"
+                @click="cancelSearchInFolder"
+            ></ui-icon>
+        </div>
+        <div
+            class="condition"
+            case="type"
+            v-if="searchAssetTypes.length"
+            :title="t('menu.searchType')"
+        >
+            <div class="item">
+                <ui-label
+                    class="name"
+                    value="i18n:assets.menu.searchTypeTip"
+                ></ui-label>
+                <span
+                    class="value"
+                    :title="searchAssetTypes.join('\n')"
+                >
+                    {{searchAssetTypes.join(', ')}}
+                </span>
+            </div>
+            <ui-icon
+                class="cancel"
+                value="close"
+                color="true"
+                tooltip="i18n:assets.menu.cancelSearchAssetTypes"
+                @click="cancelSearchAssetTypes"
+            ></ui-icon>
+        </div>
+    </div>
+
+    <div
+        class="warning"
+        v-if="warnCase"
+    >
+        <div class="tip">
+            <ui-icon value="warn-triangle"></ui-icon>
+            <ui-label
+                value="i18n:assets.warn.busy"
+                :tooltip="'i18n:assets.warn.tip.'+ warnCase"
+            ></ui-label>
+        </div>
+        <ui-icon
+            class="lock"
+            value="lock"
+            tooltip="i18n:assets.warn.unlock"
+            @click="warnHide"
+        ></ui-icon>
+    </div>
+
+    <div
+        class="loading center"
+        v-if="!dbReady || refreshLock"
+    >
+        <ui-loading></ui-loading>
+    </div>
+
+    <separate-box
+        ref="separateBox"
+        @change="resize"
+        :show-separate="hasLocalFileExtend"
+    >
+        <template #top="{ height }">
+            <section
+                class="content"
+                :style="{height: height + 'px'}"
+                ref="viewBox"
+                @click.right="popupPanelMenu()"
+            >
+                <tree
+                    :droppable-types-prop="droppableTypes"
+                    ref="tree"
+                ></tree>
+                <div
+                    class="drop-box"
+                    :style="dropBoxStyle"
+                ></div>
+                <div
+                    class="scroll-bar"
+                    :style="{ height: treeHeight + 'px'}"
+                ></div>
+            </section>
+        </template>
+        <template
+            v-if="hasLocalFileExtend"
+            #bottom="{ height }"
+        >
+            <ui-tree
+                ref="localFile"
+                :style="{height: height + 'px'}"
+            ></ui-tree>
+        </template>
+    </separate-box>
+
+    <div
+        class="refreshing"
+        :class="refreshing.type ? 'fadeIn' : ''"
+    >
+        {{refreshing.name}}
+    </div>
+</div>

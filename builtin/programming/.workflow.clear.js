@@ -1,0 +1,1 @@
+exports.remove=function(){return["./dist","./editor-export"]};

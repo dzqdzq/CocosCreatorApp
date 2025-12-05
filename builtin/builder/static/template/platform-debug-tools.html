@@ -1,0 +1,98 @@
+<div class="platform-debug-tools">
+    <div class="container flex">
+        <div class="left flex">
+            <section class="panel project" @click="resetSelection">
+                <header>
+                    <ui-label value="Project List"></ui-label>
+                    <div>
+                        <ui-icon value="add"></ui-icon>
+                        <ui-icon value="refresh"></ui0icon>
+                    </div>
+                </header>
+                <main>
+                    <div class="project-item"
+                        v-for="item in projectList[currentPlatform]"
+                        v-if="item"
+                        :key="item.path"
+                        :active="currentProjectPath === item.path"
+                        @click.stop="currentProjectPath = item.path"
+                    >
+                        {{item.name}}
+                    </div>
+                </main>
+            </section>
+
+        </div>
+        <div class="right flex flex-1">
+            <section class="panel config">
+                <header>
+                    <div class="flex">
+                        <ui-select path="platform"
+                            :value="currentPlatform"
+                            @confirm="onPlatformChange"
+                        >
+                            <option
+                                v-for="item in platforms"
+                                v-if="item"
+                                :key="item.value"
+                                :value="item.value"
+                            >{{item.label}}</option>
+                        </ui-select>
+                        <ui-label value="i18n:builder.platform-debug-tools.debug_config"></ui-label>
+                    </div>
+                </header>
+                <main v-if="platformConfigMap[currentPlatform]">
+                    <div>
+                        <ui-prop>
+                            <ui-label value="Project Path" slot="label"></ui-label>
+                            <div class="flex flex-1" slot="content">
+                                <ui-file type="directory"
+                                    :value="selectProject || currentProjectPath"
+                                    :readonly="!!currentProjectPath"
+                                    @confirm="selectProject = $event.target.value"
+                                ></ui-file>
+                                <ui-button 
+                                    v-if="platformConfigMap[currentPlatform].supportRun"
+                                    @confirm="executeCompMethod('run')"
+                                    :readonly="!project"
+                                ><ui-label value="i18n:builder.run"></ui-label></ui-button>
+                            </div>
+                        </ui-prop>
+                    </div>
+                    <ui-prop class="compile" v-if="platformConfigMap[currentPlatform].requireCompile">
+                        <ui-progress class="flex-1"
+                            :value="processState[project] && processState[project].progress * 100"
+                            :success="processState[project] && processState[project].state === 'success'"
+                            :failure="processState[project] && processState[project].state === 'failure'"
+                            :message="processState[project] && processState[project].message"
+                        ></ui-progress>
+                        <ui-button
+                            @confirm="executeCompMethod('compile')"
+                            :disabled="!project"
+                        ><ui-label value="i18n:builder.compile"></ui-label></ui-button>
+                    </ui-prop>
+                    <div v-if="platformConfigMap[currentPlatform].compNames">
+                        <component
+                            v-for="compName in platformConfigMap[currentPlatform].compNames"
+                            :is="compName"
+                            :root="currentProjectPath || selectProject"
+                            :key="compName"
+                            :ref="compName"
+                        ></component>
+                    </div>
+                </main>
+            </section>
+            <section>
+                <header>
+                    <span>Console</span>
+                </header>
+                <main v-if="consoleInfo[project]" class="console">
+                    <div
+                        v-for="info in consoleInfo[project]"
+                        :type="info.type"
+                    >{{info.message}}</div>
+                </main>
+            </section>
+        </div>
+    </div>
+</div>

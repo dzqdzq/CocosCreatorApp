@@ -1,0 +1,326 @@
+{
+    "name": "hierarchy",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:hierarchy.description",
+    "main": "./dist/browser.js",
+
+    "panels": {
+        "default": {
+            "title": "i18n:hierarchy.title",
+            "main": "./dist/panel.js",
+            "icon": "./static/icon-2x.png",
+
+            "flags": {
+                "save": true
+            },
+
+            "size": {
+                "min-width": 200,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        }
+    },
+
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:hierarchy.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -95
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:hierarchy.menu.unlink_prefab",
+                "message": "unlink-prefab"
+            },
+            {
+                "path": "i18n:menu.node",
+                "label": "i18n:hierarchy.menu.unlink_prefab_recursively",
+                "message": "unlink-prefab-recursively"
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+4",
+                "mac": "cmd+4"
+            },
+            {
+                "message": "focus-find-element",
+                "win": "ctrl+f",
+                "mac": "cmd+f",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "duplicate",
+                "win": "ctrl+d",
+                "mac": "cmd+d",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "delete",
+                "win": "delete",
+                "mac": "delete",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "delete",
+                "win": "ctrl+backspace",
+                "mac": "cmd+backspace",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "delete",
+                "win": "backspace",
+                "mac": "backspace",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "up",
+                "win": "up",
+                "mac": "up",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "down",
+                "win": "down",
+                "mac": "down",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "left",
+                "win": "left",
+                "mac": "left",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "right",
+                "win": "right",
+                "mac": "right",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "shift-up",
+                "win": "shift+up",
+                "mac": "shift+up",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "shift-down",
+                "win": "shift+down",
+                "mac": "shift+down",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "shift-up",
+                "win": "ctrl+up",
+                "mac": "cmd+up",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "shift-down",
+                "win": "ctrl+down",
+                "mac": "cmd+down",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "rename",
+                "win": "enter",
+                "mac": "enter",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "rename",
+                "win": "f2",
+                "mac": "f2",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "copy",
+                "win": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "paste",
+                "win": "ctrl+v",
+                "mac": "cmd+v",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "pasteAsChild",
+                "win": "ctrl+alt+v",
+                "mac": "cmd+option+v",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "cut",
+                "win": "ctrl+x",
+                "mac": "cmd+x",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "select-all",
+                "win": "ctrl+a",
+                "mac": "cmd+a",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "select-clear",
+                "win": "esc",
+                "mac": "esc",
+                "when": "PanelName === 'hierarchy'"
+            },
+            {
+                "message": "move-up",
+                "win": "[",
+                "mac": "[",
+                "when": "['hierarchy', 'scene'].includes(PanelName)"
+            },
+            {
+                "message": "move-down",
+                "win": "]",
+                "mac": "]",
+                "when": "['hierarchy', 'scene'].includes(PanelName)"
+            },
+            {
+                "message": "top",
+                "win": "ctrl+[",
+                "mac": "cmd+[",
+                "when": "['hierarchy', 'scene'].includes(PanelName)"
+            },
+            {
+                "message": "bottom",
+                "win": "ctrl+]",
+                "mac": "cmd+]",
+                "when": "['hierarchy', 'scene'].includes(PanelName)"
+            }
+        ],
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "staging": {
+                "methods": ["staging"]
+            },
+            "unstaging": {
+                "methods": ["unstaging"]
+            },
+            "link-prefab": {
+                "methods": ["link-prefab"]
+            },
+            "unlink-prefab": {
+                "methods": ["unlink-prefab"]
+            },
+            "unlink-prefab-recursively": {
+                "methods": ["unlink-prefab-recursively"]
+            },
+
+            "scene:ready": {
+                "methods": ["default.ready"]
+            },
+            "scene:close": {
+                "methods": ["default.close"]
+            },
+            "scene:save": {
+                "methods": ["default.save"]
+            },
+
+            "scene:animation-start": {
+                "methods": ["default.animationStart"]
+            },
+            "scene:animation-end": {
+                "methods": ["default.animationEnd"]
+            },
+            "scene:change-node": {
+                "methods": ["default.changed"]
+            },
+            "scene:add-node": {
+                "methods": ["default.added"]
+            },
+            "scene:remove-node": {
+                "methods": ["default.deleted"]
+            },
+            "ui-kit:touch-node": {
+                "methods": ["default.twinkle"]
+            },
+            "selection:select": {
+                "methods": ["default.selected"]
+            },
+            "selection:unselect": {
+                "methods": ["default.unselected"]
+            },
+            "select-all": {
+                "methods": ["default.selectAll"]
+            },
+            "select-clear": {
+                "methods": ["default.selectClear"]
+            },
+            "copy": {
+                "methods": ["default.copy"]
+            },
+            "paste": {
+                "methods": ["default.paste"]
+            },
+            "pasteAsChild": {
+                "methods": ["default.pasteAsChild"]
+            },
+            "cut": {
+                "methods": ["default.cut"]
+            },
+            "twinkle": {
+                "methods": ["default.twinkle"]
+            },
+            "focus-find-element": {
+                "methods": ["default.find"]
+            },
+            "duplicate": {
+                "methods": ["default.duplicate"]
+            },
+            "delete": {
+                "methods": ["default.delete"]
+            },
+            "up": {
+                "methods": ["default.up"]
+            },
+            "down": {
+                "methods": ["default.down"]
+            },
+            "left": {
+                "methods": ["default.left"]
+            },
+            "right": {
+                "methods": ["default.right"]
+            },
+            "shift-up": {
+                "methods": ["default.shiftUp"]
+            },
+            "shift-down": {
+                "methods": ["default.shiftDown"]
+            },
+            "rename": {
+                "methods": ["default.rename"]
+            },
+            "top": {
+                "methods": ["default.top"]
+            },
+            "bottom": {
+                "methods": ["default.bottom"]
+            },
+            "move-up": {
+                "methods": ["default.moveUp"]
+            },
+            "move-down": {
+                "methods": ["default.moveDown"]
+            }
+        }
+    }
+}

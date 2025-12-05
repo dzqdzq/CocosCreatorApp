@@ -1,0 +1,26 @@
+<div class="huawei-ui">
+    <div class="play">
+        <div class="play-layout">
+            <div class="play-btn" @click="launch" :disabled="runDisabled">
+                <ui-icon value="play"></ui-icon>
+            </div>
+            <div class="play-btn" @click="stop" :disabled="cancelDisabled">
+                <ui-icon value="stop"></ui-icon>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:runtime-dev-tools.rpk_path"></ui-label>
+            <div slot="content">
+                <ui-file :value="rpkPath" @confirm="rpkSelected" :placeholder="t('runtime-dev-tools.rpk_path_placeholder')"></ui-file>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:runtime-dev-tools.rpk_params"></ui-label>
+            <div slot="content">
+                <ui-input :value="params" @confirm="paramsChange" :placeholder="t('runtime-dev-tools.rpk_params_placeholder')"></ui-input>
+            </div>
+        </ui-prop>
+    </div>
+</div>

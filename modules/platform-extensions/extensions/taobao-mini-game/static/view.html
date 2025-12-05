@@ -1,0 +1,45 @@
+<div class="taobao-mini-game"
+    @change="onChange($event)"
+>
+    <ui-prop>
+        <ui-label
+            slot="label"
+            value="i18n:taobao-mini-game.options.separate_engine"
+            :tooltip="isDebugMode ? 'i18n:taobao-mini-game.tips.separate_engine_with_debug' : isNormalVersion ? 'i18n:taobao-mini-game.options.separate_engine_tips' : 'i18n:taobao-mini-game.tips.separate_engine_only_in_normal_version'"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="separateEngine"
+                :value="pkgOptions.separateEngine"
+                :disabled="!isNormalVersion || isDebugMode"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop>
+        <ui-label
+            slot="label"
+            value="i18n:taobao-mini-game.options.inject_global_variable"
+            :tooltip="'i18n:taobao-mini-game.options.inject_global_variable_tips'"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="injectGlobal"
+                :value="pkgOptions.injectGlobal"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop tooltip="i18n:taobao-mini-game.options.global_variable_tooltip"
+        v-if="pkgOptions.injectGlobal"
+    >
+        <ui-label
+            slot="label"
+            value="i18n:taobao-mini-game.options.global_variable"
+        ></ui-label>
+        <div slot="content">
+            <ui-input path="globalVariable"
+                :value="pkgOptions.globalVariable"
+            ></ui-input>
+        </div>
+    </ui-prop>
+
+</div>
