@@ -1,0 +1,12 @@
+:host {
+  display: inline;
+  outline: none;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:host > slot {
+  display: none;
+}

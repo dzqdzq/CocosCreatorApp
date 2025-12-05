@@ -1,0 +1,56 @@
+{
+  "ver": "1.0.16",
+  "importer": "image",
+  "imported": true,
+  "uuid": "7244823e-e036-43cc-8f48-77db80d51584",
+  "files": [
+    ".png",
+    ".json"
+  ],
+  "subMetas": {
+    "f9941": {
+      "ver": "1.0.7",
+      "importer": "sprite-frame",
+      "name": "spriteFrame",
+      "id": "f9941",
+      "displayName": "directional-light",
+      "uuid": "7244823e-e036-43cc-8f48-77db80d51584@f9941",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 200,
+        "height": 200,
+        "rawWidth": 200,
+        "rawHeight": 200,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7244823e-e036-43cc-8f48-77db80d51584",
+        "atlasUuid": ""
+      }
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "redirect": "7244823e-e036-43cc-8f48-77db80d51584@f9941"
+  }
+}

@@ -1,0 +1,75 @@
+<style id="inspector-asset-style">
+    .content { display: block; }
+</style>
+<div class="content"  
+    :style="style"
+    @click.right="reset"
+    @expand="expand"
+    @uiscroll="scroll"
+>
+    <div class="toolbar">
+        <ui-icon class="prev" value="arrow-triangle"
+            v-if="!lock"
+            :disable="!history.backwards.length"
+            tooltip="i18n:inspector.backward_selection"
+            @click="backward()"
+        ></ui-icon>
+        <ui-icon class="next" value="arrow-triangle"
+            v-if="!lock"
+            :disable="!history.forwards.length"
+            tooltip="i18n:inspector.forward_selection"
+            @click="forward()"
+        ></ui-icon>
+
+        <ui-button class="transparent lock-unlock"
+            tooltip="i18n:inspector.lock_unlock"
+            @click="toggleLock()"
+        >
+            <ui-icon class="lock" value="lock"
+                v-if="lock"
+            ></ui-icon>
+            <ui-icon value="unlock"
+                v-if="!lock"
+            ></ui-icon>
+        </ui-button>
+    </div>
+    <section class="loading"
+        v-if="loading"
+    >
+        <ui-loading></ui-loading>
+    </section>
+
+    <section class="container" ref="container"
+        v-else
+        :mode="mode"
+        :scroll-key="sureitem.uuids[0] || 'root-container'"
+    >
+        <!-- 3D 项目的 inspector 模版 -->
+        <template
+            v-if="type === '3d'"
+        >
+            <asset ref="asset"
+                v-if="state.db === 'ready' && sureitem.type === 'asset' && sureitem.uuids.length"
+                :uuids="sureitem.uuids"
+                :importers="sureitem.importers"
+                :language="language"
+                :width="width"
+                expand-prefix=""
+
+                :sub-edit-uuids="subEditUuids"
+            ></asset>
+
+            <node ref="node"
+                v-if="state.scene === 'ready' && sureitem.type === 'node' && sureitem.uuids.length"
+                :uuids="sureitem.uuids"
+
+                :width="width"
+                :height="height"
+                :language="language"
+
+                :sub-edit-uuids="subEditUuids"
+            ></node>
+
+        </template>
+    </section>
+</div>

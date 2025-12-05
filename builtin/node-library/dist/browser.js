@@ -1,0 +1,1 @@
+"use strict";function load(){}function unload(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=exports.methods=void 0,exports.methods={open(){Editor.Panel.open("node-library.panel")}},exports.load=load,exports.unload=unload;

@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"Render BackEnd",targetVersion:"Target Version"},make:{label:"Make"},run:{label:"Run"},error:{targetVersionDefault:"Default: 10.14",m1_with_physic_x:"Native PhysX does not support Apple Desktop Chip",targetVersionError:"The version number is invalid, example: 10.14"}};

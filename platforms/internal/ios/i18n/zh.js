@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"渲染后端",developerTeam:"开发者",targetVersion:"目标版本",queryAgain:"重新查询"},make:{label:"生成"},run:{label:"运行"},tips:{targetVersionDefault:"默认值: 12.0",targetVersionError:"不支持 iOS 10.0 以下版本",targetVersionErrorWithTaskFlow:"开启 TaskFlow 后, 最低版本要求为 12.0",developerTeamListError:"未查询到开发者信息"}};

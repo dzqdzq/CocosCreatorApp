@@ -1,0 +1,33 @@
+<div class="package-item">
+    <div class="info">
+        <div class="name">{{language === 'zh' ? info.name : info.name_en}}</div>
+        <div class="date">
+            <ui-progress
+                v-if="isRunning(info.downloadProgress)"
+                :value="info.downloadProgress * 100"
+            ></ui-progress>
+            <ui-progress
+                v-if="isRunning(info.installProgress)"
+                :value="info.installProgress * 100"
+            ></ui-progress>
+            <span
+                v-else
+            >{{getDate(info.date)}}</span>
+        </div>
+    </div>
+    <div class="buttons"
+        v-if="!isRunning(info.downloadProgress) && !isRunning(info.installProgress)"
+    >
+        <ui-button 
+            @click.stop="installItem"
+        >
+            <ui-label value="i18n:extension.store.install"></ui-label>
+        </ui-button>
+        <ui-icon 
+            class="more"
+            value="del"
+            :tooltip= "i18n('extension.store.delete')" 
+            @click.stop="removeItem"
+        ></ui-icon>
+    </div>
+</div>

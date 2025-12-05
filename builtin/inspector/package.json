@@ -1,0 +1,216 @@
+{
+    "name": "inspector",
+    "title": "i18n:inspector.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:inspector.description",
+    "main": "./dist/browser/index",
+
+    "panels": {
+        "deprecated": {
+            "title": "i18n:inspector.title",
+            "main": "./dist/renderer/index.js",
+            "icon": "./static/icon.png",
+            "flags": {
+                "save": true,
+                "multiple": true
+            },
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 380,
+                "height": 600
+            }
+        },
+        "default": {
+            "title": "i18n:inspector.title",
+            "main": "./dist/panels/inspector/index.js",
+            "icon": "./static/icon.png",
+            "flags": {
+                "save": true,
+                "multiple": true
+            },
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 380,
+                "height": 600
+            }
+        },
+        "gradient-editor": {
+            "type": "simple",
+            "title": "i18n:inspector.gradient.title",
+            "main": "./dist/gradient-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 310,
+                "width": 600,
+                "height": 600
+            }
+        },
+        "curve-editor": {
+            "title": "i18n:inspector.curve_editor.title",
+            "main": "./dist/curve-editor/panel.js",
+            "size": {
+                "min-width": 500,
+                "min-height": 250,
+                "width": 750,
+                "height": 550
+            }
+        },
+        "sprite-editor": {
+            "title": "i18n:inspector.sprite_editor.title",
+            "main": "./dist/sprite-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 400,
+                "width": 600,
+                "height": 600   
+            }
+        }
+    },
+
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene"
+        },
+
+        "inspector": {
+            "type": {
+                "node": "./dist/contributions/inspector/node.js",
+                "asset": "./dist/contributions/inspector/asset.js"
+            },
+            "header": {
+                "asset": "./dist/contributions/inspector/asset-header-list.js"
+            },
+            "section": {
+                "node": "./dist/contributions/inspector/component-list.js",
+                "asset": "./dist/contributions/inspector/asset-list.js"
+            },
+            "footer": {
+                "asset": "./dist/contributions/inspector/asset-footer-list.js"
+            }
+        },
+
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:inspector.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -96
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+3",
+                "mac": "cmd+3"
+            }
+        ],
+
+        "profile": {
+            "editor": {
+                "asset.auto_save": {
+                    "label": "i18n:inspector.profile.auto_save",
+                    "default": false
+                },
+                "panel.label_width": {
+                    "default": 0.3
+                }
+            }
+        },
+
+        "preferences": {
+            "properties": {
+                "asset.auto_save": {
+                    "ui": "ui-checkbox"
+                }
+            }
+        },
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "open-deprecated": {
+                "methods": ["openDeprecated"]
+            },
+            "staging": {
+                "methods": ["staging"]
+            },
+            "unstaging": {
+                "methods": ["unstaging"]
+            },
+
+            "scene:ready": {
+                "methods": ["deprecated.sceneReady", "default.sceneReady"]
+            },
+            "scene:close": {
+                "methods": ["deprecated.sceneClose"]
+            },
+            "asset-db:ready": {
+                "methods": ["deprecated.dbReady"]
+            },
+            "asset-db:close": {
+                "methods": ["deprecated.dbClose"]
+            },
+            "selection:select": {
+                "methods": ["deprecated.selected", "default.selected"]
+            },
+            "selection:unselect": {
+                "methods": ["deprecated.unselected", "default.unselected"]
+            },
+            "scene:animation-time-change": {
+                "methods": ["deprecated.animationTimeChange"]
+            },
+            "scene:change-node": {
+                "methods": ["deprecated.nodeChanged"]
+            },
+            "asset-db:asset-change": {
+                "methods": ["deprecated.assetChanged"]
+            },
+            "scene:effect-update": {
+                "methods": ["deprecated.effectUpdated"]
+            },
+            "project:setting-change": {
+                "methods": ["deprecated.projectSettingChange"]
+            },
+            "gradient-state": {
+                "methods": ["deprecated.gradientState"]
+            },
+            "gradient-change": {
+                "methods": ["deprecated.gradientChanged"]
+            },
+            "gradient-data": {
+                "methods": ["gradient-editor.data"]
+            },
+            "curve-state": {
+                "methods": ["deprecated.curveState"]
+            },
+            "curve-change": {
+                "methods": ["deprecated.curveChanged"]
+            },
+            "curve-keys": {
+                "methods": ["curve-editor.currentKeys"]
+            },
+            "sprite-keys": {
+                "methods": ["sprite-editor.currentKeys"]
+            },
+            "sprite-state": {
+                "methods": ["deprecated.spriteState"]
+            },
+            "sprite-change": {
+                "methods": ["deprecated.spriteChanged"]
+            },
+            "open-sub-inspector": {
+                "methods": ["deprecated.openSubInspector"]
+            },
+            "close-sub-inspector": {
+                "methods": ["deprecated.closeSubInspector"]
+            }
+        }
+    }
+}

@@ -1,0 +1,153 @@
+:host {
+    position: relative;
+    display: flex;
+
+    > .hierarchy {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    // .loading 不止在content上有使用，在 .tree-node 的状态变化上也有使用
+    .loading {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+
+        &.center {
+            margin: auto;
+        }
+
+        ui-loading {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: calc(var(--size-large-font) * 1px);
+            height: calc(var(--size-large-font) * 1px);
+        }
+    }
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    padding: calc(var(--size-normal-font) * 0.15px);
+    overflow: hidden;
+    font-size: calc(var(--size-normal-font) * 1px);
+    background-color: var(--color-normal-fill);
+    border-bottom: solid 1px var(--color-normal-border);
+    white-space: nowrap;
+
+    .icon {
+        position: relative;
+        display: inline-block;
+        margin: 0 0 0 2px;
+        border-radius: 2px;
+        cursor: pointer;
+        height: 20px;
+        padding: 0 4px;
+        line-height: 20px;
+        transition: all 0.2s ease;
+        overflow: hidden;
+    }
+
+    > ui-input {
+        flex: 1;
+        margin: 0 2px;
+        font-size: calc(var(--size-normal-font) * 1px);
+    }
+
+    .search-type {
+        padding-right: 3px;
+
+        &::after {
+            position: absolute;
+            left: 0;
+            top: -7px;
+            z-index: 1;
+            color: var(--color-danger-fill);
+            font-family: sans-serif;
+            transform: scale(0.7);
+            font-size: 12px;
+        }
+
+        &[type='uuid']::after {
+            content: 'U';
+            left: -1px;
+        }
+
+        &[type='path']::after {
+            content: 'P';
+            left: -1px;
+        }
+
+        &[type='component']::after {
+            content: 'C';
+            left: -1px;
+        }
+
+        &[type='asset']::after {
+            content: 'A';
+            left: -1px;
+        }
+    }
+
+    .icon-triangle {
+        position: absolute;
+        bottom: 0;
+        right: -1px;
+        font-size: 8px;
+        line-height: 12px;
+    }
+}
+
+.content {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    background-color: var(--color-normal-fill-emphasis);
+
+    .scroll-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 2px;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .drop-box {
+        display: none;
+        height: 2px;
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        background-color: var(--color-focus-fill-weaker);
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+
+        > .vertical-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 10px;
+            width: 1px;
+            border-left: 1px dashed var(--color-focus-fill-weaker);
+        }
+    }
+}
+
+@import './tree';

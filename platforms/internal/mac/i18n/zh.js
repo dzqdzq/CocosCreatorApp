@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"渲染后端",targetVersion:"目标版本"},make:{label:"生成"},run:{label:"运行"},error:{targetVersionDefault:"默认值: 10.14",m1_with_physic_x:"原生 PhysX 暂时不支持苹果 ARM 架构",targetVersionError:"版本号不合法，示例：10.14"}};

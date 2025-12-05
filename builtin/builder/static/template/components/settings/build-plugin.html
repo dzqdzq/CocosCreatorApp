@@ -1,0 +1,50 @@
+<div :disabled="disabledPkg.includes(name) && type === 'edit'">
+    <template>
+        <ui-section v-if="config && config.wrapWithFold"
+            expand
+            :header="t(config.displayName, false)"
+            :key="options.platform + config.pkgName"
+        >
+            <template v-if="pkgOptions && Object.keys(pkgOptions).length">
+                <build-prop v-for="(config, name) in config.options"
+                    v-if="config.render || config.itemConfigs"
+                    :key="name"
+                    :path="name"
+                    :config="config"
+                    :value="pkgOptions && pkgOptions[name]"
+                    :error="pkgErrorMap[name]"
+                    @update="onDataUpdate"
+                ></build-prop>
+            </template>
+            <div
+                :ref="config.pkgName"
+                @update="onPanelUpdate(...$event.args)"
+            ></div>
+        </ui-section>
+
+        <template v-else>
+            <template v-if="pkgOptions && Object.keys(pkgOptions).length">
+                <build-prop v-for="(config, name) in config.options"
+                    v-if="config.render || config.itemConfigs"
+                    auto="true"
+                    :key="name"
+                    :path="name"
+                    :config="config"
+                    :value="pkgOptions && pkgOptions[name]"
+                    :error="pkgErrorMap[name]"
+                    @update="onDataUpdate"
+                ></build-prop>
+            </template>
+            <div
+                :ref="config.pkgName"
+                @update="onPanelUpdate(...$event.args)"
+            ></div>
+        </template>
+    </template>
+    <!-- 原生平台不允许修改对应字段 -->
+    <ui-label class="mask"
+        v-if="disabledPkg.includes(name) && type === 'edit'"
+        tooltip="i18n:builder.disabled_native_tips"
+    >
+    </ui-label>
+</div>

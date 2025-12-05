@@ -1,0 +1,160 @@
+{
+    "default": [
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 1
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 1
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ],
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 0
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 1,
+                "inTangent": 1
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 1
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 1,
+                "inTangent": 1
+            }
+        ],
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 1
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": -1,
+                "inTangent": -1
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 0
+                },
+                "interpMode": 0,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": -1,
+                "inTangent": -1
+            }
+        ],
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 0
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 1
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 2,
+                "inTangent": 2
+            }
+        ],
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 1
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": -2,
+                "inTangent": -2
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 0
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ],
+        [
+            {
+                "point": {
+                    "x": 0,
+                    "y": 1
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "point": {
+                    "x": 1,
+                    "y": 0
+                },
+                "interpMode": 2,
+                "tangentWeightMode": 0,
+                "outTangentWeight": 1,
+                "inTangentWeight": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ]
+    ]
+}
