@@ -1,0 +1,1 @@
+"use strict";const e=require("./utils"),i=require("../behaviors/focusable"),s=require("../behaviors/disable");module.exports=e.registerElement("ui-vlist",{behaviors:[i,s],template:"\n    <slot></slot>\n  ",factoryImpl(e){e&&(this._items=e)},ready(){this._initFocusable(this),this._initDisable(!0)}});
