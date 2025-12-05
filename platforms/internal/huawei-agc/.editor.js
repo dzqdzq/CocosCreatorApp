@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.css=function(){return[{source:"./static/builder/index.less",dist:"./dist/builder/index.css"}]};

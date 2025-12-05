@@ -1,0 +1,1 @@
+"use strict";function migrateGlobal(e){"object"==typeof e&&(delete e.common,delete e.projectSettings)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateGlobal=void 0,exports.migrateGlobal=migrateGlobal;

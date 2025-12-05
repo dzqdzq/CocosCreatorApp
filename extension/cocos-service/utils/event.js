@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const events_1=__importDefault(require("events"));exports.default=new events_1.default.EventEmitter;

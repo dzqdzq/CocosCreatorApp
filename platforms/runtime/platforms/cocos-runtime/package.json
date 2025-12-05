@@ -1,0 +1,11 @@
+{
+    "name": "cocos-runtime",
+    "title": "i18n:cocos-runtime.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Runtime",
+    "description": "Cocos runtime platform plugin",
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Windows",default_sdk_version:"Default SDK version: ",make:{label:"Make"},run:{label:"Run"}};

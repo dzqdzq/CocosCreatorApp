@@ -1,0 +1,34 @@
+{
+  "ver": "1.0.1",
+  "importer": "auto-atlas",
+  "imported": true,
+  "uuid": "fdfe5b67-dc7e-42d1-8162-fc99c7a96fc2",
+  "name": "",
+  "id": "",
+  "displayName": "",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "maxWidth": 500,
+    "maxHeight": 500,
+    "padding": 2,
+    "allowRotation": true,
+    "forceSquared": false,
+    "powerOfTwo": false,
+    "algorithm": "MaxRects",
+    "format": "png",
+    "quality": 80,
+    "contourBleed": true,
+    "paddingBleed": true,
+    "filterUnused": false,
+    "platformSettings": {
+      "html5": {
+        "webp": 80,
+        "pvrtc_4bits": "fastest",
+        "etc1_rgb": "fast"
+      }
+    }
+  }
+}

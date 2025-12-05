@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Node Library",description:"Node Library",menu:{builtin:"Builtin",custom:"Custom",cloud:"Cloud",rename:"Rename",locate:"Locate Asset",delete:"Delete"},groups:{renderer:"Renderer Nodes",ui:"UI Nodes",custom:"You can add custom nodes by drop prefab asset into here."}};

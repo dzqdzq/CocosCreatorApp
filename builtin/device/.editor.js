@@ -1,0 +1,1 @@
+"use strict";module.exports={js:()=>["./"],css:()=>[{source:"./source/contributions/preferences.less",dist:"./dist/contributions/preferences.css"}]};

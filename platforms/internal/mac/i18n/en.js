@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"Render BackEnd"},make:{label:"Make"},run:{label:"Run"},error:{m1_with_physic_x:"Native PhysX does not support Apple M1 architecture devices"}};

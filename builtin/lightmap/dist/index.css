@@ -1,0 +1,59 @@
+.lightmap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.lightmap > header {
+  margin-top: 14px;
+  text-align: center;
+}
+.lightmap section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.lightmap section .properties {
+  flex: 1;
+  padding: 8px 14px;
+}
+.lightmap section .properties ui-prop > div[slot='content'] {
+  width: 100%;
+}
+.lightmap section .properties ui-prop > div[slot='content'] > :first-child {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.lightmap section .generate,
+.lightmap section .clear {
+  margin: 14px auto;
+}
+.lightmap section .progress {
+  height: 6px;
+  margin: 10px 14px;
+  width: inherit;
+}
+.lightmap section .output {
+  flex: 1;
+  background-color: var(--color-normal-fill-emphasis);
+  overflow: auto;
+  margin: 0 14px 14px 14px;
+  padding: 7px 14px;
+  border-radius: 4px;
+}
+.lightmap section .output .label {
+  width: 100px;
+  display: inline-block;
+}
+.lightmap section .image-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+  max-height: 300px;
+  overflow: auto;
+}
+.lightmap section .image-content ui-image {
+  width: 150px;
+  height: 150px;
+}

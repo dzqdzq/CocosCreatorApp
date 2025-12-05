@@ -1,0 +1,32 @@
+.ins-mat4 {
+    flex: 1;
+    display: flex;
+    flex-flow: wrap;
+
+    > .prop-name {
+        width: 100%;
+        padding-right: 4px;
+        box-sizing: border-box;
+    }
+
+    > .mat {
+        width: 100%;
+        display: block;
+        flex-direction: column;
+        margin: 4px 0 10px 10px;
+
+        > div {
+            display: flex;
+            margin-top: 2px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            > ui-num-input {
+                flex: 1;
+                margin-right: 2px;
+            }
+        }
+    }
+}

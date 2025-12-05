@@ -1,0 +1,41 @@
+{
+  "ver": "1.0.1",
+  "importer": "auto-atlas",
+  "imported": true,
+  "uuid": "9e922aaa-1fff-487d-8729-741c2048cd49",
+  "name": "",
+  "id": "",
+  "displayName": "",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "maxWidth": 1024,
+    "maxHeight": 1024,
+    "padding": 2,
+    "allowRotation": true,
+    "forceSquared": false,
+    "powerOfTwo": false,
+    "algorithm": "MaxRects",
+    "format": "png",
+    "quality": 80,
+    "contourBleed": true,
+    "paddingBleed": true,
+    "filterUnused": false,
+    "platformSettings": {
+      "wechat": {
+        "webp": 80,
+        "jpg": 80,
+        "etc1_rgb": "fast",
+        "pvrtc_2bits": "normal"
+      },
+      "html5": {
+        "jpg": 80,
+        "webp": 80,
+        "pvrtc_4bits": "normal",
+        "etc1_rgb": "fast"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.ins-gradient-range {
+    flex: 1;
+    display: flex;
+    flex-flow: wrap;
+
+    > .prop-content {
+        > .content {
+            flex: 1;
+
+            > .ins-prop {
+                margin: 0;
+                line-height: 12px;
+                flex: 1;
+                height: 24px;
+
+                .prop-name {
+                    display: none;
+                }
+            }
+        }
+
+        > .button {
+            padding-left: 6px;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                color: var(--color-hover-border-weaker);
+            }
+        }
+    }
+}

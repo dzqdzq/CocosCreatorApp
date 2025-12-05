@@ -1,0 +1,11 @@
+{
+    "name": "qtt",
+    "title": "i18n:qtt.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Runtime",
+    "description": "QTT platform plugin",
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

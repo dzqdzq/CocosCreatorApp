@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.css=function(){return[{source:"./static/ui/index.less",dist:"./dist/ui/index.css"},{source:"./static/oauth/index.less",dist:"./dist/oauth/index.css"}]};

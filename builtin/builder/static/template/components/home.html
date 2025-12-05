@@ -1,0 +1,142 @@
+<div class="builder container">
+    <div class="toolbar">
+        <ui-button
+            :disabled="!free || scenes.length === 0"
+            @confirm.stop="onNewBuildTask"
+        >
+            <ui-label value="i18n:builder.new_build_task"></ui-label>
+        </ui-button>
+
+        <div class="tools">
+            <ui-button class="transparent"
+                @click="onOpenDevTools"
+                tooltip="i18n:builder.debug_mode"
+            >
+                <ui-icon value="dev-tools"></ui-icon>
+            </ui-button>
+            <span>|</span>
+            <ui-button class="transparent"
+                @click="clearCache"
+                tooltip="i18n:builder.clear_cache.title"
+            >
+                <ui-icon value="clear"></ui-icon>
+            </ui-button>
+        </div>
+    </div>
+
+    <section>
+        <template v-if="Object.keys(taskMap).length !== 0">
+            <task
+                v-for="(taskItem, id) in taskMap"
+                :task="taskItem"
+                :key="id"
+                :free="(free && isDBReady)"
+                :db-ready="isDBReady"
+            ></task>
+        </template>
+        <div v-else class="empty-task">
+            <ui-label value="i18n:builder.empty_task_holder"></ui-label>
+        </div>
+    </section>
+
+    <div class="settings" v-if="showSettings">
+        <div class="content">
+            <ui-icon class="i-close" value="close"
+                @click="showSettings = false"
+            ></ui-icon>
+
+            <header>
+                <ui-label :value="settingsType === 'check' ? 'i18n:builder.view_build_config' : 'i18n:builder.build_config'"></ui-label>
+                <span v-if="task.dirty" class="dirty" title="modified">*</span>
+                <!-- <ui-icon
+                    v-if="type === 'check' && task.rawOptions"
+                    value="edit"
+                    @click="onEditOptions"
+                    :title="t('build_config')"
+                ></ui-icon>
+                <ui-icon v-else-if="type === 'edit' && task.rawOptions"
+                    value="setting"
+                    @click="onCheckRawOptions"
+                    :title="t('view_build_config')"
+                ></ui-icon> -->
+                <span> | </span>
+                <ui-icon value="help"
+                    @click="openDocs"
+                ></ui-icon>
+            </header>
+            <div class="tools">
+                <ui-button class="transparent"
+                    tooltip="i18n:builder.import_build_config"
+                    @confirm="importBuildConfig"
+                >
+                    <ui-label value="i18n:builder.import"></ui-label>
+                </ui-button>
+                <span class="split">|</span>
+                <ui-button class="transparent"
+                    tooltip="i18n:builder.export_build_config"
+                    @confirm="exportBuildConfig"
+                >
+                    <ui-label value="i18n:builder.export"></ui-label>
+                </ui-button>
+            </div>
+            <settings
+                v-if="options"
+                :type="settingsType"
+                :options="options"
+                :scenes="scenes"
+                :error-map="task.errorMap"
+                :free="(free && isDBReady)"
+            ></settings>
+            <!-- <ui-section expand
+                class="recompile-config"
+                v-if="type === 'check' && options.recompileConfig"
+             >
+                <ui-checkbox slot="header"
+                    :value="options.recompileConfig.enable"
+                    @confirm.stop="onRecompileConfig('enable', $event.target.value)"
+                    @click.stop
+                >ReCompile Config <ui-icon color value="experiment"></ui-icon></ui-checkbox>
+                <div :class="options.recompileConfig.enable ? '' : 'disable'">
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_assets</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateAssets"
+                            @confirm.stop="onRecompileConfig('generateAssets', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_scripts</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateScripts"
+                            @confirm.stop="onRecompileConfig('generateScripts', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_engine</ui-label>
+                        <ui-checkbox slot="content"
+                            :value="options.recompileConfig.generateEngine"
+                            @confirm.stop="onRecompileConfig('generateEngine', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                    <ui-prop>
+                        <ui-label slot="label" i18n>builder.options.generate_engine_by_cache</ui-label>
+                        <ui-checkbox slot="content"
+                            :disabled="!options.recompileConfig.generateEngine"
+                            :value="options.recompileConfig.generateEngineByCache"
+                            @confirm.stop="onRecompileConfig('generateEngineByCache', $event.target.value)"
+                        ></ui-checkbox>
+                    </ui-prop>
+                </div>
+            </ui-section> -->
+            <buttons
+                class="footer"
+                :task="task"
+                :type="settingsType"
+                :free="free"
+                :check-res="checkRes"
+            ></buttons>
+        </div>
+    </div>
+
+    <build-mask v-if="maskInfo" :value="maskInfo"></build-mask>
+</div>
