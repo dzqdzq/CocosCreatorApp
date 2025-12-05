@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"External Program",label:{wechat_devtools:"Wechat Devtools",android_ndk:"Android NDK",android_sdk:"Android SDK",ohos_ndk:"Harmony OS NDK",ohos_sdk:"Harmony OS SDK",bytedance_devtools:"ByteDance Devtools",script_editor:"Default Script Editor",picture_editor:"Default Picture Editor",browser:"Default Browser"}};

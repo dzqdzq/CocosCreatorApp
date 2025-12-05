@@ -1,0 +1,12 @@
+.asset-directory > .path {
+  display: flex;
+  line-height: 20px;
+  margin: 5px 0 10px;
+}
+.asset-directory > .path > .name {
+  flex: 1;
+  overflow: hidden;
+}
+.asset-directory > .path > .name > span {
+  word-break: break-word;
+}

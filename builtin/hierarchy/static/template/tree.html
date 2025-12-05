@@ -1,0 +1,17 @@
+<ui-drag-area class="tree" 
+    :droppable="droppableTypes.join(',')"
+    :state="$parent.state"
+    :asset-type="$parent.assetType"
+    :animating="!!$parent.animationUuid"
+    @dragenter="dragEnter($event)"
+    @drop="drop($event)"
+    @click="click($event)"
+>
+    <tree-node
+        v-for="(node,index) in nodes" 
+        :key="index"
+        :node="node"
+        :renameUuid="renameUuid"
+        :addNode="addNode"
+    ></tree-node>
+</ui-drag-area>

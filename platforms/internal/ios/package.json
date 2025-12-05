@@ -1,0 +1,12 @@
+{
+    "name": "ios",
+    "title": "iOS",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "iOS platform plugin",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "builder": "./dist/builder/index.js"
+    }
+}

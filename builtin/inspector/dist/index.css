@@ -1,0 +1,1529 @@
+:host {
+  display: flex;
+  --prop-name-width: 50%;
+}
+:host > .content {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  font-size: calc(var(--size-normal-font) * 1px);
+}
+:host > .content > .toolbar {
+  padding-left: 1px;
+  padding-right: 12px;
+  height: 28px;
+  line-height: 28px;
+  background-color: var(--color-normal-fill);
+}
+:host > .content > .toolbar > ui-icon {
+  display: inline-block;
+  transition: background-color 0.15s, color 0.15s;
+  color: var(--color-primary-fill);
+  cursor: pointer;
+  padding: 0 4px;
+}
+:host > .content > .toolbar > ui-icon:hover {
+  background: var(--color-active-fill-emphasis);
+}
+:host > .content > .toolbar > ui-icon[disable] {
+  pointer-events: none;
+  color: var(--color-normal-contrast-important);
+}
+:host > .content > .toolbar > ui-icon[disable]:hover {
+  color: var(--color-normal-contrast-emphasis);
+}
+:host > .content > .toolbar > ui-icon.prev {
+  transform: rotate(90deg);
+  font-size: 16px;
+}
+:host > .content > .toolbar > ui-icon.next {
+  transform: rotate(-90deg);
+  font-size: 16px;
+}
+:host > .content > .toolbar > .lock-unlock {
+  float: right;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+}
+:host > .content > .toolbar > .lock-unlock:hover {
+  color: var(--color-warn-fill);
+}
+:host > .content > .toolbar > .lock-unlock > .lock {
+  color: var(--color-warn-fill);
+}
+:host > .content > .loading {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:host > .content > .container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  transition: 0.3s height ease;
+}
+:host > .content > .container .asset {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+:host > .content > .container .asset[readonly] ui-icon[value='lock'] {
+  font-size: 9px;
+  display: none;
+}
+:host > .content > .container .asset > section {
+  flex: 1;
+  padding-top: 10px;
+}
+:host > .content > .container .asset > section > ui-prop > ui-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:host > .content > .container > .node {
+  flex: 1;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 5px 6px;
+  background: var(--color-normal-fill-normal);
+}
+:host > .content > .container > .node[hoving] {
+  outline: 2px solid var(--color-focus-fill-weaker);
+  outline-offset: -2px;
+}
+:host > .content > .container > .node > .prefab {
+  text-align: right;
+  clear: both;
+  padding: 5px 0 8px 0;
+  overflow: hidden;
+}
+:host > .content > .container > .node > .prefab > .title {
+  float: left;
+  line-height: 22px;
+  color: var(--color-success-fill);
+}
+:host > .content > .container > .node > .prefab > .title[lost-asset] {
+  color: var(--color-danger-fill);
+}
+:host > .content > .container > .node > .prefab ui-button {
+  padding: 0 0.5em;
+  margin: 0 0.3em;
+}
+:host > .content > .container > .node > .prefab ui-button > svg {
+  padding: 4px 0;
+  display: block;
+}
+:host > .content > .container > .node > .header {
+  line-height: 26px;
+  display: flex;
+}
+:host > .content > .container > .node > .header > .ins-prop {
+  display: block;
+  margin: 0;
+}
+:host > .content > .container > .node > .header > .ins-prop:last-child {
+  flex: 1;
+  display: flex;
+}
+:host > .content > .container > .node > .header > .ins-prop:last-child > ui-input {
+  flex: 1;
+}
+:host > .content > .container > .node > .node-attrs {
+  margin-top: 10px;
+}
+:host > .content > .container > .node > .comp {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+:host > .content > .container > .node > .comp > ui-section > .header > .ins-prop {
+  margin: 0;
+}
+:host > .content > .container > .node > .footer {
+  margin: 10px 0;
+  text-align: center;
+}
+:host > .content > .container > .node > .asset {
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: calc(var(--size-normal-font) * 1px);
+  margin-top: 10px;
+}
+:host > .content > .container > .node > .asset > .asset-header {
+  padding-left: 0;
+}
+:host > .content > .container > .node > .asset > .asset-material {
+  padding: 10px 0 !important;
+}
+ui-section {
+  display: block;
+}
+ui-section > [slot='header'] {
+  user-select: none;
+}
+ui-section > .header {
+  display: flex;
+}
+ui-section > .header > .name {
+  flex: 1;
+}
+ui-section > .header > .name ui-drag-item:focus {
+  outline: 0;
+}
+ui-section > .header > .link {
+  padding: 0 5px;
+  line-height: 22px;
+}
+ui-section > .header > .setting {
+  display: flex;
+}
+ui-section > .header > .setting > .i-setting {
+  cursor: pointer;
+  padding: 0 5px;
+}
+ui-section ui-section {
+  margin-left: -2px;
+}
+ui-section ui-section.config {
+  margin-left: -4px;
+}
+ui-prop {
+  padding: 2px 0;
+}
+ui-prop[asset] > ui-label {
+  display: inline-block;
+  line-height: 16px;
+  padding-top: 10px;
+}
+ui-prop[asset] > ui-asset {
+  margin-top: 8px;
+}
+ui-prop > ui-asset {
+  flex: 1;
+}
+ui-prop > ui-num-input {
+  flex: 1;
+}
+ui-prop > ui-input {
+  flex: 1;
+}
+ui-prop > ui-select {
+  flex: 1;
+}
+ui-prop > ui-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+ui-prop.warn {
+  color: var(--color-warn-fill);
+}
+ui-prop.warn ui-select {
+  border: 1px solid var(--color-warn-fill);
+}
+.prop-name {
+  display: inline-flex;
+  width: var(--prop-name-width);
+  overflow: hidden;
+  padding-right: 4px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+}
+.prop-name > ui-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.prop-name > ui-label > * {
+  white-space: initial;
+}
+.prop-name > ui-icon {
+  font-size: 9px;
+}
+.prop-content {
+  flex: 1;
+  display: flex;
+}
+/* -----curve editor -------------- */
+.curve-editor {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.curve-editor .name {
+  padding-left: 21px;
+  text-transform: capitalize;
+  color: var(--color-focus-contrast);
+}
+.curve-editor .curve-config {
+  display: flex;
+  justify-content: center;
+}
+.curve-editor .curve-config > * {
+  margin: 0 10px;
+}
+.curve-editor .multiplier {
+  position: absolute;
+  z-index: 2;
+  top: 47px;
+  left: 4px;
+  width: 34px;
+  margin: 0 2px;
+  background: rgba(193, 189, 189, 0.09);
+}
+.curve-editor .multiplier[focused] {
+  width: 80px;
+}
+.curve-editor .canvas-wrap {
+  position: relative;
+  height: 80vh;
+}
+.curve-editor .canvas {
+  position: absolute;
+  margin: auto;
+  background-size: 32px 32px;
+  background-position: center center;
+}
+.curve-editor .toolbar {
+  text-align: center;
+}
+.curve-editor .toolbar canvas {
+  background: #716e6e;
+  margin: 5px;
+}
+.curve-editor .toolbar .i-setting {
+  margin: 5px;
+}
+.presets {
+  height: 80vh;
+  position: absolute;
+}
+.gradient-editor {
+  padding: 10px;
+}
+.gradient-editor .gradient {
+  position: relative;
+  box-sizing: border-box;
+  padding: 15px 5px;
+  height: 75px;
+  width: 100%;
+  margin: 10px 0;
+  background-image: url('packages://inspector/static/checkerboard-32x32.png');
+  background-repeat: repeat;
+  background-clip: content-box;
+}
+.gradient-editor .gradient svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.gradient-editor .anchor.active {
+  stroke: #0091ff;
+}
+.gradient-editor .anchor.hide {
+  display: none;
+}
+.gradient-editor > .prop-edit .wrapper-content {
+  width: 200px;
+}
+.gradient-editor > .prop-edit .wrapper-content ui-color {
+  width: 100%;
+}
+.sprite-editor {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sprite-editor .header {
+  height: 110px;
+}
+.sprite-editor .header ui-num-input,
+.sprite-editor .header ui-slider {
+  width: 100%;
+}
+.sprite-editor .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.sprite-editor .content .scroll {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
+.sprite-editor .content .scroll[horizontal='center'] {
+  justify-content: center;
+}
+.sprite-editor .canvas {
+  display: block;
+  background-image: url('packages://inspector/static/checkerboard-32x32.png');
+  background-size: 16px 16px;
+  background-position: center center;
+}
+.sprite-editor .svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sprite-editor .table {
+  display: table;
+  font-size: 12px;
+  width: 96%;
+}
+.sprite-editor .table .td-r {
+  text-align: right;
+}
+.sprite-editor .table .td-c {
+  text-align: center;
+}
+.sprite-editor .table .td-top {
+  vertical-align: top;
+}
+.sprite-editor .table .tiny {
+  margin: 5px;
+}
+.ins-resize-line {
+  width: 3px;
+  background: none;
+  transition: all 0.3s;
+  cursor: ew-resize;
+  position: relative;
+  left: -2px;
+}
+.ins-resize-line[active],
+.ins-resize-line:hover {
+  background: var(--color-focus-contrast);
+}
+.ins-unknown {
+  flex: 1;
+  display: flex;
+}
+.ins-unknown .prop-content {
+  display: flex;
+  flex: 1;
+}
+.ins-unknown .prop-content span {
+  flex: 1;
+  color: var(--color-danger-fill);
+}
+.ins-unknown .prop-content ui-button {
+  flex: none;
+}
+.ins-array {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-array[hoving] {
+  outline: 2px solid var(--color-focus-fill-weaker);
+  outline-offset: 2px;
+}
+.ins-array > ui-section > .header > .prop-name {
+  width: calc(var(--prop-name-width) - 13px);
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+.ins-array > ui-section > .header > .prop-name > .fold {
+  flex: unset;
+  cursor: pointer;
+  width: 20px;
+  font-size: 8px;
+  text-align: center;
+}
+.ins-array > ui-section > .header > .prop-name > .fold:hover {
+  color: var(--color-hover-border-weaker);
+}
+.ins-array > ui-section > .header > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-array > ui-section > .header > .prop-content span {
+  display: flex;
+}
+.ins-array > ui-section > .header > .prop-content span > ui-icon {
+  margin-left: 7px;
+  cursor: pointer;
+  user-select: none;
+}
+.ins-array > ui-section > .header > .prop-content > ui-num-input {
+  flex: 1;
+}
+.ins-array > ui-section > .array {
+  flex: 1;
+  flex-direction: column;
+  margin: 5px 0 5px 0;
+  border: 1px rgba(136, 136, 136, 0.35) dashed;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+.ins-array > ui-section > .array * {
+  user-select: none;
+}
+.ins-array > ui-section > .array .array-item {
+  display: flex;
+  padding: 0 25px 0 15px;
+  position: relative;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+}
+.ins-array > ui-section > .array .array-item > .ins-prop {
+  flex: 1;
+}
+.ins-array > ui-section > .array .array-item .i-del {
+  padding: 0 5px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  cursor: pointer;
+  position: absolute;
+  right: 2px;
+  top: calc(50% - 12px);
+  margin: 0;
+}
+.ins-array > ui-section > .array .array-item .ins-prop[type*='cc.'] + .i-del {
+  top: calc(50% - 7px);
+}
+.ins-array > ui-section > .array .array-item .i-del:hover {
+  background: rgba(201, 104, 105, 0.3);
+}
+.ins-array > ui-section > .array .array-item > .drag-handle {
+  display: block;
+  position: absolute;
+  top: 2%;
+  left: 0;
+  width: 6px;
+  height: 96%;
+  background: linear-gradient(45deg, var(--color-normal-border) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-normal-border) 0, var(--color-normal-border) 75%, var(--color-normal-fill) 0);
+  background-size: 6px 6px;
+  cursor: move;
+}
+.ins-array > ui-section > .array .array-item > .drag-handle:active {
+  background: linear-gradient(45deg, var(--color-success-fill) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-success-fill) 0, var(--color-success-fill) 75%, var(--color-normal-fill) 0);
+  background-size: 6px 6px;
+}
+.ins-array > ui-section > .array .array-item[insert='before'] {
+  border-top-color: var(--color-success-fill);
+}
+.ins-array > ui-section > .array .array-item[insert='after'] {
+  border-bottom-color: var(--color-success-fill);
+}
+.ins-null {
+  flex: 1;
+  display: flex;
+}
+.ins-null > .prop-content > .info {
+  padding: 0 10px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+.ins-null > .prop-content > .create {
+  padding: 0 10px;
+  background-color: var(--color-primary-fill);
+  border-radius: 4px;
+  color: var(--color-primary-contrast-weaker);
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+.ins-null > .prop-content > .create:hover {
+  background-color: var(--color-primary-fill-weaker);
+}
+.ins-object {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+}
+.ins-object > .header {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  background: var(--color-normal-fill-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  cursor: pointer;
+  user-select: none;
+  line-height: 22px;
+}
+.ins-object > .header > .ins-prop {
+  display: inline;
+}
+.ins-object > .header > .ins-prop > ui-checkbox {
+  user-select: none;
+}
+.ins-object > .header ui-icon {
+  font-size: 9px;
+}
+.ins-object > .object {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ins-depend {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-depend > .prop-name {
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+.ins-depend > .object {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  width: 100%;
+  padding: 0 18px;
+  border: 1px #888888 dashed;
+}
+.ins-depend > .object > .ins-prop {
+  flex: 1;
+}
+.prop-content > .ins-prop {
+  margin: 0;
+}
+.prop-content ui-asset,
+.prop-content ui-node,
+.prop-content ui-component {
+  width: 100%;
+}
+.ins-prop {
+  margin: 4px 0;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-prop > .name {
+  width: 30%;
+  overflow: hidden;
+  padding-right: 4px;
+  box-sizing: border-box;
+  display: flex;
+}
+.ins-prop > .name > span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ins-prop > .prop-content ui-select {
+  flex: 1;
+}
+.ins-prop > .content {
+  width: 70%;
+  flex: none;
+  display: flex;
+}
+.ins-prop[asset] {
+  padding-top: 10px;
+}
+.ins-prop[node] {
+  padding-top: 10px;
+}
+.ins-prop[component] {
+  padding-top: 10px;
+}
+.ins-prop[array] {
+  padding-top: 0;
+}
+.ins-number {
+  flex: 1;
+  display: flex;
+  white-space: nowrap;
+}
+.ins-number > .prop-content > span {
+  padding: 0 5px 0 8px;
+  cursor: ew-resize;
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+}
+.ins-number > .prop-content > span[disabled] {
+  cursor: default;
+}
+.ins-number > .prop-content > ui-num-input {
+  flex: 1;
+}
+.ins-number > .prop-content > ui-slider {
+  flex: 1;
+}
+.ins-bool {
+  flex: 1;
+  display: flex;
+  white-space: nowrap;
+}
+.ins-string {
+  flex: 1;
+  display: flex;
+  white-space: nowrap;
+}
+.ins-string > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-string > .prop-content > span {
+  padding: 0 5px 0 8px;
+}
+.ins-string > .prop-content > ui-input {
+  flex: 1;
+}
+.ins-string > .prop-content > ui-textarea {
+  flex: 1;
+}
+.ins-vec2 {
+  flex: 1;
+  display: flex;
+}
+.ins-vec2 > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-vec2 > .prop-content > ui-num-input {
+  flex: 1;
+}
+.ins-vec3 {
+  flex: 1;
+  display: flex;
+}
+.ins-vec3 > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-vec3 > .prop-content > ui-num-input {
+  flex: 1;
+}
+.ins-vec4 {
+  flex: 1;
+  display: flex;
+}
+.ins-vec4 > .prop-content {
+  flex: 1;
+  display: block;
+}
+.ins-vec4 > .prop-content > div {
+  display: flex;
+  margin-top: 2px;
+}
+.ins-vec4 > .prop-content > div > ui-num-input {
+  flex: 1;
+}
+.ins-vec4 > .prop-content > div:first-child {
+  margin-top: 0;
+}
+.ins-mat4 {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-mat4 > .prop-name {
+  width: 100%;
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+.ins-mat4 > .mat {
+  width: 100%;
+  display: block;
+  flex-direction: column;
+  margin: 4px 0 10px 10px;
+}
+.ins-mat4 > .mat > div {
+  display: flex;
+  margin-top: 2px;
+}
+.ins-mat4 > .mat > div:first-child {
+  margin-top: 0;
+}
+.ins-mat4 > .mat > div > ui-num-input {
+  flex: 1;
+  margin-right: 2px;
+}
+.ins-size {
+  flex: 1;
+  display: flex;
+}
+.ins-size > .prop-content > ui-num-input {
+  flex: 1;
+}
+.ins-rect {
+  flex: 1;
+  display: flex;
+}
+.ins-rect > .prop-content {
+  flex: 1;
+  display: block;
+}
+.ins-rect > .prop-content > .ins-vec2 {
+  display: flex;
+}
+.ins-rect > .prop-content > .ins-vec2 > ui-num-input {
+  flex: 1;
+}
+.ins-rect > .prop-content > .ins-vec2:first-child {
+  margin-bottom: 4px;
+}
+.ins-rect > .prop-content > .ins-size {
+  display: flex;
+}
+.ins-rect > .prop-content > .ins-size > ui-num-input {
+  flex: 1;
+}
+.ins-rect > .prop-content > .ins-size:first-child {
+  margin-bottom: 4px;
+}
+.ins-node {
+  flex: 1;
+  display: flex;
+}
+.ins-component {
+  flex: 1;
+  display: flex;
+}
+.ins-asset {
+  flex: 1;
+  display: flex;
+}
+.ins-enum {
+  flex: 1;
+  display: flex;
+}
+.ins-enum > .prop-content > ui-select {
+  flex: 1;
+}
+.ins-enum > .prop-content .layer-link {
+  flex: initial;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.ins-bit-mask {
+  flex: 1;
+  display: flex;
+}
+.ins-bit-mask > .prop-content > ui-bit {
+  flex: 1;
+}
+.ins-color {
+  flex: 1;
+  display: flex;
+}
+.ins-color > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-color > .prop-content > ui-color {
+  flex: 1;
+}
+.ins-animation-curve {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-animation-curve > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-animation-curve > .prop-content > .ins-prop {
+  flex: 1;
+  flex-direction: column;
+}
+.ins-animation-curve > .prop-content > .ins-prop .prop-name {
+  display: none;
+}
+.ins-animation-curve .ins-curve {
+  flex: 1;
+  display: flex;
+  height: 26px;
+  padding: 2px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.ins-animation-curve .ins-curve > canvas {
+  width: 100%;
+  height: 100%;
+  border: var(--color-normal-border) 1px solid;
+  background: var(--color-normal-fill-emphasis);
+  cursor: pointer;
+}
+.ins-curve-range {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-curve-range > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-curve-range > .prop-content > .ins-prop {
+  flex: 1;
+  flex-direction: column;
+}
+.ins-curve-range > .prop-content > .ins-prop .prop-name {
+  display: none;
+}
+.ins-curve-range .button {
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+}
+.ins-curve-range .button:hover {
+  color: var(--color-hover-border-weaker);
+}
+.ins-curve-range .ins-curve {
+  flex: 1;
+  display: flex;
+  height: 26px;
+  padding: 2px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.ins-curve-range .ins-curve > canvas {
+  width: 100%;
+  height: 100%;
+  border: var(--color-normal-border) 1px solid;
+  background: var(--color-normal-fill-emphasis);
+  cursor: pointer;
+}
+.ins-gradient {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: 24px;
+}
+.ins-gradient > .prop-content {
+  flex: 1;
+  display: flex;
+}
+.ins-gradient > .prop-content > ui-gradient {
+  flex: 1;
+}
+.ins-gradient-range {
+  flex: 1;
+  display: flex;
+  flex-flow: wrap;
+}
+.ins-gradient-range > .prop-content > .content {
+  flex: 1;
+}
+.ins-gradient-range > .prop-content > .content > .ins-prop {
+  margin: 0;
+  line-height: 12px;
+  flex: 1;
+  height: 24px;
+}
+.ins-gradient-range > .prop-content > .content > .ins-prop .prop-name {
+  display: none;
+}
+.ins-gradient-range > .prop-content > .button {
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+}
+.ins-gradient-range > .prop-content > .button:hover {
+  color: var(--color-hover-border-weaker);
+}
+.click-event {
+  flex: 1;
+  display: flex;
+}
+.click-event > .prop-content {
+  display: block;
+}
+.click-event > .prop-content .ins-prop {
+  margin-top: 5px;
+}
+.click-event > .prop-content .line {
+  margin-top: 15px;
+}
+.click-event > .prop-content .line > * {
+  flex: 1;
+  margin-right: 8px;
+}
+.click-event > .prop-content .line > *:last-child {
+  margin-right: 0;
+}
+.click-event > .prop-content .line > ui-button {
+  flex: none;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.ins-skeletal-animation-socket {
+  display: flex;
+  flex: 1;
+}
+.ins-skeletal-animation-socket > .prop-name {
+  width: 20px;
+  height: 100%;
+  display: table;
+  margin-right: 4px;
+}
+.ins-skeletal-animation-socket > .prop-name > ui-label {
+  display: table-cell;
+  vertical-align: middle;
+}
+.ins-skeletal-animation-socket > .prop-content {
+  display: block;
+  padding: 4px;
+}
+.ins-skeletal-animation-socket > .prop-content ui-select {
+  width: 100%;
+}
+.ins-spine-animation-socket {
+  display: flex;
+  flex: 1;
+}
+.ins-spine-animation-socket > .prop-name {
+  width: 20px;
+  height: 100%;
+  display: table;
+  margin-right: 4px;
+}
+.ins-spine-animation-socket > .prop-name > ui-label {
+  display: table-cell;
+  vertical-align: middle;
+}
+.ins-spine-animation-socket > .prop-content {
+  display: block;
+  padding: 4px;
+}
+.ins-spine-animation-socket > .prop-content ui-select {
+  width: 100%;
+}
+.ins-dragonbones-animation-socket {
+  display: flex;
+  flex: 1;
+}
+.ins-dragonbones-animation-socket > .prop-name {
+  width: 20px;
+  height: 100%;
+  display: table;
+  margin-right: 4px;
+}
+.ins-dragonbones-animation-socket > .prop-name > ui-label {
+  display: table-cell;
+  vertical-align: middle;
+}
+.ins-dragonbones-animation-socket > .prop-content {
+  display: block;
+  padding: 4px;
+}
+.ins-dragonbones-animation-socket > .prop-content ui-select {
+  width: 100%;
+}
+.asset-header {
+  display: flex;
+  min-height: 25px;
+  padding-left: 2px;
+}
+.asset-header > .name {
+  flex: 1;
+}
+.asset-header > ui-button {
+  padding: 0 8px;
+  height: 22px;
+}
+.asset-header .lock {
+  color: var(--color-focus-contrast-normal);
+  line-height: 20px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.asset-header .lock-icon {
+  font-size: 12px !important;
+  display: inline-block !important;
+}
+.widget-component {
+  position: relative;
+  line-height: 22px;
+  margin-bottom: 15px;
+}
+.widget-component[layout='vertical'] > .layout {
+  padding-left: 0;
+  padding-top: 10px;
+}
+.widget-component[layout='vertical'] > .layout .rect {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 165px;
+  width: 150px;
+  margin: 0 auto;
+}
+.widget-component .m20-t {
+  margin-top: 20px;
+}
+.widget-component > .layout {
+  position: relative;
+  padding-left: 140px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.widget-component > .layout .ins-prop {
+  display: inline-block;
+}
+.widget-component > .layout ui-num-input {
+  max-width: 80px;
+  user-select: none;
+}
+.widget-component > .layout ui-checkbox {
+  user-select: none;
+}
+.widget-component > .layout .rect {
+  position: absolute;
+  top: calc(50% - 65px);
+  left: -10px;
+}
+.widget-component > .layout .rect > .top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 20px;
+  text-align: center;
+}
+.widget-component > .layout .rect > .right {
+  position: absolute;
+  top: 140px;
+  left: 120px;
+  width: 140px;
+  text-align: center;
+  height: 20px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.widget-component > .layout .rect > .bottom {
+  position: absolute;
+  top: 125px;
+  left: 0;
+  width: 140px;
+  height: 20px;
+  text-align: center;
+}
+.widget-component > .layout .rect > .left {
+  position: absolute;
+  top: 140px;
+  left: -5px;
+  width: 140px;
+  text-align: center;
+  height: 20px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.widget-component > .layout .rect .widget-rect {
+  position: absolute;
+  top: 21px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-normal-fill-weaker);
+  border: 1px solid var(--color-normal-fill-important);
+  box-shadow: var(--color-normal-fill-emphasis) 0 0 4px;
+  box-sizing: border-box;
+}
+.widget-component > .layout .rect .widget-rect > .center {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  z-index: 10;
+  background-color: var(--color-normal-fill);
+  border: 1px solid var(--color-normal-fill-important);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.widget-component > .layout .rect .widget-rect > .center[bottom] {
+  top: auto;
+  bottom: 12.5%;
+}
+.widget-component > .layout .rect .widget-rect > .center[bottom][top] {
+  height: auto;
+}
+.widget-component > .layout .rect .widget-rect > .center[bottom] > ui-icon[bottom] {
+  display: block;
+}
+.widget-component > .layout .rect .widget-rect > .center[top] {
+  top: 12.5%;
+}
+.widget-component > .layout .rect .widget-rect > .center[top] > ui-icon[top] {
+  display: block;
+}
+.widget-component > .layout .rect .widget-rect > .center[right] {
+  left: auto;
+  right: 12.5%;
+}
+.widget-component > .layout .rect .widget-rect > .center[right][left] {
+  width: auto;
+}
+.widget-component > .layout .rect .widget-rect > .center[right] > ui-icon[right] {
+  display: block;
+}
+.widget-component > .layout .rect .widget-rect > .center[left] {
+  left: 12.5%;
+}
+.widget-component > .layout .rect .widget-rect > .center[left] > ui-icon[left] {
+  display: block;
+}
+.widget-component > .layout .rect .widget-rect > .center > ui-icon {
+  display: none;
+}
+.widget-component > .layout .rect .widget-rect > .center > ui-icon[top] {
+  position: absolute;
+  top: -12px;
+  left: calc(50% - 5px);
+  font-size: 11px;
+  line-height: 10px;
+}
+.widget-component > .layout .rect .widget-rect > .center > ui-icon[right] {
+  transform: rotate(90deg);
+  position: absolute;
+  right: -13px;
+  top: calc(50% - 5px);
+  font-size: 11px;
+  line-height: 11px;
+}
+.widget-component > .layout .rect .widget-rect > .center > ui-icon[bottom] {
+  position: absolute;
+  bottom: -12px;
+  left: calc(50% - 5px);
+  font-size: 11px;
+  line-height: 10px;
+}
+.widget-component > .layout .rect .widget-rect > .center > ui-icon[left] {
+  transform: rotate(90deg);
+  position: absolute;
+  left: -13px;
+  top: calc(50% - 5px);
+  font-size: 11px;
+  line-height: 11px;
+}
+.widget-component > .layout .rect .widget-rect > .top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12.5%;
+  border-bottom: 1px dashed var(--color-normal-contrast);
+}
+.widget-component > .layout .rect .widget-rect > .bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12.5%;
+  border-top: 1px dashed var(--color-normal-contrast);
+}
+.widget-component > .layout .rect .widget-rect > .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 12.5%;
+  border-right: 1px dashed var(--color-normal-contrast);
+}
+.widget-component > .layout .rect .widget-rect > .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 12.5%;
+  border-left: 1px dashed var(--color-normal-contrast);
+}
+.widget-component > .layout .rect .widget-rect > .horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 11;
+  height: 1px;
+  border-top: 1px dashed var(--color-normal-contrast);
+  font-size: 0;
+}
+.widget-component > .layout .rect .widget-rect > .vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  z-index: 11;
+  width: 1px;
+  border-left: 1px dashed var(--color-normal-contrast);
+  font-size: 0;
+}
+.widget-component > .layout > .right > .line {
+  display: flex;
+  justify-content: space-between;
+}
+.widget-component > .layout > .right > .line > .name {
+  width: 60%;
+}
+.widget-component > .layout > .right > .inputs > .ins-prop {
+  visibility: hidden;
+  pointer-events: none;
+}
+.widget-component > .layout > .right > .inputs > .ins-prop[active] {
+  visibility: visible;
+  pointer-events: auto;
+}
+.widget-component .button-group {
+  border: 1px solid var(--color-normal-border);
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+.widget-component .button-group .button {
+  flex: 1;
+  padding: 0 5px;
+  text-align: center;
+  font-size: 11px;
+  border-right: 1px solid var(--color-normal-border);
+  cursor: pointer;
+}
+.widget-component .button-group .button:last-child {
+  border-right: none;
+}
+.widget-component .button-group .button[active],
+.widget-component .button-group .button:hover {
+  color: var(--color-normal-contrast-weakest);
+  background-color: var(--color-normal-fill-emphasis);
+}
+.widget-component .button-group .button[active] .icon .long,
+.widget-component .button-group .button:hover .icon .long,
+.widget-component .button-group .button[active] .icon .short,
+.widget-component .button-group .button:hover .icon .short {
+  background-color: var(--color-normal-contrast-weakest);
+}
+.widget-component .button-group .button .icon {
+  width: 18px;
+  height: 18px;
+  margin: 2px auto 0 auto;
+  font-size: 0;
+  position: relative;
+}
+.widget-component .button-group .button .icon .line {
+  position: absolute;
+  z-index: 3;
+}
+.widget-component .button-group .button .icon .line.second {
+  display: none;
+}
+.widget-component .button-group .button .icon .long {
+  position: absolute;
+  width: 12px;
+  height: 4px;
+  background-color: var(--color-normal-border-weakest);
+}
+.widget-component .button-group .button .icon .short {
+  position: absolute;
+  width: 7px;
+  height: 4px;
+  background-color: var(--color-normal-border-weakest);
+}
+.widget-component .button-group .button .left.bottom {
+  transform: rotate(-90deg);
+}
+.widget-component .button-group .button .left .line {
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed var(--color-focus-border);
+}
+.widget-component .button-group .button .left .long {
+  left: 2px;
+  top: 4px;
+}
+.widget-component .button-group .button .left .short {
+  left: 2px;
+  top: 11px;
+}
+.widget-component .button-group .button .center.middle {
+  transform: rotate(-90deg);
+}
+.widget-component .button-group .button .center .line {
+  left: 9px;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed var(--color-focus-border);
+}
+.widget-component .button-group .button .center .long {
+  left: 4px;
+  top: 4px;
+}
+.widget-component .button-group .button .center .short {
+  left: 6px;
+  top: 11px;
+}
+.widget-component .button-group .button .right.top {
+  transform: rotate(-90deg);
+}
+.widget-component .button-group .button .right .line {
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed var(--color-focus-border);
+}
+.widget-component .button-group .button .right .long {
+  right: 2px;
+  top: 4px;
+}
+.widget-component .button-group .button .right .short {
+  right: 2px;
+  top: 11px;
+}
+.widget-component .button-group .button .horizontal.vertical {
+  transform: rotate(-90deg);
+}
+.widget-component .button-group .button .horizontal .line {
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed var(--color-focus-border);
+}
+.widget-component .button-group .button .horizontal .line.second {
+  display: block;
+  left: unset;
+  right: 0;
+  top: 0;
+}
+.widget-component .button-group .button .horizontal .long {
+  left: 2px;
+  right: 2px;
+  top: 4px;
+  width: auto;
+}
+.widget-component .button-group .button .horizontal .short {
+  left: 2px;
+  right: 2px;
+  top: 11px;
+  width: auto;
+}
+.widget-component .direction > .name {
+  display: inline-block;
+}
+.widget-component .direction > .icon {
+  float: right;
+  font-size: 10px;
+  margin-right: 2px;
+}
+.widget-component .direction > .icon > ui-icon:hover {
+  color: var(--color-warn-fill);
+}
+.widget-component .direction > .icon > .lock {
+  color: var(--color-warn-fill);
+}
+.scene .header {
+  display: flex;
+}
+.scene .header .ins-prop {
+  display: block;
+}
+.scene .header .ins-prop:last-child {
+  display: flex;
+  flex: 1;
+}
+.scene .header .ins-prop:last-child ui-input {
+  width: 100%;
+}
+.scene ui-section {
+  display: block;
+}
+.terrain {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.terrain ui-section {
+  width: 100%;
+}
+.terrain ui-prop {
+  margin-bottom: 5px;
+}
+.terrain .tabs {
+  margin: 8px auto 15px;
+  background: var(--color-normal-fill-weakest);
+}
+.terrain .tabs > div {
+  padding: 4px 8px;
+  cursor: pointer;
+  display: inline-block;
+}
+.terrain .tabs > div[active] {
+  background: var(--color-active-fill-emphasis);
+}
+.terrain .tabs > div:nth-child(1) {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.terrain .tabs > div:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.terrain .tabs > div:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.terrain .texture-warp {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  display: flex;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  max-height: 104px;
+  overflow-y: hidden;
+}
+.terrain .texture-warp .add-texture {
+  border: 1px dashed var(--color-normal-border);
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.terrain .texture-warp .add-texture span {
+  font-size: 1.5em;
+  line-height: 30px;
+}
+.terrain .texture-warp .texture {
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+}
+.terrain .texture-warp .texture[active] {
+  border: 1px solid var(--color-active-contrast);
+}
+.terrain .control {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: flex;
+  margin: 0 0 0 auto;
+  width: 50px;
+  margin-top: -1px;
+  border-top: none;
+  cursor: pointer;
+  justify-content: space-evenly;
+}
+.terrain .control span {
+  padding: 0 8px;
+  display: inline-block;
+  font-weight: 700;
+}
+.terrain .control span:hover {
+  background: var(--color-normal-fill);
+}

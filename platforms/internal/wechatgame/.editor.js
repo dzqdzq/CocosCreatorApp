@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.generate=async function(){const{buildCocos:t}=require("./dist/separate-engine.js");await t()},exports.unpacked=function(){return["./static/build-template","./static/cocos"]};

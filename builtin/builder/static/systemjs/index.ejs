@@ -1,0 +1,20 @@
+
+// The main module of SystemJS that be used in production.
+
+// SystemJS core.
+import 'systemjs-source/system-core.js';
+
+import { systemJSPrototype } from 'systemjs-source/system-core.js';
+
+<% if (typeof preset !== 'undefined') { if (preset === 'commonjs-like') { %>
+import './throw-uninstantiated.js';
+import warmup from './warmup-commonjs-like.js';
+systemJSPrototype.prepareImport = function (_doProcessScripts) { }
+systemJSPrototype.warmup = warmup;
+
+<% } else if (preset === 'web') { %>
+import 'systemjs-source/system.js';
+<% }} %>
+
+// Named register support.
+import 'systemjs-source/extras/named-register.js';

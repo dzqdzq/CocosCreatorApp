@@ -1,0 +1,42 @@
+{
+  "buildPath": "build",
+  "compressTexture": false,
+  "debug": false,
+  "designHeight": 333,
+  "designResolution": {
+    "width": 960,
+    "height": 640,
+    "fitWidth": true,
+    "fitHeight": false
+  },
+  "designWidth": 444,
+  "forceCombileEngine": false,
+  "includeModules": [
+    "base",
+    "gfx-webgl",
+    "gfx-webgl2",
+    "ui",
+    "particle",
+    "physics-cannon",
+    "physics-framework",
+    "audio",
+    "tween",
+    "terrain"
+  ],
+  "inlineSpriteFrames": false,
+  "md5Cache": true,
+  "mergeStartScene": false,
+  "name": "testWebDesktop",
+  "packAutoAtlas": false,
+  "platform": "web-desktop",
+  "scenes": [
+    {
+      "url": "db://assets/main.scene",
+      "uuid": "e367be4a-4994-4bb5-ae19-c69b45486d90"
+    }
+  ],
+  "sourceMaps": true,
+  "startScene": "e367be4a-4994-4bb5-ae19-c69b45486d90",
+  "outputName": "web-desktop",
+  "renderPipeline": null
+}

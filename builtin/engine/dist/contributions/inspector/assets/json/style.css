@@ -1,0 +1,9 @@
+.asset-json {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.asset-json ui-code {
+  flex: 1;
+}

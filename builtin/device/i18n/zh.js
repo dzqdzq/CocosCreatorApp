@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"设备管理器",markname:"设备名称",resolution:"宽高",pixelratio:"像素比",button:{add:"新增",change:"修改",delete:"删除"},invalid:{name:"设备名称不能为空",exists:"设备名称已经存在"}};

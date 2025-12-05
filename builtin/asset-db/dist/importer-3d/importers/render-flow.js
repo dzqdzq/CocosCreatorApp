@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const asset_db_1=require("@editor/asset-db");class RenderFlowAssetImporter extends asset_db_1.Importer{get version(){return"1.0.0"}get name(){return"render-flow"}get assetType(){return"RenderFlow"}async import(e){return await e.copyToLibrary(".json",e.source),!0}}exports.default=RenderFlowAssetImporter;

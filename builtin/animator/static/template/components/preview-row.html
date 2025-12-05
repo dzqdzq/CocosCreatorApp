@@ -1,0 +1,98 @@
+<div :class="previewClass"
+    v-if="display"
+    :style="previewStyle"
+    @mouseup="onPopMenu"
+    @dragover="onDragOver"
+    @drop="onDrop"
+    @dragleave="onDragLeave"
+>
+    <div class="row-wrap"
+        :style="{transform: 'translateX('+ offset +'px)'}"
+    >
+        <div class="stick"
+            v-if="type && selectKey && selectKey.length > 0 && stickInfo"
+            :style="stickStyle"
+            name="stick"
+            @mousedown.stop="onStickMouseDown"
+        ></div>
+        <!-- 节点预览显示的关键帧线条 -->
+        <!-- <template v-if="lines && lines.length && !type && !draggable">
+            <div
+                class="line"
+                v-for="(item, i) in lines"
+                :style="item.style"
+                :index="i"
+                :frame="item.frame"
+            ></div>
+        </template> -->
+
+        <!-- 属性轨道显示的关键帧线条 -->
+        <template v-if="lines && lines.length && type && !draggable">
+            <div
+                class="line"
+                v-for="(item, i) in lines"
+                :style="item.style"
+                :title="t('line_tips')"
+                @dblclick="openBezierEditor(item)"
+            ></div>
+        </template>
+
+        <!-- 选中关键帧后的中间线条 -->
+        <!-- <template v-if="selectKey && selectKey.length > 1 && !draggable && keyType !== 'image'">
+            <div
+                class="line active"
+                v-for="(item, i) in selectKey"
+                v-if="selectKey[i + 1]"
+                :style="queryLineStyle(item, selectKey[i + 1])"
+                :index="i"
+                @mousedown.stop="onMouseDown($event, item.rawIndex, true)"
+            ></div>
+        </template> -->
+
+        <!-- 关键帧显示 -->
+        <template
+            v-if="keyData && keyFrames"
+        >
+            <div
+                :class="keyType"
+                name="key"
+                v-for="index in keyData"
+                v-if="keyFrames[index]"
+                :style="queryKeyStyle(keyFrames[index].x)"
+                :index="index"
+                :key="keyType + index"
+                @mousedown="onMouseDown($event, index)"
+            >
+                <template
+                    v-if="type && keyType === 'image'"
+                >
+                    <ui-image class="sprite-key"
+                        max-height
+                        :value="keyFrames[index].value || ''"
+                    ></ui-image>
+                </template>
+            </div>
+        </template>
+    
+        <!-- 选中的关键数据显示 -->
+        <template v-if="selectKey">
+            <div
+                v-for="(item,index) in selectKey"
+                :key="String(index) + item.frame"
+                :class="calcSelectClass(keyType === 'image')"
+                :style="queryKeyStyle(item.x)"
+                name="key"
+            >
+                <template
+                    v-if="keyType === 'image'"
+                >
+                    <ui-image class="sprite-key"
+                        max-height
+                        :value="item.value || ''"
+                    ></ui-image>
+                </template>
+            </div>
+        </template>
+    </div>
+    <div class="tips" v-if="draggable">{{tips}}</div>
+</div>

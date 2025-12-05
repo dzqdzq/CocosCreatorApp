@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path");exports["simulate-node-module"]=function(e){return[join(__dirname,"./modules/editor")]},exports["build-less-develop"]=function(){return[]};

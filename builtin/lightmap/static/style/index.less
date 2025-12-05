@@ -1,0 +1,76 @@
+.lightmap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > header {
+        margin-top: 14px;
+        text-align: center;
+    }
+
+    section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .properties {
+            flex: 1;
+            padding: 8px 14px;
+
+            ui-prop {
+                > div[slot='content'] {
+                    width: 100%;
+
+                    > :first-child {
+                        width: 100%;
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+
+        .generate,
+        .clear {
+            margin: 14px auto;
+        }
+
+        .progress {
+            height: 6px;
+            margin: 10px 14px;
+            width: inherit;
+        }
+
+        .output {
+            flex: 1;
+            background-color: var(--color-normal-fill-emphasis);
+            overflow: auto;
+            margin: 0 14px 14px 14px;
+            padding: 7px 14px;
+            border-radius: 4px;
+
+            .label {
+                width: 100px;
+                display: inline-block;
+            }
+
+            .data {
+                display: inline-block;
+            }
+        }
+
+        .image-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 200px;
+            max-height: 300px;
+            overflow: auto;
+
+            ui-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "ver": "1.0.16",
+  "importer": "image",
+  "uuid": "9e9c657f-71aa-4bcf-b85b-f1d318f681f4",
+  "files": [
+    ".png",
+    ".json"
+  ],
+  "subMetas": {
+    "f9941": {
+      "ver": "1.0.7",
+      "importer": "sprite-frame",
+      "name": "spriteFrame",
+      "id": "f9941",
+      "displayName": "brdfLUT",
+      "uuid": "9e9c657f-71aa-4bcf-b85b-f1d318f681f4@f9941",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {},
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "premultiplyAlpha": false,
+        "anisotropy": 1,
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 512,
+        "height": 512,
+        "rawWidth": 512,
+        "rawHeight": 512,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "9e9c657f-71aa-4bcf-b85b-f1d318f681f4",
+        "atlasUuid": ""
+      }
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "redirect": "9e9c657f-71aa-4bcf-b85b-f1d318f681f4@f9941",
+    "platformSettings": {
+      "html5": {
+        "webp": 80,
+        "jpg": 80,
+        "pvrtc_4bits": "normal",
+        "etc1_rgb": "fast"
+      },
+      "wechat": {
+        "jpg": 80,
+        "webp": 80,
+        "pvrtc_4bits": "normal",
+        "etc1_rgb": "fast"
+      }
+    }
+  },
+  "imported": true
+}

@@ -1,0 +1,30 @@
+.asset-directory > .path {
+  display: flex;
+  line-height: 20px;
+}
+.asset-directory > .path > .name {
+  flex: 1;
+  overflow: hidden;
+}
+.asset-directory > .path > .name > span {
+  word-break: break-word;
+}
+.asset-directory > .path > .button {
+  color: #ffffff;
+}
+.asset-directory > .content {
+  padding: 10px;
+}
+.asset-directory > .content > ui-prop {
+  margin-bottom: 4px;
+  --left-width: 40%;
+}
+.asset-directory > .content > ui-prop > ui-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.asset-directory > .content a {
+  cursor: pointer;
+}

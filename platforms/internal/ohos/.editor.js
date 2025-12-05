@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.css=function(){return[{source:"./static/style/certificate.less",dist:"./dist/certificate.css"}]};

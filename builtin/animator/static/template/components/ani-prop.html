@@ -1,0 +1,45 @@
+<div class="group">
+    <div class="name" v-if="label">{{label}}</div>
+    <template>
+        <template v-if="type === 'cc.Vec3' && value">
+            <ani-prop type="Number" label="X:" path="x" :value="value.x" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="Y:" path="y" :value="value.y" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="Z:" path="z" :value="value.z" :disabled="disabled"></ani-prop>
+        </template>
+        <template v-if="type === 'cc.Vec2' && value">
+            <ani-prop type="Number" label="X:" path="x" :value="value.x" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="Y:" path="y" :value="value.y" :disabled="disabled"></ani-prop>
+        </template>
+        <template v-if="type === 'cc.Size' && value">
+            <ani-prop type="Number" label="W:" path="w" :value="value.w" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="H:" path="h" :value="value.h" :disabled="disabled"></ani-prop>
+        </template>
+        <template v-if="(type === 'cc.Quat' || type === 'cc.Vec4') && value">
+            <ani-prop type="Number" label="X:" path="x" :value="value.x" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="Y:" path="y" :value="value.y" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="Z:" path="z" :value="value.z" :disabled="disabled"></ani-prop>
+            <ani-prop type="Number" label="W:" path="w" :value="value.w" :disabled="disabled"></ani-prop>
+        </template>
+        <template v-if="type === 'cc.Color' && value">
+            <ui-color :path="path" :value="JSON.stringify([value.r, value.g, value.b, value.a])" :disabled="disabled"></ui-color>
+        </template>
+        <template v-if="type === 'Number' || type === 'Float'">
+            <ui-num-input :path="path" :value="value" :disabled="disabled"></ui-num-input>
+        </template>
+        <template v-if="type === 'Integer'">
+            <ui-num-input preci="0" :path="path" :value="value" :disabled="disabled"></ui-num-input>
+        </template>
+        <template v-if="type === 'String'">
+            <ui-input :path="path" :value="value" :disabled="disabled"></ui-input>
+        </template>
+        <template v-if="type === 'Boolean'">
+            <ui-checkbox :path="path" :value="value" :disabled="disabled"></ui-checkbox>
+        </template>
+        <!-- <template v-if="type === 'Enum'">
+            <ui-input :value="value"></ui-input>
+        </template> -->
+        <template v-if="isUiAsset(extendArr)">
+            <ui-asset path="uuid" :droppable="type" :value="value && value.uuid" :disabled="disabled"></ui-asset>
+        </template>
+    </template>
+</div>

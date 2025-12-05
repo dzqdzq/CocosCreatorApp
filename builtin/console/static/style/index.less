@@ -1,0 +1,43 @@
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.console-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: var(--color-normal-fill);
+}
+
+.header {
+    padding: 4px 2px;
+    line-height: 19px;
+    flex-wrap: wrap;
+    background: var(--color-normal-fill);
+
+    >* {
+        margin: 0 4px;
+    }
+
+    ui-button {
+        color: var(--color-normal-contrast);
+        cursor: pointer;
+        padding: 0 5px;
+        margin: 0;
+    }
+}
+
+.select-label {
+    margin-right: 5px;
+}
+
+.collapse {
+    position: absolute;
+    right: 0;
+}
+
+@import "list.less";

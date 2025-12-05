@@ -1,0 +1,139 @@
+{
+    "name": "engine",
+    "title": "i18n:engine.title",
+    "version": "1.0.5",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:engine.description",
+    "main": "./dist/browser/index",
+    "migrations": [{
+        "version": "0.0.0",
+        "profile": "./dist/migrations/0.0.0.js"
+    },{
+        "version": "1.0.3",
+        "profile": "./dist/migrations/1.0.3.js"
+    },{
+        "version": "1.0.4",
+        "profile": "./dist/migrations/1.0.4.js"
+    },{
+        "version": "1.0.5",
+        "profile": "./dist/migrations/1.0.5.js"
+    }],
+    "contributions": {
+        "inspector": "./dist/contributions/inspector/index.js",
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:engine.compile_engine",
+                "message": "rebuild",
+                "group": "engine"
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "rebuild",
+                "mac": "cmd+f7",
+                "win": "ctrl+f7"
+            }
+        ],
+        "project": {
+            "macroConfig": {
+                "label": "Macro Configurations"
+            },
+            "modules": {
+                "label": "i18n:engine.project.modules.title",
+                "custom": "./dist/contributions/project/modules/project-modules.js"
+            }
+        },
+        "profile": {
+            "editor": {
+                "3d.javascript.builtin": {
+                    "label": "i18n:engine.preferences.use_builtin_js_engine",
+                    "default": true,
+                    "message": "change-custom-engine-config"
+                },
+                "3d.javascript.custom": {
+                    "label": "i18n:engine.preferences.custom_js_engine_path",
+                    "default": "",
+                    "message": "change-custom-engine-config"
+                },
+                "3d.native.builtin": {
+                    "label": "i18n:engine.preferences.use_builtin_native_engine",
+                    "default": true
+                },
+                "3d.native.custom": {
+                    "label": "i18n:engine.preferences.custom_native_engine_path",
+                    "default": ""
+                }
+            },
+            "project": {
+                "macroConfig": {
+                    "default": {}
+                },
+                "modules.cache": {
+                    "default": {}
+                },
+                "modules.includeModules": {
+                    "label": "i18n:engine.project.modules.title",
+                    "default": []
+                },
+                "modules.noDeprecatedFeatures": {
+                    "label": "i18n:engine.project.modules.noDeprecatedFeatures",
+                    "default": {
+                        "value": false,
+                        "version": ""
+                    },
+                    "description": "i18n:engine.project.modules.noDeprecatedFeatures_tooltip"
+                },
+                "3d.renderPipeline": {
+                    "label": "renderPipeline",
+                    "default": "fd8ec536-a354-4a17-9c74-4f3883c378c8"
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "3d.javascript.builtin": {
+                    "ui": "ui-checkbox"
+                },
+                "3d.javascript.custom": {
+                    "ui": "ui-file",
+                    "attributes": {
+                        "type": "directory"
+                    }
+                },
+                "3d.native.builtin": {
+                    "ui": "ui-checkbox"
+                },
+                "3d.native.custom": {
+                    "ui": "ui-file",
+                    "attributes": {
+                        "type": "directory"
+                    }
+                }
+            }
+        },
+        "messages": {
+            "rebuild": {
+                "methods": [
+                    "rebuild"
+                ]
+            },
+            "import-engine-error": {
+                "methods": [
+                    "importEngineError"
+                ]
+            },
+            "query-info": {
+                "methods": [
+                    "query-info"
+                ]
+            },
+            "change-custom-engine-config": {
+                "methods": [
+                    "changeCustomEngineConfig"
+                ]
+            }
+        }
+    }
+}
