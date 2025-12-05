@@ -1,0 +1,22 @@
+{
+  "name": "taobao-minigame",
+  "version": "0.0.1",
+  "description": "构建淘宝小游戏工程",
+  "author": "Cocos Creator",
+  "main-menu": {},
+  "license": "ISC",
+  "simple-build-target": "build.js",
+  "unpack": [
+    "static"
+  ],
+  "profiles": {
+    "project": {
+      "deviceOrientation": "portrait",
+      "remoteUrl": "",
+      "startSceneAssetBundle": false,
+      "separate_engine": false,
+      "globalVariable": "",
+      "plugin-version": "2024.1210.2414"
+    }
+  }
+}

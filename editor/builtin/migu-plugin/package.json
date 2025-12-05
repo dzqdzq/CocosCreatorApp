@@ -1,0 +1,36 @@
+{
+    "name": "migu-runtime",
+    "version": "0.0.1",
+    "description": "构建 rpk 扩展包",
+    "author": "Cocos Creator",
+    "main-menu": {},
+    "license": "ISC",
+    "simple-build-target": "build.js",
+    "panel.qrcode": {
+        "main": "panel/scanCode.js",
+        "type": "dockable",
+        "title": "preview",
+        "width": 400,
+        "height": 300
+    },
+    "profiles": {
+        "project": {
+            "package": "",
+            "name": "",
+            "icon": "",
+            "versionName": "",
+            "versionCode": "",
+            "minPlatformVersion": "",
+            "deviceOrientation": "portrait",
+            "logLevel": "log",
+            "npmPath": "",
+            "tinyPackageServer": "",
+            "appid": "",
+            "appkey": "",
+            "disabledMode": "disabled is-disabled",
+            "showNpmPath": false,
+            "packFirstScreenRes": false,
+            "isSubpackage":false
+        }
+    }
+}

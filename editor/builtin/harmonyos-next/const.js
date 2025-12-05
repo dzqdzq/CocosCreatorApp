@@ -1,0 +1,1 @@
+require("path");module.exports={OpenHarmonySDK:"",OpenHarmonyNDK:""};
