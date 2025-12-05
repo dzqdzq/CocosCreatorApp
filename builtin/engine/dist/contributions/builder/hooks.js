@@ -1,0 +1,1 @@
+"use strict";async function onAfterInit(e,n){"inheritProjectSetting"!==e.packages.engine.cleanupImageCache&&(e.macroConfig=e.macroConfig||{},e.macroConfig.CLEANUP_IMAGE_CACHE="on"===e.packages.engine.cleanupImageCache)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.onAfterInit=void 0,exports.onAfterInit=onAfterInit;

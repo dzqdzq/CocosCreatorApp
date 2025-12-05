@@ -1,0 +1,78 @@
+<section
+    class="console"
+    @scroll="onScroll"
+>
+    <div
+        class="wrapper"
+        :style="wrapperStyle"
+    >
+        <div
+            class="console-list"
+            :style="listStyle"
+        >
+            <div
+                v-for="(item, index) in showList"
+                :key="index"
+                v-show="item.show"
+                :class="[item.texture, 'item']"
+                :type="item.type"
+                :fold="item.fold"
+                @click.right="showMenuPast($event, item)"
+            >
+                <div class="wrap">
+                    <div class="bg"></div>
+                    <div class="text">
+                        <span v-if="/^(warn|error)$/.test(item.type)">
+                            <ui-icon :value="item.type" />
+                        </span>
+                        <span
+                            :class="{count: true, 'is-circle': item.count < 10}"
+                            v-if="item.count > 1"
+                        >{{item.count}}</span>
+                        <span :title="item.title">
+                            <ui-icon
+                                @click="toggleContent(item.translateY)"
+                                class="arrow"
+                                value="arrow-triangle"
+                                v-if="item.rows > 1"
+                                :unfold="!item.fold"
+                            ></ui-icon>
+                            <span v-if="item.date">{{item.date}}</span>
+                            <span
+                                bubble
+                                @click="onTextClick($event)"
+                                v-html="renderText(item.title)"
+                            ></span>
+                        </span>
+                    </div>
+                </div>
+                <div v-show="!item.fold">
+                    <div
+                        class="details"
+                        v-for="(text, i) in item.content"
+                        :key="'details-'+i"
+                    >
+                        <div
+                            class="text"
+                            bubble
+                            v-html="renderText(text)"
+                            @click="onTextClick($event)"
+                        ></div>
+                    </div>
+                    <div
+                        class="stack"
+                        v-for="(text, i) in item.stack"
+                        :key="'stacks-'+i"
+                    >
+                        <div
+                            class="text"
+                            bubble
+                            v-html="renderText(text)"
+                            @click="onTextClick($event)"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

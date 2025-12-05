@@ -1,0 +1,11 @@
+.vivo-preview {
+  margin: 8vw;
+}
+.vivo-preview .main {
+  display: flex;
+  justify-content: space-between;
+}
+.vivo-preview canvas {
+  width: 100px;
+  height: 100px;
+}

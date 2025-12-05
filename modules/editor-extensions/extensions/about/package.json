@@ -1,0 +1,39 @@
+{
+    "name": "about",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:about.description",
+    "main": "./browser/index",
+    "panels": {
+        "default": {
+            "title": "About",
+            "type": "simple",
+            "main": "./renderer/panel.js",
+            "flags": {
+                "resizable": false
+            },
+            "size": {
+                "width": 500,
+                "height": 270
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "Cocos Creator",
+                "label": "i18n:menu.about_cocos",
+                "message": "open",
+                "group": "about"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            }
+        }
+    }
+}

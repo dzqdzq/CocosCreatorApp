@@ -1,0 +1,17 @@
+{
+  "lightmap": {
+    "0": {
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/browser.ts": 1634144515142,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/event-enum.ts": 1634144515142,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/backer/LFX_App.ts": 1634230940940,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/backer/LFX_Baker.ts": 1634144515143,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/backer/LFX_Types.ts": 1634144515143,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/backer/Port.ts": 1634144515143,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/index.ts": 1634144515143,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/lightmap/scene.ts": 1634144515143,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/panel/components/manager.ts": 1634230940940,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/panel/index.ts": 1634144515144,
+      "/Users/mac/Documents/editor_3d/v3.4.0/app/modules/editor-extensions/extensions/lightmap/source/panel/operation/image.ts": 1634144515144
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+    "name": "lightmap",
+    "title": "i18n:lightmap.title",
+    "version": "1.0.4",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "description": "i18n:lightmap.description",
+    "panels": {
+        "panel": {
+            "title": "i18n:lightmap.title",
+            "icon": "./static/icon-2x.png",
+            "main": "./dist/panel/index.js",
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/lightmap/scene.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:light-probe.menuTitle"
+            },
+            {
+                "path": "i18n:menu.panel/i18n:light-probe.menuTitle",
+                "label": "i18n:lightmap.title",
+                "message": "open",
+                "icon": "./static/icon.png"
+            }
+        ],
+        "profile": {
+            "editor": {
+                "laboratory.bake_feature": {
+                    "label": "i18n:preferences.laboratory.bake_feature",
+                    "default": true
+                }
+            }
+        },
+        "preferences": {
+            "laboratory": [
+                "laboratory.bake_feature"
+            ]
+        },
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "getConfig": {
+                "methods": [
+                    "getConfig"
+                ]
+            },
+            "bakeLightProbe": {
+                "methods": [
+                    "bakeLightProbe"
+                ]
+            },
+            "cancelLightProbe": {
+                "methods": [
+                    "cancelLightProbe"
+                ]
+            },
+            "unstaging": {
+                "methods": [
+                    "unstaging"
+                ]
+            },
+            "savePicPath": {
+                "methods": [
+                    "savePicPath"
+                ]
+            },
+            "clear": {
+                "methods": [
+                    "clear"
+                ]
+            },
+            "lightmap:start": {
+                "methods": [
+                    "start",
+                    "panel.start"
+                ]
+            },
+            "lightmap:cancel": {
+                "methods": [
+                    "cancel",
+                    "panel.cancel"
+                ]
+            },
+            "lightmap:log": {
+                "methods": [
+                    "log",
+                    "panel.log"
+                ]
+            },
+            "lightmap:finished": {
+                "methods": [
+                    "finished",
+                    "panel.finished"
+                ]
+            },
+            "lightmap:end": {
+                "methods": [
+                    "end",
+                    "panel.end"
+                ]
+            },
+            "lightmap:progress": {
+                "methods": [
+                    "progress",
+                    "panel.progress"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "panel.onSceneReady"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,242 @@
+.toolbar .default-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+  padding: 0 4px;
+  margin-top: 4px;
+}
+.toolbar .default-toolbar ui-button[type="icon"] {
+  height: 24px;
+}
+.toolbar .default-toolbar > .left {
+  flex: 1;
+  display: flex;
+}
+.toolbar .default-toolbar > .right {
+  display: flex;
+}
+.toolbar .game-view-toolbar {
+  display: flex;
+  height: 20px;
+  line-height: 18px;
+  padding: 4px 2px;
+  background-color: var(--color-normal-fill);
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.toolbar .game-view-toolbar ui-button[selected] {
+  background-color: var(--color-info-fill-important);
+  color: var(--color-info-contrast-important);
+}
+.toolbar .game-view-toolbar .item {
+  white-space: nowrap;
+  padding: 0 4px;
+}
+.toolbar .game-view-toolbar > .left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.toolbar .game-view-toolbar > .left .item {
+  border-right: 1px solid var(--color-normal-fill-weaker);
+}
+.toolbar .game-view-toolbar > .left .fps > ui-num-input {
+  width: 50px;
+}
+.toolbar .game-view-toolbar > .right {
+  display: flex;
+  align-items: center;
+}
+.toolbar .game-view-toolbar > .right .item {
+  text-align: right;
+}
+.toolbar .game-view-toolbar > .right .item:last-child {
+  padding: 0;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container {
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--color-normal-fill-weaker);
+  width: 145px;
+  height: 20px;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select {
+  display: flex;
+  flex: 1;
+  padding-left: 6px;
+  padding-right: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select #placeholder {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-4px, -50%);
+  padding: 0 2em 0 0.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .arrow-triangle {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-4px, -50%);
+  font-size: 12px;
+  pointer-events: none;
+  outline: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .label {
+  overflow: hidden;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select .label > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .view-select:hover {
+  color: var(--color-focus-contrast-emphasis);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options {
+  background-color: var(--color-normal-fill);
+  position: absolute;
+  will-change: top, left;
+  transform-origin: center top 0;
+  top: 24px;
+  right: 10px;
+  max-height: 300px;
+  max-width: 396px;
+  overflow: auto;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  z-index: 99;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > li {
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  clear: both;
+  font-size: inherit;
+  list-style: none;
+  cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > li:hover {
+  background-color: var(--color-hover-fill);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > .selected {
+  background-color: var(--color-info-fill-important);
+  color: var(--color-info-contrast-important);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul > .separator {
+  font-size: 0;
+  height: 1px;
+  width: calc(100% - 8px);
+  overflow: hidden;
+  background-color: var(--color-default-border-weakest);
+  pointer-events: none;
+  margin: 4px 0;
+  align-self: center;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container .options ul .no_options {
+  display: inline-block;
+  min-width: 98px;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[focused] {
+  border-color: var(--color-focus-border);
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[readonly] {
+  pointer-events: none;
+}
+.toolbar .game-view-toolbar > .right .item .view-select-container[hidden] {
+  display: none;
+}
+.toolbar .game-view-toolbar > .right .item.scale ui-slider {
+  width: 80px;
+  height: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar > .right .item.scale .add {
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar .rotate-wrap {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .game-view-toolbar .track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+  width: 80px;
+  cursor: pointer;
+}
+.toolbar .game-view-toolbar .track .wrapper {
+  width: 100%;
+  background: var(--color-normal-fill-emphasis);
+  height: 3px;
+  border-radius: 3px;
+  border-top: 1px solid var(--color-normal-fill-important);
+  border-bottom: 1px solid var(--color-normal-border-weaker);
+}
+.toolbar .game-view-toolbar .track .cursor {
+  position: absolute;
+}
+.toolbar .game-view-toolbar .track .cursor div {
+  background: var(--color-active-fill-important);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 2px solid var(--color-normal-contrast-important);
+  box-shadow: 0 0 2px 2px var(--color-normal-fill-important) inset;
+}
+.toolbar .game-view-toolbar .track .cursor:hover div {
+  border-color: var(--color-active-contrast);
+}
+.preview-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.toolbar {
+  flex: none;
+}
+.preview {
+  flex: 1;
+  min-height: 0;
+}

@@ -1,0 +1,121 @@
+:host {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.device {
+    flex: 1;
+    display: flex;
+
+    .slider {
+        width: 30%;
+        min-width: 150px;
+        border-right: 1px solid var(--color-normal-border);
+        overflow-y: auto;
+        margin-right: 16px;
+        position: relative;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            height: 100%;
+
+            .device-type {
+                padding-bottom: 10px;
+                cursor: default;
+            }
+
+            li {
+                padding-left: 5px;
+                padding-right: 10px;
+                margin-right: 5px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                cursor: pointer;
+                width: 100%;
+                box-sizing: border-box;
+                display: flex;
+
+                &:hover,
+                &[active] {
+                    background-color: var(--color-hover-fill);
+                }
+
+                &:hover .delete_custom_device {
+                    display: block;
+                }
+
+                > ui-label {
+                    flex: 1;
+                }
+
+                .delete_custom_device:hover {
+                    color: #ffffff;
+                }
+            }
+
+            > .line {
+                height: 0;
+                border-bottom: 2px solid var(--color-normal-border);
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .delete_custom_device {
+        display: none;
+    }
+
+    .content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+
+        .device-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            > ui-prop {
+                --left-width: 35%;
+
+                padding: 2px 0;
+
+                > * {
+                    flex: 1;
+                }
+
+                > div {
+                    display: flex;
+
+                    > ui-label {
+                        padding: 0 4px;
+                    }
+
+                    > ui-num-input {
+                        flex: 1;
+                    }
+                }
+            }
+
+            > .buttons {
+                text-align: right;
+                margin-top: 20px;
+
+                ui-button {
+                    margin-left: 16px;
+                }
+            }
+        }
+
+        .add-device-button {
+            margin-top: 20px;
+            width: 200px;
+        }
+    }
+}

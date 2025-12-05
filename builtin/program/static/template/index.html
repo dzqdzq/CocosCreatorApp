@@ -1,0 +1,11 @@
+<div class="program">
+    <template v-for="(pkg, name) in config">
+        <program
+            v-for="(item, key) in pkg"
+            :key="key"
+            :program="key"
+            :item="item"
+            :pkg="name"
+        ></program>
+    </template>
+</div>

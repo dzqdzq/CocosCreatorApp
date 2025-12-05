@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(e){e.options&&e.options["alipay-mini-game"]&&e.options["alipay-mini-game"].remoteUrl&&(e.common||(e.common={}),e.common.server=e.options["alipay-mini-game"].remoteUrl,delete e.options["alipay-mini-game"].remoteUrl)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

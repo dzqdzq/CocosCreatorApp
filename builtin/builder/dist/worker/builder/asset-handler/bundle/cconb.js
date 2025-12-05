@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.exportCCONB=void 0;const asset_library_1=require("../../manager/asset-library");async function exportCCONB(t,e){e.exportCCON?await asset_library_1.buildAssetLibrary.outputCCONAssets(t.uuid,e.dest,e):await asset_library_1.buildAssetLibrary.outputCCONBAssets(t.uuid,e.dest,e)}exports.exportCCONB=exportCCONB;

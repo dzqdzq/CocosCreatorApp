@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ImageBaseImporter=void 0;const asset_db_1=require("@editor/asset-db");class ImageBaseImporter extends asset_db_1.Importer{get version(){return"1.0.1"}get name(){return"image"}get assetType(){return"cc.ImageAsset"}}exports.ImageBaseImporter=ImageBaseImporter;

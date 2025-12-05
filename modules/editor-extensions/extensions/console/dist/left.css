@@ -1,0 +1,16 @@
+.console-footer-left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.console-error {
+  color: var(--color-danger-fill-normal);
+  max-width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+.console-error[title] {
+  padding: 0 4px;
+}

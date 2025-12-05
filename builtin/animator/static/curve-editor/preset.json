@@ -1,0 +1,102 @@
+{
+    "default": [
+        [
+            {
+                "time": 0,
+                "value": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "time": 1,
+                "value": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 0,
+                "outTangent": 1,
+                "inTangent": 1
+            },
+            {
+                "time": 1,
+                "value": 1,
+                "outTangent": 1,
+                "inTangent": 1
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 1,
+                "outTangent": -1,
+                "inTangent": -1
+            },
+            {
+                "time": 1,
+                "value": 0,
+                "outTangent": -1,
+                "inTangent": -1
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 0,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "time": 1,
+                "value": 1,
+                "outTangent": 2,
+                "inTangent": 2
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 1,
+                "outTangent": -2,
+                "inTangent": -2
+            },
+            {
+                "time": 1,
+                "value": 0,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 0,
+                "outTangent": 2,
+                "inTangent": 2
+            },
+            {
+                "time": 1,
+                "value": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ],
+        [
+            {
+                "time": 0,
+                "value": 1,
+                "outTangent": 0,
+                "inTangent": 0
+            },
+            {
+                "time": 1,
+                "value": 0,
+                "outTangent": 0,
+                "inTangent": 0
+            }
+        ]
+    ]
+}

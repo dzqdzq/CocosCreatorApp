@@ -1,0 +1,116 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <ui-gradient-picker value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>single</h2>
+            <ui-gradient-picker single value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker single value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>fixed</h2>
+            <ui-gradient-picker fixed value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker fixed value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-gradient-picker disabled value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker disabled value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-gradient-picker readonly value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker readonly value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-gradient-picker hidden value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'></ui-gradient-picker>
+            <ui-code language="html">
+                &lt;ui-gradient-picker hidden value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'&gt;&lt;/ui-gradient-picker&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                single
+                fixed
+                disabled
+                readonly
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <h4 ref="value"></h4>
+                <ui-gradient-picker ref="gradient-picker" value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}'
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                ></ui-gradient-picker>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-gradient-picker value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}' @change="changeHandler"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                    &gt;&lt;/ui-gradient-picker&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-gradient-picker value='{"alpha":[{"value":0.39215686274509803,"progress":0.05133928571428571},{"value":1,"progress":0.984375}],"color":[{"value":"#ca0707","progress":0.953125}]}' id="ui-gradient-picker"&gt;&lt;/ui-gradient-picker&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-gradient-picker');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

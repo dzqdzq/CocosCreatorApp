@@ -1,0 +1,18 @@
+{
+    "extends": "../base.tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./source",
+        "strict": true,
+        "strictNullChecks": false,
+        "types": [
+            "node",
+            "./@types/nativize",
+            "@editor/library-type/protected",
+        ],
+        "lib": [
+            "dom",
+            "es7"
+        ]
+    }
+}

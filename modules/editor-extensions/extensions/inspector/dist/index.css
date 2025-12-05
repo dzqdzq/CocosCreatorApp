@@ -1,0 +1,152 @@
+:host {
+  display: flex;
+}
+/* -----curve editor -------------- */
+.curve-editor {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.curve-editor .name {
+  padding-left: 21px;
+  text-transform: capitalize;
+  color: var(--color-focus-contrast);
+}
+.curve-editor .curve-config {
+  display: flex;
+  justify-content: center;
+}
+.curve-editor .curve-config > * {
+  margin: 0 10px;
+}
+.curve-editor .multiplier {
+  position: absolute;
+  z-index: 2;
+  top: 47px;
+  left: 4px;
+  width: 34px;
+  margin: 0 2px;
+  background: rgba(193, 189, 189, 0.09);
+}
+.curve-editor .multiplier[focused] {
+  width: 80px;
+}
+.curve-editor .canvas-wrap {
+  position: relative;
+  height: 80vh;
+}
+.curve-editor .canvas {
+  position: absolute;
+  margin: auto;
+  background-size: 32px 32px;
+  background-position: center center;
+}
+.curve-editor .toolbar {
+  text-align: center;
+}
+.curve-editor .toolbar canvas {
+  background: #716e6e;
+  margin: 5px;
+}
+.curve-editor .toolbar .i-setting {
+  margin: 5px;
+}
+.presets {
+  height: 80vh;
+  position: absolute;
+}
+.gradient-editor {
+  padding: 10px;
+}
+.gradient-editor .gradient {
+  position: relative;
+  box-sizing: border-box;
+  padding: 15px 5px;
+  height: 75px;
+  width: 100%;
+  margin: 10px 0;
+  background-image: url('packages://inspector/static/checkerboard-32x32.png');
+  background-repeat: repeat;
+  background-clip: content-box;
+}
+.gradient-editor .gradient svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.gradient-editor .anchor.active {
+  stroke: #0091ff;
+}
+.gradient-editor .anchor.hide {
+  display: none;
+}
+.gradient-editor > .prop-edit .wrapper-content {
+  width: 200px;
+}
+.gradient-editor > .prop-edit .wrapper-content ui-color {
+  width: 100%;
+}
+.sprite-editor {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sprite-editor .header {
+  height: 110px;
+}
+.sprite-editor .header ui-num-input,
+.sprite-editor .header ui-slider {
+  width: 100%;
+}
+.sprite-editor .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.sprite-editor .content .scroll {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
+.sprite-editor .content .scroll[horizontal='center'] {
+  justify-content: center;
+}
+.sprite-editor .canvas {
+  display: block;
+  background-image: url('packages://inspector/static/checkerboard-32x32.png');
+  background-size: 16px 16px;
+  background-position: center center;
+}
+.sprite-editor .svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sprite-editor .table {
+  display: table;
+  font-size: 12px;
+  width: 96%;
+}
+.sprite-editor .table .td-r {
+  text-align: right;
+  padding-right: 8px;
+}
+.sprite-editor .table .td-c {
+  text-align: center;
+}
+.sprite-editor .table .td-top {
+  vertical-align: top;
+}
+.sprite-editor .table .tiny {
+  margin: 5px;
+}

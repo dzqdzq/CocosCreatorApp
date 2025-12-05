@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "layout": {
+        "direction": "row",
+        "children": [
+            {
+                "percent": 0.25,
+                "direction": "column",
+                "children": [
+                    {
+                        "panels": [
+                            "hierarchy"
+                        ]
+                    },
+                    {
+                        "panels": [
+                            "assets"
+                        ]
+                    }
+                ]
+            },
+            {
+                "percent": 0.5,
+                "direction": "column",
+                "children": [
+                    {
+                        "percent": 0.7,
+                        "min-width": 100,
+                        "min-height": 150,
+                        "panels": [
+                            "scene"
+                        ]
+                    },
+                    {
+                        "percent": 0.3,
+                        "panels": [
+                            "assets.preview",
+                            "console",
+                            "animator",
+                            "animation-graph"
+                        ]
+                    }
+                ]
+            },
+            {
+                "percent": 0.25,
+                "min-height": 100,
+                "panels": [
+                    "inspector",
+                    "cocos-service"
+                ]
+            }
+        ]
+    }
+}

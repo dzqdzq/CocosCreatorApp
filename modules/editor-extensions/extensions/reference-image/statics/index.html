@@ -1,0 +1,38 @@
+<div class="reference-image">
+    <div class="content">
+        <div class="btn-layout horizontal item">
+            <ui-label class="label" value="i18n:reference-image.edit.header"></ui-label>
+            <div class="item-content">
+                <ui-select class="images"></ui-select>
+                <ui-button class="add-image blue">
+                    <ui-label id="add-btn-label" value="i18n:reference-image.add_image"></ui-label>
+                </ui-button>
+                <ui-button class="del-image red">
+                    <ui-label value="i18n:reference-image.del_image"></ui-label>
+                </ui-button>
+            </div>
+        </div>
+        <div class="m-h-10"></div>
+        <div class="v-group">
+            <ui-label value="i18n:reference-image.edit.position"></ui-label>
+            <div class="m-w-8"></div>
+            <ui-num-input class="x" slot="content" unit="X"></ui-num-input>
+            <div class="m-w-8"></div>
+            <ui-num-input class="y" slot="content" unit="Y"></ui-num-input>
+        </div>
+        <div class="m-h-10"></div>
+        <div class="v-group">
+            <ui-label value="i18n:reference-image.edit.scale"></ui-label>
+            <div class="m-w-8"></div>
+            <ui-num-input class="sx" slot="content" unit="X"></ui-num-input>
+            <div class="m-w-8"></div>
+            <ui-num-input class="sy" slot="content" unit="Y"></ui-num-input>
+        </div>
+        <div class="m-h-10"></div>
+        <div class="v-group">
+            <ui-label value="i18n:reference-image.edit.opacity"></ui-label>
+            <div class="m-w-8"></div>
+            <ui-slider slot="content" class="opacity" style="width: 100%;" value="1" min="0" max="255" step="1"></ui-slider>
+        </div>
+    </div>
+</div>

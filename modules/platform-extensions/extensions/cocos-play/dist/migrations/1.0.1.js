@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(o){o.options&&o.options["cocos-play"]&&o.options["cocos-play"].resourceURL&&(o.common||(o.common={}),o.common.server=o.options["cocos-play"].resourceURL,delete o.options["cocos-play"].resourceURL)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

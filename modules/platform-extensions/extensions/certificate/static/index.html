@@ -1,0 +1,120 @@
+<div id="certificate" class="certificate">
+    <main @confirm="onConfirm" @change="onChange">
+        <ui-prop tooltip="i18n:certificate.country_tip"
+            :class="!!verifyResult.country ? 'danger' : ''"
+            :message="!!verifyResult.country ? verifyResult.country : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.country"></ui-label>
+            <ui-input name="country" slot="content" placeholder="i18n:certificate.country_tip" :value="settings.country"></ui-input>
+        </ui-prop>
+        <ui-prop tooltip="i18n:certificate.state_tips"
+            :class="!!verifyResult.state ? 'danger' : ''"
+            :message="!!verifyResult.state ? verifyResult.state : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.state"></ui-label>
+            <ui-input name="state" slot="content" placeholder="i18n:certificate.state_tips" :value="settings.state"></ui-input>
+        </ui-prop>
+        <hr />
+
+        <ui-prop tooltip="i18n:certificate.locality_tips"
+            :class="!!verifyResult.locality ? 'danger' : ''"
+            :message="!!verifyResult.locality ? verifyResult.locality : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.locality"></ui-label>
+            <ui-input name="locality" slot="content" placeholder="i18n:certificate.locality_tips" :value="settings.locality"></ui-input>
+        </ui-prop>
+        <ui-prop tooltip="i18n:certificate.organization_tips"
+            :class="!!verifyResult.organization ? 'danger' : ''"
+            :message="!!verifyResult.organization ? verifyResult.organization : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.organization"></ui-label>
+            <ui-input name="organization" slot="content" placeholder="i18n:certificate.organization_tips" :value="settings.organization"></ui-input>
+        </ui-prop>
+        <ui-prop tooltip="i18n:certificate.organizationalUnit_tips"
+            :class="!!verifyResult.organizationalUnit ? 'danger' : ''"
+            :message="!!verifyResult.organizationalUnit ? verifyResult.organizationalUnit : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.organizationalUnit"></ui-label>
+            <ui-input
+                name="organizationalUnit"
+                slot="content"
+                placeholder="i18n:certificate.organizationalUnit_tips"
+                :value="settings.organizationalUnit"
+            ></ui-input>
+        </ui-prop>
+        <hr />
+
+        <ui-prop v-if="platform === 'android'" tooltip="i18n:certificate.key_validity_tips"
+            :class="!!verifyResult.validity ? 'danger' : ''"
+            :message="!!verifyResult.validity ? verifyResult.validity : ''"
+        >
+            <ui-label value="i18n:certificate.validity" slot="label"></ui-label>
+            <ui-num-input name="validity" slot="content" unit="天" step="1" min="1" placeholder="i18n:certificate.key_validity_tips" :value="settings.validity"></ui-num-input>
+        </ui-prop>
+        <ui-prop
+            :class="!!verifyResult.commonName ? 'danger' : ''"
+            :message="!!verifyResult.commonName ? verifyResult.commonName : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.commonName"></ui-label>
+            <ui-input name="commonName" slot="content" placeholder="i18n:certificate.commonName_tips" :value="settings.commonName"></ui-input>
+        </ui-prop>
+        <ui-prop
+            :class="!!verifyResult.email ? 'danger' : ''"
+            :message="!!verifyResult.email ? verifyResult.email : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.email"></ui-label>
+            <ui-input name="email" slot="content" placeholder="i18n:certificate.email_tips" :value="settings.email"></ui-input>
+        </ui-prop>
+        <ui-prop
+            :class="!!verifyResult.certificatePath ? 'danger' : ''"
+            :message="!!verifyResult.certificatePath ? verifyResult.certificatePath : ''"
+        >
+            <ui-label slot="label" value="i18n:certificate.certificatePath"></ui-label>
+            <ui-file name="certificatePath" slot="content" type="directory" placeholder="i18n:certificate.certificatePath_tips" :value="settings.certificatePath"></ui-file>
+        </ui-prop>
+
+        <section v-if="platform === 'android'">
+            <hr />
+            <ui-prop
+                :class="!!verifyResult.password ? 'danger' : ''"
+                :message="!!verifyResult.password ? verifyResult.password : ''"
+            >
+                <ui-label value="i18n:certificate.keystore_password" slot="label"></ui-label>
+                <ui-input name="password" password slot="content" placeholder="i18n:certificate.keystore_password" :value="settings.password"></ui-input>
+            </ui-prop>
+            <ui-prop
+                :class="!!verifyResult.confirmPassword ? 'danger' : ''"
+                :message="!!verifyResult.confirmPassword ? verifyResult.confirmPassword : ''"
+            >
+                <ui-label value="i18n:certificate.confirm_password" slot="label"></ui-label>
+                <ui-input name="confirmPassword" password slot="content" placeholder="i18n:certificate.confirm_password" :value="settings.confirmPassword"></ui-input>
+            </ui-prop>
+            <ui-prop
+                :class="!!verifyResult.alias ? 'danger' : ''"
+                :message="!!verifyResult.alias ? verifyResult.alias : ''"
+            >
+                <ui-label value="i18n:certificate.keystore_alias" slot="label"></ui-label>
+                <ui-input name="alias" slot="content" placeholder="i18n:certificate.keystore_alias" :value="settings.alias"></ui-input>
+            </ui-prop>
+            <ui-prop
+                :class="!!verifyResult.aliasPassword ? 'danger' : ''"
+                :message="!!verifyResult.aliasPassword ? verifyResult.aliasPassword : ''"
+            >
+                <ui-label value="i18n:certificate.keystore_alias_password" slot="label"></ui-label>
+                <ui-input name="aliasPassword" password slot="content" placeholder="i18n:certificate.keystore_alias_password" :value="settings.aliasPassword"></ui-input>
+            </ui-prop>
+            <ui-prop
+                :class="!!verifyResult.confirmAliasPassword ? 'danger' : ''"
+                :message="!!verifyResult.confirmAliasPassword ? verifyResult.confirmAliasPassword : ''"
+            >
+                <ui-label value="i18n:certificate.confirm_alias_password" slot="label"></ui-label>
+                <ui-input name="confirmAliasPassword" password slot="content" placeholder="i18n:certificate.confirm_alias_password" :value="settings.confirmAliasPassword"></ui-input>
+            </ui-prop>
+        </section>
+    </main>
+    <footer>
+        <ui-button class="green" :disabled="saveBtnDisabled" @confirm="onGenerate">
+            <ui-label value="i18n:certificate.generate"></ui-label>
+        </ui-button>
+    </footer>
+</div>

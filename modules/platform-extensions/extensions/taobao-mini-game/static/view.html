@@ -1,0 +1,18 @@
+<div class="taobao-mini-game"
+    @change="onChange($event)"
+>
+    <ui-prop>
+        <ui-label
+            slot="label"
+            value="i18n:taobao-mini-game.options.separate_engine"
+            :tooltip="isDebugMode ? 'i18n:taobao-mini-game.tips.separate_engine_with_debug' : isNormalVersion ? 'i18n:taobao-mini-game.options.separate_engine_tips' : 'i18n:taobao-mini-game.tips.separate_engine_only_in_normal_version'"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="separateEngine"
+                :value="pkgOptions.separateEngine"
+                :disabled="!isNormalVersion || isDebugMode"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+</div>

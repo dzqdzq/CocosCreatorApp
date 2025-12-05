@@ -1,0 +1,64 @@
+<div class="native">
+    <ui-prop tooltip="i18n:native.encrypt.disable_tips"
+        :class="{ 'encrypt-invalid': isDebugMode }"
+    >
+        <ui-label slot="label" value="i18n:native.encrypt.title"></ui-label>
+        <div slot="content">
+            <ui-checkbox
+                :value="pkgOptions.encrypted"
+                @change="updateValue($event,'encrypted')"
+            ></ui-checkbox>
+            <ui-prop v-if="pkgOptions.encrypted">
+                <ui-label slot="label" value="i18n:native.encrypt.encrypt_encrypt"></ui-label>
+                <div slot="content">
+                    <ui-input
+                        :value="pkgOptions.xxteaKey"
+                        @change="updateValue($event,'xxteaKey')"
+                    ></ui-input>
+                </div>
+            </ui-prop>
+            <ui-prop v-if="pkgOptions.encrypted">
+                <ui-label slot="label" value="i18n:native.encrypt.compress_zip"></ui-label>
+                <div slot="content">
+                    <ui-checkbox
+                        :value="pkgOptions.compressZip"
+                        @change="updateValue($event,'compressZip')"
+                    ></ui-checkbox>
+                </div>
+            </ui-prop>
+        </div>
+        <div slot="message"
+            v-if="isDebugMode && pkgOptions['encrypted']"
+        >
+            <ui-label value="i18n:native.encrypt.disable_tips"></ui-label>
+        </div>
+    </ui-prop>
+    <ui-prop>
+        <ui-label slot="label" value="i18n:native.options.native_engine"></ui-label>
+        <div slot="content" class="native-engine-content">
+            <div class="nativePath">
+                <ui-label
+                    v-if="nativeEngine === 'builtin'"
+                    value="i18n:native.options.builtin_engine"
+                ></ui-label>
+                <span v-else>{{nativeEngine}}</span>
+            </div>
+            <ui-icon value="edit" @click="onEditNativeEngine"></ui-icon>
+        </div>
+    </ui-prop>
+    <ui-prop>
+        <ui-label slot="label" value="i18n:native.options.JobSystem"></ui-label>
+        <div slot="content">
+            <ui-select :value="pkgOptions.JobSystem" @change="updateValue($event,'JobSystem')">
+                <option value="none">{{t('native.options.none')}}</option>
+                <option value="tbb">TBB</option>
+                <option value="taskFlow">TaskFlow</option>
+            </ui-select>
+            <ui-label
+                v-if="pkgOptions.JobSystem === 'taskFlow'"
+                class="tips"
+                :value="JobSystemTips"
+            ></ui-label>
+        </div>
+    </ui-prop>
+</div>
