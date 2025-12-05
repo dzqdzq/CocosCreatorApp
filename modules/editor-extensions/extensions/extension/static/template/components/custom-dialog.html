@@ -1,0 +1,47 @@
+<div id="dialog" class="custom-dialog" ref="dialog">
+    <div class="dialog-layout" v-if="detail">
+        <div class="header">
+            插件安装
+        </div>
+        <div class="main">
+            <div class="message">
+                “{{detail.name}}”插件安装完成。该插件有以下的依赖插件，是否继续安装？
+            </div>
+            <div class="list">
+                <div class="item" :class="{'item': true, 'disable': item.disable}"
+                    v-for="(item, index) of detail.dependencies" :key="item.name">
+                    <div class="checked-box">
+                        <ui-icon value="checkbox-some" v-if="!item.checked" @click="select(index)"></ui-icon>
+                        <ui-icon value="checkbox-checked" v-else @click="select(index)"></ui-icon>
+                    </div>
+                    <div class="content">
+                        <div class="text">
+                            <div class="title">
+                                {{item.name}}
+                            </div>
+                            <div class="desc">
+                                {{item.desc}}
+                            </div>
+                        </div>
+                        <div v-if="item.disable" class="buy">去购买</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="left">
+                <div class="checked-box">
+                    <ui-icon value="checkbox-some" v-if="!allChecked" @click="selectAll"></ui-icon>
+                    <ui-icon value="checkbox-checked" v-else @click="selectAll"></ui-icon>
+                </div>
+                <div class="tip">
+                    应用全部
+                </div>
+            </div>
+            <div class="right">
+                <ui-button type="default" @click="cancel">取消</ui-button>
+                <ui-button type="primary" @click="confirm">安装</ui-button>
+            </div>
+        </div>
+    </div>
+</div>

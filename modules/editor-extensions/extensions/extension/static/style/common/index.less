@@ -1,0 +1,44 @@
+// 常用、通用的样式组合、变量
+/** 图标型按钮颜色 */
+@extensions-icon-button-color: #a3a3a3;
+/** 文字型按钮颜色 */
+@extensions-font-button-color: #a3a3a3;
+/** 文字颜色 */
+@extensions-font-color: #cccccc;
+/** 文字颜色-暗 常用于tips、desc */
+@extensions-font-color-dark: #8f8f8f;
+@extensions-font-color-primary: #40aaca;
+
+@extensions-background-color: #2b2b2b;
+@extensions-background-color-dark: #141414;
+
+/** 文字型按钮的样式 */
+.extensions-font-button {
+    // color: @extensions-font-button-color;
+    padding: 0 2px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+/** 单行/多行文本，小字号 */
+.extensions-font-style-small {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.extensions-font-style {
+}
+
+// 报错内容
+.extensions-text-style-error {
+    .extensions-font-style-small();
+    color: @extensions-font-color-dark;
+}
+
+.extensions-text-empty-line {
+    width: 8px;
+    height: 1px;
+    background-color: @extensions-font-color-dark;
+}

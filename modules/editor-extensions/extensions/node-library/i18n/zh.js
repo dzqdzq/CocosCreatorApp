@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"节点预制库",description:"节点预制库",ImageSmallerThen5mb:"图片需小于 5mb",menu:{builtin:"内置",custom:"自定义",cloud:"云组件",rename:"重命名",locate:"定位到资源",delete:"删除",changeIcon:"替换图标"},groups:{renderer:"渲染节点",ui:"UI 节点",custom:" 您可以拖动预制件资源到这里成为项目自定义节点"},tips:{customNodeExist:"自定义预制节点名称已存在",notEmpty:"自定义预制节点名称不能为空"}};

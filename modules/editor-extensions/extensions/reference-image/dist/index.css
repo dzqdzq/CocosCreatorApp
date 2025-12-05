@@ -1,0 +1,46 @@
+.reference-image > .content {
+  flex: 1;
+  padding: 8px;
+  overflow: auto;
+}
+.reference-image > .content > .btn-layout {
+  display: flex;
+}
+.reference-image > .content > .btn-layout .label {
+  display: inline-table;
+  margin-right: 7px;
+  min-width: 60px;
+}
+.reference-image > .content > .btn-layout > .item-content {
+  display: flex;
+  width: 100%;
+}
+.reference-image > .content > .btn-layout > .item-content > .images {
+  width: 100%;
+  margin-right: 8px;
+}
+.reference-image > .content > .btn-layout > .item-content > .del-image {
+  width: 100%;
+}
+.reference-image > .content > .btn-layout > .item-content > .add-image {
+  width: 100%;
+  margin-right: 4px;
+}
+.reference-image .v-group {
+  display: flex;
+}
+.reference-image .v-group > ui-label {
+  display: inline-table;
+  min-width: 60px;
+}
+.reference-image .m-h-10 {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  height: 2px;
+}
+.reference-image .m-w-8 {
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 2px;
+  height: 2px;
+}

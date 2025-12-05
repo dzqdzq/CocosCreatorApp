@@ -1,0 +1,79 @@
+<div class="content">
+
+    <header>
+        <ui-input></ui-input>
+    </header>
+
+    <section>
+
+        <div class="slider">
+            <ul>
+                <li
+                    v-for="item in map"
+                    :active="message === item"
+                    @click="message = item"
+                >{{item.name}}</li>
+            </ul>
+        </div>
+
+        <div class="list">
+            <div class="conditions">
+                <ui-tab value="0"
+                    @confirm="broadcast = $event.target.value == 1"
+                >
+                    <ui-button>Message</ui-button>
+                    <ui-button>Broadcast</ui-button>
+                </ui-tab>
+            </div>
+
+            <!-- 普通 -->
+            <div class="block">
+                <header>
+                    <div class="row">
+                        <div class="info">
+                            <div class="message">Message</div>
+                            <div class="description">Description</div>
+                        </div>
+                    </div>
+                </header>
+        
+                <section
+                    v-if="message"
+                >
+                    <div class="row"
+                        v-for="info,name in message.messages"
+                        v-if="checkShowFlag(name, info)"
+                    >
+                        <div class="background"></div>
+                        <!-- 基础信息 -->
+                        <div class="info">
+                            <ui-icon value="arrow-triangle"
+                                :param="info.doc"
+                                :fold="info.fold"
+                                @click="info.fold = !info.fold"
+                            ></ui-icon>
+                            <div class="message">{{name}}</div>
+                            <div class="description">
+                                <ui-label
+                                    v-if="info.description"
+                                    :value="info.description"
+                                ></ui-label>
+                                <ui-label value="None"
+                                    v-else
+                                ></ui-label>
+                            </div>
+                        </div>
+    
+                        <!-- 展开后显示的参数信息 -->
+                        <div class="doc"
+                            v-if="info.doc && !info.fold"
+                        >
+                            <ui-markdown>{{info.doc}}</ui-markdown>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+</div>

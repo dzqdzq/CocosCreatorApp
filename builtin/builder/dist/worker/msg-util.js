@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Message=void 0;class MessageHandle{send(e,...s){Worker.Ipc.send(e,...s)}on(e,s){Worker.Ipc.on(e,async(e,...a)=>{e.reply(null,await s(...a))})}}exports.Message=new MessageHandle;

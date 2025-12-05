@@ -1,0 +1,72 @@
+<div class="wrap ui-drag-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-drag-item additional='[{"type":"type-a", "value":"value of type-a"}]'>type-a</ui-drag-item>
+                <ui-drag-item type="type-b" value="value of type-b">type-b</ui-drag-item>
+            </div>
+            <ui-code language="html">
+                &lt;ui-drag-item additional='[{"type":"type-a", "value":"type-a"}]'&gt;type-a&lt;/ui-drag-item&gt;
+                &lt;ui-drag-item type="type-b" value="value of type-b"'&gt;type-b&lt;/ui-drag-item&gt;
+            </ui-code>
+        </div>
+        
+        <div class="row">
+            <div class="mb-10">
+                <ui-drag-object droppable="type-a"></ui-drag-object>
+            </div>
+            <div class="mb-10">
+                <ui-drag-object droppable="type-b"></ui-drag-object>
+            </div>
+            <ui-code language="html">
+                &lt;ui-drag-object droppable="type-a"&gt;&lt;/ui-drag-object&gt;
+                &lt;ui-drag-object droppable="type-b"&gt;&lt;/ui-drag-object&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid value</h2>
+            <ui-drag-object droppable="type-a" invalid value="xxx"></ui-drag-object>
+            <ui-code language="html">
+                &lt;ui-drag-object droppable="type-a" invalid value="xxx"&gt;&lt;/ui-drag-object&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-drag-object droppable="type-a" readonly></ui-drag-object>
+            <ui-code language="html">
+                &lt;ui-drag-object droppable="type-a" readonly&gt;&lt;/ui-drag-object&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-drag-object droppable="type-a" disabled></ui-drag-object>
+            <ui-code language="html">
+                &lt;ui-drag-object droppable="type-a" disabled&gt;&lt;/ui-drag-object&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+          
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>attributes</h2>
+            <ui-code language="typescript">
+                droppable = ''; // type, not support multiple types
+                value = ''; // value, single，not support multiple
+                disabled;
+                readonly;
+                invalid;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>events</h2>
+            <ui-code language="typescript">
+                'change'
+                'confirm' // general case use this event
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

@@ -1,0 +1,52 @@
+<div class="pkg-list">
+    <main
+        ref="main"
+        class="content"
+        @scroll="scrollToBottom($event)"
+    >
+        <pkg-node
+            class="pkg-list-item"
+            v-for="(pkg, index) in list"
+            :key="`${index}__${pkg.name}`"
+            :choosed="choosed === pkg.name"
+            :pkg="pkg"
+            :label="label"
+            @choose="choose"
+            @toggle-enable="toggleEnable"
+            @update-package="updatePackage"
+            @remove-package="removePackage"
+            @uninstall-package="uninstallPackage"
+        ></pkg-node>
+        <div
+            ref="loading"
+            class="loading"
+            v-show="loading && list.length !== 0"
+        >
+            <ui-loading></ui-loading>
+        </div>
+    </main>
+    <div
+        class="extenstions-empty"
+        v-show="loading && list.length === 0"
+    >
+        <ui-loading></ui-loading>
+    </div>
+    <div
+        class="extenstions-empty"
+        v-show="isNoData && !errorMessage"
+    >
+        <ui-label value="i18n:extension.manager.not_data"></ui-label>
+    </div>
+    <div
+        class="extenstions-empty error"
+        v-show="errorMessage"
+    >
+        <ui-label :value="errorMessage"></ui-label>
+        <ui-button
+            outline
+            @click.stop="refresh"
+        >
+            <ui-label value="i18n:extension.manager.refresh"></ui-label>
+        </ui-button>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.props=exports.template=void 0,exports.template='\n<div class="mask">\n    <div class="content">\n        <slot></slot>\n    </div>\n</div>\n',exports.props=["name"];

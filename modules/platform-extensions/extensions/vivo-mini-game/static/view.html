@@ -1,0 +1,44 @@
+<div class="vivo-mini-game">
+    <ui-prop @change="onChange">
+        <ui-label slot="label" value="i18n:vivo-mini-game.options.use_debug_keystore"></ui-label>
+        <div slot="content">
+            <ui-checkbox :value="pkgOptions.useDebugKey" path="useDebugKey"></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop
+        class="no-wrap"
+        :class="verifyRes.certificatePemPath ? 'danger' : ''"
+        :message="verifyRes.certificatePemPath"
+    >
+        <ui-label slot="label" value="i18n:vivo-mini-game.options.certificate_pem_path"></ui-label>
+        <div slot="content">
+            <ui-file
+                path="certificatePemPath"
+                :value="pkgOptions.certificatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes && verifyRes.certificatePemPath"
+                @change.stop="onChange"
+            ></ui-file>
+            <ui-button class="new-certificate"
+                @confirm.stop="onNewCertificate"
+                :disabled="pkgOptions.useDebugKey"
+            >
+                <ui-label value="i18n:vivo-mini-game.options.new"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop>
+
+    <ui-prop :class="verifyRes.privatePemPath ? 'danger' : ''" :message="verifyRes.privatePemPath">
+        <ui-label slot="label" value="i18n:vivo-mini-game.options.private_pem_path"></ui-label>
+        <div slot="content">
+            <ui-file
+                path="privatePemPath"
+                :value="pkgOptions.privatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes.privatePemPath"
+                @change.stop="onChange"
+            ></ui-file>
+        </div>
+    </ui-prop>
+</div>

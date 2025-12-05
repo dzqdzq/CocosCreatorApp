@@ -1,0 +1,26 @@
+{
+    "name": "information",
+    "title": "information",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "main": "./dist/browser/index",
+
+    "contributions": {
+        "messages": {
+            "query-information": {
+                "methods": ["queryInformation"]
+            },
+            "information-dialog": {
+                "methods": ["informationDialog"]
+            },
+            "has-dialog": {
+                "methods": ["hasDialog"]
+            },
+            "close-dialog": {
+                "methods": ["closeDialog"]
+            }
+        }
+    }
+}

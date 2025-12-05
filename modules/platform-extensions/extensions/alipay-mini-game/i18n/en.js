@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Alipay Mini Game",options:{orientation:"Orientation",portrait:"Portrait",landscape:"Landscape",start_scene_asset_bundle:"Start Scene Asset Bundle",start_scene_asset_bundle_tooltip:"Pack all the assets that the start scene depends on into an asset bundle called 'start-scene'."}};

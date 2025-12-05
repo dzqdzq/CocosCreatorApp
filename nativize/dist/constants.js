@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.NativizeConstants=void 0,exports.NativizeConstants={Type:{error:"error",newWindow:"newWindow"},Error:{paramsError:"paramsError"}};

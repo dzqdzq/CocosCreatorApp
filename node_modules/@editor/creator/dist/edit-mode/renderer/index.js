@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getMode=exports.enter=void 0;const ipc=require("@base/electron-base-ipc");function enter(e){return ipc.sendSync("editor-lib-edit-mode:call","enter",[e])}function getMode(){return ipc.sendSync("editor-lib-edit-mode:call","getMode",[])}exports.enter=enter,exports.getMode=getMode;

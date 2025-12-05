@@ -1,0 +1,7 @@
+<div :class="classStyle" @mousedown.right.stop="showContextMenu">
+    <ui-icon
+        :value="trackInfo.menuInfo.icon"
+        :style="{color: trackInfo.menuInfo.color}"
+    ></ui-icon>
+    <ui-label :value="trackInfo.menuInfo && trackInfo.menuInfo.trackLabel || trackInfo.name"></ui-label>
+</div>
