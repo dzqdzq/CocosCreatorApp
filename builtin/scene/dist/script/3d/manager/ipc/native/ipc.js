@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class IPC{async send(e,...t){return await nativeIpc.sendToScene(e,...t)}async request(e,...t){return await nativeIpc.requestToScene(e,...t)}broadcast(e,...t){nativeIpc.broadcast(e,...t)}startup(){}}const ipc=new IPC;exports.default=ipc;

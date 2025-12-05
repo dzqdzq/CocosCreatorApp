@@ -1,0 +1,10 @@
+<section class="phone">
+    <div class="title">
+        <ui-label value="i18n:runtime-dev-tools.phone_list"></ui-label>
+    </div>
+    <div class="list">
+        <div v-for="item in list" :selected="isSelect(item)" @click="phoneClick(item)">
+            {{getPhoneName(item)}}
+        </div>
+    </div>
+</section>

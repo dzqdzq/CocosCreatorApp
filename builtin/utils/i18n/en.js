@@ -1,0 +1,1 @@
+"use strict";exports.info={package_dir_info_title:"About plug-in migration",package_dir_info_detail:"plug-in directory is migrated to ‘extensions’ from the ‘packages’. If necessary, copy the plugin to a new directory."};

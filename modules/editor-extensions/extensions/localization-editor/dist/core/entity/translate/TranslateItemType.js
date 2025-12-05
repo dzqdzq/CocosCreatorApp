@@ -1,0 +1,1 @@
+"use strict";var TranslateItemType;Object.defineProperty(exports,"__esModule",{value:!0}),function(e){e[e.Script=0]="Script",e[e.Media=1]="Media",e[e.Text=2]="Text",e[e.Font=3]="Font",e[e.External=4]="External"}(TranslateItemType||(TranslateItemType={})),exports.default=TranslateItemType;

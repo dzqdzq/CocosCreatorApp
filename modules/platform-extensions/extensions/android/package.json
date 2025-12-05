@@ -1,0 +1,16 @@
+{
+    "name": "android",
+    "title": "i18n:android.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Android platform plugin",
+    "main": "./dist/browser/index",
+    "migrations": [{
+        "version": "1.0.1",
+        "profile": "./dist/migrations/1.0.1.js"
+    }],
+    "contributions": {
+        "builder": "./dist/builder/index.js"
+    }
+}

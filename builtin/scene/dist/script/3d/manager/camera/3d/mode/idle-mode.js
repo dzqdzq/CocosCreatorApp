@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.IdleMode=void 0;const mode_base_1=require("./mode-base"),utils_1=require("../../utils");class IdleMode extends mode_base_1.ModeBase{async enter(){this._cameraCtrl.emit("camera-move-mode",utils_1.CameraMoveMode.IDLE)}async exit(){}}exports.IdleMode=IdleMode;

@@ -1,0 +1,44 @@
+
+.reference-image {
+    > .content {
+        flex: 1;
+        padding: 8px;
+        overflow: auto;
+
+        > .btn-layout {
+            display: flex;
+
+            & > .item-content {
+                display: flex;
+
+                > .images {
+                    width: 100%;
+                    margin-right: 8px;
+                }
+
+                > .del-image {
+                    width: 100px;
+                }
+
+                > .add-image {
+                    width: 100px;
+                    margin-right: 4px;
+                }
+            }
+        }
+
+        & > .item,
+        & > .config > .item {
+            display: flex;
+            margin-bottom: 4px;
+
+            ui-label {
+                width: 150px;
+            }
+
+            .item-content {
+                flex: 1;
+            }
+        }
+    }
+}

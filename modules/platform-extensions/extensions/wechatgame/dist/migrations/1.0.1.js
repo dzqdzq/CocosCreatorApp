@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(e){if(!e.options||!e.options.wechatgame)return;const o=e.options.wechatgame;(await Editor.Profile.getProject("engine","modules.includeModules")).includes("physics-ammo")?o.wasm="wasm":o.wasm="js"}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

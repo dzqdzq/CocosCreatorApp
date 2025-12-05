@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Message manager",default:{title:"Message Manager"},debug:{title:"Message DevTools"}};

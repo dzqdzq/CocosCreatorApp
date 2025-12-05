@@ -1,0 +1,209 @@
+.joint-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > header {
+        padding: 10px 26px;
+        border-bottom: 1px solid var(--color-normal-border);
+    }
+}
+
+.joint {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+
+    > .slider {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        border-right: 1px solid var(--color-normal-border);
+        padding: 4px 0 4px 8px;
+
+        > header {
+            overflow-x: hidden;
+            overflow-y: scroll;
+
+            > .layout {
+                display: flex;
+                padding: 4px;
+                margin: 4px 0 4px 4px;
+                cursor: pointer;
+                border-radius: 4px;
+
+                &[active] {
+                    background-color: var(--color-focus-fill);
+                }
+
+                .name {
+                    flex: 1;
+                }
+
+                .btn {
+                    padding: 0 4px;
+
+                    &:hover {
+                        > ui-icon {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--color-hover-fill-weakest);
+                }
+            }
+        }
+
+        > footer {
+            width: 100%;
+            padding: 4px;
+            position: sticky;
+            bottom: 0;
+            background: var(--color-normal-fill);
+            box-sizing: border-box;
+
+            > ui-button {
+                width: 90%;
+            }
+        }
+    }
+
+    > .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 10px 0 10px;
+
+        > header {
+            padding: 2px 10px;
+            border-bottom: 1px solid var(--color-normal-border);
+
+            > ui-icon {
+                color: var(--color-success-fill-normal);
+
+                &[warn] {
+                    color: var(--color-warn-fill-normal);
+                }
+
+                &[error] {
+                    color: var(--color-warn-fill-normal);
+                }
+            }
+        }
+
+        > section {
+            overflow: auto;
+
+            > div {
+                margin: 0 4px 1px 4px;
+
+                > header {
+                    cursor: pointer;
+                    padding: 0 8px;
+                    background: var(--color-active-fill);
+                    user-select: none;
+                    margin-top: 10px;
+
+                    .bone-title {
+                        margin-left: 4px;
+                    }
+
+                    > ui-icon {
+                        display: none;
+                        float: right;
+                    }
+
+                    &:hover {
+                        > ui-icon {
+                            display: block;
+                        }
+                    }
+
+                    .arrow {
+                        float: left;
+                        font-size: 0.8em;
+                        display: block;
+                    }
+
+                    .arrow-down {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                > section {
+                    padding: 6px 16px;
+                    display: none;
+                    margin: 0 1px;
+                    border: 1px dashed var(--color-active-border-weakest);
+                    border-top: none;
+
+                    > ui-prop {
+                        padding: 2px 0;
+
+                        > span {
+                            margin-top: 7px;
+                        }
+
+                        > div[slot='content'] {
+                            flex: 1;
+                            display: block;
+                            flex-direction: column;
+
+                            > header {
+                                margin: 7px;
+                            }
+
+                            > section,
+                            > footer {
+                                display: flex;
+                                flex: 1;
+
+                                > ui-asset,
+                                > ui-button {
+                                    flex: 1;
+                                    margin-top: 14px;
+                                }
+
+                                > ui-icon {
+                                    visibility: hidden;
+                                    box-sizing: border-box;
+                                    margin: 16px 0 0 8px;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            > section:hover {
+                                > ui-icon {
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &[active] {
+                    > section {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        > footer {
+            width: 100%;
+            padding: 4px;
+            position: sticky;
+            bottom: 0;
+            background: var(--color-normal-fill);
+            box-sizing: border-box;
+            text-align: center;
+
+            > ui-button {
+                width: 100%;
+                margin-top: 8px;
+            }
+        }
+    }
+}

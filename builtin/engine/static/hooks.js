@@ -1,0 +1,1 @@
+"use strict";exports.register=async function(e){const t=Editor.App.version.replace(/\./g,""),r=e.contributions.profile.editor;for(let e in r){const o=e.replace(/{{VERSION}}/,t);o!==e&&(r[o]=r[e],delete r[e])}const o=e.contributions.preferences.properties;for(let e in o){const r=e.replace(/{{VERSION}}/,t);r!==e&&(o[r]=o[e],delete o[e])}};

@@ -1,0 +1,80 @@
+<div id="info-panel" class="huawei-agc-info-panel">
+    <div v-if="loading" class="toast">
+        <ui-loading></ui-loading>
+    </div>
+    <div class="info">
+        <section class="platform-title">
+            <ui-label value="i18n:channel-upload-tools.platform_name"></ui-label>
+        </section>
+        <section class="login-area">
+            <ui-prop>
+                <ui-label slot="label" value="i18n:channel-upload-tools.login_type"></ui-label>
+                <div slot="content">
+                    <ui-select :value="config.loginType" @confirm="oauthTypeChange">
+                        <option v-for="item in loginType" :value="item.type">{{ item.name }}</option>
+                    </ui-select>
+                    <!-- <ui-button @click="oauthClick" v-if="showLoginBtn">
+                        <ui-label value="i18n:channel-upload-tools.huawei_login"></ui-label>
+                    </ui-button> -->
+                    <div class="login-tips" v-if="isLogin">
+                        <ui-label value="i18n:channel-upload-tools.already_login"></ui-label>
+                    </div>
+                    <ui-button slot="content" @click="logoutClick" class="ml5" v-if="isLogin">
+                        <ui-label value="i18n:channel-upload-tools.logout"></ui-label>
+                    </ui-button>
+                </div>
+            </ui-prop>
+            <ui-prop v-if="!oAuth">
+                <span class="required">*</span>
+                <ui-label slot="label" value="i18n:channel-upload-tools.client_id"></ui-label>
+                <div slot="content">
+                    <ui-input class="flex-1" :value="config.clientId" @confirm="onUpdateValue($event,'clientId')"></ui-input>
+                </div>
+            </ui-prop>
+            <ui-prop v-if="!oAuth">
+                <span class="required">*</span>
+                <ui-label slot="label" value="i18n:channel-upload-tools.client_secret"></ui-label>
+                <div slot="content">
+                    <ui-input class="flex-1" :value="config.clientSecret" @confirm="onUpdateValue($event,'clientSecret')"></ui-input>
+                </div>
+            </ui-prop>
+        </section>
+        <section class="info-area">
+            <ui-prop>
+                <span class="required">*</span>
+                <ui-label slot="label" value="i18n:channel-upload-tools.appid"></ui-label>
+                <div slot="content">
+                    <ui-input :value="config.appid" @confirm="onUpdateValue($event,'appid')"></ui-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <span class="required">*</span>
+                <ui-label slot="label" value="i18n:channel-upload-tools.version"></ui-label>
+                <div slot="content">
+                    <ui-input class="flex-1" :value="config.version" @confirm="onUpdateValue($event,'version')"></ui-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <span class="required">*</span>
+                <ui-label slot="label" value="i18n:channel-upload-tools.apk_path"></ui-label>
+                <div slot="content" class="flex-1 layout horizontal center">
+                    <ui-file class="flex-2" :value="config.apkPath" @confirm="onUpdateValue($event,'apkPath')"></ui-file>
+                </div>
+            </ui-prop>
+            <ui-prop class="description-prop">
+                <ui-label slot="label" value="i18n:channel-upload-tools.description"></ui-label>
+                <div slot="content">
+                    <ui-textarea class="flex-1" :value="config.description" @confirm="onUpdateValue($event,'description')"></ui-textarea>
+                </div>
+            </ui-prop>
+        </section>
+    </div>
+    <div class="btn-area">
+        <ui-button v-on:confirm="uploadClick">
+            <ui-label value="i18n:channel-upload-tools.upload_btn"></ui-label>
+        </ui-button>
+        <ui-button v-on:confirm="cancelClick" class="ml10">
+            <ui-label value="i18n:channel-upload-tools.cancel_btn"></ui-label>
+        </ui-button>
+    </div>
+</div>

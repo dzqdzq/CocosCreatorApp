@@ -1,0 +1,41 @@
+
+<div class="root">
+    <template v-if="embeddedPlayer">
+        <header v-if="typeInfo">
+            <ui-icon :style="{color: typeInfo.color}" :value="typeInfo.icon"></ui-icon>
+            <ui-label class="displayName" :value="typeInfo.label"></ui-label>
+        </header>
+        <div class="data">
+            <ui-prop>
+                <ui-label slot="label"
+                    value="i18n:animator.embeddedPlayer.reconciledSpeed"
+                    tooltip="i18n:animator.embeddedPlayer.reconciledSpeedTips"
+                ></ui-label>
+                <ui-checkbox slot="content" :value="embeddedPlayer.reconciledSpeed" @confirm="onReconciledSpeed($event.target.value)"></ui-checkbox>
+            </ui-prop>
+            <ui-prop class="node-path">
+                <ui-label slot="label" 
+                    value="i18n:animator.embeddedPlayer.nodePath"
+                    tooltip="i18n:animator.embeddedPlayer.nodePathTip"
+                ></ui-label>
+                <div slot="content">
+                    <ui-input class="node"
+                        placeholder="i18n:animator.embeddedPlayer.nodePathTip"
+                        :value="embeddedPlayer.playable && embeddedPlayer.playable.path"
+                        @confirm="onNodeConfirm($event.target.value)"
+                        @focus="onSelectNode"
+                    ></ui-input>
+                    <ui-icon value="select" @mousedown="onSelectNode"></ui-icon>
+                </div>
+                
+            </ui-prop>
+            <ui-prop class="clip-wrap" v-if="embeddedPlayer.playable && embeddedPlayer.playable.type === 'animation-clip'">
+                <ui-label slot="label" value="i18n:animator.embeddedPlayer.animationClip"></ui-label>
+                <ui-asset class="clip" droppable="cc.AnimationClip" slot="content"
+                    :value="embeddedPlayer.playable && embeddedPlayer.playable.clip || ''"
+                    @confirm="onAssetConfirm($event.target.value)"
+                ></ui-asset>
+            </ui-prop>
+        </div>
+    </template>
+</div>

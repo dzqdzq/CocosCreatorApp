@@ -1,0 +1,6 @@
+<div id="oauth" class="channel-oauth">
+    <div v-if="loading" class="toast">
+        <ui-loading></ui-loading>
+    </div>
+    <webview ref="webview" class="flex1" id="webview" @did-start-loading="startLoading($event)" @did-stop-loading="finishLoading($event)" :src="url"></webview>
+</div>

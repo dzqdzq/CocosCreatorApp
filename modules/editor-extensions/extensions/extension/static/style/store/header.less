@@ -1,0 +1,41 @@
+.store {
+    > header {
+        padding: 0 10px;
+        background: var(--color-normal-fill-weakest);
+        color: var(--color-normal-contrast-weakest);
+        height: 38px;
+
+        > .left {
+            transform: rotate(90deg);
+        }
+
+        > .right {
+            transform: rotate(-90deg);
+        }
+
+        > .more {
+            float: right;
+        }
+
+        > ui-button {
+            padding: 4px 15px;
+            margin: 3px 2px;
+            font-size: 14px;            
+            color: var(--color-normal-contrast-weakest);
+            vertical-align: middle;
+            border-color: transparent;
+
+            &:hover{
+                background-color: var(--color-normal-contrast-normal);
+                color: var(--color-normal-fill-normal);
+            }
+        }
+            
+        > ui-icon {
+            padding: 0 4px;
+            margin: 7px 2px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+}

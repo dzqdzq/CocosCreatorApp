@@ -1,0 +1,316 @@
+.toolbar {
+    z-index: 1;
+
+    .default-toolbar {
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 100%;
+        display: flex;
+        padding: 0 8px;
+        line-height: 24px;
+        background-color: transparent;
+        margin-top: 8px;
+        z-index: 2;
+
+        > .left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            margin-right: 8px;
+        }
+
+        > .right {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.game-view-toolbar {
+    height: 20px;
+    display: flex;
+    background-color: var(--color-normal-fill);
+    border-bottom: 1px solid var(--color-normal-border);
+    padding: 4px 0;
+
+    > .left {
+        flex: 1;
+        display: flex;
+        line-height: 20px;
+
+        .item {
+            display: flex;
+            flex-wrap: nowrap;
+            padding: 0 8px;
+            border-right: 1px solid var(--color-normal-fill-weaker);
+            align-items: center;
+        }
+
+        .stats {
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 2px;
+            padding: 0 4px;
+            line-height: 20px;
+
+            > ui-label {
+                pointer-events: none;
+            }
+        }
+
+        .stats:hover {
+            background-color: var(---color-hover-fill-weaker);
+        }
+
+        .stats[selected] {
+            background-color: var(--color-info-fill-important);
+        }
+
+        .fps {
+            line-height: 20px;
+
+            > ui-num-input {
+                width: 44px;
+                height: 20px;
+                margin-left: 8px;
+            }
+        }
+    }
+
+    > .right {
+        display: flex;
+        align-items: center;
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+            line-height: 20px;
+
+            ui-select {
+                width: 145px;
+                margin-left: 8px;
+            }
+
+            .view-select-container {
+                user-select: none;
+                outline: none;
+                box-sizing: border-box;
+                font-size: inherit;
+                font-family: inherit;
+                border-radius: calc(var(--size-normal-radius) * 1px);
+                display: inline-flex;
+                position: relative;
+                contain: layout;
+                cursor: pointer;
+                border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+                background: var(--color-normal-fill-emphasis);
+                line-height: inherit;
+                width: 145px;
+                height: 20px;
+                margin-left: 8px;
+
+                .view-select {
+                    -webkit-appearance: none;
+                    cursor: pointer;
+                    display: flex;
+                    flex: 1;
+                    outline: 0;
+                    border: 0;
+                    padding-left: 6px;
+                    padding-right: 20px;
+                    border-radius: calc(var(--size-normal-radius) * 1px);
+                    text-decoration: none;
+                    text-overflow: ellipsis;
+                    background: var(--color-normal-fill-weaker);
+                    width: 100%;
+                    color: inherit;
+                    font-size: inherit;
+                    line-height: inherit;
+                    margin: calc(var(--size-normal-border) * -1px) 0;
+                    box-sizing: border-box;
+
+                    #placeholder {
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translate(-4px, -50%);
+                        padding: 0 2em 0 0.8em;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        pointer-events: none;
+                    }
+
+                    .arrow-trangle {
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translate(-4px, -50%);
+                        font-size: 12px;
+                        pointer-events: none;
+                        outline: none;
+                    }
+
+                    .label {
+                        min-width: 0;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+
+                    &:hover {
+                        color: var(--color-focus-contrast-emphasis);
+                    }
+                }
+
+                .options {
+                    background-color: var(--color-normal-fill-emphasis);
+                    position: absolute;
+                    will-change: top, left;
+                    transform-origin: center top 0;
+                    top: 24px;
+                    left: -1px;
+                    max-height: 300px;
+                    max-width: 180px;
+                    overflow: auto;
+                    padding: 5px 0;
+                    box-sizing: border-box;
+                    border-radius: 2px;
+                    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+                    z-index: 99;
+
+                    ul {
+                        width: 100%;
+                        list-style: none;
+                        display: flex;
+                        flex-direction: column;
+
+                        & > li {
+                            margin: 0;
+                            padding-left: 8px;
+                            clear: both;
+                            font-size: inherit;
+                            list-style: none;
+                            cursor: pointer;
+                            transition: background 0.2s ease-in-out;
+                            height: 24px;
+                            line-height: 24px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            box-sizing: border-box;
+
+                            &:hover {
+                                background: var(--color-hover-fill);
+                            }
+                        }
+
+                        & > .selected {
+                            background-color: var(--color-focus-fill-emphasis);
+                        }
+
+                        & > .separator {
+                            font-size: 0;
+                            height: 1px;
+                            width: 100%;
+                            overflow: hidden;
+                            background-color: var(--color-default-border-weakest);
+                            pointer-events: none;
+                            margin: 4px 0;
+                        }
+
+                        .no_options {
+                            display: inline-block;
+                            min-width: 98px;
+                            pointer-events: none;
+                        }
+                    }
+                }
+            }
+
+            .view-select-container[focused] {
+                border-color: var(--color-focus-border);
+            }
+
+            .view-select-container[disabled] {
+                cursor: not-allowed;
+                opacity: 0.4;
+                pointer-events: none;
+            }
+
+            .view-select-container[readonly] {
+                pointer-events: none;
+            }
+
+            .view-select-container[hidden] {
+                display: none;
+            }
+
+            ui-button[selected] {
+                background-color: var(--color-focus-fill-emphasis);
+                color: var(--color-focus-contrast-emphasis);
+            }
+
+            &.scale {
+                width: 180px;
+
+                ui-slider {
+                    width: 80px;
+                    margin-left: 8px;
+                    margin-right: 8px;
+                }
+
+                .add {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    .rotate-wrap {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .track {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: top;
+        width: 80px;
+        cursor: pointer;
+
+        .wrapper {
+            width: 100%;
+            background: var(--color-normal-fill-emphasis);
+            height: 3px;
+            border-radius: 3px;
+            border-top: 1px solid var(--color-normal-fill-important);
+            border-bottom: 1px solid var(--color-normal-border-weaker);
+        }
+
+        .cursor {
+            position: absolute;
+
+            div {
+                background: var(--color-active-fill-important);
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                border: 2px solid var(--color-normal-contrast-important);
+                box-shadow: 0 0 2px 2px var(--color-normal-fill-important) inset;
+            }
+
+            &:hover {
+                div {
+                    border-color: var(--color-active-contrast);
+                }
+            }
+        }
+    }
+}

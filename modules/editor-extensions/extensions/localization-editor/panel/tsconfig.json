@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "rootDir": "../",
+        "outDir": "../panel-dist",
+        "types": ["vue","../src/virtual-modules","node","./@types","@editor/library-type"],
+        "typeRoots": ["./@types","../@types","../node_modules","../src"],
+        "lib":[
+            "ES2020",
+            "dom"
+        ],
+        "strict": true,
+        "moduleResolution": "node"
+    },
+    "include": ["./","../src","./**/*.vue"],
+}
+

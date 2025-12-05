@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};require("reflect-metadata");const tsyringe_1=require("tsyringe"),EventBusService_1=__importDefault(require("../core/service/util/EventBusService")),Content={eventBus:tsyringe_1.container.resolve(EventBusService_1.default)};module.exports=Content;

@@ -1,0 +1,42 @@
+<div class="console-panel">
+    <header class="header flex-center">
+        <!-- 清除的按钮 -->
+        <ui-button class="transparent" @click="onHeaderChange('clear')" tooltip="i18n:console.clearTip">
+            <ui-icon value="clear"></ui-icon>
+            <ui-label class="label" value="i18n:console.clear"></ui-label>
+        </ui-button>
+
+        <!-- 预览时清空 -->
+        <div class="extends" v-if="extendsList.length">
+            <div class="extends-item" v-for="item in extendsList" :key="item.label + item.name">
+                <ui-checkbox :value="item.value" @change="onClearChange(item, $event)">
+                    <ui-label class="label" :value="item.label"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+
+        <!-- 过滤条件 -->
+        <ui-input @change="onHeaderChange('filterText', $event)" placeholder="i18n:console.search" show-clear>
+            <ui-icon slot="prefix" value="search"></ui-icon>
+        </ui-input>
+
+        <!-- 是否启用正则 -->
+        <ui-checkbox :value="tabbar.filterRegex" @change="onHeaderChange('filterRegex', $event)">
+            <ui-label class="label" value="i18n:console.tabbar.regex"></ui-label>
+        </ui-checkbox>
+
+        <!-- 筛选种类 -->
+        <ui-select :value="tabbar.filterType" @change="onHeaderChange('filterType', $event)">
+            <option value="all">All</option>
+            <option value="log">Log</option>
+            <option value="warn">Warn</option>
+            <option value="error">Error</option>
+        </ui-select>
+
+        <!-- 打开日志 -->
+        <ui-button class="transparent" @click="onHeaderChange('openLog')" tooltip="i18n:console.openTip">
+            <ui-icon value="log"></ui-icon>
+        </ui-button>
+    </header>
+    <console-list ref="list" :font-size="tabbar.fontSize" :line-height="tabbar.lineHeight"></console-list>
+</div>

@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.fillUserData=exports.setDefaultUserData=void 0;const defaultMeta={};function setDefaultUserData(e,t){defaultMeta[e]=t}function fillUserData(e,t){const a=defaultMeta[e];if(a)for(let e in a)e in t||(t[e]=a[e])}exports.setDefaultUserData=setDefaultUserData,exports.fillUserData=fillUserData;

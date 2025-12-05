@@ -1,0 +1,1 @@
+"use strict";exports.migrateProject=async function(e){e.fbx||(e.fbx={}),e.fbx.legacyFbxImporter||(e.fbx.legacyFbxImporter={}),e.fbx.legacyFbxImporter.visible=!0};

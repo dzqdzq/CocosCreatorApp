@@ -1,0 +1,64 @@
+<div class="group-item">
+    <div
+        class="group-tab"
+    >
+    <div
+        class="group-header"
+        v-for="(group, groupName) in compressInfo.configGroups"
+        :key="groupName"
+        :active="groupName === currentPlatform"
+        :tooltip="group.displayName"
+        @click="currentPlatform = groupName"
+    >
+        <ui-icon :value="group.icon"></ui-icon>
+        <ui-label :value="group.displayName"></ui-label>
+    </div>
+
+    </div>
+<div class="formats">
+    <div v-if="displayFormatInfo && Object.keys(displayFormatInfo).length">
+        <ui-prop class="format-item"
+            v-for="(formatInfo, format) in displayFormatInfo"
+            :key="format"
+        >
+            <div class="format-name" slot="label">
+                <ui-label
+                    :value="formatInfo.displayName"
+                ></ui-label>
+                <span class="custom" v-if="formatInfo.custom">
+                    (<ui-label value="custom" tooltip="i18n:builder.project.texture_compress.customFormat.title"></ui-label>)
+                </span>
+                <span class="custom" v-if="formatInfo.overwritedInfo">
+                    (<ui-label tooltip="i18n:builder.project.texture_compress.customFormat.title"
+                        :value="formatInfo.overwritedInfo.displayName"
+                    ></ui-label>)
+                </span>
+            </div>
+            <div slot="content" class="quality flex-spacing-between child-margin-right">
+                <ui-label class="custom missing" v-if="formatInfo.missing" value="missing"></ui-label>
+                <template v-if="formatInfo.formatType">
+                    <template
+                        v-for="(config, name) in formatInfo.options"
+                    >
+                        <build-prop
+                            v-if="config.render || config.itemConfigs"
+                            :key="name"
+                            :path="name"
+                            :config="config"
+                            :value="formatInfo.value[name]"
+                            @update="onChangeQuality(arguments[0], arguments[1], format)"
+                        ></build-prop>
+                    </template>
+                </template>
+                <ui-icon v-if="!disabled" class="operate" value="del" color="true" @click.stop="removeFormat(currentPlatform, format)"></ui-icon>
+            </div>
+        </ui-prop>
+    </div>
+    <div class="empty-content" v-else>
+        ( <ui-label value="i18n:builder.project.texture_compress.empty"></ui-label> )
+    </div>
+    <ui-button v-if="!disabled" @confirm="addFormat($event, currentPlatform)">
+        <ui-label value="i18n:builder.project.texture_compress.addFormat"></ui-label>
+    </ui-button>
+</div>
+</div>
