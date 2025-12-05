@@ -1,0 +1,1 @@
+let e,r,i=require("path"),t=require("fs"),o=!1;module.exports={gatherInfo(i){e=i.mainRpk,o=""!==i.customConfig.tinyPackageServer,r=i.buildPath},async organizeResources(){},pack(){if(!0===o)return;let a=i.join(r,"remote");t.existsSync(a)&&e.directory(a,"remote")},packFinished(){}};

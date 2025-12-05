@@ -1,0 +1,1 @@
+require("path"),require("fs");let e,r=!1;module.exports={gatherInfo(a){r=""!==a.customConfig.tinyPackageServer,e=a.buildPath},async organizeResources(){},pack(){},packFinished(){}};
