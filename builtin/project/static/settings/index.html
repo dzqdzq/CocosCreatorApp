@@ -1,0 +1,56 @@
+<div class="settings">
+    <!-- 左侧列表 -->
+    <div class="slider">
+
+        <!-- 左侧分类 -->
+        <ul>
+            <template
+                v-for="item,label in data"
+            >
+                <li>
+                    <!-- 每个功能的名字 -->
+                    <ui-label
+                        :value="item.title"
+                    ></ui-label>
+
+                    <ul>
+                        <!-- 功能里注册的选项卡 -->
+                        <li
+                            v-for="subItem,key in item.tabs"
+                            :active="tab === label && subTab === key"
+                            @click="changeTab(label, key)"
+                            :title="t(subItem.label)"
+                        >
+                            <ui-label
+                                :value="subItem.label"
+                            ></ui-label>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+        </ul>
+
+    </div>
+
+    <!-- 右侧详细设置 -->
+    <div class="content">
+        <!-- 自动渲染 -->
+        <ui-setting type="project"
+            v-if="data[tab] && data[tab].tabs[subTab] && data[tab].tabs[subTab].content"
+            :package="tab"
+        >
+            <ui-prop type="ui"
+                v-for="config,path in data[tab].tabs[subTab].content"
+                :key="path"
+                :label="config.label"
+                :render="getRenderText(config.render, path)"
+                :tooltip="config.description"
+            ></ui-prop>
+        </ui-setting>
+
+        <ui-panel
+            v-if="data[tab] && data[tab].tabs[subTab] && data[tab].tabs[subTab].custom"
+            :src="data[tab].tabs[subTab].custom"
+        ></ui-panel>
+    </div>
+</div>

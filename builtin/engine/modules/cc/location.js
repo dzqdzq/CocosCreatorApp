@@ -1,0 +1,1 @@
+const ps=require("path");let location;module.exports={get:()=>location,set:o=>{location=ps.join(o,"bin",".cache","dev","editor")},setDistribution(o){location=o}};

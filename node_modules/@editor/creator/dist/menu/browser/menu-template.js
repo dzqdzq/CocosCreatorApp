@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.query=exports.unregister=exports.register=void 0;const templateMap={};function register(e,t){templateMap[e]=t}function unregister(e){delete templateMap[e]}function query(e){return templateMap[e]}exports.register=register,exports.unregister=unregister,exports.query=query;

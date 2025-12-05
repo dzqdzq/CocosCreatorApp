@@ -1,0 +1,35 @@
+<div class="compress-presets">
+    <config-toolbar
+        :mode="mode"
+        @update="onToolBarChange"
+    ></config-toolbar>
+    <div class="config-wrap" ref="wrap" v-if="initialized">
+        <compress-config
+            v-for="(config, name) in defaultConfig"
+            v-show="mode !== 'search' || name.includes(newConfigName)"
+            :key="name"
+            :compress-info="compressConfig"
+            :overwrite-formats="overwriteFormats"
+            :config="config.options"
+            :disabled="true"
+            :name="name + ' (builtin)'"
+            :id="name"
+        >
+        </compress-config>
+        <compress-config
+            v-for="(config, id) in displayConfigs"
+            v-if="config"
+            :key="id"
+            :compress-info="compressConfig"
+            :overwrite-formats="overwriteFormats"
+            :config="config.options"
+            :name="config.name"
+            :id="id" 
+            @add="onAddFormat"
+            @remove="onRemoveFormat"
+            @change="onChangeFormatName"
+            @update="onUpdateFormatQuality"
+        >
+        </compress-config>
+    </div>
+</div>

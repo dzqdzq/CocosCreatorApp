@@ -1,0 +1,344 @@
+{
+    "asset": {},
+    "materials": [
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "3dsMax": {
+                                "value": {
+                                    "ClassIDa": {
+                                        "value": 2121471519
+                                    },
+                                    "ClassIDb": {
+                                        "value": 1660373836
+                                    },
+                                    "ORIGINAL_MTL": {
+                                        "value": "PHYSICAL_MTL"
+                                    },
+                                    "Parameters": {
+                                        "value": {
+                                            "aniso_angle_map_on": {
+                                                "value": true
+                                            },
+                                            "aniso_channel": {
+                                                "value": 0
+                                            },
+                                            "aniso_mode": {
+                                                "value": 0
+                                            },
+                                            "anisoangle": {
+                                                "value": 0.0
+                                            },
+                                            "anisotropy": {
+                                                "value": 0.0
+                                            },
+                                            "anisotropy_map_on": {
+                                                "value": true
+                                            },
+                                            "base_color": {
+                                                "value": [
+                                                    0.5,
+                                                    0.5,
+                                                    0.5,
+                                                    1.0
+                                                ]
+                                            },
+                                            "base_color_map_on": {
+                                                "value": true
+                                            },
+                                            "base_weight": {
+                                                "value": 1.0
+                                            },
+                                            "base_weight_map_on": {
+                                                "value": true
+                                            },
+                                            "brdf_curve": {
+                                                "value": 5.0
+                                            },
+                                            "brdf_high": {
+                                                "value": 1.0
+                                            },
+                                            "brdf_low": {
+                                                "value": 0.05000000074505806
+                                            },
+                                            "brdf_mode": {
+                                                "value": true
+                                            },
+                                            "coat_affect_color": {
+                                                "value": 0.5
+                                            },
+                                            "coat_affect_roughness": {
+                                                "value": 0.5
+                                            },
+                                            "coat_color": {
+                                                "value": [
+                                                    1.0,
+                                                    1.0,
+                                                    1.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "coat_color_map_on": {
+                                                "value": true
+                                            },
+                                            "coat_ior": {
+                                                "value": 1.5199999809265137
+                                            },
+                                            "coat_map_on": {
+                                                "value": true
+                                            },
+                                            "coat_rough_map_on": {
+                                                "value": true
+                                            },
+                                            "coat_roughness": {
+                                                "value": 0.0
+                                            },
+                                            "coat_roughness_inv": {
+                                                "value": false
+                                            },
+                                            "coating": {
+                                                "value": 0.0
+                                            },
+                                            "cutout_map_on": {
+                                                "value": true
+                                            },
+                                            "diff_rough_map_on": {
+                                                "value": true
+                                            },
+                                            "diff_roughness": {
+                                                "value": 0.0
+                                            },
+                                            "displacement_map_amt": {
+                                                "value": 1.0
+                                            },
+                                            "displacement_map_on": {
+                                                "value": true
+                                            },
+                                            "emission": {
+                                                "value": 1.0
+                                            },
+                                            "emission_map_on": {
+                                                "value": true
+                                            },
+                                            "emit_color": {
+                                                "value": [
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "emit_color_map_on": {
+                                                "value": true
+                                            },
+                                            "emit_kelvin": {
+                                                "value": 6500.0
+                                            },
+                                            "emit_luminance": {
+                                                "value": 1500.0
+                                            },
+                                            "material_mode": {
+                                                "value": 0
+                                            },
+                                            "metalness": {
+                                                "value": 0.0
+                                            },
+                                            "metalness_map_on": {
+                                                "value": true
+                                            },
+                                            "refl_color": {
+                                                "value": [
+                                                    1.0,
+                                                    1.0,
+                                                    1.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "refl_color_map_on": {
+                                                "value": true
+                                            },
+                                            "reflectivity": {
+                                                "value": 1.0
+                                            },
+                                            "reflectivity_map_on": {
+                                                "value": true
+                                            },
+                                            "roughness": {
+                                                "value": 0.0
+                                            },
+                                            "roughness_inv": {
+                                                "value": false
+                                            },
+                                            "roughness_map_on": {
+                                                "value": true
+                                            },
+                                            "scattering": {
+                                                "value": 0.0
+                                            },
+                                            "scattering_map_on": {
+                                                "value": true
+                                            },
+                                            "sss_color": {
+                                                "value": [
+                                                    1.0,
+                                                    1.0,
+                                                    1.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "sss_color_map_on": {
+                                                "value": true
+                                            },
+                                            "sss_depth": {
+                                                "value": 10.0
+                                            },
+                                            "sss_scale": {
+                                                "value": 1.0
+                                            },
+                                            "sss_scale_map_on": {
+                                                "value": true
+                                            },
+                                            "sss_scatter_color": {
+                                                "value": [
+                                                    100.0,
+                                                    50.0,
+                                                    25.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "thin_walled": {
+                                                "value": false
+                                            },
+                                            "trans_color": {
+                                                "value": [
+                                                    1.0,
+                                                    1.0,
+                                                    1.0,
+                                                    1.0
+                                                ]
+                                            },
+                                            "trans_color_map_on": {
+                                                "value": true
+                                            },
+                                            "trans_depth": {
+                                                "value": 0.0
+                                            },
+                                            "trans_ior": {
+                                                "value": 1.5199999809265137
+                                            },
+                                            "trans_ior_map_on": {
+                                                "value": true
+                                            },
+                                            "trans_rough_map_on": {
+                                                "value": true
+                                            },
+                                            "trans_roughness": {
+                                                "value": 0.0
+                                            },
+                                            "trans_roughness_inv": {
+                                                "value": false
+                                            },
+                                            "trans_roughness_lock": {
+                                                "value": true
+                                            },
+                                            "transparency": {
+                                                "value": 0.0
+                                            },
+                                            "transparency_map_on": {
+                                                "value": true
+                                            }
+                                        }
+                                    },
+                                    "SuperClassID": {
+                                        "value": 3072
+                                    }
+                                }
+                            },
+                            "AmbientColor": {
+                                "value": [
+                                    0.5,
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            "DiffuseColor": {
+                                "value": [
+                                    0.5,
+                                    0.5,
+                                    0.5
+                                ]
+                            },
+                            "EmissiveColor": {
+                                "value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            },
+                            "EmissiveFactor": {
+                                "value": 0.0
+                            },
+                            "MultiLayer": {
+                                "value": false
+                            },
+                            "ShadingModel": {
+                                "value": "unknown"
+                            },
+                            "ShininessExponent": {
+                                "value": 1024.0
+                            },
+                            "SpecularColor": {
+                                "value": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ]
+                            },
+                            "SpecularFactor": {
+                                "value": 2.0
+                            },
+                            "TransparencyFactor": {
+                                "value": 0.0
+                            }
+                        }
+                    }
+                }
+            },
+            "name": "Material #26"
+        }
+    ],
+    "extras": {
+        "FBX-glTF-conv": {
+            "animationFrameRate": 30.0,
+            "fbxFileHeaderInfo": {
+                "creationTimeStamp": {
+                    "day": 10,
+                    "hour": 17,
+                    "millisecond": 78,
+                    "minute": 46,
+                    "month": 4,
+                    "second": 46,
+                    "year": 2022
+                },
+                "creator": "FBX SDK/FBX Plugins version 2020.1.1",
+                "sceneInfo": {
+                    "author": "",
+                    "comment": "",
+                    "keywords": "",
+                    "original": {
+                        "applicationName": "3ds Max",
+                        "applicationVendor": "Autodesk",
+                        "applicationVersion": "2022",
+                        "fileName": "E:\\Cocos\\Max\\export\\maxPhysicalMaterial.fbx"
+                    },
+                    "revision": "",
+                    "subject": "",
+                    "title": "",
+                    "url": "maxPhysicalMaterial.fbx"
+                }
+            }
+        }
+    }
+}

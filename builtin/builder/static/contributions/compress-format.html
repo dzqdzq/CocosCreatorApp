@@ -1,0 +1,23 @@
+<section class="compress-format">
+    <config-toolbar
+        :mode="mode"
+        @update="onToolBarChange"
+    ></config-toolbar>
+    <div class="config-wrap" ref="wrap" v-if="customConfigs && displayConfigs && Object.keys(displayConfigs).length">
+        <custom-config
+            v-for="config in displayConfigs"
+            :key="config.id"
+            :formats-info="compressConfig && compressConfig.formatsInfo"
+            :config="config"
+            :overwrite-formats="overwriteFormats"
+            :custom-configs="customConfigs"
+            @update="onConfigChange"
+            @remove="onRemoveFormat"
+        ></custom-config>
+    </div>
+    <div class="config-wrap" v-else>
+        <div class="empty-content">
+            <ui-label value="i18n:builder.project.texture_compress.empty"></ui-label>
+        </div>
+    </div>
+</section>

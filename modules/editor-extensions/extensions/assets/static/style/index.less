@@ -1,0 +1,214 @@
+:host {
+    position: relative;
+    display: flex;
+
+    > .assets {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    // .loading 不止在content上有使用，在 .tree-node 的状态变化上也有使用
+    .loading {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+
+        &.center {
+            margin: auto;
+        }
+
+        ui-loading {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: calc(var(--size-large-font) * 1px);
+            height: calc(var(--size-large-font) * 1px);
+        }
+    }
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    padding: calc(var(--size-normal-font) * 0.15px);
+    overflow: hidden;
+    font-size: calc(var(--size-normal-font) * 1px);
+    background-color: var(--color-normal-fill);
+    border-bottom: solid 1px var(--color-normal-border);
+    white-space: nowrap;
+
+    .icon {
+        position: relative;
+        display: inline-block;
+        margin: 0 0 0 2px;
+        border-radius: 2px;
+        cursor: pointer;
+        height: 20px;
+        padding: 0 4px;
+        line-height: 20px;
+        transition: all 0.2s ease;
+        overflow: hidden;
+
+        &[type] {
+            color: var(--color-hover-contrast-normal);
+        }
+    }
+
+    > ui-input {
+        flex: 1;
+        margin: 0 4px;
+        font-size: calc(var(--size-normal-font) * 1px);
+    }
+
+    .search-type {
+        padding: 0 3px 0 0;
+    }
+
+    .icon-triangle {
+        position: absolute;
+        bottom: 0;
+        right: -1px;
+        font-size: 8px;
+        line-height: 12px;
+    }
+
+    .sort-type {
+        margin: 0;
+        padding: 0 2px 0 0;
+
+        &::after {
+            position: absolute;
+            left: 0;
+            top: -7px;
+            z-index: 1;
+            color: var(--color-danger-fill);
+            font-family: sans-serif;
+            transform: scale(0.7);
+            font-size: 12px;
+        }
+
+        &[type='type']::after {
+            content: 'T';
+        }
+    }
+}
+
+.search-tip {
+    padding: 2px 0;
+    line-height: 12px;
+    background-color: var(--color-normal-fill-emphasis);
+    border-bottom: solid 1px var(--color-normal-border);
+
+    > .condition {
+        display: flex;
+        flex: 1;
+        padding: 2px 7px;
+
+        &:hover {
+            background-color: var(--color-hover-fill-emphasis);
+        }
+
+        > .item {
+            display: flex;
+            flex: 1;
+            font-size: 11px;
+            overflow: hidden;
+
+            .name {
+                display: flex;
+                min-width: 38px;
+            }
+
+            .value {
+                flex: 1;
+                color: var(--color-hover-contrast-normal);
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        > .cancel {
+            cursor: pointer;
+        }
+    }
+
+    > .cancel {
+        float: right;
+        opacity: 0.8;
+        font-size: 11px;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.content {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    background-color: var(--color-normal-fill-emphasis);
+
+    .scroll-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 2px;
+        height: 0;
+    }
+
+    .drop-box {
+        display: none;
+        position: absolute;
+        top: -4px; // 初始不显示
+        z-index: 2;
+        pointer-events: none;
+        width: 100%;
+        box-sizing: border-box;
+        border: 2px solid var(--color-focus-fill-weaker);
+        transition: opacity 0.3s ease-in-out, top 0.3s ease-in-out, height 0.3s ease-in-out;
+    }
+}
+
+.refreshing {
+    position: absolute;
+    opacity: 0;
+    bottom: -30px;
+    right: 5px;
+    z-index: 10;
+    height: 20px;
+    max-width: 96%;
+    box-sizing: border-box;
+    line-height: 20px;
+    padding: 0 10px;
+    border-radius: 3px;
+    background-color: var(--color-primary-fill-emphasis);
+    color: var(--color-primary-contrast-weakest);
+    pointer-events: none;
+    transition: opacity 0.3s, bottom 0.3s;
+    direction: rtl;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: keep-all;
+
+    &.fadeIn {
+        opacity: 1;
+        bottom: 5px;
+    }
+}
+
+@import './tree';

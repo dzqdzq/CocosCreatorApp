@@ -1,0 +1,10 @@
+{
+    "name": "ios-app-clip",
+    "title": "i18n:ios-app-clip.title",
+
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "description": "iOS App Clip platform plugin"
+}

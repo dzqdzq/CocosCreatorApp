@@ -1,0 +1,36 @@
+{
+    "name": "creator-runtime-extensions",
+    "version": "1.0.0",
+    "author": "Cocos Creator",
+    "description": "Runtime platform plugin",
+    "private": true,
+    "scripts": {
+        "build": "node ./scripts/build.js",
+        "clear": "node ./scripts/clear.js"
+    },
+    "dependencies": {
+        "@editor/library-type": "^3.5.0-031418"
+    },
+    "devDependencies": {
+        "@cocos/build-engine": "4.2.21-beta.11",
+        "@editor/build": "^1.0.4",
+        "@types/ejs": "^3.0.5",
+        "@types/fs-extra": "^5.0.4",
+        "@types/node": "^10.5.2",
+        "adbkit": "^2.11.1",
+        "ejs": "^3.1.5",
+        "fix-path": "^2.1.0",
+        "fs-extra": "^9.0.1",
+        "globby": "^8.0.2",
+        "iconv-lite": "^0.6.3",
+        "jszip": "^3.5.0",
+        "less": "^3.9.0",
+        "lodash": "^4.17.21",
+        "qrcode": "^1.4.4",
+        "request": "^2.88.2",
+        "request-progress": "^3.0.0",
+        "typescript": "^4.0.0",
+        "workflow-admin": "^0.1.8",
+        "xxtea-node": "^1.1.4"
+    }
+}

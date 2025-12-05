@@ -1,0 +1,1 @@
+"use strict";const electron=require("electron"),{join:join}=require("path");require(join(__dirname,"../../../require")),window.Editor=electron.remote.getGlobal("Editor");

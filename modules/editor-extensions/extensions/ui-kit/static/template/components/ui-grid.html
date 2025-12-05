@@ -1,0 +1,32 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Default</h2>
+            <ui-grid style="width: 500px; height: 400px;"
+                @change="addEvents('change')"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 500px; height: 400px;" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+            <div>events: {{events.toString()}}</div>
+        </div>
+        <div class="row">
+            <h2>Only Show X</h2>
+            <ui-grid style="width: 400px; height: 200px;"
+                :config="showXConfig"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 400px; height: 200px;" :config="showXConfig" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <h2>Only Show Y</h2>
+            <ui-grid style="width: 400px; height: 200px;"
+                :config="showYConfig"
+            ></ui-grid>
+            <ui-code language="html">
+                &lt;ui-grid style="width: 400px; height: 200px;" :config="showYConfig" &gt;&lt;/ui-grid&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

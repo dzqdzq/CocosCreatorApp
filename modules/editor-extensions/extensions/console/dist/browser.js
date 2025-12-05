@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.methods={async open(e){await Editor.Panel.has("console")?(Editor.Panel.focus("console"),Editor.Message.send("console","refresh")):Editor.Panel.open("console",e)},async"refresh-panel"(){await Editor.Panel.has("console")&&Editor.Message.send("console","refresh")}};
