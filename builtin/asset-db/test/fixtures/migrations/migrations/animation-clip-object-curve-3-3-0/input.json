@@ -1,0 +1,44 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 1,
+    "wrapMode": 1,
+    "events": [],
+    "enableTrsBlending": false,
+    "_duration": 0,
+    "_keys": [
+      [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          "textures"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [{
+            "__uuid__": "abcd-efg"
+          }, {
+            "foo": "bar"
+          }, {
+            "__id__": 1
+          }, null]
+        }
+      }
+    ],
+    "_hash": 0
+  },
+  {
+    "baz": "baz-p"
+  }
+]

@@ -1,0 +1,87 @@
+.icon span[normal] {
+  color: var(--color-normal-contrast);
+}
+.icon span[color].icon-buffer,
+.icon span[color].icon-erp-texture-cube,
+.icon span[color].icon-scene {
+  color: #f0ad4e;
+}
+.icon span[color].icon-curve,
+.icon span[color].icon-tiled-map,
+.icon span[color].icon-effect,
+.icon span[color].icon-javascript {
+  color: #ec7063;
+}
+.icon span[color].icon-material,
+.icon span[color].icon-fbx,
+.icon span[color].icon-sprite-atlas,
+.icon span[color].icon-render-stage,
+.icon span[color].icon-label-atlas,
+.icon span[color].icon-folder,
+.icon span[color].icon-zip,
+.icon span[color].icon-list,
+.icon span[color].icon-chunk,
+.icon span[color].icon-gltf-skeleton,
+.icon span[color].icon-robot,
+.icon span[color].icon-word,
+.icon span[color].icon-music,
+.icon span[color].icon-video,
+.icon span[color].icon-experiment,
+.icon span[color].icon-typescript {
+  color: #3498db;
+}
+.icon span[color].icon-database,
+.icon span[color].icon-json,
+.icon span[color].icon-star,
+.icon span[color].icon-warn,
+.icon span[color].icon-warn-triangle,
+.icon span[color].icon-home,
+.icon span[color].icon-code,
+.icon span[color].icon-gltf-scene,
+.icon span[color].icon-particle {
+  color: #fbd461;
+}
+.icon span[color].icon-render-pipeline,
+.icon span[color].icon-svg,
+.icon span[color].icon-font,
+.icon span[color].icon-del,
+.icon span[color].icon-error,
+.icon span[color].icon-close,
+.icon span[color].icon-close-b,
+.icon span[color].icon-animation,
+.icon span[color].icon-marionette,
+.icon span[color].icon-code {
+  color: #ec7063;
+}
+.icon span[color].icon-gltf,
+.icon span[color].icon-gltf-scene,
+.icon span[color].icon-image,
+.icon span[color].icon-info,
+.icon span[color].icon-texture-cube,
+.icon span[color].icon-texture {
+  color: #51dcf6;
+}
+.icon span[color].icon-mesh,
+.icon span[color].icon-pipeline,
+.icon span[color].icon-bin {
+  color: #b693f9;
+}
+.icon span[color].icon-bitmap-font,
+.icon span[color].icon-render-flow,
+.icon span[color].icon-physics-material,
+.icon span[color].icon-auto-atlas {
+  color: #00bcd4;
+}
+.icon span[color].icon-prefab,
+.icon span[color].icon-check-b,
+.icon span[color].icon-question,
+.icon span[color].icon-check,
+.icon span[color].icon-android,
+.icon span[color].icon-terrain,
+.icon span[color].icon-success,
+.icon span[color].icon-excel {
+  color: #6dd66d;
+}
+.icon span[color].icon-file {
+  color: #f5f5f5;
+}

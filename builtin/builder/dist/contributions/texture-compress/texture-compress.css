@@ -1,0 +1,272 @@
+:host {
+  height: 100%;
+  overflow: hidden;
+}
+.texture-compress {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.texture-compress .flex-spacing-between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.texture-compress .flex-spacing-between > span:first-child {
+  flex: 1;
+  display: flex;
+}
+.texture-compress .flex-spacing-between > span:first-child > ui-input {
+  flex: 1;
+  line-height: 18px;
+  margin: 2px;
+  background: transparent;
+  border-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.texture-compress .flex-spacing-between > span:first-child > ui-input:hover,
+.texture-compress .flex-spacing-between > span:first-child > ui-input[focused] {
+  background: var(--color-normal-fill-emphasis);
+  border-color: var(--color-normal-border);
+}
+.texture-compress .flex-spacing-between ui-icon {
+  font-size: 10px;
+  margin-left: 6px;
+}
+.texture-compress .child-margin-right ui-prop {
+  width: 100%;
+  --left-width: auto;
+}
+.texture-compress .operate {
+  visibility: hidden;
+}
+.texture-compress .operate:hover {
+  cursor: pointer;
+}
+.texture-compress ui-section {
+  margin-top: 10px;
+}
+.texture-compress header {
+  margin-bottom: 10px;
+  height: 24px;
+}
+.texture-compress header .tab-item {
+  padding: 5px;
+  border-bottom: 2px solid transparent;
+}
+.texture-compress header .tab-item[active] {
+  border-bottom-color: var(--color-primary-fill-weaker);
+  color: var(--color-primary-contrast-weaker);
+}
+.texture-compress header .tab-item:hover {
+  color: var(--color-primary-contrast-weaker);
+  cursor: pointer;
+}
+.texture-compress > .content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  position: relative;
+}
+.texture-compress > .content > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.texture-compress .toolbar {
+  display: flex;
+  border-bottom: 1px solid;
+  position: absolute;
+  padding-bottom: 8px;
+  width: 100%;
+  top: 0;
+}
+.texture-compress .toolbar ui-prop {
+  flex: 1;
+  --left-width: auto;
+}
+.texture-compress .toolbar ui-prop > div {
+  display: flex;
+  position: relative;
+}
+.texture-compress .toolbar ui-prop > div ui-icon {
+  position: absolute;
+  left: 4px;
+}
+.texture-compress .toolbar ui-prop > div ui-icon[active] {
+  color: var(--color-primary-fill-weaker);
+}
+.texture-compress .toolbar ui-prop {
+  flex: 1;
+  --left-width: auto;
+}
+.texture-compress .toolbar ui-prop > div {
+  display: flex;
+  position: relative;
+}
+.texture-compress .toolbar ui-prop > div ui-icon {
+  position: absolute;
+  left: 4px;
+}
+.texture-compress .toolbar ui-input {
+  flex: 1;
+  padding-left: 24px;
+}
+.texture-compress .toolbar ui-button {
+  margin-left: 5px;
+}
+.texture-compress .config-wrap {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 36px;
+  height: 100%;
+  position: relative;
+}
+.texture-compress .config-header ui-icon[value='lock'] {
+  margin-left: 4px;
+}
+.texture-compress .config-header .child-margin-right {
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding-left: 6px;
+  width: 34px;
+  display: flex;
+  justify-content: space-around;
+}
+.texture-compress .config-header:hover .child-margin-right {
+  opacity: 1;
+}
+.compress-presets {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.group-tab {
+  display: flex;
+  border-bottom: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 5px 10px 5px 0;
+  border: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats {
+  padding: 6px 12px;
+}
+.group-item .formats .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+  width: 100%;
+  margin-top: 40px;
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  margin-bottom: 5px;
+  --left-width: 70%;
+}
+.group-item .formats .format-item .build-prop,
+.group-item .formats .format-item ui-prop {
+  width: 100%;
+}
+.group-item .formats .format-item .custom.missing {
+  font-style: italic;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: var(--color-warn-fill);
+}
+.group-item .formats .format-name .custom {
+  font-style: italic;
+  opacity: 0.6;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats > ui-prop {
+  --left-width: 67%;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}
+.compress-format header {
+  display: flex;
+}
+.compress-format header ui-input {
+  flex: 1;
+}
+.compress-format .empty-content {
+  position: absolute;
+  height: 30px;
+  margin: auto;
+}
+.compress-format .custom-format .config-content {
+  padding-top: 6px;
+}
+.compress-format .custom-format ui-prop.config-item > div {
+  display: flex;
+  flex: 1;
+}
+.compress-format .custom-format .mask {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.compress-format .custom-format ui-section > div > ui-prop {
+  margin-bottom: 6px;
+}
+.compress-format .custom-format ui-select {
+  display: flex;
+  flex: 1;
+}
+.compress-format .custom-format ui-input {
+  flex: 1;
+}

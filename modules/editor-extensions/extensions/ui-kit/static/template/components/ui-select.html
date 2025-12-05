@@ -1,0 +1,148 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-select placeholder="choose">
+                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                <option value="2">Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.</option>
+                <option value="3">Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.</option>
+                <option value="4">Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!</option>
+                <option value="5">Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!</option>
+            </ui-select>
+            <ui-code language="html">
+                &lt;ui-select placeholder="choose"&gt;
+                    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                    &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+                    &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+                    &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+                    &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+                &lt;/ui-select&gt;
+            </ui-code>
+        </div>
+
+        
+        <div class="row">
+            <h2>invalid</h2>
+            <ui-select value="1" invalid>
+                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+            </ui-select>
+    
+            <ui-code language="html">
+                &lt;ui-select value="1" invalid&gt;
+                    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                &lt;/ui-select&gt;
+            </ui-code>
+        </div>
+       
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-select value="1" readonly>
+                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+            </ui-select>
+    
+            <ui-code language="html">
+                &lt;ui-select value="1" readonly&gt;
+                    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                &lt;/ui-select&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-select value="1" disabled>
+                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+            </ui-select>
+    
+            <ui-code language="html">
+                &lt;ui-select value="1" disabled&gt;
+                    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                &lt;/ui-select&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <ui-select value="1" hidden>
+                <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+            </ui-select>
+    
+            <ui-code language="html">
+                &lt;ui-select value="1" hidden&gt;
+                    &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                &lt;/ui-select&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-select unit="px"
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                ></ui-select>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-select value="1"
+                        @change="onChange($event.target.value)"
+                        @change="onConfirm($event.target.value)"
+                    &gt;
+                        &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                        &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+                        &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+                        &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+                        &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+                    &lt;/ui-select&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    methods = {
+                        onChange(value: string) {
+                            console.log('onChange', value);
+                        },
+                        onConfirm(value: string) {
+                            console.log('onConfirm', value);
+                        },
+                    };
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-select id="ui-select" value="1"&gt;
+                        &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                        &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+                        &lt;option value="3"&gt;Quidem laudantium officiis eaque quas? Repudiandae iusto expedita ad totam.&lt;/option&gt;
+                        &lt;option value="4"&gt;Praesentium adipisci, sapiente distinctio ex unde tenetur doloremque mollitia iusto!&lt;/option&gt;
+                        &lt;option value="5"&gt;Debitis temporibus animi reiciendis officiis eaque. Similique eius odit illum!&lt;/option&gt;
+                    &lt;/ui-select&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-select');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

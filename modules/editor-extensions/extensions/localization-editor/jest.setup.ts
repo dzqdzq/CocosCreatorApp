@@ -1,0 +1,11 @@
+import 'reflect-metadata';
+import './src/core/container-registry';
+// import '@formatjs/intl-pluralrules';
+import '@formatjs/intl-numberformat';
+import 'intl-pluralrules';
+import '@formatjs/intl-datetimeformat';
+import '@formatjs/intl-relativetimeformat';
+import '@formatjs/intl-displaynames';
+import '@formatjs/intl-getcanonicallocales';
+import '@formatjs/intl-locale';
+import '@formatjs/intl-listformat';

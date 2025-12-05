@@ -1,0 +1,23 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "i18n-ally.localesPaths": ["extensions/"],
+    "i18n-ally.languageTagSystem": "legacy",
+    "i18n-ally.sourceLanguage": "zh",
+    "i18n-ally.displayLanguage": "en",
+    "i18n-ally.namespace": true,
+    "i18n-ally.pathMatcher": "{namespaces}/i18n/{locale}.{ext}",
+    "i18n-ally.annotationInPlace": false,
+    "i18n-ally.localeCountryMap": {
+        "CHINA": "zh",
+        "ENGLISH": "en"
+    },
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.regex.usageMatchAppend": ["[^\\w\\d]Editor.I18n.t\\(['\"`]({key})['\"`]", "['\"`]i18n:({key})['\"`]"],
+    "i18n-ally.translate.engines": ["deepl", "google-cn", "google"],
+    "i18n-ally.enabledParsers": ["js"],
+    "i18n-ally.editor.preferEditor": true
+}

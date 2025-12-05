@@ -1,0 +1,1 @@
+const ps=require("path");module.exports={tool:"win32"===process.platform?ps.join(__dirname,"bin","win32","FBX-glTF-conv.exe"):ps.join(__dirname,"bin","darwin","FBX-glTF-conv")};

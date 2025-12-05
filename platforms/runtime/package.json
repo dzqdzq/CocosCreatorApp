@@ -1,0 +1,24 @@
+{
+    "name": "creator-runtime-extensions",
+    "version": "1.0.0",
+    "author": "Cocos Creator",
+    "description": "Runtime platform plugin",
+    "scripts": {
+        "build": "node ./build.js"
+    },
+    "dependencies": {
+        "@cocos/build-engine": "4.2.19",
+        "ejs": "^3.1.5",
+        "fs-extra": "^9.0.1",
+        "jszip": "^3.5.0",
+        "vue": "^2.6.12"
+    },
+    "devDependencies": {
+        "less": "^3.9.0",
+        "typescript": "^4.0.0",
+        "@types/electron": "^1.6.10",
+        "@types/fs-extra": "^5.0.4",
+        "@types/node": "^10.5.2",
+        "@types/ejs": "^3.0.5"
+    }
+}

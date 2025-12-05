@@ -1,0 +1,150 @@
+.texture-compress {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.texture-compress .flex-spacing-between {
+  display: flex;
+  justify-content: space-between;
+}
+.texture-compress .flex-spacing-between > span:first-child {
+  flex: 1;
+  display: flex;
+}
+.texture-compress .flex-spacing-between > span:first-child > ui-input {
+  flex: 1;
+  line-height: 18px;
+  margin: 2px;
+  background: transparent;
+  border-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.texture-compress .flex-spacing-between > span:first-child > ui-input:hover,
+.texture-compress .flex-spacing-between > span:first-child > ui-input[focused] {
+  background: var(--color-normal-fill-emphasis);
+  border-color: var(--color-normal-border);
+}
+.texture-compress .flex-spacing-between ui-icon {
+  font-size: 10px;
+}
+.texture-compress .child-margin-right > * {
+  margin-right: 6px;
+  display: inherit;
+}
+.texture-compress .operate {
+  visibility: hidden;
+}
+.texture-compress .operate:hover {
+  cursor: pointer;
+}
+.texture-compress .toolbar {
+  display: flex;
+  border-bottom: 1px solid;
+  position: absolute;
+  padding-bottom: 8px;
+  width: 100%;
+}
+.texture-compress .toolbar ui-input {
+  flex: 1;
+}
+.texture-compress .toolbar ui-button {
+  margin-left: 5px;
+}
+.texture-compress .config-wrap {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-top: 34px;
+}
+.texture-compress .config-item {
+  margin-top: 10px;
+}
+.texture-compress .config-header ui-icon[value='lock'] {
+  margin-left: 4px;
+}
+.texture-compress .config-header .child-margin-right {
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding-left: 6px;
+  width: 34px;
+  display: flex;
+}
+.texture-compress .config-header:hover .child-margin-right {
+  opacity: 1;
+}
+.group-tab {
+  display: flex;
+  border-bottom: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 5px 10px 5px 0;
+  border: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats {
+  padding: 6px 12px;
+}
+.group-item .formats .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  margin-bottom: 2px;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats ui-prop {
+  --left-width: 67%;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}

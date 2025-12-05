@@ -1,0 +1,146 @@
+.task {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 8px;
+    border-radius: calc(var(--size-normal-radius) * 1px);
+    border: 1px solid var(--color-normal-fill-important);
+    background-color: var(--color-normal-fill-important);
+
+    .time {
+        color: #707070;
+    }
+
+    > .i-close {
+        display: none;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+    }
+
+    > header {
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+
+        > span {
+            margin-right: 6px;
+        }
+
+        .name {
+            font-size: 16px;
+        }
+
+        > ui-loading {
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    > section {
+        margin-bottom: 16px;
+        margin-top: 8px;
+        height: 32px;
+        line-height: 32px;
+
+        .build-process {
+            display: flex;
+            flex-direction: column;
+            ui-label {
+                line-height: 16px;
+            }
+            > ui-progress {
+                flex: 1;
+                // line-height: 18px;
+                // height: 18px;
+                border-radius: 4px;
+                opacity: 0.8;
+                line-height: 16px;
+            }
+        }
+
+        .build-log {
+            display: flex;
+
+            ui-label {
+                padding-left: 4px;
+                white-space: nowrap;
+            }
+        }
+
+
+        .build-log.success {
+            color: var(--color-success-fill);
+        }
+        .build-log.failure {
+            color: var(--color-danger-fill);
+        }
+
+        // ui-progress[state == 'progress'] {
+        //     --color-focus-fill : var(--color-focus-fill-weakest);
+        //     --color-normal-border : var(--color-focus-fill-weakest);
+        // }
+        // ui-progress[state == 'waiting'] {
+        //     --color-focus-fill : var(--color-normal-fill-weakest);
+        //     --color-normal-border : var(--color-normal-fill-weakest);
+        // }
+    }
+
+    > footer {
+        display: flex;
+        justify-content: space-between;
+
+        .right,
+        .left {
+            display: flex;
+        }
+        .right {
+            text-align: right;
+        }
+
+        .left {
+            max-width: 50%;
+            text-align: left;
+            flex: 1;
+            justify-content: flex-start;
+
+            .icon-button {
+                margin-right: 8px;
+            }
+        }
+
+        .right {
+            flex: 1;
+            max-width: 50%;
+            justify-content: flex-end;
+        }
+    }
+}
+
+.task[missing] {
+    background: rgba(251, 240, 111, 0.14);
+
+    header i {
+        color: #f1c64f;
+    }
+}
+
+.task[active] {
+    border-color: var(--color-normal-contrast);
+}
+
+.task:hover {
+    border-color: #3D3D3D;
+    .i-close {
+        display: inline-block;
+    }
+}
+
+.task[disabled] {
+    .i-close {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+}

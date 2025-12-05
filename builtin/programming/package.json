@@ -1,0 +1,47 @@
+{
+    "name": "programming",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:programming.description",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop/i18n:menu.cache",
+                "label": "i18n:programming.clear_code_cache",
+                "message": "clear-code-cache"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:programming.openDevtools",
+                "message": "open-dev-tools",
+                "group": "operation",
+                "order": 9
+            }
+        ],
+        "messages": {
+            "packer-driver/start": {
+                "methods": ["packer-driver/start"]
+            },
+            "packer-driver/get-loader-context": {
+                "methods": ["packer-driver/get-loader-context"]
+            },
+            "packer-driver/ready": {
+                "methods": ["packer-driver/ready"]
+            },
+            "query-shared-settings": {
+                "methods": ["query-shared-settings"]
+            },
+            "clear-code-cache": {
+                "methods": ["clear-code-cache"]
+            },
+            "open-dev-tools": {
+                "methods": ["open-dev-tools"]
+            },
+            "engine:engine-custom-macro-changed": {
+                "methods": ["custom-macro-changed"]
+            }
+        }
+    }
+}

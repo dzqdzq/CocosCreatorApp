@@ -1,0 +1,1 @@
+"use strict";var TranslateFileType;Object.defineProperty(exports,"__esModule",{value:!0}),exports.TranslateFileType=void 0,function(e){e[e.PO=0]="PO",e[e.CSV=1]="CSV",e[e.XLSX=2]="XLSX"}(TranslateFileType=exports.TranslateFileType||(exports.TranslateFileType={}));

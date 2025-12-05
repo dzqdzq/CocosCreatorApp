@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const engine_1=__importDefault(require("./native/engine")),engine_2=__importDefault(require("./web/engine")),engineStartup=isSceneNative?engine_1.default:engine_2.default;exports.default=engineStartup;

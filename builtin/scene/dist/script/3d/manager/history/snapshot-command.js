@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class SnapshotCommand{constructor(t,a){this.undoData=t,this.redoData=a}async undo(){await this.excute(this.undoData)}async redo(){await this.excute(this.redoData)}async excute(t){}}exports.default=SnapshotCommand;

@@ -1,0 +1,1 @@
+module.exports={importers:{sharpError:"Could not start sharp. If the project path contains special characters, remove the special characters and try again."}};

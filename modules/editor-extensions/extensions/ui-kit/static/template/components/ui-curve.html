@@ -1,0 +1,149 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value + config</h2>
+            <div>
+                <ui-curve :value="value" :config="config"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve :value="value" :config="config"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>normal</h2>
+            <ui-curve class="curve-item" v-for="(val, index) in testPresets"
+                :key="index"
+                :value="JSON.stringify(val)"
+                :index="index"
+                :config="config"
+                style="height: 40px; width: 100px;"
+            ></ui-curve>
+        </div>
+
+        <div class="row">
+            <h2>negativeConfig</h2>
+            <ui-curve class="curve-item" v-for="(val, index) in testPresets"
+                :key="index"
+                :value="JSON.stringify(val)"
+                :index="index"
+                :config="negativeConfig"
+                style="height: 40px; width: 100px;"
+            ></ui-curve>
+        </div>
+
+        <div class="row">
+            <h2>style="height: 30px;"</h2>
+            <div>
+                <ui-curve :value="value" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve :value="value" style="height: 30px;"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid data</h2>
+            <div>
+                <ui-curve value="test" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve  value="test" style="height: 30px;"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-curve disabled :config="config":value="value" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve disabled :config="config" :value="value" style="height: 30px;"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-curve readonly :config="config":value="value" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve readonly :config="config" :value="value" style="height: 30px;"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                config
+                value
+                disabled
+                readonly
+            </ui-code>
+            <ui-code language="typescript">
+                // value data example
+                {
+                    "preWrapMode": 0,
+                    "postWrapMode": 0,
+                    "keys": [
+                        {
+                            "outTangent": 1,
+                            "point": {
+                                "x": 0.2,
+                                "y": 0.4
+                            },
+                            "interpMode": 0,
+                            "tangentWeightMode": 0,
+                            "outTangentWeight": 1,
+                            "inTangentWeight": 1,
+                            "inTangent": 0
+                        },
+                        {
+                            "inTangent": 1,
+                            "outTangent": 1,
+                            "point": {
+                                "x": 0.8,
+                                "y": 0.8
+                            },
+                            "interpMode": 0,
+                            "tangentWeightMode": 0,
+                            "outTangentWeight": 1,
+                            "inTangentWeight": 1
+                        },
+                        {
+                            "inTangent": 0.5,
+                            "point": {
+                                "x": 1,
+                                "y": 0.5
+                            },
+                            "interpMode": 0,
+                            "tangentWeightMode": 0,
+                            "outTangentWeight": 1,
+                            "inTangentWeight": 1,
+                            "outTangent": 0
+                        }
+                    ],
+                    "color": "red"
+                }
+
+                // config data example
+                {
+                    "xRange": [
+                        0,
+                        1
+                    ],
+                    "yRange": [
+                        0,
+                        1
+                    ],
+                    "precision": 4,
+                    "showPreWrapMode": true,
+                    "showPostWrapMode": true,
+                    "type": "hermit"
+                }
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

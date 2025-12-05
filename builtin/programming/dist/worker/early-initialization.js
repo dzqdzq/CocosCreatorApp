@@ -1,0 +1,1 @@
+"use strict";globalThis.Editor=require("editor"),document.title="Programming DevTools";

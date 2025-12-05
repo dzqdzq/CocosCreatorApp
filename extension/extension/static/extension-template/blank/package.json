@@ -1,0 +1,10 @@
+{
+    "package_version": 2,
+    "version": "1.0.0",
+    "name": "blank",
+    "description": "i18n:{name}.description",
+    "main": "./dist/main.js",
+    "devDependencies": {
+        "@types/node": "^16.0.1"
+    }
+}

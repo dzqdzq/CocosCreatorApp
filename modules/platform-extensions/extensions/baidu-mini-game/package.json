@@ -1,0 +1,36 @@
+{
+    "name": "baidu-mini-game",
+    "title": "i18n:baidu-mini-game.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Baidu mini game platform plugin",
+    "main": "./dist/main.js",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        }
+    ],
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "contributions": {
+        "builder": "./dist/build.js",
+        "menu": [
+            {
+                "path": "i18n:menu.project/i18n:builder.create_user_template",
+                "label": "i18n:baidu-mini-game.title",
+                "message": "create-build-template",
+                "group": "build"
+            }
+        ],
+        "messages": {
+            "create-build-template": {
+                "methods": [
+                    "create-build-template"
+                ]
+            }
+        }
+    }
+}

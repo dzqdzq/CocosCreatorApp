@@ -1,0 +1,92 @@
+<section class="loading">
+    <ui-loading></ui-loading>
+</section>
+<div class="content">
+    <header class="toolbar" ref="toolbar">
+        <div class="default-toolbar" v-show="!gameViewData.showGameView">
+            <div class="left">
+                <template v-for="item in left">
+                    <plugin :option="item"></plugin>
+                </template>
+            </div>
+            <div class="right">
+                <template v-for="item in right">
+                    <plugin :option="item"></plugin>
+                </template>
+            </div>
+        </div>
+        <div class="game-view-toolbar" v-show="gameViewData.showGameView">
+            <div class="left">
+                <div class="item">
+                    <span class="stats" :selected="gameViewData.stats" @click="handleOnStats">
+                        <ui-label value="Stats"></ui-label>
+                    </span>
+                </div>
+                <div class="item fps">
+                    <ui-label value="FPS"></ui-label>
+                    <ui-num-input @change="handleOnFPS" step="1" min="1" :value="gameViewData.fps"></ui-num-input>
+                </div>
+            </div>
+            <div class="right">
+                <div class="item">
+                    <view-select tooltip="i18n:scene.camera_size.render_target_resolution"
+                        :options="devicesList"
+                        :value="gameViewData.devicesInfo.name"
+                        @change="handleOnDevice"
+                    >
+                    </view-select>
+                </div>
+                <div class="item">
+                    <ui-button class="rotate-wrap transparent" type="icon"
+                        @click="handleOnRotate"
+                        :selected="gameViewData.rotate"
+                    >
+                        <ui-icon value="rotate"></ui-icon>
+                    </ui-button>
+                </div>
+                <div class="item scale" ref="scale">
+                    <ui-button class="transparent" type="icon"
+                        @click="onReduceButtonClick"
+                    >
+                        <ui-icon value="reduce"></ui-icon>
+                    </ui-button>
+                    <ui-slider step="1" hide-num-input
+                        :value="gameViewData.sliderValue"
+                        @change="handleOnScale"
+                    ></ui-slider>
+                    <ui-button class="add transparent" type="icon"
+                        @click="onPlusButtonClick"
+                    >
+                        <ui-icon value="add"></ui-icon>
+                    </ui-button>
+                    <ui-label
+                        :value="gameViewData.scaleValue"
+                    ></ui-label>
+                    <ui-label value="%"></ui-label>
+                </div>
+                <div class="item">
+                    <ui-button class="fullscreen-wrap transparent" type="icon" tooltip="i18n:scene.game_view.full_screen_tips" 
+                        @click="handleOnFullScreen"
+                        :selected="gameViewData.fullScreen"
+                    >
+                        <ui-icon value="fullscreen"></ui-icon>
+                    </ui-button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <engine-view class="scene"></engine-view>
+    <section class="infobar">
+        <div class="left">
+            <template v-for="item in left">
+                <plugin :option="item"></plugin>
+            </template>
+        </div>
+        <div class="right">
+            <template v-for="item in right">
+                <plugin :option="item"></plugin>
+            </template>
+        </div>
+    </section>
+</div>
