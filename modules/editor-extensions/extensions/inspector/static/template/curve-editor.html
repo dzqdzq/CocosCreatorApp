@@ -1,0 +1,48 @@
+<div class="curve-editor">
+    <ui-label class="name" v-if="dump.name" :value="dump.name"></ui-label>
+    <div class="curve-config" @confirm="onWrapMode">
+        <div>preWrapMode</div>
+        <ui-select
+            :value="dump.preWrapMode"
+            name="preWrapMode"
+            slot="content"
+        >
+            <option value="0">Default</option>
+            <option value="1">Normal</option>
+            <option value="2">Loop</option>
+            <option value="22">PingPong</option>
+            <option value="8">Clamp</option>
+        </ui-select>
+        <div>postWrapMode</div>
+        <ui-select
+            :value="dump.postWrapMode"
+            name="postWrapMode"
+            slot="content"
+        >
+            <option value="0">Default</option>
+            <option value="1">Normal</option>
+            <option value="2">Loop</option>
+            <option value="22">PingPong</option>
+            <option value="8">Clamp</option>
+        </ui-select>
+    </div>
+    <ui-num-input v-if="showMulti" class="multiplier" :value="multiplier" @confirm="onMulti"></ui-num-input>
+    <div class="canvas-wrap" v-on:mousewheel="onMouseWheel">
+        <!-- 网格线/坐标轴层 -->
+        <canvas ref="gridCanvas" class="canvas"></canvas>
+        <!-- 曲线绘制层 -->
+        <canvas ref="mainCanvas" class="canvas"></canvas>
+        <!-- 控制辅助线层 -->
+        <canvas ref="controlCanvas" class="canvas"></canvas>
+    </div>
+    <!-- 工具栏 -->
+    <div class="toolbar" ref="tools" @click="onTools">
+    </div>
+    <!-- 预设菜单 -->
+    <div class="presets" v-if="showPresets">
+        <div class="header">Presets</div>
+        <div class="canvas-wrap" ref="presets">
+
+        </div>
+    </div>
+</div>

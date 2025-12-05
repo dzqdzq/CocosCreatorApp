@@ -1,0 +1,35 @@
+#certificate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  position: relative;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+#certificate main hr {
+  border-color: var(--color-default-border-normal);
+}
+#certificate footer ui-button {
+  float: right;
+}
+#certificate ui-prop > *[slot='content'] {
+  width: 100%;
+  flex-wrap: wrap;
+}
+#certificate ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#certificate ui-prop {
+  margin: 10px 0;
+}
+#certificate ui-prop > ui-num-input {
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+}

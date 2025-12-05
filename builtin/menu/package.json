@@ -1,0 +1,77 @@
+{
+    "name": "menu",
+    "title": "i18n:menu.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "main": "./dist/browser/index",
+
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:menu.cut",
+                "group": "edit",
+                "message": "cut",
+                "role": "cut"
+            },
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:menu.copy",
+                "group": "edit",
+                "message": "copy",
+                "role": "copy"
+            },
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:menu.paste",
+                "group": "edit",
+                "message": "paste",
+                "role": "paste"
+            },
+            {
+                "path": "i18n:menu.edit",
+                "label": "i18n:menu.select_all",
+                "group": "edit",
+                "message": "select-all",
+                "role": "selectAll"
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "cut",
+                "win": "ctrl+x",
+                "mac": "cmd+x"
+            },
+            {
+                "message": "copy",
+                "win": "ctrl+c",
+                "mac": "cmd+c"
+            },
+            {
+                "message": "paste",
+                "win": "ctrl+v",
+                "mac": "cmd+v"
+            },
+            {
+                "message": "select-all",
+                "win": "ctrl+a",
+                "mac": "cmd+a"
+            }
+        ],
+
+        "messages": {
+            "engine:engine-modules-config-changed": {
+                "methods": ["engineModuleChanged"]
+            },
+            "edit-mode:enter": {
+                "methods": ["modeChanged"]
+            },
+            "shortcuts:change": {
+                "methods": ["onShortcutChange"]
+            }
+        }
+    }
+}

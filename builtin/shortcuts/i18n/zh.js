@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"快捷键",tips:{reset:"恢复默认",click_to_set_shortcut:"点击设置快捷键",enter_to_set_shortcut:"按下按键设置快捷键",clear:"清除当前快捷键",is_apply:"当前快捷键数据已修改，是否保存？",conflict_keys:"重复快捷键",click_to_edit:"点击跳转编辑"},invalid_shortcut:{title:"无效快捷键",message:"当前快捷键无效，是否移除？",remove:"移除",cancel:"取消"}};

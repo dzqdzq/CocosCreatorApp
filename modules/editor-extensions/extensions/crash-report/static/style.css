@@ -1,0 +1,100 @@
+
+.crash-reporter {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+section {
+    display: flex;
+    height: calc(100% - 120px);
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+footer {
+    display: flex;
+    bottom: 16px;
+    height: 24px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.height20 {
+    height: 20px;
+}
+
+.height8 {
+    height: 8px;
+}
+
+.height16 {
+    height: 16px;
+}
+
+.width8 {
+    width: 8px;
+    height: 10px;
+}
+
+.title {
+    height: 24px;
+    font-size: 14px;
+    text-align: center;
+    color: #cccccc;
+}
+
+.issue-title {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.steps {
+    min-height: 26px;
+    max-height: 60px;
+}
+
+.report-tip {
+    font-size: 12px;
+    color: #a3a3a3;
+}
+
+.left-width {
+    --left-width: 100px;
+}
+
+.content-group {
+    overflow-y: auto;
+    box-sizing: content-box;
+    border-color: black;
+    background-color: rgb(20, 20, 20);
+    flex: 1;
+}
+
+.content {
+    padding: 8px;
+    height: 100%;
+}
+
+.confirm {
+    padding: 0 8px;
+    height: 24px;
+    border-radius: 4px;
+    line-height: 24px;
+}
+
+.btn-label {
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.cancel {
+    padding: 0 8px;
+    height: 24px;
+    border-radius: 4px;
+    line-height: 24px;
+    color: #cccccc;
+}
+

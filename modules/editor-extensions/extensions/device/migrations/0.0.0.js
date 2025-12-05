@@ -1,0 +1,1 @@
+"use strict";exports.migrateGlobal=function(e){delete e.enable,Editor.Profile.removeConfig("device","enable","global")},exports.migrateLocal=function(e){delete e.enable};

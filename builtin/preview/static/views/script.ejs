@@ -1,0 +1,53 @@
+<!-- v-console Support.(Optional) -->
+<% if(enableDebugger) { %>
+    <script src="/node_modules/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        window.VConsole && (window.vConsole = new VConsole());
+    </script>
+<% } %>
+
+<!-- Polyfills bundle. -->
+<script src="/scripting/polyfills/bundle.js"></script>
+
+<!-- Import map that map the engine feature unit modules. -->
+<script src="/scripting/engine/bin/.cache/dev/preview/import-map.json" type="systemjs-importmap"></script>
+
+<!-- Import map that map the entry of project module(s). -->
+<script src="<%=packImportMapURL%>" type="systemjs-importmap"></script>
+
+<!-- Import map that map 'cc', 'cc/env'. -->
+<script src="/scripting/import-map-global" type="systemjs-importmap"></script>
+
+<!-- SystemJS support. -->
+<script src="/scripting/systemjs/system.js"></script>
+
+<!-- Setup the detailed resolution. -->
+<script>
+    System.setResolutionDetailMapCallback(function() {
+        var url = new URL('<%=packResolutionDetailMapURL%>', window.location);
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            return { json, url: url.href };
+        });
+    });
+</script>
+
+<script src="/scripting/engine/bin/.cache/dev/preview/bundled/index.js"></script>
+
+<!-- Manifest file. -->
+<script name="setting" src="<%=settingsJs%>"></script>
+
+<script>
+    window.onload = function() {
+        System.import("/preview-app/index.js").then(function (mod) {
+            return mod.bootstrap({
+                engineBaseUrl: '/scripting/engine',
+                settings: window._CCSettings,
+                devices: <%-JSON.stringify(devices)%>,
+            });
+        }).catch(function(err) {
+            console.error(err);
+        });
+    };
+</script>

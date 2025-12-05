@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Windows",default_sdk_version:"Default SDK version: ",options:{render_back_end:"Render BackEnd",targetPlatform:"Target Platform"},tips:{at_least_one:"Please Choose At Least One"},make:{label:"Make"},run:{label:"Run"}};

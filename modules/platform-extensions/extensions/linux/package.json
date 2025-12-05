@@ -1,0 +1,13 @@
+{
+    "name": "linux",
+    "title": "i18n:linux.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "description": "Linux platform plugin",
+
+    "contributions": {
+        "builder": "./dist/builder/index.js"
+    }
+}

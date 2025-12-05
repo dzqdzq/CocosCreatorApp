@@ -1,0 +1,90 @@
+:host {
+  display: flex;
+}
+.settings {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  overflow: hidden;
+}
+.settings > .slider {
+  width: 160px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.settings > .slider::-webkit-scrollbar {
+  display: block;
+  border-left: 1px solid var(--color-normal-border-weaker);
+}
+.settings > .slider > header {
+  margin-top: 6px;
+  padding: 0 10px;
+  color: var(--color-normal-contrast-important);
+}
+.settings > .slider > ul > li {
+  padding-top: 10px;
+}
+.settings > .slider > ul > li > ui-label {
+  opacity: 0.5;
+  text-align: left;
+  margin-left: 16px;
+  font-size: calc(var(--size-little-font) * 1px);
+}
+.settings > .slider > ul > li > ul > li {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 8px 20px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.settings > .slider > ul > li > ul > li:hover,
+.settings > .slider > ul > li > ul > li[active] {
+  background-color: var(--color-active-fill-emphasis);
+  color: var(--color-active-contrast-emphasis);
+}
+.settings > .content {
+  flex: 1;
+  margin-left: 6px;
+  padding: 25px 25px 25px 10px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: auto;
+  position: relative;
+}
+.settings > .content > ui-setting {
+  outline: none;
+}
+.settings > .content > ui-setting > div {
+  display: flex;
+}
+.settings > .content > ui-setting > div > ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.settings > .content > ui-setting > div:hover ui-icon {
+  visibility: visible;
+}
+.settings > .content > ui-setting ui-prop {
+  --left-width: 40%;
+  flex: 1;
+  padding-left: 5px;
+  margin-bottom: 4px;
+}
+.settings > .content > ui-setting ui-prop > ui-file,
+.settings > .content > ui-setting ui-prop > ui-input,
+.settings > .content > ui-setting ui-prop > ui-num-input,
+.settings > .content > ui-setting ui-prop > ui-select {
+  flex: 1;
+}
+.settings > .content > ui-setting p {
+  margin-top: 0;
+}
+.settings > .content > .align-custom-panel {
+  margin-left: 16px;
+  padding-left: 5px;
+}

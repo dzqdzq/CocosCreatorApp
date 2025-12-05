@@ -1,0 +1,42 @@
+require('runtime-adapter/ral.js');
+require('runtime-adapter/web-adapter.js');
+
+<% if(polyfillsBundleFile) { %>
+// Polyfills bundle.
+require("<%= polyfillsBundleFile %>");
+<% } %>
+
+// SystemJS support.
+window.self = window;
+require("<%= systemJsBundleFile %>");
+
+const importMapJson = ral.getFileSystemManager().readFileSync("<%= importMapFile%>", 'utf8');
+const importMap = JSON.parse(importMapJson);
+System.warmup({
+    importMap,
+    importMapUrl: '<%= importMapFile%>',
+    defaultHandler: (urlNoSchema) => {
+        require('.' + urlNoSchema);
+    },
+    handlers: {
+    'plugin:' (urlNoSchema) {
+        console.log(`Loading plugin: ${urlNoSchema}`);
+        requirePlugin(urlNoSchema);
+      },
+    },
+});
+
+System.import('<%= applicationJs %>').then(({ Application }) => {
+    return new Application();
+}).then((application) => {
+    return onApplicationCreated(application);
+}).catch((err) => {
+    console.error(err);
+});
+
+function onApplicationCreated(application) {
+    return System.import('cc').then((cc) => {
+        require('runtime-adapter/engine-adapter.js');
+        return application.init(cc);
+    }).then(() => application.start());
+}

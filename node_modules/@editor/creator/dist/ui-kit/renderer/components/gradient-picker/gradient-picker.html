@@ -1,0 +1,37 @@
+<section>
+    <div class="preview">
+        <div class="alpha">
+            <div class="keys"></div>
+            <div class="background"></div>
+        </div>
+        <div class="hybrid">
+            <div class="background"></div>
+        </div>
+        <div class="color">
+            <div class="keys"></div>
+            <div class="background"></div>
+        </div>
+    </div>
+
+    <div class="operation">
+        <div class="global">
+            <div>
+                <strong>Mode</strong>
+                <ui-select disabled value="0">
+                    <option value="0">Blend</option>
+                    <option value="1">Fixed</option>
+                </ui-select>
+            </div>
+        </div>
+        <div class="key">
+            <div>
+                <strong>Location</strong>
+                <ui-num-input unit="%" class="location" min="0" max="100"></ui-num-input>
+            </div>
+        </div>
+    </div>
+
+    <div class="operation">
+        <ui-color-picker class="color" row disabled-color disabled-alpha></ui-color-picker>
+    </div>
+</section>

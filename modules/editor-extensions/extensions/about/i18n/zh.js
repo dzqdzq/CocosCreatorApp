@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"关于",description:"Cocos Creator 简介",version:"版本",editor:"编辑器",engine:"引擎",cocos2dx:"原生引擎",external:"原生引擎(外部工具)",platformExtensions:"平台扩展",engineExtensions:"引擎扩展",editorExtensions:"编辑器扩展"};

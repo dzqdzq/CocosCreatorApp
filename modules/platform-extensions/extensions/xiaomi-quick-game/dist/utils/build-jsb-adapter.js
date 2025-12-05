@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.build=void 0;const path_1=require("path");async function build(e){if(!e.root)throw new Error("Please specify the jsbAdapter path");const t=path_1.join(e.root,"./engine/index.js"),i=path_1.join(e.dist,"./jsb-engine.js");await Build.Utils.createBundle(t,i)}exports.build=build;

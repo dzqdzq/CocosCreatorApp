@@ -1,0 +1,70 @@
+.program {
+    > ui-setting {
+        outline: none;
+
+        > div {
+            display: flex;
+            align-items: center;
+
+            > ui-icon {
+                visibility: hidden;
+                cursor: pointer;
+            }
+
+            &:hover {
+                ui-icon {
+                    visibility: visible;
+                }
+            }
+        }
+
+        ui-prop {
+            --left-width: 40%;
+
+            flex: 1;
+            padding-left: 5px;
+            margin-bottom: 4px;
+
+            > ui-file,
+            > ui-input,
+            > ui-num-input,
+            > ui-select {
+                flex: 1;
+            }
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        .command-argument {
+            margin-left: 16px;
+
+            ui-label {
+                padding-left: 16px;
+            }
+
+            ui-input {
+                color: var(--color-normal-contrast-emphasis);
+            }
+
+            div[slot='content'] {
+                display: flex;
+
+                ui-input {
+                    flex: 1;
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+
+    > ui-setting[type='local'] {
+        > div {
+            > ui-icon {
+                color: var(--color-warn-fill);
+                visibility: visible;
+            }
+        }
+    }
+}
