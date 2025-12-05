@@ -1,0 +1,158 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-input value="test"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="test"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>password</h2>
+            <div>
+                <ui-input password value="xxxx"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input password value="xxxx"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <div>
+                <ui-input placeholder="name"></ui-input>
+                <ui-input placeholder="i18n:ui-kit.preview.ui.input.placeholder"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input placeholder="name"&gt;&lt;/ui-input&gt;
+                &lt;ui-input placeholder="i18n:ui-kit.preview.ui.input.placeholder"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>prefix</h2>
+            <div>
+                <ui-input>
+                    <ui-icon slot="prefix" value="search"></ui-icon>
+                </ui-input>
+            </div>
+            <ui-code language="html">
+                <ui-input>
+                    <ui-icon slot="prefix" value="search"></ui-icon>
+                </ui-input>
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>suffix</h2>
+            <div>
+                <ui-input>
+                    <span slot="suffix">RMB</span>
+                </ui-input>
+            </div>
+            <ui-code language="html">
+                <ui-input>
+                    <span slot="suffix">RMB</span>
+                </ui-input>
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>show-clear</h2>
+            <div>
+                <ui-input value="show-clear" show-clear></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="show-clear" show-clear&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>auto-select="false"</h2>
+            <div>
+                <ui-input value="auto-select" auto-select="false"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input value="auto-select" auto-select="false"&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-input invalid></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input invalid&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-input readonly value="readonly"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input readonly&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-input disabled value="disabled"></ui-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-input disabled&gt;&lt;/ui-input&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.getSet">
+        <div class="row">
+            <div class="row">
+                <h2>VUE JS</h2>
+                <p>value change</p>
+                <ui-code language="html">
+                    &lt;ui-input @change="changeHandler"&gt;&lt;/ui-input&gt;
+                </ui-code>
+
+                <p>confirm value</p>
+                <ui-code language="html">
+                    &lt;ui-input @confirm="confirmHandler"&gt;&lt;/ui-input&gt;
+                </ui-code>
+            </div>
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <p>value change</p>
+                <ui-code language="html">
+                    &lt;ui-input id="ui-input"&gt;&lt;/ui-input&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-input');
+
+                    // addEventListener
+                    element.addEventListener('change', (event)=>{
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+                <p>confirm value</p>
+                <ui-code language="html">
+                    &lt;ui-input id="ui-input"&gt;&lt;/ui-input&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-input');
+
+                    // addEventListener
+                    element.addEventListener('confirm', (event)=>{
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

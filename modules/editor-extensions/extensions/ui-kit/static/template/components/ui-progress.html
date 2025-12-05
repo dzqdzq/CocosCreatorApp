@@ -1,0 +1,44 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <p>value</p>
+            <div>
+                <ui-progress percent></ui-progress>
+            </div>
+            <div>
+                <ui-progress value="60"></ui-progress>
+            </div>
+            <div>
+                <ui-progress value="100" percent ></ui-progress>
+            </div>
+
+            <ui-code language="html">
+                <ui-progress ></ui-progress>
+                <ui-progress value="60"></ui-progress>
+                <ui-progress value="100" percent></ui-progress>
+            </ui-code>
+            <ui-code language="html">
+                &lt;ui-progress &gt;&lt;/ui-progress&gt;
+                &lt;ui-progress value="60"&gt;&lt;/ui-progress&gt;
+                &lt;ui-progress value="100"&gt;&lt;/ui-progress&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <p>success</p>
+            <div>
+                <ui-label value="success"></ui-label><ui-progress value="60" success style="width: 80%"></ui-progress>
+            </div>
+            <ui-code language="html">
+                <ui-progress value="60" success ></ui-progress>
+            </ui-code>
+
+            <p>failure</p>
+            <div>
+                <ui-progress value="60" failure ></ui-progress>
+            </div>
+            <ui-code language="html">
+                <ui-progress value="60" failure ></ui-progress>
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

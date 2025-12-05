@@ -1,0 +1,70 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+:host {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+}
+:host > div {
+  display: flex;
+  line-height: inherit;
+  width: 100%;
+}
+:host > div > .input {
+  width: 100%;
+  flex: 1;
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0 4px;
+  margin: 2px;
+  background-color: var(--color-normal-fill-emphasis);
+  border-radius: calc(var(--size-normal-radius) * 0.8px) 0 0 calc(var(--size-normal-radius) * 0.8px);
+  color: var(--color-normal-contrast-emphasis);
+}
+:host > div > .button {
+  display: inline;
+}
+:host > div > .button > svg,
+:host > div > .button ui-icon {
+  height: 100%;
+  width: 1em;
+  padding: 0 4px;
+}
+:host > div > .location {
+  padding: 0 2px;
+  display: flex;
+}
+:host > div > .button.open {
+  display: var(--open-btn-display, inline);
+}
+:host(:hover) {
+  border-color: var(--color-hover-border-weaker);
+}
+:host([focused]) {
+  border-color: var(--color-focus-border-weaker);
+}
+:host([invalid]) {
+  border-color: var(--color-warn-fill-normal);
+}

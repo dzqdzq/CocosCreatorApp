@@ -1,0 +1,27 @@
+{
+    "materials": [
+        {
+            "extensions": {
+                "KHR_materials_pbrSpecularGlossiness": {
+                    "diffuseFactor": [ 0.0, 0.0, 0.2, 1.0 ],
+                    "specularFactor": [ 0.2, 0.69, 0.97 ],
+                    "glossinessFactor":0.9 
+                    
+                }
+            }
+        },
+        {
+            "extensions": {
+                "KHR_materials_pbrSpecularGlossiness": {
+                    "diffuseTexture": {
+                        "index": 0
+                    },
+                    "glossinessFactor": 0.5,
+                    "specularGlossinessTexture": {
+                        "index": 1
+                    }
+                }
+            }
+        }
+    ]
+}

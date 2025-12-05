@@ -1,0 +1,9 @@
+dist
+node_modules
+.nuxt
+lib
+**/dist/**/*
+**/panel-dist/**/*
+extensions/localization-editor/temp.editor.js
+extensions/localization-editor/vite.config.ts
+!i18n/

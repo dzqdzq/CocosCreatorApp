@@ -1,0 +1,70 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>normal</div>
+            <div>
+                <ui-curve :value="value" :config="config"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve :value="value"&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <div>normal</div>
+            <ui-curve class="curve-item" v-for="(val, index) in testPresets"
+                :key="index"
+                :value="JSON.stringify(val)"
+                :index="index"
+                :config="config"
+                style="height: 40px; width: 100px;"
+            ></ui-curve>
+        </div>
+        <div class="row">
+            <div>negativeConfig</div>
+            <ui-curve class="curve-item" v-for="(val, index) in testPresets"
+                :key="index"
+                :value="JSON.stringify(val)"
+                :index="index"
+                :config="negativeConfig"
+                style="height: 40px; width: 100px;"
+            ></ui-curve>
+        </div>
+        <div class="row">
+            <div>style="height: 30px;"</div>
+            <div>
+                <ui-curve :value="value" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve :value="value" style="height: 30px;""&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <div>empty data</div>
+            <div>
+                <ui-curve style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve style="height: 30px;""&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <div>invalid data</div>
+            <div>
+                <ui-curve value="test" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve  value="test" style="height: 30px;""&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+        <div class="row">
+            <div>config</div>
+            <div>
+                <ui-curve :config="config":value="value" style="height: 30px;"></ui-curve>
+            </div>
+            <ui-code language="html">
+                &lt;ui-curve :config="config" :value="value" style="height: 30px;""&gt;&lt;/ui-curve&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+</div>

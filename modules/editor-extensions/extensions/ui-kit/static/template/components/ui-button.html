@@ -1,0 +1,145 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <div>
+                <ui-button>Button</ui-button>
+            </div>
+    
+            <ui-code language="html">
+                &lt;ui-button&gt;Button&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-button readonly>readonly</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button readonly&gt;readonly&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-button disabled>disabled</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button disabled&gt;disabled&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>type</h2>
+            <p>type: danger、success、primary、warning</p>
+            <div>
+                <ui-button type="danger">danger</ui-button>
+                <ui-button type="success">success</ui-button>
+                <ui-button type="primary">primary</ui-button>
+                <ui-button type="warning">warning</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button type="danger"&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="success"&gt;success&lt;/ui-button&gt;
+                &lt;ui-button type="primary"&gt;primary&lt;/ui-button&gt;
+                &lt;ui-button type="warning"&gt;warning&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>outline</h2>
+            <div>
+                <ui-button outline>outline</ui-button>
+                <ui-button type="danger" outline>danger outline</ui-button>
+                <ui-button type="success" outline>success outline</ui-button>
+                <ui-button type="primary" outline>primary outline</ui-button>
+                <ui-button type="warning" outline>warning outline</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button outline&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="danger" outline&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="danger" outline&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="success" outline&gt;success&lt;/ui-button&gt;
+                &lt;ui-button type="primary" outline&gt;primary&lt;/ui-button&gt;
+                &lt;ui-button type="warning" outline&gt;warning&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>text style</h2>
+            <div>
+                <ui-button transparent>default</ui-button>
+                <ui-button type="danger" class="transparent">danger transparent</ui-button>
+                <ui-button type="success" class="transparent">success transparent</ui-button>
+                <ui-button type="primary" class="transparent">primary transparent</ui-button>
+                <ui-button type="warning" class="transparent">warning transparent</ui-button>
+            </div>
+            <ui-code language="html">
+                &lt;ui-button type="danger" class="transparent""&gt;danger&lt;/ui-button&gt;
+                &lt;ui-button type="success" class="transparent""&gt;success&lt;/ui-button&gt;
+                &lt;ui-button type="primary" class="transparent""&gt;primary&lt;/ui-button&gt;
+                &lt;ui-button type="warning" class="transparent""&gt;warning&lt;/ui-button&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>attributes</h2>
+            <ui-code language="typescript">
+                readonly;
+                disabled;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>events</h2>
+            <ui-code language="typescript">
+                'change'
+                'confirm' // general case use this event
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Button Clicked: {{clickedNumber}}</h2>
+            <div>
+                <ui-button @confirm="click">click me</ui-button>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>VUE JS</h2>
+            <ui-code language="html">
+                &lt;ui-button 
+                    @confirm="click"
+                &gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                // vue object
+                methods = {
+                    click(){
+                        this.clickedNumber++;
+                    }
+                };
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Vanilla JS</h2>
+            <ui-code language="html">
+                &lt;ui-button id="button"&gt;click me&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#button');
+
+                // addEventListener
+                element.addEventListener('confirm', ()=>{
+                    clickedNumber++;
+                });
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

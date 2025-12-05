@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.PreviewBase=void 0;class PreviewBase{async queryPreviewData(e){return await this.previewBuffer.getImageData(e.index,e.width,e.height)}queryPreviewDataQueue(e,i){this.previewBuffer.getImageDataInQueue(e.index,e.width,e.height,i)}init(e,i){}}exports.PreviewBase=PreviewBase;

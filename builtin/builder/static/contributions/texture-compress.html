@@ -1,0 +1,28 @@
+<section class="texture-compress">
+    <header>
+        <span class="tab-item"
+            v-for="(info, name) in tabList" 
+            :active="tab === name"
+            @click="onChangeTab(name)"
+        >
+            <ui-label
+                :value="info.label"
+                :key = "name"
+            ></ui-label>
+            <ui-icon color="true" v-if="name === 'format'" value="experiment"></ui-icon>
+        </span>
+    </header>
+    <div class="content">
+        <component
+            v-for="(tabInfo, name) in tabList"
+            v-if="tab === name"
+            :key="tabInfo.comp"
+            :is="tabInfo.comp"
+            :ref="tabInfo.comp"
+            :compress-config = "textureCompressConfig"
+            :custom-configs = "customConfigs"
+            :overwrite-formats = "overwriteFormats"
+            @update="onConfigChange"
+        ></component>
+    </div>
+</section>

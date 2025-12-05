@@ -1,0 +1,4 @@
+{
+    "$schema": "https://raw.githubusercontent.com/neoclide/coc.nvim/master/data/schema.json",
+    "eslint.workingDirectories": "../"
+}

@@ -1,0 +1,72 @@
+<div class="hbox">
+    <div class="pick">
+        <div class="hue ctrl">
+            <div class="hue-handle">
+                <i></i>
+            </div>
+        </div>
+        <div class="color ctrl">
+            <div class="color-handle">
+                <i></i>
+            </div>
+        </div>
+        <div class="alpha-wrap">
+            <div class="alpha ctrl">
+                <div class="alpha-handle">
+                    <i></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="gamma-field">
+        <div class="label">Gamma</div>
+        <ui-num-input id="gamma-input" class="gamma-input" value="2.2" disabled></ui-num-input>
+        <span class="space"></span>
+        <div class="color-block current">
+            <div id="gamma-color" class="color-inner" title="Gamma Color"></div>
+        </div>
+        <div class="color-block gamma">
+            <div id="current-color" class="color-inner" title="Current Color"></div>
+        </div>
+    </div> -->
+</div>
+<div class="vbox">
+    <div class="prop">
+        <span class="red">R</span>
+        <ui-slider id="r-slider" max="255" step="1" preci="0"></ui-slider>
+    </div>
+    <div class="prop">
+        <span class="green">G</span>
+        <ui-slider id="g-slider" max="255" step="1" preci="0"></ui-slider>
+    </div>
+    <div class="prop">
+        <span class="blue">B</span>
+        <ui-slider id="b-slider" max="255" step="1" preci="0"></ui-slider>
+    </div>
+    <div class="prop">
+        <span class="gray">A</span>
+        <ui-slider id="a-slider" max="255" step="1" preci="0"></ui-slider>
+    </div>
+    <div class="hex-field">
+        <div class="label">Gamma</div>
+        <ui-checkbox class="gamma"></ui-checkbox>
+        <span class="space"></span>
+        <div class="color-block old">
+            <div id="old-color" class="color-inner" title="Current Color"></div>
+        </div>
+        <div class="color-block new">
+            <div id="new-color" class="color-inner" title="Pick Color"></div>
+        </div>
+        <span class="space"></span>
+        <div class="label">Hex</div>
+        <ui-input id="hex-input" class="hex-input"></ui-input>
+    </div>
+    <div class="palette">
+        <div class="title">
+            <span>Presets</span>
+            <ui-button class="add-presets transparent" tooltip="Add to presets">+</ui-button>
+        </div>
+        <div class="presets">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="debug-tools">
+    <div>
+        <ui-button :disabled="debug" @confirm="onDebug(true)">Start Debug</ui-button>
+        <ui-button :disabled="!debug" @confirm="onDebug(false)">Stop</ui-button :disabled="!debug">
+    </div>
+    <main v-if="debugOptions">
+        <ui-section expand
+            v-for="(item, name) in taskMap" :key="name"
+        >
+            <div slot="header">
+                <span>{{name}}</span>
+                <!-- <ui-checkbox
+                    :value = "isSelectAll(name, debugOptions.config[name])"
+                    @confirm="selectAllTask(name, !$event.target.value)"
+                ></ui-checkbox> -->
+            </div>
+            <ui-checkbox
+                v-for="task in item"
+                :key="task"
+                :path="name + '.' + task"
+                :value="!(debugOptions.config[name] && debugOptions.config[name][task])"
+                @confirm="onConfirm($event.target.value, name, task)"
+            >{{task}}</ui-checkbox>
+        </ui-section>
+        <!-- <ui-prop v-for="(item, name) in taskMap" :key="name">
+            <ui-label slot="label"
+                :value="name"
+            ></ui-label>
+            <div slot="content">
+                <ui-checkbox
+                    v-for="task in item"
+                    :key="task"
+                    :path="name + '.' + task"
+                    :value="!(debugOptions.config[name] && debugOptions.config[name][task])"
+                    @confirm="onConfirm($event.target.value, name, task)"
+                >{{task}}</ui-checkbox>
+            </div>
+        </ui-prop> -->
+        <ui-prop>
+            <ui-label slot="label" value="Use Cached Engine"></ui-label>
+            <ui-checkbox
+                slot="content"
+                :value="debugOptions.cacheConfig.engine"
+                @confirm="noCacheOption($event, 'engine')"
+            ></ui-checkbox>
+        </ui-prop>
+    </main>
+    <footer>
+        <span>{{tips}}</span>
+        <ui-button class="green" @confirm="save">save</ui-button>
+    </footer>
+</div>

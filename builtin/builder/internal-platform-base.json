@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "outDir": "./dist",
+        "rootDir": "./source",
+        "strict": true,
+        "allowJs": true,
+        "types": [
+          "node",
+          "../../@types/private",
+          "./@types/public/global",
+          "./@types/project"
+        ],
+        "lib": ["dom", "es7"],
+        "esModuleInterop": true
+    },
+    "exclude": ["./dist"],
+    "include": ["./source"]
+  }

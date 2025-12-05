@@ -1,0 +1,254 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "AnimationImportSetting": {
+            "properties": {
+                "duration": {
+                    "description": "原始动画的长度，单位为秒。",
+                    "type": "number"
+                },
+                "fps": {
+                    "description": "用户查看、切割原始动画时的 FPS 设定。",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "glTf 中原始动画资源的名称。",
+                    "type": "string"
+                },
+                "splits": {
+                    "description": "对原始动画的划分，由用户配置。\n若此资源存在，所有划分出的动画成为 glTf 资源下的独立动画并将被导出；\n否则，直接导入原始动画资源。",
+                    "items": {
+                        "properties": {
+                            "fps": {
+                                "description": "用户查看划分出的子动画时的 FPS 设定。",
+                                "type": "number"
+                            },
+                            "from": {
+                                "description": "划分的起始时刻，单位为秒。",
+                                "type": "number"
+                            },
+                            "name": {
+                                "description": "划分出的动画的名称。",
+                                "type": "string"
+                            },
+                            "speed": {
+                                "description": "速度。",
+                                "type": "number"
+                            },
+                            "to": {
+                                "description": "划分的终止时刻，单位为秒。",
+                                "type": "number"
+                            },
+                            "wrapMode": {
+                                "description": "动画循环模式。",
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "from",
+                            "name",
+                            "to"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "duration",
+                "fps",
+                "name",
+                "splits"
+            ],
+            "type": "object"
+        },
+        "IFbxSetting": {
+            "properties": {
+                "animationBakeRate": {
+                    "default": 24,
+                    "description": "动画烘焙速率。单位为 FPS。\n一般来说有以下几种 FPS 选项。\n- NTSC video 30/60\n- PAL video 25\n- Film 24\n见 https://knowledge.autodesk.com/support/3ds-max/learn-explore/caas/CloudHelp/cloudhelp/2020/ENU/3DSMax-Reference/files/GUID-92B75FD6-C112-44D6-AB89-DB50D11AE0DE-htm.html 。\n为了以后的拓展性，我们目前仅支持用户从这几种选项中选择。",
+                    "enum": [
+                        0,
+                        24,
+                        25,
+                        30,
+                        60
+                    ],
+                    "type": "number"
+                },
+                "preferLocalTimeSpan": {
+                    "default": true,
+                    "description": "在导出动画时，是否优先使用 FBX 内记录的时间范围。",
+                    "type": "boolean"
+                },
+                "smartMaterialEnabled": {
+                    "description": "是否为导入的材质匹配DCC的光照模型.\n在导入时,若此字段为 `undefined` 时,该字段将被初始化为当前配置的\"是否开启智能材质转换\".",
+                    "type": "boolean"
+                },
+                "unitConversion": {
+                    "description": "https://github.com/cocos-creator/FBX-glTF-conv/pull/26",
+                    "enum": [
+                        "disabled",
+                        "geometry-level",
+                        "hierarchy-level"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ImageMeta": {
+            "properties": {
+                "name": {
+                    "description": "图片名字。",
+                    "type": "string"
+                },
+                "remap": {
+                    "description": "用户设置的图片的 Database URL。",
+                    "type": "string"
+                },
+                "uri": {
+                    "description": "模型文件中该图片的 URI，可能是以下形式：\n  - Database URL，这种路径的图片存在项目目录中；\n  - uuid URI，这种路径的图片已经作为子资源导入，路径代表子资源的 uuid。\n如果未定义，表示此图片未指定源或指定的源无法解析。",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "NormalImportSetting": {
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "type": "number"
+        },
+        "SerializedAssetFinder": {
+            "properties": {
+                "animations": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "materials": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "meshes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "scenes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "skeletons": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "textures": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "TangentImportSetting": {
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "type": "number"
+        }
+    },
+    "properties": {
+        "allowMeshDataAccess": {
+            "description": "允许数据访问。",
+            "type": "boolean"
+        },
+        "animationImportSettings": {
+            "description": "整个数组由导入器创建。`name` 和 `duration` 也都由导入器写入修改，外部不允许修改。\n`splits` 是允许用户配置的。",
+            "items": {
+                "$ref": "#/definitions/AnimationImportSetting"
+            },
+            "type": "array"
+        },
+        "assetFinder": {
+            "$ref": "#/definitions/SerializedAssetFinder"
+        },
+        "depthWriteInAlphaModeBlend": {
+            "default": false,
+            "description": "Whether to enable depth-write if the material specify the `BLEND` mode.\nSee https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#alpha-coverage",
+            "type": "boolean"
+        },
+        "disableMeshSplit": {
+            "description": "禁用 Mesh 分割",
+            "type": "boolean"
+        },
+        "dumpMaterials": {
+            "type": "boolean"
+        },
+        "fbx": {
+            "$ref": "#/definitions/IFbxSetting",
+            "description": "关于 FBX 的配置。仅当 `legacyFbxImporter === false` 时有效。"
+        },
+        "imageMetas": {
+            "items": {
+                "$ref": "#/definitions/ImageMeta"
+            },
+            "type": "array"
+        },
+        "legacyFbxImporter": {
+            "description": "使用旧的 FBX 导入器。（在非 FBX 导入器上是 `undefined`）",
+            "type": "boolean"
+        },
+        "materialDumpDir": {
+            "type": "string"
+        },
+        "morphNormals": {
+            "default": "Exclude.",
+            "description": "Controls how to import morph normals.",
+            "enum": [
+                0,
+                1
+            ],
+            "type": "number"
+        },
+        "normals": {
+            "$ref": "#/definitions/NormalImportSetting"
+        },
+        "promoteSingleRootNode": {
+            "description": "若开启并且模型场景顶部仅有一个节点，那么以该节点作为根节点转换为 Prefab。\n否则，以场景为根节点转换为 Prefab。见 cocos/cocos-engine#11858 。",
+            "type": "boolean"
+        },
+        "skipValidation": {
+            "type": "boolean"
+        },
+        "tangents": {
+            "$ref": "#/definitions/TangentImportSetting"
+        },
+        "useVertexColors": {
+            "default": true,
+            "description": "Whether to use vertex colors(if valid) in material.",
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "imageMetas"
+    ],
+    "type": "object"
+}
+
