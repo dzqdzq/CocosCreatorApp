@@ -1,0 +1,1 @@
+module.exports={parser:"@typescript-eslint/parser",parserOptions:{ecmaVersion:6,sourceType:"script"},plugins:["import"],extends:["plugin:import/typescript"],rules:{"import/no-cycle":"error"},ignorePatterns:["*.d.ts","*.js"]};

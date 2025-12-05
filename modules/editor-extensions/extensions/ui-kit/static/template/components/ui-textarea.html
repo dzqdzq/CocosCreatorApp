@@ -1,0 +1,135 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-textarea value="test"></ui-textarea>
+            <ui-code language="html">
+                &lt;ui-textarea value="test"&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <div class="mb-10">
+                <ui-textarea placeholder="content"></ui-textarea>
+            </div>
+            <div class="mb-10">
+                <ui-textarea placeholder="i18n:ui-kit.preview.ui.textarea.placeholder"></ui-textarea>
+            </div>
+            <ui-code language="html">
+                &lt;ui-textarea placeholder="content"&gt;&lt;/ui-textarea&gt;
+                &lt;ui-textarea placeholder="i18n:ui-kit.preview.ui.textarea.placeholder"&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+       
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-textarea invalid></ui-textarea>
+            </div>
+            <ui-code language="html">
+                &lt;ui-textarea invalid&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-textarea readonly value="test content"></ui-textarea>
+            </div>
+            <ui-code language="html">
+                &lt;ui-textarea readonly value="test content"&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-textarea disabled value="test content"></ui-textarea>
+            </div>
+            <ui-code language="html">
+                &lt;ui-textarea disabled value="test content"&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-textarea hidden></ui-textarea>
+            </div>
+            <ui-code language="html">
+                &lt;ui-textarea hidden&gt;&lt;/ui-textarea&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                disabled
+                readonly
+                invalid
+                placeholder
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-textarea placeholder="content"
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                    @cancel="onCancel($event.target.value)"
+                ></ui-textarea>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel // ESC cancel, restore the last value
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-textarea placeholder="content"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-textarea&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-textarea id="ui-textarea"&gt;&lt;/ui-textarea&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-textarea');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        // cancel value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

@@ -1,0 +1,161 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-prop class="mb-10">
+                <ui-label slot="label" value="Checkbox"></ui-label>
+                <ui-checkbox slot="content"></ui-checkbox>
+            </ui-prop>
+            <ui-prop class="mb-10">
+                <ui-label slot="label" value="Name"></ui-label>
+                <ui-input slot="content"></ui-input>
+            </ui-prop>
+            <ui-prop class="mb-10">
+                <ui-label slot="label" value="Color"></ui-label>
+                <ui-color slot="content"></ui-color>
+            </ui-prop>
+            <ui-prop class="mb-10">
+                <ui-label slot="label" value="Select"></ui-label>
+                <ui-select slot="content">
+                    <option value="1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.</option>
+                    <option value="2">Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.</option>
+                </ui-select>
+            </ui-prop>
+            <ui-code language="html">
+                &lt;ui-prop&gt;
+                    &lt;ui-label slot="label"&gt;Checkbox&lt;/ui-label&gt;
+                    &lt;ui-checkbox slot="content"&gt;&lt;/ui-checkbox&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop&gt;
+                    &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                    &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop&gt;
+                    &lt;ui-label slot="label"&gt;Color&lt;/ui-label&gt;
+                    &lt;ui-color slot="content"&gt;&lt;/ui-color&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop&gt;
+                    &lt;ui-label slot="label"&gt;Select&lt;/ui-label&gt;
+                    &lt;ui-select slot="content"&gt;
+                        &lt;option value="1"&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, sint.&lt;/option&gt;
+                        &lt;option value="2"&gt;Sapiente ratione esse voluptatibus repudiandae illo numquam quas nulla id.&lt;/option&gt;
+                    &lt;/ui-select&gt;
+                &lt;/ui-prop&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-prop readonly>
+                <ui-label slot="label">Name</ui-label>
+                <ui-input slot="content"></ui-input>
+            </ui-prop>
+            <ui-code language="html">
+                &lt;ui-prop readonly&gt;
+                    &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                    &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>no-label</h2>
+            <ui-prop no-label>
+                <ui-label slot="label">Name</ui-label>
+                <ui-input slot="content"></ui-input>
+            </ui-prop>
+            <ui-code language="html">
+                &lt;ui-prop no-label&gt;
+                    &lt;ui-label slot="label"&gt;Name&lt;/ui-label&gt;
+                    &lt;ui-input slot="content"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>message</h2>
+            <ui-prop message="default message..." class="mb-10">
+                <ui-label slot="label">Name A</ui-label>
+                <ui-input slot="content" value="name a"></ui-input>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label">Name B</ui-label>
+                <ui-input slot="content" value="name b"></ui-input>
+                <div slot="message">
+                    Here is a showcase with a link:
+                    <ui-link value="https://www.cocos.com/docs">Custom Message</ui-link>
+                </div>
+            </ui-prop>
+            <ui-code language="html">
+                &lt;ui-prop message="default message..."&gt;
+                    &lt;ui-label slot="label"&gt;Name A&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="name a"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop&gt;
+                    &lt;ui-label slot="label"&gt;Name B&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="name b"&gt;&lt;/ui-input&gt;
+                    &lt;div slot="message"&gt;
+                        Here is a showcase with a link:
+                        &lt;ui-link value="https://www.cocos.com/docs"&gt;Custom Message&lt;/ui-link&gt;
+                    &lt;/div&gt;
+                &lt;/ui-prop&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>text style</h2>
+            <ui-prop message="primary message..." class="primary mb-10">
+                <ui-label slot="label">Name A</ui-label>
+                <ui-input slot="content" value="primary"></ui-input>
+            </ui-prop>
+            <ui-prop message="success message..." class="success mb-10">
+                <ui-label slot="label">Name B</ui-label>
+                <ui-input slot="content" value="success"></ui-input>
+            </ui-prop>
+            <ui-prop message="warn message..." class="warn mb-10">
+                <ui-label slot="label">Name C</ui-label>
+                <ui-input slot="content" value="warn"></ui-input>
+            </ui-prop>
+            <ui-prop message="error message..." class="danger">
+                <ui-label slot="label">Name D</ui-label>
+                <ui-input slot="content" value="danger"></ui-input>
+            </ui-prop>
+            <ui-code language="html">
+                &lt;ui-prop message="primary message..." class="primary"&gt;
+                    &lt;ui-label slot="label"&gt;Name A&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="primary"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop message="success message..." class="success"&gt;
+                    &lt;ui-label slot="label"&gt;Name B&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="success"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop message="warn message..." class="warn"&gt;
+                    &lt;ui-label slot="label"&gt;Name C&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="warn"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+
+                &lt;ui-prop message="error message..." class="danger"&gt;
+                    &lt;ui-label slot="label"&gt;Name D&lt;/ui-label&gt;
+                    &lt;ui-input slot="content" value="danger"&gt;&lt;/ui-input&gt;
+                &lt;/ui-prop&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                readonly // just show lock icon
+                no-label // do not show label
+                message // display message below the prop
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

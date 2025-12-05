@@ -1,0 +1,19 @@
+{
+    "name": "huawei-agc",
+    "title": "i18n:huawei-agc.title",
+    "version": "1.0.0",
+    "author": "Cocos Creator",
+    "package_version": 2,
+    "description": "HUAWEI AGConnect platform plugin",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "messages": {
+            "upload": {
+                "methods": [
+                    "upload"
+                ]
+            }
+        }
+    }
+}

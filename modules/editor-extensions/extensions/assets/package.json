@@ -1,0 +1,366 @@
+{
+    "name": "assets",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:assets.description",
+    "main": "./dist/browser.js",
+    "panels": {
+        "default": {
+            "title": "i18n:assets.title",
+            "main": "./dist/panel.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true
+            },
+            "size": {
+                "min-width": 200,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        },
+        "preview": {
+            "title": "i18n:assets.previewTitle",
+            "main": "./dist/panels/preview/index.js",
+            "icon": "./static/icon-2x.png",
+            "save": true,
+            "min-width": 200,
+            "min-height": 200,
+            "width": 600,
+            "height": 280
+        }
+    },
+    "contributions": {
+        "asset-db": {
+            "script": "./dist/asset-db"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:assets.title",
+                "icon": "./static/icon.png",
+                "order": -97
+            },
+            {
+                "path": "i18n:menu.panel/i18n:assets.title",
+                "label": "i18n:assets.title",
+                "icon": "./static/icon.png",
+                "message": "open"
+            },
+            {
+                "path": "i18n:menu.panel/i18n:assets.title",
+                "label": "i18n:assets.previewTitle",
+                "icon": "./static/icon.png",
+                "message": "open-preview"
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+2",
+                "mac": "cmd+2"
+            },
+            {
+                "message": "focus-find-element",
+                "win": "ctrl+f",
+                "mac": "cmd+f",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "duplicate",
+                "win": "ctrl+d",
+                "mac": "cmd+d",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "delete",
+                "win": "delete",
+                "mac": "delete",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "delete",
+                "win": "ctrl+backspace",
+                "mac": "cmd+backspace",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "delete",
+                "win": "backspace",
+                "mac": "backspace",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "up",
+                "win": "up",
+                "mac": "up",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "down",
+                "win": "down",
+                "mac": "down",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "left",
+                "win": "left",
+                "mac": "left",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "right",
+                "win": "right",
+                "mac": "right",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "shift-up",
+                "win": "shift+up",
+                "mac": "shift+up",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "shift-down",
+                "win": "shift+down",
+                "mac": "shift+down",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "shift-up",
+                "win": "ctrl+up",
+                "mac": "cmd+up",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "shift-down",
+                "win": "ctrl+down",
+                "mac": "cmd+down",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "rename",
+                "win": "enter",
+                "mac": "enter",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "rename",
+                "win": "f2",
+                "mac": "f2",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "copy",
+                "win": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "paste",
+                "win": "ctrl+v",
+                "mac": "cmd+v",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "cut",
+                "win": "ctrl+x",
+                "mac": "cmd+x",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "select-all",
+                "win": "ctrl+a",
+                "mac": "cmd+a",
+                "when": "PanelName === 'assets'"
+            },
+            {
+                "message": "select-clear",
+                "win": "esc",
+                "mac": "esc",
+                "when": "PanelName === 'assets'"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "open-preview": {
+                "methods": [
+                    "open-preview"
+                ]
+            },
+            "staging": {
+                "methods": [
+                    "staging"
+                ]
+            },
+            "unstaging": {
+                "methods": [
+                    "unstaging"
+                ]
+            },
+            "selection:select": {
+                "methods": [
+                    "default.selected",
+                    "preview.selected"
+                ]
+            },
+            "selection:unselect": {
+                "methods": [
+                    "default.unselected",
+                    "preview.unselected"
+                ]
+            },
+            "asset-db:refresh-finish": {
+                "methods": [
+                    "default.refreshFinish"
+                ]
+            },
+            "asset-db:ready": {
+                "methods": [
+                    "default.ready"
+                ]
+            },
+            "asset-db:close": {
+                "methods": [
+                    "default.close"
+                ]
+            },
+            "asset-db:asset-add": {
+                "methods": [
+                    "default.added"
+                ]
+            },
+            "asset-db:asset-delete": {
+                "methods": [
+                    "default.deleted"
+                ]
+            },
+            "asset-db:asset-change": {
+                "methods": [
+                    "default.changed",
+                    "preview.changed"
+                ]
+            },
+            "asset-db:db-ready": {
+                "methods": [
+                    "default.dbReady"
+                ]
+            },
+            "asset-db:db-close": {
+                "methods": [
+                    "default.dbClose"
+                ]
+            },
+            "asset-db:pause": {
+                "methods": [
+                    "default.dbPause"
+                ]
+            },
+            "asset-db:resume": {
+                "methods": [
+                    "default.dbResume"
+                ]
+            },
+            "ui-kit:touch-asset": {
+                "methods": [
+                    "default.twinkle"
+                ]
+            },
+            "twinkle": {
+                "methods": [
+                    "default.twinkle"
+                ]
+            },
+            "copy": {
+                "methods": [
+                    "default.copy"
+                ]
+            },
+            "paste": {
+                "methods": [
+                    "default.paste"
+                ]
+            },
+            "cut": {
+                "methods": [
+                    "default.cut"
+                ]
+            },
+            "select-all": {
+                "methods": [
+                    "default.selectAll"
+                ]
+            },
+            "select-clear": {
+                "methods": [
+                    "default.selectClear"
+                ]
+            },
+            "focus-find-element": {
+                "methods": [
+                    "default.find"
+                ]
+            },
+            "duplicate": {
+                "methods": [
+                    "default.duplicate"
+                ]
+            },
+            "delete": {
+                "methods": [
+                    "default.delete"
+                ]
+            },
+            "up": {
+                "methods": [
+                    "default.up"
+                ]
+            },
+            "down": {
+                "methods": [
+                    "default.down"
+                ]
+            },
+            "left": {
+                "methods": [
+                    "default.left"
+                ]
+            },
+            "right": {
+                "methods": [
+                    "default.right"
+                ]
+            },
+            "shift-up": {
+                "methods": [
+                    "default.shiftUp"
+                ]
+            },
+            "shift-down": {
+                "methods": [
+                    "default.shiftDown"
+                ]
+            },
+            "rename": {
+                "methods": [
+                    "default.rename"
+                ]
+            },
+            "query-asset": {
+                "methods": [
+                    "default.queryAsset"
+                ]
+            },
+            "query-children": {
+                "methods": [
+                    "default.queryChildren"
+                ]
+            }
+        }
+    }
+}

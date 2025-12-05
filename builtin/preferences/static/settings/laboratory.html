@@ -1,0 +1,42 @@
+<div class="laboratory">
+    <div class="about">
+        <ui-label value="i18n:preferences.laboratory.about"></ui-label>
+    </div>
+
+    <template
+        v-if="data"
+        v-for="item,name in data"
+    >
+        <ui-setting type="global"
+            v-if="item.laboratory"
+            :package="name"
+        >
+            <!-- 属于哪一个功能的标记 -->
+            <div class="mark">
+                <ui-label slot="label"
+                    :value="item.title"
+                ></ui-label>
+            </div>
+
+            <!-- 该功能下的实验室功能列表 -->
+            <div class="setting"
+                v-for="prop,key in item.laboratory"
+                :key="key"
+            >
+                <ui-icon
+                    value="setting"
+                    @click="popup($event.target.pageX, $event.target.pageY, name, prop.path)"
+                ></ui-icon>
+                <ui-prop>
+                    <ui-label slot="label"
+                        :value="prop.label"
+                    ></ui-label>
+
+                    <ui-checkbox slot="content"
+                        :path="prop.path"
+                    ></ui-checkbox>
+                </ui-prop>
+            </div>
+        </ui-setting>
+    </template>
+</div>

@@ -1,0 +1,1 @@
+const mappings=require("./offline-mappings"),{options,addChunk,buildEffect}=require("./shdc-lib"),stripEditorSupport=require("./utils")["stripEditorSupport"];module.exports={options:options,addChunk:addChunk,buildEffect:buildEffect,stripEditorSupport:stripEditorSupport,mappings:mappings};

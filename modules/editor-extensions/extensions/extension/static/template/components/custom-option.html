@@ -1,0 +1,26 @@
+<div
+    ref="option"
+    :class="{
+        'custom-option--selected': selected,
+    }"
+    :style="'height: ' + height + 'px;' + 'line-height: ' + height + 'px;'"
+    class="custom-option"
+>
+    <div
+        class="layout"
+        @click.stop="clickItem"
+    >
+        <span
+            v-if="title"
+            class="title"
+        >V{{ title }}</span>
+        <span
+            class="content"
+            v-if="label"
+        >{{ label }}</span>
+        <div
+            class="empty-line"
+            v-else
+        ></div>
+    </div>
+</div>

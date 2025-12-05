@@ -1,0 +1,42 @@
+<section id="event-editor">
+    <div class="header">
+        <h4 class="name"><ui-label :value="name"></ui-label></h4>
+        <ui-button class="transparent icon close" name="close"
+            @mousedown="$emit('close')"
+        >
+            <ui-icon value="close"></ui-icon>
+        </ui-button>
+    </div>
+    <div class="functions">
+        <div class="tools">
+            <ui-input placeholder="i18n:animator.event.func_placeholder"
+                tooltip="i18n:animator.event.func_placeholder"
+                :value="newFuncName"
+                @change="newFuncName = $event.target.value"
+                @keydown.enter="addFunc"
+            ></ui-input>
+            <ui-button class="transparent icon"
+                @click="addFunc"
+            >
+                <ui-icon value="add" tooltip="i18n:animator.event.add_func"></ui-icon>
+            </ui-button>
+        </div>
+        <div v-if="value.length">
+            <event-item class="func"
+                v-for="(event, index) in value"
+                v-if="event.func"
+                :event="event"
+                :index="index"
+                :key="index"
+                @update="updateValue"
+                @showToast="showToast"
+            ></event-item>
+        </div>
+        <div v-if="!value.length" class="empty">
+            <ui-label value="i18n:animator.event.empty"></ui-label>
+        </div>
+    </div>
+    <div class="toast" v-if="toast">
+        {{toast}}
+    </div>
+</section>

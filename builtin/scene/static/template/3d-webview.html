@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3D Engine WebView</title>
+        <style>
+            html, body { margin: 0; padding: 0; position: relative; overflow: hidden; }
+            #Game { width: 100%; height: 100%; overflow: hidden; }
+            #GameCanvas { position: relative; width: 100%; height: 100%; }
+            #vLabels { position: absolute; top: 0; left: 1px; width: 35px; height: 100%;}
+            #hLabels { position: absolute; bottom: 0; left: 0; width: 100%; height: 35px;}
+            canvas { outline: none; }
+            body > div.resultViewComponent.active > ul { margin-top: 40px;}
+            body > div.resultViewComponent.active > div { top: 80px;}
+        </style>
+        <script>
+            // 禁止 electron 显示安全提示
+            window.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+        </script>
+    </head>
+    <body>
+        <!-- <script>
+            var SPECTOR = require("spectorjs");
+            var spector = new SPECTOR.Spector();
+            spector.displayUI();
+        </script> -->
+        <style>
+            #preview {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 30%;
+                height: 30%;
+            }
+        </style>
+        <div id="GameDiv">
+            <div id="Cocos3dGameContainer">
+                <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="-1" style="background-color:''"></canvas>
+            </div>
+            <canvas id="vLabels"></canvas>
+            <canvas id="hLabels"></canvas>
+        </div>
+
+        <script>
+            const hrefArray = window.location.href.split('?');
+            require(decodeURI(hrefArray[1].substr(4)));
+        </script>
+    </body>
+</html>

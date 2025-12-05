@@ -1,0 +1,85 @@
+<div class="settings">
+    <div class="settings-loading"
+        v-if="!dbReady"
+    >
+        <ui-loading></ui-loading>
+    </div>
+    <div class="settings-info" v-else>
+        <div class="slider">
+            <!-- 左侧分类 -->
+            <div class="empty" 
+                v-if="!hasSlider"
+            >
+                <ui-label value="i18n:project.noSlider"></ui-label>
+            </div>
+            <ul>
+                <template v-for="(item, label) in configs">
+                    <li>
+                        <!-- 每个功能的名字 -->
+                        <ui-label
+                            :value="item.title"
+                        ></ui-label>
+                        <ul>
+                            <!-- 功能里注册的选项卡 -->
+                            <li
+                                v-for="(subItem, key) in item.tabs"
+                                :active="tab === label && subTab === key"
+                                @click="changeTab(label, key)"
+                                :title="t(subItem.label)"
+                            >
+                                <ui-label
+                                    :value="subItem.label"
+                                ></ui-label>
+                            </li>
+                        </ul>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <!-- 右侧详细设置 -->
+        <div :class="{
+            'content': true,
+            'auto': !!configs[tab]?.tabs[subTab].content,
+        }">
+            <div class="empty"
+                v-if="!hasContent"
+            >
+                <ui-label value="i18n:project.noContent"></ui-label>
+            </div>
+            <template
+                v-else
+            >
+                <div class="auto" v-if="configs[tab].tabs[subTab].content">
+                    <!-- 自动渲染 -->
+                    <ui-setting type="project"
+                        :package="tab"
+                    >
+                        <div
+                            v-for="(config, path) in configs[tab].tabs[subTab].content"
+                            :key="path"
+                        >
+                            <ui-icon value="setting"
+                                @click="popup($event.target.pageX, $event.target.pageY, path)"
+                            ></ui-icon>
+                            <ui-prop type="ui"
+                                :label="config.label"
+                                :label-tooltip="config.description"
+                                :render="getRenderText(config.render, path)"
+                            ></ui-prop>
+                        </div>
+                    </ui-setting>
+                </div>
+
+                <!-- 自定义选项 -->
+                <!-- 下面加个 :key 为了避免复用节点，把未销毁的 ui-panel 添加到同层级的元素里 -->
+                <div
+                    :ref="`${tab}-${subTab}`"
+                    :key="`${tab}-${subTab}`"
+                    v-if="configs[tab].tabs[subTab].custom"
+                    :class="{ 'align-custom-panel': alignCustomPanelFollowContent, 'custom-panel': true }"
+                ></div>
+            </template>
+        </div>
+    </div>
+</div>

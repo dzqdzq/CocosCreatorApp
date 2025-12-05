@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"车机编辑器适配插件",newScene:"车机场景",newPrefab:"车机预制体",transformNormalSceneToHmi:"将 Creator 项目转换为 HMI 项目"};

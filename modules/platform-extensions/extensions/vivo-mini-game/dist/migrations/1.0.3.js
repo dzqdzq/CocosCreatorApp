@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(e){var i;void 0!==(null==(i=null==(i=null==(i=e.builder)?void 0:i.options)?void 0:i["vivo-mini-game"])?void 0:i.wasmSubpackage)&&delete e.builder.options["vivo-mini-game"].wasmSubpackage}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=void 0,exports.migrateLocal=migrateLocal;

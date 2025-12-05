@@ -1,0 +1,22 @@
+.item[disabled] .text > ui-icon {
+    padding-right: 4px;
+}
+
+ui-asset-image {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.item[disabled] .text > span {
+    opacity: 0.3;
+}
+
+.new {
+    position: absolute;
+    margin-left: 4px;
+    margin-top: 2px;
+    width: 28px;
+    height: 20px;
+}
+

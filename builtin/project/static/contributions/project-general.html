@@ -1,0 +1,9 @@
+<div expand class="general">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:project.general.default_scene" tooltip="i18n:project.general.default_scene_tooltip"></ui-label>
+        <ui-asset droppable="cc.SceneAsset" slot="content"
+            :value="defaultScene"
+            @confirm="defaultSceneChanged($event)"
+        ></ui-asset>
+    </ui-prop>
+</div>

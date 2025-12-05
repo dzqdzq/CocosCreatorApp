@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.createPreviewNode=void 0;const cc_1=require("cc"),DontSave=cc_1.CCObject.Flags.DontSave,HideInHierarchy=cc_1.CCObject.Flags.HideInHierarchy;function createPreviewNode(e){e=new cc_1.Node(e);return e.isPrivatePreview=!0,e.objFlags|=DontSave|HideInHierarchy,e}exports.createPreviewNode=createPreviewNode;

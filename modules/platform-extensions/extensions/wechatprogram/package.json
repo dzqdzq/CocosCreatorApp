@@ -1,0 +1,28 @@
+{
+    "name": "wechatprogram",
+    "title": "i18n:wechatprogram.title",
+    "version": "1.0.2",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Wechat Mini Program platform plugin",
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "contributions": {
+        "builder": "./dist/build.js",
+        "messages": {
+            "preview": {
+                "methods": [
+                    "preview"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "plugin-version": {
+                    "default": "3.7.3"
+                }
+            }
+        }
+    }
+}

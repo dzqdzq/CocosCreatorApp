@@ -1,0 +1,79 @@
+<div class="group-item">
+    <div
+        class="group-tab"
+    >
+        <div
+            class="group-header"
+            v-for="(group, groupName) in compressConfig.configGroups"
+            :key="groupName"
+            :active="groupName === currentPlatform"
+            :tooltip="group.displayName"
+            @click.stop="currentPlatform = groupName"
+        >
+            <ui-icon :value="group.icon"></ui-icon>
+            <ui-label :value="group.displayName"></ui-label>
+        </div>
+    </div>
+    <div>
+        <div>
+            <config-items
+                :readonly="readonly"
+                :format-infos="displayFormatInfo"
+                :platform="currentPlatform"
+                type="options"
+                @add="showFormatMenu"
+                @remove="removeFormat"
+                @quality="onChangeQuality"
+            ></config-items>
+            <div class="empty-content" v-if="!displayFormatInfo || !Object.keys(displayFormatInfo).length">
+                ( <ui-label value="i18n:builder.project.texture_compress.empty"></ui-label> )
+            </div>
+        </div>
+        <ui-section expand class="overwrite" v-if="showOverWrite">
+            <header class="row" slot="header">
+                <ui-label value="i18n:builder.asset_bundle.platformOverride"></ui-label>
+                <div v-if="!readonly">
+                    <ui-button type="icon" class="transparent"
+                        :disabled="readonly || selectPlatforms.length === 0"
+                        @click.stop="deletePlatformOverwrite"
+                    >
+                        <ui-icon value="mini"></ui-icon>
+                    </ui-button>
+                    <ui-button type="icon" class="transparent"
+                        :disabled="readonly"
+                        @click.stop="addPlatformOverwriteMenu"
+                    >
+                        <ui-icon value="add-more"></ui-icon>
+                    </ui-button>
+                </div>
+            </header>
+            <div class="container" v-if="config.overwrite && Object.keys(config.overwrite).length">
+                <div class="platform"
+                    :readonly="readonly"
+                    v-for="(formatInfo, platform) in config.overwrite"
+                    v-if="Object.keys(platformConfig[currentPlatform]).includes(platform)"
+                    :key="platform"
+                    :active="selectPlatforms.includes(platform)"
+                    @click.stop="onSelectPlatform(platform)"
+                >
+                    <header class="row" slot="header">
+                        <ui-label :value="platformConfig[currentPlatform][platform].name"></ui-label>
+                    </header>
+                    <config-items
+                        :key="platform"
+                        :readonly="readonly"
+                        :format-infos="getFormatInfo('overwrite', platform)"
+                        :platform="platform"
+                        type="overwrite"
+                        @add="addPlatformOverwriteFormat($event, platform)"
+                        @remove="removeFormat"
+                        @quality="onChangeQuality"
+                    ></config-items>
+                </div>
+            </div>
+            <div class="empty-content" v-else>
+                ( <ui-label value="i18n:builder.project.texture_compress.empty"></ui-label> )
+            </div>
+        </ui-section>
+    </div>
+</div>

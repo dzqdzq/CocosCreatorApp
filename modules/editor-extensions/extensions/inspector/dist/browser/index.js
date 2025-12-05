@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0;let tempState;exports.methods={open(){Editor.Panel.open("inspector")},staging(e){e&&(tempState=e)},async unstaging(){return tempState||null}};

@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.methods={openPanel(){Editor.Panel.open("reflection-probe")}};

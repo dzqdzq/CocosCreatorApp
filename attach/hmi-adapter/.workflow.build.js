@@ -1,0 +1,1 @@
+"use strict";const join=require("path")["join"];exports.tsc=function(){return["./"]},exports.file=function(t){return[{source:join(__dirname,"./scripts/launch.js"),dist:join(t.rootPath,"app/launch/dist/launch.js")}]};

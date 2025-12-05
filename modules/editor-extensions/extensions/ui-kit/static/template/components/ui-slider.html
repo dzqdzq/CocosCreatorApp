@@ -1,0 +1,163 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <ui-slider value="0"></ui-slider>
+            <ui-code language="html">
+                &lt;ui-slider value="0"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hide-num-input</h2>
+            <ui-slider value="0" hide-num-input></ui-slider>
+            <ui-code language="html">
+                &lt;ui-slider value="0" hide-num-input&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>step</h2>
+            <div>
+                <ui-slider step="2" value="20" min="0" max="100"></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider step="2" value="20" min="0" max="100"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>preci</h2>
+            <div>
+                <ui-slider step="0.001" value="20" preci="2"></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider step="0.001" value="20" preci="2"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>min / max</h2>
+            <ui-slider value="0" min="0" max="20"></ui-slider>
+            <ui-code language="html">
+                &lt;ui-slider value="0" min="0" max="20"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-slider invalid value="20"></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider invalid value="20"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+       
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-slider readonly value="20"></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider readonly value="20"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-slider disabled value="20"></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider disabled value="20"&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-slider hidden></ui-slider>
+            </div>
+            <ui-code language="html">
+                &lt;ui-slider hidden&gt;&lt;/ui-slider&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                hide-num-input
+                preci
+                step
+                max
+                min
+                disabled
+                readonly
+                invalid
+                placeholder
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-slider
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                    @cancel="onCancel($event.target.value)"
+                ></ui-slider>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-slider
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-slider&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-slider id="ui-slider"&gt;&lt;/ui-slider&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-slider');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value)
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        // cancel value
+                        console.log(event.target.value)
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

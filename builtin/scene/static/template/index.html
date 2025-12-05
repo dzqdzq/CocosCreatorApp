@@ -1,0 +1,33 @@
+<section class="loading">
+    <ui-loading></ui-loading>
+</section>
+<div class="content">
+    <header class="toolbar" ref="toolbar">
+        <toolbar-default
+            ref="defaultToolbar"
+            v-show="!showGameView"
+            :left="left"
+            :right="right"
+        ></toolbar-default>
+
+        <toolbar-game-view
+            ref="gameViewToolbar"
+            v-show="showGameView"
+            :visible="showGameView"
+        ></toolbar-game-view>
+    </header>
+
+    <engine-view class="scene"></engine-view>
+    <section class="infobar">
+        <div class="left">
+            <template v-for="item in left">
+                <plugin :option="item"></plugin>
+            </template>
+        </div>
+        <div class="right">
+            <template v-for="item in right">
+                <plugin :option="item"></plugin>
+            </template>
+        </div>
+    </section>
+</div>

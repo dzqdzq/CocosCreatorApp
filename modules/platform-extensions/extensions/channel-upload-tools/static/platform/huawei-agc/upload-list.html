@@ -1,0 +1,59 @@
+<div class="upload">
+    <div>
+        <span class="info-title">
+            <ui-label value="i18n:channel-upload-tools.huawei_title"></ui-label>
+        </span>
+        <span class="history-text" @click="toggleClick">
+            <ui-label :value="historyTips"></ui-label>
+        </span>
+    </div>
+    <div v-if="uploading" class="mt5 info-block block-upload">
+        <div class="version">
+            <span>
+                <ui-label value="i18n:channel-upload-tools.version"></ui-label>
+            </span>
+            <span>{{info.config.version}}</span>
+        </div>
+        <div class="description">
+            <span>
+                <ui-label value="i18n:channel-upload-tools.description"></ui-label>
+            </span>
+            <span class="config-description">{{info.config.description}}</span>
+        </div>
+        <div class="progress-area mt10">
+            <div class="progress-info">{{progressTips}}</div>
+            <ui-progress class="progress mt5" :value="uploadProgress" :success="uploadState === 10" :failure="processFail"></ui-progress>
+        </div>
+        <div v-if="showBtns" class="mt10 btns">
+            <!-- <ui-button class="black">{{btnStatus}}</ui-button>-->
+            <ui-button @click="cancelClick">
+                <ui-label value="i18n:channel-upload-tools.cancel"></ui-label>
+            </ui-button>
+            <ui-button @click="returnClick">
+                <ui-label value="i18n:channel-upload-tools.return"></ui-label>
+            </ui-button>
+        </div>
+    </div>
+    <div v-if="toggle" class="history mt10">
+        <div class="history-info" v-for="item in history">
+            <div class="time">
+                <span>
+                    <ui-label value="i18n:channel-upload-tools.upload_time"></ui-label>
+                </span>
+                <span>{{formatTime(item.time)}}</span>
+            </div>
+            <div class="version">
+                <span>
+                    <ui-label value="i18n:channel-upload-tools.version"></ui-label>
+                </span>
+                <span>{{item.version}}</span>
+            </div>
+            <div class="description">
+                <span>
+                    <ui-label value="i18n:channel-upload-tools.description"></ui-label>
+                </span>
+                <pre>{{item.description}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

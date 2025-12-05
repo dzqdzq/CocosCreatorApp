@@ -1,0 +1,59 @@
+<div :class="previewClass"
+    v-if="display"
+    :style="previewStyle"
+    @mousedown="onRowMouseDown"
+    @mouseup="onPopMenu"
+    @dragover="onDragOver"
+    @drop="onDrop"
+    @dragleave="onDragLeave"
+>
+    <div class="row-wrap"
+        :style="{transform: 'translateX('+ offset +'px)'}"
+    >
+        <!-- 关键帧显示 -->
+        <template
+            v-if="keyData && keyFrames"
+        >
+            <div
+                :class="keyType"
+                name="key"
+                v-for="index in keyData"
+                v-if="keyFrames[index]"
+                :style="queryKeyStyle(keyFrames[index].x)"
+                :index="index"
+                :key="keyFrames[index].prop + keyFrames[index].frame"
+                @mousedown="onMouseDown($event, index)"
+            >
+                <template
+                    v-if="type && keyType === 'image'"
+                >
+                    <ui-image class="sprite-key"
+                        max-height
+                        :value="keyFrames[index].value || ''"
+                    ></ui-image>
+                </template>
+            </div>
+        </template>
+
+        <!-- 选中的关键数据显示 -->
+        <template v-if="selectKey">
+            <div
+                v-for="(item, index) in selectKey"
+                :key="item.key"
+                :class="calcSelectClass(keyType === 'image')"
+                :style="queryKeyStyle(item.x)"
+                name="key"
+            >
+                <template
+                    v-if="keyType === 'image'"
+                >
+                    <ui-image class="sprite-key"
+                        max-height
+                        :value="item.value || ''"
+                    ></ui-image>
+                </template>
+            </div>
+        </template>
+    </div>
+    <div class="tips" v-if="draggable">{{tips}}</div>
+</div>

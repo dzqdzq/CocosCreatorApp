@@ -1,0 +1,498 @@
+{
+    "extension_A100000": {
+        "action": "OpenPanel",
+        "label": "{*}"
+    },
+    "extension_B100001": {
+        "action": "FocusPanel",
+        "label": "{*}"
+    },
+    "l10n_A100000": {
+        "action": "BuildSuccess",
+        "label": "AddL10n"
+    },
+    "l10n_B100001": {
+        "action": "BuildSuccess",
+        "label": "语言id"
+    },
+    "hippoAnimator_A100000": {
+        "action": "UseCursePreset",
+        "label": ""
+    },
+    "hippoAnimator_A100001": {
+        "action": "AddKeyFrame",
+        "label": ""
+    },
+    "hippoAnimator_A100002": {
+        "action": "AddAniPlayer",
+        "label": ""
+    },
+    "hippoAnimator_A100003": {
+        "action": "AniPlay",
+        "label": ""
+    },
+    "animationStateMachine_A100000": {
+        "action": "NewAniMachine",
+        "label": ""
+    },
+    "animationStateMachine_A100001": {
+        "action": "NewBoneMask",
+        "label": ""
+    },
+    "animationStateMachine_A100002": {
+        "action": "AddClip",
+        "label": ""
+    },
+    "animationStateMachine_A100003": {
+        "action": "AddBlend1D",
+        "label": ""
+    },
+    "animationStateMachine_A100004": {
+        "action": "AddBlend2D",
+        "label": ""
+    },
+    "animationStateMachine_A100005": {
+        "action": "AddTransition",
+        "label": ""
+    },
+    "animationStateMachine_A100006": {
+        "action": "EditTransition",
+        "label": ""
+    },
+    "animationStateMachine_A100007": {
+        "action": "EditBlend",
+        "label": ""
+    },
+    "animationStateMachine_A100008": {
+        "action": "AddLayer",
+        "label": ""
+    },
+    "animationStateMachine_A100009": {
+        "action": "AddVariable",
+        "label": ""
+    },
+    "animationStateMachine_A100010": {
+        "action": "TransitionDrag",
+        "label": ""
+    },
+    "animationStateMachine_A100011": {
+        "action": "BlendDrag",
+        "label": ""
+    },
+    "animationStateMachine_A100012": {
+        "action": "AniNodeRename",
+        "label": ""
+    },
+    "animationStateMachine_A100013": {
+        "action": "VariableRename",
+        "label": ""
+    },
+    "animationStateMachine_A100014": {
+        "action": "AniMachinePlay",
+        "label": ""
+    },
+    "particleSystem_A100000": {
+        "action": "ChooseNoise",
+        "label": ""
+    },
+    "particleSystem_A100001": {
+        "action": "ChooseShape",
+        "label": ""
+    },
+    "particleSystem_A100002": {
+        "action": "ChooseVelocityOvertime",
+        "label": ""
+    },
+    "particleSystem_A100003": {
+        "action": "ChooseForceOvertime",
+        "label": ""
+    },
+    "particleSystem_A100004": {
+        "action": "ChooseSizeOvertime",
+        "label": ""
+    },
+    "particleSystem_A100005": {
+        "action": "ChooseRotationOvertime",
+        "label": ""
+    },
+    "particleSystem_A100006": {
+        "action": "ChooseColorOvertime",
+        "label": ""
+    },
+    "particleSystem_A100007": {
+        "action": "ChooseTextureAnimation",
+        "label": ""
+    },
+    "particleSystem_A100008": {
+        "action": "ChooseLimitVelocityOvertime",
+        "label": ""
+    },
+    "particleSystem_A100009": {
+        "action": "ChooseTrail",
+        "label": ""
+    },
+    "particleSystem_A100010": {
+        "action": "UseGpu",
+        "label": ""
+    },
+    "particleSystem_A100011": {
+        "action": "ChooseMesh",
+        "label": ""
+    },
+    "particleSystem_A100014": {
+        "action": "ParticlPlay",
+        "label": ""
+    },
+    "importSystem_A100000": {
+        "action": "ChooseMeshSimplify",
+        "label": ""
+    },
+    "importSystem_A100001": {
+        "action": "ChooseSmartMaterialConversion",
+        "label": ""
+    },
+    "importSystem_A100002": {
+        "action": "ChooseDisableMeshSplit",
+        "label": ""
+    },
+    "bakingSystem_A100000": {
+        "action": "DailyBaking",
+        "label": "BakingDuration"
+    },
+    "bakingSystem_A100001": {
+        "action": "DailyBaking",
+        "label": "BakingTriangleCount"
+    },
+    "bakingSystem_A100002": {
+        "action": "DailyBaking",
+        "label": "BakingLightCount"
+    },
+    "bakingSystem_A100003": {
+        "action": "LightmapGenerate",
+        "label": ""
+    },
+    "bakingSystem_A100006": {
+        "action": "GenerateProbes",
+        "label": ""
+    },
+    "bakingSystem_A100007": {
+        "action": "EditAreaBox",
+        "label": ""
+    },
+    "bakingSystem_A100008": {
+        "action": "EnterProbeEditMode",
+        "label": ""
+    },
+    "bakingSystem_A100009": {
+        "action": "BakingLightProbes",
+        "label": "Click"
+    },
+    "bakingSystem_A100010": {
+        "action": "BakingLightProbes",
+        "label": "Count"
+    },
+    "bakingSystem_A100014": {
+        "action": "BakingReflectionProbe",
+        "label": ""
+    },
+    "bakingSystem_A100015": {
+        "action": "SwitchToPlanar",
+        "label": ""
+    },
+    "terrainSystem_A100001": {
+        "action": "TerrainEdit",
+        "label": "Bulge"
+    },
+    "terrainSystem_A100002": {
+        "action": "TerrainEdit",
+        "label": "Sunken"
+    },
+    "terrainSystem_A100003": {
+        "action": "TerrainEdit",
+        "label": "Smooth"
+    },
+    "terrainSystem_A100004": {
+        "action": "TerrainEdit",
+        "label": "Flat"
+    },
+    "terrainSystem_A100005": {
+        "action": "TerrainEdit",
+        "label": "Setheight"
+    },
+    "terrainSystem_A100006": {
+        "action": "PaintEdit",
+        "label": ""
+    },
+    "buildSystem_B100001": {
+        "action": "Build3.8",
+        "label": "Platform"
+    },
+    "buildSystem_B100003": {
+        "action": "Build3.8",
+        "label": "UUID"
+    },
+    "buildSystem_B100004": {
+        "action": "Build3.8",
+        "label": "Name"
+    },
+    "buildSystem_B100005": {
+        "action": "Build3.8",
+        "label": "AppName"
+    },
+    "buildSystem_B100006": {
+        "action": "Build3.8",
+        "label": "Scene"
+    },
+    "buildSystem_B100007": {
+        "action": "Build3.8",
+        "label": "Script"
+    },
+    "buildSystem_B100008": {
+        "action": "Build3.8",
+        "label": "Resource"
+    },
+    "buildSystem_B100009": {
+        "action": "Build3.8",
+        "label": "ModuleMessage"
+    },
+    "buildSystem_B100010": {
+        "action": "Build3.8",
+        "label": "AppSize"
+    },
+    "buildSystem_B100011": {
+        "action": "Build3.8",
+        "label": "ScreenOrientation"
+    },
+    "buildSystem_B100012": {
+        "action": "Build3.8",
+        "label": "ResourceServerAddress"
+    },
+    "buildSystem_B100013": {
+        "action": "Build3.8",
+        "label": "AppID"
+    },
+    "buildSystem_B100014": {
+        "action": "Build3.8",
+        "label": "2Dor3D_{*}"
+    },
+    "buildSystem_B100015": {
+        "action": "Build3.8",
+        "label": "Module"
+    },
+    "buildSystem_B100016": {
+        "action": "Build3.8",
+        "label": "Prefab"
+    },
+    "buildSystem_B100017": {
+        "action": "Build3.8",
+        "label": "resolution"
+    },
+    "buildSystem_B100018": {
+        "action": "Build3.8",
+        "label": "CustomSplash"
+    },
+    "buildSystem_B100019": {
+        "action": "Build3.8",
+        "label": ""
+    },
+    "buildSystem_B100020": {
+        "action": "Build3.8",
+        "label": "BuiltinServer"
+    },
+    "buildSystem_B100021": {
+        "action": "BuildDeveloperTool",
+        "label": ""
+    },
+    "buildSystem_B100022": {
+        "action": "BuildClearCache",
+        "label": ""
+    },
+    "buildSystem_B100023": {
+        "action": "BuildSetDoubleClick",
+        "label": ""
+    },
+    "buildSystem_B100024": {
+        "action": "BuildSetButton",
+        "label": ""
+    },
+    "buildSystem_B100025": {
+        "action": "Build3.8",
+        "label": "ChooseSkipTextureCompress"
+    },
+    "buildSystem_B100027": {
+        "action": "Build3.8",
+        "label": "Physics_{*}"
+    },
+    "buildSystem_B100029": {
+        "action": "Build3.8",
+        "label": "RigidBody_{*}"
+    },
+    "buildSystem_B100030": {
+        "action": "Build3.8",
+        "label": "Collider_{*}"
+    },
+    "buildSystem_B100031": {
+        "action": "Build3.8",
+        "label": "RenderPipeline_{*}"
+    },
+    "buildSystem_B100032": {
+        "action": "Build3.8",
+        "label": "light_{*}"
+    },
+    "buildSystem_B100034": {
+        "action": "Build3.8",
+        "label": "Skybox"
+    },
+    "buildSystem_B100035": {
+        "action": "Build3.8",
+        "label": "Skybox_{*}"
+    },
+    "buildSystem_B100036": {
+        "action": "Build3.8",
+        "label": "GlobalFog_{*}"
+    },
+    "buildSystem_B100037": {
+        "action": "Build3.8",
+        "label": "GlobalFog"
+    },
+    "buildSystem_B100038": {
+        "action": "Build3.8",
+        "label": "audio"
+    },
+    "buildSystem_B100039": {
+        "action": "Build3.8",
+        "label": "SplashMode"
+    },
+    "buildSystem_B100040": {
+        "action": "Build3.8",
+        "label": "CustomTextureCompress"
+    },
+    "buildSystem_B100040_1": {
+        "action": "Build3.8",
+        "label": "particle_{*}"
+    },
+    "buildSystem_B100040_2": {
+        "action": "Build3.8",
+        "label": "particle_{*}"
+    },
+    "buildSystem_B100041_0": {
+        "action": "Build3.8",
+        "label": "ReflectionProbe_{*}"
+    },
+    "buildSystem_B100041_1": {
+        "action": "Build3.8",
+        "label": "ReflectionProbe_{*}"
+    },
+    "buildSystem_B100042": {
+        "action": "Build3.8",
+        "label": "BuildDuration"
+    },
+    "buildSystem_B100043": {
+        "action": "Build3.8",
+        "label": "CompileDuration"
+    },
+    "editor_A100000": {
+        "action": "Open",
+        "label": ""
+    },
+    "editor_A100001": {
+        "action": "Close",
+        "label": ""
+    },
+    "editor_A100002": {
+        "action": "Duration",
+        "label": ""
+    },
+    "crash_A100000": {
+        "action": "crash",
+        "label": "{*}"
+    },
+    "node_A100000": {
+        "action": "CreateXRSimulatorPrefab",
+        "label": ""
+    },
+    "view_A100000": {
+        "action": "XRsimulatorWebPreview",
+        "label": ""
+    },
+    "xr_A100001": {
+        "action": "TurnXRAgent",
+        "label": ""
+    },
+    "laber_A100000": {
+        "action": "NewComponent",
+        "label": "{*}"
+    },
+    "laber_A100001": {
+        "action": "DeleteComponent",
+        "label": "{*}"
+    },
+    "adsense-h5g-plugin_B100001": {
+        "action": "adsensePropertyCode",
+        "label": ""
+    },
+    "createNode_A100010": {
+        "action": "createNode",
+        "label": "MeshOptimizer"
+    },
+    "createNode_A100011": {
+        "action": "createNode",
+        "label": "SmartMaterialConversion"
+    },
+    "LOD_A100001": {
+        "action": "AddLod",
+        "label": ""
+    },
+    "LOD_A100002": {
+        "action": "RecalculateBounds",
+        "label": ""
+    },
+    "LOD_A100003": {
+        "action": "ResetObjectSize",
+        "label": ""
+    },
+    "LOD_A100004": {
+        "action": "ApplyCurrentCameraSize",
+        "label": ""
+    },
+    "LOD_A100005": {
+        "action": "AddLodLayer",
+        "label": ""
+    },
+    "LOD_A100006": {
+        "action": "ReduceLodLayer",
+        "label": ""
+    },
+    "LOD_A100007": {
+        "action": "AddLodMesh",
+        "label": ""
+    },
+    "LOD_A100008": {
+        "action": "DeleteLodMesh",
+        "label": ""
+    },
+    "LOD_A100009": {
+        "action": "EditLodScreenSize",
+        "label": "Single"
+    },
+    "LOD_A100011": {
+        "action": "EditLodScreenSize",
+        "label": "Multiple"
+    },
+    "native-scene_A100001_0": {
+        "action": "native-scene",
+        "label": "{*}"
+    },
+    "native-scene_A100001_1": {
+        "action": "native-scene",
+        "label": "{*}"
+    },
+    "native-scene_A100002_0": {
+        "action": "SwitchNativeScene",
+        "label": "{*}"
+    },
+    "native-scene_A100002_1": {
+        "action": "SwitchNativeScene",
+        "label": "{*}"
+    }
+}

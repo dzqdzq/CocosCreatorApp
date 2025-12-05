@@ -1,0 +1,70 @@
+{
+    "name": "hmi-adapter",
+    "title": "i18n:hmi-adapter.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "script": {
+        "build": "tsc"
+    },
+    "main": "./dist/browser.js",
+    "creator": {
+        "hookScript": "./dist/register-hook.js"
+    },
+    "contributions": {
+        "asset-db": {
+            "script": "./dist/asset-db-script",
+            "asset-handler": [
+                {
+                    "extnames": [
+                        ".hmi-scene"
+                    ],
+                    "name": "hmi-scene",
+                    "handler": "registerHMISceneImporter"
+                },
+                {
+                    "extnames": [
+                        ".hmi-prefab"
+                    ],
+                    "name": "hmi-prefab",
+                    "handler": "registerHMIPrefabImporter"
+                }
+            ]
+        },
+        "profile": {
+            "editor": {
+                "next": {
+                    "default": true
+                }
+            }
+        },
+        "builder": "./dist/builder/index",
+        "assets": {
+            "drop": [
+                {
+                    "type": "cc.Node",
+                    "message": "drop-nodes-to-assets"
+                }
+            ]
+        },
+        "messages": {
+            "transform-scene": {
+                "methods": [
+                    "transformNormalSceneToHmi"
+                ]
+            },
+            "drop-nodes-to-assets": {
+                "methods": [
+                    "dropNodesToAssets"
+                ]
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:hmi-adapter.transformNormalSceneToHmi",
+                "message": "transform-scene"
+            }
+        ]
+    }
+}

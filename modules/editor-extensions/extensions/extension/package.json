@@ -1,0 +1,274 @@
+{
+    "name": "extension",
+    "version": "3.1.4",
+    "package_version": 2,
+    "description": "i18n:extension.description",
+    "author": "Cocos Creator",
+    "main": "./dist/browser/index.js",
+    "scripts": {
+        "prebuild": "node ./scripts/clear.js",
+        "build": "node ./scripts/build.js"
+    },
+    "panels": {
+        "manager": {
+            "title": "i18n:extension.title",
+            "main": "./dist/panels/manager/index.js",
+            "icon": "./static/icon-2x.png",
+            "type": "simple",
+            "size": {
+                "min-width": 800,
+                "min-height": 400,
+                "width": 1000,
+                "height": 700
+            }
+        },
+        "create": {
+            "title": "create",
+            "main": "./dist/panels/create/index.js",
+            "icon": "./static/icon-2x.png",
+            "type": "simple",
+            "size": {
+                "min-width": 400,
+                "min-height": 300,
+                "width": 540,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "profile": {
+            "editor": {
+                "download-list": {
+                    "default": []
+                },
+                "sdk-domain": {
+                    "default": ""
+                },
+                "last-import-folder-path": {
+                    "default": ""
+                }
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.extension",
+                "label": "i18n:extension.title",
+                "group": "management",
+                "message": "open-manager"
+            },
+            {
+                "path": "i18n:menu.extension",
+                "label": "i18n:extension.store.title",
+                "group": "management",
+                "message": "open-store"
+            },
+            {
+                "path": "i18n:menu.develop/i18n:extension.vscode_workflow.path",
+                "label": "i18n:extension.vscode_workflow.add_chrome_debug_setting",
+                "group": "vscode-workflow",
+                "message": "add-chrome-debug-setting"
+            },
+            {
+                "path": "i18n:menu.develop/i18n:extension.vscode_workflow.path",
+                "label": "i18n:extension.vscode_workflow.add_compile_task",
+                "group": "vscode-workflow",
+                "message": "add-compile-task"
+            },
+            {
+                "path": "i18n:menu.extension",
+                "label": "i18n:extension.create_package.create_extension",
+                "group": "create",
+                "message": "open-create"
+            }
+        ],
+        "messages": {
+            "import-package-by-path": {
+                "methods": [
+                    "importPackageByPath"
+                ]
+            },
+            "import-package": {
+                "methods": [
+                    "importPackage"
+                ]
+            },
+            "show-in-manager": {
+                "methods": [
+                    "showInManager"
+                ]
+            },
+            "open-manager": {
+                "methods": [
+                    "openManager"
+                ]
+            },
+            "open-store": {
+                "methods": [
+                    "openStore"
+                ]
+            },
+            "open-create": {
+                "methods": [
+                    "openCreate"
+                ]
+            },
+            "add-chrome-debug-setting": {
+                "methods": [
+                    "addChromeDebugSetting"
+                ]
+            },
+            "add-compile-task": {
+                "methods": [
+                    "addCompileTask"
+                ]
+            },
+            "enable": {
+                "methods": [
+                    "enable"
+                ]
+            },
+            "remove": {
+                "methods": [
+                    "remove"
+                ]
+            },
+            "reload": {
+                "methods": [
+                    "reload"
+                ]
+            },
+            "self-update": {
+                "methods": [
+                    "selfUpdate"
+                ]
+            },
+            "scanning": {
+                "methods": [
+                    "scanning"
+                ]
+            },
+            "download-item": {
+                "methods": [
+                    "downloadItem"
+                ]
+            },
+            "install-item": {
+                "methods": [
+                    "installItem"
+                ]
+            },
+            "copy-item": {
+                "methods": [
+                    "copyItem"
+                ]
+            },
+            "remove-item": {
+                "methods": [
+                    "removeItem"
+                ]
+            },
+            "remove-all-item": {
+                "methods": [
+                    "removeAllItem"
+                ]
+            },
+            "query-downloader-list": {
+                "methods": [
+                    "queryDownloaderList"
+                ]
+            },
+            "update-extension": {
+                "methods": [
+                    "updateExtension"
+                ]
+            },
+            "search": {
+                "methods": [
+                    "manager.search"
+                ]
+            },
+            "get-extension-info-map": {
+                "methods": [
+                    "getExtensionInfoMap"
+                ]
+            },
+            "create-extension-template": {
+                "methods": [
+                    "createExtensionTemplate"
+                ]
+            },
+            "trash-item": {
+                "methods": [
+                    "trashItem"
+                ]
+            }
+        },
+        "extension": {
+            "download": [
+                {
+                    "id": 33,
+                    "name": "Creator Extension",
+                    "module": "./dist/contributions/extension.js",
+                    "check": "isCreator3DPackage",
+                    "download": "downloadZip",
+                    "install": "installExtension"
+                }
+            ],
+            "template": [
+                {
+                    "name": "i18n:extension.create_package.blank_template",
+                    "defaultName": "blank-template",
+                    "description": "i18n:extension.create_package.blank_template_description",
+                    "path": "./static/extension-template/blank",
+                    "creator": "./dist/browser/default-extension-creator.js"
+                },
+                {
+                    "name": "i18n:extension.create_package.html_template",
+                    "defaultName": "html-template",
+                    "description": "i18n:extension.create_package.html_template_description",
+                    "path": "./static/extension-template/html-panel",
+                    "creator": "./dist/browser/default-extension-creator.js"
+                },
+                {
+                    "name": "i18n:extension.create_package.vue2_template",
+                    "defaultName": "vue2-template",
+                    "description": "i18n:extension.create_package.vue2_template_description",
+                    "path": "./static/extension-template/vue2.x-panel",
+                    "creator": "./dist/browser/default-extension-creator.js"
+                },
+                {
+                    "name": "i18n:extension.create_package.vue3_template",
+                    "defaultName": "vue3-template",
+                    "description": "i18n:extension.create_package.vue3_template_description",
+                    "path": "./static/extension-template/vue3.x-panel",
+                    "creator": "./dist/browser/default-extension-creator.js"
+                }
+            ]
+        }
+    },
+    "dependencies": {
+        "@editor/extension-sdk": "2.0.4",
+        "fix-path": "^2.1.0",
+        "fs-extra": "~10.1.0",
+        "json5": "^2.1.3",
+        "request": "2.88.2",
+        "request-progress": "3.0.0",
+        "semver": "7.3.4",
+        "vue": "~2.7.14"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^9.0.5",
+        "@types/jscodeshift": "^0.7.2",
+        "@types/node": "^14.14.14",
+        "@types/semver": "^7.3.4",
+        "@typescript-eslint/eslint-plugin": "^4.10.0",
+        "@typescript-eslint/parser": "^4.10.0",
+        "eslint": "^7.15.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-vue": "^7.3.0",
+        "less": "^3.13.0",
+        "typescript": "^4.9.5"
+    }
+}

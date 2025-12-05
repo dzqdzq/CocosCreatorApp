@@ -1,0 +1,100 @@
+{
+    "name": "server",
+    "title": "i18n:server.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Web Server",
+    "main": "./dist/index.js",
+    "contributions": {
+        "messages": {
+            "query-ip-list": {
+                "public": true,
+                "methods": [
+                    "queryIPList"
+                ],
+                "description": "i18n:server.contributions.messages.query_ip_list",
+                "doc": "i18n:server.contributions.doc.query_ip_list",
+                "example": "i18n:server.contributions.example.query_ip_list"
+            },
+            "query-https-enabled": {
+                "methods": [
+                    "queryHTTPSEnabled"
+                ]
+            },
+            "query-sort-ip-list": {
+                "public": true,
+                "methods": [
+                    "querySortIpList"
+                ],
+                "description": "i18n:server.contributions.messages.query_sort_ip_list",
+                "doc": "i18n:server.contributions.doc.query_sort_ip_list",
+                "example": "i18n:server.contributions.example.query_sort_ip_list"
+            },
+            "query-port": {
+                "public": true,
+                "methods": [
+                    "queryPort"
+                ],
+                "description": "i18n:server.contributions.messages.query_port",
+                "doc": "i18n:server.contributions.doc.query_port",
+                "example": "i18n:server.contributions.example.query_port"
+            },
+            "scan-lan": {
+                "methods": [
+                    "scanLAN"
+                ]
+            },
+            "change-preview-port": {
+                "methods": [
+                    "change-preview-port"
+                ]
+            },
+            "change-https-options": {
+                "methods": [
+                    "change-https-options"
+                ]
+            }
+        },
+        "profile": {
+            "editor": {
+                "preview_port": {
+                    "label": "i18n:server.preview_port",
+                    "default": 7456,
+                    "message": "change-preview-port"
+                },
+                "server_port": {
+                    "default": 7456
+                },
+                "https.enable": {
+                    "label": "i18n:server.https.enable",
+                    "default": false,
+                    "message": "change-https-options"
+                },
+                "https.port": {
+                    "label": "i18n:server.https.port",
+                    "default": 7567,
+                    "message": "change-https-options"
+                },
+                "https.key": {
+                    "label": "i18n:server.https.key",
+                    "tooltip": "i18n:server.https.key_tooltip",
+                    "default": "",
+                    "message": "change-https-options"
+                },
+                "https.cert": {
+                    "label": "i18n:server.https.cert",
+                    "tooltip": "i18n:server.https.cert_tooltip",
+                    "default": "",
+                    "message": "change-https-options"
+                },
+                "https.ca": {
+                    "label": "i18n:server.https.ca",
+                    "tooltip": "i18n:server.https.ca_tooltip",
+                    "default": "",
+                    "message": "change-https-options"
+                }
+            }
+        }
+    }
+}

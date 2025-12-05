@@ -1,0 +1,50 @@
+{
+    "name": "device",
+    "title": "i18n:device.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser/index",
+    "creator": {
+        "hookScript": "./dist/hooks.js"
+    },
+    "migrations": [
+        {
+            "version": "0.0.0",
+            "profile": "./migrations/0.0.0.js"
+        }
+    ],
+    "contributions": {
+        "profile": {
+            "editor": {
+                "deviceConfig": {
+                    "default": []
+                },
+                "custom": {
+                    "type": "array",
+                    "itemType": "object",
+                    "default": [],
+                    "message": "custom-device-changed"
+                },
+                "enableDevice": {
+                    "type": "object"
+                }
+            }
+        },
+        "preferences": {
+            "custom": "./dist/contributions/preferences.js"
+        },
+        "messages": {
+            "query": {
+                "methods": [
+                    "query"
+                ]
+            },
+            "custom-device-changed": {
+                "methods": [
+                    "customDeviceChanged"
+                ]
+            }
+        }
+    }
+}

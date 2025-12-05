@@ -1,0 +1,199 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <p>can drag to change value</p>
+            <div>
+                <ui-num-input value="666"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input value="666"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>step</h2>
+            <p>If not set step, default step will be use by preference</p>
+            <div>
+                <ui-num-input value="10" step="1"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input value="10" step="1"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>preci</h2>
+            <div>correct decimal places number</div>
+            <div>
+                <ui-num-input value="10" preci="0" style="margin-bottom: 4px"></ui-num-input>
+                <ui-num-input value="10.123" preci="2" style="margin-bottom: 4px"></ui-num-input>
+                <ui-num-input preci="1" value="10.153"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input value="10" preci="0"&gt;&lt;/ui-num-input&gt;
+                &lt;ui-num-input value="10.123" preci="2"&gt;&lt;/ui-num-input&gt;
+                &lt;ui-num-input preci="1" value="10.153"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>min or max</h2>
+            <div>
+                <ui-num-input value="9" step="1" min="5" style="margin-bottom: 4px"></ui-num-input>
+                <ui-num-input value="9" step="1" max="10" style="margin-bottom: 4px"></ui-num-input>
+                <ui-num-input value="9" step="1" min="5" max="10" style="margin-bottom: 4px"></ui-num-input>
+                <ui-num-input value="90" step="1" min="5" max="10"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input value="9" step="1" min="5"&gt;&lt;/ui-num-input&gt;
+                &lt;ui-num-input value="9" step="1" max="10"&gt;&lt;/ui-num-input&gt;
+                &lt;ui-num-input value="9" step="1" min="5" max="10"&gt;&lt;/ui-num-input&gt;
+                &lt;ui-num-input value="90" step="1" min="5" max="10"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>unit</h2>
+            <div>
+                <ui-num-input value="10" unit="px"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input value="10" unit="px"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>label</h2>
+            <div>
+                <ui-num-input label="X" slot="content" value="0"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input label="X" slot="content" value="0"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-num-input invalid></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input invalid&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-num-input readonly value="0"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input readonly value="0"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-num-input disabled value="0"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input disabled value="0"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-num-input hidden value="0"></ui-num-input>
+            </div>
+            <ui-code language="html">
+                &lt;ui-num-input hidden value="0"&gt;&lt;/ui-num-input&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                unit
+                label
+                preci
+                step
+                max
+                min
+                disabled
+                readonly
+                invalid
+                placeholder
+                hidden
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-num-input unit="px"
+                    @change="onChange($event.target.value)"
+                    @confirm="onConfirm($event.target.value)"
+                    @cancel="onCancel($event.target.value)"
+                    @unit-click="onUnitClick"
+                ></ui-num-input>
+            </div>
+    
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel
+                    unit-click
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-num-input unit="px"
+                        @change="onChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                        @unit-click="onUnitClick"
+                    &gt;&lt;/ui-num-input&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-num-input id="ui-num-input" unit="px"&gt;&lt;/ui-num-input&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-num-input');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log('onChange', event.target.value)
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log('onConfirm', event.target.value)
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        // cancel value
+                        console.log('onCancel', event.target.value)
+                    });
+                    element.addEventListener('unit-click', () => {
+                        console.log('unit-click')
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

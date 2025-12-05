@@ -1,0 +1,149 @@
+:host {
+  display: flex;
+}
+.settings {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.settings > .slider {
+  width: 20%;
+  min-width: 100px;
+  max-width: 160px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.settings > .slider::-webkit-scrollbar {
+  display: block;
+  border-left: 1px solid var(--color-normal-border-weaker);
+}
+.settings > .slider > header {
+  margin-top: 6px;
+  padding: 0 10px;
+  color: var(--color-normal-contrast-important);
+}
+.settings > .slider > ul > li {
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.settings > .slider > ul > li:hover,
+.settings > .slider > ul > li[active] {
+  background-color: var(--color-active-fill-emphasis);
+  color: var(--color-active-contrast-emphasis);
+}
+.settings > .content {
+  flex: 1;
+  margin-left: 6px;
+  padding: 24px 16px 16px 8px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: scroll;
+  position: relative;
+}
+.settings > .content > div {
+  height: 100%;
+}
+.settings > .content > ui-setting,
+.settings > .content > .general {
+  outline: none;
+}
+.settings > .content > ui-setting > div,
+.settings > .content > .general > div {
+  display: flex;
+  padding: 2px 0;
+}
+.settings > .content > ui-setting > div > ui-icon,
+.settings > .content > .general > div > ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.settings > .content > ui-setting > div > ui-setting,
+.settings > .content > .general > div > ui-setting {
+  flex: 1;
+}
+.settings > .content > ui-setting > div > .server-port,
+.settings > .content > .general > div > .server-port {
+  color: var(--color-warn-fill);
+  visibility: visible;
+}
+.settings > .content > ui-setting > div.subtab,
+.settings > .content > .general > div.subtab {
+  font-size: 10px;
+  opacity: 0.6;
+}
+.settings > .content > ui-setting ui-prop,
+.settings > .content > .general ui-prop {
+  --left-width: 40%;
+  flex: 1;
+  padding-left: 5px;
+}
+.settings > .content > ui-setting ui-prop > ui-file,
+.settings > .content > .general ui-prop > ui-file,
+.settings > .content > ui-setting ui-prop > ui-input,
+.settings > .content > .general ui-prop > ui-input,
+.settings > .content > ui-setting ui-prop > ui-num-input,
+.settings > .content > .general ui-prop > ui-num-input,
+.settings > .content > ui-setting ui-prop > ui-select,
+.settings > .content > .general ui-prop > ui-select {
+  flex: 1;
+}
+.settings > .content > ui-setting p,
+.settings > .content > .general p {
+  margin-top: 0;
+}
+.settings > .content > ui-setting > div:hover ui-icon {
+  visibility: visible;
+}
+.settings > .content > ui-setting[type='local'] > div ui-icon {
+  color: var(--color-warn-fill);
+  visibility: visible;
+}
+.settings > .content > .laboratory {
+  margin-top: -15px;
+  padding-left: 15px;
+}
+.settings > .content > .laboratory > ui-setting {
+  outline: none;
+}
+.settings > .content > .laboratory > ui-setting > div {
+  display: flex;
+  padding: 2px 0;
+}
+.settings > .content > .laboratory > ui-setting > div > ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.settings > .content > .laboratory > ui-setting > div:hover ui-icon {
+  visibility: visible;
+}
+.settings > .content > .laboratory > ui-setting > .mark {
+  color: var(--color-normal-contrast-weakest);
+  opacity: 0.3;
+  font-size: calc(var(--size-small-font) * 1px);
+}
+.settings > .content > .laboratory > ui-setting > .setting {
+  margin-left: 20px;
+}
+.settings > .content > .laboratory ui-prop {
+  --left-width: 40%;
+  flex: 1;
+  padding-left: 5px;
+}
+.settings > .content > .laboratory ui-prop > ui-file,
+.settings > .content > .laboratory ui-prop > ui-input,
+.settings > .content > .laboratory ui-prop > ui-num-input,
+.settings > .content > .laboratory ui-prop > ui-select {
+  flex: 1;
+}
+.settings > .content > .laboratory p {
+  margin-top: 0;
+}

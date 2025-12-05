@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"HMI Adapter",newScene:"HMI Scene",newPrefab:"HMI Prefab",transformNormalSceneToHmi:"Convert Creator project to HMI project"};

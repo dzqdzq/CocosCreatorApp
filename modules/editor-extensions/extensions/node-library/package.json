@@ -1,0 +1,53 @@
+{
+    "name": "node-library",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:node-library.description",
+
+    "main": "dist/browser.js",
+
+    "panels": {
+        "panel": {
+            "title": "i18n:node-library.title",
+            "main": "./dist/panel.js",
+            "icon": "./static/icon-2x.png",
+
+            "flags": {
+                "save": true
+            },
+
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 380,
+                "height": 600
+            }
+        }
+    },
+
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:node-library.title",
+                "icon": "./static/icon.png",
+                "message": "open"
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+7",
+                "mac": "cmd+7"
+            }
+        ],
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            }
+        }
+    }
+}

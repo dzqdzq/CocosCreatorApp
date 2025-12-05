@@ -1,0 +1,118 @@
+<div
+    class="searcher"
+    ref="main"
+>
+    <header class="toolbar">
+        <ui-input
+            ref="searchInput"
+            show-clear
+            :disabled="loading"
+            placeholder="i18n:ui-kit.searcher.placeholder"
+            @change="onSearch"
+            @keydown.down.stop="searchKeydown($event)"
+            @keydown.enter.top="enterSelect"
+        ></ui-input>
+        <ui-button
+            size="medium"
+            v-if="checkAllowCreate(ccType)"
+            :disabled="loading"
+            @confirm.stop="createAsset()"
+        >Create</ui-button>
+    </header>
+    <main
+        class="container"
+        ref="container"
+    >
+        <div
+            class="loading"
+            v-if="loading"
+        >
+            <ui-loading></ui-loading>
+        </div>
+        <template v-else-if="dataDump">
+            <comps-section
+                v-if="type==='add-component'"
+                v-for="(data, header) in dataDump"
+                :key="data.uuid"
+                :header="header"
+                :data="data"
+                :expand="expand"
+                @confirm="onSelect"
+            ></comps-section>
+            <div
+                class="line script"
+                v-if="type==='script'"
+                v-for="(info, key) in dataDump"
+                :key="key"
+                :value="info.name"
+                @dblclick.stop="onSelect(info.name, info)"
+                @click.stop="onSelect(info.name, info)"
+            >
+                <ui-icon
+                    default="component"
+                    color="true"
+                    :value="info.iconName"
+                ></ui-icon>
+                <span class="name">{{key}}</span>
+                <ui-icon
+                    color="true"
+                    class="select"
+                    value="check-b"
+                ></ui-icon>
+            </div>
+            <div
+                class="line"
+                v-for="(data, index) in dataDump"
+                v-if="type!=='add-component' && index <= dataDumpShowNumber"
+                :key="data.uuid"
+                :value="data.uuid"
+                :selected="data.uuid===selected"
+                @dblclick.stop="onSelect(data.uuid, data)"
+                @click.stop="onSelect(data.uuid, data)"
+                @mouseenter.stop="preview('confirm', data.uuid, data)"
+                @mouseleave.stop="preview('cancel', data.uuid, data)"
+            >
+                <!-- 目前除了资源都不支持 icon 显示 -->
+                <div
+                    class="left"
+                    v-if="type==='asset'"
+                >
+                    <ui-asset-image
+                        class="image"
+                        :value="data.uuid"
+                        :importer="data.importer"
+                        size="middle"
+                    ></ui-asset-image>
+                </div>
+                <div class="right">
+                    <div class="name">
+                        <ui-label :value="data.name"></ui-label>
+                        <ui-label class="type"
+                            v-if="data.ccType"
+                            :value="data.ccType"
+                        ></ui-label>
+                    </div>
+                    <div class="path">
+                        <ui-icon
+                            value="location"
+                            class="location"
+                            @click.stop="twinkle(data)"
+                        ></ui-icon>
+                        {{data.path}}
+                    </div>
+                    <ui-icon
+                        class="select"
+                        color="true"
+                        value="check-b"
+                    ></ui-icon>
+                </div>
+            </div>
+        </template>
+        <div
+            class="empty"
+            v-else
+        >
+            {{t('empty')}}
+        </div>
+    </main>
+</div>

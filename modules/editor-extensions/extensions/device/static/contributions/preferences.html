@@ -1,0 +1,109 @@
+<div class="device">
+    <div class="slider">
+        <ul>
+            <div v-if="config.custom.length" class="device-type">
+                <ui-label value="i18n:device.customDevices"></ui-label>
+            </div>
+            <li
+                v-for="(device, index) in config.custom"
+                :key="device.name"
+                :active="deviceType === 'custom' && num === index"
+                @click="chooseDevice('custom', index)"
+            >
+                <ui-checkbox
+                    :value="config.enable[device.name]"
+                    @change="switchEnable($event.target.value, device.name)"
+                ></ui-checkbox>
+                <ui-label :value="device.name"></ui-label>
+                <div
+                    class="delete_custom_device"
+                    style="float: right"
+                    @click.stop="deleteDevice(index)"
+                >
+                    ✕
+                </div>
+            </li>
+
+            <li class="line" v-if="config.custom.length"></li>
+
+            <div class="device-type">
+                <ui-label value="i18n:device.defaultDevices"></ui-label>
+            </div>
+            <li
+                v-for="(device, index) in config.builtin"
+                :key="device.name"
+                :active="deviceType === 'builtin' && num === index"
+                @click="chooseDevice('builtin', index)"
+            >
+                <ui-checkbox
+                    :value="config.enable[device.name]"
+                    @change="switchEnable($event.target.value, device.name)"
+                ></ui-checkbox>
+                <ui-label :value="device.name"></ui-label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="device-form" @change='onDeviceChange'>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:device.markname"></ui-label>
+                <ui-input
+                    slot="content"
+                    path="name"
+                    :disabled="deviceFormDisabled"
+                    :value="device.name"
+                ></ui-input>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:device.resolution"></ui-label>
+                <div slot="content">
+                    <ui-num-input
+                        step="1"
+                        preci="0"
+                        min="0"
+                        path="width"
+                        :disabled="deviceFormDisabled"
+                        :value="device.width"
+                        unit="px"
+                    ></ui-num-input>
+                    <ui-label value="x"></ui-label>
+                    <ui-num-input
+                        step="1"
+                        preci="0"
+                        min="0"
+                        path="height"
+                        :disabled="deviceFormDisabled"
+                        :value="device.height"
+                        unit="px"
+                    ></ui-num-input>
+                </div>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:device.pixelratio"></ui-label>
+                <ui-num-input
+                    slot="content"
+                    step="1"
+                    preci="0"
+                    min="0"
+                    path="ratio"
+                    :disabled="deviceFormDisabled"
+                    :value="device.ratio"
+                ></ui-num-input>
+            </ui-prop>
+
+            <div class="buttons" v-if="editType">
+                <ui-button @confirm="cancelCreate">
+                    <ui-label value="i18n:device.button.cancel"></ui-label>
+                </ui-button>
+                <ui-button :disabled="confirmButtonDisabled" @confirm="confirmDevice">
+                    <ui-label value="i18n:device.button.save"></ui-label>
+                </ui-button>
+            </div>
+        </div>
+
+        <ui-button v-if="editType !== 'add'" class="add-device-button blue" @confirm="createDevice">
+            <ui-label value="i18n:device.button.create"></ui-label>
+        </ui-button>
+    </div>
+</div>

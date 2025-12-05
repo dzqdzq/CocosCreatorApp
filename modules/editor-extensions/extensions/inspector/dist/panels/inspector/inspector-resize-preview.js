@@ -1,0 +1,10 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const TagName="inspector-resize-preview",STYLE=`
+:host {
+    height: 2px;
+    background-color: var(--color-normal-border);
+    cursor: ns-resize;
+}
+:host([focused]) {
+    background-color: var(--color-focus-fill);
+}
+`,Config={header:{value:200,min:200,moveBottom:!0},footer:{value:200,min:200,moveBottom:!1}};class InspectorResizePreview extends HTMLElement{get inspectorRootElement(){if(this._inspectorRootElement)return this._inspectorRootElement;this._inspectorRootElement=this.getInspectorRootElement()}getInspectorRootElement(){let e=this;for(;e&&(!(e=e.parentElement||e.getRootNode().host)||"PANEL-FRAME"!==e.tagName||"inspector"!==e.getAttribute("name")););return e}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot&&(this.shadowRoot.innerHTML=`<style>${STYLE}</style>`)}connectedCallback(){this.addEventListener("mousedown",this.mousedown)}disconnectedCallback(){this.removeEventListener("mousedown",this.mousedown),this._inspectorRootElement=void 0}mousedown(e){var t=this.getAttribute("area");const o=Config[t];if(o){this.setAttribute("focused","");const s=o.value,n=this.getBoundingClientRect(),i=e.clientY,r=e=>{let t=e.clientY-i;o.moveBottom||(t=0-t);e=s+t;this.updateConfig(e,o)},c=()=>{this.removeAttribute("focused");let e=this.getBoundingClientRect().y-n.y;o.moveBottom||(e=0-e);var t=s+e;this.updateConfig(t,o),document.removeEventListener("mousemove",r),document.removeEventListener("mouseup",c)};document.addEventListener("mousemove",r),document.addEventListener("mouseup",c)}}updateConfig(e,t){var o;this.inspectorRootElement&&(o=.7*this.inspectorRootElement.clientHeight,e<t.min&&(e=t.min),t.value=e=o<e?o:e,this.updateCss())}updateCss(){for(const t in Config){var e=Config[t];this.inspectorRootElement&&this.inspectorRootElement.style.setProperty(`--inspector-${t}-preview-height`,e.value+"px")}}}exports.default=InspectorResizePreview,window&&!window.customElements.get(TagName)&&window.customElements.define(TagName,InspectorResizePreview);

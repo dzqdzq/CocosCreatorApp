@@ -1,0 +1,142 @@
+:host {
+  display: flex;
+}
+.settings {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.settings-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.settings-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.settings-info > .slider {
+  width: 20%;
+  min-width: 100px;
+  max-width: 160px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  background-color: var(--color-normal-fill-emphasis);
+}
+.settings-info > .slider::-webkit-scrollbar {
+  display: block;
+  border-left: 1px solid var(--color-normal-border-weaker);
+}
+.settings-info > .slider .empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  color: var(--color-normal-contrast-emphasis);
+  box-sizing: border-box;
+}
+.settings-info > .slider > header {
+  margin-top: 6px;
+  padding: 0 10px;
+  color: var(--color-normal-contrast-important);
+}
+.settings-info > .slider > ul > li {
+  padding-top: 10px;
+}
+.settings-info > .slider > ul > li > ui-label {
+  opacity: 0.5;
+  text-align: left;
+  margin-left: 16px;
+  font-size: calc(var(--size-small-font) * 1px);
+}
+.settings-info > .slider > ul > li > ul > li {
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.settings-info > .slider > ul > li > ul > li:hover,
+.settings-info > .slider > ul > li > ul > li[active] {
+  background-color: var(--color-active-fill-emphasis);
+  color: var(--color-active-contrast-emphasis);
+}
+.settings-info > .content {
+  flex: 1;
+  margin-left: 6px;
+  padding: 24px 16px 16px 8px;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.settings-info > .content .auto {
+  overflow-y: auto;
+}
+.settings-info > .content .auto > ui-setting {
+  outline: none;
+}
+.settings-info > .content .auto > ui-setting > div {
+  display: flex;
+  padding: 2px 0;
+}
+.settings-info > .content .auto > ui-setting > div > ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.settings-info > .content .auto > ui-setting > div:hover ui-icon {
+  visibility: visible;
+}
+.settings-info > .content .auto > ui-setting ui-prop {
+  --left-width: 40%;
+  flex: 1;
+  padding-left: 5px;
+}
+.settings-info > .content .auto > ui-setting ui-prop > ui-file,
+.settings-info > .content .auto > ui-setting ui-prop > ui-input,
+.settings-info > .content .auto > ui-setting ui-prop > ui-num-input,
+.settings-info > .content .auto > ui-setting ui-prop > ui-select {
+  flex: 1;
+}
+.settings-info > .content .auto > ui-setting p {
+  margin-top: 0;
+}
+.settings-info > .content > .align-custom-panel {
+  margin-left: 16px;
+  padding-left: 5px;
+}
+.settings-info > .content .custom-panel {
+  height: 100%;
+}
+.settings-info > .content .custom-panel ui-panel {
+  height: 100%;
+}
+.settings-info > .content .empty {
+  padding: 0 21px;
+}
+.settings-info > .content.auto {
+  overflow: scroll;
+}
+.settings-info > .content.auto .custom-panel {
+  max-height: 100%;
+  height: auto;
+}
+.settings-info > .content.auto .custom-panel ui-panel {
+  max-height: 100%;
+  height: auto;
+}

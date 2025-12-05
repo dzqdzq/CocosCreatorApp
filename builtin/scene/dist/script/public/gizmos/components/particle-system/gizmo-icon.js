@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const base_1=require("../base");class ParticleSystemIconGizmo extends base_1.IconGizmo{constructor(){super(...arguments),this.disableOnSelected=!0}createController(){super.createController(),this._controller.setTextureByUUID("55052bc6-9909-43c1-b2fc-8818060fb069@6c48a")}}exports.default=ParticleSystemIconGizmo;

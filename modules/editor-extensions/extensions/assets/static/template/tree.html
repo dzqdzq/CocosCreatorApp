@@ -1,0 +1,19 @@
+<ui-drag-area class="tree" 
+    :droppable="droppableTypes.join(',')"
+    :searching="isSearchingMode()"
+    @dragenter="dragEnter($event)"
+    @drop="drop($event)"
+    @click="click($event)"
+>
+    <tree-node
+        v-for="(asset,index) in assets" 
+        :key="index"
+        :asset="asset"
+        :expand="isExpand(asset.uuid)"
+        :select="isSelect(asset.uuid)"
+        :twinkle="getTwinkle(asset.uuid)"
+        :renameUrl="renameUrl"
+        :addInfo="addInfo"
+    ></tree-node>
+</ui-drag-area>
+

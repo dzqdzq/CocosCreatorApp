@@ -1,0 +1,222 @@
+<div class="container">
+    <div class="readonly"
+        v-show="!queryData.assetInfo"
+    >
+        <ui-label class="tip" value="i18n:animation-graph.startTip"></ui-label>
+    </div>
+    <main class="main">
+        <header class="header">
+            <div class="crumbs">
+                <template
+                    v-for="(crumb, crumbIndex) in queryData.view.crumbs" 
+                    v-if="queryData.view.crumbs.length===1 || crumbIndex!==queryData.view.crumbs.length-1"  
+                >
+                    <ui-label class="name"
+                        :class="{ text: queryData.view.crumbs.length===1 || crumbIndex===queryData.view.crumbs.length-2 }"
+                        :value="crumb.name || crumb.type"
+                        @click="crumbView(crumbIndex)"
+                    ></ui-label>
+                    <ui-label class="tip" value="/"
+                        v-if="queryData.view.crumbs.length >= 2 && crumbIndex!==queryData.view.crumbs.length-2"
+                    ></ui-label>
+                </template>
+            </div>
+            <ui-button class="save tiny green"
+                v-if="queryData && queryData.isDirty"
+                @click.stop="apply()"
+                tooltip="i18n:animation-graph.save"
+            >
+                <ui-icon value="check"></ui-icon>
+            </ui-button>
+            <ui-button class="reset tiny"
+                v-if="queryData && queryData.isDirty"
+                @click.stop="reset()"
+                tooltip="i18n:animation-graph.reset"
+            >
+                <ui-icon value="reset" color></ui-icon>
+            </ui-button>
+        </header>
+        <layer ref="layer"
+            :sub-state-machine="crumbHasSubStateMachine()"
+        ></layer>
+    </main>
+    <div class="tabs">
+        <div class="tab" 
+            :active="active==='layer'"
+            @click.stop="activeTab('layer')"
+        >
+            <ui-label value="i18n:animation-graph.layer.texts"></ui-label>
+        </div>
+        <div class="tab"
+            :active="active==='variable'"
+            @click.stop="activeTab('variable')"
+        >
+            <ui-label value="i18n:animation-graph.variable.texts"></ui-label>
+        </div>
+    </div>
+    <div class="tab-content"
+        :active="!!active"
+    >
+        <div class="header">
+            <div class="name">
+                <ui-label 
+                    v-if="!!active"
+                    :value="`i18n:animation-graph.${active}.texts`"
+                ></ui-label>
+            </div>
+            <ui-icon class="icon" value="collapse-right"
+                @click.stop="cancelTab"
+            ></ui-icon>
+        </div>
+        <div class="content">
+            <template
+                v-if="active==='layer'"
+            >
+                <div class="caption">
+                    <ui-label class="name" value="i18n:animation-graph.layer.add"></ui-label>
+                    <ui-icon class="icon" value="add" tooltip="i18n:animation-graph.layer.add"
+                        @click.stop="addLayerReady"
+                    ></ui-icon>
+                </div>
+                
+                <div class="list" ref="layerList"
+                    @mouseenter="dragResetLayer()"
+                >
+                    <div class="item"
+                        v-for="(layer, layerIndex) in queryData.layers" 
+                        :active="layerIndex===queryData.view.layerIndex"
+                        @click="crumbLayer(layerIndex)"
+                        @dragover="dragOverLayer($event)"
+                        @dragleave="dragLeaveLayer($event)"
+                        @drop="dropLayer($event, layerIndex)"
+                    >
+                        <ui-input class="name" auto-select="false"
+                            v-if="layerIndex===layerState.confirmRenameIndex"
+                            :value="layer.name"
+                            @blur="renameLayerSubmit($event,layer)"
+                            @keydown.stop
+                            @keydown.enter="renameLayerSubmit($event,layer)"
+                            @keydown.esc="renameLayerCancel()"
+                            @click.stop
+                            @dblclick.stop
+                            v-focus
+                        ></ui-input>
+                        <template 
+                            v-else
+                        >
+                            <ui-label class="drag" draggable="true" tooltip="i18n:animation-graph.layer.resortTip"
+                                @dragstart="dragStartLayer($event, layerIndex)"
+                                @click.stop
+                            ></ui-label>
+                            <ui-label class="name"
+                                :value="layer.name"
+                                @click="renameLayerReady(layerIndex)"
+                            ></ui-label>
+                            <ui-icon class="icon" value="close" tooltip="i18n:animation-graph.layer.remove"
+                                v-if="queryData.layers.length > 1"
+                                @click.stop="removeLayer(layerIndex)"
+                            ></ui-icon>
+                        </template>
+                    </div>
+                    <div class="caption"
+                        v-if="layerState.readyAdd"
+                    >
+                        <ui-input class="name"
+                            @blur="addLayer($event)"
+                            @keydown.stop
+                            @keydown.enter="addLayer($event)"
+                            @keydown.esc="addLayerCancel($event)"
+                            @click.stop
+                            @dblclick.stop
+                            v-focus
+                        ></ui-input>
+                    </div>
+                </div>
+                
+            </template>
+            <template
+                v-else-if="active==='variable'"
+            >
+                <div class="caption">
+                    <ui-label class="name" value="i18n:animation-graph.variable.add"></ui-label>
+                    <ui-icon class="icon" value="add-more" tooltip="i18n:animation-graph.variable.add"
+                        @click.stop="addVariableReady"
+                    ></ui-icon>
+                </div>
+                <div class="variable-select"
+                    v-if="variableState.readyAdd"
+                >
+                    <ui-label class="option"
+                        v-for="(name,value) in queryData.variableType" 
+                        v-if="!isFinite(name)"
+                        :key="name"
+                        :value="t('variable.'+name) || name"
+                        @click.stop="addVariable(name,value)"
+                    ></ui-label>
+                </div>
+                <div class="variable-mask"
+                    v-if="variableState.readyAdd"
+                    @click.stop="addVariableReady"
+                ></div>
+                <div class="list">
+                    <div class="item"
+                        v-for="(variable,variableName,index) in queryData.variables" 
+                        :key="variableName"
+                    >
+                        <div class="name">
+                            <ui-prop class="variable"
+                                @change="changeVariable(variableName, $event)"
+                            >
+                                <ui-input slot="label" class="label" auto-select="false"
+                                    v-if="variableName===variableState.confirmRenameVariableName"
+                                    :value="variableName"
+                                    @blur="renameVariableSubmit($event,variableName)"
+                                    @keydown.stop
+                                    @keydown.enter="renameVariableSubmit($event,variableName)"
+                                    @keydown.esc="renameVariableCancel()"
+                                    @click.stop
+                                    @dblclick.stop
+                                    @change.stop
+                                    v-focus
+                                ></ui-input>
+                                <ui-label slot="label" class="label"
+                                    v-else
+                                    :value="variableName"
+                                    :tooltip="variableName"
+                                    @click="renameVariableReady(variableName)"
+                                ></ui-label>
+
+                                <div slot="content">
+                                    <ui-prop no-label
+                                        class="prop"
+                                        type="dump"
+                                        :render="JSON.stringify(variable.value)"
+                                        @confirm-dump="changeVariable(variableName, $event)"
+                                    >
+                                    </ui-prop>
+                                </div>
+                            </ui-prop>
+                            <ui-prop class="trigger variable"
+                                v-if="variable.type==='TRIGGER'" 
+                                @change="changeTriggerResetMode(variableName, $event.target.value)"
+                            >
+                                <ui-label slot="label"
+                                    value="i18n:animation-graph.variable.TRIGGER_resetMode"
+                                    tooltip="i18n:animation-graph.variable.TRIGGER_resetMode_tip"
+                                ></ui-label>
+                                <ui-checkbox slot="content"
+                                    :value="!!variable.resetMode"
+                                    :type="variable.type"
+                                ></ui-checkbox>
+                            </ui-prop>
+                        </div>
+
+                        <ui-icon class="icon" value="close" tooltip="i18n:animation-graph.variable.remove"
+                            @click.stop="removeVariable(variableName)"
+                        ></ui-icon>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>

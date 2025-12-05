@@ -1,0 +1,1 @@
+"use strict";exports.query=function(e,l,r){var o=document.querySelector("#dock").shadowRoot;let t=null;if(o){o=o.querySelector(`panel-frame[name="${e}"]`);if(!o||!o.shadowRoot)return null;t=o.shadowRoot;for(let e=0;e<l.length;e++){var n=l[e];if(!(t="number"==typeof n?t[n]||null:(t=void 0!==t.length?t[0]:t).querySelectorAll(n)||null))return null}}return t};
