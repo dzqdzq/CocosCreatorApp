@@ -1,0 +1,7 @@
+{
+    "name": "openharmony",
+    "version": "1.0.0",
+    "description": "",
+    "author": "Cocos Creator",
+    "simple-build-target": "build.js"
+}
