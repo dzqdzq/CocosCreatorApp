@@ -1,0 +1,1 @@
+cc.VideoClip.prototype.createNode=function(e){var c=new cc.Node(this.name),o=c.addComponent(cc.VideoPlayer);return o.resourceType=cc.VideoPlayer.ResourceType.LOCAL,o.clip=this,e(null,c)};
