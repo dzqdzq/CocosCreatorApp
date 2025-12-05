@@ -1,0 +1,11 @@
+{
+    "name": "link-sure",
+    "title": "i18n:link-sure.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Runtime",
+    "description": "LinkSure platform plugin",
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

@@ -1,0 +1,19 @@
+.reference-image > .content {
+  flex: 1;
+  padding: 25px;
+  overflow: auto;
+}
+.reference-image > .content > .btn-layout {
+  display: flex;
+}
+.reference-image > .content > .btn-layout > .images {
+  width: 100%;
+  margin-right: 20px;
+}
+.reference-image > .content > .btn-layout > .del-image {
+  width: 100px;
+}
+.reference-image > .content > .btn-layout > .add-image {
+  width: 100px;
+  margin-right: 10px;
+}

@@ -1,0 +1,209 @@
+import { animation, Vec2 } from 'cc';
+import { AssetInfo } from '../../asset-db/@types/public';
+import * as animationApi from 'cc/editor/new-gen-anim';
+
+export type State = animationApi.State | animationApi.MotionState | animationApi.SubStateMachine;
+
+export type Motion = NonNullable<animationApi.MotionState['motion']>;
+
+export type Transition = animationApi.Transition | animationApi.AnimationTransition;
+
+export type Condition = animationApi.BinaryCondition | animationApi.UnaryCondition | animationApi.TriggerCondition;
+
+export type UnaryConditionOperator = animationApi.UnaryCondition.Operator;
+
+export type BinaryConditionOperator = animationApi.BinaryCondition.Operator;
+
+export type TriggerResetMode = animationApi.TriggerResetMode;
+
+export interface queryDataTemplate {
+    assetInfo: AssetInfo | null;
+    isDirty: boolean;
+    envType: Record<string, string>;
+    view: {
+        stateMachine?: stateMachineData;
+        crumbs: crumbData[];
+        layerIndex: number;
+        stateIndex: number;
+        transitionIndex: number;
+        motion?: motionData;
+        motionLevel: number[];
+    };
+    layers: layerData[];
+    variables: Record<string, variableData>;
+    variableType: typeof animationApi.VariableType;
+    unaryConditionOperator: typeof UnaryConditionOperator;
+    binaryConditionOperator: typeof BinaryConditionOperator;
+    binaryConditionOperatorI18n: Record<string, string>;
+    unaryConditionOperatorI18n: Record<string, string>;
+    conditionVariableType: string[];
+    cannotAddMotionStateType: string[];
+    cannotRemoveStateType: string[];
+    motionType: string[];
+    animationBlendType: string[];
+}
+
+export interface layerData {
+    index: number;
+    name: string;
+    props: Record<string, any>;
+}
+
+export interface stateMachineData {
+    states: stateData[];
+    transitions: transitionData[];
+}
+
+export interface componentData {
+    name: string;
+    index: number;
+    value: any;
+}
+
+export interface motionData {
+    type: string;
+    name: string;
+    value: motionDataValue;
+    min: number[];
+    max: number[];
+    threshold?: number | Vec2 | Record<string, number>;
+    level: number[];
+    children?: motionData[];
+    editorData?: editorData;
+}
+
+export type motionDataValue = null | clipMotionData | AnimationBlendData | AnimationBlendData[];
+
+export interface clipMotionData {
+    uuid: string;
+}
+export interface AnimationBlendData {
+    variable: string;
+    value: number;
+}
+
+export interface stateData {
+    index: number;
+    name: string;
+    type: string;
+    props?: stateProps;
+    editorData: editorData;
+    stateMachine?: stateMachineData;
+    components?: componentData[];
+}
+
+interface bindableNumber {
+    variable: string;
+    value: number;
+}
+
+interface bindableBoolean {
+    variable: string;
+    value: boolean;
+}
+
+export interface stateProps {
+    speed: number;
+    speedMultiplier: string;
+    speedMultiplierEnabled: boolean;
+    motion: motionData;
+}
+
+export interface transitionData {
+    type: string;
+    index: number;
+    from: {
+        index: number;
+        name: string;
+        type: string;
+    };
+    to: {
+        index: number;
+        name: string;
+        type: string;
+    };
+    removable: boolean;
+    duration: number;
+    relativeDuration: boolean;
+    exitConditionEnabled?: boolean;
+    exitCondition?: number;
+    editorData: any;
+    conditions: conditionData[];
+}
+
+export interface conditionData {
+    type: string;
+    operator?: number;
+    lhs: {
+        type: string;
+        value: {
+            variable: string;
+            constant?: number | string | boolean;
+        };
+    };
+    rhs?: {
+        type: string;
+        value: {
+            variable: string;
+            constant: number | string | boolean | undefined;
+        };
+    };
+}
+
+export interface variableData {
+    type: string;
+    value: number | string | boolean;
+    resetMode?: TriggerResetMode;
+}
+
+export interface viewportData {
+    scale: number;
+    top: number;
+    left: number;
+}
+
+export interface editorData {
+    id: string;
+    centerX: number;
+    centerY: number;
+    name?: string;
+    viewport?: viewportData;
+}
+
+export interface motionEditorData extends editorData {
+    autoThreshold?: boolean;
+}
+
+export interface addStateData {
+    type?: string;
+    motion?: addMotionData;
+    subStateMachine?: any;
+    editorData: editorData;
+}
+
+export interface bestViewportData {
+    graph: viewportData;
+    states?: {
+        index: number,
+        editorData: editorData;
+    }[];
+    motions?: {
+        level: number[],
+        editorData: editorData;
+    }[];
+}
+
+export interface addMotionData {
+    type: '';
+    editorData: editorData;
+    uuid?: string;
+}
+export interface addComponentData {
+    name: '';
+}
+
+export interface crumbData {
+    type: string;
+    value?: any;
+    name: string;
+}

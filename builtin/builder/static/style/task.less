@@ -1,0 +1,116 @@
+.task {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: calc(var(--size-normal-radius) * 1px);
+    border: 1px solid var(--color-normal-border);
+    background-color: var(--color-normal-fill);
+
+    .time {
+        font-style: italic;
+        color: var(--color-normal-contrast-important);
+    }
+
+    > .i-close {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--color-danger-fill);
+        }
+    }
+
+    > header {
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+
+        > span {
+            margin-right: 6px;
+        }
+
+        > ui-loading {
+            position: relative;
+            top: 2px;
+        }
+
+        ui-icon {
+            cursor: pointer;
+        }
+    }
+
+    > section {
+        display: flex;
+        margin-bottom: 10px;
+
+        > ui-progress {
+            flex: 1;
+            // line-height: 18px;
+            // height: 18px;
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        .build-log {
+            position: absolute;
+            right: 30px;
+            cursor: pointer;
+            margin: 0 5px;
+            color: var(--color-normal-contrast-weakest);
+        }
+
+        // ui-progress[state == 'progress'] {
+        //     --color-focus-fill : var(--color-focus-fill-weakest);
+        //     --color-normal-border : var(--color-focus-fill-weakest);
+        // }
+        // ui-progress[state == 'waiting'] {
+        //     --color-focus-fill : var(--color-normal-fill-weakest);
+        //     --color-normal-border : var(--color-normal-fill-weakest);
+        // }
+    }
+
+    > footer {
+        display: flex;
+        justify-content: space-between;
+
+        .right,
+        .left {
+            display: flex;
+        }
+
+        .right {
+            text-align: right;
+
+            ui-button {
+                margin-right: 4px;
+            }
+        }
+
+        .left {
+            max-width: 50%;
+            text-align: left;
+            flex: 1;
+            justify-content: flex-start;
+
+            ui-button {
+                margin-left: 4px;
+            }
+        }
+
+        .right {
+            flex: 1;
+            max-width: 50%;
+            justify-content: flex-end;
+        }
+    }
+}
+
+.task[missing] {
+    background: rgba(251, 240, 111, 0.14);
+
+    header i {
+        color: #f1c64f;
+    }
+}

@@ -1,0 +1,342 @@
+:host {
+  position: relative;
+  display: flex;
+}
+:host .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  opacity: 1;
+}
+:host .loading > .background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+:host .loading ui-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -0.5em;
+}
+:host .loading[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+:host .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-normal-fill-emphasis);
+}
+:host .content > engine-view {
+  outline: none;
+  flex: 1;
+  display: flex;
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+}
+:host .content > engine-view > webview {
+  flex: 1;
+}
+:host .content > engine-view > webview:focus {
+  outline: none;
+}
+:host #GameDiv,
+:host #Cocos3dGameContainer,
+:host #GameCanvas {
+  width: 100%;
+  height: 100%;
+}
+#TerrainWindow {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  user-select: none;
+  border-left: 1px solid var(--color-normal-border);
+  border-right: 1px solid var(--color-normal-border);
+  width: 208px;
+  transition: opacity 0.3s ease;
+}
+#TerrainWindow .createAsset {
+  width: 100%;
+  display: none;
+}
+#TerrainWindow .top_contain {
+  margin-top: -8px;
+}
+#TerrainWindow .container {
+  background: var(--color-normal-fill-emphasis);
+}
+#TerrainWindow .container .control {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+}
+#TerrainWindow .container .control ui-button {
+  line-height: 1;
+  padding: 5px;
+}
+#TerrainWindow .container .header {
+  text-align: center;
+  background: var(--color-normal-fill-emphasis);
+  line-height: 1.7;
+  color: var(--color-focus-fill-weaker);
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain {
+  background: var(--main-bg);
+  padding: 0 5px 5px 5px;
+}
+#TerrainWindow .container .terrain .tabs {
+  width: 158px;
+  margin: 15px auto 15px;
+  background: var(--color-normal-fill-weakest);
+}
+#TerrainWindow .container .terrain .tabs > div {
+  padding: 4px 8px;
+  cursor: pointer;
+  display: inline-block;
+}
+#TerrainWindow .container .terrain .tabs > div[active] {
+  background: var(--color-active-fill-emphasis);
+}
+#TerrainWindow .container .terrain .tabs > div:nth-child(1) {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#TerrainWindow .container .terrain .tabs > div:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#TerrainWindow .container .terrain .tabs > div:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+#TerrainWindow .container .terrain .layer_hor_line {
+  margin-top: 5px;
+  width: 1000px;
+  height: 1px;
+  border-top: solid #2d313d 1px;
+}
+#TerrainWindow .container .terrain .asset_content {
+  width: 100%;
+  margin-top: 7px;
+}
+#TerrainWindow .container .terrain .asset_label {
+  position: relative;
+  top: 7px;
+}
+#TerrainWindow .container .terrain .texture-warp {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  display: flex;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  max-height: 104px;
+  overflow-y: hidden;
+}
+#TerrainWindow .container .terrain .texture-warp .add-texture {
+  border: 1px dashed var(--color-normal-border);
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .texture-warp .add-texture span {
+  font-size: 1.5em;
+  line-height: 30px;
+}
+#TerrainWindow .container .terrain .texture-warp .texture {
+  margin: 10px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+}
+#TerrainWindow .container .terrain .texture-warp .texture[active] {
+  outline: 1px solid var(--color-active-contrast);
+}
+#TerrainWindow .container .terrain .texture-warp img {
+  height: 100%;
+}
+#TerrainWindow .container .terrain .texture-warp ui-drag-object {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  --show-clear: none;
+}
+#TerrainWindow .container .terrain .texture-warp .icon {
+  width: 30px;
+  margin-left: -2px;
+}
+#TerrainWindow .container .terrain ui-prop {
+  margin: 5px 0;
+}
+#TerrainWindow .container .terrain .contrl {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: flex;
+  margin: 0 0 0 auto;
+  width: 50px;
+  margin-top: -1px;
+  border-top: none;
+  cursor: pointer;
+  justify-content: space-evenly;
+}
+#TerrainWindow .container .terrain .contrl span {
+  padding: 0 8px;
+  display: inline-block;
+  font-weight: 700;
+}
+#TerrainWindow .container .terrain .contrl span:hover {
+  background: var(--color-normal-fill);
+}
+#TerrainWindow .container .terrain .mini-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-focus-fill);
+  color: var(--color-normal-contrast);
+  padding: 3px 5px 0 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .mini-btn .mini-icon {
+  transform: rotate(90deg);
+}
+#TerrainWindow .container .terrain .min {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-focus-fill);
+  color: var(--color-normal-contrast);
+  padding: 3px 5px 0 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+#TerrainWindow .container .terrain .min:active {
+  transform: scale(1.2);
+}
+#TerrainWindow .container .terrain .min:active svg {
+  color: var(--color-normal-contrast-weakest);
+}
+#TerrainWindow .container .terrain .min svg {
+  transform: rotate(90deg);
+}
+.float-window {
+  position: absolute;
+  opacity: 0.6;
+  width: 200px;
+  height: 200px;
+  transition: opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  background: var(--color-normal-fill);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+.float-window[hidden] {
+  display: none;
+}
+.float-window[simple] > header {
+  display: none;
+}
+.float-window[simple] > section {
+  margin: 2px;
+  padding: 0;
+  overflow: hidden;
+}
+.float-window > header {
+  display: flex;
+  line-height: 24px;
+  height: 24px;
+  text-align: right;
+  margin: 4px 8px;
+  cursor: move;
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.float-window > header > span {
+  text-align: center;
+  flex: 1;
+}
+.float-window > header > ui-icon {
+  cursor: pointer;
+}
+.float-window > section {
+  flex: 1;
+  margin: 5px 0 5px 12px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.float-window[dock][left] {
+  margin: 0 0 0 10px;
+  transform: translateX(-100%);
+}
+.float-window[dock][top] {
+  margin: 10px 0 0 0;
+  transform: translateY(-100%);
+}
+.float-window[dock][right] {
+  margin: 0 10px 0 0;
+  transform: translateX(100%);
+}
+.float-window[dock][bottom] {
+  margin: 0 0 10px 0;
+  transform: translateY(100%);
+}
+.float-window:hover {
+  opacity: 1 !important;
+  margin: 0 !important;
+  transform: translate(0, 0) !important;
+}
+.toolbar {
+  height: 28px;
+  display: flex;
+  padding: 0 10px;
+  line-height: 28px;
+  background-color: var(--color-normal-fill);
+  border-bottom: 1px solid var(--color-normal-border);
+}
+.toolbar > .left {
+  flex: 1;
+  display: flex;
+}
+.toolbar > .right {
+  display: flex;
+}
+.camera-dimension > ui-button {
+  display: inline-block;
+  margin: 3px 2px 0 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 20px;
+  padding: 0 4px;
+  line-height: 20px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+.infobar {
+  line-height: calc(var(--size-small-line) * 1px);
+  font-size: calc(var(--size-small-font) * 1px);
+  display: flex;
+  position: absolute;
+  top: 30px;
+  padding: 10px;
+}
+.infobar > .left {
+  flex: 1;
+  display: flex;
+}
+.infobar > .right {
+  display: flex;
+}

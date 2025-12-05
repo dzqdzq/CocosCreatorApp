@@ -1,0 +1,31 @@
+<ui-section class="asset"
+    v-show="info"
+    @confirm.stop="_onConfirm($event)"
+    :whole="from!=='node'"
+    :scroll="JSON.stringify($root.scroll(expandPrefix+uuids[0]))"
+    :expand="$root.expand(expandPrefix+uuids[0], from!=='node')"
+    :expand-key="expandPrefix+uuids[0]"
+>
+    <asset-header slot="header"
+        :dirty="dirty"
+        :infos="infos"
+        :meta="meta"
+        :from="from"
+
+        @reset="_onReset"
+        @apply="_onApply"
+    ></asset-header>
+
+    <component ref="component"
+        :is="componentName"
+        :info="info"
+        :meta="meta"
+        :from="from"
+        :expand-prefix="expandPrefix"
+
+        :infos="infos"
+        :metas="metas"
+
+        :width="width"
+    ></component>
+</ui-section>

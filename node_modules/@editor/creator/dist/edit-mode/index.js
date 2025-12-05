@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.EditMode=void 0;let Handler=null;Handler="browser"===process.type?require("./browser/index"):require("./renderer/index"),exports.EditMode={enter:e=>Handler.enter(e),getMode:()=>Handler.getMode()};
