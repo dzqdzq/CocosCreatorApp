@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"原生平台",options:{async_functions:"异步函数",async_functions_tips:"是否需要包含异步函数 polyfills",remote_server_address:"资源服务器地址",remote_server_address_tips:"用于下载远程资源的服务器地址",makeAfterBuild:"构建后立即生成"},encrypt:{title:"加密脚本",encrypt_encrypt:"脚本加密密钥",compress_zip:"Zip 压缩",xxtea_key_empty:"加密密钥不能为空"},disable_tips:"构建后原生平台相关配置不支持修改，如需重新生成请新建构建任务。"};

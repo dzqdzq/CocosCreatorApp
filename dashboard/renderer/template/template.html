@@ -1,0 +1,36 @@
+<div class="content template">
+    <div class="project-wrap">
+        <div class="project-group">
+            <div class="pro-wrap" :class="[activeIndex === index ? 'active' : '']" tabindex="0"
+                v-for="(item, index) in list"
+                @click="activeIndex = index"
+            >
+                <div class="img-wrap">
+                    <img src="./../img/empty-project.png"
+                        :alt="item.name"
+                    >
+                </div>
+                <div class="name">{{item.name}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="project-detail"
+        v-if="activeIndex !== -1 && list[activeIndex]"
+    >
+        <div class="detail-line">{{t('template.blank')}}</div>
+    </div>
+    <div class="create-content">
+        <div class="choose-location">{{t('template.project_location')}}</div>
+        <div class="create-wrap">
+            <div class="choose-path" :title="t('template.select_path_tip')">
+                <input :placeholder="t('project_path_palceholder')" type="text" v-model="directoryPath">
+                <label @click="chooseProSrc">{{t('select')}}</label>
+            </div>
+            <div class="choose-name" :title="t('template.project_name_tip')">
+                <label>{{t('template.project_name')}} </label>
+                <input placeholder="New project name" v-model="projectName" type="text">
+            </div>
+            <button class="btn btn-blue" :disabled="!projectName || !directoryPath" @click="createProject">{{t('template.create')}}</button>
+        </div>
+    </div>
+</div>

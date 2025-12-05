@@ -1,0 +1,29 @@
+<ui-section class="config config-item" displayStyle="config" expand v-if="initialized">
+    <div class="config-header flex-spacing-between" slot="header">
+        <span>
+            <span v-if="disabled">{{name}}</span>
+            <ui-input
+                v-else
+                :value="name"
+                :tooltip="name"
+                @click.stop
+                @confirm="onChangeFormatName($event.target.value)"
+            ></ui-input>
+            <ui-icon v-if="disabled" value="lock"></ui-icon>
+        </span>
+        <span class="child-margin-right">
+            <ui-icon v-if="id" value="copy" tooltip="copy presetId" @click.stop="copyId"></ui-icon>
+            <ui-icon v-if="!disabled" value="del" color="true"  @click.stop="removeFormat(null)"></ui-icon>
+        </span>
+    </div>
+    <config-group
+        v-if="config && compressInfo"
+        :compressInfo="compressInfo"
+        :config="config"
+        :disabled="disabled"
+        @add="showFormatMenu"
+        @remove="removeFormat"
+        @update="updateFormatQuality"
+    >
+    </config-group>
+</ui-section>

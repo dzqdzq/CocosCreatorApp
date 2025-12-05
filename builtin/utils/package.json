@@ -1,0 +1,66 @@
+{
+    "name": "utils",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Utils Tools",
+    "main": "./browser/index",
+    "contributions": {
+        "footer": {
+            "right": "./static/footer/right.js"
+        },
+        "messages": {
+            "export-dts": {
+                "methods": [
+                    "exportDTS"
+                ]
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "Export .d.ts",
+                "message": "export-dts",
+                "group": "help",
+                "order": -99
+            }
+        ],
+        "profile": {
+            "editor": {
+                "features.xiaomi-quick-game": {
+                    "default": true
+                },
+                "features.alipay-mini-game": {
+                    "default": true
+                },
+                "features.qtt": {
+                    "default": true
+                },
+                "features.link-sure": {
+                    "default": true
+                },
+                "features.link-sure-subpackages": {
+                    "default": false
+                },
+                "features.wechat-separation-engine": {
+                    "default": true
+                },
+                "features.cloud-function": {
+                    "default": true
+                },
+                "features.huawei-agc": {
+                    "default": true
+                },
+                "features.bytedance-mini-game": {
+                    "default": true
+                },
+                "features.analytics-debug": {
+                    "default": false
+                },
+                "3_0_0_package_dir_info": {
+                    "default": false
+                }
+            }
+        }
+    }
+}

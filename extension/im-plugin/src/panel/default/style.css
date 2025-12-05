@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  display: flex;
+}
+
+#loading-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1000;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+
+  background: #333;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #fff;
+  animation: dotChange 1s linear infinite alternate;
+}
+
+.dot-1 {
+  animation-delay: 0.2s;
+}
+.dot-2 {
+  animation-delay: 0.4s;
+}
+.dot-3 {
+  animation-delay: 0.6s;
+}
+.dot-4 {
+  animation-delay: 0.8s;
+}
+.dot-5 {
+  animation-delay: 1s;
+}
+
+@keyframes dotChange {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(2);
+  }
+}
+
+webview {
+  flex: 1;
+}

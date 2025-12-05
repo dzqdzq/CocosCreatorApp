@@ -1,0 +1,29 @@
+.modules {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.8em;
+}
+.modules section {
+  display: flex;
+  flex-direction: column;
+}
+.modules .modules-item {
+  display: flex;
+  padding: 6px 0 6px 0;
+}
+.modules .checkbox {
+  width: 60px;
+}
+.modules .name {
+  flex: 1;
+}
+.modules .name ui-prop {
+  --left-width: 85%;
+}
+.modules .modules-header {
+  padding-right: 14px;
+  border-bottom: 1px #7b7979 dashed;
+}
+.modules .modules-section {
+  overflow: auto;
+}

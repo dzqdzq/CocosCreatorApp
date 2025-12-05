@@ -1,0 +1,129 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host {
+  display: inline-block;
+  outline: none;
+  position: relative;
+  width: 100%;
+  border: none;
+}
+:host > ui-drag-area {
+  margin: -1px 0;
+  padding: 0 0.6em 0 1em;
+  width: 100%;
+  height: 100%;
+  display: block;
+  display: flex;
+  line-height: inherit;
+  background: var(--color-normal-fill-emphasis);
+  border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  box-sizing: border-box;
+}
+:host > ui-drag-area .clear {
+  display: none;
+  padding: 0 2px;
+}
+:host > ui-drag-area .invalid {
+  display: none;
+}
+:host > ui-drag-area .value {
+  display: none;
+  flex: 1;
+  width: 1px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+:host > ui-drag-area .placeholder {
+  display: inline-block;
+  flex: 1;
+  color: var(--color-normal-contrast);
+  opacity: 0.3;
+}
+:host(:hover) ui-drag-area {
+  cursor: pointer;
+  color: var(--color-hover-contrast-weaker);
+}
+:host(:hover) .area {
+  border-color: var(--color-hover-border-weaker);
+}
+:host([value]) ui-drag-area:hover .clear {
+  visibility: visible;
+}
+:host[draging] {
+  border: 1px solid var(--color-success-fill);
+  background: var(--color-success-fill);
+}
+:host([focused]) .type {
+  border-color: var(--color-focus-border-weaker);
+}
+:host([focused]) .area {
+  border-color: var(--color-focus-border-weaker);
+}
+:host([effective]) > ui-drag-area {
+  background-color: var(--color-focus-fill);
+}
+:host([effective]) > ui-drag-area .value {
+  display: inline;
+}
+:host([effective]) > ui-drag-area .placeholder {
+  display: none;
+}
+:host([effective]) > .clear {
+  display: var(--show-clear, none);
+}
+:host([state='allow']) {
+  border-color: var(--color-success-fill);
+}
+:host([state='allow']) > ui-drag-area {
+  background: var(--color-success-fill);
+}
+:host([state='allow']) > ui-drag-area[hoving] .value,
+:host([state='allow']) > ui-drag-area[hoving] .placeholder {
+  color: var(--color-hover-contrast-weakest);
+  opacity: 1;
+}
+:host([state='refused']) {
+  border-color: var(--color-danger-fill);
+}
+:host([state='refused']) > ui-drag-area {
+  background: var(--color-danger-fill);
+}
+:host([invalid]) > ui-drag-area {
+  background-color: var(--color-danger-fill);
+}
+:host([invalid]) > ui-drag-area .invalid {
+  display: inline-block;
+}
+:host([invalid]) > ui-drag-area .value {
+  display: none;
+}
+:host([invalid]) > ui-drag-area .placeholder {
+  display: none;
+}
+:host([invalid]) > .clear {
+  display: inline;
+}
+:host([missing]) .area ui-drag-area {
+  background-color: var(--color-warn-fill-normal);
+  color: var(--color-warn-contrast-weakest);
+}

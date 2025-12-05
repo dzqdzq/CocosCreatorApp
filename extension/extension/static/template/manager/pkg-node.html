@@ -1,0 +1,63 @@
+<div class="pkg-node"
+    v-if="pkg && pkg.info"
+    :type="pkg.type"
+>
+    <div class="header">
+        <div class="name">
+            <span class="title">{{pkg.info.name}}</span>
+
+            <div class="control" 
+                v-if="pkg.type !== 'internal'"
+            >
+                <ui-button class="transparent" title="Open Folder"
+                    @click="openFolder()"
+                >
+                    <ui-icon value="folder-open"></ui-icon>
+                </ui-button>
+                <ui-button class="transparent" title="Reload"
+                    @click="reload()"
+                >
+                    <ui-icon value="refresh"></ui-icon>
+                </ui-button>
+                <ui-button class="transparent red" title="Delete"
+                    @click="remove()"
+                >
+                <ui-icon value="del"></ui-icon>
+                </ui-button>
+            </div>
+
+        </div>
+
+        <div class="toggle" title="Enable/Disable"
+            :disabled="pkg.invalid || pkg.type === 'internal'"
+            :enable="pkg.enable"
+            @click="toggleEnable()"
+        >
+            <div>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info">
+        <ui-label class="title" value="i18n:extension.menu.author"></ui-label>
+        <span class="content">{{pkg.info.author || 'Unknown'}}</span>
+    </div>
+
+    <div class="info">
+        <ui-label class="title" value="Version: "></ui-label>
+        <span class="content">{{pkg.info.version || '0.0.0'}}</span>
+    </div>
+
+    <div class="description">
+        <ui-label
+            v-if="!pkg.info.description"
+        >Nothing</ui-label>
+        <ui-label class="content"
+            v-else
+            :i18n="(pkg.info.description || '').startsWith('i18n:')"
+            :value="(pkg.info.description || '').replace(/^i18n\:/, '')"
+        ></ui-label>
+    </div>
+    
+</div>

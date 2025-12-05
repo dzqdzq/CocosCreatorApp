@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+.animation {
+  width: 1em;
+  height: 1em;
+  border: 3px solid var(--color-active-fill);
+  border-top-color: var(--color-active-contrast);
+  border-radius: 1em;
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,234 @@
+{
+    "name": "preview",
+    "title": "i18n:preview.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:preview.description",
+    "main": "./dist/browser/index",
+
+    "panels": {
+        "panel": {
+            "title": "i18n:preview.camera_title",
+            "main": "./dist/panel/index.js",
+            "icon": "./static/icon.png",
+            "size": {
+                "min-width": 200,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        },
+        "debugger": {
+            "title": "debugger",
+            "main": "./dist/panel/debugger.js",
+            "size": {
+                "min-width": 960,
+                "min-height": 720,
+                "width": 960,
+                "height": 720
+            }
+        }
+    },
+
+    "contributions": {
+        "toolbar": {
+            "middle": "./static/toolbar/middle.js",
+            "right": "./static/toolbar/right.js"
+        },
+
+        "assets": {
+            "menu":{
+                "methods": "./dist/contributions/asset-menu.js",
+                "assetMenu": "assetMenu"
+            }
+        },
+
+        "server": "./dist/contributions/server.js",
+
+        "menu": [
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.play",
+                "message": "open-terminal",
+                "icon": "./static/start.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.refresh_device",
+                "message": "reload-terminal",
+                "icon": "./static/refresh.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.create_template",
+                "message": "create-template",
+                "icon": "./static/template_download.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:preview.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -94
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:preview.build_native_engine",
+                "message": "build-native-engine",
+                "group": "engine"
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "mac": "cmd+5",
+                "win": "ctrl+5"
+            },
+            {
+                "message": "open-terminal",
+                "mac": "cmd+p",
+                "win": "ctrl+p"
+            },
+            {
+                "message": "reload-terminal",
+                "mac": "cmd+shift+p",
+                "win": "ctrl+shift+p"
+            }
+        ],
+
+        "profile": {
+            "editor": {
+                "general.auto_refresh": {
+                    "label": "i18n:preview.project.general.auto_refresh",
+                    "type": "boolean",
+                    "default": true
+                },
+                "general.start_scene": {
+                    "default": "current_scene"
+                },
+                "preview.device": {
+                    "default": "Default"
+                },
+                "preview.rotate": {
+                    "default": false
+                },
+                "preview.debugMode": {
+                    "default": 1
+                },
+                "preview.showFps": {
+                    "default": true
+                },
+                "preview.fps": {
+                    "default": 60
+                },
+                "preview.auto_clean_cache": {
+                    "label": "i18n:preview.project.general.auto_clean_cache",
+                    "type": "boolean",
+                    "default": true
+                },
+                "preview.simulator_orientation": {
+                    "type": "string",
+                    "default": "landscape"
+                },
+                "preview.simulator_resolution": {
+                    "type": "number",
+                    "default": 0
+                },
+                "preview.simulator_debugger": {
+                    "label": "i18n:preview.project.general.simulator_debugger",
+                    "default": true
+                },
+                "preview.wait_for_connect": {
+                    "label": "i18n:preview.project.general.wait_for_connect",
+                    "default": true
+                }
+            }
+        },
+
+        "preferences": {
+            "properties": {
+                "general.auto_refresh": {
+                    "ui": "ui-checkbox"
+                },
+                "preview.auto_clean_cache": {
+                    "ui": "ui-checkbox"
+                },
+                "preview.simulator_debugger": {
+                    "ui": "ui-checkbox"
+                },
+                "preview.wait_for_connect": {
+                    "ui": "ui-checkbox"
+                }
+            },
+            "custom": "./dist/contributions/preferences.js"
+        },
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "generate-settings": {
+                "methods": ["generateSettings"]
+            },
+            "scene:save": {
+                "methods": ["scene:save"]
+            },
+            "open-terminal": {
+                "methods": ["open-terminal"]
+            },
+            "restart-simulator": {
+                "methods": ["restart-simulator"]
+            },
+            "reload-terminal": {
+                "methods": ["reload-terminal"]
+            },
+            "get-preview-ip": {
+                "methods": ["get-preview-ip"]
+            },
+            "set-preview-ip": {
+                "methods": ["set-preview-ip"]
+            },
+            "create-template": {
+                "methods": ["create-template"]
+            },
+            "change-platform": {
+                "methods": ["change-platform"]
+            },
+            "step-terminal": {
+                "methods": ["step-terminal"]
+            },
+            "pause-terminal": {
+                "methods": ["pause-terminal"]
+            },
+            "scene:ready": {
+                "methods": ["panel.scene:ready"]
+            },
+            "scene:close": {
+                "methods": ["panel.scene:close"]
+            },
+            "scene:preview-add": {
+                "methods": ["panel.scene:preview-add"]
+            },
+            "scene:preview-change": {
+                "methods": ["panel.scene:preview-change"]
+            },
+            "scene:preview-remove": {
+                "methods": ["panel.scene:preview-remove"]
+            },
+            "programming:pack-build-end": {
+                "methods": ["on-pack-build-end"]
+            },
+            "build-native-engine": {
+                "methods": ["buildNativeEngine"]
+            },
+            "preview-scene-in-browser": {
+                "methods": ["previewSceneInBrowser"]
+            }
+        }
+    }
+}

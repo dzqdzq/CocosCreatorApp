@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.name=exports.props=exports.template=void 0,exports.template='\n<div class="mask"\n    v-if="value"\n>\n    <ui-label :value="value"></ui-label>\n</div>\n',exports.props=["value"],exports.name="build-mask";

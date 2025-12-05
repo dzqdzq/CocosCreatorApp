@@ -1,0 +1,63 @@
+<div class="content help">
+    <div class="logo-wrap">
+        <div class="logo">
+            <img src="./../img/logo_white.png" alt="cocos">
+            <div>Cocos Creator</div>
+            <div class="version">Ver: {{ver}}</div>
+        </div>
+    </div>
+    <div class="help-con-wrap">
+
+        <!-- 2D 说明 -->
+        <div class="help-con"
+            v-if="type === '2d'"
+        >
+            <div class="help-item">
+                <div class="title">{{t('help_2d.intro')}}</div>
+                <p class="help-line"
+                    @click="_onJumpClick($event, 0);"
+                >{{t('help.link_recent')}}</p>
+                <p class="help-line"
+                    @click="_onJumpClick($event, 1);"
+                >{{t('help.link_new')}}</p>
+            </div>
+            <div class="help-item">
+                <div class="title">{{t('help_2d.resource')}}</div>
+                <p class="help-line">
+                    <a href="http://docs.cocos.com/creator/manual/zh/getting-started/quick-start.html">{{t('help.link_tutorial')}}</a>
+                </p>
+                <p class="help-line">
+                    <a href="http://docs.cocos.com/creator/manual/zh/">{{t('help.link_manual')}}</a>
+                </p>
+                <p class="help-line">
+                    <a href="http://docs.cocos.com/creator/api/zh/">{{t('help.link_api')}}</a>
+                </p>
+            </div>
+            <div class="help-item">
+                <div class="title">{{t('help.demo')}}</div>
+                <p class="help-line">
+                    <a href="https://github.com/cocos-creator/example-cases">{{t('help.demo_example')}}</a>
+                </p>
+                <p class="help-line">
+                    <a href="https://github.com/cocos-creator/tutorial-first-game">{{t('help_2d.demo_first_game')}}</a>
+                </p>
+                <p class="help-line">
+                    <a href="https://github.com/cocos-creator/tutorial-blackjack">{{t('help_2d.demo_blackjack')}}</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- 3D -->
+        <div class="help-con" v-else>
+            <div class="help-item">
+                <div class="title">{{t('help_3d.intro')}}</div>
+                <p class="help-line"
+                    @click="_onJumpClick($event, 0);"
+                >{{t('help.link_recent')}}</p>
+                <p class="help-line"
+                    @click="_onJumpClick($event, 1);"
+                >{{t('help.link_new')}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"支付宝小游戏",options:{orientation:"设备方向",remote_url:"资源服务器地址",portrait:"竖屏",landscape:"横屏",async_functions:"异步函数",async_functions_tips:"是否需要包含异步函数 polyfills",start_scene_asset_bundle:"初始场景分包",start_scene_asset_bundle_tooltip:"将所有初始场景依赖的资源打包进独立的分包，分包命名为 'start-scene'"}};

@@ -1,0 +1,182 @@
+{
+    "name": "inspector",
+    "title": "i18n:inspector.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:inspector.description",
+    "main": "./dist/browser/index",
+
+    "panels": {
+        "default": {
+            "title": "i18n:inspector.title",
+            "main": "./dist/renderer/index.js",
+            "icon": "./static/icon.png",
+            "flags": {
+                "save": true,
+                "multiple": true
+            },
+            "size": {
+                "min-width": 300,
+                "min-height": 200,
+                "width": 380,
+                "height": 600
+            }
+        },
+        "gradient-editor": {
+            "type": "simple",
+            "title": "i18n:inspector.gradient.title",
+            "main": "./dist/gradient-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 310,
+                "width": 600,
+                "height": 600
+            }
+        },
+        "curve-editor": {
+            "title": "i18n:inspector.curve_editor.title",
+            "main": "./dist/curve-editor/panel.js",
+            "size": {
+                "min-width": 500,
+                "min-height": 250,
+                "width": 750,
+                "height": 550
+            }
+        },
+        "sprite-editor": {
+            "title": "i18n:inspector.sprite_editor.title",
+            "main": "./dist/sprite-editor/panel.js",
+            "size": {
+                "min-width": 400,
+                "min-height": 400,
+                "width": 600,
+                "height": 600   
+            }
+        }
+    },
+
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:inspector.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -96
+            }
+        ],
+
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+3",
+                "mac": "cmd+3"
+            }
+        ],
+
+        "profile": {
+            "editor": {
+                "asset.auto_save": {
+                    "label": "i18n:inspector.profile.auto_save",
+                    "default": false
+                },
+                "laboratory.new_add_component": {
+                    "label": "i18n:preferences.laboratory.new_add_component",
+                    "default": true
+                },
+                "panel.label_width": {
+                    "default": 0.3
+                }
+            }
+        },
+
+        "preferences": {
+            "properties": {
+                "asset.auto_save": {
+                    "ui": "ui-checkbox"
+                }
+            },
+            "laboratory": ["laboratory.new_add_component"]
+        },
+
+        "messages": {
+            "open": {
+                "methods": ["open"]
+            },
+            "staging": {
+                "methods": ["staging"]
+            },
+            "unstaging": {
+                "methods": ["unstaging"]
+            },
+
+            "scene:ready": {
+                "methods": ["default.sceneReady"]
+            },
+            "scene:close": {
+                "methods": ["default.sceneClose"]
+            },
+            "asset-db:ready": {
+                "methods": ["default.dbReady"]
+            },
+            "asset-db:close": {
+                "methods": ["default.dbClose"]
+            },
+            "selection:select": {
+                "methods": ["default.selected"]
+            },
+            "selection:unselect": {
+                "methods": ["default.unselected"]
+            },
+            "scene:animation-time-change": {
+                "methods": ["default.animationTimeChange"]
+            },
+            "scene:change-node": {
+                "methods": ["default.nodeChanged"]
+            },
+            "asset-db:asset-change": {
+                "methods": ["default.assetChanged"]
+            },
+            "scene:effect-update": {
+                "methods": ["default.effectUpdated"]
+            },
+            "project:setting-change": {
+                "methods": ["default.projectSettingChange"]
+            },
+            "gradient-state": {
+                "methods": ["default.gradientState"]
+            },
+            "gradient-change": {
+                "methods": ["default.gradientChanged"]
+            },
+            "gradient-data": {
+                "methods": ["gradient-editor.data"]
+            },
+            "curve-state": {
+                "methods": ["default.curveState"]
+            },
+            "curve-change": {
+                "methods": ["default.curveChanged"]
+            },
+            "curve-keys": {
+                "methods": ["curve-editor.currentKeys"]
+            },
+            "sprite-keys": {
+                "methods": ["sprite-editor.currentKeys"]
+            },
+            "sprite-state": {
+                "methods": ["default.spriteState"]
+            },
+            "sprite-change": {
+                "methods": ["default.spriteChanged"]
+            },
+            "open-sub-inspector": {
+                "methods": ["default.openSubInspector"]
+            },
+            "close-sub-inspector": {
+                "methods": ["default.closeSubInspector"]
+            }
+        }
+    }
+}

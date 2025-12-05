@@ -1,0 +1,11 @@
+<section class="home">
+    <div v-if="loading" class="loading">
+        <ui-loading></ui-loading>
+    </div>
+    <div class="top">
+        <phone></phone>
+        <p-main :platform="platform"></p-main>
+    </div>
+    <console></console>
+    <info></info>
+</section>

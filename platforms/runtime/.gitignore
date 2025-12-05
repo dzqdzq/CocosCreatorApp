@@ -1,0 +1,12 @@
+# 临时文件
+.history
+.DS_Store
+.vscode
+.idea
+
+# node 模块
+**/node_modules/
+**/yarn.lock
+
+# 插件内的构建后目录
+/platforms/**/dist

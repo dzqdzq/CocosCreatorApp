@@ -1,0 +1,146 @@
+:host slot {
+  display: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 30px;
+}
+h2 {
+  font-size: 21px;
+}
+h3 {
+  font-size: 16px;
+}
+h4 {
+  font-size: 14px;
+}
+h5 {
+  font-size: 12px;
+}
+h6 {
+  font-size: 11px;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+a {
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  text-decoration: underline;
+}
+hr {
+  border: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 1px;
+}
+ul,
+ol {
+  margin: 0;
+  padding-left: 15px;
+  list-style-position: inside;
+}
+li {
+  margin-left: 15px;
+  list-style-position: outside;
+}
+ul :first-child,
+ol :first-child {
+  margin-top: 0;
+}
+ul :last-child,
+ol :last-child {
+  margin-bottom: 0;
+}
+blockquote {
+  margin: 0;
+  padding: 0 15px;
+}
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+table th {
+  font-weight: bold;
+  color: black;
+  background-color: #007b32;
+}
+table th,
+table td {
+  padding: 6px 13px;
+}
+code {
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+code::before,
+code::after {
+  letter-spacing: -0.2em;
+  content: '\00a0';
+}
+pre {
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  line-height: 1.45;
+  border-radius: 3px;
+}
+pre > code {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+}
+pre code::before,
+pre code::after {
+  content: normal;
+}
+::-webkit-scrollbar {
+  height: calc(var(--size-normal-font) * 1px);
+  width: calc(var(--size-normal-font) * 1px);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--size-normal-radius) * 2px);
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-active-fill);
+  background-clip: content-box;
+  transition: background-color 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-active-fill-weakest);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}

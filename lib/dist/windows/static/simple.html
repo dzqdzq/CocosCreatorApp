@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" spellcheck="false">
+    <head>
+        <meta charset="utf-8">
+        <title>Packages</title>
+        <link href="./style/base.css" rel="stylesheet" />
+        <link href="./style/main.css" rel="stylesheet" />
+        <style>
+            body {
+                display: flex;
+            }
+
+            panel-frame {
+                flex: 1;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!-- 同步任务的遮罩 -->
+        <div class="task-sync-mask">
+            <ui-loading></ui-loading>
+        </div>
+
+        <!-- 实际的插件布局 -->
+        <panel-frame id="panel"></panel-frame>
+
+        <!-- 加载 js 运行逻辑 -->
+        <script>
+            // 禁止 electron 显示安全提示
+            window.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+            require('../../../require');
+            require('./script/simple');
+        </script>
+    </body>
+</html>

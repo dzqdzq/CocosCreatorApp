@@ -1,0 +1,1 @@
+"use strict";exports.run=function(){Editor.Profile.removeConfig("device","enable","local")};

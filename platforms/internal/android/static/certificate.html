@@ -1,0 +1,117 @@
+<div id="certificate" class="certificate">
+    <main @confirm="onConfirm">
+        <ui-prop
+        :error="!!(verifyResult.password)"
+        >
+            <ui-label value="i18n:android.KEYSTORE.keystore_password" slot="label"></ui-label>
+            <ui-input name="password" slot="content"
+            :tooltip="verifyResult.password"
+            :value="settings.password"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.confirmPassword)"
+        >
+            <ui-label value="i18n:android.KEYSTORE.confirm_password" slot="label"></ui-label>
+            <ui-input name="confirmPassword" slot="content"
+            :tooltip="verifyResult.confirmPassword"
+            :value="settings.confirmPassword"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.alias)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.keystore_alias</ui-label>
+            <ui-input name="alias" slot="content"
+            :tooltip="verifyResult.alias"
+            :value="settings.alias"
+            ></ui-input>
+        </ui-prop>
+        <hr>
+        <ui-prop
+        :error="!!(verifyResult.aliasPassword)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.keystore_alias_password</ui-label>
+            <ui-input name="aliasPassword" slot="content"
+            :tooltip="verifyResult.aliasPassword"
+            :value="settings.aliasPassword"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.confirmAliasPassword)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.confirm_password</ui-label>
+            <ui-input name="confirmAliasPassword" slot="content"
+            :tooltip="verifyResult.confirmAliasPassword"
+            :value="settings.confirmAliasPassword"
+            ></ui-input>
+        </ui-prop>
+        <hr>
+        <ui-prop
+        :error="!!(verifyResult.validity)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.validity</ui-label>
+            <ui-num-input name="validity" slot="content" unit="天" step="1"
+            :tooltip="verifyResult.validity"
+            :value="settings.validity"
+            ></ui-num-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.commonName)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.commonName</ui-label>
+            <ui-input name="commonName" slot="content"
+            :tooltip="verifyResult.commonName"
+            :value="settings.commonName"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.organizationalUnit)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.organizationalUnit</ui-label>
+            <ui-input name="organizationalUnit" slot="content"
+            :tooltip="verifyResult.organizationalUnit"
+            :value="settings.organizationalUnit"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.organization)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.organization</ui-label>
+            <ui-input name="organization" slot="content"
+            :tooltip="verifyResult.organization"
+            :value="settings.organization"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.locality)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.locality</ui-label>
+            <ui-input name="locality" slot="content"
+            :tooltip="verifyResult.locality"
+            :value="settings.locality"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.state)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.state</ui-label>
+            <ui-input name="state" slot="content"
+            :tooltip="verifyResult.state"
+            :value="settings.state"
+            ></ui-input>
+        </ui-prop>
+        <ui-prop
+        :error="!!(verifyResult.country)"
+        >
+            <ui-label i18n slot="label">android.KEYSTORE.country</ui-label>
+            <ui-input name="country" slot="content" unit="ms" step="1"
+            :tooltip="verifyResult.country"
+            :value="settings.country"
+            ></ui-input>
+        </ui-prop>
+        <footer>
+            <ui-button class="green" :disabled="saveBtnDisabled" @confirm="onGenerate"><ui-label i18n>android.KEYSTORE.generate</ui-label></ui-button>
+        </footer>
+    </main>
+</div>

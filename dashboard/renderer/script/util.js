@@ -1,0 +1,1 @@
+"use strict";const{I18n:I18n}=require("../../../lib/dist/i18n"),{Utils:Utils}=require("../../../lib/dist/utils");function t(t){return I18n.t(t)}exports.getName=Utils.File.getName,exports.t=t;

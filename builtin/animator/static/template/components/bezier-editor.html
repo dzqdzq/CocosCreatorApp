@@ -1,0 +1,119 @@
+<section class="bezier-editor mask" id="bezierEditor">
+    <div class="content">
+        <div class="toolbar">
+            <ui-label class="name" value="i18n:animator.bezier.title"></ui-label>
+            <ui-icon value="close" @mousedown="exit"></ui-icon>
+        </div>
+        <div class="main" ref="main">
+            <div class="preview">
+                <ui-input 
+                    :value="currentBerzier.toString()"
+                    @confirm="onBerzierConfirm"
+                ></ui-input>
+                <div class="tips">
+                    <ui-label
+                        :value="tips"
+                    ></ui-label>
+                </div>
+            </div>
+            <div class="left">
+                <div class="name">presets</div>
+                <ui-select 
+                    :value="currentPreset"
+                    @confirm="onPresetChange"
+                >
+                    <option v-for="name in Object.keys(presets)" :value="name">{{name}}</option>
+                </ui-select>
+                <div class="presets">
+                    <template v-for="name of Object.keys(presets[currentPreset])">
+                        <div v-if="name && presets[currentPreset][name]" class="preset-item" :select="name === applyName">
+                            <svg @click="applyPreset(name)">
+                                <path
+                                    transform="scale(100)"
+                                    :d="calcBezier(presets[currentPreset][name].data, 100, presets[currentPreset][name].name)"
+                                ></path>
+                            </svg>
+                            <div class="name">{{name}} 
+                                <ui-icon
+                                    v-if="currentPreset === 'User'" 
+                                    value="del"
+                                    @click="delUserPreset(name)"
+                                ></ui-icon>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div v-if="currentPreset === 'User'" class="add">
+                    <ui-input name="name" 
+                        placeholder="enter the preset name"
+                        :value="userPresetName"
+                        @confirm="userPresetName = $event.target.value"
+                    ></ui-input>
+                    <ui-button name="add" class="transparent" @confirm="addUserPreset">Add</ui-button>
+                </div>
+                <ui-label class="info" value="i18n:animator.bezier.click_to_apply"></ui-label>
+            </div>
+            <div class="right"
+                @mousemove="onMouseMove"
+                @mousewheel="onMouseWheel"
+            >
+                <div class="tips" v-if="movePosition && moveStyle" :style="moveStyle">
+                    {{movePosition}}
+                </div>
+                <svg ref="bezier">
+                    <g class="main"
+                        :transform="bezierTransform"
+                    >
+                        <g class="bezier">
+                            <path
+                            :d="bezierData"
+                            ></path>
+
+                            <!-- 控制线与控制点 -->
+                            <g v-if="ctrlPoints">
+                                <line
+                                    v-if="ctrlPoints.p1"
+                                    :x1="ctrlPoints.p1[0]" 
+                                    :y1="ctrlPoints.p1[1]" 
+                                    :x2="ctrlPoints.p2[0]"
+                                    :y2="ctrlPoints.p2[1]"
+                                />
+                                <circle
+                                    class="ctrl-1"
+                                    r="0.01"
+                                    v-if="ctrlPoints.p2" 
+                                    :cx="ctrlPoints.p2[0]" 
+                                    :cy="ctrlPoints.p2[1]"
+                                    @mousedown="onMouseDown($event, 2)"
+                                />
+            
+                                <line
+                                    v-if="ctrlPoints.p3"
+                                    :x1="ctrlPoints.p3[0]" 
+                                    :y1="ctrlPoints.p3[1]" 
+                                    :x2="ctrlPoints.p4[0]"
+                                    :y2="ctrlPoints.p4[1]"
+                                />
+                                <circle 
+                                    class="ctrl-2"
+                                    r="0.01"
+                                    v-if="ctrlPoints.p3" 
+                                    :cx="ctrlPoints.p3[0]" 
+                                    :cy="ctrlPoints.p3[1]"
+                                    @mousedown="onMouseDown($event, 3)"
+                                />
+                            </g>
+                        </g>
+    
+                        <!-- 坐标轴 -->
+                        <g class="axis">
+                            <path d="M0 0 L 0 1 L 1 1"/>
+                            <!-- <text x="0" y="1.04">TIME</text> -->
+                            <!-- <text x="0" y="0.99" transform="rotate(-90, 0, 1)">PROGRESSION</text> -->
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>

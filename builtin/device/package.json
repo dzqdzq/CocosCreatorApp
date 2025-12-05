@@ -1,0 +1,161 @@
+{
+    "name": "device",
+    "title": "i18n:device.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "main": "./dist/browser/index",
+
+    "hooks": {
+        "global": "./hooks/global.js",
+        "local": "./hooks/local.js"
+    },
+
+    "contributions": {
+        "profile": {
+            "editor": {
+                "devices": {
+                    "default": [
+                        { "name": "iPhone SE", "width": 375, "height": 667, "ratio": 2 },
+                        { "name": "iPhone XS Max", "width": 414, "height": 896, "ratio": 3 },
+                        { "name": "iPhone XS", "width": 375, "height": 812, "ratio": 3 },
+                        { "name": "iPhone X", "width": 375, "height": 812, "ratio": 3 },
+                        { "name": "iPhone XR", "width": 414, "height": 896, "ratio": 2 },
+                        { "name": "iPhone 8 Plus", "width": 414, "height": 736, "ratio": 2.6 },
+                        { "name": "iPhone 8", "width": 375, "height": 667, "ratio": 2 },
+                        { "name": "iPhone 7 Plus", "width": 414, "height": 736, "ratio": 2.6 },
+                        { "name": "iPhone 7", "width": 375, "height": 667, "ratio": 2 },
+                        { "name": "iPhone 6S Plus", "width": 414, "height": 736, "ratio": 2.6 },
+                        { "name": "iPhone 6S", "width": 375, "height": 667, "ratio": 2 },
+                        { "name": "iPhone 6", "width": 375, "height": 667, "ratio": 2 },
+            
+                        { "name": "Galaxy S9 Plus", "width": 412, "height": 846, "ratio": 3.5 },
+                        { "name": "Galaxy S9", "width": 360, "height": 740, "ratio": 4 },
+                        { "name": "Galaxy Note 8", "width": 360, "height": 740, "ratio": 4 },
+                        { "name": "Galaxy S8 Plus", "width": 412, "height": 846, "ratio": 3.5 },
+                        { "name": "Galaxy S8", "width": 360, "height": 740, "ratio": 4 },
+                        { "name": "Galaxy S7", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Galaxy S7 Edge", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Galaxy J3", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "Galaxy J7", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "Galaxy S6", "width": 360, "height": 640, "ratio": 4 },
+            
+                        { "name": "Huawei P20 Lite", "width": 360, "height": 760, "ratio": 3 },
+                        { "name": "Huawei P20 Pro", "width": 360, "height": 747, "ratio": 3 },
+                        { "name": "Huawei P20", "width": 360, "height": 748, "ratio": 3 },
+                        { "name": "Huawei P10", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Huawei P10 Lite", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Huawei P9", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Huawei P9 Lite", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Huawei P8", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Huawei P8 Lite", "width": 360, "height": 640, "ratio": 3 },
+            
+                        { "name": "Moto Z2", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Moto Z", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Moto E4", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "DROID Turbo", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Moto Z Play", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Moto Z2 Play", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Moto G5 Plus", "width": 360, "height": 640, "ratio": 3 },
+            
+                        { "name": "Redmi Note 5", "width": 393, "height": 786, "ratio": 2.75 },
+                        { "name": "Redmi Note 4", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Redmi Note 3", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "Redmi 4", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "Redmi 4X", "width": 360, "height": 640, "ratio": 2 },
+                
+                        { "name": "Pixel 3 XL", "width": 393, "height": 786, "ratio": 3.67 },
+                        { "name": "Pixel 3", "width": 393, "height": 786, "ratio": 2.75 },
+                        { "name": "Pixel 2 XL", "width": 412, "height": 823, "ratio": 3.5 },
+                        { "name": "Pixel 2", "width": 412, "height": 640, "ratio": 2.6 },
+                        { "name": "Nexus 6P", "width": 412, "height": 732, "ratio": 3.5 },
+                        { "name": "Nexus 6", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "Nexus 5", "width": 360, "height": 640, "ratio": 3 },
+                
+                        { "name": "LG K20", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "LG Tribute HD", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "LG Aristo 2", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "LG Stylo 2", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "LG V20", "width": 360, "height": 640, "ratio": 4 },
+                        { "name": "LG K10", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "LG K7", "width": 320, "height": 570, "ratio": 1.5 },
+            
+                        { "name": "ZTE ZMAX Pro", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "ZTE Max XL", "width": 360, "height": 640, "ratio": 3 },
+                        { "name": "ZTE Blade X", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "ZTE Majesty Pro", "width": 320, "height": 570, "ratio": 1.5 },
+                        { "name": "ZTE Maven 3", "width": 320, "height": 570, "ratio": 1.5 },
+            
+                        { "name": "Lyf F90M (KaiOS)", "width": 240, "height": 320, "ratio": 1 },
+                        { "name": "OPPO A37", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "Alcatel A30 Fierce", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "vivo Y55s", "width": 360, "height": 640, "ratio": 2 },
+                        { "name": "Sony Xperia XA", "width": 360, "height": 640, "ratio": 2 },
+            
+                        { "name": "Apple iPad Mini 4", "width": 1536, "height": 2048, "ratio": 1 },
+                        { "name": "Apple iPad Pro 10.15", "width": 1668, "height": 2224 },
+                        { "name": "Apple iPad Pro 11", "width": 1668, "height": 2388 },
+                        { "name": "Apple iPad Pro 12.9", "width": 2048, "height": 2732 }
+                    ]
+                },
+                "custom": {
+                    "type": "array",
+                    "itemType": "object",
+                    "default": []
+                },
+                "enable": {
+                    "type": "array",
+                    "itemType": "string",
+                    "default": [
+                        "iPhone SE",
+                        "iPhone XS Max",
+                        "iPhone XS",
+                        "iPhone XR",
+                        "iPhone 8 Plus",
+                        "iPhone 8",
+            
+                        "Galaxy S9 Plus",
+                        "Galaxy S9",
+                        "Galaxy S7",
+            
+                        "Huawei P20 Lite",
+                        "Huawei P20 Pro",
+                        "Huawei P20",
+                        "Huawei P10",
+            
+                        "Moto Z2",
+            
+                        "Redmi Note 5",
+                        "Redmi Note 4",
+            
+                        "Pixel 3 XL",
+                        "Pixel 2 XL",
+                        "Pixel 2",
+                        "Nexus 6P",
+                        "Nexus 6",
+            
+                        "LG K20",
+                        "LG K7",
+            
+                        "ZTE ZMAX Pro",
+                        "ZTE Majesty Pro",
+            
+                        "Apple iPad",
+                        "Apple iPad Mini"
+                    ]
+                }
+            }
+        },
+
+        "preferences": {
+            "custom": "./dist/contributions/preferences.js"
+        },
+
+        "messages": {
+            "query": {
+                "methods": ["query"]
+            }
+        }
+    }
+}

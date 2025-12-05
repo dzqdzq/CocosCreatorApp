@@ -1,0 +1,1 @@
+"use strict";module.exports={options:{render_back_end:"渲染后端"},make:{label:"生成"},run:{label:"运行"}};

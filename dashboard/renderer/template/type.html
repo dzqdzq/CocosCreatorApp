@@ -1,0 +1,7 @@
+<div class="tab">
+    <div class="tab-item"
+        v-for="(item, index) in types"
+        :active="type === item.type"
+        @click="_onTabClick($event, item)"
+    >{{t(item.value)}}</div>
+</div>

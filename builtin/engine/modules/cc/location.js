@@ -1,0 +1,1 @@
+let location;module.exports={get:()=>location,set:o=>{location=o}};

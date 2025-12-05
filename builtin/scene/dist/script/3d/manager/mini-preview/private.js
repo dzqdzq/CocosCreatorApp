@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const DontSave=cc.Object.Flags.DontSave;class PrivatePreview extends cc.PrivateNode{constructor(e){super(e),this._isPrivatePreview=!0,this._objFlags|=DontSave}get isPrivatePreview(){return this._isPrivatePreview}}exports.default=PrivatePreview;

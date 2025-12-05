@@ -1,0 +1,1 @@
+"use strict";const fs=require("fs"),ps=require("path"),{t:t}=require("./../util");exports.template=fs.readFileSync(ps.join(__dirname,"../../template/help.html"),"utf-8"),exports.props=["type"],exports.data=function(){return{ver:require("@editor/setting").version}},exports.methods={t:t,_onJumpClick(t,e){this.$root.$emit("change-tab",e)}},exports.ready=function(){};

@@ -1,0 +1,110 @@
+::-webkit-scrollbar {
+  height: calc(var(--size-normal-font) * 1px);
+  width: calc(var(--size-normal-font) * 1px);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--size-normal-radius) * 2px);
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-active-fill);
+  background-clip: content-box;
+  transition: background-color 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-focus-contrast);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+:host {
+  display: flex;
+  font: inherit;
+}
+dock-layout[direction="none"] {
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  border-color: var(--color-normal-border);
+}
+dock-groups {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+dock-groups[focused] dock-tab[active] {
+  background: var(--color-focus-fill);
+  color: var(--color-focus-contrast);
+}
+dock-tabs {
+  height: calc(var(--size-normal-line) * 1px);
+  line-height: calc(var(--size-normal-line) * 1px);
+  background: var(--color-normal-fill-emphasis);
+  border-bottom: 1px solid var(--color-normal-border);
+}
+dock-tabs > div:hover > svg {
+  fill: var(--color-normal-contrast);
+}
+dock-tabs > div > svg {
+  width: calc(var(--size-normal-font) * 0.7px);
+  fill: var(--color-normal-contrast);
+}
+dock-tab {
+  cursor: grab;
+  height: calc(var(--size-normal-line) * 1px + 1px);
+  padding: 0 calc(var(--size-normal-line) * 0.25px);
+  box-sizing: border-box;
+  border-right: 1px solid var(--color-normal-border);
+  font: inherit;
+}
+dock-tab:hover {
+  color: var(--color-normal-contrast-emphasis);
+}
+dock-tab:active {
+  cursor: grabbing;
+}
+dock-tab[active] {
+  background: var(--color-normal-fill);
+  color: var(--color-normal-contrast);
+  border-bottom: 1px solid var(--color-normal-fill);
+  height: calc(var(--size-normal-line) * 1px + 1px);
+  z-index: 1;
+}
+dock-tab > span:last-child {
+  font: inherit;
+  position: relative;
+  top: -1px;
+  padding-right: 2px;
+  vertical-align: middle;
+}
+dock-tab > .img {
+  padding: 0 0.1em;
+  vertical-align: middle;
+  position: relative;
+  top: 1px;
+}
+dock-tab > .img svg {
+  width: 0.7em;
+  fill: var(--color-normal-contrast);
+}
+dock-tab > .img img {
+  width: 1em;
+  padding-right: 0.2em;
+}
+panel-frame {
+  flex: 1;
+  box-sizing: border-box;
+}
+dock-resize {
+  user-select: none;
+}

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Message manager",default:{title:"Messages list"},debug:{title:"Message debugging tool"}};

@@ -1,0 +1,47 @@
+<div class="extension">
+    <header class="header">
+        <div class="tabs">
+            <div class="tab"
+                v-for="tab in tabs"
+                :key="tab"
+                :active="active === tab"
+                @click="active = tab"
+            >{{t(tab)}}</div>
+        </div>
+        <div class="search">
+
+            <ui-button class="transparent" title="Refresh"
+                :disabled="active === 'internal'"
+                @confirm="scanning(active)"
+            >
+                <ui-icon value="refresh"></ui-icon>
+            </ui-button>
+
+            <ui-button class="transparent" title="Import"
+                :disabled="active === 'internal'"
+                @confirm="install(active)"
+            >
+                <ui-icon value="add"></ui-icon>
+            </ui-button>
+
+            <ui-input ref="search" show-clear
+                :placeholder="t('search')" 
+                @change="doSearch"
+            ></ui-input>
+        </div>
+    </header>
+
+    <main class="content">
+        <pkg-node 
+            v-for="(pkg, index) in packagesMap"
+            v-if="pkg.type === active"
+            :key="index"
+            :pkg="pkg" 
+        ></pkg-node>
+    </main>
+    <div class="loading center" 
+        v-if="!ready"
+    >
+        <ui-loading></ui-loading>
+    </div>
+</div>

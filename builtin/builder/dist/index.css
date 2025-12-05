@@ -1,0 +1,466 @@
+:host {
+  display: flex;
+  position: relative;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.container > .toolbar {
+  padding: 10px 27px 10px 10px;
+  border-bottom: 1px solid var(--color-normal-border);
+  display: flex;
+  justify-content: space-between;
+}
+.container > .toolbar .tools {
+  font-size: 14px;
+}
+.container > .toolbar .tools ui-button {
+  padding: 0 10px;
+}
+.container > section {
+  flex: 1;
+  background: var(--color-normal-fill-emphasis);
+  padding: 10px 10px 0 10px;
+  overflow-y: auto;
+}
+.container .empty-task {
+  text-align: center;
+  margin-top: 35px;
+}
+.container ui-button {
+  border-radius: 4px;
+}
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1b1d1d7a;
+  z-index: 10;
+}
+.task {
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  border: 1px solid var(--color-normal-border);
+  background-color: var(--color-normal-fill);
+}
+.task .time {
+  font-style: italic;
+  color: var(--color-normal-contrast-important);
+}
+.task > .i-close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+}
+.task > .i-close:hover {
+  color: var(--color-danger-fill);
+}
+.task > header {
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.task > header > span {
+  margin-right: 6px;
+}
+.task > header > ui-loading {
+  position: relative;
+  top: 2px;
+}
+.task > header ui-icon {
+  cursor: pointer;
+}
+.task > section {
+  display: flex;
+  margin-bottom: 10px;
+}
+.task > section > ui-progress {
+  flex: 1;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+.task > section .build-log {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+  margin: 0 5px;
+  color: var(--color-normal-contrast-weakest);
+}
+.task > footer {
+  display: flex;
+  justify-content: space-between;
+}
+.task > footer .right,
+.task > footer .left {
+  display: flex;
+}
+.task > footer .right {
+  text-align: right;
+}
+.task > footer .right ui-button {
+  margin-right: 4px;
+}
+.task > footer .left {
+  max-width: 50%;
+  text-align: left;
+  flex: 1;
+  justify-content: flex-start;
+}
+.task > footer .left ui-button {
+  margin-left: 4px;
+}
+.task > footer .right {
+  flex: 1;
+  max-width: 50%;
+  justify-content: flex-end;
+}
+.task[running] {
+  background: rgba(251, 240, 111, 0.14);
+}
+.task[running] header i {
+  color: #f1c64f;
+}
+.settings {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  display: flex;
+  box-sizing: border-box;
+  background: #333333;
+}
+.settings > .content {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--color-normal-fill);
+  border: 1px solid var(--color-normal-border);
+  border-radius: 4px;
+}
+.settings > .content > .i-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  cursor: pointer;
+}
+.settings > .content > .i-close:hover {
+  color: var(--color-danger-fill);
+}
+.settings > .content > header {
+  border-bottom: 1px solid var(--color-normal-border);
+  padding: 0 5px 5px 5px;
+  margin-bottom: 5px;
+  display: flex;
+}
+.settings > .content > header > * {
+  margin-right: 4px;
+}
+.settings > .content > header ui-icon {
+  cursor: pointer;
+}
+.settings > .content > header .dirty {
+  color: var(--color-warn-border-normal);
+}
+.settings > .content > .tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+  font-size: 14px;
+}
+.settings > .content > .tools .split {
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.settings > .content > .tools ui-button {
+  margin: 0;
+  vertical-align: middle;
+  font-size: 10px;
+}
+.settings > .content > section {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+}
+.settings > .content > section ui-section {
+  width: 100%;
+}
+.settings > .content > section .error-info {
+  font-size: 0.8em;
+  line-height: 12px;
+  margin-bottom: 8px;
+  color: var(--color-danger-fill-weaker);
+}
+.settings > .content > section > ui-prop,
+.settings > .content > section > .plugins ui-prop {
+  margin-bottom: 4px;
+  flex: 1;
+  text-align: left;
+}
+.settings > .content > section ui-prop > *[slot='content'] {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.settings > .content > section ui-prop > *[slot='content'] .build-prop {
+  display: flex;
+  flex: 1;
+}
+.settings > .content > section ui-prop > *[slot='content'] > ui-select,
+.settings > .content > section ui-prop > *[slot='content'] > ui-input,
+.settings > .content > section ui-prop > *[slot='content'] > ui-color,
+.settings > .content > section ui-prop > *[slot='content'] > ui-num-input,
+.settings > .content > section ui-prop > *[slot='content'] > ui-num-input,
+.settings > .content > section ui-prop > *[slot='content'] > ui-file,
+.settings > .content > section ui-prop > *[slot='content'] > ui-section {
+  flex: 1;
+}
+.settings > .content > section ui-prop > *[slot='content'] > ui-image {
+  width: 60px;
+  height: 60px;
+  border: 1px dashed;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list {
+  display: block;
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border-emphasis);
+  border-radius: 4px;
+  padding: 10px;
+  overflow: hidden;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list > div {
+  position: relative;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .fix-box {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: -50px;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .fix-box ui-input {
+  width: 100%;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .fix-box ui-checkbox {
+  border-bottom: 1px solid var(--color-normal-border-emphasis);
+  width: 100%;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box {
+  display: block;
+  max-height: 200px;
+  overflow: auto;
+  margin-top: 50px;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div {
+  display: flex;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div > ui-checkbox {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div > ui-checkbox .name {
+  margin-left: 2px;
+  color: var(--color-info-contrast-important);
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div > ui-checkbox .url {
+  color: var(--color-default-fill-weaker);
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div .i-home {
+  visibility: hidden;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div[home] .i-home,
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div:hover .i-home {
+  visibility: visible;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box .i-home:hover {
+  cursor: pointer;
+  color: var(--color-focus-fill-weakest);
+  background: none;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div[missing] {
+  background: #bac77e2b;
+}
+.settings > .content > section ui-prop > *[slot='content'].scene-list .scenes-box > div[missing] i {
+  color: yellow;
+}
+.settings > .content > section ui-prop.no-wrap > *[slot='content'] {
+  flex-direction: row;
+}
+.settings > .content .build-prop {
+  margin-bottom: 5px;
+}
+.settings > .content .build-prop .required {
+  position: absolute;
+  left: -2px;
+  color: var(--color-danger-fill-weaker);
+}
+.settings > .content > section[disabled] {
+  opacity: 0.6;
+}
+.settings > .content > section[disabled] > * {
+  pointer-events: none;
+}
+.settings > .content ui-prop[error] > ui-label {
+  color: var(--color-danger-fill-weaker);
+}
+.settings > .content ui-prop[error] ui-input,
+.settings > .content ui-prop[error] ui-select,
+.settings > .content ui-prop[error] ui-file {
+  border-color: var(--color-danger-fill-weaker);
+}
+.settings > .content ui-prop[error] div[slot].scene-list {
+  border-color: var(--color-danger-fill-weaker);
+}
+.settings > .content .splash ui-icon {
+  cursor: pointer;
+  padding-left: 20px;
+  display: none;
+}
+.settings > .content .splash:hover ui-icon {
+  display: inline-block;
+}
+.settings > .content .plugins {
+  width: 100%;
+}
+.settings > .content .plugins > * {
+  margin-top: 10px;
+}
+.settings > .content .plugins .check {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.settings > .content > .footer {
+  padding: 10px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.settings > .content > .footer ui-button {
+  margin-right: 5px;
+}
+.build-button {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+.build-button span {
+  display: inline-block;
+  width: 24px;
+}
+.build-button ui-icon {
+  transform: rotate(90deg) scaleY(0.8);
+}
+.build-button ui-button {
+  width: 124px;
+}
+.build-button .force-compile {
+  position: absolute;
+  top: 24px;
+  right: 0;
+}
+:host {
+  display: flex;
+  position: relative;
+}
+#splashSetting {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+#splashSetting .webview {
+  width: 100%;
+  height: 100%;
+}
+#splashSetting .tips {
+  position: absolute;
+  text-align: center;
+  height: 30px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+#splashSetting ui-prop > *[slot='content'] {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+#splashSetting ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#splashSetting ui-prop {
+  margin: 10px 0;
+}
+#splashSetting main {
+  margin: 15px;
+}
+#splashSetting ui-prop > .image-wrap {
+  text-align: center;
+  position: relative;
+  width: auto;
+}
+#splashSetting ui-prop > .image-wrap ui-drag-area {
+  padding: 5px;
+  border: dashed 1px;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: auto;
+}
+#splashSetting ui-prop > .image-wrap ui-drag-area > * {
+  pointer-events: none;
+}
+#splashSetting ui-prop > .image-wrap .drag-tips {
+  position: absolute;
+  font-size: 18px;
+  width: 100%;
+  visibility: hidden;
+  max-width: 300px;
+  background-color: rgba(48, 47, 47, 0.26);
+}
+#splashSetting ui-prop > .image-wrap .drag-tips ui-label {
+  color: white;
+}
+#splashSetting ui-prop > .image-wrap .loading {
+  position: absolute;
+  padding: 10px;
+}
+#splashSetting ui-prop > .image-wrap ui-drag-area.refused {
+  border-color: red;
+}
+#splashSetting ui-prop > .image-wrap ui-drag-area.allow {
+  border-color: green;
+}
+#splashSetting .image-wrap:hover .drag-tips {
+  visibility: visible;
+}
+#splashSetting footer {
+  text-align: right;
+}

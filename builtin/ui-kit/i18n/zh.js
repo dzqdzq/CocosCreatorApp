@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"UI 组件",preview:{initialize:"初始化及使用",parameters:"参数说明",getSet:"取值赋值",events:"绑定事件",style:"不同样式",ui:{file:{placeholder_app:"请选择程序"},input:{placeholder:"请输入"},textarea:{placeholder:"请输入内容"}}},searcher:{placeholder:"搜索名称",empty:"没有匹配的搜索项"}};

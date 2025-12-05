@@ -1,0 +1,21 @@
+{
+    "name": "programming",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:programming.description",
+    "main": "./dist/browser/index",
+    "contributions": {
+        "messages": {
+            "packer-driver/pull-asset-db": {
+                "methods": ["packer-driver/pull-asset-db"]
+            },
+            "packer-driver/get-loader-context": {
+                "methods": ["packer-driver/get-loader-context"]
+            },
+            "packer-driver/ready": {
+                "methods": ["packer-driver/ready"]
+            }
+        }
+    }
+}

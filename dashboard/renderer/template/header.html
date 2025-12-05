@@ -1,0 +1,10 @@
+<div class="title">
+    <div class="title-tab">
+        <span class="title-item"
+            v-for="(item, index) in tabs"
+
+            :active="tab === index"
+            @click="_onTabClick($event, index)"
+        >{{t(item)}}</span>
+    </div>
+</div>

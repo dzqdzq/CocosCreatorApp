@@ -1,0 +1,75 @@
+require('runtime-adapter/qgame-adapter.js');
+
+<% if(polyfillsBundleFile) { %>
+// Polyfills bundle.
+require("<%= polyfillsBundleFile %>");
+<% } %>
+
+// SystemJS support.
+window.self = window;
+require("<%= systemJsBundleFile %>");
+
+const stripPrefixSlash = (urlNoSchema) =>
+    urlNoSchema.startsWith('/') ? urlNoSchema.substr(1) : urlNoSchema;
+
+const importMapFile = qg.readFileSync({
+    uri: `/<%= importMapFile%>`,
+    encoding: 'utf8'
+});
+if (typeof importMapFile === 'string') {
+    console.log(`handling fail, error message = ${importMapFile}`)
+} else {
+    console.log('handling success, text: '+ importMapFile.text)
+}
+const importMap = JSON.parse(importMapFile.text);
+System.warmup({
+    importMap,
+    importMapUrl: '<%= importMapFile%>',
+    defaultHandler: (urlNoSchema) => {
+        console.log(`Loading(external) ${urlNoSchema}`);
+        // Dynamically(through variable) import an external module should
+        // tell webpack to ignore it use:
+        // `import(/* webpackIgnore: true */ m)` or
+        // `require(/* webpackIgnore: true */ m)`.
+        // The later is not supported util https://github.com/webpack/webpack/pull/11316 got merged.
+        // For now, we explicitly call the global require.
+        globalThis.require(stripPrefixSlash(urlNoSchema));
+    },
+    handlers: {
+        'plugin:' (urlNoSchema) {
+            console.log(`Loading plugin: ${urlNoSchema}`);
+            requirePlugin(urlNoSchema);
+        },
+    },
+});
+
+System.import('<%= applicationJs %>').then(({ createApplication }) => {
+    return createApplication({
+        loadJsListFile: (url) => globalThis.require(`${url}`),
+    });
+}).then((application) => {
+    return onApplicationCreated(application);
+}).catch((err) => {
+    console.error(err);
+});
+
+function onApplicationCreated(application) {
+    return application.import('cc').then((cc) => {
+        cc.macro.CLEANUP_IMAGE_CACHE = false;
+        <% if (optionDebug) { %>
+        require('runtime-adapter/jsb.js');
+        require('runtime-adapter/engine-adapter.js');
+        <% } else { %>
+        require('runtime-adapter/jsb.min.js');
+        require('runtime-adapter/engine-adapter.min.js');
+        <% } %>
+        cc.sys.__init();
+        return application.start({
+            findCanvas: () => {
+                var container = document.createElement('div');
+                var frame = container.parentNode === document.body ? document.documentElement : container.parentNode;
+                return { frame, canvas: window.__canvas, container };
+            },
+        });
+    });
+}

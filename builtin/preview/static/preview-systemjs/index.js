@@ -1,0 +1,1 @@
+import"systemjs-source/system.js";import"systemjs-source/extras/named-register.js";import"systemjs-source/extras/amd.js";

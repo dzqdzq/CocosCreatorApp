@@ -1,0 +1,44 @@
+<div class="oppo-mini-game" 
+    v-if="options && verifyRes"
+    @confirm="onConfirm"
+>
+    <ui-prop>
+        <ui-label slot="label" i18n>oppo-mini-game.options.keystore</ui-label>
+        <div slot="content">
+            <ui-checkbox path="useDebugKey" :value="pkgOptions.useDebugKey">{{t('options.use_debug_keystore')}}</ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop class="no-wrap"
+        :error="!!(!pkgOptions.useDebugKey && verifyRes.certificatePemPath && verifyRes.certificatePemPath.error)"
+    >
+        <ui-label slot="label" i18n>oppo-mini-game.options.certificate_pem_path</ui-label>
+        <div slot="content">
+            <ui-file path="certificatePemPath"
+                :value="pkgOptions.certificatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes && verifyRes.certificatePemPath && verifyRes.certificatePemPath.error"
+            ></ui-file>
+            <ui-button 
+                @confirm="onNewCertificate"
+                :disabled="pkgOptions.useDebugKey"
+            ><ui-label i18n>oppo-mini-game.options.new</ui-label></ui-button>
+        </div>
+    </ui-prop>
+    <error-info v-if="!pkgOptions.useDebugKey" :value="verifyRes.certificatePemPath"></error-info>
+
+    <ui-prop
+        :error="!!(!pkgOptions.useDebugKey && verifyRes.privatePemPath && verifyRes.privatePemPath.error)"
+    >
+        <ui-label slot="label" i18n>oppo-mini-game.options.private_pem_path</ui-label>
+        <div slot="content">
+            <ui-file path="privatePemPath"
+                :value="pkgOptions.privatePemPath"
+                :disabled="pkgOptions.useDebugKey"
+                :title="verifyRes.privatePemPath && verifyRes.privatePemPath.error"
+            ></ui-file>
+        </div>
+    </ui-prop>
+    <error-info v-if="!pkgOptions.useDebugKey" :value="verifyRes.privatePemPath"></error-info>
+
+</div>

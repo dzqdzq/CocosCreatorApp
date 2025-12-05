@@ -1,0 +1,1 @@
+"use strict";async function load(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.load=exports.methods=void 0,exports.methods={async query(){const e=await Editor.Profile.getConfig("device",""),o=[];return e.devices.forEach(s=>{e.enable.includes(s.name)&&o.push(s)}),e.custom.forEach(s=>{e.enable.includes(s.name)&&o.push(s)}),o}},exports.load=load;

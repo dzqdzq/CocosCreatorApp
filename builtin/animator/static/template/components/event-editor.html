@@ -1,0 +1,90 @@
+<section id="event-editor" class="mask"
+    @change="onConfirm"
+>
+    <div class="content">
+        <div class="header">
+            <h4 class="name">{{t('title')}}<span class="dirty" v-if="dirty">*</span></h4>
+            <ui-icon value="close" name="close" @mousedown="onMouseDown"></ui-icon>
+        </div>
+        <div class="functions">
+            <div class="tools" @mousedown="onMouseDown">
+                <ui-icon value="add" 
+                    name="addFunc"
+                    tooltip="i18n:animator.event.add_func" 
+                ></ui-icon>
+                <ui-icon value="save"
+                    name="save"
+                ></ui-icon>
+            </div>
+            <div class="func" v-for="(event, eventIndex) in value">
+                <ui-section expand>
+                    <div slot="header" class="line header" @click.stop>
+                        <ui-input name="funcName" placeholder="function Name"
+                            :value="event.func"
+                            :index="eventIndex"
+                        ></ui-input>
+                        <span class="tools" @mousedown="onMouseDown">
+                            <ui-icon value="del" 
+                                name="delFunc" 
+                                tooltip="i18n:animator.event.del_func" 
+                                :index="eventIndex"
+                            ></ui-icon>
+                        </span>
+                    </div>
+                    <div class="params">
+                        <div class="line">
+                            <span>params</span>
+                            <span @mousedown="onMouseDown">
+                                <ui-icon value="add" 
+                                    name="addParams" 
+                                    tooltip="i18n:animator.event.add_params" 
+                                    :index="eventIndex"
+                                ></ui-icon>
+                                <ui-icon value="clear" 
+                                    name="clearParams" 
+                                    tooltip="i18n:animator.event.clear_params" 
+                                    :index="eventIndex"
+                                ></ui-icon>
+                            </span>
+                        </div>
+                        <div class="line" v-for="(val, paramIndex) in event.params">
+                            <span class="name">{{paramIndex + 1}}</span>
+                            <ui-select :value="typeof(val)" name="changeParamType" 
+                                :index="JSON.stringify([eventIndex, paramIndex])"
+                            >
+                                <option value="string">string</option>
+                                <option value="number">number</option>
+                                <option value="boolean">boolean</option>
+                            </ui-select>
+                            <ui-input v-if="typeof(val) === 'string'"
+                                name="param"
+                                :value="val"
+                                :index="JSON.stringify([eventIndex, paramIndex])"
+                            ></ui-input>
+                            <ui-num-input v-if="typeof(val) === 'number'" 
+                                name="param"
+                                :value="val"
+                                :index="JSON.stringify([eventIndex, paramIndex])"
+                            ></ui-num-input>
+                            <ui-checkbox v-if="typeof(val) === 'boolean'" 
+                                name="param"
+                                :value="val"
+                                :index="JSON.stringify([eventIndex, paramIndex])"
+                            ></ui-checkbox>
+                            <span class="operate" @mousedown="onMouseDown">
+                                <ui-icon value="del"  
+                                    name="delParams" 
+                                    tooltip="i18n:animator.event.del_params" 
+                                    :index="JSON.stringify([eventIndex, paramIndex])"
+                                ></ui-icon>
+                            </span>
+                        </div>
+                    </div>
+                </ui-section>
+            </div>
+        </div>
+        <div class="toast" v-if="toast">
+            {{toast}}
+        </div>
+    </div>
+</section>

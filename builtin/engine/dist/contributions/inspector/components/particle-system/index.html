@@ -1,0 +1,408 @@
+<div class="particle-system-component">
+    <div class="content"
+        v-if="dump"
+    >
+        <ins-prop auto="true"
+            :dump="dump.value.duration"
+            :dumps="dumps ? dumps.map(dump => dump.value.duration) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.capacity"
+            :dumps="dumps ? dumps.map(dump => dump.value.capacity) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.loop"
+            :dumps="dumps ? dumps.map(dump => dump.value.loop) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.playOnAwake"
+            :dumps="dumps ? dumps.map(dump => dump.value.playOnAwake) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.prewarm"
+            :dumps="dumps ? dumps.map(dump => dump.value.prewarm) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.simulationSpace"
+            :dumps="dumps ? dumps.map(dump => dump.value.simulationSpace) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.simulationSpeed"
+            :dumps="dumps ? dumps.map(dump => dump.value.simulationSpeed) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startDelay"
+            :dumps="dumps ? dumps.map(dump => dump.value.startDelay) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startLifetime"
+            :dumps="dumps ? dumps.map(dump => dump.value.startLifetime) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startColor"
+            :dumps="dumps ? dumps.map(dump => dump.value.startColor) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.scaleSpace"
+            :dumps="dumps ? dumps.map(dump => dump.value.scaleSpace) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startSize3D"
+            :dumps="dumps ? dumps.map(dump => dump.value.startSize3D) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :name="dump.value.startSize3D.value ? null : 'StartSize'"
+            :dump="dump.value.startSizeX"
+            :dumps="dumps ? dumps.map(dump => dump.value.startSizeX) : null"
+        ></ins-prop>
+
+        <template v-if="dump.value.startSize3D.value">
+
+            <ins-prop auto="true"
+                :dump="dump.value.startSizeY"
+                :dumps="dumps ? dumps.map(dump => dump.value.startSizeY) : null"
+            ></ins-prop>
+
+            <ins-prop auto="true"
+                :dump="dump.value.startSizeZ"
+                :dumps="dumps ? dumps.map(dump => dump.value.startSizeZ) : null"
+            ></ins-prop>
+
+        </template>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startSpeed"
+            :dumps="dumps ? dumps.map(dump => dump.value.startSpeed) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.startRotation3D"
+            :dumps="dumps ? dumps.map(dump => dump.value.startRotation3D) : null"
+        ></ins-prop>
+
+        <template v-if="dump.value.startRotation3D.value">
+
+            <ins-prop auto="true"
+                :dump="dump.value.startRotationX"
+                :dumps="dumps ? dumps.map(dump => dump.value.startRotationX) : null"
+            ></ins-prop>
+
+            <ins-prop auto="true"
+                :dump="dump.value.startRotationY"
+                :dumps="dumps ? dumps.map(dump => dump.value.startRotationY) : null"
+            ></ins-prop>
+
+        </template>
+
+        <ins-prop auto="true"
+            :name="dump.value.startRotation3D.value ? null : 'StartRotation'"
+            :dump="dump.value.startRotationZ"
+            :dumps="dumps ? dumps.map(dump => dump.value.startRotationZ) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.gravityModifier"
+            :dumps="dumps ? dumps.map(dump => dump.value.gravityModifier) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.rateOverTime"
+            :dumps="dumps ? dumps.map(dump => dump.value.rateOverTime) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.rateOverDistance"
+            :dumps="dumps ? dumps.map(dump => dump.value.rateOverDistance) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.bursts"
+            :dumps="dumps ? dumps.map(dump => dump.value.bursts) : null"
+        ></ins-prop>
+
+        <ins-prop empty="true"
+            :dump="dump.value.shapeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.shapeModule) : null"
+        >
+            <ins-object :title="getTitle(dump.value.shapeModule)" empty="true"
+                :name="getName(dump.value.shapeModule)"
+                :dump="dump.value.shapeModule"
+                :dumps="dumps ? dumps.map(dump => dump.value.shapeModule) : null"
+                :readonly="dump.value.shapeModule.readonly">
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.shapeType"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.shapeType) : null">
+                </ins-prop>
+
+                <ins-prop
+                    v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Box','Cone','Sphere','Hemisphere')"
+                    :dump="dump.value.shapeModule.value.emitFrom"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.emitFrom) : null"
+                >
+
+                    <ui-select
+                        :value="dump.value.shapeModule.value.emitFrom.value"
+                        @change="dumps.forEach(item => item.value.shapeModule.value.emitFrom.value = $event.target.value)"
+                    >
+                        <option
+                            v-for="item in getShapeTypeEmitFrom(dump.value.shapeModule.value.shapeType.value)"
+                            :value="item.value">
+                            {{ item.name }}
+                        </option>
+                    </ui-select>
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone','Sphere','Hemisphere')"
+                    :dump="dump.value.shapeModule.value.radius"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.radius) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone','Sphere','Hemisphere')"
+                    :dump="dump.value.shapeModule.value.radiusThickness"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.radiusThickness) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Cone')"
+                    :dump="dump.value.shapeModule.value.angle"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.angle) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone')"
+                    :dump="dump.value.shapeModule.value.arc"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.arc) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone')"
+                    :dump="dump.value.shapeModule.value.arcMode"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.arcMode) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone')"
+                    :dump="dump.value.shapeModule.value.arcSpread"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.arcSpread) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Circle','Cone')"
+                    :dump="dump.value.shapeModule.value.arcSpeed"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.arcSpeed) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Cone')"
+                    :dump="dump.value.shapeModule.value.length"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.length) : null">
+                </ins-prop>
+
+                <ins-prop auto="true" v-if="checkEnumInSubset(dump.value.shapeModule.value.shapeType,'Box')"
+                    :dump="dump.value.shapeModule.value.boxThickness"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.boxThickness) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.position"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.position) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.rotation"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.rotation) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.scale"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.scale) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.alignToDirection"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.alignToDirection) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.randomDirectionAmount"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.randomDirectionAmount) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.sphericalDirectionAmount"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.sphericalDirectionAmount) : null">
+                </ins-prop>
+
+                <ins-prop auto="true"
+                    :dump="dump.value.shapeModule.value.randomPositionAmount"
+                    :dumps="dumps ? dumps.map(dump => dump.value.shapeModule.value.randomPositionAmount) : null">
+                </ins-prop>
+
+            </ins-object>
+        </ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.velocityOvertimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.velocityOvertimeModule) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.forceOvertimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.forceOvertimeModule) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true" v-if="!dump.value.renderer.value.useGPU.value"
+            :dump="dump.value.limitVelocityOvertimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.limitVelocityOvertimeModule) : null"
+        ></ins-prop>
+
+        <ins-prop empty="true"
+            :dump="dump.value.sizeOvertimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule) : null">
+            <ins-object :title="getTitle(dump.value.sizeOvertimeModule)" empty="true"
+                :name="getName(dump.value.sizeOvertimeModule)"
+                :dump="dump.value.sizeOvertimeModule"
+                :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule) : null"
+                :readonly="dump.value.sizeOvertimeModule.readonly">
+                <ins-prop auto="true"
+                    :dump="dump.value.sizeOvertimeModule.value.separateAxes"
+                    :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule.value.separateAxes) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="!dump.value.sizeOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.sizeOvertimeModule.value.size"
+                        :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule.value.size) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="dump.value.sizeOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.sizeOvertimeModule.value.x"
+                        :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule.value.x) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="dump.value.sizeOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.sizeOvertimeModule.value.y"
+                        :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule.value.y) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="dump.value.sizeOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.sizeOvertimeModule.value.z"
+                        :dumps="dumps ? dumps.map(dump => dump.value.sizeOvertimeModule.value.z) : null">
+                </ins-prop>
+            </ins-object>
+        </ins-prop>
+
+        <ins-prop empty="true"
+            :dump="dump.value.rotationOvertimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule) : null">
+            <ins-object :title="getTitle(dump.value.rotationOvertimeModule)" empty="true"
+                :name="getName(dump.value.rotationOvertimeModule)"
+                :dump="dump.value.rotationOvertimeModule"
+                :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule) : null"
+                :readonly="dump.value.rotationOvertimeModule.readonly">
+                <ins-prop auto="true"
+                    :dump="dump.value.rotationOvertimeModule.value.separateAxes"
+                    :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule.value.separateAxes) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="dump.value.rotationOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.rotationOvertimeModule.value.x"
+                        :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule.value.x) : null">
+                </ins-prop>
+                <ins-prop auto="true" v-if="dump.value.rotationOvertimeModule.value.separateAxes.value"
+                        :dump="dump.value.rotationOvertimeModule.value.y"
+                        :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule.value.y) : null">
+                </ins-prop>
+                <ins-prop auto="true"
+                        :dump="dump.value.rotationOvertimeModule.value.z"
+                        :dumps="dumps ? dumps.map(dump => dump.value.rotationOvertimeModule.value.z) : null">
+                </ins-prop>
+            </ins-object>
+        </ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.colorOverLifetimeModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.colorOverLifetimeModule) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.textureAnimationModule"
+            :dumps="dumps ? dumps.map(dump => dump.value.textureAnimationModule) : null"
+        ></ins-prop>
+
+        <ins-prop empty="true" v-if="!dump.value.renderer.value.useGPU.value"
+            :dump="dump.value.trailModule"
+        >
+            <ins-object
+                :title="getTitle(dump.value.trailModule)"
+                :name="getName(dump.value.trailModule)"
+                :dump="dump.value.trailModule"
+                :dumps="dumps ? dumps.map(dump => dump.value.trailModule) : null"
+                :readonly="dump.value.trailModule.readonly"
+            >
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.mode"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.mode) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.lifeTime"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.lifeTime) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.minParticleDistance"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.minParticleDistance) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.space"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.space) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.textureMode"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.textureMode) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.widthFromParticle"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.widthFromParticle) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.widthRatio"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.widthRatio) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.colorFromParticle"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.colorFromParticle) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.colorOverTrail"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.colorOverTrail) : null"
+                ></ins-prop>
+                <ins-prop auto="true"
+                    :dump="dump.value.trailModule.value.colorOvertime"
+                    :dumps="dumps ? dumps.map(dump => dump.value.trailModule.value.colorOvertime) : null"
+                ></ins-prop>
+            </ins-object>
+        </ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.renderer"
+            :dumps="dumps ? dumps.map(dump => dump.value.renderer) : null"
+        ></ins-prop>
+
+        <ins-prop auto="true"
+            :dump="dump.value.enableCulling"
+            :dumps="dumps ? dumps.map(item => item.value.enableCulling) : null"
+        ></ins-prop>
+    </div>
+
+    <!-- 渲染其他没有接管的数据 -->
+    <template
+        v-for="prop of shortProp(dump.value)"
+    >
+        <ins-prop auto="true"
+            v-if="prop.dump.visible && !excludeList.includes(prop.key)"
+            :dump="prop.dump"
+            :dumps="dumps ? dumps.map(item => item.value[prop.key]) : null"
+        ></ins-prop>
+    </template>
+</div>

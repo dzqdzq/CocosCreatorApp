@@ -1,0 +1,176 @@
+<div class="builder-android">
+    <ui-prop
+        :error="!!(verifyRes.packageName && verifyRes.packageName.error)"
+    >
+        <ui-label slot="label" i18n>android.options.package_name</ui-label>
+        <ui-input slot="content"
+            :disabled="type !== 'new'"
+            :value="pkgOptions.packageName"
+            :placeholder="getDefaultPackageName()"
+            @confirm="onUpdateOptions('packageName', $event.target.value)"
+        ></ui-input>
+    </ui-prop>
+    <error-info :value="verifyRes.packageName"></error-info>
+
+    <ui-prop
+        :error="!!(verifyRes.apiLevel && verifyRes.apiLevel.error)"
+    >
+        <ui-label slot="label">Target API Level</ui-label>
+        <div slot="content" style="display: block;">
+            <ui-select
+                :disabled="type !== 'new'"
+                :value="pkgOptions.apiLevel"
+                @confirm="onUpdateOptions('apiLevel', $event.target.value)"
+            >
+                <template
+                    v-for="item in apiLevels"
+                >
+                    <option
+                        :value="item"
+                    >{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button :disabled="type !== 'new'" @confirm="onSetAndroidSDK">Set Android SDK</ui-button>
+        </div>
+    </ui-prop>
+    <error-info :value="verifyRes.apiLevel"></error-info>
+
+    <ui-prop>
+        <ui-label slot="label">APP ABI</ui-label>
+        <div slot="content" style="display: block;">
+            <div
+                v-for="abi in appABIList"
+            >
+                <ui-checkbox
+                    :disabled="type !== 'new'"
+                    :value="pkgOptions.appABIs && pkgOptions.appABIs.includes(abi)"
+                    @confirm="onChangeABI($event, abi)"
+                >{{abi}}</ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- Keystore -->
+    <ui-prop>
+        <ui-label slot="label" i18n>android.KEYSTORE.use_debug_keystore</ui-label>
+        <ui-checkbox slot="content"
+            :disabled="type !== 'new'"
+            :value="pkgOptions.useDebugKeystore"
+            @confirm="onChangeDebugKeystore($event.target.value)"
+        >Use Debug Keystore</ui-checkbox>
+    </ui-prop>
+
+    <ui-prop
+        :error="!!(verifyRes.keystorePath && verifyRes.keystorePath.error)"
+    >
+        <ui-label slot="label" i18n>android.KEYSTORE.keystore_path</ui-label>
+        <div slot="content">
+            <ui-file
+                :disabled="type !== 'new' || pkgOptions.useDebugKeystore"
+                :value="pkgOptions.keystorePath"
+                @confirm="onUpdateOptions('keystorePath', $event.target.value)"
+            ></ui-file>
+            <!-- // TODO 新建密钥功能-->
+            <!-- <ui-button @confirm="onNewKeyStore" :disabled="pkgOptions.useDebugKeystore">
+                <ui-label i18n>android.KEYSTORE.new_keystore</ui-label>
+            </ui-button> -->
+        </div>
+    </ui-prop>
+    <error-info :value="verifyRes.keystorePath"></error-info>
+
+    <ui-prop
+        :error="!!(verifyRes.keystorePassword && verifyRes.keystorePassword.error)"
+    >
+        <ui-label slot="label" i18n>android.KEYSTORE.keystore_password</ui-label>
+        <ui-input slot="content"
+            :disabled="type !== 'new' || pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystorePassword"
+            @confirm="onUpdateOptions('keystorePassword', $event.target.value)"
+        ></ui-input>
+    </ui-prop>
+    <error-info :value="verifyRes.keystorePassword"></error-info>
+
+    <ui-prop
+        :error="!!(verifyRes.keystoreAlias && verifyRes.keystoreAlias.error)"
+    >
+        <ui-label slot="label" i18n>android.KEYSTORE.keystore_alias</ui-label>
+        <ui-input slot="content"
+            :disabled="type !== 'new' || pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystoreAlias"
+            @confirm="onUpdateOptions('keystoreAlias', $event.target.value)"
+        ></ui-input>
+    </ui-prop>
+    <error-info :value="verifyRes.keystoreAlias"></error-info>
+
+    <ui-prop
+        :error="!!(verifyRes.keystoreAliasPassword && verifyRes.keystoreAliasPassword.error)"
+    >
+        <ui-label slot="label" i18n>android.KEYSTORE.keystore_alias_password</ui-label>
+        <ui-input slot="content"
+            :disabled="type !== 'new' || pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystoreAliasPassword"
+            @confirm="onUpdateOptions('keystoreAliasPassword', $event.target.value)"
+        ></ui-input>
+    </ui-prop>
+    <error-info :value="verifyRes.keystoreAliasPassword"></error-info>
+
+    <!-- Orientation -->
+    <ui-prop>
+        <ui-label slot="label" i18n>android.options.screen_orientation</ui-label>
+        <div slot="content" style="display: block;">
+            <div>
+                <ui-checkbox
+                    :disabled="type !== 'new'"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.portrait"
+                    @change="pkgOptions.orientation.portrait = $event.target.value"
+                    @confirm="onUpdateOptions('orientation', pkgOptions.orientation)"
+                >Portrait</ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    :disabled="type !== 'new'"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                    @change="pkgOptions.orientation.landscapeLeft = $event.target.value"
+                    @confirm="onUpdateOptions('orientation', pkgOptions.orientation)"
+                >Landscape Left</ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    :disabled="type !== 'new'"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                    @change="pkgOptions.orientation.landscapeRight = $event.target.value"
+                    @confirm="onUpdateOptions('orientation', pkgOptions.orientation)"
+                >Landscape Right</ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- android instant config -->
+    <ui-prop>
+        <ui-label slot="label">Google Play Instant</ui-label>
+        <div slot="content" style="display: block;">
+            <ui-checkbox
+                 :value="pkgOptions.androidInstant"
+                 @change="changeInstantValue($event.target.value)"
+            ></ui-checkbox>
+            <ui-prop v-if="pkgOptions.androidInstant">
+                <ui-label slot="label" value="i18n:android.options.intent_filter"></ui-label>
+                <ui-input slot="content"
+                      placeholder="https://www.cocos.com/assets"
+                      :value="pkgOptions.remoteUrl"
+                      @change="pkgOptions.remoteUrl = $event.target.value">
+                </ui-input>
+            </ui-prop>
+        </div>
+    </ui-prop>
+    <error-info :value="pkgOptions.androidInstant && verifyRes.remoteUrl"></error-info>
+    <!-- bundle -->
+    <ui-prop>
+        <ui-label slot="label">Generate App Bundle (Google Play)</ui-label>
+        <ui-checkbox slot="content"
+            :disabled="type !== 'new'"
+            :value="pkgOptions.appBundle"
+            @confirm="onUpdateOptions('appBundle', $event.target.value)"
+        ></ui-checkbox>
+    </ui-prop>
+</div>

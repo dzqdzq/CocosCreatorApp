@@ -1,0 +1,60 @@
+<div class="node-library">
+    <header class="header">
+        <div class="tabs">
+            <div class="tab"
+                v-for="tab in tabs"
+                :key="tab"
+                :active="active===tab"
+                @click="active=tab"
+            >
+                <ui-label i18n 
+                    :value="'node-library.menu.'+tab"
+                ></ui-label>
+            </div>
+            <div class="tab"
+                v-for="extension in extensions"
+                :key="extension.name"
+                :active="active===extension.name"
+                @click="active=extension.name"
+            >
+                <ui-label  
+                    :value="extension.name"
+                ></ui-label>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="tab-content"
+            v-if="'builtin'=== active"
+        >
+            <group-items
+                :groups="builtinData"
+            ></group-items>
+        </div>
+        <ui-drag-area class="tab-content"
+            droppable="cc.Prefab" 
+            v-if="'custom'=== active"
+            @drop="drop"
+        >
+            <group-items 
+                :groups="customData"
+                :active="active"
+            ></group-items>
+        </ui-drag-area>
+        <div class="tab-content"
+            v-for="extension in extensions"
+            :key="extension.name"
+            v-if="extension.name === active"
+        >
+            <group-items 
+                :groups="extension.data"
+            ></group-items>
+        </div>
+    </main>
+    <div class="loading center" 
+        v-if="!ready"
+    >
+        <ui-loading></ui-loading>
+    </div>
+</div>

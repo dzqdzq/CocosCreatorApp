@@ -1,0 +1,17 @@
+<div expand class="general">
+    <ui-prop>
+        <ui-label slot="label">i18n:project.general.render_pipeline</ui-label>
+        <div slot="content">
+            <ui-select
+                :value="renderPipeline"
+                @confirm="_onRenderPipelineChanged($event)"
+            >
+                <option
+                    v-for="(renderPipeline, index) in renderPipelines"
+                    :key="renderPipeline.uuid"
+                    :value="renderPipeline.uuid"
+                >{{renderPipeline.name}}</option>
+            </ui-select>
+        </div>
+    </ui-prop>
+</div>

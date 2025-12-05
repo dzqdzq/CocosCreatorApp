@@ -1,0 +1,253 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Use in attribute with text</h2>
+            <ui-label tooltip="Hello">I have tooltip attribute. Hover me.</ui-label>
+            <br>
+            <ui-label tooltip="i18n:ui-kit.title">Support i18n</ui-label>
+            <ui-code language="html">
+                &lt;ui-label tooltip="Hello"&gt;I have tooltip attribute. Hover me.&lt;/ui-label&gt;
+                &lt;ui-label tooltip="i18n:ui-kit.title"&gt;Support i18n&lt;/ui-label&gt;
+            </ui-code>
+        </div>
+        
+        
+        <div class="row">
+            <h2>As an element. Custom Content</h2>
+            <ui-tooltip>Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip></ui-tooltip>
+            <ui-code language="html">
+                min-height
+                &lt;ui-tooltip&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <ui-tooltip arrow="top">Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top"&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="right">Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="right"&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="bottom">Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="bottom"&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="left">Hello</ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="left"&gt;Hello&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <ui-tooltip arrow="top">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top"&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="top left">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="top left+10px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="top center">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="top center+10px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="top right">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="top left"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="top left+10px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="top center"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="top center+10px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="top right"&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <ui-tooltip arrow="right">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="right"&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="right top">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="right top+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="right middle">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="right middle+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="right bottom">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="right top"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right top+15px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right middle"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right middle+15px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="right bottom"&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <ui-tooltip arrow="bottom">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="bottom"&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="bottom left">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="bottom left+10px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="bottom center">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="bottom center+10px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-tooltip arrow="bottom right">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="bottom left"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom left+10px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom center"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom center+10px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="bottom right"&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <ui-tooltip arrow="left">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="left"&gt;
+                    Hello&lt;br&gt;
+                    Cocos Creator&lt;br&gt;
+                    &lt;ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"&gt;&lt;/ui-image&gt;
+                &lt;/ui-tooltip&gt;
+            </ui-code>
+
+            <ui-tooltip arrow="left top">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="left top+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="left middle">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="left middle+15px">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+            <ui-tooltip arrow="left bottom">
+                Hello<br>
+                Cocos Creator<br>
+                <ui-image style="width: 64px;" value="packages://about/static/image/splash_portrait.png"></ui-image>
+            </ui-tooltip>
+
+            <ui-code language="html">
+                &lt;ui-tooltip arrow="left top"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left top+15px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left middle"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left middle+15px"&gt;&lt;/ui-tooltip&gt;
+                &lt;ui-tooltip arrow="left bottom"&gt;&lt;/ui-tooltip&gt;
+            </ui-code>
+
+        </div>
+    </ui-section>
+</div>

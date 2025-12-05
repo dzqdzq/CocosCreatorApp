@@ -1,0 +1,78 @@
+{
+    "asset": {
+        "animation-clip": "animation",
+        "audio-clip": "music",
+        "auto-atlas": "auto-atlas",
+
+        "bitmap-font": "bitmap-font",
+        "buffer": "buffer",
+
+        "directory": "folder",
+        "database": "database",
+        "dragonbones": "gltf-skeleton",
+
+        "effect": "effect",
+        "effect-header": "chunk",
+        "erp-texture-cube": "erp-texture-cube",
+        "erp-texture-cube-face": "image",
+
+        "fbx": "fbx",
+
+        "gltf": "gltf",
+        "gltf-animation": "animation",
+        "gltf-embeded-image": "image",
+        "gltf-material": "material",
+        "gltf-mesh": "mesh",
+        "gltf-scene": "gltf-scene",
+        "gltf-skeleton": "gltf-skeleton",
+
+        "image": "image",
+
+        "instantiation-animation": "animation",
+        "instantiation-asset": "file",
+        "instantiation-material": "material",
+        "instantiation-mesh": "mesh",
+        "instantiation-skeleton": "gltf-skeleton",
+
+        "javascript": "javascript",
+        "json": "json",
+
+        "label-atlas": "label-atlas",
+
+        "material": "material",
+
+        "particle": "particle",
+        "prefab": "prefab",
+        "physics-material": "physics-material",
+
+        "render-flow": "render-flow",
+        "render-pipeline": "render-pipeline",
+        "render-stage": "render-stage",
+        "render-texture": "image",
+
+        "scene": "scene",
+        "spine-data": "gltf-skeleton",
+        "sprite-atlas": "sprite-atlas",
+        "svg": "svg",
+
+        "terrain": "terrain",
+        "text": "file",
+        "texture-cube": "texture-cube",
+        "tiled-map": "tiled-map",
+        "ttf-font": "font",
+        "typescript": "typescript",
+ 
+        "unknow": "file",
+        "video-clip": "video",
+        "zip": "zip"
+    },
+    "component": {
+        "cc.EditBox": "edit",
+        "cc.Sprite": "image",
+        "cc.AudioSource": "audio",
+        "cc.Terrain": "terrain",
+        "cc.UITransform": "transform",
+        "cc.Toggle": "toggle",
+        "cc.SphereCollider": "sphere"
+    }
+}

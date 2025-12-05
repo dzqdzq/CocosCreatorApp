@@ -1,0 +1,5 @@
+{
+  "name": "jkw-adapter",
+  "version": "1.0.0",
+  "build-template": "jkwgame"
+}
