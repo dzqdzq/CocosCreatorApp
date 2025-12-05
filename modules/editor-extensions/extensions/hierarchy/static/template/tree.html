@@ -1,0 +1,22 @@
+<ui-drag-area class="tree" 
+    :animating="isAnimating()"
+    :searching="isSearching()"
+    :droppable="droppableTypes.join(',')"
+    @dragenter="dragEnter($event)"
+    @drop="drop($event)"
+    @click="click($event)"
+>
+    <tree-node
+        v-for="node in nodes" 
+        :key="node.uuid"
+        :node="node"
+        :is-active="isActive(node.uuid).toString()"
+        :is-expand="isExpand(node.uuid).toString()"
+        :is-parent="isParent(node.uuid)"
+        :is-animating="isAnimating(node.uuid)"
+        :is-selected="isSelected(node.uuid)"
+        :twinkle="twinkles[node.uuid]"
+        :renameUuid="renameUuid"
+        :addNode="addNode"
+    ></tree-node>
+</ui-drag-area>

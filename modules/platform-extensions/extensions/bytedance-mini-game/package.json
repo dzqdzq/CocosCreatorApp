@@ -1,0 +1,64 @@
+{
+    "name": "bytedance-mini-game",
+    "title": "i18n:bytedance-mini-game.title",
+    "version": "1.0.3",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Douyin Microgame platform plugin",
+    "main": "./dist/main.js",
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        }
+    ],
+    "contributions": {
+        "builder": "./dist/build.js",
+        "program": {
+            "properties": {
+                "bytedanceDevtools": {
+                    "label": "i18n:bytedance-mini-game.program.bytedanceDevtools",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "app"
+                        }
+                    }
+                }
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.project/i18n:builder.create_user_template",
+                "label": "i18n:bytedance-mini-game.title",
+                "message": "create-build-template",
+                "icon": "./static/bytedance.png",
+                "group": "build"
+            }
+        ],
+        "messages": {
+            "create-build-template": {
+                "methods": [
+                    "create-build-template"
+                ]
+            },
+            "preview": {
+                "methods": [
+                    "preview"
+                ]
+            }
+        }
+    }
+}

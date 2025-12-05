@@ -1,0 +1,67 @@
+{
+    "name": "metrics",
+    "package_version": 2,
+    "version": "1.0.0",
+    "description": "",
+    "author": "Cocos Creator",
+    "editor": ">=3.8.0",
+    "scripts": {
+        "build": "node ./unpack/index.js",
+        "watch": "tsc -w"
+    },
+    "main": "./dist/main.js",
+    "contributions": {
+        "messages": {
+            "metrics:init": {
+                "methods": [
+                    "init"
+                ]
+            },
+            "metrics:trackEvent": {
+                "methods": [
+                    "trackEvent"
+                ]
+            },
+            "metrics:trackException": {
+                "methods": [
+                    "trackException"
+                ]
+            },
+            "metrics:trackProcessMemory": {
+                "methods": [
+                    "trackProcessMemory"
+                ]
+            },
+            "metrics:trackTimeStart": {
+                "methods": [
+                    "trackTimeStart"
+                ]
+            },
+            "metrics:trackTimeEnd": {
+                "methods": [
+                    "trackTimeEnd"
+                ]
+            },
+            "metrics:_trackEventWithTimer": {
+                "methods": [
+                    "_trackEventWithTimer"
+                ]
+            },
+            "metrics:_sendEventGroup": {
+                "methods": [
+                    "_sendEventGroup"
+                ]
+            },
+            "metrics:_trackCrashEvent": {
+                "methods": [
+                    "_trackCrashEvent"
+                ]
+            }
+        }
+    },
+    "dependencies": {
+        "fs-extra": "^10.0.0",
+        "jszip": "^3.10.1",
+        "querystring": "^0.2.1"
+    }
+}

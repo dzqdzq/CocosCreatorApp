@@ -1,0 +1,80 @@
+
+<section class="tester">
+    <div class="toolbar">
+        <i
+            :title="t('play_tooltip', language)"
+        >
+            <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                :disabled="!package || !test || running"
+                @click="_onTestButtonClick($event)"
+            >
+                <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
+            </svg>
+        </i>
+
+        
+        <!-- <i
+            :title="t('pause_tooltip', language)"
+        >
+            <svg class="pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                :disabled="!running"
+            >
+                <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
+            </svg>
+        </i> -->
+    </div>
+
+    <div>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                :active="autoAll"
+                @click="_onAutoAllClick($event)"
+            >
+                <path d="M0 256v128c0 17.7 14.3 32 32 32h32V224H32c-17.7 0-32 14.3-32 32zM464 96H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H176c-44.2 0-80 35.8-80 80v272c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V176c0-44.2-35.8-80-80-80zM256 416h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm128 120h-64v-32h64v32zm96 0h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm192-72h-32v192h32c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32z"></path>
+            </svg>
+            Package:
+        </span>
+        <ui-select
+            :disabled="autoAll || running"
+            :value="package"
+            @confirm="_onPakcageConfirm($event)"
+        >
+            <option
+                v-for="item in packages"
+                :value="item.info.name"
+                :disabled="item.disabled"
+            >{{item.info.name}}</option>
+        </ui-select>
+    </div>
+
+    <div>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                :active="auto"
+                @click="_onAutoClick($event)"
+            >
+                <path d="M0 256v128c0 17.7 14.3 32 32 32h32V224H32c-17.7 0-32 14.3-32 32zM464 96H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H176c-44.2 0-80 35.8-80 80v272c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V176c0-44.2-35.8-80-80-80zM256 416h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm128 120h-64v-32h64v32zm96 0h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm192-72h-32v192h32c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32z"></path>
+            </svg>
+            Test:
+        </span>
+        <ui-select
+            :disabled="auto || autoAll || running"
+            :value="test"
+            @confirm="_onTestConfirm($event)"
+        >
+            <option
+                v-for="name in tests"
+                :value="name"
+            >{{name}}</option>
+        </ui-select>
+    </div>
+
+    <ul>
+        <li
+            v-for="item in logs"
+            :type="item.type"
+        >
+            <pre>{{item.message}}</pre>
+        </li>
+    </ul>
+</section>

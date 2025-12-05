@@ -1,0 +1,163 @@
+<div class="curve-editor">
+    <!-- <div class="name">{{dump.name}}</div> -->
+    <!-- <ui-num-input class="multiplier" :value="multiplier" @confirm="onMulti"></ui-num-input> -->
+    <!-- 工具栏 -->
+    <div class="left">
+        <!-- 预设菜单 -->
+        <div class="presets">
+            <div class="tab">
+                <span
+                    :active="presetConfig.tab === 'default'"
+                    @click="presetConfig.tab = 'default'"
+                >Presets</span>
+                <span
+                    :active="presetConfig.tab === 'custom'"
+                    @click="presetConfig.tab = 'custom'"
+                >Custom</span>
+            </div>
+            <div class="content">
+                <div
+                    class="wrap default"
+                    v-show="presetConfig.tab === 'default'"
+                >
+                    <ui-curve
+                        class="curve-item"
+                        v-for="(val, index) in presets.default"
+                        :key="index"
+                        v-set:value="val"
+                        :index="index"
+                        :config.prop="presetConfig"
+                        readonly
+                        @mousedown.stop="onPreset"
+                    ></ui-curve>
+                </div>
+                <div
+                    class="wrap user"
+                    v-show="presetConfig.tab === 'custom'"
+                >
+                    <div
+                        class="curve-item"
+                        v-for="(val, index) in presets.custom"
+                    >
+                        <ui-curve
+                            v-if="val"
+                            :key="index"
+                            v-set:value="val"
+                            :index="index"
+                            :config.prop="presetConfig"
+                            readonly
+                            @mousedown.stop="onPreset"
+                        ></ui-curve>
+                        <div>{{index}}</div>
+                        <ui-icon
+                            value="del"
+                            @mousedown="onRemovePreset(index)"
+                        ></ui-icon>
+                    </div>
+                </div>
+                <div
+                    class="add flex"
+                    v-show="presetConfig.tab === 'custom'"
+                >
+                    <ui-input
+                        tooltip="i18n:ui-kit.curve_editor.enter_curve_name"
+                        placeholder="i18n:ui-kit.curve_editor.enter_curve_name"
+                        :value="newPreset.name"
+                        @change="newPreset.name = $event.target.value"
+                        @keydown.enter="onNewPreset"
+                    ></ui-input>
+                </div>
+            </div>
+        </div>
+
+        <template>
+            <div
+                class="handle-button"
+                @mouseenter="showPopup"
+                @mouseleave="hidePopup"
+            >
+                <ui-icon value="setting"></ui-icon>
+                <ui-icon value="arrow-triangle"></ui-icon>
+            </div>
+
+            <div
+                class="settings"
+                v-show="showSettings"
+                @mouseenter="showPopup"
+                @mouseleave="hidePopup"
+                @confirm="onCurveSettings"
+            >
+                <ui-prop>
+                    <span slot="label">preWrapMode</span>
+                    <!-- TODO 需要接口查询渲染 -->
+                    <ui-select
+                        name="preWrapMode"
+                        slot="content"
+                        :value="value && value.preWrapMode || 0"
+                        :disabled="config && !config.showPreWrapMode"
+                    >
+                        <option value="0">LINEAR</option>
+                        <option value="1">CLAMP</option>
+                        <option value="2">LOOP</option>
+                        <option value="3">PING_PONG</option>
+                    </ui-select>
+                </ui-prop>
+                <ui-prop>
+                    <span slot="label">postWrapMode</span>
+                    <ui-select
+                        name="postWrapMode"
+                        slot="content"
+                        :value="value && value.postWrapMode || 0"
+                        :disabled="config && !config.showPostWrapMode"
+                    >
+                        <option value="0">LINEAR</option>
+                        <option value="1">CLAMP</option>
+                        <option value="2">LOOP</option>
+                        <option value="3">PING_PONG</option>
+                    </ui-select>
+                </ui-prop>
+                <ui-prop>
+                    <ui-label
+                        slot="label"
+                        value="Spacing"
+                    ></ui-label>
+                    <ui-num-input
+                        name="spacingFrame"
+                        slot="content"
+                        preci="3"
+                        max="1"
+                        min="0.0001"
+                        :value="value && value.spacingFrame || 0.1"
+                    ></ui-num-input>
+                </ui-prop>
+            </div>
+        </template>
+    </div>
+
+    <div class="right">
+        <ui-curve-editor
+            class="editor"
+            ref="editor"
+            style="width: 450px; height: 330px;"
+            @change.stop="emit('change', $event.target.value)"
+            @confirm.stop="emit('confirm', $event.target.value)"
+            @cancel.stop="emit('cancel', $event.target.value)"
+        ></ui-curve-editor>
+        <div class="toolbar">
+            <ui-num-input
+                v-if="typeof value.multiplier === 'number'"
+                :value="value.multiplier"
+                min="0"
+                @change="onMulti"
+                @confirm="onMultiConfirm"
+            ></ui-num-input>
+            <ui-icon
+                value="canvas"
+                tooltip="i18n:ui-kit.curve_editor.reset_scale"
+                @click="onResetScale"
+            ></ui-icon>
+            <div style="flex: 1;"></div>
+            <ui-label :value="label"></ui-label>
+        </div>
+    </div>
+</div>

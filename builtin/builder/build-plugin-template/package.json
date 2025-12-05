@@ -1,0 +1,22 @@
+{
+    "name": "cocos-build-template",
+    "title": "i18n:cocos-build-template.title",
+    "package_version": 2,
+    "version": "1.0.0",
+    "author": "Cocos Creator",
+    "description": "i18n:cocos-build-template.description",
+    "contributions": {
+        "builder": "./dist/builder.js"
+    },
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "fs-extra": "^10.0.0"
+    },
+    "devDependencies": {
+        "@cocos/creator-types": "^3.8.1",
+        "@types/fs-extra": "^5.0.4",
+        "@types/node": "^14.5.2"
+    }
+}

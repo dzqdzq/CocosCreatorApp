@@ -1,0 +1,182 @@
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 24px 16px 16px 27px;
+    box-sizing: border-box;
+}
+
+#splashSetting {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+
+    .toolbar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 8px;
+
+        ui-button {
+            &:not(:last-child) {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    ui-prop > *[slot='content'] > ui-prop {
+        --left-width: 20%; // 内部嵌套 ui-prop 组件的 label 长度,如若不希望面板变宽时 label 变得越来越宽，可以给它指定一个固定值
+
+        max-width: 48%; // 内部嵌套 ui-prop 组件的最大宽度
+        width: 200px;
+        height: 2em;
+        flex-grow: 1; // 设置为可伸缩
+        margin-right: 2%;
+        margin-bottom: 5px; // 内部组件的 margin-bottom
+    }
+
+    ui-prop {
+        --left-width: 45%;
+
+        margin-bottom: 4px;
+    }
+
+    ui-prop[disabled] {
+        color: var(--color-normal-contrast);
+    }
+
+    ui-prop > .image-wrap {
+        min-height: 30px;
+        border: 1px solid;
+    }
+
+    .logo,
+    .background {
+        > ui-label {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        ui-radio-group {
+            width: 100%;
+
+            ui-radio {
+                margin-left: 8px;
+            }
+
+            ui-icon {
+                margin-left: 2px;
+            }
+        }
+    }
+
+    ui-file,
+    ui-slider {
+        width: 100%;
+    }
+
+    .disabled-tip {
+        color: var(--color-default-fill-weakest);
+        margin-right: 8px;
+        white-space: pre-wrap;
+    }
+
+    footer {
+        text-align: right;
+    }
+
+    .preview-container {
+        position: relative;
+        padding-top: 56.25%; // 16:9
+        overflow: hidden;
+        border: 1px solid #1f1f1f;
+    }
+
+    .preview {
+        position: absolute;
+        top: var(--preview-top, 0);
+        left: var(--preview-left, 0);
+        transform: var(--preview-transform, scale(var(--preview-scale, 1)));
+        transform-origin: top left;
+        text-align: center;
+        width: var(--preview-width);
+        height: var(--preview-height);
+        background-color: var(--preview-background-color, rgba(4, 9, 10, 255));
+        background-image: var(--preview-background-image, none);
+        background-size: cover;
+        background-position: center;
+
+        &__main {
+            position: absolute;
+            height: calc(100% * 5 / 6);
+            width: 100%;
+            top: 0;
+        }
+
+        .main {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        .text {
+            font-size: 24px;
+            line-height: 1;
+            color: rgba(250, 250, 250, 0.4);
+            margin-top: calc(var(--preview-scale) * 32px);
+        }
+
+        .logo {
+            height: var(--preview-logo-height);
+        }
+
+        &[data-watermark^='bottom'] {
+            .preview__main {
+                top: 0;
+                bottom: auto;
+            }
+        }
+
+        &[data-watermark^='top'] {
+            .preview__main {
+                top: auto;
+                bottom: 0;
+            }
+        }
+
+        &[data-watermark^='top'],
+        &[data-watermark^='bottom'] {
+            .sub .watermark {
+                display: block;
+            }
+
+            .main .watermark {
+                display: none;
+            }
+        }
+
+        &[data-watermark$='Left'] .sub .watermark {
+            text-align: left;
+        }
+
+        &[data-watermark$='Right'] .sub .watermark {
+            text-align: right;
+        }
+    }
+
+    .mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background-color: #1b1d1db0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

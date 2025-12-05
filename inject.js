@@ -1,0 +1,1 @@
+const{app:app}=require("electron"),{join:join,resolve:resolve}=require("path"),{existsSync:existsSync}=require("fs-extra"),MODULE_RELATIVE_PATH=resolve(join(app.getPath("appData"),"/CocosCreator/builder-wasm"));exports.inject=async function(){try{if(existsSync(MODULE_RELATIVE_PATH)){const e=require(MODULE_RELATIVE_PATH);await e.init()}}catch(e){}};

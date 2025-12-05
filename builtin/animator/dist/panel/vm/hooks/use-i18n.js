@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.useI18n=void 0;const i18nPrefixRE=/^i18n:/;function useI18n(){return{t:(e,t)=>(i18nPrefixRE.test(e)&&(e=e.slice(5)),Editor.I18n.t(e,t))}}exports.useI18n=useI18n;

@@ -1,0 +1,51 @@
+ui-prop > *[slot='content'] {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .build-prop {
+        display: flex;
+        flex: 1;
+    }
+
+    > ui-select,
+    > ui-input,
+    > ui-color,
+    > ui-num-input,
+    > ui-num-input,
+    > ui-file,
+    > ui-section {
+        flex: 1;
+    }
+
+    > ui-image {
+        width: 60px;
+        height: 60px;
+        border: 1px dashed;
+    }
+}
+
+ui-label {
+    user-select: none;
+}
+
+ui-prop.no-wrap > *[slot='content'] {
+    flex-direction: row;
+}
+
+ui-prop {
+    margin-top: 5px;
+    position: relative;
+
+    ui-prop {
+        flex: 1;
+        margin-top: 4px;
+    }
+}
+
+ui-prop .required {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    color: var(--color-danger-fill-weaker);
+}

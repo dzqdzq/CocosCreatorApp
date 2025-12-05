@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.workerMessageNames=void 0;const methodNames=[],pluginPackageJson=require("../package.json");for(const[e,{methods:s}]of Object.entries(pluginPackageJson.contributions.messages))methodNames.push(...s);exports.workerMessageNames=[...methodNames.filter(e=>e.startsWith("packer-driver/")),"clear-code-cache"];

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"消息管理器",description:"消息管理器",default:{title:"消息列表"},debug:{title:"消息调试工具"},tools:{copy:"复制",expand_or_collapse:"点击此按钮以展开或折叠详细的消息信息"}};

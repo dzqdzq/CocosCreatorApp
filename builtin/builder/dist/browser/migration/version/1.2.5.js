@@ -1,0 +1,1 @@
+"use strict";function migrateProject(e){if(!e["splash-setting"]||!e["splash-setting"].clearColor)return;const t=e["splash-setting"].clearColor,{r:r,g:s,b:o,a:a}=t;r&&s&&o&&a&&(e["splash-setting"].clearColor={x:r,y:s,z:o,w:a})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0,exports.migrateProject=migrateProject;

@@ -1,0 +1,32 @@
+<ui-setting
+    :type="type"
+    :package="pkg"
+>
+    <div>
+        <ui-icon value="setting" tooltip="i18n:preferences.menu.position_info"
+            @click="popup($event.target.pageX, $event.target.pageY)"
+        ></ui-icon>
+        <ui-prop type="ui"
+            :label="item.label"
+            :render="getRenderText(item.render)"
+            :tooltip="item.description"
+        ></ui-prop>
+    </div>
+
+    <div class="command-argument"
+        v-if="item.arguments"
+    >
+        <ui-prop>
+            <ui-label slot="label" value="i18n:program.label.commandArgument"></ui-label>
+            <div slot="content">
+                <ui-input ref="commandArgument" auto-select="false" tooltip="i18n:program.tips.quickArguments"
+                    :placeholder="defaultValue && defaultValue.commandArgument"
+                    @confirm.stop="onCommandArgumentConfirm"
+                ></ui-input>
+                <ui-button @click.stop="showArgumentsMenu">
+                    <ui-icon value="arrow-triangle"></ui-icon>
+                </ui-button>
+            </div>
+        </ui-prop>
+    </div>
+</ui-setting>

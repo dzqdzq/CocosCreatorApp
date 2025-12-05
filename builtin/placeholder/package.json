@@ -1,0 +1,21 @@
+{
+    "name": "placeholder",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Placeholder Function",
+    "main": "./dist/browser",
+    "creator": {
+        "hookScript": "./static/hooks.js"
+    },
+    "contributions": {
+        "messages": {
+            "install-extension": {
+                "methods": [
+                    "installExtension"
+                ]
+            }
+        },
+        "menu": []
+    }
+}

@@ -1,0 +1,94 @@
+<div class="custom-engine" v-if="config" @confirm="onConfirm">
+    <div class="engine-type">
+        <ui-icon value="setting"
+            :type="types['javascript.builtin']"
+            @click="onChangePosition($event.target.pageX, $event.target.pageY, 'javascript.builtin')"
+        ></ui-icon>
+        <ui-label value="i18n:engine.preferences.cocos_engine"></ui-label>
+    </div>
+    <ui-prop>
+        <div slot="label">
+            <ui-checkbox  path="javascript.builtin"
+                :value="config.javascript.builtin"
+            >
+                <ui-label value="i18n:engine.preferences.use_builtin"></ui-label>
+            </ui-checkbox>
+        </div>
+        <div slot="content" class="content-wrap">
+            <div>
+                <ui-label class="engine-path"
+                    :value="config.javascript.path"
+                ></ui-label>
+            </div>
+        </div>
+    </ui-prop>
+    <ui-prop>
+        <div slot="label">
+            <ui-checkbox path="javascript.builtin"
+                :value="!config.javascript.builtin"
+            >
+                <ui-label value="i18n:engine.preferences.use_custom"></ui-label>
+            </ui-checkbox>
+        </div>
+        <div slot="content">
+            <ui-file path="javascript.custom" type="directory"
+                :disabled="config.javascript.builtin"
+                :value="config.javascript.custom"
+                protocols="file,project"
+            ></ui-file>
+        </div>
+    </ui-prop>
+
+    <div class="native-module"
+        :disabled="config.javascript.builtin"
+    >
+        <div class="engine-type">
+            <ui-icon value="setting"
+                :type="types['native.builtin']"
+                @click="onChangePosition($event.target.pageX, $event.target.pageY, 'native.builtin')"
+            ></ui-icon>
+            <ui-label value="i18n:engine.preferences.native_module"></ui-label>
+        </div>
+        <ui-prop>
+            <div slot="label">
+                <ui-checkbox path="native.builtin"
+                    :value="config.native.builtin"
+                >
+                    <ui-label value="i18n:engine.preferences.use_builtin"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div slot="content" class="content-wrap">
+                <div>
+                    <ui-label class="engine-path"
+                        :value="config.native.path"
+                    ></ui-label>
+                </div>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <div slot="label">
+                <ui-checkbox path="native.builtin"
+                    :value="!config.native.builtin"
+                >
+                    <ui-label value="i18n:engine.preferences.use_custom"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div slot="content" class="content-wrap">
+                <div>
+                    <ui-label class="engine-path"
+                        :value="config.native.custom"
+                    ></ui-label>
+                </div>
+            </div>
+        </ui-prop>
+    </div>
+
+    <div class="warning-info"
+        v-show="showRestartInfo"
+    >
+        <ui-label value="i18n:engine.preferences.custom_engine_change_info"></ui-label>
+        <ui-button class="blue" size="medium" @confirm.stop="relaunch">
+            <ui-label value="i18n:engine.preferences.relaunch"></ui-label>
+        </ui-button>
+    </div>
+</div>

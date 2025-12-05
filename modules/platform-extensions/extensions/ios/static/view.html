@@ -1,0 +1,91 @@
+<div class="ios" v-if="pkgOptions" @change="onChange">
+    <ui-prop
+        :class="pkgErrorMap.orientation ? 'danger' : ''"
+        :message="pkgErrorMap.orientation"
+    >
+        <ui-label slot="label" value="i18n:ios.options.orientation"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="orientation.portrait" :value="pkgOptions.orientation && pkgOptions.orientation.portrait">
+                <ui-label value="i18n:ios.options.portrait"></ui-label>
+            </ui-checkbox>
+            <ui-checkbox
+                path="orientation.landscapeLeft"
+                :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                tooltips="i18n:ios.options.landscape_left_tips"
+            >
+                <ui-label value="i18n:ios.options.landscape_left"></ui-label>
+            </ui-checkbox>
+            <ui-checkbox
+                path="orientation.landscapeRight"
+                :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                tooltips="i18n:ios.options.landscape_right_tips"
+            >
+                <ui-label value="i18n:ios.options.landscape_right"></ui-label>
+            </ui-checkbox>
+        </div>
+    </ui-prop>
+    <ui-prop
+        :class="pkgErrorMap.osTarget ? 'danger' : ''"
+        :message="pkgErrorMap.osTarget"
+    >
+        <ui-label slot="label" value="i18n:ios.options.os_target"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="osTarget.iphoneos" :value="pkgOptions.osTarget && pkgOptions.osTarget.iphoneos">
+                <ui-label value="i18n:ios.options.iphone_os"></ui-label>
+            </ui-checkbox>
+            <ui-checkbox path="osTarget.simulator" :value="pkgOptions.osTarget && pkgOptions.osTarget.simulator">
+                <ui-label value="i18n:ios.options.ios_simulator"></ui-label>
+            </ui-checkbox>
+        </div>
+    </ui-prop>
+    <ui-prop>
+        <ui-label slot="label" value="i18n:ios.options.render_back_end"></ui-label>
+        <div slot="content">METAL</div>
+    </ui-prop>
+    <div>
+        <ui-prop
+            :class="{ 'warn': !developerTeamList.length }"
+            :message="!developerTeamList.length ? 'i18n:ios.tips.developerTeamListError' : ''"
+        >
+            <ui-label slot="label" value="i18n:ios.options.developerTeam"></ui-label>
+            <ui-select slot="content" class="developer-team-select"
+                :value="developerTeamSelect"
+                @change.stop="developerTeamSelectChanged"
+            >
+                <option
+                    v-for="item in developerTeamList"
+                    :value="item.value"
+                >
+                    {{item.label}} {{item.error}}
+                </option>
+                <option value="custom">
+                    {{ t('options.customOption') }}
+                </option>
+            </ui-select>
+        </ui-prop>
+        <ui-prop>
+            <div slot="content">
+                <ui-input path="developerTeam" class="developer-team-input"
+                    v-show="developerTeamSelect === 'custom'"
+                    :value="pkgOptions.developerTeam"
+                ></ui-input>
+                <ui-button
+                    v-if="type !== 'check'"
+                    @click="updateTeamInfo"
+                >
+                    <ui-label value="i18n:ios.options.queryAgain"></ui-label>
+                </ui-button>
+            </div>
+        </ui-prop>
+    </div>
+    <ui-prop
+        class="no-wrap"
+        :class="pkgErrorMap.targetVersion ? 'danger' : ''"
+        :message="pkgErrorMap.targetVersion"
+    >
+        <ui-label slot="label" value="i18n:ios.options.targetVersion"></ui-label>
+        <ui-input slot="content" path="targetVersion" placeholder="i18n:ios.tips.targetVersionDefault"
+            :value="pkgOptions.targetVersion"
+        ></ui-input>
+    </ui-prop>
+</div>

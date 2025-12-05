@@ -1,0 +1,237 @@
+{
+    "name": "preview",
+    "title": "i18n:preview.title",
+    "version": "1.0.1",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:preview.description",
+    "main": "./dist/browser/index",
+    "panels": {
+        "debugger": {
+            "title": "debugger",
+            "main": "./dist/panel/debugger.js",
+            "size": {
+                "min-width": 960,
+                "min-height": 720,
+                "width": 960,
+                "height": 720
+            }
+        }
+    },
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migration/1.0.1.js"
+        }
+    ],
+    "contributions": {
+        "toolbar": {
+            "middle": "./static/toolbar/middle.js"
+        },
+        "assets": {
+            "menu": {
+                "methods": "./dist/contributions/asset-menu.js",
+                "assetMenu": "assetMenu"
+            }
+        },
+        "server": "./dist/contributions/server.js",
+        "menu": [
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.play",
+                "message": "open-terminal",
+                "icon": "./static/start.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.refresh_device",
+                "message": "reload-terminal",
+                "icon": "./static/refresh.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:preview.create_template",
+                "message": "create-template",
+                "icon": "./static/template_download.png",
+                "group": "preview"
+            },
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:preview.build_native_engine",
+                "message": "build-native-engine",
+                "group": "engine"
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "open-terminal",
+                "mac": "cmd+p",
+                "win": "ctrl+p"
+            },
+            {
+                "message": "reload-terminal",
+                "mac": "cmd+shift+p",
+                "win": "ctrl+shift+p"
+            }
+        ],
+        "profile": {
+            "editor": {
+                "general.auto_refresh": {
+                    "label": "i18n:preview.project.general.auto_refresh",
+                    "type": "boolean",
+                    "default": true
+                },
+                "general.start_scene": {
+                    "default": "current_scene"
+                },
+                "preview.device": {
+                    "default": "Default"
+                },
+                "preview.rotate": {
+                    "default": false
+                },
+                "preview.debugMode": {
+                    "default": "INFO"
+                },
+                "preview.showFps": {
+                    "default": true
+                },
+                "preview.fps": {
+                    "default": 60
+                },
+                "preview.auto_clean_cache": {
+                    "label": "i18n:preview.project.general.auto_clean_cache",
+                    "type": "boolean",
+                    "default": true
+                },
+                "preview.simulator_orientation": {
+                    "type": "string",
+                    "default": "landscape"
+                },
+                "preview.simulator_resolution": {
+                    "type": "number",
+                    "default": 0
+                },
+                "preview.simulator_debugger": {
+                    "default": false
+                },
+                "preview.wait_for_connect": {
+                    "default": false
+                },
+                "preview.current.platform": {
+                    "default": "browser"
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "general.auto_refresh": {
+                    "ui": "ui-checkbox"
+                },
+                "preview.auto_clean_cache": {
+                    "ui": "ui-checkbox"
+                }
+            },
+            "custom": "./dist/contributions/preferences.js"
+        },
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "ready": {
+                "methods": [
+                    "ready"
+                ]
+            },
+            "generate-settings": {
+                "methods": [
+                    "generateSettings"
+                ]
+            },
+            "query-preview-url": {
+                "methods": [
+                    "queryPreviewUrl"
+                ]
+            },
+            "query-connect-num": {
+                "methods": [
+                    "queryConnectNum"
+                ]
+            },
+            "scene:save": {
+                "methods": [
+                    "currentSceneSave"
+                ]
+            },
+            "programming:compiled": {
+                "methods": [
+                    "programming:compiled"
+                ]
+            },
+            "open-terminal": {
+                "methods": [
+                    "open-terminal"
+                ]
+            },
+            "restart-simulator": {
+                "methods": [
+                    "restart-simulator"
+                ]
+            },
+            "reload-terminal": {
+                "methods": [
+                    "reload-terminal"
+                ]
+            },
+            "get-preview-ip": {
+                "methods": [
+                    "get-preview-ip"
+                ]
+            },
+            "set-preview-ip": {
+                "methods": [
+                    "set-preview-ip"
+                ]
+            },
+            "create-template": {
+                "methods": [
+                    "create-template"
+                ]
+            },
+            "change-platform": {
+                "methods": [
+                    "change-platform"
+                ]
+            },
+            "programming:pack-build-end": {
+                "methods": [
+                    "on-pack-build-end"
+                ]
+            },
+            "build-native-engine": {
+                "methods": [
+                    "buildNativeEngine"
+                ]
+            },
+            "preview-scene-in-browser": {
+                "methods": [
+                    "previewSceneInBrowser"
+                ]
+            },
+            "write-setting-file": {
+                "methods": [
+                    "writeSettingFile"
+                ]
+            },
+            "asset-db:asset-change": {
+                "methods": [
+                    "asset-db:asset-change"
+                ]
+            }
+        }
+    }
+}

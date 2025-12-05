@@ -1,0 +1,51 @@
+.custom-engine > .engine-type {
+  padding-bottom: 8px;
+}
+.custom-engine ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.custom-engine ui-prop:hover ui-icon,
+.custom-engine:hover > .engine-type ui-icon {
+  visibility: visible;
+}
+.custom-engine ui-icon[type='local'] {
+  color: var(--color-warn-fill);
+  visibility: visible;
+}
+.custom-engine .engine-path {
+  pointer-events: none;
+  opacity: 0.55;
+}
+.custom-engine ui-prop {
+  padding: 2px 0;
+}
+.custom-engine ui-prop > div[slot='label'] {
+  padding-left: 16px;
+}
+.custom-engine ui-file {
+  width: 100%;
+}
+.custom-engine .native-module {
+  padding-left: 36px;
+}
+.custom-engine .native-module > .engine-type {
+  padding-top: 8px;
+}
+.custom-engine .native-module[disabled] > .engine-type,
+.custom-engine .native-module[disabled] ui-prop {
+  pointer-events: none;
+  opacity: 0.55;
+}
+.custom-engine .warning-info {
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.custom-engine .warning-info > ui-label {
+  color: var(--color-warn-fill);
+}
+.custom-engine .warning-info > ui-button {
+  margin-top: 8px;
+}

@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Facebook Instant Games",options:{web_debugger:"VConsole",web_debugger_tooltip:" 类似 DevTools 的迷你版，用于辅助手机端调试",orientation:"设备方向",auto:"自动",portrait:"竖屏",landscape:"横屏"}};

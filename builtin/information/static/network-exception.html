@@ -1,0 +1,80 @@
+<html lang="zh" spellcheck="false">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        :root {
+            height: 100%;
+            font-size: 16px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            font-family: sans-serif;
+            line-height: 1.4;
+        }
+
+        .container {
+            min-height: 520px;
+            margin: 0px auto;
+            background-color: #ffffff;
+            max-width: 460px;
+            min-width: 270px;
+            padding: 36px;
+        }
+
+        .container > .body {
+            display: block;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 300px;
+            text-align: center;
+        }
+
+        .container > .body > .row {
+            margin: 24px;
+        }
+        .container > .body > .row.icon .checked {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #ffff99;
+            color: #000000;
+            font-size: 24px;
+            line-height: 44px;
+            display: inline-block;
+        }
+
+        .container > .body > .row.text {
+            font-weight: 600;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.72);
+        }
+    </style>
+</head>
+<body>
+<div id="container" class="container">
+    <div class="body">
+        <div class="row icon">
+            <span class="checked">!</span>
+        </div>
+        <div class="row text">
+            <p>Server error, please try again later!</p>
+            <p>服务器异常，请稍后再试！</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

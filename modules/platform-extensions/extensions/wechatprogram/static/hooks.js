@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path");exports.register=async function(t){await Editor.Profile.getConfig("utils","features.wechatprogram")||t.contributions.menu.splice(0,1)};

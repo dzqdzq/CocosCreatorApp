@@ -1,0 +1,70 @@
+<div class="modules">
+    <!-- 禁用废弃接口 -->
+    <section @confirm="_onConfirm($event)">
+        <ui-prop>
+            <ui-label slot="label"
+                value="i18n:engine.project.modules.noDeprecatedFeatures"
+                tooltip="i18n:engine.project.modules.noDeprecatedFeatures_tooltip"
+            ></ui-label>
+            <ui-checkbox 
+                slot="content"
+                :value="noDeprecatedFeatures.value"
+                @confirm="onDeprecatedAPI('value', $event.target.value)"
+            ></ui-checkbox>
+        </ui-prop>
+        <div v-if="noDeprecatedFeatures.value === true">
+            <ui-prop>
+                <ui-label slot="label" value="i18n:engine.project.modules.noDeprecatedFeatures_version"></ui-label>
+                <ui-input
+                    slot="content"
+                    style="flex: 1;"
+                    :value="noDeprecatedFeatures.version"
+                    @confirm="onDeprecatedAPI('version', $event.target.value)"
+                    placeholder="i18n:engine.project.modules.noDeprecatedFeatures_version_tip"
+                ></ui-input>
+            </ui-prop>
+        </div>
+    </section>
+    <div class="tip">
+        <ui-label value="i18n:engine.project.modules.info"></ui-label>
+    </div>
+    <div class="tip">
+        <ui-label value="i18n:engine.project.modules.warn"></ui-label>
+    </div>
+    <section class="content" @confirm="_onConfirm($event)">
+        <div class="modules-header">
+            <div class="modules-item">
+                <ui-checkbox :value="all" @confirm="_onSelectAllChanged($event)">
+                    <ui-label value="i18n:engine.project.modules.inquiry_all"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+
+        <div class="modules-section" v-if="modulesDump">
+            <module-item
+                v-for="(module, moduleId) in modulesDump.default"
+                :key="moduleId"
+                :module="module"
+                :module-id="moduleId"
+                :module-cache="moduleCache"
+            ></module-item>
+            <template v-for="(modules, type) in modulesDump">
+                <ui-section expand
+                    v-if="type !== 'default'"
+                >
+                    <ui-label slot="header"
+                        :value="categories[type] && categories[type].label || type"
+                        :tooltip="categories[type] && categories[type].description || type"
+                    ></ui-label>
+                    <module-item
+                        v-for="(module, moduleId) in modules"
+                        :key="moduleId"
+                        :module="module"
+                        :module-id="moduleId"
+                        :module-cache="moduleCache"
+                    ></module-item>
+                </ui-section>
+            </template>
+        </div>
+    </section>
+</div>

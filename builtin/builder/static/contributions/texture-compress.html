@@ -1,0 +1,34 @@
+<section class="texture-compress">
+    <ui-prop @change="updateMipmapConfig">
+        <ui-label slot="label" value="i18n:builder.project.texture_compress.mipmap.title"></ui-label>
+        <ui-select slot="content" :value="genMipmaps ? 'on' : 'off'">
+            <option value="on">{{t('mipmap.on')}}</option>
+            <option value="off">{{t('mipmap.off')}}</option>
+        </ui-select>
+    </ui-prop>
+    <header>
+        <span class="tab-item"
+            v-for="(info, name) in tabList" 
+            :active="tab === name"
+            @click.stop="onChangeTab(name)"
+        >
+            <ui-label
+                :value="info.label"
+                :key = "name"
+            ></ui-label>
+        </span>
+    </header>
+    <div class="content">
+        <component
+            v-for="(tabInfo, name) in tabList"
+            v-if="tab === name"
+            :key="tabInfo.comp"
+            :is="tabInfo.comp"
+            :ref="tabInfo.comp"
+            :compress-config = "textureCompressConfig"
+            :custom-configs = "customConfigs"
+            :overwrite-formats = "overwriteFormats"
+            @update="onConfigChange"
+        ></component>
+    </div>
+</section>

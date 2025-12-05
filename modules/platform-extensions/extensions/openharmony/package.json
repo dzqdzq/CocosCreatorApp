@@ -1,0 +1,35 @@
+{
+    "name": "openharmony",
+    "title": "i18n:openharmony.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "openharmony platform plugin",
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "program": {
+            "properties": {
+                "OpenHarmonySDK": {
+                    "label": "i18n:openharmony.label.openharmony_sdk",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "directory"
+                        }
+                    }
+                },
+                "OpenHarmonyNDK": {
+                    "label": "i18n:openharmony.label.openharmony_ndk",
+                    "default": "",
+                    "render": {
+                        "ui": "ui-file",
+                        "attributes": {
+                            "type": "directory"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

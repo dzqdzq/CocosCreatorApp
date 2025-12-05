@@ -1,0 +1,1 @@
+"use strict";module.exports={menu:{localization:"本地化编辑器",import:"导入 Cocos Creator 2.x 项目"}};

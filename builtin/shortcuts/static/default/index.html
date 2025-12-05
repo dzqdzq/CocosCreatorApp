@@ -1,0 +1,131 @@
+<div class="content">
+    <div class="keyboard">
+        <div class="left">
+            <div class="keys"
+                v-for="array in left"
+            >
+                <span
+                    v-for="item in array"
+                    :empty="!item.label"
+                    :style="item.flex ? `flex: ${item.flex}` : ''"
+                    :active="msg && msg.shortcut.split('+').includes(item.value || item.label)"
+                >{{item.label}}</span>
+            </div>
+        </div>
+        <div class="right">
+            <div class="keys"
+                v-for="array in right"
+            >
+                <span
+                    v-for="item in array"
+                    :empty="!item.label"
+                    :style="item.flex ? `flex: ${item.flex}` : ''"
+                    :active="msg && msg.shortcut.split('+').includes(item.value || item.label)"
+                >{{item.label}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="list">
+        <div class="slider">
+            <header>
+                <div class="package">Package</div>
+            </header>
+            <section>
+                <div class="package"
+                    v-for="(shortcutMap, key) in map"
+                    :active="active === key"
+                    @click="active = key"
+                >{{key}}</div>
+            </section>
+        </div>
+        <div class="section">
+            <header>
+                <div>
+                    <div class="message">Message</div>
+                    <div class="shortcut">Shortcut</div>
+                    <div class="handle"></div>
+                </div>
+            </header>
+            <section class="shortcuts" v-if="map[active]">
+                <div
+                    v-for="(item, key) in map[active]"
+                    :key="key"
+                    :active="msg === item"
+                    :class="[editInfo && key === editInfo.key ? getEditInfoState() : '', editInfo && key === editInfo.key ? 'edit' : '']"
+                    :missing="item.missing"
+                    @click="onItemClick($event, key)"
+                >
+                    <div class="message">{{item.message}}</div>
+                    <div
+                        class="shortcut shortcut-label"
+                        tabindex="0"
+                        @blur="changeShortcuts"
+                        @click.stop="startEditShortcuts($event, item)"
+                        @keydown.stop="onEditKeyDown"
+                        :edit="editInfo && editInfo.key === key"
+                    >
+                        <div
+                            class="shortcut-content"
+                            v-if="editInfo && editInfo.key === key"
+                        >
+                            <ui-label
+                                class="label"
+                                v-if="editInfo.shortcut"
+                                :value="editInfo.shortcut"
+                            ></ui-label>
+                            <ui-label
+                                v-else
+                                class="tips"
+                                value="i18n:shortcuts.tips.enter_to_set_shortcut"
+                            ></ui-label>
+                            <span
+                                v-if="editInfo.searches && editInfo.searches.length"
+                                :class="[getEditInfoState(), 'conflict']"
+                                @click.stop="editInfo.showSearches = !editInfo.showSearches"
+                            >{{editInfo.searches.length}}</span>
+                            <ui-icon value="refresh"
+                                tooltip="i18n:shortcuts.tips.reset"
+                                @mousedown.stop="resetShortcuts($event, key)"
+                                @click.stop
+                            ></ui-icon>
+                        </div>
+                        <div class="shortcut-content" v-else>
+                            <ui-label tooltip="i18n:shortcuts.tips.click_to_set_shortcut" :value="item.shortcut"></ui-label>
+                            <ui-label class="warn" v-if="item.missing" value="(missing)"></ui-label>
+                        </div>
+                    </div>
+                    <div class="handle">
+                        <ui-icon value="close" @click.top="clearShortcuts(key)"
+                        ></ui-icon>
+                    </div>
+                </div>
+            </section>
+            <div class="search-map"
+                v-if="editInfo && editInfo.showSearches && editInfo.searches && editInfo.searches.length"
+            >
+                <header>
+                    <ui-label value="i18n:shortcuts.tips.conflict_keys"></ui-label>
+                    <ui-icon value="close" tooltip="Click to close the panel" @click="editInfo.showSearches = false"></ui-icon>
+                </header>
+                <section class="shortcut-wrap">
+                    <div
+                        v-for="(item, key) in editInfo.searches"
+                        :key="key"
+                        :active="msg === item"
+                        :class="editInfo.when === item.when ? 'error' : ''"
+                        @mousedown="jumpToItem($event, item)"
+                    >
+                        <ui-label class="message" tooltip="i18n:shortcuts.tips.click_to_edit" :value="'('+item.pkgName+') '+item.message"></ui-label>
+                        <div class="message">{{item.shortcut}}</div>
+                        <div class="handle">
+                            <ui-icon value="close"
+                                tooltip="i18n:shortcuts.tips.clear"
+                                @click.stop="clearShortcuts($event, key)"
+                            ></ui-icon>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

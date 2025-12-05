@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrate=void 0;const utils_1=require("@editor/asset-db/libs/utils");function migrate(e){Object.keys(e.subAssets).forEach(s=>{const t=(0,utils_1.nameToId)(s),i=e.subAssets[s];i.meta.uuid=i.uuid.replace(s,t)})}exports.migrate=migrate;

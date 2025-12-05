@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "types": [
+            "node",
+            "@cocos/creator-types/editor/packages/builder/@types/protected/global",
+            "@cocos/creator-types/editor/protected",
+            "./@types"
+        ],
+        "skipLibCheck": true
+    }
+}

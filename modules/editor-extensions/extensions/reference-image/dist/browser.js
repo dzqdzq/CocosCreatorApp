@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=exports.methods=void 0,exports.methods={open(){Editor.Panel.open("reference-image")}};const load=function(){};exports.load=load;const unload=function(){};exports.unload=unload;

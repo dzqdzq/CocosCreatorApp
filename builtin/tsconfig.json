@@ -1,0 +1,24 @@
+{
+    "extends": "../base.tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./source",
+        "allowJs": true,
+        "types": [
+            "node",
+            "@cocos/creator-types/editor/protected",
+            "../../@types/protected"
+        ],
+        "lib": [
+            "dom",
+            "es7"
+        ],
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "./dist"
+    ],
+    "include": [
+        "./source"
+    ]
+}

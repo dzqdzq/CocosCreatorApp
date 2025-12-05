@@ -1,0 +1,25 @@
+{
+    "extends": "../../../../base.tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./source",
+        "types": [
+            "node",
+            "@cocos/creator-types/editor/protected",
+            "@cocos/creator-types/engine",
+        ],
+        "declaration": true,
+        "declarationMap": true,
+        "declarationDir": "../../@types/engine-compiler",
+        "lib": [
+            "dom",
+            "es7"
+        ],
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "./test",
+        "./modules",
+        "./@types/editor-extends"
+    ]
+}

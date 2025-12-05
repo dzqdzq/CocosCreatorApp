@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.less=function(){return[{source:"./static/style/index.less",dist:"./dist/index.css"},{source:"./static/style/curve-editor.less",dist:"./dist/curve-editor/style.css"},{source:"./static/style/embedded-player.less",dist:"./dist/embedded-player.css"}]},exports.file=function(){return[]},exports.npm=function(){return[]};

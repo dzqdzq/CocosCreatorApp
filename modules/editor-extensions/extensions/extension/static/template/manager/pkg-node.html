@@ -1,0 +1,141 @@
+<div
+    :class="{'pkg-node': true, 'choosed': choosed}"
+    v-if="pkg"
+    :type="pkg.type"
+    @click="choose"
+>
+    <div class="pkg-node-header">
+        <div class="pkg-node-logo pkg-node-header__logo">
+            <img :src="pkg.icon_url ? pkg.icon_url : 'packages://extension/static/logo64.png'">
+            <div
+                v-if="pkg.isCocosSource"
+                class="tag"
+            >
+                <span class="text">CC</span>
+            </div>
+        </div>
+        <div class="pkg-node-header__info pkg-node-info">
+            <div class="text">
+                <ui-label
+                    class="top"
+                    :value="pkg.name"
+                >
+                </ui-label>
+                <div class="bottom">
+                    V{{isInstalled ? pkg.version : pkg.latest_version}}
+                </div>
+            </div>
+        </div>
+        <div class="pkg-node-header__feature pkg-node-feature">
+            <div
+                class="layout uninstall"
+                v-if="!isInstalled && !isInstalling && !isUninstalling"
+            >
+                <ui-button
+                    class="transparent extensions-font-button blue"
+                    v-if="!isBuiltinList && !isInstalledList"
+                    @click.stop="updatePackage"
+                >
+                    <ui-label value="i18n:extension.manager.install"></ui-label>
+                </ui-button>
+            </div>
+            <div
+                class="layout installed"
+                v-if="isInstalled && !isInstalling && !isUninstalling"
+            >
+                <ui-button
+                    class="transparent special"
+                    v-if="!isBuiltinList"
+                    @click.stop="openFolder"
+                    tooltip="i18n:extension.manager.openFolder"
+                    type="icon"
+                >
+                    <ui-icon value="folder-open"></ui-icon>
+                </ui-button>
+                <ui-button
+                    class="transparent special"
+                    tooltip="i18n:extension.manager.delete_extensions"
+                    type="icon"
+                    v-if="isShowUninstall"
+                    @click.stop="uninstallPackage"
+                >
+                    <ui-icon value="del"></ui-icon>
+                </ui-button>
+                <div class="toggle">
+                    <ui-icon
+                        :class="{'switch-close': !pkg.enable,'enable': pkg.enable, 'disabled': isBuiltinList}"
+                        :value="pkg.enable ? 'switch-open' : 'switch-close'"
+                        @click.stop="toggleEnable"
+                    >
+                    </ui-icon>
+                </div>
+            </div>
+            <div
+                class="layout loading"
+                v-if="isInstalling || isUninstalling"
+            >
+                <ui-loading></ui-loading>
+            </div>
+        </div>
+    </div>
+
+    <div class="pkg-node-desc">
+        <ui-label
+            v-if="pkg.description" 
+            class="content"
+            :value="pkg.description"
+            :tooltip="pkg.description"
+        ></ui-label>
+        <div
+            class="empty-line"
+            v-else
+        ></div>
+    </div>
+
+    <div
+        class="pkg-node__update"
+        v-if="showVersionOptions"
+    >
+        <custom-select
+            v-model="selectPackageVersion"
+            class="select"
+            @scroll-to-bottom="scrollToBottom"
+            @toggleOptions="toggleOptions"
+            :loading="queryHistoryLoading"
+            :error-message="errorMessage"
+            @refresh="refreshOptions"
+            @select="handleSelect"
+        >
+            <template #default="selectSlotProps">
+                <custom-option
+                    v-for="item of packageVersionOptions"
+                    :key="item.version"
+                    :selected="item.version === selectSlotProps.value"
+                    :value="item.version"
+                    :title="item.version"
+                    :label="item.description"
+                ></custom-option>
+            </template>
+        </custom-select>
+        <ui-button
+            class="transparent yellow extensions-font-button"
+            :disabled="updateDisabled"
+            @click="onUpdatePackageClick"
+        >
+            <ui-label value="i18n:extension.manager.update"></ui-label>
+        </ui-button>
+    </div>
+
+    <div
+        class="pkg-node__updating"
+        v-if="isInstalling || isUninstalling"
+    >
+        <ui-progress
+            :value="progress"
+            height="2"
+            class="progress"
+        ></ui-progress>
+        <ui-label :value="progress + '%'"></ui-label>
+    </div>
+
+</div>

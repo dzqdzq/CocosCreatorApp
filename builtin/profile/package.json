@@ -1,0 +1,10 @@
+{
+    "name": "profile",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "title": "i18n:profile.title",
+    "description": "i18n:profile.description",
+    "main": "./dist/browser.js"
+}

@@ -1,0 +1,1 @@
+"use strict";function getMainWindowSize(){if(isSceneNative){return jsb.ISystemWindowManager.getInstance().getWindow(1).getViewSize()}return{width:cc.game.canvas.width,height:cc.game.canvas.height}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getMainWindowSize=void 0,exports.getMainWindowSize=getMainWindowSize;

@@ -1,0 +1,1 @@
+"use strict";function getDatabaseModuleRootURL(e){return`db://${e}/`}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getDatabaseModuleRootURL=void 0,exports.getDatabaseModuleRootURL=getDatabaseModuleRootURL;
