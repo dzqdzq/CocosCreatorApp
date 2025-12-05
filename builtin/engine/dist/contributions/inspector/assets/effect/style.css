@@ -1,0 +1,89 @@
+.asset-effect {
+  padding-top: 10px;
+}
+.asset-effect > .header ui-select {
+  flex: 1;
+}
+.asset-effect > .defines {
+  margin-top: 10px;
+}
+.asset-effect > .defines .object {
+  margin-left: -8px;
+}
+.asset-effect > .defines .object > .combinations {
+  --left-width: 40%;
+  padding-top: 5px;
+}
+.asset-effect > .defines .tabs {
+  margin: 10px auto;
+  text-align: center;
+}
+.asset-effect > .defines .tabs > div {
+  padding: 0;
+  width: 110px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  background: var(--color-normal-fill-weakest);
+}
+.asset-effect > .defines .tabs > div[active] {
+  background: var(--color-normal-fill-emphasis);
+}
+.asset-effect > .defines .tabs > div:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-right: 1px solid var(--color-normal-fill-emphasis);
+}
+.asset-effect > .defines .tabs > div:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-left: 1px solid var(--color-normal-fill-emphasis);
+}
+.asset-effect > .defines ui-code {
+  max-height: 400px;
+  background-color: var(--color-normal-fill-emphasis);
+  border: none;
+  border-radius: 0;
+}
+.asset-effect .description {
+  text-align: center;
+  color: var(--color-normal-border-weakest);
+  padding-bottom: 5px;
+}
+.asset-effect .checktab {
+  line-height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 60px;
+}
+.asset-effect .checktab[checked] {
+  border-color: var(--color-focus-contrast-weakest);
+  background-color: var(--color-focus-fill-weaker);
+}
+.asset-effect ui-prop > ui-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.asset-effect-header {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.asset-effect-header .line {
+  margin-bottom: 6px;
+}
+.asset-effect-header ui-code {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  border: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+  margin: 0;
+  padding: 10px;
+  font-size: 12px;
+  -webkit-user-select: text;
+  cursor: auto;
+}

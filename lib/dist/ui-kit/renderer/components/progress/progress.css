@@ -1,0 +1,85 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+:host {
+  display: inline-block;
+  color: var(--color-focus-contrast);
+  border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  background-color: var(--color-normal-fill-emphasis);
+  overflow: hidden;
+  position: relative;
+}
+:host > span {
+  visibility: hidden;
+  display: block;
+  margin: -1px;
+}
+:host .label {
+  visibility: hidden;
+  justify-content: flex-end;
+  flex: 1;
+  margin: calc(var(--size-normal-border) * -1px) 0;
+  padding: 0 4px 0 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+:host .bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-focus-fill);
+  text-align: right;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  height: 100%;
+  width: 0;
+}
+:host .message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:host(.label) .label {
+  visibility: visible;
+}
+:host([success]) {
+  color: var(--color-success-contrast);
+  border-color: var(--color-success-border);
+}
+:host([success]) .bar {
+  background-color: var(--color-success-fill);
+}
+:host([failure]) {
+  color: var(--color-danger-contrast);
+  border-color: var(--color-danger-border);
+}
+:host([failure]) .bar {
+  background-color: var(--color-danger-fill);
+}

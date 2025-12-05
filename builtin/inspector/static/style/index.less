@@ -1,0 +1,367 @@
+:host {
+    display: flex;
+
+    --prop-name-width: 50%;
+
+    > .content {
+        height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        font-size: calc(var(--size-normal-font) * 1px);
+
+        > .toolbar {
+            padding-left: 1px;
+            padding-right: 12px;
+            height: 28px;
+            line-height: 28px;
+            background-color: var(--color-normal-fill);
+
+            > ui-icon {
+                display: inline-block;
+                transition: background-color 0.15s, color 0.15s;
+                color: var(--color-primary-fill);
+                cursor: pointer;
+                padding: 0 4px;
+
+                &:hover {
+                    background: var(--color-active-fill-emphasis);
+                }
+
+                &[disable] {
+                    pointer-events: none;
+                    color: var(--color-normal-contrast-important);
+
+                    &:hover {
+                        color: var(--color-normal-contrast-emphasis);
+                    }
+                }
+
+                &.prev {
+                    transform: rotate(90deg);
+                    font-size: 16px;
+                }
+
+                &.next {
+                    transform: rotate(-90deg);
+                    font-size: 16px;
+                }
+            }
+
+            > .lock-unlock {
+                float: right;
+                cursor: pointer;
+                background: none;
+                padding: 0;
+
+                &:hover {
+                    color: var(--color-warn-fill);
+                }
+
+                > .lock {
+                    color: var(--color-warn-fill);
+                }
+            }
+        }
+
+        > .loading {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        > .container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
+            transition: 0.3s height ease;
+
+            .asset {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                &[readonly] {
+                    ui-icon[value='lock'] {
+                        font-size: 9px;
+                        display: none;
+                    }
+                }
+
+                > section {
+                    flex: 1;
+                    padding-top: 10px;
+
+                    > ui-prop {
+                        > ui-label {
+                            flex: 1;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+
+            > .node {
+                flex: 1;
+                margin-top: 2px;
+                margin-bottom: 2px;
+                padding: 5px 6px;
+                background: var(--color-normal-fill-normal);
+
+                &[hoving] {
+                    outline: 2px solid var(--color-focus-fill-weaker);
+                    outline-offset: -2px;
+                }
+
+                > .prefab {
+                    text-align: right;
+                    clear: both;
+                    padding: 5px 0 8px 0;
+                    overflow: hidden;
+
+                    > .title {
+                        float: left;
+                        line-height: 22px;
+                        color: var(--color-success-fill);
+
+                        &[lost-asset] {
+                            color: var(--color-danger-fill);
+                        }
+                    }
+
+                    ui-button {
+                        padding: 0 0.5em;
+                        margin: 0 0.3em;
+
+                        > svg {
+                            padding: 4px 0;
+                            display: block;
+                        }
+                    }
+                }
+
+                > .header {
+                    line-height: 26px;
+                    display: flex;
+
+                    > .ins-prop {
+                        display: block;
+                        margin: 0;
+
+                        &:last-child {
+                            flex: 1;
+                            display: flex;
+
+                            > ui-input {
+                                flex: 1;
+                            }
+                        }
+                    }
+                }
+
+                > .node-attrs {
+                    margin-top: 10px;
+                }
+
+                > .comp {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 10px;
+
+                    > ui-section {
+                        > .header {
+                            > .ins-prop {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+                > .footer {
+                    margin: 10px 0;
+                    text-align: center;
+                }
+
+                > .asset {
+                    padding: 0;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-size: calc(var(--size-normal-font) * 1px);
+                    margin-top: 10px;
+
+                    > .asset-header {
+                        padding-left: 0;
+                    }
+
+                    > .asset-material {
+                        padding: 10px 0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+ui-section {
+    display: block;
+
+    > [slot='header'] {
+        user-select: none;
+    }
+
+    > .header {
+        display: flex;
+
+        > .name {
+            flex: 1;
+
+            ui-drag-item:focus {
+                outline: 0;
+            }
+        }
+
+        > .link {
+            padding: 0 5px;
+            line-height: 22px;
+        }
+
+        > .setting {
+            display: flex;
+
+            > .i-setting {
+                cursor: pointer;
+                padding: 0 5px;
+            }
+        }
+    }
+
+    ui-section {
+        margin-left: -2px;
+
+        &.config {
+            margin-left: -4px;
+        }
+    }
+}
+
+ui-prop {
+    padding: 2px 0;
+
+    &[asset] {
+        > ui-label {
+            display: inline-block;
+            line-height: 16px;
+            padding-top: 10px;
+        }
+
+        > ui-asset {
+            margin-top: 8px;
+        }
+    }
+
+    > ui-asset {
+        flex: 1;
+    }
+
+    > ui-num-input {
+        flex: 1;
+    }
+
+    > ui-input {
+        flex: 1;
+    }
+
+    > ui-select {
+        flex: 1;
+    }
+
+    > ui-label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &.warn {
+        color: var(--color-warn-fill);
+
+        ui-select {
+            border: 1px solid var(--color-warn-fill);
+        }
+    }
+}
+
+.prop-name {
+    display: inline-flex;
+    width: var(--prop-name-width);
+    overflow: hidden;
+    padding-right: 4px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+
+    > ui-label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: pre;
+
+        > * {
+            white-space: initial;
+        }
+    }
+
+    > ui-icon {
+        font-size: 9px;
+    }
+}
+
+.prop-content {
+    flex: 1;
+    display: flex;
+}
+
+@import './imports/curve-editor.less';
+@import './imports/gradient-editor.less';
+@import './imports/sprite-editor.less';
+// 组件
+@import './components/resize-line.less';
+@import './components/unknown.less';
+@import './components/array.less';
+@import './components/null.less';
+@import './components/object.less';
+@import './components/depend.less';
+@import './components/prop.less';
+@import './components/number.less';
+@import './components/bool.less';
+@import './components/string.less';
+@import './components/vec2.less';
+@import './components/vec3.less';
+@import './components/vec4.less';
+@import './components/mat4.less';
+@import './components/size.less';
+@import './components/rect.less';
+@import './components/node.less';
+@import './components/component.less';
+@import './components/asset.less';
+@import './components/enum.less';
+@import './components/bit-mask.less';
+@import './components/color.less';
+@import './components/animation-curve.less';
+@import './components/curve-range.less';
+@import './components/gradient.less';
+@import './components/gradient-range.less';
+@import './components/click-event.less';
+@import './components/skeletal-animation-socket.less';
+@import './components/spine-animation-socket.less';
+@import './components/dragonbones-animation-socket.less';
+// 资源
+@import './assets/header.less';
+// 特殊
+@import './nodes/widget.less';
+@import './nodes/scene.less';
+@import './nodes/terrain.less';

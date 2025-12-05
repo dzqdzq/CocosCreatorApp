@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path"),{existsSync:existsSync,outputJSONSync:outputJSONSync}=require("fs-extra"),lodash=require("lodash");exports.migrateProject=async function(e){join(Editor.Project.path,"settings",Editor.App.version,"./packages");lodash.get(e,"script.useDefineForClassFields",!1),lodash.get(e,"script.allowDeclareFields",!1)};

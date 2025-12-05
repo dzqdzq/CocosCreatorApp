@@ -1,0 +1,40 @@
+#certificate {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+#certificate ui-prop > *[slot='content'] {
+  width: 100%;
+  flex-wrap: wrap;
+}
+#certificate ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#certificate ui-prop {
+  margin: 10px 0;
+}
+#certificate ui-prop[error] > ui-label {
+  color: var(--color-danger-fill-weaker);
+}
+#certificate ui-prop[error] ui-input,
+#certificate ui-prop[error] ui-select,
+#certificate ui-prop[error] ui-file {
+  border-color: var(--color-danger-fill-weaker);
+}
+#certificate main {
+  margin: 15px;
+}
+#certificate main hr {
+  border-color: var(--color-default-border-normal);
+}
+#certificate footer ui-button {
+  float: right;
+}

@@ -1,0 +1,312 @@
+.asset-fbx {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.asset-fbx ui-prop {
+  margin-top: 10px;
+  --left-width: 40%;
+}
+.asset-fbx > header {
+  text-align: center;
+  padding-bottom: 10px;
+  line-height: calc(var(--size-big-line) * 1px);
+}
+.asset-fbx .mb5 {
+  margin-bottom: 5px;
+}
+.asset-fbx .warn-words {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  color: var(--color-warn-fill);
+}
+.asset-fbx .animation {
+  flex: 1;
+  overflow: auto;
+  margin: 0 -1px;
+}
+.asset-fbx .animation .anim-name {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.asset-fbx .animation .anim-name ui-icon {
+  font-size: 18px;
+  margin: auto 10px;
+  margin-left: 0;
+}
+.asset-fbx .animation .anim-name ui-input {
+  flex: 1;
+}
+.asset-fbx .animation[disabled] {
+  position: relative;
+}
+.asset-fbx .animation[disabled]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: no-drop;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.asset-fbx .clips {
+  padding: 5px;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow-y: auto;
+  max-height: 250px;
+  background: var(--color-normal-fill-emphasis);
+  margin-bottom: 20px;
+}
+.asset-fbx .clips .clip[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.asset-fbx .add-clip {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.asset-fbx .add-clip .button {
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-fill-emphasis);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+}
+.asset-fbx .add-clip .button ui-icon {
+  padding: 0 5px;
+  border-radius: 2px;
+  line-height: 16px;
+  margin-left: 14px;
+}
+.asset-fbx .add-clip .button ui-icon:hover {
+  background: var(--color-normal-fill);
+}
+.asset-fbx .table {
+  border-radius: 4px;
+  border-bottom-right-radius: 0;
+  background: var(--color-normal-fill-emphasis);
+}
+.asset-fbx .table .line,
+.asset-fbx .table .header {
+  display: flex;
+  line-height: 1.6em;
+  padding: 2px 5px;
+}
+.asset-fbx .table .line .name,
+.asset-fbx .table .header .name {
+  flex: 1;
+}
+.asset-fbx .table .line .time,
+.asset-fbx .table .header .time {
+  width: 40px;
+  text-align: right;
+}
+.asset-fbx .table .header {
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--color-normal-border-emphasis);
+}
+.asset-fbx .table .line {
+  cursor: pointer;
+}
+.asset-fbx .table .line:hover {
+  background: var(--color-normal-fill);
+}
+.asset-fbx .table .line[active] {
+  background: var(--color-focus-fill);
+}
+.asset-fbx .material {
+  flex: 1;
+  overflow: auto;
+}
+.asset-fbx .material .ins-object {
+  margin-bottom: 10px;
+}
+.asset-fbx .material .sub-item {
+  padding-top: 5px;
+}
+.asset-fbx .material .sub-item ui-prop {
+  --left-width: calc(40% - 10px);
+}
+.asset-fbx .material .sub-item .sub-content {
+  display: flex;
+  flex: 1;
+}
+.asset-fbx .material .sub-item .sub-content ui-asset {
+  flex: 1;
+  margin-top: 10px;
+}
+.asset-fbx .material .sub-item .sub-content.asset {
+  padding-top: 10px;
+}
+.asset-fbx .material .sub-item .sub-content .image {
+  display: block;
+  width: min-content;
+  margin-top: 5px;
+  max-width: 100px;
+  max-height: 100px;
+  min-width: 14px;
+}
+.asset-fbx .clip-info,
+.asset-fbx .cut-info {
+  display: flex;
+  justify-content: space-between;
+}
+.asset-fbx .clip-info {
+  font-size: 0.8em;
+  color: #8a8282;
+}
+.asset-fbx .cut-info {
+  margin: 5px 0 10px;
+  line-height: 20px;
+}
+.asset-fbx .cut-info .left,
+.asset-fbx .cut-info .right {
+  display: flex;
+}
+.asset-fbx .cut-info .left span,
+.asset-fbx .cut-info .right span {
+  width: 32px;
+}
+.asset-fbx .edit[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.asset-fbx .edit ui-num-input {
+  color: var(--color-normal-contrast);
+  font: inherit;
+  width: 50px;
+}
+.asset-fbx .edit-ruler {
+  border: 1px solid var(--color-normal-contrast-important);
+  border-top: transparent;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+}
+.asset-fbx .edit-ruler .control-wrap {
+  position: relative;
+  width: 100%;
+  left: 0;
+  top: -16px;
+}
+.asset-fbx .edit-ruler .duration {
+  background: var(--color-focus-fill);
+  position: absolute;
+  height: 16px;
+  opacity: 0.2;
+}
+.asset-fbx .edit-ruler .control {
+  user-select: none;
+  width: 6px;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.asset-fbx .edit-ruler .control .box {
+  background: var(--color-focus-fill);
+  width: 100%;
+  height: 10px;
+}
+.asset-fbx .edit-ruler .control .direction {
+  border: 3px solid var(--color-focus-fill);
+  width: 0;
+  height: 0;
+  border-bottom-color: transparent;
+}
+.asset-fbx .edit-ruler .control.virtual {
+  --color-focus-fill: var(--color-success-fill);
+}
+.asset-fbx .edit-ruler .control.virtual .info {
+  margin-top: -42px;
+  font-size: 0.8em;
+  color: var(--color-success-fill-weaker);
+}
+.asset-fbx .edit-ruler .control:hover {
+  opacity: 1;
+}
+.asset-fbx .edit-ruler .left .direction {
+  border-left-color: transparent;
+}
+.asset-fbx .edit-ruler .right .direction {
+  border-right-color: transparent;
+}
+.asset-fbx .edit-ruler .start {
+  position: absolute;
+  left: 0;
+  top: -7px;
+}
+.asset-fbx .edit-ruler .grid {
+  position: relative;
+  display: flex;
+  font-size: 0.8em;
+  box-sizing: border-box;
+}
+.asset-fbx .edit-ruler .grid .grid-item,
+.asset-fbx .edit-ruler .grid .label-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.asset-fbx .edit-ruler .grid .label-item {
+  position: relative;
+}
+.asset-fbx .edit-ruler .grid span {
+  display: inline-block;
+  width: 20%;
+}
+.asset-fbx .edit-ruler .grid .sm-grid,
+.asset-fbx .edit-ruler .grid .mid-grid {
+  height: 4px;
+  border-left: 1px solid var(--color-normal-contrast-important);
+}
+.asset-fbx .edit-ruler .grid .mid-grid {
+  height: 8px;
+}
+.asset-fbx .edit-ruler .grid .mid-label {
+  width: 0;
+}
+.asset-fbx .model {
+  flex: 1;
+  overflow: auto;
+}
+.asset-fbx .meshOptimizer {
+  margin-left: 0px;
+  margin-top: 10px;
+}
+.asset-fbx .meshOptimizer ui-section {
+  margin-top: 10px;
+}
+.asset-fbx .meshOptimizer ui-prop ui-slider {
+  width: 100%;
+}
+.asset-fbx .fbx {
+  flex: 1;
+  overflow: auto;
+}
+.asset-fbx > footer {
+  margin-top: 10px;
+  border-top: 1px solid var(--color-normal-border);
+}
+.asset-fbx > footer > .preview-info {
+  padding-top: 8px;
+}
+.asset-fbx > footer > .preview-info > ui-label {
+  margin-right: 6px;
+}
+.asset-fbx > footer .imageDiv {
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  margin-right: 10px;
+}
+.asset-fbx > footer .imageDiv .image {
+  flex: 1;
+}

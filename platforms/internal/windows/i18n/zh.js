@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Windows",default_sdk_version:"默认 SDK 版本：",make:{label:"生成"},run:{label:"运行"}};

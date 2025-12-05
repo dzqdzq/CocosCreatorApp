@@ -1,0 +1,34 @@
+.ins-rect {
+    flex: 1;
+    display: flex;
+
+    & > .prop-content {
+        flex: 1;
+        display: block;
+
+        & > .ins-vec2 {
+            display: flex;
+
+            & > ui-num-input {
+                flex: 1;
+            }
+
+            &:first-child {
+                margin-bottom: 4px;
+            }
+        }
+
+        & > .ins-size {
+            display: flex;
+
+            & > ui-num-input {
+                flex: 1;
+            }
+
+            &:first-child {
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+}

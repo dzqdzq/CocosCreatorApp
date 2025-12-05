@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Web 桌面端",task_title:"",options:{resolution:"预览分辨率",preview_url:"预览地址",async_functions:"异步函数",async_functions_tips:"是否需要包含异步函数 polyfills",remote_server_address:"资源服务器地址",design_width:"设计宽度",design_height:"设计高度"},tips:{creat_template_success:"构建模板生成成功!",resolution:"游戏视图分辨率",remote_server_address:"用于下载远程资源的服务器地址"},run:{label:"运行"}};

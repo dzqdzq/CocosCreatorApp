@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.get=void 0;const path_1=require("path"),utils_1=require("../../utils");exports.get=[{url:"/plugins/cs-scripts/*",async handle(e,t,s){let i=utils_1.csEditor.getPreviewRoot(),r=e.url.split(/plugins\/cs-scripts\//)[1];r?t.sendFile(path_1.join(i,r)):s()}}];

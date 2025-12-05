@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Device manager",markname:"Device Name",resolution:"Width Height",pixelratio:"Pixel Ratio",button:{add:"Add",change:"Change",delete:"Delete"},invalid:{name:"Device name can not be empty.",exists:"Device name already exists."}};

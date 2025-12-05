@@ -1,0 +1,1 @@
+"use strict";exports.js=function(){return["./"]},exports.css=function(){return[{source:"./static/style/curve-editor.less",dist:"./dist/curve-editor.css"},{source:"./static/style/searcher.less",dist:"./dist/searcher.css"},{source:"./static/style/preview.less",dist:"./dist/preview.css"}]};

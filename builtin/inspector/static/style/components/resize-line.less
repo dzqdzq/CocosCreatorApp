@@ -1,0 +1,13 @@
+.ins-resize-line {
+    width: 3px;
+    background: none;
+    transition: all 0.3s;
+    cursor: ew-resize;
+    position: relative;
+    left: -2px;
+
+    &[active],
+    &:hover {
+        background: var(--color-focus-contrast);
+    }
+}

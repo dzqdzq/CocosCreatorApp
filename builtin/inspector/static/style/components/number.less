@@ -1,0 +1,25 @@
+.ins-number {
+    flex: 1;
+    display: flex;
+    white-space: nowrap;
+
+    > .prop-content {
+        > span {
+            padding: 0 5px 0 8px;
+            cursor: ew-resize;
+            font-family: Menlo, Monaco, 'Courier New', monospace;
+
+            &[disabled] {
+                cursor: default;
+            }
+        }
+
+        > ui-num-input {
+            flex: 1;
+        }
+
+        > ui-slider {
+            flex: 1;
+        }
+    }
+}

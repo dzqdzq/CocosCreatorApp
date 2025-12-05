@@ -1,0 +1,14 @@
+{
+    "name": "baidu-mini-game",
+    "title": "i18n:baidu-mini-game.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Baidu mini game platform plugin",
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

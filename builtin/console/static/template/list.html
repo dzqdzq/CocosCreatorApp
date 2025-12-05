@@ -1,0 +1,71 @@
+<section class="console"
+    @scroll="onScroll"
+>
+    <div class="wrapper"
+        :style="wrapperStyle"
+    >
+        <div
+            v-for="(item, index) in showList"
+            v-show="item.show"
+            :class="[item.texture, 'item']"
+            :type="item.type"
+            :fold="item.fold"
+            :style="{transform: `translateY(${item.translateY}px)`,fontSize: `${fontSize}px`, lineHeight: `${lineHeight}px`}"
+            @click.right="showMenuPast($event, item)"
+        >
+            <div class="wrap">
+                <div class="bg"></div>
+                <div class="text"
+                    @click="item.rows > 1 ? toggleContent(item.translateY) : null"
+                >
+                    <span>
+                        <ui-icon value="warn"
+                            v-if="item.type === 'warn'"
+                        ></ui-icon>
+                        <ui-icon value="error"
+                            v-if="item.type === 'error'"
+                        ></ui-icon>
+                    </span>
+                    <span
+                        :title="item.title"
+                    >
+                        <ui-icon class="arrow" value="play"
+                            v-if="item.rows > 1"
+                            :unfold="!item.fold"
+                        ></ui-icon>
+                        <span 
+                            v-if="item.date"
+                        >{{item.date}}</span>
+                        <span bubble
+                            @click="onTextClick($event)"
+                            v-html="renderText(item.title)"
+                        ></span>
+                    </span>
+                </div>
+                <span
+                    v-if="item.count > 1"
+                >{{item.count}}</span>
+            </div>
+            <div class="details"
+                v-for="(text, i) in item.content"
+                :index="i"
+            >
+                <div class="text" bubble
+                    v-html="renderText(text)"
+                    @click="onTextClick($event)"
+                    :style="{fontSize: `${fontSize}px`, lineHeight: `${lineHeight - 2}px`}"
+                ></div>
+            </div>
+            <div class="stack"
+                v-for="(text, i) in item.stack"
+                :index="i"
+            >
+                <div class="text" bubble
+                    v-html="renderText(text)"
+                    @click="onTextClick($event)"
+                    :style="{fontSize: `${fontSize}px`, lineHeight: `${lineHeight - 2}px`}"
+                ></div>
+            </div>
+        </div>
+    </div>
+</section>

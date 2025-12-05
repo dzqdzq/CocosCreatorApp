@@ -1,0 +1,18 @@
+.asset-render-pipeline {
+  display: flex;
+  flex-direction: column;
+}
+.asset-render-pipeline > .header {
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px var(--color-normal-border) dashed;
+}
+.asset-render-pipeline > .header > ui-prop > ui-select {
+  flex: 1;
+}
+.asset-render-stage > .content,
+.asset-render-flow > .content {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px var(--color-normal-border) dashed;
+}

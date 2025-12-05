@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Console",description:"Tools for visualizing CocosCreator logs",editorLog:"Editor Log",cocosLog:"Cocos Console Log",copy:"Copy",tabbar:{regex:"Regex"},preferences:{display_date:"Display date",font_size:"Font size"}};
