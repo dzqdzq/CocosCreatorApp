@@ -1,0 +1,1 @@
+module.exports=function(t,o){for(var a=[],e=0;e<t.length;e++){var n=o(t[e],e);r(n)?a.push.apply(a,n):a.push(n)}return a};var r=Array.isArray||function(r){return"[object Array]"===Object.prototype.toString.call(r)};

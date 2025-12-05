@@ -1,0 +1,1 @@
+module.exports={taobao:!0,iOSForceDisableJit:!0,"xiaomi-runtime":!0,"baidu-game":!1,"alipay-minigame":!1,"qtt-runtime":!1,"link-sure":!1,"wechat-separation-engine":!0,"cloud-function":!0,"huawei-agc":!0,"bytedance-minigame":!0,"bytedance-separation-engine":!1,"quickgame-separation-engine":!1,"compile-worker-debug-log":!1};

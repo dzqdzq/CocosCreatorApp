@@ -1,0 +1,1 @@
+"use strict";module.exports=(()=>{const e=Object.keys(Editor.assetdb._mounts);e.sort();let t=[];for(let r=0;r<e.length;r++){let s=e[r];t.push({label:`${Editor.T("ASSETS.refresh")} ${s}`,click(){Editor.assetdb.refresh(`db://${s}/`)}})}return t.push({label:Editor.T("ASSETS.refresh_all"),click(){for(let t=0;t<e.length;t++)Editor.assetdb.refresh(`db://${e[t]}/`)}}),t});
