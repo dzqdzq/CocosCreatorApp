@@ -1,0 +1,1 @@
+import{baseUrl as originalBaseUrl}from"systemjs-source/common.js";export let baseUrl=originalBaseUrl;export function setBaseUrl(r){baseUrl=r};

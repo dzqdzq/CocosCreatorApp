@@ -1,0 +1,20 @@
+<ui-icon class="icon" color="true"
+    v-if="type==='icon'" 
+    :image="!origin"
+    :value="value"
+></ui-icon>
+<ui-icon class="icon" color="true"
+    v-else-if="type==='thumbnail' && value==='none'" 
+    value="image"
+></ui-icon>
+<i class="icon"
+    v-else-if="type==='thumbnail'" 
+>
+    <ui-loading class="thumbnail-loading"
+        v-if="type==='thumbnail' && !value"
+    ></ui-loading>
+    <img class="thumbnail"
+        v-else
+        :src="value"
+    >
+</i>

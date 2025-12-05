@@ -1,0 +1,48 @@
+<div class="huawei-quick-game">
+    <ui-prop @confirm="onConfirm">
+        <ui-label slot="label" value="i18n:huawei-quick-game.options.keystore"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="useDebugKey" :value="pkgOptions.useDebugKey">
+                <ui-label value="i18n:huawei-quick-game.options.use_debug_keystore"></ui-label>
+            </ui-checkbox>
+        </div>
+    </ui-prop>
+    <build-prop
+        :error="verifyRes.certificatePemPath"
+    >
+        <ui-prop class="no-wrap" :error="!!verifyRes.certificatePemPath">
+            <ui-label slot="label" i18n>huawei-quick-game.options.certificate_pem_path</ui-label>
+            <div slot="content">
+                <ui-file path="certificatePemPath"
+                    :value="pkgOptions.certificatePemPath"
+                    :disabled="pkgOptions.useDebugKey"
+                    :title="verifyRes && verifyRes.certificatePemPath"
+                    @confirm.stop="onConfirm"
+                ></ui-file>
+                <ui-button
+                    @confirm.stop="onNewCertificate"
+                    :disabled="pkgOptions.useDebugKey"
+                ><ui-label i18n>huawei-quick-game.options.new</ui-label></ui-button>
+            </div>
+        </ui-prop>
+    </build-prop>
+    <build-prop
+        :error="verifyRes.privatePemPath"
+    >
+        <ui-prop :error="!!verifyRes.privatePemPath">
+            <ui-label slot="label" i18n>huawei-quick-game.options.private_pem_path</ui-label>
+            <div slot="content">
+                <ui-file path="privatePemPath"
+                    :value="pkgOptions.privatePemPath"
+                    :disabled="pkgOptions.useDebugKey"
+                    :title="verifyRes.privatePemPath"
+                    @confirm.stop="onConfirm"
+                ></ui-file>
+                <ui-button
+                    :disabled="pkgOptions.useDebugKey || !!(verifyRes.certificatePemPath)"
+                    @confirm.stop="onPrintFinger"
+                ><ui-label i18n>huawei-quick-game.options.print_finger</ui-label></ui-button>
+            </div>
+        </ui-prop>
+    </build-prop>
+</div>

@@ -1,0 +1,37 @@
+{
+    "name": "web-desktop",
+    "title": "i18n:web-desktop.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Web desktop platform plugin",
+    "devDependencies": {
+        "@types/ejs": "^2.6.3"
+    },
+    "contributions": {
+        "builder": "./dist/builder/index.js",
+        "server": "./dist/server.js",
+
+        "menu": [
+            {
+                "path": "i18n:menu.project/i18n:builder.create_user_template",
+                "label": "i18n:web-desktop.title",
+                "message": "create-build-template",
+                "icon": "./static/computer.png"
+            }
+        ],
+
+        "messages": {
+            "preview": {
+                "methods": ["preview"]
+            },
+            "create-build-template": {
+                "methods": ["create-build-template"]
+            },
+            "set-preview-path": {
+                "methods": ["set-preview-path"]
+            }
+        }
+    },
+    "main": "./dist/main.js"
+}

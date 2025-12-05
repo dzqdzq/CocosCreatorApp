@@ -1,0 +1,371 @@
+{
+    "name": "project",
+    "title": "i18n:project.title",
+    "version": "1.0.2",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:project.description",
+    "main": "./dist/browser.js",
+    "panels": {
+        "settings": {
+            "title": "i18n:project.title",
+            "icon": "./static/icon.png",
+            "main": "./dist/settings/index.js",
+            "size": {
+                "min-width": 580,
+                "min-height": 430,
+                "width": 800,
+                "height": 550
+            }
+        },
+        "joint": {
+            "title": "JointTextureLayout",
+            "icon": "./static/icon.png",
+            "main": "./dist/joint/index.js",
+            "size": {
+                "min-width": 500,
+                "min-height": 400,
+                "width": 650,
+                "height": 600
+            }
+        }
+    },
+    "migrations": [
+        {
+            "version": "1.0.0",
+            "profile": "./hooks/project-1.0.0.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./hooks/project-1.0.2.js"
+        }
+    ],
+    "contributions": {
+        "toolbar": {
+            "right": "./static/toolbar.js"
+        },
+        "asset-db": {
+            "script": "./static/contributions/scene.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.project",
+                "label": "i18n:project.title",
+                "message": "open-settings",
+                "icon": "./static/icon.png"
+            },
+            {
+                "path": "i18n:menu.panel/i18n:menu.animation",
+                "label": "i18n:project.joint.title",
+                "message": "open-joint",
+                "icon": "./static/icon.png",
+                "order": -98
+            }
+        ],
+        "profile": {
+            "project": {
+                "layer": {
+                    "default": [],
+                    "message": "change-custom-layer"
+                },
+                "general.designResolution.width": {
+                    "label": "i18n:project.general.width",
+                    "default": 960,
+                    "message": "change-design-resolution"
+                },
+                "general.designResolution.height": {
+                    "label": "i18n:project.general.height",
+                    "default": 640,
+                    "message": "change-design-resolution"
+                },
+                "general.designResolution.fitWidth": {
+                    "label": "i18n:project.general.fit_width",
+                    "default": true
+                },
+                "general.designResolution.fitHeight": {
+                    "label": "i18n:project.general.fit_height",
+                    "default": false
+                },
+                "general.renderPipeline": {
+                    "default": "fd8ec536-a354-4a17-9c74-4f3883c378c8"
+                },
+                "custom_joint_texture_layouts": {
+                    "default": []
+                },
+                "physics.gravity.x": {
+                    "label": "i18n:project.physics.gravity.x",
+                    "default": 0
+                },
+                "physics.gravity.y": {
+                    "label": "i18n:project.physics.gravity.y",
+                    "default": -10
+                },
+                "physics.gravity.z": {
+                    "label": "i18n:project.physics.gravity.z",
+                    "default": 0
+                },
+                "physics.allowSleep": {
+                    "label": "i18n:project.physics.allowSleep",
+                    "default": true
+                },
+                "physics.sleepThreshold": {
+                    "label": "i18n:project.physics.sleepThreshold",
+                    "default": 0.1
+                },
+                "physics.autoSimulation": {
+                    "label": "i18n:project.physics.autoSimulation",
+                    "default": true
+                },
+                "physics.fixedTimeStep": {
+                    "label": "i18n:project.physics.fixedTimeStep",
+                    "default": 0.0166667
+                },
+                "physics.maxSubSteps": {
+                    "label": "i18n:project.physics.maxSubSteps",
+                    "default": 1
+                },
+                "physics.defaultMaterial.friction": {
+                    "label": "i18n:project.physics.defaultMaterial.friction",
+                    "default": 0.5
+                },
+                "physics.defaultMaterial.rollingFriction": {
+                    "label": "i18n:project.physics.defaultMaterial.rollingFriction",
+                    "default": 0.1
+                },
+                "physics.defaultMaterial.spinningFriction": {
+                    "label": "i18n:project.physics.defaultMaterial.spinningFriction",
+                    "default": 0.1
+                },
+                "physics.defaultMaterial.restitution": {
+                    "label": "i18n:project.physics.defaultMaterial.restitution",
+                    "default": 0.1
+                },
+                "script.useDefineForClassFields": {
+                    "label": "i18n:project.scripts.useDefineForClassFields",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.useDefineForClassFieldsTips"
+                },
+                "script.allowDeclareFields": {
+                    "label": "i18n:project.scripts.allowDeclareFields",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.allowDeclareFieldsTips"
+                },
+                "script.loose": {
+                    "label": "i18n:project.scripts.loose",
+                    "default": true,
+                    "message": "change-script-config",
+                    "description": "i18n:project.scripts.loose_description"
+                },
+                "script.exportsConditions": {
+                    "label": "Exports Conditions",
+                    "default": ["browser"],
+                    "description": "Specifies resolution conditions for conditional exports, please refer to Cocos Creator Module Resolution."
+                },
+                "script.importMap": {
+                    "label": "Import Map",
+                    "default": "",
+                    "description": "Specify import map to control the imports."
+                },
+                "script.previewBrowserslistConfigFile": {
+                    "label": "i18n:project.scripts.preview_browserslist_config_file",
+                    "default": "",
+                    "description": "i18n:project.scripts.preview_browserslist_config_file_description"
+                },
+                "fbx.legacyFbxImporter.visible": {
+                    "label": "i18n:ENGINE.assets.fbx.legacyFbxImporter.name",
+                    "default": false,
+                    "description": "i18n:ENGINE.assets.fbx.legacyFbxImporter.title"
+                }
+            }
+        },
+        "project": {
+            "general": {
+                "label": "i18n:project.general.title",
+                "content": {
+                    "general.designResolution.width": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 0
+                        }
+                    },
+                    "general.designResolution.height": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 0
+                        }
+                    },
+                    "general.designResolution.fitWidth": {
+                        "ui": "ui-checkbox"
+                    },
+                    "general.designResolution.fitHeight": {
+                        "ui": "ui-checkbox"
+                    }
+                },
+                "custom": "./dist/contributions/project-general.js"
+            },
+            "layer": {
+                "label": "Layers",
+                "custom": "./dist/contributions/project-layer.js"
+            },
+            "physics": {
+                "label": "i18n:project.physics.title",
+                "content": {
+                    "physics.gravity.x": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0
+                        }
+                    },
+                    "physics.gravity.y": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0
+                        }
+                    },
+                    "physics.gravity.z": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0
+                        }
+                    },
+                    "physics.allowSleep": {
+                        "ui": "ui-checkbox"
+                    },
+                    "physics.sleepThreshold": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 0.1,
+                            "preci": 1,
+                            "min": 0
+                        }
+                    },
+                    "physics.autoSimulation": {
+                        "ui": "ui-checkbox"
+                    },
+                    "physics.fixedTimeStep": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1e-7,
+                            "preci": 7,
+                            "min": 0
+                        }
+                    },
+                    "physics.maxSubSteps": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 1,
+                            "preci": 0,
+                            "min": 0
+                        }
+                    },
+                    "physics.defaultMaterial.friction": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 0.5,
+                            "preci": 1
+                        }
+                    },
+                    "physics.defaultMaterial.rollingFriction": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 0.1,
+                            "preci": 1
+                        }
+                    },
+                    "physics.defaultMaterial.spinningFriction": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 0.1,
+                            "preci": 1
+                        }
+                    },
+                    "physics.defaultMaterial.restitution": {
+                        "ui": "ui-num-input",
+                        "attributes": {
+                            "step": 0.1,
+                            "preci": 1
+                        }
+                    }
+                },
+                "custom": "./dist/contributions/project-physics.js"
+            },
+            "script": {
+                "label": "i18n:project.scripts.title",
+                "content": {
+                    "script.useDefineForClassFields": {
+                        "ui": "ui-checkbox"
+                    },
+                    "script.allowDeclareFields": {
+                        "ui": "ui-checkbox",
+                        "tooltip": "i18n:project.scripts.allowDeclareFieldsTips"
+                    },
+                    "script.loose": {
+                        "ui": "ui-checkbox",
+                        "tooltip": "i18n:project.scripts.loose_description"
+                    },
+                    "script.importMap": {
+                        "ui": "ui-file",
+                        "tooltip": "i18n:project.scripts.import_map_description",
+                        "attributes": {
+                            "type": "file",
+                            "protocols": "project",
+                            "extensions": "json"
+                        }
+                    },
+                    "script.previewBrowserslistConfigFile": {
+                        "ui": "ui-file",
+                        "tooltip": "i18n:project.scripts.preview_browserslist_config_file_description",
+                        "attributes": {
+                            "type": "file",
+                            "protocols": "project"
+                        }
+                    }
+                },
+                "custom": "./dist/contributions/project-script.js"
+            }
+        },
+        "messages": {
+            "open-settings": {
+                "public": true,
+                "description": "i18n:project.contributions.messages.description.open_settings",
+                "doc": "i18n:project.contributions.messages.doc.open_settings",
+                "methods": [
+                    "openSettings"
+                ]
+            },
+            "open-joint": {
+                "methods": [
+                    "openJoint"
+                ]
+            },
+            "change-settings-tab": {
+                "methods": [
+                    "settings.changeTab"
+                ]
+            },
+            "change-script-config": {
+                "methods": [
+                    "changeScriptConfig"
+                ]
+            },
+            "change-design-resolution": {
+                "methods": ["changeDesignResolution"]
+            },
+            "change-custom-layer": {
+                "methods": ["changeCustomLayer"]
+            },
+            "calc-joint-layout": {
+                "methods": ["calcJointLayouts"]
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  position: relative;
+}
+#splashSetting {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+#splashSetting .webview {
+  width: 100%;
+  height: 100%;
+}
+#splashSetting .tips {
+  position: absolute;
+  text-align: center;
+  height: 30px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+#splashSetting ui-prop > *[slot='content'] {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+#splashSetting ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#splashSetting ui-prop {
+  margin: 10px 0;
+}
+#splashSetting main {
+  margin: 15px;
+}
+#splashSetting ui-prop > .image-wrap {
+  min-height: 30px;
+  border: 1px solid;
+}
+#splashSetting ui-file {
+  width: 100%;
+}
+#splashSetting footer {
+  text-align: right;
+}

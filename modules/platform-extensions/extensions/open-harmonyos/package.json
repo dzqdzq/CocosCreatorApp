@@ -1,0 +1,13 @@
+{
+    "name": "open-harmonyos",
+    "title": "i18n:open-harmonyos.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "description": "Open HarmonyOS platform plugin",
+
+    "contributions": {
+        "builder": "./dist/builder/index.js"
+    }
+}

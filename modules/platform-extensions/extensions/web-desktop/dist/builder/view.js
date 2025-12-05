@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.buttonConfig=void 0;const path_1=require("path");exports.buttonConfig={configs:{run:{label:"i18n:web-desktop.run.label",async click(e,t){t.buildPath=Editor.UI.File.resolveToRaw(t.buildPath);const o=path_1.join(t.buildPath,t.outputName);await Editor.Message.request("web-desktop","preview",o)}}}};

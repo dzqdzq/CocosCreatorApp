@@ -1,0 +1,17 @@
+.infobar {
+    line-height: calc(var(--size-small-line) * 1px);
+    font-size: calc(var(--size-small-font) * 1px);
+    display: flex;
+    position: absolute;
+    top: 30px;
+    padding: 10px;
+
+    & > .left {
+        flex: 1;
+        display: flex;
+    }
+
+    & > .right {
+        display: flex;
+    }
+}
