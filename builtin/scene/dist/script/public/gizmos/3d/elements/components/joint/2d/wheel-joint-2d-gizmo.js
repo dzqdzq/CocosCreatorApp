@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const joint_2d_gizmo_1=__importDefault(require("./joint-2d-gizmo"));class WheelJoint2DGizmo extends joint_2d_gizmo_1.default{}exports.default=WheelJoint2DGizmo;

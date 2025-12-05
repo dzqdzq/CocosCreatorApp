@@ -1,0 +1,119 @@
+.group-tab {
+  display: flex;
+  border-bottom: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 5px 10px 5px 0;
+  border: calc(var(--size-normal-border) * 1px) var(--color-normal-border-weaker) dashed;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats {
+  padding: 6px 12px;
+}
+.group-item .formats .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+  width: 100%;
+  margin-top: 40px;
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  margin-bottom: 5px;
+  --left-width: 50%;
+}
+.group-item .formats .format-item .build-prop,
+.group-item .formats .format-item ui-prop {
+  width: 100%;
+  --left-width: 0;
+}
+.group-item .formats .format-item .custom.missing {
+  font-style: italic;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: var(--color-warn-fill);
+}
+.group-item .formats .format-name .custom {
+  font-style: italic;
+  opacity: 0.6;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}
+.compress-texture {
+  margin-bottom: 10px;
+}
+.platform-setting {
+  margin: 0;
+  border: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  margin-top: 4px;
+  padding: 6px;
+  position: relative;
+}
+.platform-setting > ui-icon {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+ui-prop > div[slot="content"] {
+  display: flex;
+}
+ui-prop > div[slot="content"] ui-select {
+  flex: 1;
+}
+ui-prop > div[slot="content"] ui-select + ui-button {
+  margin-left: 10px;
+}
+.warn {
+  color: #fbd461;
+}

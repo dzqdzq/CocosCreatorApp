@@ -1,0 +1,66 @@
+.flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+.left {
+  min-width: 140px;
+  max-width: 300px;
+}
+ui-prop > div[slot="content"] {
+  display: flex;
+  flex: 1;
+}
+.platform-debug-tools {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.platform-debug-tools .container {
+  flex: 1;
+}
+.platform-debug-tools section {
+  border: 1px solid var(--color-normal-fill-emphasis);
+  min-height: 150px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.platform-debug-tools section header {
+  background-color: var(--color-normal-fill-emphasis);
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+}
+.platform-debug-tools section main {
+  flex: 1;
+  overflow-y: auto;
+}
+.platform-debug-tools .project {
+  height: 400px;
+}
+.platform-debug-tools .project .project-item {
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.platform-debug-tools .project .project-item:hover,
+.platform-debug-tools .project .project-item[active] {
+  background-color: var(--color-active-fill);
+}
+.platform-debug-tools .left,
+.platform-debug-tools .right {
+  flex-direction: column;
+}
+.platform-debug-tools .right main {
+  padding: 10px;
+}
+.platform-debug-tools .right main ui-prop {
+  margin-bottom: 10px;
+}
+.platform-debug-tools .right main ui-file {
+  flex: 1;
+}
+.platform-debug-tools .right .compile {
+  display: flex;
+}

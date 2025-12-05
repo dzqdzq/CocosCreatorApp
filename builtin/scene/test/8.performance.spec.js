@@ -1,0 +1,33 @@
+'use strict';
+
+const { expect } = require('chai');
+
+describe('场景常用接口性能测试', () => {
+    describe('新建 1000 个节点的时间记录', async () => {
+        Editor.Metrics.trackTimeStart('scene:create-node');
+        const optArr = new Array(1000).fill(1);
+        await Promise.all(
+            optArr.map(() => {
+                return Editor.Message.request('scene', 'create-node', {
+                    snapshot: true,
+                });
+            }),
+        );
+        const time = Editor.Metrics.trackTimeEnd('scene:create-node', { output: true });
+        expect(time < 20000).to.be.true;
+    });
+    describe('新建 100 个菜单节点的时间记录', async () => {
+        const pkgOptions = require('../package.json');
+        const menus = pkgOptions.contributions.menu.filter((item) => item.message === 'create-node');
+        Editor.Metrics.trackTimeStart('scene:create-menu-node');
+        const optArr = new Array(100).fill(1);
+        await Promise.all(
+            optArr.map((item, i) => {
+                const options = menus[i % menus.length].params[0];
+                return Editor.Message.request('scene', 'create-node', options);
+            }),
+        );
+        const time = Editor.Metrics.trackTimeEnd('scene:create-menu-node', { output: true });
+        expect(time < 20000).to.be.true;
+    });
+});

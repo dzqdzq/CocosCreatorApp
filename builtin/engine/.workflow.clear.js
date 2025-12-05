@@ -1,0 +1,1 @@
+exports.clear=function(){return["./dist","./@types/editor-extends","./static/engine-compiler/dist","./@types/engine-compiler"]};

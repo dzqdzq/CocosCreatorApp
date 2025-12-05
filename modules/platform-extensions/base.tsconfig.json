@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "types": [
+            "node",
+            "@editor/library-type/packages/builder/@types/protect/global",
+            "@editor/library-type/protected",
+            "./@types/index"
+        ],
+        "skipLibCheck": true
+    }
+}

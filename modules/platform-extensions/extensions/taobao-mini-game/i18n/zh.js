@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"淘宝小游戏",options:{orientation:"设备方向",portrait:"竖屏",landscape:"横屏",start_scene_asset_bundle:"初始场景分包",start_scene_asset_bundle_tooltip:"将所有初始场景依赖的资源打包进独立的分包，分包命名为 'start-scene'",global_variable:"全局变量",global_variable_tooltip:"淘宝平台访问全局变量时，global 对象不能缺省，请在这里标记项目里依赖的全局变量，以便游戏运行时能正常使用全局变量。填写形式如：foo, bar"}};

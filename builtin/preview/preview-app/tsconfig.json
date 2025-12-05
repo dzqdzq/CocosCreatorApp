@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "System",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": [
+        "ES2015",
+        "DOM"
+    ],
+    "types": [
+    ],
+    "skipLibCheck": true
+  },
+  "exclude": [
+      "tests",
+      "dist",
+      "distribution"
+  ]
+}

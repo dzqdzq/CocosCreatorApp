@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"设备管理器",customDevices:"自定义设备",defaultDevices:"默认设备",markname:"设备名称",resolution:"宽高",pixelratio:"像素比",button:{save:"保存",create:"新增自定义设备",cancel:"取消"},invalid:{name:"设备名称不能为空",exists:"设备名称已经存在",lengthOrWidthMoreThan0:"设备的宽高需要大于 0"}};

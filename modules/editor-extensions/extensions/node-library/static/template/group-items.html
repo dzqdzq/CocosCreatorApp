@@ -1,0 +1,25 @@
+<ui-drag-item class="item"
+    :type="item.type"
+    :value="item.assetUuid"
+    :additional="getAdditional(item)"
+    @click.right.stop="popupMenu(item)"
+>
+    <img class="poster"
+        :src="item.icon"
+    >    
+    <div class="rename"
+        v-if="active === 'custom' && state === 'rename'"
+    >
+        <input ref='renameInput'
+            v-model="renameValue"
+            @blur="renameSubmit()"
+            @keydown.stop
+            @keydown.enter="$event.target.blur()"
+            @keydown.esc="renameCancel()"
+        >
+    </div>
+    <div class="name"
+        v-else
+        :title="item.name"
+    >{{ item.name }}</div>
+</ui-drag-item>

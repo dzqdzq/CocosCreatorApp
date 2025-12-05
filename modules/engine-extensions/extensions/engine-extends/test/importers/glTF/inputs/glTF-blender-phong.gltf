@@ -1,0 +1,137 @@
+{
+    "materials": [
+        {
+            "extras": {
+                "FBX-glTF-conv": {
+                    "raw": {
+                        "properties": {
+                            "ambient": {
+                                "value": [
+                                    0.05087608844041824,
+                                    0.05087608844041824,
+                                    0.05087608844041824
+                                ]
+                            },
+                            "ambientFactor": {
+                                "value": 1
+                            },
+                            "bump": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "bumpFactor": {
+                                "value": 1
+                            },
+                            "diffuse": {
+                                "texture": {
+                                    "index": 0
+                                },
+                                "value": [
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            },
+                            "diffuseFactor": {
+                                "value": 1
+                            },
+                            "displacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "displacementFactor": {
+                                "value": 1
+                            },
+                            "emissive": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "emissiveFactor": {
+                                "value": 1
+                            },
+                            "normalMap": {
+                                "texture": {
+                                    "index": 1
+                                },
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "reflection": {
+                                "value": [
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            },
+                            "reflectionFactor": {
+                                "value": 0
+                            },
+                            "shadingModel": "Phong",
+                            "shininess": {
+                                "value": 43.076925063110224
+                            },
+                            "specular": {
+                                "value": [
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            },
+                            "specularFactor": {
+                                "texture": {
+                                    "index": 2
+                                },
+                                "value": 0.5
+                            },
+                            "transparencyFactor": {
+                                "value": 0
+                            },
+                            "transparentColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementColor": {
+                                "value": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "vectorDisplacementFactor": {
+                                "value": 1
+                            }
+                        },
+                        "type": "phong"
+                    }
+                }
+            },
+            "name": "Arissa_MAT"
+        }
+    ],
+    "extras": {
+        "FBX-glTF-conv": {
+            "fbxFileHeaderInfo": {
+                "sceneInfo": {
+                    "original": {
+                        "applicationName": "Blender"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.root {
+  padding: 2px 8px;
+}
+.root ui-prop {
+  margin-top: 12px;
+}
+.root header {
+  display: flex;
+}
+.root ui-input {
+  flex: 1;
+}
+.root header {
+  display: flex;
+}
+.root header .displayName {
+  margin-left: 4px;
+}
+.root .node-path ui-input {
+  width: 100%;
+  padding-right: 24px;
+}
+.root .node-path ui-icon {
+  position: absolute;
+  right: 4px;
+  top: 0;
+}
