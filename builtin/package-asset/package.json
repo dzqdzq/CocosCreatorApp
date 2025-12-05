@@ -1,0 +1,65 @@
+{
+    "name": "package-asset",
+    "version": "1.0.0",
+    "package_version": 2,
+    "description": "package-asset",
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "panels": {
+        "export": {
+            "title": "i18n:package-asset.export.title",
+            "main": "./dist/panels/export.js",
+            "flags": {
+                "save": false
+            },
+            "size": {
+                "width": 360,
+                "height": 560,
+                "min-width": 350,
+                "min-height": 500
+            }
+        },
+        "import": {
+            "title": "i18n:package-asset.import.title",
+            "main": "./dist/panels/import.js",
+            "flags": {
+                "save": false
+            },
+            "size": {
+                "width": 360,
+                "height": 560,
+                "min-width": 350,
+                "min-height": 500
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene-walker.js"
+        },
+        "asset-db": {
+            "script": "./dist/asset-db-walker.js"
+        },
+        "assets": {
+            "menu":{
+                "methods": "./dist/assets-menu.js",
+                "dbMenu": "dbMenu",
+                "panelMenu": "dbMenu",
+                "assetMenu": "assetMenu"
+            }
+        },
+
+        "profile": {
+            "package-asset": {
+                "export-path": {
+                    "type": "string",
+                    "default": ""
+                },
+                "import-path": {
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        }
+    }
+}

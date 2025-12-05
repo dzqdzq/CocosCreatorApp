@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const{EventEmitter:EventEmitter}=require("events");class EventManager extends EventEmitter{emit(e,...t){try{super.emit(e,...t)}catch(e){console.error(e)}}}exports.default=EventManager;

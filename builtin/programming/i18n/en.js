@@ -1,0 +1,1 @@
+module.exports={description:"Governs import, in-editor execution of project-wide codes and external codes.",clear_code_cache:"Clear code cache"};

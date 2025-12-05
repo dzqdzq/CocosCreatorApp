@@ -1,0 +1,42 @@
+<div class="xiaomi-quick-game" @confirm="onConfirm">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:xiaomi-quick-game.options.keystore"></ui-label>
+        <div slot="content">
+            <ui-checkbox path="useDebugKey" :value="pkgOptions.useDebugKey">
+                <ui-label value="i18n:xiaomi-quick-game.options.use_debug_keystore"></ui-label>
+            </ui-checkbox>
+        </div>
+    </ui-prop>
+    <build-prop
+        :error="verifyRes.certificatePemPath"
+    >
+        <ui-prop class="no-wrap" @confirm.stop="onConfirm" :error="!!verifyRes.certificatePemPath">
+            <ui-label slot="label" value="i18n:xiaomi-quick-game.options.certificate_pem_path"></ui-label>
+            <div slot="content">
+                <ui-file path="certificatePemPath" protocols="project,file"
+                    :value="pkgOptions.certificatePemPath"
+                    :disabled="pkgOptions.useDebugKey"
+                    :tooltip="verifyRes.certificatePemPath || 'i18n:xiaomi-quick-game.options.certificate_pem_path_hint'"
+                ></ui-file>
+                <ui-button
+                    @confirm.stop="onNewCertificate"
+                    :disabled="pkgOptions.useDebugKey"
+                ><ui-label value="i18n:xiaomi-quick-game.options.new"></ui-label></ui-button>
+            </div>
+        </ui-prop>
+    </build-prop>
+    <build-prop path="privatePemPath"
+        :error="verifyRes.privatePemPath"
+    >
+        <ui-prop @confirm.stop="onConfirm" :error="!!verifyRes.privatePemPath">
+            <ui-label slot="label" value="i18n:xiaomi-quick-game.options.private_pem_path"></ui-label>
+            <div slot="content">
+                <ui-file path="privatePemPath" protocols="project,file"
+                    :value="pkgOptions.privatePemPath"
+                    :disabled="pkgOptions.useDebugKey"
+                    :tooltip="verifyRes.privatePemPath || 'i18n:xiaomi-quick-game.options.private_pem_path_hint'"
+                ></ui-file>
+            </div>
+        </ui-prop>
+    </build-prop>
+</div>

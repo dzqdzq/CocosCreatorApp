@@ -1,0 +1,41 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Multi curves</h2>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                :value="keyframes"
+                :config="config"
+                @change="addEvents('change')"
+                @confirm="addEvents('confirm')"
+                @transform="addEvents('transform')"
+            ></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor :value="keyframes"&gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+            <div>events: {{events.toString()}}</div>
+        </div>
+    </ui-section>
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Single Curve</h2>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                :value="singleKeyframes"
+                :config="config"
+            ></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor :value="keyframes"&gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <ui-curve-editor ref="curve" style="width: 500px; height: 400px;"></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor &gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <!-- <ui-curve-editor :value="keyframes" style="width: 500px; height: 400px;"></ui-curve-editor> -->
+</div>

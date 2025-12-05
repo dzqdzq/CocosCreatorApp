@@ -1,0 +1,43 @@
+<div class="wechatgame">
+    <ui-prop class="build-prop">
+        <ui-label slot="label"
+            value="i18n:wechatgame.options.wasm_experimental"
+            tooltip="i18n:wechatgame.options.wasm_experimental_tips"
+        ></ui-label>
+        <div slot="content">
+            <ui-select
+                @confirm="onConfirm($event, 'wasm')"
+                :value="physics3D ? pkgOptions.wasm || 'wasm' : 'none'"
+            >
+                <option value="none" v-if="!physics3D">{{t('physics_disabled')}}</option>
+                <option value="wasm">{{t('on')}}</option>
+                <option value="js">{{t('off')}}</option>
+            </ui-select>
+            <div v-if="!physics3D" class="warning-tip">
+                <span>
+                    <ui-label value="i18n:wechatgame.tips.jump_to_edit_physics.start"></ui-label>
+                    <ui-label class="jump" @click="openProjectSettings" value="i18n:wechatgame.tips.jump_to_edit_physics.center"></ui-label>
+                    <ui-label value="i18n:wechatgame.tips.jump_to_edit_physics.end"></ui-label>
+                </span>
+            </div>
+        </div>
+    </ui-prop>
+    <ui-prop class="build-prop">
+        <div slot="label">
+            <ui-label
+                value="i18n:wechatgame.options.enabelWebGL2"
+                tooltip="i18n:wechatgame.options.enabelWebGL2"
+            ></ui-label>
+            <ui-icon color="true" value="experiment" tooltip="i18n:builder.experiment"></ui-icon>
+        </div>
+        <div slot="content" style="display: flex;">
+            <ui-select
+                :value="pkgOptions.enabelWebGL2 || 'off'"
+                @confirm="onConfirm($event, 'enabelWebGL2')"
+            >
+                <option value="off">{{t('forcedOff')}}</option>
+                <option value="sameAsProjectSetting">{{t('consistentWithProjectSettings')}}</option>
+            </ui-select>
+        </div>
+    </ui-prop>
+</div>

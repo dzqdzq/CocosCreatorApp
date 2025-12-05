@@ -1,0 +1,81 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+::-webkit-scrollbar {
+  height: calc(var(--size-normal-font) * 1px);
+  width: calc(var(--size-normal-font) * 1px);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--size-normal-radius) * 2px);
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-active-fill);
+  background-clip: content-box;
+  transition: background-color 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  border: calc(var(--size-normal-font) * 0.25px) solid transparent;
+  background-color: var(--color-active-fill-weakest);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+:host {
+  display: inline-block;
+  width: 100%;
+  border-color: var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+  color: var(--color-normal-contrast);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host textarea {
+  -webkit-appearance: none;
+  all: inherit;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 5px;
+  box-sizing: border-box;
+  line-height: 1.7;
+  min-height: 80px;
+  max-height: 300px;
+}
+:host(:hover) {
+  border-color: var(--color-hover-border);
+}
+:host([focused]) {
+  outline: none;
+  border-color: var(--color-focus-border);
+}
+textarea:focus {
+  outline: none;
+}

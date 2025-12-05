@@ -1,0 +1,118 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.console-panel {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--color-normal-fill);
+}
+.header {
+  padding: 4px 2px;
+  line-height: 19px;
+  flex-wrap: wrap;
+  background: var(--color-normal-fill);
+}
+.header > * {
+  margin: 0 4px;
+}
+.header ui-button {
+  color: var(--color-normal-contrast);
+  cursor: pointer;
+  padding: 0 5px;
+  margin: 0;
+}
+.select-label {
+  margin-right: 5px;
+}
+.collapse {
+  position: absolute;
+  right: 0;
+}
+section {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+  border-top: 1px solid var(--color-normal-border);
+  background: var(--color-normal-fill-emphasis);
+}
+.item {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  list-style: none;
+  overflow-x: scroll;
+  box-sizing: border-box;
+}
+.item .wrap {
+  padding: 0 7px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.item .wrap > .bg {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.item .text {
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item .text span,
+.item .text ui-icon {
+  vertical-align: middle;
+}
+.item .details,
+.item .stack {
+  margin-left: 25px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item .details ~ .stack {
+  margin-left: 40px;
+}
+.item .arrow {
+  display: inline-block;
+  user-select: none;
+  vertical-align: bottom;
+  transform: scale(0.8);
+  font-size: 10px;
+}
+.item .arrow[unfold] {
+  transform: rotate(90deg) scale(0.8);
+}
+.item.dark .wrap > .bg {
+  opacity: 0.4;
+  background: var(--color-normal-fill);
+}
+.item ui-image {
+  height: 24px;
+  vertical-align: top;
+  line-height: 0;
+}
+.item[fold] {
+  overflow-x: hidden;
+}
+.item[fold] .details,
+.item[fold] .stack {
+  display: none;
+}
+.item[fold] .text {
+  overflow: hidden;
+}
+.item[type='warn'] {
+  color: var(--color-warn-fill);
+}
+.item[type='error'] {
+  color: var(--color-danger-fill);
+}

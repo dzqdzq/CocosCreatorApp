@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"About",description:"Cocos Creator introduction",version:"Version",editor:"Editor",engine:"Engine",cocos2dx:"Native",external:"Native(External)",runtime:"Runtime",engineExtensions:"Engine extensions",editorExtensions:"Editor extensions"};

@@ -1,0 +1,83 @@
+:host {
+  --left-width: 35%;
+  display: block;
+  user-select: none;
+}
+:host .wrap {
+  display: flex;
+  position: relative;
+}
+:host .wrap ui-hint {
+  bottom: 100%;
+  max-width: 40%;
+  left: -5%;
+}
+:host .label {
+  display: flex;
+  width: var(--left-width);
+  height: 100%;
+  padding-right: 6px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+:host .label slot {
+  display: inline-flex;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+}
+:host .label .readonly {
+  font-size: 9px;
+  display: none;
+}
+:host .content {
+  display: flex;
+  flex: 1;
+}
+:host .content::slotted(*) {
+  flex: 1;
+}
+:host .content::slotted(ui-checkbox) {
+  flex: none;
+}
+:host .child {
+  display: block;
+}
+:host([hoving]) {
+  outline: 2px solid var(--color-focus-fill-weaker);
+}
+:host([selected]) .text {
+  color: var(--color-focus-contrast);
+}
+:host([readonly]) .readonly {
+  display: inline-flex;
+}
+:host([no-label]) .label {
+  display: none;
+}
+:host(.vector) {
+  --margin-bottom: 0;
+}
+:host(:focus) {
+  outline: none;
+}
+:host([dump="cc.Node"]),
+:host([dump="cc.Component"]),
+:host([dump="cc.Asset"]),
+:host([ui="node"]),
+:host([ui="component"]),
+:host([ui="asset"]) {
+  padding-top: 8px;
+}
+:host([dump="cc.Vec4"]) .content,
+:host([dump="cc.Rect"]) .content {
+  flex-wrap: wrap;
+}
+:host([dump="cc.Vec4"]) .content::slotted(*),
+:host([dump="cc.Rect"]) .content::slotted(*) {
+  flex: 0 0 50%;
+  margin-bottom: 5px;
+}
+:host([hidden]) {
+  display: none;
+}
