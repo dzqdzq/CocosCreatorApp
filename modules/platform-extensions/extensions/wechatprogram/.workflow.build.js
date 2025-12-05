@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path"),{readdirSync:readdirSync,statSync:statSync}=require("fs");exports.tsc=function(){return["./"]},exports.generate=async function(){},exports.unpacked=function(){return["./static/cocos"]};

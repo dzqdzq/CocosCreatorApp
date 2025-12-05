@@ -1,0 +1,81 @@
+<div class="general">
+
+    <!-- 编辑器语言 -->
+    <div>
+        <ui-icon value="warn"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:preferences.general.language"></ui-label>
+            <ui-select slot="content"
+                :value="settings.language"
+                @confirm="_onSettingChanged($event, 'language')"
+            >
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+            </ui-select>
+        </ui-prop>
+    </div>
+
+    <!-- 初始预览 IP 地址选择 -->
+    <div>
+        <ui-icon value="warn"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:preferences.general.preview_ip"></ui-label>
+            <ui-select slot="content"
+                :value="settings.preview_ip"
+                @confirm="_onSettingChanged($event, 'preview_ip')"
+            >
+                <option
+                    v-for="ip in ipList"
+                    :value="ip"
+                >{{ip}}</option>
+            </ui-select>
+        </ui-prop>
+    </div>
+
+    <!-- UI 默认步进 -->
+    <div>
+        <ui-icon value="warn"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:preferences.general.step"></ui-label>
+            <ui-num-input slot="content"
+                :value="settings.step"
+                :step="settings.setp"
+                :min="0.000000001"
+                @confirm="_onSettingChanged($event, 'step')"
+            ></ui-num-input>
+        </ui-prop>
+    </div>
+
+    <div>
+        <ui-icon value="warn"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label"
+                value="i18n:preferences.general.wheel_enable"
+                tooltip="i18n:preferences.general.wheel_enable_tips"
+            ></ui-label>
+            <ui-checkbox slot="content"
+                :value="settings.wheel_enable"
+                @confirm="_onSettingChanged($event, 'wheel_enable')"
+            ></ui-checkbox>
+        </ui-prop>
+    </div>
+
+    <!-- 皮肤主题 -->
+    <!--
+    <div>
+        <ui-icon value="warn"></ui-icon>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:preferences.general.themeColor"></ui-label>
+            <ui-select slot="content"
+                :value="settings.theme_color || themeList[0]"
+                @confirm="_onSettingChanged($event, 'theme_color')"
+            >
+                <option
+                    v-for="name in themeList"
+                    :value="name"
+                >{{name}}</option>
+            </ui-select>
+        </ui-prop>
+    </div>
+    -->
+</div>

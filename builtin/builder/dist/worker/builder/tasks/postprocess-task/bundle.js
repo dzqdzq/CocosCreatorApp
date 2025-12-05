@@ -1,0 +1,1 @@
+"use strict";async function handle(e,t,s){await this.bundleManager.outputBundle()}Object.defineProperty(exports,"__esModule",{value:!0}),exports.handle=exports.name=exports.title=void 0,exports.title="i18n:builder.tasks.sort_asset_bundle",exports.name="data-task/asset_bundle",exports.handle=handle;

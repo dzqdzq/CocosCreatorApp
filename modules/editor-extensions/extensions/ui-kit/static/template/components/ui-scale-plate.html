@@ -1,0 +1,124 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Default</h2>
+            <ui-prop>
+                <ui-label slot="label" value="Change Time to test"></ui-label>
+                <ui-num-input step="1" slot="content"
+                    :value="time"
+                    @change="time = $event.target.value"
+                ></ui-num-input>
+            </ui-prop>
+            <ui-scale-plate style="width: 300px; height: 60px;"
+                @change="time = $event.target.value"
+                :value="time"
+            ></ui-scale-plate>
+            <ui-code language="html">
+                &lt;ui-scale-plate :value="time"&gt;&lt;/ui-scale-plate&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>value</h2>
+            <ui-scale-plate style="width: 300px;"
+                :value="time"
+                :config="config"
+            ></ui-scale-plate>
+            <ui-code language="html">
+                &lt;ui-scale-plate :value="time" :config="config&gt;&lt;/ui-scale-plate&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Config: {max: 1340 }</h2>
+            <ui-scale-plate style="width: 300px;"
+                :config="config"
+            ></ui-scale-plate>
+            <ui-code language="html">
+                &lt;ui-scale-plate :config="config"&gt;&lt;/ui-scale-plate&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Config: { max: 66, preci: 2 }</h2>
+            <ui-scale-plate ref="scalePlate"></ui-scale-plate>
+            <ui-code language="html">
+                &lt;ui-scale-plate&gt;&lt;/ui-scale-plate&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                config
+            </ui-code>
+            <ui-code>
+                // attribute config description
+                interface IConfig {
+                    min?: number;
+                    max?: number;
+                    minStep?: number;
+                    preci?: number;
+                }
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <div class="row">
+                <h2>Try It</h2>
+                <ui-scale-plate style="width: 300px; height: 60px;"
+                    @change="onChange($event.target.value); time = $event.target.value"
+                    @confirm="onConfirm($event.target.value)"
+                    @transform="onTransform"
+                    :value="time"
+                ></ui-scale-plate>
+            </div>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    transform
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-scale-plate
+                        :value="time"
+                        @change="onChange($event.target.value); time = $event.target.value"
+                        @confirm="onConfirm($event.target.value)"
+                        @transform="onTransform"
+                    &gt;&lt;/ui-scale-plate&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-scale-plate id="ui-scale-plate"&gt;&lt;/ui-scale-plate&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-scale-plate');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        // changed value
+                        console.log(event.target.value);
+                    });
+                    element.addEventListener('confirm', (event) => {
+                        // confirm value
+                        console.log(event.target.value);
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

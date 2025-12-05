@@ -1,0 +1,155 @@
+<div class="wrap">
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.initialize"
+    >
+        <div class="row">
+            <h2>droppable</h2>
+            <ui-component droppable="cc.Camera"></ui-component>
+            <ui-code language="html">
+                &lt;ui-component droppable="cc.Camera"&gt;&lt;/ui-component&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>
+                <ui-label value="i18n:ui-kit.preview.ui.component.valueMissing"></ui-label>
+            </h2>
+            <ui-component
+                droppable="cc.DirectionalLight"
+                value="xxx"
+            ></ui-component>
+            <ui-code language="html">
+                &lt;ui-component droppable="cc.DirectionalLight" value="xxx"&gt;&lt;/ui-component&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>placeholder</h2>
+            <ui-component
+                droppable="cc.Camera"
+                placeholder="i18n:ui-kit.preview.ui.component.placeholder"
+            ></ui-component>
+            <ui-code language="html">
+                &lt;ui-component droppable="cc.Camera" placeholder="i18n:ui-kit.preview.ui.component.placeholder"&gt;&lt;/ui-component&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <ui-component
+                readonly
+                droppable="cc.Canvas"
+            ></ui-component>
+            <ui-code language="html">
+                &lt;ui-component readonly droppable="cc.Canvas"&gt;&lt;/ui-component&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-component
+                disabled
+                droppable="cc.Canvas"
+            ></ui-component>
+            <ui-code language="html">
+                &lt;ui-component disabled" droppable="cc.Canvas"&gt;&lt;/ui-component&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.parameters"
+    >
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="json">
+                droppable = ''; // component type, not support multiple types
+                placeholder = '';
+                value = ''; // component uuid, single，not support multiple
+                disabled; // statement
+                readonly; // statement
+                invalid; // statement
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.getSet"
+    >
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-component
+                droppable="cc.Camera"
+                ref="component"
+                @change="opnChange($event.target.value)"
+                @confirm="onConfirm($event.target.value)"
+                @cancel="onCancel($event.target.value)"
+            ></ui-component>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    cancel
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-component droppable="cc.Camera" ref="component"
+                        @change="opnChange($event.target.value)"
+                        @confirm="onConfirm($event.target.value)"
+                        @cancel="onCancel($event.target.value)"
+                    &gt;&lt;/ui-component&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-component droppable="cc.Camera" id="component"&gt;&lt;/ui-component&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#component');
+
+                    // addEventListener
+                    element.addEventListener('change', (event) => {
+                        const nodeUuid = event.target.value;
+                    });
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange', event.target.value);
+                    });
+                    element.addEventListener('cancel', (event) => {
+                        console.log('onCancel', event.target.value);
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section
+        class="config section"
+        expand
+        header="i18n:ui-kit.preview.getSet"
+    >
+        <div class="row">
+            <ui-code language="typescript">
+                const element = document.getElementById('#component');
+                // set value
+                element.value = componentUuid; // componentUuid already exist
+
+                // get value
+                const componentUuid = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

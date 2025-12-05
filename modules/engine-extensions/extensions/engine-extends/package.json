@@ -1,0 +1,124 @@
+{
+    "name": "engine-extends",
+    "version": "1.0.0",
+    "description": "",
+    "package_version": 2,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "main": "./dist/browser.js",
+    "license": "ISC",
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:engine-extends.menu.refresh_all_effect",
+                "message": "refresh-all-effect"
+            }
+        ],
+        "asset-db": {
+            "importer": {
+                "script": "./dist/importer/index.js",
+                "priority": [
+                    "",
+                    ".tmx",
+                    ".plist"
+                ],
+                "list": [
+                    "registerUnknownImporter",
+                    "registerDirectoryImporter",
+                    "registerTextImporter",
+                    "registerJSONImporter",
+                    "registerSpineImporter",
+                    "registerDragonBonesImporter",
+                    "registerDragonBonesAtlasImporter",
+                    "registerTerrainImporter",
+                    "registerJavascriptImporter",
+                    "registerTypescriptImporter",
+                    "registerSceneImporter",
+                    "registerPrefabImporter",
+                    "registerSpriteFrameImporter",
+                    "registerTiledMapImporter",
+                    "registerBufferImporter",
+                    "registerImageImporter",
+                    "registerSignImageImporter",
+                    "registerAlphaImageImporter",
+                    "registerTextureImporter",
+                    "registerTextureCubeImporter",
+                    "registerERPTextureCubeImporter",
+                    "registerTextureCubeFaceImporter",
+                    "registerRenderTextureImporter",
+                    "registerRenderTextureSpriteFrameImporter",
+                    "registerGltfImporter",
+                    "registerGltfMeshImporter",
+                    "registerGltfAnimationImporter",
+                    "registerGltfSkeletonImporter",
+                    "registerGltfMaterialImporter",
+                    "registerGltfPrefabImporter",
+                    "registerGltfImageImporter",
+                    "registerGltfFbxImporter",
+                    "registerMaterialImporter",
+                    "registerPhysicsMaterialImporter",
+                    "registerEffectImporter",
+                    "registerEffectHeaderImporter",
+                    "registerAudioImporter",
+                    "registerAnimationImporter",
+                    "registerAnimationGraphImporter",
+                    "registerAnimationGraphVariantImporter",
+                    "registerAnimationMaskImporter",
+                    "registerTTFFontImporter",
+                    "registerBitmapImporter",
+                    "registerParticleImporter",
+                    "registerTexturePackerImporter",
+                    "registerAutoAtlasImporter",
+                    "registerLabelAtlasImporter",
+                    "registerRenderPipelineImporter",
+                    "registerRenderStageImporter",
+                    "registerRenderFlowImporter",
+                    "registerInstantiationMaterialImporter",
+                    "registerInstantiationMeshImporter",
+                    "registerInstantiationSkeletonImporter",
+                    "registerInstantiationAnimationImporter",
+                    "registerVideoImporter"
+                ]
+            },
+            "hook": "./dist/contributions/asset-db-hook",
+            "script": "./dist/contributions/asset-db-script"
+        },
+        "inspector": {
+            "drop": {
+                "node": [
+                    {
+                        "type": "cc.Script",
+                        "message": "inspector-drop-script"
+                    },
+                    {
+                        "type": "cc.animation.AnimationGraph",
+                        "message": "inspector-drop-asset-onto-node"
+                    }
+                ]
+            }
+        },
+        "messages": {
+            "inspector-drop-script": {
+                "methods": [
+                    "inspectorDropScript"
+                ]
+            },
+            "inspector-drop-asset-onto-node": {
+                "methods": [
+                    "onInspectorDropAssetOntoNode"
+                ]
+            },
+            "refresh-all-effect": {
+                "methods": [
+                    "refreshAllEffect"
+                ]
+            }
+        },
+        "scene": {
+            "script": "./dist/scene/index.js"
+        }
+    }
+}

@@ -1,0 +1,104 @@
+<div class="extension">
+    <header>
+        <ui-label value="i18n:extension.create_package.title"></ui-label>
+    </header>
+    <main class="extensionInfos">
+        <div ref="content" class="content" v-if="!isEmptyObject(extensionInfoMap)">
+            <div
+                v-for="(templatesInfo,extensionName) in extensionInfoMap"
+                class="templates"
+            >
+                <ui-label
+                    class="tag"
+                    :value="extensionName"
+                ></ui-label>
+                <div
+                    v-for="(template,index) in templatesInfo.templates"
+                    :active="currentTemplate.path === template.path"
+                    :data-template-id="template.id"
+                    class="templateItem"
+                    @click="selectTemplate(extensionName, template)"
+                >
+                    <ui-label
+                        class="name"
+                        :value="template.name"
+                    ></ui-label>
+                    <ui-label
+                        readonly
+                        class="description"
+                        :value="template.description"
+                    ></ui-label>
+                </div>
+            </div>
+        </div>
+        <div class="content empty" v-else>
+            <ui-label value="i18n:extension.create_package.no_template"></ui-label>
+        </div>
+        <div class="configure">
+            <ui-prop>
+                <ui-label slot="label" value="i18n:extension.create_package.name"></ui-label>
+                <ui-input slot="content" :value="name" @change="name = $event.target.value"
+                :placeholder="t('extension.create_package.name_placeholder')"
+                :wrong="wrongName"
+                ></ui-input>
+            </ui-prop>
+            <ui-prop class="tips" v-show="wrongName">
+                <ui-label slot="content" class="tips" value="i18n:extension.create_package.extension_name_regular_test_fail"></ui-label>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:extension.create_package.author"></ui-label>
+                <ui-input slot="content" :value="author" @change="author = $event.target.value" 
+                :wrong="wrongAuthor"
+                :placeholder="t('extension.create_package.author_placeholder')"></ui-input>
+            </ui-prop>
+            <ui-prop class="tips" v-show="wrongAuthor" >
+                <ui-label class="tips"
+                slot="content"
+                value="i18n:extension.create_package.author_placeholder"></ui-label>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:extension.create_package.editor_version"></ui-label>
+                <ui-input slot="content" :value="editorVersion" disabled 
+                :wrong="wrongEditorVersion"
+                :placeholder="t('extension.create_package.editor_version_placeholder')"></ui-input>
+            </ui-prop>
+            <ui-prop class="tips" v-show="wrongEditorVersion">
+                <ui-label class="tips" 
+                slot="content"
+                value="i18n:extension.create_package.wrong_editor_version"></ui-label>
+            </ui-prop>
+            <ui-prop v-if="false">
+                <ui-label slot="label" value="i18n:extension.create_package.show_in_manager"
+                tooltip="i18n:extension.create_package.show_in_manager_tooltip"
+                ></ui-label>
+                <ui-checkbox slot="content" :value="showInManager" @change="showInManager = $event.target.value"></ui-checkbox>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:extension.create_package.show_in_folder"
+                tooltip="i18n:extension.create_package.show_in_folder_tooltip"
+                ></ui-label>
+                <ui-checkbox slot="content" :value="showInFolder" @change="showInFolder = $event.target.value"></ui-checkbox>
+            </ui-prop>
+            <ui-prop>
+                <ui-label slot="label" value="i18n:extension.create_package.location"></ui-label>
+                <ui-select slot="content" placeholder="location" :value="currentLocation" @confirm="currentLocation = $event.target.value">
+                    <option v-for="(value,locationName) in LocationType" :value="value">{{t(locationName)}}</option>
+                </ui-select>
+            </ui-prop>
+            <ui-prop class="tips" v-show="extensionExist">
+                <ui-label class="tips" 
+                slot="content"
+                value="i18n:extension.create_package.extension_exist"></ui-label>
+            </ui-prop>
+            <footer>
+                <ui-button
+                    @confirm="apply"
+                    :disabled="wrongName || wrongAuthor || wrongEditorVersion || extensionExist"
+                    :loading="applying"
+                >
+                    <ui-label value="i18n:extension.create"></ui-label>
+                </ui-button>
+            </footer>
+        </div>  
+    </main>
+</div>

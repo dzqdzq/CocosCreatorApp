@@ -1,0 +1,164 @@
+{
+    "name": "animation-graph",
+    "title": "i18n:animation-graph.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:animation-graph.description",
+    "main": "./dist/browser.js",
+    "panels": {
+        "default": {
+            "title": "i18n:animation-graph.title",
+            "main": "./dist/panel.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true
+            },
+            "size": {
+                "min-width": 450,
+                "min-height": 100,
+                "width": 900,
+                "height": 650
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene.js"
+        },
+        "inspector": {
+            "type": {
+                "animation-graph": "./dist/contributions/inspector/index.js"
+            }
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:animation-graph.description",
+                "icon": "./static/icon.png",
+                "message": "open"
+            }
+        ],
+        "profile": {
+            "editor": {
+                "animation-graph.pose-expr": {
+                    "label": "i18n:animation-graph.pose.experiment",
+                    "default": false
+                }
+            }
+        },
+        "preferences": {
+            "laboratory": [
+                "animation-graph.pose-expr"
+            ]
+        },
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+5",
+                "mac": "cmd+5"
+            },
+            {
+                "message": "unselect",
+                "win": "esc",
+                "mac": "esc",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "apply",
+                "mac": "cmd+s",
+                "win": "ctrl+s",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "delete",
+                "win": "delete",
+                "mac": "delete",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "delete",
+                "win": "ctrl+backspace",
+                "mac": "cmd+backspace",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "delete",
+                "win": "backspace",
+                "mac": "backspace",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "copy",
+                "win": "ctrl+c",
+                "mac": "cmd+c",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "duplicate",
+                "win": "ctrl+d",
+                "mac": "cmd+d",
+                "when": "PanelName === 'animation-graph'"
+            },
+            {
+                "message": "paste",
+                "win": "ctrl+v",
+                "mac": "cmd+v",
+                "when": "PanelName === 'animation-graph'"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "dialog-warn": {
+                "methods": [
+                    "dialogWarn"
+                ]
+            },
+            "apply": {
+                "methods": [
+                    "default.apply"
+                ]
+            },
+            "unselect": {
+                "methods": [
+                    "default.unselect"
+                ]
+            },
+            "delete": {
+                "methods": [
+                    "default.delete"
+                ]
+            },
+            "copy": {
+                "methods": [
+                    "default.copy"
+                ]
+            },
+            "duplicate": {
+                "methods": [
+                    "default.duplicate"
+                ]
+            },
+            "paste": {
+                "methods": [
+                    "default.paste"
+                ]
+            },
+            "scene:ready": {
+                "methods": [
+                    "profileBindWatchWhenSceneReady",
+                    "default.refresh"
+                ]
+            },
+            "animation-graph:changed": {
+                "methods": [
+                    "default.refresh"
+                ]
+            }
+        }
+    }
+}

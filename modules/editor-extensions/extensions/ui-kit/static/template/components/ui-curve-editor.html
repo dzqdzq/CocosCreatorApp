@@ -1,0 +1,121 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>Multi curves</h2>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                :value="keyframes"
+                :config="config"
+            ></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor
+                    :value="keyframes"
+                    :config="config"
+                &gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Single Curve</h2>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                :value="singleKeyframes"
+                :config="config"
+            ></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor
+                    :value="keyframes"
+                    :config="config"
+                &gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Sample</h2>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                sample
+                :value="singleKeyframes"
+                :config="config"
+            ></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor sample
+                    :value="keyframes"
+                    :config="config"
+                &gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>Empty data</h2>
+            <ui-curve-editor ref="curve" style="width: 500px; height: 400px;"></ui-curve-editor>
+            <ui-code language="html">
+                &lt;ui-curve-editor &gt;&lt;/ui-curve-editor&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value
+                config
+                sample
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <ui-curve-editor style="width: 500px; height: 400px;"
+                :value="singleKeyframes"
+                :config="config"
+                @change="onChange"
+                @confirm="onConfirm"
+                @transform="onTransform"
+            ></ui-curve-editor>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    change // general case use this event
+                    confirm
+                    transform
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-curve-editor
+                        :value="singleKeyframes"
+                        :config="config"
+                        @change="onChange"
+                        @confirm="onConfirm"
+                        @transform="onTransform"
+                    &gt;&lt;/ui-curve-editor&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-curve-editor id="ui-curve-editor" value="{{singleKeyframes}}" config="{{config}}"&gt;&lt;/ui-curve-editor&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#ui-curve-editor');
+
+                    element.addEventListener('confirm', (event) => {
+                        console.log('onConfirm');
+                    });
+                    element.addEventListener('change', (event) => {
+                        console.log('onChange');
+                    });
+                    element.addEventListener('transform', (event) => {
+                        console.log('onTransform');
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

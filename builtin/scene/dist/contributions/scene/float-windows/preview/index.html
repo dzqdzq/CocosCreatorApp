@@ -1,0 +1,47 @@
+<style>
+     /* app/builtin/scene/static/style/float-window.less 设置了 section 的样式，由于 section 在外层，所以这边只能通过样式覆盖 */
+
+    .float-window[simple] > section {
+        overflow: visible;
+        margin: 0;
+    }
+    .camera-preview { 
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .camera-preview:hover .toolbars {
+        visibility: visible;
+    }
+    .camera-preview .previewCanvas { 
+        position: relative;
+        
+    }
+    .camera-preview .toolbars {
+         /* 实际的显示高是24，这边为了让它 absolute 出去，还能保持hover状态，+6 用于遮挡空隙部分*/
+        height: calc(24px + 6px);
+        /* 加 padding 也是为了让hover的体验更好，不容易失去hover */
+        padding-top: 10px;
+        position: absolute;
+        right: 0;
+        bottom: calc(100% - 1px);
+        display: flex;
+        flex-direction: row-reverse;
+        visibility: hidden;
+    }
+    .camera-preview .canvas-contain {
+        box-sizing: border-box;
+        outline: 2px solid  var(--color-normal-fill); /* 不会占用 canvas 宽度 */ 
+    }
+</style>
+<div class="camera-preview">
+    <div class="toolbars">
+        <ui-panel></ui-panel>
+    </div>
+    <div class="canvas-contain">
+        <canvas class="previewCanvas"></canvas>
+    </div>
+</div>

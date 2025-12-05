@@ -1,0 +1,78 @@
+<div class="hierarchy">
+    <header class="header">
+        <ui-button class="transparent icon" tooltip="i18n:hierarchy.menu.createMenu"
+            @click="popupCreateMenu"
+        >
+            <ui-icon value="add-more"></ui-icon>
+        </ui-button>
+
+        <ui-input tabindex="-1" ref="searchInput" show-clear="true"
+            tooltip="i18n:hierarchy.menu.searchTip"
+            :placeholder="searchPlaceholder"
+            @change="searchChange"
+            @keydown.up.stop="searchArrowDown($event,'up')"
+            @keydown.down.stop="searchArrowDown($event,'down')"
+            @keydown.left.stop
+            @keydown.right.stop
+            @keydown.enter.stop
+        >
+            <div
+                class="transparent icon triangle prefix"
+                tooltip="i18n:hierarchy.menu.search"
+                @click.stop="popupSearchMenu"
+                slot="prefix"
+            >
+                <ui-icon value="search-more" class="search-type"></ui-icon>
+            </div>
+        </ui-input>
+
+        <ui-button class="transparent icon expand"
+            :tooltip="'i18n:hierarchy.menu.'+(!allExpand?'allExpand':'allCollapse')"
+            @click="allToggle"
+        >
+            <ui-icon class="expand" ref="toggleExpandIcon"
+                :value="!allExpand ? 'expand' : 'collapse'"
+            ></ui-icon>
+        </ui-button>
+    </header>
+
+    <div class="search-tip"
+        v-if="searchType !== 'name'"
+    >
+        <div class="condition" case="search">
+            <div class="item">
+                <ui-label class="name"
+                    :value="searchTypeLabel"
+                ></ui-label>
+            </div>
+            <ui-icon class="cancel" value="close" color="true" tooltip="i18n:hierarchy.menu.cancelSearchType"
+                @click="cancelSearchType"
+            ></ui-icon>
+        </div>
+    </div>
+
+    <div class="loading center"
+        v-if="!sceneReady || isRefreshing"
+    >
+        <ui-loading></ui-loading>
+    </div>
+
+    <section class="content" ref="viewBox"
+        @click.right="popupPanelMenu()"
+    >
+        <tree ref="tree"></tree>
+
+        <div class="drop-box"
+            :style="dropBox.style"
+        >
+            <div class="vertical-line"
+                v-if="dropBox.position==='after'"
+                :style="dropBox.vertical"
+            ></div>
+        </div>
+
+        <div class="scroll-bar"
+            :style="{ height: treeHeight + 'px'}"
+        ></div>
+    </section>
+</div>

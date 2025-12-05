@@ -1,0 +1,24 @@
+<div class="groups">
+    <ui-section class="group config"
+        v-for="(group, index) in groups"
+        v-if="group"
+        :key="index"
+        :expand="!!groups.length"
+    >
+        <ui-label slot="header"
+            :value="group.name"
+        ></ui-label>
+
+        <div class="content">
+            <group-items
+                v-for="item in group.items"
+                :key="item.assetUuid"
+                :item="item"
+                :active="active"
+                @delete="onDeLete"
+                @changeIcon="onChangeIcon"
+                @rename="onRename"
+            ></group-items>
+        </div>
+    </ui-section>
+</div>

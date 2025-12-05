@@ -1,0 +1,87 @@
+<div class="content">
+
+    <!-- 左侧的消息列表(type、interface、target、message) -->
+    <ul class="slider" ref="slider">
+        <li
+            v-for="item in list"
+            :active="item === message"
+            @click="message = item"
+        >
+            <span
+                v-if="item.type !== 'reply'"
+            >↑</span>
+            <span
+                v-else
+            >↓</span>
+
+            <span
+                :class="item.process"
+            >{{item.process}}</span>
+            <span
+                :class="item.type === 'reply' ? 'request' : item.type"
+            >{{item.type === 'reply' ? 'request' : item.type}}</span>
+            <!-- <span class="target">{{item.name}}</span> -->
+            <span class="message">{{item.message}}</span>
+            <ui-loading
+                :show="item.loading"
+            ></ui-loading>
+        </li>
+    </ul>
+
+    <!-- 右侧的消息详情(source、params) -->
+    <div class="details">
+        <header>
+            <ui-icon value="play"
+                v-if="!record"
+                @click="start()"
+            ></ui-icon>
+            <ui-icon value="pause"
+                v-else
+                @click="stop()"
+            ></ui-icon>
+            <ui-icon value="clear"
+                @click="clear()"
+            ></ui-icon>
+            <ui-icon value="save"
+                @click="save()"
+            ></ui-icon>
+            <ui-checkbox
+                :value="autoSave"
+                @confirm="toggleAutoSave"
+            >
+                Auto Save
+            </ui-checkbox >
+        </header>
+
+        <section>
+            <template
+                v-if="message"
+            >
+                <div>
+                    <span class="name">Target:</span>
+                    <span class="content">{{message ? message.name : ''}}</span>
+                </div>
+                <div>
+                    <span class="name">Source:</span>
+                    <span class="content">{{message ? getURL(message.source) : ''}}</span>
+                </div>
+                <div>
+                    <span class="name">Timestamp:</span>
+                    <span class="content">{{message ? message.timestamp : 0}}</span>
+                </div>
+                <div>
+                    <span class="name">Time:</span>
+                    <span class="content">{{message ? message.time : 0}}</span>
+                </div>
+                <div class="param">
+                    <div class="name">Params:</div>
+                    <div class="right">
+                        <ui-markdown
+                            v-html="'```json\n' + JSON.stringify(message.args, null, 2) + '\n```'"
+                        ></ui-markdown>
+                    </div>
+                </div>
+            </template>
+        </section>
+    </div>
+</div>

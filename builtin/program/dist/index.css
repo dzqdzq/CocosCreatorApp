@@ -1,0 +1,48 @@
+.program > ui-setting {
+  outline: none;
+}
+.program > ui-setting > div {
+  display: flex;
+  padding: 2px 0;
+}
+.program > ui-setting > div > ui-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+.program > ui-setting > div:hover ui-icon {
+  visibility: visible;
+}
+.program > ui-setting ui-prop {
+  --left-width: 40%;
+  flex: 1;
+  padding-left: 5px;
+}
+.program > ui-setting ui-prop > ui-file,
+.program > ui-setting ui-prop > ui-input,
+.program > ui-setting ui-prop > ui-num-input,
+.program > ui-setting ui-prop > ui-select {
+  flex: 1;
+}
+.program > ui-setting p {
+  margin-top: 0;
+}
+.program > ui-setting .command-argument {
+  margin-left: 16px;
+}
+.program > ui-setting .command-argument ui-label {
+  padding-left: 16px;
+}
+.program > ui-setting .command-argument ui-input {
+  color: var(--color-normal-contrast-emphasis);
+}
+.program > ui-setting .command-argument div[slot='content'] {
+  display: flex;
+}
+.program > ui-setting .command-argument div[slot='content'] ui-input {
+  flex: 1;
+  margin-right: 4px;
+}
+.program > ui-setting[type='local'] > div > ui-icon {
+  color: var(--color-warn-fill);
+  visibility: visible;
+}

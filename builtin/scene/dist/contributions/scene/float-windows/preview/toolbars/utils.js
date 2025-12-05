@@ -1,0 +1,1 @@
+"use strict";function getParent(e){return e?e.parentElement||e.getRootNode().host:null}function getParentRecursive(e,t){let r=e;do{if(t(r=getParent(r)))break}while(r);return r}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getParentRecursive=void 0,exports.getParentRecursive=getParentRecursive;

@@ -1,0 +1,1 @@
+"use strict";async function migrateProject(t){if(!t["splash-setting"])return;const e=t["splash-setting"].url;e&&Editor.Utils.Path.contains(Editor.App.path,e)&&delete t["splash-setting"].url}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=void 0,exports.migrateProject=migrateProject;

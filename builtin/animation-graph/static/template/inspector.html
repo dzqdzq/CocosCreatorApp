@@ -1,0 +1,517 @@
+<div class="container">
+    <div class="layers"
+        v-if="queryData"
+        v-show="active==='layer'"
+    >
+        <div class="layer config"
+            v-if="viewLayer()"
+        >
+            <div class="header">
+                <ui-label class="name"
+                    :value="viewLayer().name"
+                ></ui-label>
+            </div>
+            <div class="content">
+                <ui-prop>
+                    <ui-label slot="label" value="i18n:animation-graph.layer.mask"></ui-label>
+                    <ui-asset slot="content" droppable="cc.animation.AnimationMask" 
+                        :value="viewLayer().props.mask.uuid || ''"
+                        @change.stop="changeLayer($event,'mask')"
+                    ></ui-asset>
+                </ui-prop>
+                <ui-prop>
+                    <ui-label slot="label" value="i18n:animation-graph.layer.weight"></ui-label>
+                    <ui-num-input slot="content" step="0.1" min="0" max="1"
+                        :value="viewLayer().props.weight"
+                        @confirm="changeLayer($event,'weight')"
+                    ></ui-num-input>
+                </ui-prop>
+                <ui-prop tooltip="i18n:animation-graph.layer.additive.tooltip">
+                    <ui-label slot="label" value="i18n:animation-graph.layer.additive.label"></ui-label>
+                    <ui-checkbox slot="content"
+                        :value="viewLayer().props.additive"
+                        @confirm="changeLayer($event,'additive')"
+                    ></ui-checkbox>
+                </ui-prop>
+                <layer-stashes-area
+                    :stashes="viewLayer().stashes"
+                    :layer-id="queryData.view.layerIndex"
+                ></layer-stashes-area>
+            </div>
+        </div>
+    </div>
+    <div class="states"
+        v-show="active==='state'"
+    >
+        <template
+            v-if="viewState()"
+        >
+            <div class="state config"
+                :type="viewState().type"
+                :ref="'state-' + queryData.view.stateIndex"
+            >
+                <div class="header">
+                    <ui-input class="name" auto-select="false"
+                        v-if="viewState().rename"
+                        :value="viewState().name"
+                        @blur="renameStateSubmit($event)"
+                        @keydown.stop
+                        @keydown.enter="renameStateSubmit($event)"
+                        @keydown.esc="renameStateCancel()"
+                        @click.stop
+                        @dblclick.stop
+                        v-focus
+                    ></ui-input>
+                    <ui-label class="name"
+                        v-else
+                        :value="viewState().name"
+                    ></ui-label>
+                    <ui-icon class="menu" value="menu" tooltip="i18n:animation-graph.state.menu"
+                        @click.stop="stateMenu($event)"
+                    ></ui-icon>
+                </div>
+                <div class="content">
+                    <template 
+                        v-if="viewState().props"
+                    >
+                        <ui-prop class="prop"
+                            v-if="'speed' in viewState().props"
+                        >
+                            <ui-label slot="label" value="i18n:animation-graph.state.prop.speed"></ui-label>
+                            <ui-num-input slot="content" step="0.1" min='0'
+                                :value="viewState().props.speed"
+                                @change.stop="changeState($event.target.value, 'speed')"
+                            ></ui-num-input>
+                        </ui-prop>
+                        <ui-prop class="prop"
+                            v-if="'speedMultiplier' in viewState().props"
+                        >
+                            <ui-label slot="label" tooltip="i18n:animation-graph.state.prop.speedMultiplier" value="i18n:animation-graph.state.prop.speedMultiplier"></ui-label>
+                            <ui-checkbox slot="content"  tooltip="i18n:animation-graph.state.prop.speedMultiplierEnabled"
+                                :value="viewState().props.speedMultiplierEnabled"
+                                @change.stop="changeState($event.target.value, 'speedMultiplierEnabled')"
+                            ></ui-checkbox>
+                            <variable-selection
+                                slot="content"
+                                v-show="viewState().props.speedMultiplierEnabled"
+                                :value="viewState().props.speedMultiplier"
+                                :variables="queryData.variables"
+                                :type-filter="'FLOAT'"
+                                @change="(varName) => changeState(varName, 'speedMultiplier')"
+                            ></variable-selection>
+                        </ui-prop>
+                        <ui-section class="prop config" expand  cache-expand="asset-animation-graph-state-motion"
+                            v-if="'motion' in viewState().props"
+                            :ref="'state-' + queryData.view.stateIndex + '-motion'"
+                        >
+                            <template
+                                v-if="viewState().props.motion.type"
+                            >
+                                <ui-label class="name" slot="header"
+                                    :value="'i18n:animation-graph.motion.' + viewState().props.motion.type"
+                                ></ui-label>
+                                <ui-icon class="menu" slot="header" value="menu" tooltip="i18n:animation-graph.motion.menu"
+                                    @click.stop="motionMenuInState()"
+                                ></ui-icon>
+                            </template> 
+                            <template
+                                v-else
+                            >
+                                <ui-label class="name" slot="header"
+                                    value="i18n:animation-graph.motion.empty"
+                                ></ui-label>
+
+                                <ui-button class="edit"
+                                    @click.stop="motionAddMenuInState()"
+                                >
+                                    <ui-label value="i18n:animation-graph.motion.add"></ui-label>
+                                </ui-button>
+                            </template> 
+                            <ui-prop class="prop"
+                                v-if="viewState().props.motion.type===queryData.envType.ClipMotion"
+                            >
+                                <ui-label slot="label" value="i18n:animation-graph.state.prop.clip"></ui-label>
+                                <animation-graph-clip-asset slot="content"
+                                    v-if="viewState().props.motion.type===queryData.envType.ClipMotion"
+                                    :value="viewState().props.motion.value.uuid"
+                                    @change.stop="changeClipMotion($event)"
+                                ></animation-graph-clip-asset>
+                            </ui-prop>
+                            <ui-button class="edit"
+                                v-else-if="queryData.animationBlendType.includes(viewState().props.motion.type)"
+                                @click.stop="crumbMotion()"
+                            >
+                                <ui-label value="i18n:animation-graph.crumbs.edit"></ui-label>
+                            </ui-button>
+                        </ui-section>
+                    </template>
+                    <event-bindings-area
+                        v-if="viewState().eventBindings"
+                        :event-bindings="viewState().eventBindings"
+                        @change="(eventKind, eventName) => changeState(eventName, eventKind)"
+                    ></event-bindings-area>
+
+                    <template
+                        v-if="viewState().components" 
+                    >
+                    
+                        <ui-section class="prop config" expand cache-expand="asset-animation-graph-state-component"
+                            v-for="(component, componentIndex) in viewState().components" 
+                            :key="'component-' + componentIndex"
+                            :ref="'component-' + componentIndex"
+                            @change-dump="changeComponent(component.value, componentIndex)"
+                        >
+                            <ui-label class="name" slot="header"
+                                :value="component.name"
+                            ></ui-label>
+                            <ui-icon class="menu" slot="header" value="menu" tooltip="i18n:animation-graph.component.menu"
+                                @click.stop="componentMenu(componentIndex)"
+                            ></ui-icon>
+                            <ui-prop class="prop" ui="asset"
+                                v-if="component.assetUuid"
+                            >
+                                <ui-label slot="label" value="i18n:animation-graph.component.script"></ui-label>
+                                <ui-asset slot="content" droppable="cc.Script" disabled 
+                                    :value="component.assetUuid"
+                                ></ui-asset>
+                            </ui-prop>
+                            <component-prop class="prop" type="dump"
+                                v-for="(dump, name) in component.value" 
+                                :key="'component-' + componentIndex + '-' + name"
+                                :dump="dump"
+                            ></component-prop>
+                        </ui-section>
+
+                        <ui-section class="prop config" expand cache-expand="asset-animation-graph-state-components"
+                            v-if="!viewState().components.length"
+                        >
+                            <ui-label class="name" slot="header"
+                                value="i18n:animation-graph.component.empty"
+                            ></ui-label>
+
+                            <ui-button class="edit"
+                                @click.stop="addComponent(queryData.view.stateIndex, $event.target)"
+                            >
+                                <ui-label value="i18n:animation-graph.component.add"></ui-label>
+                            </ui-button>
+                        </ui-section>
+                    </template>
+
+                    <template>
+                        <ui-section class="prop config" expand  cache-expand="asset-animation-graph-state-outGoings"
+                            v-if="viewState().outGoings.length"
+                        >
+                            <ui-label class="name" slot="header"
+                                value="i18n:animation-graph.transition.outGoings"
+                            ></ui-label>
+                            <section class="list" ref="transitionList"
+                                @mouseenter="dragResetTransition()"
+                            >
+                                <div class="per"
+                                    v-for="(transition,index) in outGoingsTransitions()"
+                                    :key="transition.from.name + '-outgoings-' + transition.index"
+                                    @click.stop="selectTransition(transition.index)"
+                                    @dragover="dragOverTransition($event)"
+                                    @dragleave="dragLeaveTransition($event)"
+                                    @drop="dropTransition($event, index)"
+                                >
+                                    <ui-label class="drag" draggable="true" tooltip="i18n:animation-graph.transition.outGoingsDragTip"
+                                        @dragstart="dragStartTransition($event, transition.index, index)"
+                                    ></ui-label>    
+                                
+                                    <div class="name">
+                                        <ui-label class="state-name"
+                                            :type="transition.from.type"
+                                            :value="transition.from.name"
+                                        ></ui-label>
+                                        <ui-icon class="state-arrow" value="to-right-arrow"></ui-icon>
+                                        <ui-label class="state-name"
+                                            :type="transition.to.type"
+                                            :value="transition.to.name"
+                                        ></ui-label>
+                                    </div>
+                                </div>
+                            </section>
+                        </ui-section>
+                    </template>
+                </div>
+            </div>
+        </template>
+        <template
+            v-else-if="viewTransition()"
+        >
+            <div class="config transition"
+                v-for="transition in viewTransitions()"
+                :key="viewTransitions().length + '-' + transition.index"
+                v-if="transition.index===queryData.view.transitionIndex"
+            >
+                <div class="header">
+                    <div class="name">
+                        <ui-label class="state-name"
+                            :type="transition.from.type"
+                            :value="transition.from.name"
+                        ></ui-label>
+                        <ui-icon class="state-arrow" value="to-right-arrow"></ui-icon>
+                        <ui-label class="state-name"
+                            :type="transition.to.type"
+                            :value="transition.to.name"
+                        ></ui-label>
+                    </div>
+                    <ui-icon class="menu" value="menu" tooltip="i18n:animation-graph.transition.menu"
+                        @click.stop="transitionMenu(transition.index)"
+                    ></ui-icon>
+                </div>
+                <div class="content">
+                    <section class="list">
+                        <div class="per"
+                            v-for="(transitionItem,index) in viewTransitions()"
+                            :key="viewTransitions().length + '-' + transitionItem.index"
+                            :active="transitionItem.index===queryData.view.transitionIndex"
+                            @click.stop="selectTransition(transitionItem.index)"
+                        >
+                            <ui-label class="name"
+                                :value="transitionItem.from.name"
+                            ></ui-label>
+                            <ui-icon class="menu" value="del" color
+                                @click.stop="removeTransition(transition.index)"
+                            ></ui-icon>
+                        </div>
+                    </section>
+                    <div class="view">
+                        <template
+                            v-if="transition.duration!==-1"
+                        >
+                            <ui-prop class="prop">
+                                <ui-label slot="label" value="i18n:animation-graph.transition.duration" tooltip="i18n:animation-graph.transition.durationTip"></ui-label>
+                                <ui-num-input slot="content" step="0.1" min='0'
+                                    :unit="getTransitionUnit(transition)"
+                                    :value="transition.duration"
+                                    @unit-click="changeTransitionProp(transition.index, 'relativeDuration')"
+                                    @change.stop="changeTransitionProp(transition.index, 'duration', $event.target.value)"
+                                ></ui-num-input>
+                            </ui-prop>
+                            <ui-prop class="prop"
+                                v-if="transition.exitConditionEnabled !== undefined"
+                            >
+                                <ui-label slot="label" value="i18n:animation-graph.transition.exitConditionEnabled"  tooltip="i18n:animation-graph.transition.exitConditionEnabledTip"></ui-label>
+                                <ui-checkbox slot="content" 
+                                    :value="transition.exitConditionEnabled"
+                                    @change.stop="changeTransitionProp(transition.index, 'exitConditionEnabled', $event.target.value)"
+                                ></ui-checkbox>
+                            </ui-prop>
+                            <ui-prop class="prop"
+                                v-if="transition.exitConditionEnabled"
+                            >
+                                <ui-label slot="label" value="i18n:animation-graph.transition.exitCondition"  tooltip="i18n:animation-graph.transition.exitConditionTip"></ui-label>
+                                <ui-num-input slot="content" step="0.1" min='0'
+                                    :value="transition.exitCondition"
+                                    @change.stop="changeTransitionProp(transition.index, 'exitCondition', $event.target.value)"
+                                ></ui-num-input>
+                            </ui-prop>
+                            <ui-prop class="prop"
+                                v-if="transition.destinationStart!==undefined"
+                            >
+                                <ui-label slot="label" value="i18n:animation-graph.transition.destinationStart"  tooltip="i18n:animation-graph.transition.destinationStartTip"></ui-label>
+                                <ui-num-input slot="content" step="0.1" min='0'
+                                    :unit="getDestinationStartUnit(transition)"
+                                    @unit-click="changeTransitionProp(transition.index, 'relativeDestinationStart')"
+                                    :value="transition.destinationStart"
+                                    @change.stop="changeTransitionProp(transition.index, 'destinationStart', $event.target.value)"
+                                ></ui-num-input>
+                            </ui-prop>
+                        </template>
+
+                        <ui-section class="conditions config" expand>
+                            <ui-label class="name" slot="header" value="i18n:animation-graph.transition.condition"></ui-label>
+                            <ui-icon class="menu" slot="header" value="add" tooltip="i18n:animation-graph.condition.menu"
+                                @click.stop="conditionMenu(transition.index)"
+                            ></ui-icon>
+                            <condition-grid
+                                v-if="transition.conditions.length"
+                                :transition-source-type="transition.from.type"
+                                :conditions="transition.conditions"
+                                :query-data="queryData"
+                                :key-or-ref-prefix="transition.from.name + '-' + transition.index + '-' + transition.to.name + 'conditions-'"
+                                @condition-prop-changed="(...args) => conditionPropChange(transition.index, ...args)"
+                                @condition-binding-prop-changed="(...args) => conditionBindingPropChange(transition.index, ...args)"
+                                @condition-binding-type-changed="(...args) => conditionBindingTypeChange(transition.index, ...args)"
+                                @remove-condition="(conditionIndex) => removeCondition(transition.index, conditionIndex)"
+                            ></condition-grid>
+                            <ui-label class="tips"
+                                v-else
+                                :value="'i18n:animation-graph.condition.emptyTip' + transition.type + (transition.exitConditionEnabled?'Exit':'')"
+                            ></ui-label>
+                        </ui-section>
+
+                        <event-bindings-area
+                            v-if="transition.eventBindings"
+                            :event-bindings="transition.eventBindings"
+                            @change="(eventKind, eventName) => changeTransitionProp(transition.index, eventKind, eventName)"
+                        ></event-bindings-area>
+                    </div>
+                </div>
+            </div>
+            <transition-preview ref="transitionPreview"
+                :transition="viewTransition()"
+            ></transition-preview>
+        </template>
+        <template
+            v-else-if="viewMotion()"
+        >
+            <div class="state motion config"
+                :ref="'motion-' + queryData.view.motionLevel.join('-')"
+            >
+                <div class="header">
+                    <ui-input class="name" auto-select="false"
+                        v-if="viewMotion().rename"
+                        :value="viewMotion().name"
+                        @blur="renameMotionSubmit($event)"
+                        @keydown.stop
+                        @keydown.enter="renameMotionSubmit($event)"
+                        @keydown.esc="renameMotionCancel(layer)"
+                        @click.stop
+                        @dblclick.stop
+                        v-focus
+                    ></ui-input>
+                    <ui-label class="name"
+                        v-else
+                        :value="viewMotion().name"
+                    ></ui-label>
+                    <ui-icon class="menu" value="menu" tooltip="i18n:animation-graph.state.menu"
+                        v-if="queryData.view.motionLevel.length > 1"    
+                        @click.stop="motionMenuInMotion(viewMotion())"
+                    ></ui-icon>
+                </div>
+                <div class="content">
+                    <ui-prop v-if="viewMotion().props && (typeof viewMotion().props.algorithm !== 'undefined')">
+                        <ui-label class="name" slot="label" value="i18n:animation-graph.motion.algorithm.label"></ui-label>
+                        <ui-select slot="content"
+                            class="prop"
+                            :value="viewMotion().props.algorithm"
+                            tooltip="i18n:animation-graph.motion.algorithm.tooltip"
+                            @change.stop="changeMotionProp(queryData.view.motionLevel, 'algorithm', Number($event.target.value))"
+                        >
+                            <option
+                                :value="queryData.AnimationBlend2DAlgorithm.SIMPLE_DIRECTIONAL"
+                            >
+                                {{t("motion.algorithm.options.suitableForDirection.label")}}
+                            </option>
+                            <option
+                                :value="queryData.AnimationBlend2DAlgorithm.FREEFORM_DIRECTIONAL"
+                            >
+                                {{t("motion.algorithm.options.suitableForVelocity.label")}}
+                            </option>
+                        </ui-select>
+                    </ui-prop>
+                    <ui-section class="parameter config" expand cache-expand="asset-animation-graph-motion-parameter">
+                        <ui-label class="name" slot="header" value="i18n:animation-graph.motion.parameter"></ui-label>
+                        <motion-prop
+                            :dump="viewMotion()"
+                        ></motion-prop>
+                    </ui-section>
+                    <ui-section class="threshold config" expand  cache-expand="asset-animation-graph-motion-threshold"
+                        v-if="viewMotion().children && viewMotion().children.length"
+                    >
+                        <ui-label class="name" slot="header" value="i18n:animation-graph.motion.threshold"></ui-label>
+                        
+                        <template
+                            v-if="viewMotion().type===queryData.envType.AnimationBlend1D"
+                        >
+                            <ui-prop class="prop blend1D"
+                                @change.stop="changeMotionAutoThreshold(queryData.view.motionLevel, $event.target.value)"
+                            >
+                                <ui-label slot="label" class="name"
+                                    value="i18n:animation-graph.motion.autoThreshold"
+                                    tooltip="i18n:animation-graph.motion.autoThreshold"
+                                ></ui-label>
+                                <ui-checkbox slot="content"
+                                    :value="viewMotion().editorData.autoThreshold"
+                                ></ui-checkbox>
+                            </ui-prop>
+
+                            <ui-prop class="prop blend1D"
+                                v-for="(childMotion, childMotionIndex) in viewMotion().children" 
+                                :key="viewMotion().name + '-' + childMotionIndex + '-' + childMotion.name"
+                                :readonly="viewMotion().editorData.autoThreshold"
+                            >
+                                <ui-label slot="label" class="name"
+                                    :tooltip="childMotion.name"
+                                    :value="childMotion.name"
+                                ></ui-label>
+                                <ui-num-input slot="content" step="0.1" preci="3" class="content"
+                                    :value="childMotion.threshold"
+                                    :disabled="viewMotion().editorData.autoThreshold"
+                                    @confirm.stop="changeMotionThreshold1D(queryData.view.motionLevel, childMotionIndex, $event.target.value)"
+                                ></ui-num-input>
+                            </ui-prop>
+                        </template>
+                        <template
+                            v-if="viewMotion().type===queryData.envType.AnimationBlend2D"
+                        >
+                            <ui-prop class="prop blend2D"
+                                v-for="(childMotion, childMotionIndex) in viewMotion().children" 
+                                :key="viewMotion().name + '-' + childMotionIndex + '-' + childMotion.name"
+                            >
+                                <ui-label slot="label" class="name"
+                                    :tooltip="childMotion.name"
+                                    :value="childMotion.name"
+                                ></ui-label>
+                                <ui-num-input slot="content" step="0.1" preci="3" class="first" label="X"
+                                    :value="childMotion.threshold.x"
+                                    @confirm.stop="changeMotionThreshold2D(queryData.view.motionLevel, childMotionIndex, {'x': $event.target.value})"
+                                ></ui-num-input>
+                                <ui-num-input slot="content" step="0.1" preci="3" label="Y"
+                                    :value="childMotion.threshold.y"
+                                    @confirm.stop="changeMotionThreshold2D(queryData.view.motionLevel, childMotionIndex, {'y': $event.target.value})"
+                                ></ui-num-input>
+                            </ui-prop>
+                        </template>
+                    </ui-section>
+                </div>
+            </div>
+        </template>
+        <template
+            v-else-if="viewPoseNode()"
+        >
+            <div class="config state pose-node"
+                :ref="'pose-node-' + queryData.view.poseExprNodeId"
+            >
+                <div class="header">
+                    <ui-label class="name"
+                        :value="viewPoseNode().name"
+                    ></ui-label>
+                </div>
+                <div class="content">
+                    <ui-prop class="prop" type="dump"
+                        v-if="getPoseNodeData()"
+                        v-for="(prop,propName) in getPoseNodeData()" 
+                        :key="'pose-node-' + viewPoseNode().id + '-prop-' + propName"
+                        :ui-section-config="!!(prop && prop.value && typeof prop.value === 'object')"
+                        :render="JSON.stringify(prop)"
+                        @confirm-dump="updatePoseNodeData($event, propName, queryData.view.poseExprNodeId)"
+                    ></ui-prop>
+                    <ui-section class="parameter config" expand cache-expand="asset-animation-graph-pose-node-parameter"
+                        v-if="getPoseNodeInputs().length"
+                    >
+                        <ui-label class="name" slot="header" value="i18n:animation-graph.pose.inputs"></ui-label>
+                        <ui-prop class="prop" type="dump"
+                            v-for="(input,index) in getPoseNodeInputs()" 
+                            :key="'pose-node-input-' + input.id"
+                            :ui-section-config="!!(prop && prop.value && typeof prop.value === 'object')"
+                            :render="JSON.stringify(input.value)"
+                            @confirm-dump="updatePoseNodeInput($event, queryData.view.poseExprNodeId, input.id)"
+                        ></ui-prop>
+                    </ui-section>
+                </div>
+            </div>
+        </template>
+        
+        <template
+            v-if="viewMotion() || (viewState() && viewState().type===queryData.envType.MotionState)"
+        >
+            <motion-preview ref="motionPreview"
+                :crumb="getLastCrumb()"
+            ></motion-preview>
+        </template>
+    </div>
+</div>

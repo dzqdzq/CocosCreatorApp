@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.EngineUtil=void 0;const event_emitter_1=require("../../../utils/event-emitter");class EngineUtil extends event_emitter_1.EventEmitter{}exports.EngineUtil=EngineUtil;

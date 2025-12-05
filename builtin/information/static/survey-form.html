@@ -1,0 +1,1200 @@
+<html lang="zh-CN" spellcheck="false">
+  <head>
+    <meta charset="utf-8" />
+    <title>插屏设置</title>
+    <style>
+      :root {
+        height: 100%;
+        font-size: 16px;
+      }
+
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100%;
+        font-family: sans-serif;
+        line-height: 1.4;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        cursor: pointer;
+        color: inherit;
+        font-family: inherit;
+      }
+
+      i,
+      input,
+      label,
+      span {
+        display: inline-block;
+      }
+
+      img {
+        display: inline-block;
+        border: none;
+      }
+
+      table {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      ::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        border: 3px solid transparent;
+        background-color: rgba(0, 0, 0, 0.36);
+        background-clip: content-box;
+        transition: background-color 0.3s;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        border: 3px solid transparent;
+        background-color: rgba(0, 0, 0, 0.55);
+        background-clip: content-box;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-corner {
+        display: none;
+      }
+
+      ::-webkit-scrollbar-button {
+        display: none;
+      }
+
+      .container {
+        min-height: 520px;
+        margin: 0px auto;
+        background-color: #ffffff;
+        max-width: 460px;
+        min-width: 270px;
+        padding: 36px;
+      }
+
+      .container[state="success"] > * {
+        display: none;
+      }
+
+      .container[state="success"] > .success {
+        display: block;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 300px;
+        text-align: center;
+      }
+
+      .container[state="fail"] > .fail {
+        display: block;
+      }
+
+      .container > .header {
+        margin-bottom: 24px;
+      }
+      .container > .header > .title {
+        font-size: 24px;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+      .container > .header > .describe {
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.44);
+      }
+
+      .container > .body {
+        margin-bottom: 44px;
+      }
+      .container > .body > .form {
+      }
+      .container > .body > .form > .row {
+        margin-bottom: 12px;
+      }
+      .container > .body > .form > .row .title {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 2px;
+        padding-left: 2px;
+      }
+      .container > .body > .form > .row .text {
+        color: rgba(0, 0, 0, 0.64);
+      }
+      .container > .body > .form > .row .icon {
+        color: rgba(239, 78, 78, 1);
+      }
+      .container > .body > .form > .row .select {
+        position: relative;
+        width: 100%;
+        height: 36px;
+        border-radius: 2px;
+        border: 1px solid rgb(240, 240, 240);
+        outline: none;
+      }
+      .container > .body > .form > .row .select[show] {
+        border-color: rgba(61, 100, 255, 1);
+      }
+      .container > .body > .form > .row .select[show] .list {
+        display: block;
+      }
+      .container > .body > .form > .row .select[show] .title,
+      .container > .body > .form > .row .select[show] .title:hover {
+        border-color: rgba(61, 100, 255, 1);
+        background-color: #ffffff;
+      }
+      .container > .body > .form > .row .select[show] .title .arrow {
+        transform: rotate(180deg);
+      }
+      .container > .body > .form > .row .select[value] .title {
+        color: rgba(0, 0, 0, 0.72);
+      }
+      .container > .body > .form > .row .select[value] .title .placeholder {
+        display: none;
+      }
+      .container > .body > .form > .row .select[value] .title .label {
+        display: block;
+      }
+      .container > .body > .form > .row .select .title {
+        position: relative;
+        width: 100%;
+        line-height: 34px;
+        background-color: #f0eff4;
+        color: rgba(0, 0, 0, 0.35);
+        padding: 0 16px;
+        user-select: none;
+      }
+      .container > .body > .form > .row .select .title:hover {
+        background-color: #e7e6eb;
+      }
+      .container > .body > .form > .row .select .title .label {
+        display: none;
+      }
+      .container > .body > .form > .row .select .title .arrow {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 4px;
+        padding: 5px 3px 4px 3px;
+      }
+      .container > .body > .form > .row .select .title .arrow .triangle {
+        width: 0;
+        height: 0;
+        border-top: 5px solid #69686b;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+      .container > .body > .form > .row .select .list {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
+        padding: 6px;
+      }
+      .container > .body > .form > .row .select .list li {
+        position: relative;
+        padding: 8px 16px;
+        border-radius: 2px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.72);
+        user-select: none;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .container > .body > .form > .row .select .list li[active],
+      .container > .body > .form > .row .select .list li[active]:hover {
+        color: #ffffff;
+        background-color: rgba(61, 100, 255, 1);
+      }
+      .container > .body > .form > .row .select .list li[active] .checked {
+        display: block;
+      }
+      .container > .body > .form > .row .select .list li:hover {
+        background: rgb(239, 239, 244);
+      }
+      .container > .body > .form > .row .select .list li .checked {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        width: 16px;
+        line-height: 12px;
+        padding: 2px 2px 3px 2px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .container > .body > .form > .row .input {
+        width: 100%;
+        height: 36px;
+        border-radius: 2px;
+        padding: 0 16px;
+        border: 1px solid rgb(240, 240, 240);
+        background: rgb(239, 239, 244);
+        color: rgba(0, 0, 0, 0.72);
+        outline: none;
+      }
+      .container > .body > .form > .row .input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .container > .body > .form > .row .input:focus {
+        border-color: rgba(61, 100, 255, 1);
+        background-color: #ffffff;
+      }
+      .container > .body > .form > .row .input[disabled] {
+        color: rgba(0, 0, 0, 0.12);
+        cursor: not-allowed;
+      }
+
+      .container > .footer {
+        margin-bottom: 24px;
+      }
+      .container > .footer > .protocol {
+        padding-left: 4px;
+      }
+      .container > .footer > .protocol > .checkbox,
+      .container > .footer > .protocol > .text,
+      .container > .footer > .protocol > .link {
+        vertical-align: middle;
+        font-size: 14px;
+        line-height: 22px;text
+        color: rgba(0, 0, 0, 0.72);
+      }
+      .container > .footer > .protocol > .checkbox {
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+      }
+      .container > .footer > .protocol > .text {
+        padding-left: 4px;
+        padding-right: 4px;
+        user-select: none;
+      }
+      .container > .footer > .protocol > .link {
+        color: rgba(61, 100, 255, 1);
+        text-decoration: underline;
+      }
+      .container > .footer > .protocol > .link:hover {
+        color: rgba(61, 100, 255, 0.85);
+      }
+      .container > .footer > .operate {
+        position: relative;
+        margin-top: 16px;
+      }
+      .container > .footer > .operate > button {
+        cursor: pointer;
+        user-select: none;
+      }
+      .container > .footer > .operate > .submit {
+        width: 88px;
+        height: 36px;
+        border-radius: 2px;
+        background: rgb(61, 100, 255);
+        border: none;
+        color: rgb(255, 255, 255);
+      }
+      .container > .footer > .operate > .submit:hover {
+        background-color: #5577ff;
+      }
+      .container > .footer > .operate > .submit:active {
+        background-color: #3051cc;
+      }
+      .container > .footer > .operate > .submit.disabled,
+      .container > .footer > .operate > .submit.disabled:hover {
+        background: #92a8fe;
+      }
+
+      .container > .footer > .operate > .cancel {
+        width: 88px;
+        height: 36px;
+        border-radius: 2px;
+        background: #f0eff4;
+        border: none;
+        color: rgba(0, 0, 0, 0.72);
+        margin-left: 12px;
+      }
+      .container > .footer > .operate > .cancel:hover {
+        background-color: #dddce1;
+      }
+      .container > .footer > .operate > .cancel:active {
+        background-color: #c9c9cd;
+      }
+      .container > .footer > .operate > .cancel.disabled {
+        opacity: 0.55;
+      }
+      .container > .footer > .operate > .error-msg {
+        display: none;
+        pointer-events: none;
+        position: absolute;
+        bottom: 45px;
+        left: 0;
+        background-color: #33374a;
+        color: #ffffff;
+        border-radius: 2px;
+        padding: 12px;
+        min-height: 24px;
+        font-size: 14px;
+      }
+      .container > .footer > .operate > .error-msg:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 5px solid #33374a;
+        top: 100%;
+        left: 40px;
+      }
+
+      .container > .fail {
+        display: none;
+        position: fixed;
+        top: 18px;
+        left: calc(50% - 110px);
+        width: 220px;
+        z-index: 100;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
+        padding: 8px 12px 8px 40px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .container > .fail > .icon {
+        position: absolute;
+        top: 8px;
+        left: 12px;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 2px;
+        background-color: #ffebf0;
+        color: #ef4f4f;
+        font-size: 11px;
+        text-align: center;
+        font-weight: 600;
+      }
+      .container > .fail > .text {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 4px;
+      }
+
+      .container > .success {
+        display: none;
+      }
+      .container > .success > .row {
+        margin: 24px;
+      }
+      .container > .success > .row.icon .checked {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: #edf7e4;
+        color: #5ccc08;
+        font-size: 24px;
+        line-height: 44px;
+      }
+
+      .container > .success > .row.text {
+        font-weight: 600;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .container > .success > .row.button > .close {
+        width: 88px;
+        height: 36px;
+        border-radius: 2px;
+        background: #f0eff4;
+        border: none;
+        color: rgba(0, 0, 0, 0.72);
+        margin-left: 12px;
+        cursor: pointer;
+      }
+      .container > .success > .row.button > .close:hover {
+        background-color: #dddce1;
+      }
+      .container > .success > .row.button > .close:active {
+        background-color: #c9c9cd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div class="header">
+        <h2 class="title">启用或移除插屏设置</h2>
+        <p class="describe">
+          为了给开发者提供更好的产品和服务，请您如实填写以下项目相关信息。
+        </p>
+      </div>
+      <div class="body">
+        <div class="form">
+          <div class="row">
+            <div class="title">
+              <span class="text">项目行业</span>
+              <span class="icon">*</span>
+            </div>
+            <div class="select" id="industryType" tabindex="0" error-msg="">
+              <div class="title">
+                <label class="label"></label>
+                <label class="placeholder">请选择项目行业</label>
+                <span class="arrow">
+                  <i class="triangle"></i>
+                </span>
+              </div>
+              <ul class="list">
+                <li value="Metaverse">
+                  <label class="label">元宇宙</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Auto">
+                  <label class="label">汽车</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Interactive Marketing">
+                  <label class="label">互动营销</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Education">
+                  <label class="label">教育</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="VR/AR">
+                  <label class="label">VR/AR</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Virtual Character">
+                  <label class="label">虚拟角色</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Games">
+                  <label class="label">游戏</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Others">
+                  <label class="label">其他</label>
+                  <span class="checked">✔</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="industryCustomRow" class="row">
+            <div class="title">
+              <span class="text">行业名称</span>
+              <span class="icon">*</span>
+            </div>
+            <input
+              id="industryCustom"
+              class="input"
+              placeholder="请在此输入行业名称"
+            />
+          </div>
+          <div id="gameTypeRow" class="row">
+            <div class="title">
+              <span class="text">游戏品类</span>
+              <span class="icon">*</span>
+            </div>
+            <input
+              id="gameType"
+              class="input"
+              placeholder="动作、RPG、放置、生存等"
+            />
+          </div>
+          <div class="row">
+            <div class="title">
+              <span class="text">项目性质</span>
+            </div>
+            <div class="select" id="projectType" tabindex="0">
+              <div class="title">
+                <label class="label"></label>
+                <label class="placeholder">请选择项目性质</label>
+                <span class="arrow">
+                  <i class="triangle"></i>
+                </span>
+              </div>
+              <ul class="list">
+                <li value="Business">
+                  <label class="label">商业项目</label>
+                  <span class="checked">✔</span>
+                </li>
+                <li value="Personal">
+                  <label class="label">个人项目</label>
+                  <span class="checked">✔</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="companyNameRow" class="row">
+            <div class="title">
+              <span class="text">公司名称</span>
+            </div>
+            <input
+              id="companyName"
+              class="input"
+              placeholder="请在此输入公司名称"
+            />
+          </div>
+          <div class="row">
+            <div class="title">
+              <span class="text">发布渠道</span>
+            </div>
+            <input
+              id="publishChannel"
+              class="input"
+              placeholder="计划上架的渠道或通过何种方式分发"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="protocol">
+          <input id="agreement" class="checkbox" type="checkbox" />
+          <label class="text" for="agreement">我已阅读并同意</label>
+          <a id="agreementLink" class="link" target="_blank">Cocos 隐私政策</a>
+        </div>
+        <div class="operate">
+          <button id="submit" class="submit disabled">提交</button>
+          <button id="cancel" class="cancel">取消</button>
+          <div id="errorMsg" class="error-msg"></div>
+        </div>
+      </div>
+      <div class="fail">
+        <span class="icon">X</span>
+        <span id="failMsg" class="text"></span>
+      </div>
+      <div class="success">
+        <div class="row icon">
+          <span class="checked">✔</span>
+        </div>
+        <div class="row text">
+          <span>提交成功！感谢您的支持！</span>
+        </div>
+        <div class="row button">
+          <button id="close" class="close">关闭 (3s)</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const Questionnaire = {
+        data: {
+          params: {
+            sid: "",
+          },
+          form: {
+            sid: "",
+            industry_type: "",
+            industry_custom: "",
+            game_type: "",
+            project_type: "",
+            company_name: "",
+            publish_channel: "",
+            agreement: false,
+            company_name_type: "tag",
+          },
+          search() {
+            const args = window.location.search.split("?").pop();
+
+            args.split("&").forEach((item) => {
+              const index = item.indexOf("=");
+              if (index === -1) {
+                return;
+              }
+
+              const key = item.substr(0, index);
+              const value = item.substr(index + 1);
+
+              this.data.params[key] = decodeURIComponent(value);
+            });
+          },
+          watch() {
+            let animationFrameId;
+
+            this.data.form = new window.Proxy(this.data.form, {
+              get(origin, key) {
+                if (key in origin) {
+                  return origin[key];
+                }
+              },
+              set(origin, key, value) {
+                if (origin[key] === value) {
+                  return;
+                }
+
+                const type = typeof origin[key];
+                if (type === "string") {
+                  origin[key] = value.trim();
+                } else if (type === "boolean") {
+                  origin[key] = !!value;
+                } else {
+                  origin[key] = value;
+                }
+
+                window.cancelAnimationFrame(animationFrameId);
+                animationFrameId = window.requestAnimationFrame(() => {
+                  for (const key in Questionnaire.elements) {
+                    const element = Questionnaire.elements[key];
+                    element.update && element.update.call(Questionnaire);
+                  }
+                  Questionnaire.elements.submit.checkError.call(Questionnaire);
+                });
+
+                return true;
+              },
+            });
+          },
+        },
+        utils: {
+          randomArr(min, max, length) {
+            const arr = [];
+            while (arr.length < length) {
+              const num = this.utils.randomInt.call(this, min, max);
+              if (!arr.includes(num)) {
+                arr.push(num);
+              }
+            }
+            return arr;
+          },
+          randomInt(min = 0, max = min) {
+            if (arguments.length === 1) {
+              min = 0;
+            }
+            return min + Math.floor(Math.random() * (max - min + 1));
+          },
+        },
+        elements: {
+          container: {
+            init() {
+              return true;
+            },
+          },
+          industryType: {
+            init() {
+              const $list = this.$industryType.querySelector(".list");
+              const randomLength = $list.childElementCount - 1;
+              const randomArr = this.utils.randomArr.call(
+                this,
+                0,
+                randomLength - 1,
+                randomLength
+              );
+              randomArr.push(randomLength);
+              const $newChildren = [];
+              const $children = Array.from($list.children);
+              for (const index of randomArr) {
+                $newChildren.push($children[index]);
+              }
+              $list.replaceChildren(...$newChildren);
+
+              const selectBox = this.plugins.select.box(this.$industryType);
+              selectBox.change = (val) => {
+                this.data.form.industry_type = val;
+              };
+            },
+            update() {
+              this.$industryType.selectBox.value = this.data.form.industry_type;
+            },
+            check() {
+              if (!this.data.form.industry_type.trim()) {
+                return "请选择项目行业";
+              }
+            },
+          },
+          industryCustomRow: {
+            init() {
+              this.elements.industryCustomRow.update.call(this);
+            },
+            update() {
+              let display = "none";
+              if (this.data.form.industry_type === "Others") {
+                display = "block";
+              }
+              this.$industryCustomRow.style.display = display;
+            },
+          },
+          industryCustom: {
+            init() {
+              this.$industryCustom.addEventListener("change", (e) => {
+                this.data.form.industry_custom = e.target.value;
+              });
+            },
+            update() {
+              this.$industryCustom.value = this.data.form.industry_custom;
+            },
+            check() {
+              if (this.data.form.industry_type === "Others") {
+                if (!this.data.form.industry_custom.trim()) {
+                  return "请填写行业名称";
+                }
+              }
+            },
+          },
+          gameTypeRow: {
+            init() {
+              this.elements.gameTypeRow.update.call(this);
+            },
+            update() {
+              let display = "none";
+              if (this.data.form.industry_type === "Games") {
+                display = "block";
+              }
+              this.$gameTypeRow.style.display = display;
+            },
+          },
+          gameType: {
+            init() {
+              this.$gameType.addEventListener("change", (e) => {
+                this.data.form.game_type = e.target.value;
+              });
+            },
+            update() {
+              this.$gameType.value = this.data.form.game_type;
+            },
+            check() {
+              if (
+                this.data.form.industry_type === "Games" &&
+                !this.data.form.game_type
+              ) {
+                return "请填写游戏品类";
+              }
+            },
+          },
+          projectType: {
+            init() {
+              const $list = this.$projectType.querySelector(".list");
+              const randomLength = $list.childElementCount;
+              const randomArr = this.utils.randomArr.call(
+                this,
+                0,
+                randomLength - 1,
+                randomLength
+              );
+              const $newChildren = [];
+              const $children = Array.from($list.children);
+              for (const index of randomArr) {
+                $newChildren.push($children[index]);
+              }
+              $list.replaceChildren(...$newChildren);
+
+              const selectBox = this.plugins.select.box(this.$projectType);
+              selectBox.change = (val) => {
+                this.data.form.project_type = val;
+              };
+            },
+            update() {
+              this.$projectType.selectBox.value = this.data.form.project_type;
+            },
+          },
+          companyNameRow: {
+            init() {
+              this.elements.companyNameRow.update.call(this);
+            },
+            update() {
+              let display = "none";
+              if (this.data.form.project_type === "Business") {
+                display = "block";
+              }
+              this.$companyNameRow.style.display = display;
+            },
+          },
+          companyName: {
+            init() {
+              this.$companyName.addEventListener("change", (e) => {
+                this.data.form.company_name = e.target.value;
+              });
+            },
+            update() {
+              this.$companyName.value = this.data.form.company_name;
+            },
+          },
+          publishChannel: {
+            init() {
+              this.$publishChannel.addEventListener("change", (e) => {
+                this.data.form.publish_channel = e.target.value;
+              });
+            },
+            update() {
+              this.$publishChannel.value = this.data.form.publish_channel;
+            },
+          },
+          agreement: {
+            init() {
+              this.$agreement.addEventListener("change", (e) => {
+                this.data.form.agreement = e.target.checked;
+              });
+            },
+            check() {
+              if (!this.data.form.agreement) {
+                return "请阅读并同意隐私政策";
+              }
+            },
+          },
+          agreementLink: {
+            init() {
+              return true;
+            },
+          },
+          submit: {
+            init() {
+              this.$submit.addEventListener("click", (e) => {
+                if (this.$submit.classList.contains("disabled")) {
+                  return;
+                }
+
+                this.api.submit.call(this);
+              });
+
+              let timeId;
+              this.$submit.addEventListener("mouseenter", (e) => {
+                clearTimeout(timeId);
+                timeId = setTimeout(() => {
+                  const errorMsg = this.elements.submit.checkError.call(this);
+                  if (errorMsg) {
+                    this.$errorMsg.innerHTML = errorMsg;
+                    this.$errorMsg.style.display = "block";
+                  }
+                }, 1000);
+              });
+              this.$submit.addEventListener("mouseleave", (e) => {
+                clearTimeout(timeId);
+                timeId = setTimeout(() => {
+                  this.$errorMsg.style.display = "none";
+                }, 500);
+              });
+            },
+            checkError() {
+              let errors = [];
+              for (const key in this.elements) {
+                const element = this.elements[key];
+                if (element.check) {
+                  const msg = element.check.call(this);
+                  if (msg) {
+                    errors.push(msg);
+                  }
+                }
+              }
+
+              if (errors.length) {
+                this.$submit.classList.add("disabled");
+                return errors.join("<br>");
+              }
+              this.$submit.classList.remove("disabled");
+              return "";
+            },
+          },
+          cancel: {
+            init() {
+              this.$cancel.addEventListener("click", (e) => {
+                window.close();
+              });
+            },
+          },
+          failMsg: {
+            timeId: null,
+            init() {
+              return true;
+            },
+            show(msg) {
+              this.$failMsg.innerText = msg;
+              this.$container.setAttribute("state", "fail");
+
+              clearTimeout(this.elements.failMsg.timeId);
+              this.elements.failMsg.timeId = setTimeout(() => {
+                this.$container.removeAttribute("state");
+              }, 3000);
+            },
+          },
+          errorMsg: {
+            init() {
+              return true;
+            },
+          },
+          close: {
+            init() {
+              this.$close.addEventListener("click", (e) => {
+                window.close();
+              });
+            },
+            count() {
+              let seconds = 3;
+              const timeId = setInterval(() => {
+                seconds--;
+                this.$close.innerText = `关闭 (${seconds}s)`;
+                if (seconds <= 0) {
+                  clearInterval(timeId);
+                  window.close();
+                }
+              }, 1000);
+            },
+          },
+        },
+        api: {
+          host: "",
+          async fetch(config) {
+            const setting = {
+              url: "",
+              data: {},
+              method: "GET",
+              type: "json",
+            };
+            Object.assign(setting, config);
+            if (this.api.host) {
+              setting.url = this.api.host + setting.url;
+            }
+
+            const requestConfig = {
+              method: setting.method,
+              credentials: "include",
+              headers: {
+                Accept: "application/json",
+              },
+              mode: "cors",
+              cache: "no-cache",
+            };
+
+            if (requestConfig.method == "POST") {
+              const formData = new FormData();
+              for (const key in setting.data) {
+                formData.append(key, setting.data[key]);
+              }
+              requestConfig.body = formData;
+            }
+
+            try {
+              const response = await window.fetch(setting.url, requestConfig);
+              const { status, statusText } = response;
+
+              if (status === 200) {
+                return await response[setting.type]();
+              } else {
+                this.elements.failMsg.show.call(this, "数据错误！请联系管理员");
+              }
+            } catch (error) {
+              this.elements.failMsg.show.call(this, "网络错误！请重试");
+            }
+          },
+          async userInfo() {
+            const info = await this.api.fetch.call(this, {
+              url: `/api/form/queryUserInfo?sid=${this.data.params.sid}`,
+            });
+
+            if (!info) {
+              return;
+            }
+
+            if (info.status !== 0) {
+              this.elements.failMsg.show.call(this, info.msg);
+              return;
+            }
+
+            this.data.form.company_name =
+              info.data.company_name || info.data.tag_company_name;
+
+            if (this.data.form.company_name) {
+              this.data.form.project_type = "Business";
+            }
+
+            if (info.data.company_name) {
+              this.data.form.company_name_type = "verify";
+              this.$companyName.setAttribute("disabled", "");
+            }
+          },
+          async agreementLink() {
+            const info = await this.api.fetch.call(this, {
+              url: "/api/account/get_agreements",
+            });
+
+            if (!info || !info.data) {
+              return;
+            }
+
+            this.$agreementLink.setAttribute("href", info.data[0].url);
+          },
+          async submit() {
+            this.data.form.sid = this.data.params.sid;
+            const data = JSON.parse(JSON.stringify(this.data.form));
+
+            const info = await this.api.fetch.call(this, {
+              url: "/api/questionnaire/submit",
+              method: "POST",
+              data,
+            });
+
+            if (!info) {
+              return;
+            }
+
+            if (info.status !== 0) {
+              this.elements.failMsg.show.call(this, info.msg);
+              return;
+            }
+
+            this.$container.setAttribute("state", "success");
+            this.elements.close.count.call(this);
+          },
+        },
+        plugins: {
+          select: {
+            elements: [],
+            init() {
+              document.addEventListener("click", () => {
+                this.plugins.select.hide.call(this);
+              });
+            },
+            box(element) {
+              const selectBox = {
+                $el: null,
+                $label: null,
+                $list: null,
+                val: "",
+                init($el) {
+                  this.$el = $el;
+
+                  this.$title = $el.querySelector(".title");
+                  this.$label = this.$title.querySelector(".label");
+                  this.$placeholder = this.$title.querySelector(".placeholder");
+                  this.$list = $el.querySelector(".list");
+
+                  this.$title.addEventListener("click", (e) => {
+                    e.stopPropagation();
+
+                    Questionnaire.plugins.select.hide.call(
+                      Questionnaire,
+                      this.$el
+                    );
+
+                    if (this.isShow()) {
+                      this.hide();
+                    } else {
+                      this.show();
+                    }
+                  });
+
+                  const $children = Array.from(this.$list.children);
+                  $children.forEach(($child) => {
+                    $child.addEventListener("click", (e) => {
+                      this.value = $child.getAttribute("value");
+                    });
+                  });
+                },
+                isShow() {
+                  return this.$el.hasAttribute("show");
+                },
+                hide() {
+                  this.$el.removeAttribute("show");
+                },
+                show() {
+                  this.$el.setAttribute("show", "");
+                },
+                change() {},
+                get value() {
+                  return this.val;
+                },
+                set value(val) {
+                  if (val === this.val) {
+                    return;
+                  }
+
+                  this.$el.setAttribute("value", val);
+                  this.change(val);
+
+                  const $children = Array.from(this.$list.children);
+                  $children.forEach(($child) => {
+                    const value = $child.getAttribute("value");
+                    const $label = $child.querySelector(".label");
+                    const label = $label.innerText.trim();
+                    if (value === val) {
+                      $child.setAttribute("active", "");
+                      this.$label.innerText = label;
+                    } else {
+                      $child.removeAttribute("active");
+                    }
+                  });
+                },
+              };
+
+              selectBox.init(element);
+
+              element.selectBox = selectBox;
+              Questionnaire.plugins.select.elements.push(element);
+
+              return selectBox;
+            },
+            hide($exclude) {
+              for (const element of this.plugins.select.elements) {
+                if ($exclude !== element) {
+                  element.selectBox.hide();
+                }
+              }
+            },
+          },
+        },
+        init() {
+          // 初始化插件
+          for (const name in this.plugins) {
+            const plugin = this.plugins[name];
+            plugin.init && plugin.init.call(this);
+          }
+
+          // 初始化元素
+          for (const id in this.elements) {
+            const element = this.elements[id];
+            this[`$${id}`] = document.getElementById(id);
+            element.init && element.init.call(this);
+          }
+
+          // 初始化数据
+          this.data.search.call(this);
+          this.data.watch.call(this);
+
+          // 初始化接口数据
+          this.api.userInfo.call(this);
+          this.api.agreementLink.call(this);
+        },
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        Questionnaire.init();
+      });
+    </script>
+  </body>
+</html>

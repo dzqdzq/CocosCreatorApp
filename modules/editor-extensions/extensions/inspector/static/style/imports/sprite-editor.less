@@ -1,0 +1,71 @@
+.sprite-editor {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        height: 110px;
+
+        ui-num-input,
+        ui-slider {
+            width: 100%;
+        }
+    }
+
+    .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: var(--color-normal-fill-emphasis);
+
+        .scroll {
+            &[horizontal='center'] {
+                justify-content: center;
+            }
+
+            display: flex;
+            align-items: center;
+            min-height: 100%;
+        }
+    }
+
+    .canvas {
+        display: block;
+        background-image: url('packages://inspector/static/checkerboard-32x32.png');
+        background-size: 16px 16px;
+        background-position: center center;
+    }
+
+    .svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    .table {
+        display: table;
+        font-size: 12px;
+        width: 96%;
+
+        .td-r {
+            text-align: right;
+            padding-right: 8px;
+        }
+
+        .td-c {
+            text-align: center;
+        }
+
+        .td-top {
+            vertical-align: top;
+        }
+
+        .tiny {
+            margin: 5px;
+        }
+    }
+}

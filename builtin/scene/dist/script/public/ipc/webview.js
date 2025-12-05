@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});class WebviewIpc{send(...e){console.warn("TODO: Webview send")}}const ipc=new WebviewIpc;exports.default=ipc;

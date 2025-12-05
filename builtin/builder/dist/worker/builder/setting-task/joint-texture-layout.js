@@ -1,0 +1,1 @@
+"use strict";async function handle(t,e,o){e.settings.animation.customJointTextureLayouts=await Editor.Message.request("project","calc-joint-layout")||[]}Object.defineProperty(exports,"__esModule",{value:!0}),exports.handle=exports.title=void 0,exports.title="custom joint texture layouts",exports.handle=handle;

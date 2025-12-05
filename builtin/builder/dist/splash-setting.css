@@ -1,0 +1,147 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px 16px 27px;
+  box-sizing: border-box;
+}
+#splashSetting {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+#splashSetting .toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+#splashSetting .toolbar ui-button:not(:last-child) {
+  margin-right: 4px;
+}
+#splashSetting ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#splashSetting ui-prop {
+  --left-width: 45%;
+  margin-bottom: 4px;
+}
+#splashSetting ui-prop[disabled] {
+  color: var(--color-normal-contrast);
+}
+#splashSetting ui-prop > .image-wrap {
+  min-height: 30px;
+  border: 1px solid;
+}
+#splashSetting .logo > ui-label,
+#splashSetting .background > ui-label {
+  display: block;
+  margin-bottom: 4px;
+}
+#splashSetting .logo ui-radio-group,
+#splashSetting .background ui-radio-group {
+  width: 100%;
+}
+#splashSetting .logo ui-radio-group ui-radio,
+#splashSetting .background ui-radio-group ui-radio {
+  margin-left: 8px;
+}
+#splashSetting .logo ui-radio-group ui-icon,
+#splashSetting .background ui-radio-group ui-icon {
+  margin-left: 2px;
+}
+#splashSetting ui-file,
+#splashSetting ui-slider {
+  width: 100%;
+}
+#splashSetting .disabled-tip {
+  color: var(--color-default-fill-weakest);
+  margin-right: 8px;
+  white-space: pre-wrap;
+}
+#splashSetting footer {
+  text-align: right;
+}
+#splashSetting .preview-container {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border: 1px solid #1f1f1f;
+}
+#splashSetting .preview {
+  position: absolute;
+  top: var(--preview-top, 0);
+  left: var(--preview-left, 0);
+  transform: var(--preview-transform, scale(var(--preview-scale, 1)));
+  transform-origin: top left;
+  text-align: center;
+  width: var(--preview-width);
+  height: var(--preview-height);
+  background-color: var(--preview-background-color, #04090a);
+  background-image: var(--preview-background-image, none);
+  background-size: cover;
+  background-position: center;
+}
+#splashSetting .preview__main {
+  position: absolute;
+  height: calc(100% * 5 / 6);
+  width: 100%;
+  top: 0;
+}
+#splashSetting .preview .main {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+#splashSetting .preview .text {
+  font-size: 24px;
+  line-height: 1;
+  color: rgba(250, 250, 250, 0.4);
+  margin-top: calc(var(--preview-scale) * 32px);
+}
+#splashSetting .preview .logo {
+  height: var(--preview-logo-height);
+}
+#splashSetting .preview[data-watermark^='bottom'] .preview__main {
+  top: 0;
+  bottom: auto;
+}
+#splashSetting .preview[data-watermark^='top'] .preview__main {
+  top: auto;
+  bottom: 0;
+}
+#splashSetting .preview[data-watermark^='top'] .sub .watermark,
+#splashSetting .preview[data-watermark^='bottom'] .sub .watermark {
+  display: block;
+}
+#splashSetting .preview[data-watermark^='top'] .main .watermark,
+#splashSetting .preview[data-watermark^='bottom'] .main .watermark {
+  display: none;
+}
+#splashSetting .preview[data-watermark$='Left'] .sub .watermark {
+  text-align: left;
+}
+#splashSetting .preview[data-watermark$='Right'] .sub .watermark {
+  text-align: right;
+}
+#splashSetting .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #1b1d1db0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

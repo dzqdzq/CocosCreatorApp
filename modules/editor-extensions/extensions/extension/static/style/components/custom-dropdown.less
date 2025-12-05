@@ -1,0 +1,74 @@
+@import '../common/mixin.less';
+
+.custom-dropdown {
+    position: relative;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    &__trigger {
+        .ext-tab-button();
+        font-size: 8px; // 8 + 4 => 12
+    }
+
+    &__overlay {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+
+        // component style
+        padding: 4px;
+        border-radius: 4px;
+        border: 1px solid rgba(82, 82, 82, 1);
+        background: rgba(31, 31, 31, 1);
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    &.visible {
+        .custom-dropdown__overlay {
+            display: block;
+        }
+    }
+
+    &.size-mini {
+        .custom-dropdown__trigger {
+            padding: 0 1px;
+        }
+    }
+}
+
+.custom-dropdown-item {
+    @item-height: 24px;
+    @padding-vert: 2px;
+
+    height: @item-height;
+    padding: @padding-vert 6px;
+    line-height: @item-height - 2 * @padding-vert;
+
+    border-radius: 2px;
+
+    min-width: 200px;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-align: start;
+    cursor: pointer;
+
+    color: #ccc;
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba(66, 66, 66, 1);
+    }
+
+    &.active {
+        background: rgba(9, 74, 93, 1);
+    }
+}

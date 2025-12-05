@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),require("editor/preload").init(),window.Editor=require("editor");const ipc_1=require("./ipc");require("./messages/database"),require("./messages/operation"),(0,ipc_1.ipcSend)("asset-worker:startup");

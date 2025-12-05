@@ -1,0 +1,275 @@
+<div class="android" @change="onChange">
+    <ui-prop
+        v-if="pkgOptions.renderBackEnd"
+        :class="pkgErrorMap.renderBackEnd ? 'danger' : ''"
+        :message="pkgErrorMap.renderBackEnd"
+    >
+        <ui-label slot="label" value="i18n:android.options.render_back_end"></ui-label>
+        <div slot="content">
+            <ui-checkbox
+                path="renderBackEnd.vulkan"
+                tooltip="i18n:android.tips.vukan_limit"
+                :value="pkgOptions.renderBackEnd.vulkan"
+            >VULKAN</ui-checkbox>
+            <ui-checkbox
+                path="renderBackEnd.gles"
+                :value="pkgOptions.renderBackEnd.gles3"
+                @change.stop="onRenderBackEnd"
+            >GLES 2/3</ui-checkbox>
+            <div style="padding-left: 16px" v-if="pkgOptions.renderBackEnd.gles3">
+                <div>
+                    <ui-checkbox
+                        value="true"
+                        disabled
+                    >GLES3</ui-checkbox>
+                </div>
+                <div>
+                    <ui-checkbox
+                        path="renderBackEnd.gles2"
+                        :value="pkgOptions.renderBackEnd.gles2"
+                    >GLES2</ui-checkbox>
+                </div>
+            </div>
+        </div>
+    </ui-prop>
+
+    <ui-prop :class="pkgErrorMap.packageName ? 'danger' : ''" :message="pkgErrorMap.packageName">
+        <ui-label slot="label" value="i18n:android.options.package_name"></ui-label>
+        <ui-input
+            slot="content"
+            path="packageName"
+            :value="pkgOptions.packageName"
+            :placeholder="getDefaultPackageName()"
+        ></ui-input>
+    </ui-prop>
+
+    <ui-prop :class="pkgErrorMap.apiLevel ? 'danger' : ''" :message="pkgErrorMap.apiLevel">
+        <ui-label slot="label" value="Target API Level"></ui-label>
+        <div slot="content" style="flex-direction: row;">
+            <ui-select
+                path="apiLevel"
+                :value="pkgOptions.apiLevel || apiLevels[0]"
+            >
+                <template v-for="item in apiLevels">
+                    <option :value="item">android-{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button class="set-androidSDK"
+                @confirm="onSetAndroidSDK"
+            >
+                Set Android SDK
+            </ui-button>
+        </div>
+    </ui-prop>
+
+    <ui-prop :class="pkgErrorMap.appABIs ? 'danger' : ''" :message="pkgErrorMap.appABIs">
+        <ui-label slot="label" value="APP ABI" tooltip="i18n:android.tips.appABIs"></ui-label>
+        <div slot="content">
+            <div v-for="abi in appABIList">
+                <ui-checkbox
+                    :value="pkgOptions.appABIs && pkgOptions.appABIs.includes(abi)"
+                    @change.stop="onChangeABI($event, abi)"
+                >
+                    {{abi}}
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- Keystore -->
+    <ui-prop>
+        <ui-label slot="label" value="i18n:android.KEYSTORE.use_debug_keystore"></ui-label>
+        <div slot="content">
+            <ui-checkbox
+                :value="pkgOptions.useDebugKeystore"
+                @change.stop="onChangeDebugKeystore($event.target.value)"
+            ></ui-checkbox>
+        </div>
+    </ui-prop>
+
+    <ui-prop :class="pkgErrorMap.keystorePath ? 'danger' : ''" :message="pkgErrorMap.keystorePath">
+        <ui-label slot="label" value="i18n:android.KEYSTORE.keystore_path"></ui-label>
+        <div slot="content" style="flex-direction: row;">
+            <ui-file
+                path="keystorePath"
+                :disabled="pkgOptions.useDebugKeystore"
+                :value="pkgOptions.keystorePath"
+            ></ui-file>
+            <!-- // TODO 新建密钥功能-->
+            <!-- <ui-button class="new-keystore"
+                @confirm="onNewKeyStore"
+                :disabled="pkgOptions.useDebugKeystore"
+            >
+                <ui-label value="i18n:android.KEYSTORE.new_keystore"></ui-label>
+            </ui-button> -->
+        </div>
+    </ui-prop>
+
+    <ui-prop
+        :class="pkgErrorMap.keystorePassword ? 'danger' : ''"
+        :message="pkgErrorMap.keystorePassword"
+    >
+        <ui-label slot="label" value="i18n:android.KEYSTORE.keystore_password"></ui-label>
+        <ui-input
+            slot="content"
+            path="keystorePassword"
+            password
+            :disabled="pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystorePassword"
+        ></ui-input>
+    </ui-prop>
+
+    <ui-prop
+        :class="pkgErrorMap.keystoreAlias ? 'danger' : ''"
+        :message="pkgErrorMap.keystoreAlias"
+    >
+        <ui-label slot="label" value="i18n:android.KEYSTORE.keystore_alias"></ui-label>
+        <ui-input
+            slot="content"
+            path="keystoreAlias"
+            :disabled="pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystoreAlias"
+        ></ui-input>
+    </ui-prop>
+
+    <ui-prop
+        :class="pkgErrorMap.keystoreAliasPassword ? 'danger' : ''"
+        :message="pkgErrorMap.keystoreAliasPassword"
+    >
+        <ui-label slot="label" value="i18n:android.KEYSTORE.keystore_alias_password"></ui-label>
+        <ui-input
+            slot="content"
+            path="keystoreAliasPassword"
+            password
+            :disabled="pkgOptions.useDebugKeystore"
+            :value="pkgOptions.keystoreAliasPassword"
+        ></ui-input>
+    </ui-prop>
+
+    <!-- resizeableActivity -->
+    <ui-prop>
+        <div slot="label">
+            <ui-label value="i18n:android.options.resizeable_activity"></ui-label>
+            <ui-link value="https://developer.android.com/guide/topics/large-screens/multi-window-support#resizeableActivity">
+                <ui-icon value="help" tooltip="i18n:android.tips.resizeable_activity"></ui-icon>
+            </ui-link>
+        </div>
+        <ui-checkbox
+            slot="content"
+            path="resizeableActivity"
+            :value="pkgOptions.resizeableActivity"
+        ></ui-checkbox>
+    </ui-prop>
+
+    <!-- maxAspectRatio -->
+    <ui-prop
+        :class="pkgErrorMap.maxAspectRatio? 'danger' : ''"
+        :message="pkgErrorMap.maxAspectRatio"
+        @change.stop="changeMaxAspectRatio"
+    >
+        <div slot="label">
+            <ui-label value="i18n:android.options.max_aspect_ratio"></ui-label>
+        </div>
+        <div slot="content">
+            <ui-select path="maxAspectRatio" class="row"
+                :value="maxAspectRatio"
+                :disabled="pkgOptions.resizeableActivity"
+            >
+                <template v-for="item in maxAspectRatioOptions">
+                    <option :value="item.value">{{ item.label }}</option>
+                </template>
+                <option value="custom">{{t('options.customOption')}}</option>
+            </ui-select>
+            <ui-input path="customMaxAspectRatio" placeholder="i18n:android.placeholders.max_aspect_ratio"
+                v-if="maxAspectRatio === 'custom'"
+                :disabled="pkgOptions.resizeableActivity"
+                :value="customMaxAspectRatio"
+            ></ui-input>
+        </div>
+    </ui-prop>
+
+    <!-- Orientation -->
+    <ui-prop :class="pkgErrorMap.orientation ? 'danger' : ''" :message="pkgErrorMap.orientation">
+        <ui-label slot="label" value="i18n:android.options.screen_orientation"></ui-label>
+        <div slot="content">
+            <div>
+                <ui-checkbox
+                    path="orientation.portrait"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.portrait"
+                    tooltip="i18n:android.tips.orientation_portrait"
+                >
+                    <ui-label value="i18n:android.options.portrait"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeLeft"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                    tooltip="i18n:android.tips.orientation_landscape_left"
+                >
+                     <ui-label value="i18n:android.options.landscape_left"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeRight"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                    tooltip="i18n:android.tips.orientation_landscape_right"
+                >
+                     <ui-label value="i18n:android.options.landscape_right"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- android instant config -->
+    <ui-prop>
+        <ui-label slot="label" value="Google Play Instant" tooltip="i18n:android.tips.google_play_instant"></ui-label>
+        <div slot="content" style="display: block">
+            <ui-checkbox
+                path="androidInstant"
+                :value="pkgOptions.androidInstant"
+                @change="changeInstantValue($event.target.value)"
+            ></ui-checkbox>
+            <span v-if="pkgOptions.androidInstant" style="font-size: 10px">
+                (
+                <ui-label
+                    :value="t('tips.when_enable_instant') + t('tips.apilevel_limit', {version: '23'})"
+                ></ui-label>
+                )
+            </span>
+            <ui-prop
+                v-if="pkgOptions.androidInstant"
+                :class="pkgErrorMap.remoteUrl ? 'danger' : ''"
+                :message="pkgErrorMap.remoteUrl"
+            >
+                <ui-label slot="label" value="i18n:android.options.intent_filter"></ui-label>
+                <ui-input
+                    slot="content"
+                    path="remoteUrl"
+                    placeholder="https://www.cocos.com/assets"
+                    :value="pkgOptions.remoteUrl"
+                ></ui-input>
+            </ui-prop>
+        </div>
+    </ui-prop>
+
+    <!-- bundle -->
+    <ui-prop>
+        <ui-label slot="label" value="Generate App Bundle (Google Play)" tooltip="i18n:android.tips.app_bundle"></ui-label>
+        <ui-checkbox
+            slot="content"
+            path="appBundle"
+            :value="pkgOptions.appBundle"
+        ></ui-checkbox>
+    </ui-prop>
+    <!-- Input SDK -->
+    <ui-prop>
+        <ui-label slot="label" value="Input SDK" tooltip="i18n:android.tips.input_sdk"></ui-label>
+        <ui-checkbox
+            slot="content"
+            path="inputSDK"
+            :value="pkgOptions.inputSDK"
+        ></ui-checkbox>
+    </ui-prop>
+</div>

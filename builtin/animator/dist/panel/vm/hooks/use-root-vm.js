@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.useRootVm=void 0;const vue_js_1=require("vue/dist/vue.js");function useRootVm(){const e=(0,vue_js_1.getCurrentInstance)();if(!e)throw new Error("should call in setup function");return e.proxy.$root}exports.useRootVm=useRootVm;

@@ -1,0 +1,196 @@
+.group-tab {
+  display: flex;
+  border-bottom: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+}
+.group-tab .group-header {
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+.group-tab .group-header ui-icon {
+  font-size: 14px;
+}
+.group-tab .group-header[active] {
+  background-color: var(--color-default-fill-important);
+}
+.group-tab .right-border {
+  border-right: 1px solid var(--color-default-fill-important);
+}
+.group-item {
+  margin: 4px;
+  border: solid calc(var(--size-normal-border) * 1px) var(--color-default-border);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  overflow: hidden;
+}
+.group-item .formats {
+  padding: 4px 8px 0 8px;
+}
+.group-item .formats .empty-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-default-fill-weaker);
+  width: 100%;
+  margin-top: 40px;
+}
+.group-item .formats .quality {
+  flex: 1;
+}
+.group-item .formats .format-item {
+  margin-bottom: 4px;
+  --ui-prop-margin-left: 0;
+}
+.group-item .formats .format-item .build-prop,
+.group-item .formats .format-item ui-prop {
+  width: 100%;
+  --left-width: 0;
+}
+.group-item .formats .format-item .custom.missing {
+  font-style: italic;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: var(--color-warn-fill);
+}
+.group-item .formats .format-name {
+  width: 100%;
+}
+.group-item .formats .format-name__label {
+  max-width: 100%;
+}
+.group-item .formats .format-name .custom {
+  font-style: italic;
+  opacity: 0.6;
+}
+.group-item .formats .rgb,
+.group-item .formats .rgba {
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.7;
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+.group-item .formats .rgba {
+  border: 1px solid;
+}
+.group-item .formats .rgb {
+  border: 1px solid;
+}
+.group-item .formats ui-select {
+  display: flex;
+  flex: 1;
+}
+.group-item .formats ui-button {
+  width: 100%;
+  margin-top: 4px;
+  text-align: center;
+}
+.group-item .format-item:hover .operate,
+.group-item .group-header:hover .operate {
+  visibility: visible;
+}
+.compress-texture {
+  margin-bottom: 10px;
+}
+.compress-texture ui-prop {
+  margin-right: 4px;
+}
+.platform-setting {
+  margin: 4px;
+  border: 1px solid var(--color-default-border);
+  background: var(--color-normal-fill-emphasis);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  position: relative;
+}
+.platform-setting > ui-icon {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+ui-prop > div[slot="content"] {
+  display: flex;
+}
+ui-prop > div[slot="content"] ui-select {
+  flex: 1;
+}
+ui-prop > div[slot="content"] ui-select + ui-button {
+  margin-left: 10px;
+}
+.warn {
+  color: #fbd461;
+}
+.asset-auto-atlas {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.asset-auto-atlas > .content {
+  flex: 1;
+  overflow-y: auto;
+}
+.asset-auto-atlas > .content ui-prop {
+  margin-right: 4px;
+}
+.asset-auto-atlas > .content ui-prop > ui-num-input {
+  flex: 1;
+}
+.asset-auto-atlas > .content ui-prop > ui-select {
+  flex: 1;
+}
+.asset-auto-atlas > .content ui-prop.warn {
+  color: var(--color-warn-fill);
+}
+.asset-auto-atlas > .content ui-prop.warn ui-select {
+  border: 1px solid var(--color-warn-fill);
+}
+.asset-auto-atlas > .content > .warn-words {
+  margin-top: 8px;
+  color: var(--color-warn-fill);
+}
+.asset-auto-atlas > .content .images {
+  overflow-y: auto;
+}
+.asset-auto-atlas > .content .images > .images-title {
+  padding: 32px 0 15px 0;
+}
+.asset-auto-atlas > .content .images > .image {
+  text-align: center;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  background: var(--color-normal-fill-emphasis);
+  border: 1px solid var(--color-normal-border-emphasis);
+}
+.asset-auto-atlas > .content .images > .image ui-link {
+  display: block;
+  line-height: 12px;
+}
+.asset-auto-atlas > .content .images > .image > .img {
+  max-width: 100%;
+}
+.asset-auto-atlas > .content > ui-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--panel-content-shadow);
+}
+.asset-auto-atlas > .content > .footer {
+  padding: 0 4px;
+}
+.asset-auto-atlas > .content > .footer > ui-button {
+  margin: 16px 0;
+  width: 100%;
+}
+.asset-auto-atlas > .multiple-warn-tip {
+  margin-top: 10px;
+  text-align: center;
+}

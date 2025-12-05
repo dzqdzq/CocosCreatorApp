@@ -1,0 +1,34 @@
+name: Check Pull Request
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+
+  pr_commented:
+    name: PR comment
+    runs-on: macos-latest
+    steps:
+      # https://docs.github.com/cn/rest/reference/pulls#create-a-pull-request--parameters
+      - name: 是否认真阅读
+        if: |
+          !contains(github.event.pull_request.body, '- [x] 已经认真阅读并撰写上述 pr 信息')
+        run: |
+          exit 1
+
+      - name: 检查是否关需要联其他 issue
+        if: |
+          !contains(github.event.pull_request.body, '- [x] 没有关联其他 issue')
+        run: |
+          echo '${{ github.event.pull_request.body }}' | grep '[^\:]*\:\ cocos\-creator\/3d\-tasks\#\d' | wc -l | grep '0' | wc -l | grep '0' && exit 0 || exit 1
+
+      - name: 检查是否需要关联其他 PR
+        if: |
+          !contains(github.event.pull_request.body, '- [x] 没有依赖其他 PR')
+        run: |
+          echo '${{ github.event.pull_request.body }}' | grep 'Depends\:\ cocos\-creator\/[^\#]*\#\d' | wc -l | grep '0' | wc -l | grep '0' && exit 0 || exit 1
+
+      - name: Finish
+        run: |
+          exit 0

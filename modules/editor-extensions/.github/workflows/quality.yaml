@@ -1,0 +1,20 @@
+name: quality
+on: [push, pull_request]
+jobs:
+  eslint:
+    name: Run ESLint
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - run: npm install eslint
+      - run: npm install eslint-plugin-jsdoc
+      - run: npm install @typescript-eslint/eslint-plugin
+      - run: npm install @typescript-eslint/parser
+
+      - name: Run ESLint
+        shell: pwsh
+        run: ./.github/workflows/scripts/eslint.ps1

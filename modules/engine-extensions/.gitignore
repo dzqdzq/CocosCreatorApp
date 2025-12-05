@@ -1,0 +1,11 @@
+/.history
+/node_modules
+/@types/cc.d.ts
+
+dist
+
+# 仓库配置文件
+/config.json
+/scripts/workflow/.*
+/scripts/.build-cache.json
+packages/fbx-gltf-conv/types/FBX-glTF-conv-extras.d.ts

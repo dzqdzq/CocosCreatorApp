@@ -1,0 +1,41 @@
+<div class="huawei-agc">
+    <ui-prop
+        :class="pkgErrorMap.serviceConfigPath ? 'danger' : ''"
+        :message="pkgErrorMap.serviceConfigPath"
+    >
+        <ui-label slot="label" value="i18n:huawei-agc.options.agc_config"></ui-label>
+        <div slot="content">
+            <ui-file :value="pkgOptions.serviceConfigPath"
+                     extensions="json"
+                     @change.stop="updateAGConnectConfigPath"></ui-file>
+        </div>
+    </ui-prop>
+    <!--    TODO：需要一个可以配置 css 样式的地方-->
+    <!--    TODO：这个目前有 cocos service 实现，暂时屏蔽，但是 js 和 html 先保留几个版本，不需要的时候再删掉-->
+    <!--<ui-prop>
+        <ui-label slot="label" value="i18n:huawei-agc.options.sdk_hub"></ui-label>
+        <div slot="content" style="width: 100%;display: flex;flex-direction: column;">
+            <ui-select :value="selected"
+                       @change="updateOptions($event.target.value)">`
+                <template v-for="item in config">
+                    <option :value="item.id">{{ item.name }}</option>
+                </template>
+            </ui-select>
+            <table v-if="currentSelect && currentSelect.plugins.length > 0" style="margin-top:5px;border-collapse: collapse;background: #2c2c2c;border: 1px solid gray;
+            font-size: 1em;">
+                <tr style="border: 1px solid gray;font-size: 1em;">
+                    <th style="border: 1px solid gray;font-size: 1em;">{{ t('plugin_name') }}</th>
+                    <th style="border: 1px solid gray;font-size: 1em;">{{ t('plugin_version') }}</th>
+                    <th style="border: 1px solid gray;font-size: 1em;">{{ t('plugin_params') }}</th>
+                </tr>
+                <tr style="border: 1px solid gray;font-size: 1em;" v-for="item in currentSelect.plugins">
+                    <th style="border: 1px solid gray;font-size: 1em;">{{ item.pName }}</th>
+                    <th style="border: 1px solid gray;font-size: 1em;">{{ item.pVersion }}</th>
+                    <th style="border: 1px solid gray;font-size: 1em;" :class="paramValid(item)?'':'error-tips'">
+                        {{ parseConfig(item) }}
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </ui-prop>-->
+</div>

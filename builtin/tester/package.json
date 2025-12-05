@@ -1,0 +1,64 @@
+{
+    "name": "tester",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "CocosCreator Tester",
+    "main": "./browser/index",
+    "windows": "./windows/index.js",
+    "panels": {
+        "panel": {
+            "title": "Tester",
+            "type": "simple",
+            "main": "./panel/index.js",
+            "size": {
+                "min-width": 200,
+                "min-height": 200,
+                "width": 400,
+                "height": 600
+            }
+        },
+        "test": {
+            "title": "Tester test",
+            "main": "./panel/test.js",
+            "size": {
+                "min-width": 200,
+                "min-height": 200,
+                "width": 200,
+                "height": 200
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "Tester",
+                "message": "open",
+                "group": "tools"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "forwarding-to-window": {
+                "methods": [
+                    "forwarding-to-window"
+                ]
+            },
+            "*": {
+                "methods": [
+                    "panel.*"
+                ]
+            },
+            "auto-test": {
+                "methods": [
+                    "auto-test"
+                ]
+            }
+        }
+    }
+}

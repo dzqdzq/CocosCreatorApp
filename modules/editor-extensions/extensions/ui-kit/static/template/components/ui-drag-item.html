@@ -1,0 +1,177 @@
+<div class="wrap ui-drag-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>type</h2>
+            <div>
+                <ui-drag-item type="type-a">type-a</ui-drag-item>
+                <ui-drag-item type="type-b">type-b</ui-drag-item>
+            </div>
+            <ui-code language="html">
+                &lt;ui-drag-item type="type-a"&gt;type-a&lt;/ui-drag-item&gt;
+                &lt;ui-drag-item type="type-b"&gt;type-b&lt;/ui-drag-item&gt;
+            </ui-code>
+
+            <h2>extends</h2>
+            <ui-drag-item type="type-b" extends="type-a">b extends a</ui-drag-item>
+            <ui-code language="html">
+                &lt;ui-drag-item type="type-b" extends="type-a"&gt;b extends a&lt;/ui-drag-item&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <div>
+                <ui-drag-area droppable="type-a">type-a</ui-drag-area>
+                <ui-drag-area droppable="type-b">type-b</ui-drag-area>
+                <ui-drag-area droppable="type-a,type-b">type-a,type-b</ui-drag-area>
+            </div>
+            <ui-code language="html">
+                &lt;ui-drag-area droppable="type-a"&gt;type-a&lt;/ui-drag-area&gt;
+                &lt;ui-drag-area droppable="type-b"&gt;type-b&lt;/ui-drag-area&gt;
+                &lt;ui-drag-area droppable="type-a,type-b"&gt;type-a,type-b&lt;/ui-drag-area&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                type; // as a droppable type
+                
+                extends; 
+                // extends types, like this: 'cc.DirectionalLight,cc.Light,cc.Component,cc.Object'
+                // ui-drag-area will automatically matches droppable type in this extends array.
+                
+                additional; 
+                // additional data 
+                // string format, like this: '[{type:'abc', value:123}]'
+                // it can support multiple element drag, when drag start, you can collect multiple values to 'additional' attribute.
+                // if it contain 'type', ui-drag-area will automatically matches droppable type to it.
+
+                draging; 
+                // It cannot be set. It is a dynamic state.
+                // when element draging, it appear.
+                // you can use attribute '[draging]' to set css style.
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>Try It</h2>
+            <h4 ref="value"></h4>
+            <h4>Editor.UI.DragArea.currentDragInfo:</h4>
+            <h4 ref="currentDragInfo"></h4>
+            <div class="mb-10">
+                <ui-drag-item type="type-a" value="type-a" @dragstart="dragstart">type-a</ui-drag-item>
+                <ui-drag-item type="type-b" value="type-b" @dragstart="dragstart">type-b</ui-drag-item>
+                <ui-drag-item type="type-b" value="type-b" extends="type-a" @dragstart="dragstart">b extends a</ui-drag-item>
+                <ui-drag-item type="type-c" value="type-a, type-b" extends="type-a, type-b" @dragstart="dragstart">c extends a,b</ui-drag-item>
+                <ui-drag-item type="type-d" value="" additional='[{"type": "type-a", "value":"type-a"},{"type": "type-b", "value":"type-b"},{"type": "type-c", "value":"type-c"}]' @dragstart="dragstart">type-d<br>additional multiple</ui-drag-item>
+            </div>
+            <div>
+                <ui-drag-area droppable="type-a" @drop="drop">type-a</ui-drag-area>
+                <ui-drag-area droppable="type-b" @drop="drop">type-b</ui-drag-area>
+                <ui-drag-area droppable="type-c" @drop="drop">type-c</ui-drag-area>
+                <ui-drag-area droppable="type-d" @drop="drop">type-d</ui-drag-area>
+            </div>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    dragStart // html element origin event
+                    dragEnd
+                </ui-code>
+
+                <h2>Editor</h2>
+                <ui-code language="typescript">
+                    Editor.UI.DragArea.currentDragInfo; 
+                    // when drag start, { type, extends, additional, value } will insert to Editor.
+                    // value formate like this: {"additional":[],"extends":null,"type":"type-a","value":"1234"}
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-drag-item type="type-a" value="type-a" @dragstart="dragstart"&gt;type-a&lt;/ui-drag-item&gt;
+                    &lt;ui-drag-item type="type-b" value="type-b" @dragstart="dragstart"&gt;type-b&lt;/ui-drag-item&gt;
+                    &lt;ui-drag-item type="type-b" value="type-b" extends="type-a" @dragstart="dragstart">b extends a&lt;/ui-drag-item&gt;
+                    &lt;ui-drag-item type="type-c" value="type-a, type-b" extends="type-a, type-b" @dragstart="dragstart"&gt;c extends a,b&lt;/ui-drag-item&gt;
+                    &lt;ui-drag-item type="type-d" value="" additional='[{"type": "type-a", "value":"type-a"},{"type": "type-b", "value":"type-b"},{"type": "type-c", "value":"type-c"}]' @dragstart="dragstart"&gt;
+                        type-d&lt;br&gt;additional multiple
+                    &lt;/ui-drag-item&gt;
+                        
+                    &lt;ui-drag-area droppable="type-a" @drop="drop"&gt;type-a&lt;/ui-drag-area&gt;
+                    &lt;ui-drag-area droppable="type-b" @drop="drop"&gt;type-b&lt;/ui-drag-area&gt;
+                    &lt;ui-drag-area droppable="type-c" @drop="drop"&gt;type-c&lt;/ui-drag-area&gt;
+                    &lt;ui-drag-area droppable="type-d" @drop="drop"&gt;type-d&lt;/ui-drag-area&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    export const methods = {
+                        dragstart(event: Event) {
+                            event.dataTransfer.setData('value', event.target.getAttribute('value'));
+                        },
+                        drop(event: Event) {
+                            if (!event.target.hoving) {
+                                return;
+                            }
+                    
+                            let dropWhat = '';
+                    
+                            // whether drop system files
+                            const systemFiles = Array.from(event.dataTransfer.files);
+                            if (systemFiles && systemFiles.length > 0) {
+                                dropWhat = JSON.stringify(systemFiles.map(File => File.path));
+                            } else {
+                                dropWhat = event.dataTransfer.getData('value');
+                            }
+                            
+                            this.$refs.value.innerHTML = `drop value: ${dropWhat}`;
+                        },
+                    };
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-drag-item type="type-a" value="1234" id="itemA"&gt;type-a&lt;br&gt;value = '1234'&lt;/ui-drag-item&gt;
+                    &lt;ui-drag-item type="type-a" value="5678" id="itemB"&gt;type-a&lt;br&gt;value = '5678'&lt;/ui-drag-item&gt;
+                        
+                    &lt;ui-drag-area droppable="type-a" id="areaA"&gt;type-a&lt;/ui-drag-area&gt;
+                    &lt;ui-drag-area droppable="type-b" id="areaB"&gt;type-b&lt;/ui-drag-area&gt;
+                    &lt;ui-drag-area droppable="file" id="fileArea"&gt;file&lt;/ui-drag-area&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const itemA = document.getElementById('#itemA');
+                    const itemB = document.getElementById('#itemB');
+
+                    const areaA = document.getElementById('#areaA');
+                    const areaB = document.getElementById('#areaB');
+                    const FileArea = document.getElementById('#fileArea');
+
+                    // addEventListener
+                    itemA.addEventListener('dragstart', onDragStart);
+                    itemB.addEventListener('dragstart', onDragStart);
+                    
+                    areaA.addEventListener('drop', onDrop);
+                    areaB.addEventListener('drop', onDrop);
+                    fileArea.addEventListener('drop', onDrop);
+
+                    function onDragStart(event){
+                        event.dataTransfer.setData('value', event.target.getAttribute('value'));
+                    }
+
+                    function onDrop(event){
+                        const value = event.dataTransfer.getData('value');
+                        const systemFiles = Array.from(event.dataTransfer.files);
+                        
+                        // get data from Editor
+                        const currentDragInfo = Editor.UI.DragArea.currentDragInfo
+                    }
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+</div>

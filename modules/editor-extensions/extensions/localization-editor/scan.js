@@ -1,0 +1,1 @@
+"use strict";const{readdirSync:readdirSync,statSync:statSync,unlinkSync:unlinkSync}=require("fs"),{join:join}=require("path");(()=>{let n=0;!function i(t){n++,readdirSync(t).forEach(c=>{const e=join(t,c);statSync(e).isDirectory()?i(e):/.d.ts$/.test(e)?unlinkSync(e):n++})}(join(__dirname,"./node_modules")),console.log(n)})();

@@ -1,0 +1,1 @@
+"use strict";require("chai").should();const fse=require("fs-extra"),path=require("path");describe("Type",()=>{it("test",async function(){})});

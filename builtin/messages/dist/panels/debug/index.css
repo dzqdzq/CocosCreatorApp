@@ -1,0 +1,142 @@
+:host {
+  flex: 1;
+  display: flex;
+}
+:host > .content {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+  user-select: text;
+}
+:host > .content > .slider {
+  flex: 1;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  margin-right: 10px;
+  overflow: auto;
+}
+:host > .content > .slider > li {
+  padding: 6px 16px;
+  line-height: 24px;
+  display: flex;
+  cursor: pointer;
+}
+:host > .content > .slider > li[active],
+:host > .content > .slider > li:hover {
+  background-color: var(--color-normal-fill-emphasis);
+}
+:host > .content > .slider > li > span {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  margin-right: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:host > .content > .slider > li > ui-loading {
+  visibility: hidden;
+}
+:host > .content > .slider > li > ui-loading[show] {
+  visibility: visible;
+}
+:host > .content > .slider > li > .browser {
+  width: 60px;
+  text-align: center;
+  border-color: var(--color-normal-border-weaker);
+  background: var(--color-primary-fill);
+  color: var(--color-primary-contrast);
+}
+:host > .content > .slider > li > .renderer {
+  width: 60px;
+  text-align: center;
+  border-color: var(--color-normal-border-weaker);
+  background: var(--color-info-fill);
+  color: var(--color-info-contrast);
+}
+:host > .content > .slider > li > .request {
+  width: 70px;
+  text-align: center;
+  border-color: var(--color-normal-border-weaker);
+  background: var(--color-success-fill);
+  color: var(--color-success-contrast);
+}
+:host > .content > .slider > li > .send {
+  width: 70px;
+  text-align: center;
+  border-color: var(--color-normal-border-weaker);
+  background: var(--color-warn-fill);
+  color: var(--color-warn-contrast);
+}
+:host > .content > .slider > li > .broadcast {
+  width: 70px;
+  text-align: center;
+  border-color: var(--color-normal-border-weaker);
+  background: var(--color-danger-fill);
+  color: var(--color-danger-contrast);
+}
+:host > .content > .slider > li > .target {
+  width: 90px;
+  text-align: center;
+}
+:host > .content > .slider > li > .message {
+  flex: 1;
+  text-align: center;
+}
+:host > .content > .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+:host > .content > .details > header {
+  padding: 4px 10px;
+}
+:host > .content > .details > header > ui-icon {
+  cursor: pointer;
+  width: 24px;
+}
+:host > .content > .details > section {
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-normal-border-weaker);
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host > .content > .details > section > div {
+  display: flex;
+}
+:host > .content > .details > section > div .content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: rtl;
+}
+:host > .content > .details > section > .param {
+  margin-top: 10px;
+  border-top: 1px solid var(--color-normal-border-weaker);
+  flex: 1;
+  overflow: hidden;
+}
+:host > .content > .details > section > .param > .name {
+  padding-top: 12px;
+}
+:host > .content > .details > section > .param > .right {
+  overflow: auto;
+  width: 100%;
+}
+:host > .content > .details > section > .param > .right > ui-markdown {
+  display: block;
+  border-top: 1px solid var(--color-normal-border-weaker);
+  height: 100%;
+}
+:host > .content > .details > section > .param > .right > ui-markdown:first-child {
+  border: none;
+}
+:host > .content > .details > section .name {
+  width: 70px;
+}

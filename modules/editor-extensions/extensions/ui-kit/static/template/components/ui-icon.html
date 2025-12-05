@@ -1,0 +1,80 @@
+<div class="wrap ui-icon-wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>value</h2>
+            <div>
+                <ui-icon value="video"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon value="video"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>color</h2>
+            <div>
+                <ui-icon value="video" color="normal"></ui-icon>
+                <ui-icon value="video" color></ui-icon>
+                <ui-icon value="video"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon color="normal" value="video"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color value="video"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon value="video"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>size</h2>
+            <div>
+                <ui-icon color value="video" style="font-size: 12px;"></ui-icon>
+                <ui-icon color value="video" style="font-size: 24px;"></ui-icon>
+                <ui-icon color value="video" style="font-size: 32px;"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon color value="video" style="font-size: 12px;"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color value="video" style="font-size: 24px;"&gt;&lt;/ui-icon&gt;
+                &lt;ui-icon color value="video" style="font-size: 32px;"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>default</h2>
+            <div>When the value is not found, the default value is used.</div>
+            <div>
+                <ui-icon default="component" value="cc.Label"></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon default="component" value="cc.Label"&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-icon hidden></ui-icon>
+            </div>
+            <ui-code language="html">
+                &lt;ui-icon hidden&gt;&lt;/ui-icon&gt;
+            </ui-code>
+        </div>
+
+        <div class="row"
+            v-for="(list,typeName) in iconMap"
+            :key="typeName"
+        >
+            <h2>{{typeName}}</h2>
+            <div class="all-icons">
+                <div class="icon-box"
+                    v-for="(iconName, exportName) in list"
+                    :key="exportName"
+                >
+                    <ui-icon color
+                        :value="exportName"
+                    ></ui-icon>
+                    <span>{{exportName}}</span>
+                </div>
+            </div>
+        </div>
+    </ui-section>
+</div>

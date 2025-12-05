@@ -1,0 +1,1 @@
+"use strict";const{join:join}=require("path");exports.tsc=function(){return["./"]},exports.lessc=function(){return[]},exports.file=function(){return[]},exports.npm=function(){return[]};

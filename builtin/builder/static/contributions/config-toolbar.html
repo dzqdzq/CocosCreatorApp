@@ -1,0 +1,29 @@
+<div class="toolbar">
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.project.texture_compress.presetName"></ui-label>
+        <div slot="content">
+            <ui-input
+                :placeholder="mode === 'search' ? 'i18n:builder.project.texture_compress.tips.input_config_name_to_search' : 'i18n:builder.project.texture_compress.tips.enter_config_name_to_add'"
+                show-clear
+                @change="onConfigNameChange"
+                @keydown.enter="$emit('update', 'add-config', $event.target.value)"
+            ></ui-input>
+            <ui-button type="icon" class="transparent"
+                :active="mode === 'search'"
+                :tooltip="mode === 'search' ? 'i18n:builder.project.texture_compress.toolbar.toggleToConfigMode' : 'i18n:builder.project.texture_compress.toolbar.toggleToSearchMode'"
+                @click="toggleMode"
+            >
+                <ui-icon value="search"></ui-icon>
+            </ui-button>
+        </div>
+    </ui-prop>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'add-config', currentConfigName)" tooltip="i18n:builder.project.texture_compress.add_config">
+        <ui-icon value="add"></ui-icon>
+    </ui-button>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'import-config')" tooltip="i18n:builder.project.texture_compress.import_config">
+        <ui-icon value="import"></ui-icon>
+    </ui-button>
+    <ui-button type="icon" class="transparent" @confirm="$emit('update', 'export-config')" tooltip="i18n:builder.project.texture_compress.export_config">
+        <ui-icon value="export"></ui-icon>
+    </ui-button>
+</div>

@@ -1,0 +1,1 @@
+"use strict";function overwriteAssetManager(){cc.assetManager.init({importBase:`${Editor.Project.path}/library`,nativeBase:`${Editor.Project.path}/library`}),cc.game.config={}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.overwriteAssetManager=void 0,exports.overwriteAssetManager=overwriteAssetManager;

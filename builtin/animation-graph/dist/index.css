@@ -1,0 +1,827 @@
+:host {
+  position: relative;
+  display: flex;
+  --color-border-weak: #6c6c6c;
+  --color-pose-state-background: #75a56d;
+  --color-pose-link: var(--color-primary-contrast-weaker);
+}
+:host > .container {
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+:host > .container > .readonly {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  background-color: #02020245;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:host > .container > .main {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  user-select: none;
+}
+:host > .container > .main > .header {
+  height: 20px;
+  line-height: 20px;
+  padding: 4px;
+  display: flex;
+}
+:host > .container > .main > .header > .crumbs {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  text-align: left;
+  padding-right: 10px;
+}
+:host > .container > .main > .header > .crumbs > .name {
+  cursor: pointer;
+  max-width: 200px;
+  white-space: nowrap;
+  color: var(--color-default-contrast);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+:host > .container > .main > .header > .crumbs > .name.text {
+  color: var(--color-default-contrast-emphasis);
+  pointer-events: none;
+}
+:host > .container > .main > .header > .crumbs > .name:hover {
+  background-color: var(--color-default-fill-normal);
+}
+:host > .container > .main > .header > .crumbs > .name.readonly {
+  color: var(--color-normal-contrast);
+  pointer-events: none;
+}
+:host > .container > .main > .header > .crumbs > .tip {
+  color: var(--color-normal-contrast-important);
+  font-family: cursive;
+  padding: 0 2px;
+  margin-top: 1px;
+}
+:host > .container > .main > .header > .tiny {
+  padding: 0 3px;
+  margin-left: 4px;
+}
+:host > .container > .main > .layer {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--color-normal-border);
+  border: 1px solid var(--color-border-weak);
+}
+:host > .container > .main > .layer[hoving] {
+  outline: 2px solid var(--color-focus-fill-weaker);
+  outline-offset: -2px;
+}
+:host > .container > .main > .layer[sub-state-machine] > .graph > .state[type='ExitState'] {
+  display: flex;
+}
+:host > .container > .main > .layer > .grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+:host > .container > .main > .layer > .grid.animationIn {
+  animation-name: grid-in;
+  animation-duration: 1s;
+}
+:host > .container > .main > .layer > .grid.animationOut {
+  animation-name: grid-out;
+  animation-duration: 1s;
+}
+:host > .container > .tabs {
+  position: absolute;
+  top: 29px;
+  right: 1px;
+  z-index: 1;
+  background-color: var(--color-normal-fill-important);
+  border: solid 1px var(--color-default-border-emphasis);
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+:host > .container > .tabs .tab {
+  display: block;
+  padding: 10px 3px;
+  cursor: pointer;
+  writing-mode: vertical-lr;
+  user-select: none;
+  letter-spacing: 2px;
+  position: relative;
+}
+:host > .container > .tabs .tab:first-child {
+  border-bottom: solid 1px var(--color-default-border-emphasis);
+}
+:host > .container > .tabs .tab:hover,
+:host > .container > .tabs .tab[active] {
+  background-color: var(--color-normal-fill-normal);
+}
+:host > .container > .tab-content {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 300px;
+  z-index: 1;
+  background-color: var(--color-normal-fill);
+  min-height: 180px;
+}
+:host > .container > .tab-content[active] {
+  display: block;
+}
+:host > .container > .tab-content .header {
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-normal-fill-emphasis);
+}
+:host > .container > .tab-content .header .name {
+  width: 68px;
+  text-align: center;
+  background-color: var(--color-normal-fill);
+}
+:host > .container > .tab-content .header .icon {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0 8px;
+  font-size: 10px;
+  color: var(--color-normal-contrast-emphasis);
+}
+:host > .container > .tab-content .header .icon:hover {
+  color: var(--color-primary-contrast-emphasis);
+}
+:host > .container > .tab-content .content .caption {
+  display: flex;
+  flex-direction: row;
+  padding: 2px 0 2px 8px;
+}
+:host > .container > .tab-content .content .caption .name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--color-normal-contrast-emphasis);
+}
+:host > .container > .tab-content .content .caption .icon {
+  cursor: pointer;
+  padding: 0 6px;
+  font-size: 12px;
+}
+:host > .container > .tab-content .content .caption .icon:hover {
+  color: var(--color-primary-contrast-emphasis);
+}
+:host > .container > .tab-content .content .list {
+  --left-width: 135px;
+  max-height: 240px;
+  overflow: auto;
+  padding-bottom: 8px;
+}
+:host > .container > .tab-content .content .item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+:host > .container > .tab-content .content .item[drag-over]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-info-fill-weakest);
+}
+:host > .container > .tab-content .content .item[drag-over='top']::before {
+  top: 0;
+}
+:host > .container > .tab-content .content .item[drag-over='bottom']::before {
+  bottom: 0;
+}
+:host > .container > .tab-content .content .item[active] {
+  background-color: var(--color-active-fill);
+}
+:host > .container > .tab-content .content .item:hover .icon {
+  opacity: 1;
+  pointer-events: auto;
+}
+:host > .container > .tab-content .content .item > .drag {
+  width: 6px;
+  margin: 2px 6px 2px 0;
+  cursor: move;
+  background: linear-gradient(45deg, var(--color-active-fill-normal) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-active-fill-normal) 0, var(--color-active-fill-normal) 75%, var(--color-normal-fill) 0);
+  background-size: 6px 6px;
+}
+:host > .container > .tab-content .content .item > .drag:hover {
+  background: linear-gradient(45deg, var(--color-info-fill-weakest) 25%, var(--color-normal-fill) 0, var(--color-normal-fill) 50%, var(--color-info-fill-weakest) 0, var(--color-info-fill-weakest) 75%, var(--color-normal-fill) 0);
+  background-size: 6px 6px;
+}
+:host > .container > .tab-content .content .item .name {
+  flex: 1;
+  font-size: 12px;
+  cursor: default;
+}
+:host > .container > .tab-content .content .item .icon {
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  margin-right: 6px;
+  font-size: 10px;
+  height: 20px;
+}
+:host > .container > .tab-content .content .item .icon:hover {
+  color: var(--color-primary-contrast-emphasis);
+}
+:host > .container > .tab-content .content .variable.trigger ui-label {
+  padding-left: 16px;
+  color: var(--color-default-fill-weakest);
+}
+:host > .container > .tab-content .content .variable > .label {
+  width: 100%;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+  padding-left: 6px;
+  box-sizing: border-box;
+  height: 20px;
+  line-height: 18px;
+}
+:host > .container > .tab-content .content .variable > .label:hover {
+  border-color: var(--color-focus-fill-emphasis);
+}
+:host > .container > .tab-content .content .variable .tooltip {
+  color: var(--color-normal-fill-weakest);
+}
+:host > .container > .tab-content .content .variable-select {
+  position: absolute;
+  top: 45px;
+  right: 4px;
+  z-index: 2;
+  background-color: var(--color-normal-fill-important);
+  border: 1px solid var(--color-border-weak);
+  border-radius: 4px;
+  padding: 2px;
+}
+:host > .container > .tab-content .content .variable-select .option {
+  display: block;
+  padding: 0 12px;
+  border-radius: 2px;
+  margin: 2px;
+  cursor: default;
+}
+:host > .container > .tab-content .content .variable-select .option:hover {
+  background-color: var(--color-hover-fill-normal);
+}
+:host > .container > .tab-content .content .variable-mask {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+:host > .container > .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+:host > .container > .loading.center {
+  margin: auto;
+}
+:host > .container > .loading ui-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+}
+:host .graph {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+:host .graph[adding-line] > .line {
+  pointer-events: none;
+}
+:host .graph[adding-line] > .state > .starter {
+  opacity: 0 !important;
+}
+:host .graph[adding-line] > .state[type="AnyState"],
+:host .graph[adding-line] > .state[type="EntryState"] {
+  pointer-events: none;
+}
+:host .graph[type="pose"] > svg > path.line:hover {
+  stroke-width: 4px;
+  filter: drop-shadow(0 0 2px var(--color-primary-contrast-weaker)) drop-shadow(0 0 5px var(--color-primary-contrast-weaker));
+}
+:host .graph > .state {
+  display: flex;
+  position: absolute;
+  z-index: 20;
+  min-width: 64px;
+  cursor: default;
+  border-radius: 2px;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+:host .graph > .state[type='AnyState'] {
+  background-color: #5d5da2;
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[type='EntryState'] {
+  background-color: var(--color-success-fill-important);
+  color: var(--color-success-contrast-important);
+}
+:host .graph > .state[type='EmptyState'] {
+  background-color: var(--color-default-fill-weakest);
+  padding-left: 6px;
+}
+:host .graph > .state[type='EmptyState'] > .name {
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[type='ExitState'] {
+  display: none;
+  background-color: var(--color-danger-fill-important);
+  color: var(--color-danger-contrast-important);
+}
+:host .graph > .state[type='ExitState']:hover .starter {
+  display: none;
+}
+:host .graph > .state[type='ClipMotion'],
+:host .graph > .state[type='AnimationBlend1D'],
+:host .graph > .state[type='AnimationBlend2D'] {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  padding: 0;
+  border: none;
+  box-sizing: content-box;
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[type='ClipMotion'] > .motion,
+:host .graph > .state[type='AnimationBlend1D'] > .motion,
+:host .graph > .state[type='AnimationBlend2D'] > .motion {
+  padding: 4px 8px;
+  background-color: var(--color-default-fill-emphasis);
+}
+:host .graph > .state[type='MotionState'] {
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[subtype='AnimationBlend1D'],
+:host .graph > .state[subtype='AnimationBlend2D'] {
+  background-color: var(--color-warn-fill-emphasis);
+  padding-left: 6px;
+}
+:host .graph > .state[subtype='AnimationBlend1D'] > .name,
+:host .graph > .state[subtype='AnimationBlend2D'] > .name {
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+  padding: 0 4px 0 8px;
+}
+:host .graph > .state[type='PoseExprState'] {
+  background-color: var(--color-pose-state-background);
+  padding-left: 6px;
+}
+:host .graph > .state[type='PoseExprState'] > .name {
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[type='PoseExprState'] > .name > .image {
+  margin-right: 2px;
+}
+:host .graph > .state[type='SubStateMachine'] {
+  background-color: var(--color-primary-contrast-emphasis);
+  padding-left: 6px;
+}
+:host .graph > .state[type='SubStateMachine'] > .name {
+  background-color: var(--color-primary-fill-emphasis);
+  color: var(--color-primary-contrast-emphasis);
+  padding: 0 4px 0 8px;
+}
+:host .graph > .state[type="PoseNode"] {
+  --input-output-color: var(--color-normal-contrast-normal);
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  max-width: 200px;
+  width: 200px;
+  padding: 0;
+  border: none;
+  box-sizing: content-box;
+  color: var(--color-primary-contrast-emphasis);
+  background-color: var(--color-default-fill-emphasis);
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.6);
+}
+:host .graph > .state[type="PoseNode"][inline] {
+  width: auto;
+}
+:host .graph > .state[type="PoseNode"][inline][pose-input] > .name .label {
+  margin-left: 20px;
+  margin-top: -1px;
+}
+:host .graph > .state[type="PoseNode"][inline][pose-output] > .name .label {
+  margin-right: 20px;
+}
+:host .graph > .state[type="PoseNode"][inline][pose-output][is-parent] .name .icon {
+  margin-right: 4px;
+}
+:host .graph > .state[type="PoseNode"][inline][pose-output][is-parent] > .outputs .pose {
+  margin-right: 12px;
+}
+:host .graph > .state[type="PoseNode"][inline] > .name {
+  border: 1px solid var(--border-color);
+}
+:host .graph > .state[type="PoseNode"][inline] > .inputs,
+:host .graph > .state[type="PoseNode"][inline] > .outputs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+:host .graph > .state[type="PoseNode"][inline] > .inputs > .row,
+:host .graph > .state[type="PoseNode"][inline] > .outputs > .row {
+  min-height: 24px;
+  line-height: 24px;
+}
+:host .graph > .state[type="PoseNode"][inline] > .inputs > .row .point,
+:host .graph > .state[type="PoseNode"][inline] > .outputs > .row .point {
+  top: 8px;
+}
+:host .graph > .state[type="PoseNode"][inline] > .inputs .pose,
+:host .graph > .state[type="PoseNode"][inline] > .outputs .pose {
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > .state[type="PoseNode"][inline] > .inputs .name,
+:host .graph > .state[type="PoseNode"][inline] > .outputs .name {
+  display: none;
+}
+:host .graph > .state[type="PoseNode"][collapse] > .name > .collapse {
+  transform: rotate(0deg);
+}
+:host .graph > .state[type="PoseNode"][collapse] > .inputs,
+:host .graph > .state[type="PoseNode"][collapse] > .outputs {
+  display: none;
+}
+:host .graph > .state[type="PoseNode"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 2px;
+  border: 1px solid var(--color-default-border-weaker);
+  pointer-events: none;
+}
+:host .graph > .state[type="PoseNode"] > .name {
+  position: relative;
+  background-color: var(--background-color);
+  padding: 0 6px;
+}
+:host .graph > .state[type="PoseNode"] > .name > .avatar {
+  position: absolute;
+  width: 6px;
+  top: 2px;
+  bottom: 0;
+  pointer-events: none;
+}
+:host .graph > .state[type="PoseNode"] > .name > .avatar.inputs {
+  left: 0;
+}
+:host .graph > .state[type="PoseNode"] > .name > .avatar.outputs {
+  right: 0;
+}
+:host .graph > .state[type="PoseNode"] > .name > .image {
+  margin-right: 2px;
+}
+:host .graph > .state[type="PoseNode"] > .name > .collapse {
+  transform: rotate(90deg);
+  font-size: 7px;
+}
+:host .graph > .state[type="PoseNode"] > .name .label {
+  text-align: left;
+  margin-left: 4px;
+}
+:host .graph > .state[type="PoseNode"] > .name > .insert {
+  margin-left: 8px;
+  font-size: 10px;
+}
+:host .graph > .state[type="PoseNode"] > .outputs > .row {
+  padding: 0 12px 4px 8px;
+  position: relative;
+  text-align: right;
+  color: var(--color-normal-contrast-normal);
+}
+:host .graph > .state[type="PoseNode"] > .outputs > .row .point {
+  position: absolute;
+  top: 6px;
+  right: -4px;
+  width: 9px;
+  height: 9px;
+  z-index: 10;
+  box-sizing: border-box;
+  cursor: pointer;
+  transform: rotate(45deg);
+  border: 1px solid var(--input-output-color);
+  background-color: var(--color-default-fill-emphasis);
+}
+:host .graph > .state[type="PoseNode"] > .outputs > .row .point[connect],
+:host .graph > .state[type="PoseNode"] > .outputs > .row .point:active {
+  background-color: var(--input-output-color);
+}
+:host .graph > .state[type="PoseNode"] > .outputs > .row > .pose {
+  margin-right: -2px;
+  vertical-align: middle;
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row {
+  padding: 0 8px 4px 12px;
+  position: relative;
+  text-align: left;
+  color: var(--color-normal-contrast-normal);
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row[type="Number"],
+:host .graph > .state[type="PoseNode"] > .inputs > .row[type="Boolean"] {
+  display: flex;
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row .add-input {
+  line-height: 20px;
+  vertical-align: middle;
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row .name {
+  flex: 1;
+  vertical-align: middle;
+  margin-bottom: 2px;
+  margin-right: 4px;
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row .point {
+  position: absolute;
+  top: 5px;
+  left: -4px;
+  width: 9px;
+  height: 9px;
+  z-index: 10;
+  cursor: pointer;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+  border: 1px solid var(--input-output-color);
+  background-color: var(--color-default-fill-emphasis);
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row .point[connect],
+:host .graph > .state[type="PoseNode"] > .inputs > .row .point:active {
+  background-color: var(--input-output-color);
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row > .pose {
+  margin-left: -2px;
+}
+:host .graph > .state[type="PoseNode"] > .inputs > .row .prop {
+  flex: 1;
+  margin-bottom: 4px;
+}
+:host .graph > .state[twinkle]::before,
+:host .graph > .state[twinkle] > .name {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+:host .graph > .state[twinkle='light']::before,
+:host .graph > .state[twinkle='light'] > .name {
+  animation-name: light;
+}
+:host .graph > .state:hover,
+:host .graph > .state[active] {
+  box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.25);
+}
+:host .graph > .state:hover::before,
+:host .graph > .state[active]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 2px;
+  border: 1px solid var(--color-primary-contrast-emphasis);
+  pointer-events: none;
+}
+:host .graph > .state:hover .starter {
+  opacity: 1;
+}
+:host .graph > .state > .name {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 200px;
+  border-radius: 2px;
+  padding: 0 6px;
+  line-height: 24px;
+}
+:host .graph > .state > .name > .label {
+  width: 100%;
+  white-space: nowrap;
+}
+:host .graph > .state > .name > .icon {
+  margin-left: 8px;
+  font-size: 6px;
+  transform: rotate(90deg);
+}
+:host .graph > .state .starter {
+  opacity: 0;
+  position: absolute;
+  right: -5px;
+  top: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  z-index: 10;
+  border-radius: 15px;
+  background-color: var(--color-primary-contrast-emphasis);
+  cursor: pointer;
+}
+:host .graph > .state .starter > .icon {
+  display: none;
+  color: var(--color-primary-fill-emphasis);
+  font-size: 4px;
+  line-height: 12px;
+  vertical-align: top;
+}
+:host .graph > .state .starter:hover {
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.25);
+}
+:host .graph > .state .starter:hover > .icon {
+  display: inline-block;
+}
+:host .graph > .line {
+  position: absolute;
+  z-index: 10;
+  cursor: default;
+  transform-origin: left center;
+  height: 16px;
+}
+:host .graph > .line.circle {
+  box-shadow: var(--color-primary-contrast-weaker) 0 0 0 2px inset;
+}
+:host .graph > .line.circle::before {
+  display: none;
+}
+:host .graph > .line.circle:hover {
+  box-shadow: var(--color-focus-border-weakest) 0 0 0 2px inset;
+}
+:host .graph > .line.circle[active] {
+  box-shadow: var(--color-focus-border-weakest) 0 0 0 2px inset;
+}
+:host .graph > .line.circle > .triangle {
+  top: -9px;
+  transform: rotateZ(-90deg);
+}
+:host .graph > .line.circle > .count {
+  top: -24px;
+  left: 50%;
+}
+:host .graph > .line::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary-contrast-weaker);
+}
+:host .graph > .line[active],
+:host .graph > .line:hover {
+  z-index: 11;
+}
+:host .graph > .line[active]::before,
+:host .graph > .line:hover::before {
+  background-color: var(--color-focus-fill-normal);
+}
+:host .graph > .line[active] > .triangle,
+:host .graph > .line:hover > .triangle,
+:host .graph > .line[active] > .count,
+:host .graph > .line:hover > .count {
+  color: var(--color-focus-fill-normal);
+}
+:host .graph > .line > .triangle {
+  position: absolute;
+  left: calc(50% - 6px);
+  top: -2px;
+  font-size: 11px;
+  color: var(--color-primary-contrast-emphasis);
+  transform: rotateZ(90deg);
+}
+:host .graph > .line > .count {
+  position: absolute;
+  left: calc(50% - 2px);
+  top: -16px;
+  font-size: 12px;
+  color: var(--color-primary-contrast-emphasis);
+}
+:host .graph > svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+:host .graph > svg > path {
+  fill: none;
+  stroke: var(--color-pose-link);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+}
+:host .graph .triangle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 16px;
+  color: var(--color-focus-fill-weakest);
+}
+:host .motion > .prop {
+  --left-width: 14px;
+  padding: 2px 0;
+  font-size: 12px;
+}
+:host .motion > .prop > .name {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+:host .motion > .prop > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+:host .motion > .prop ui-asset {
+  margin-top: 8px;
+}
+:host .motion > .prop > ui-slider {
+  display: none !important;
+}
+:host .component-fade-enter-active,
+:host .component-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+:host .component-fade-enter,
+:host .component-fade-leave-to {
+  opacity: 0;
+}
+@keyframes grid-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+@keyframes grid-in {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes light {
+  50% {
+    color: var(--color-warn-fill);
+    border-color: var(--color-warn-fill);
+  }
+}

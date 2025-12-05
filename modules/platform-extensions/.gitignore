@@ -1,0 +1,20 @@
+# 临时文件
+.history
+.DS_Store
+.idea
+
+# node 模块
+**/node_modules/
+**/yarn.lock
+
+# 插件内的构建后目录
+/platforms/**/dist
+/extensions/**/dist
+
+/scripts/workflow/.*
+/scripts/.build-cache.json
+
+# 仓库配置文件
+/config.json
+/scripts/workflow/.*
+/scripts/.build-cache.json

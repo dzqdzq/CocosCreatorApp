@@ -1,0 +1,85 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>html</h2>
+            <ui-code language="html">
+                &lt;ui-button language="html"&gt;Show Button Code&lt;/ui-button&gt;
+            </ui-code>
+            <div>
+                <ui-code language="html">
+                    &lt;ui-code language="html"&gt;
+                        &amp;lt;ui-button language="html"&amp;gt;Show Button Code&amp;lt;/ui-button&amp;gt;
+                    &lt;/ui-code&gt;
+                </ui-code>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>typescript</h2>
+            <ui-code language="typescript">
+                export const methods = {};
+                export function data() {
+                    return {};
+                }
+            </ui-code>
+            <div>
+                <ui-code language="html">
+                    &lt;ui-code language="typescript"&gt;
+                        export const methods = {};
+                        export function data() {
+                            return {};
+                        }
+                    &lt;/ui-code&gt;
+                </ui-code>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>json</h2>
+            <ui-code language="json">
+                [
+                    {
+                        "title": "apples",
+                        "count": [12000, 20000],
+                        "description": {"text": "...", "sensitive": false}
+                    }
+                ]
+            </ui-code>
+            <div>
+                <ui-code language="html">
+                    &lt;ui-code language="json"&gt;
+                    [
+                        {
+                            "title": "apples",
+                            "count": [12000, 20000],
+                            "description": {"text": "...", "sensitive": false}
+                        }
+                    ]
+                    &lt;/ui-code&gt;
+                </ui-code>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <ui-code language="html" disabled>
+                &lt;ui-button language="html"&gt;Show Button Code&lt;/ui-button&gt;
+            </ui-code>
+            <ui-code language="html">
+                &lt;ui-code language="html" disabled&gt;
+                    &amp;lt;ui-button language="html"&amp;gt;Show Button Code&amp;lt;/ui-button&amp;gt;
+                &lt;/ui-code&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                language // 'typescript' | 'javascript' | 'json' | 'css' | 'html' ...
+                disabled // Provide a style, like below
+            </ui-code>
+        </div>
+    </ui-section>
+</div>

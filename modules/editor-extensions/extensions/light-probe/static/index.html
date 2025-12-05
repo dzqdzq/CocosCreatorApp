@@ -1,0 +1,46 @@
+<div class="container">
+    <header class="header"></header>
+    <main class="main">
+        <ui-prop type="dump" ref="props"
+            @confirm-dump="confirm($event)"
+        ></ui-prop>
+    </main>
+    <section class="command">
+        <ui-button class="btn"
+            :class="!isBaking?'blue':'red'"
+            @confirm="baking()"
+        >
+            <ui-label class="label"
+                :value="!isBaking?'i18n:light-probe.start':'i18n:light-probe.cancel'"
+            ></ui-label>
+        </ui-button>
+        <ui-button class="red btn"
+            @confirm="clear()"
+        >
+            <ui-label class="label"
+                value="i18n:light-probe.clear"
+            ></ui-label>
+        </ui-button>
+    </section>
+    <section class="progress"
+        v-show="isBaking"
+    >
+        <ui-progress
+            :value="rate"
+        ></ui-progress>
+    </section>
+    <footer class="footer" ref="logs">
+        <div class="log"
+            v-for="(item, index) in logs"
+            :key="index"
+        >
+            <div>{{ item }}</div>
+        </div>
+    </footer>
+
+    <div class="loading"
+        v-if="!isInit"
+    >
+        <ui-loading></ui-loading>
+    </div>
+</div>
