@@ -1,0 +1,32 @@
+<div class="windows">
+    <ui-prop v-if="pkgOptions.renderBackEnd" 
+        @confirm="onConfirm"
+    >
+        <ui-label slot="label" value="i18n:android.options.render_back_end"></ui-label>
+        <div slot="content">
+            <ui-checkbox
+                path="renderBackEnd.vulkan"
+                :value="pkgOptions.renderBackEnd.vulkan"
+            >VULKAN</ui-checkbox>
+            <ui-checkbox
+                path="renderBackEnd.gles"
+                :value="pkgOptions.renderBackEnd.gles3"
+                @confirm.stop="onRenderBackEnd"
+            >GLES 2/3</ui-checkbox>
+            <div style="padding-left: 16px" v-if="pkgOptions.renderBackEnd.gles3">
+                <div>
+                    <ui-checkbox
+                        value="true"
+                        disabled
+                    >GLES3</ui-checkbox>
+                </div>
+                <div>
+                    <ui-checkbox
+                        path="renderBackEnd.gles2"
+                        :value="pkgOptions.renderBackEnd.gles2"
+                    >GLES2</ui-checkbox>
+                </div>
+            </div>
+        </div>
+    </ui-prop>
+</div>

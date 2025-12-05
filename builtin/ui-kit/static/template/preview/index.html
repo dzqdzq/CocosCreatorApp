@@ -1,0 +1,38 @@
+<div class="settings">
+    <!-- 左侧列表 -->
+    <div class="slider">
+        <ul>
+            <template
+                v-for="(items,name) in groups"
+            >
+                <li>
+                    <!-- Group 名字 -->
+                    <ui-label
+                        :value="name"
+                    ></ui-label>
+
+                    <ul>
+                        <!-- 功能里注册的选项卡 -->
+                        <li
+                            v-for="(item,key) in items"
+                            :key=key
+                            :active="active===item"
+                            @click="change(item)"
+                        >
+                            <ui-label
+                                :value="item"
+                            ></ui-label>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <!-- 右侧详情 -->
+    <div class="content" ref="content">
+        <component
+            :is="`comp-${active}`"
+        ></component>
+    </div>
+</div>

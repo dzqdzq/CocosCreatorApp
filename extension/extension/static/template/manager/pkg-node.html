@@ -1,0 +1,58 @@
+<div class="pkg-node"
+    v-if="pkg && pkg.info"
+    :type="pkg.type"
+>
+    <div class="header">
+        <div class="name">
+            <span class="title">{{pkg.info.name}}</span>
+
+            <div class="control" 
+                v-if="dev || pkg.type !== 'internal'"
+            >
+                <ui-button class="transparent" tooltip="i18n:extension.menu.openFolder"
+                    @click="openFolder()"
+                >
+                    <ui-icon value="folder-open"></ui-icon>
+                </ui-button>
+                <ui-button class="transparent" tooltip="i18n:extension.menu.reload"
+                    @click="reload()"
+                >
+                    <ui-icon value="refresh"></ui-icon>
+                </ui-button>
+                <ui-button v-show="pkg.type !== 'internal'" class="transparent red" tooltip="i18n:extension.menu.delete"
+                    @click="remove()"
+                >
+                <ui-icon value="del"></ui-icon>
+                </ui-button>
+            </div>
+
+        </div>
+
+        <div class="toggle" tooltip="Enable/Disable"
+            :disabled="dev ? undefined : pkg.invalid || pkg.type === 'internal'"
+            :enable="pkg.enable"
+            @click="toggleEnable()"
+        >
+            <div>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info">
+        <ui-label class="title" value="i18n:extension.menu.author"></ui-label>
+        <span class="content">{{pkg.info.author || 'Unknown'}}</span>
+    </div>
+
+    <div class="info">
+        <ui-label class="title" value="i18n:extension.menu.version"></ui-label>
+        <span class="content">{{pkg.info.version || '0.0.0'}}</span>
+    </div>
+
+    <div class="description">
+        <ui-label class="content"
+            :value="description"
+        ></ui-label>
+    </div>
+    
+</div>

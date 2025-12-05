@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"节点预制库",description:"节点预制库",menu:{builtin:"内置",custom:"自定义",cloud:"云组件",rename:"重命名",locate:"定位到资源",delete:"删除"},groups:{renderer:"渲染节点",ui:"UI 节点",custom:" 您可以拖动预制件资源到这里成为项目自定义节点"}};

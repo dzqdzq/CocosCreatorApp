@@ -1,0 +1,76 @@
+{
+    "name": "engine-extends",
+    "version": "1.0.0",
+    "description": "",
+    "package_version": 2,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "contributions": {
+        "asset-db": {
+            "importer": {
+                "script": "./dist/importer/index.js",
+                "priority": [
+                    "",
+                    ".tmx",
+                    ".plist"
+                ],
+                "list": [
+                    "registerUnknownImporter",
+                    "registerDirectoryImporter",
+                    "registerTextImporter",
+                    "registerJSONImporter",
+                    "registerSpineImporter",
+                    "registerDragonBonesImporter",
+                    "registerDragonBonesAtlasImporter",
+                    "registerTerrainImporter",
+                    "registerJavascriptImporter",
+                    "registerTypescriptImporter",
+                    "registerSceneImporter",
+                    "registerPrefabImporter",
+                    "registerSpriteFrameImporter",
+                    "registerTiledMapImporter",
+                    "registerBufferImporter",
+                    "registerImageImporter",
+                    "registerTextureImporter",
+                    "registerTextureCubeImporter",
+                    "registerERPTextureCubeImporter",
+                    "registerTextureCubeFaceImporter",
+                    "registerRenderTextureImporter",
+                    "registerRenderTextureSpriteFrameImporter",
+                    "registerGltfImporter",
+                    "registerGltfMeshImporter",
+                    "registerGltfAnimationImporter",
+                    "registerGltfSkeletonImporter",
+                    "registerGltfMaterialImporter",
+                    "registerGltfPrefabImporter",
+                    "registerGltfImageImporter",
+                    "registerGltfFbxImporter",
+                    "registerMaterialImporter",
+                    "registerPhysicsMaterialImporter",
+                    "registerEffectImporter",
+                    "registerEffectHeaderImporter",
+                    "registerAudioImporter",
+                    "registerAnimationImporter",
+                    "registerAnimationGraphImporter",
+                    "registerTTFFontImporter",
+                    "registerBitmapImporter",
+                    "registerParticleImporter",
+                    "registerTexturePackerImporter",
+                    "registerAutoAtlasImporter",
+                    "registerLabelAtlasImporter",
+                    "registerRenderPipelineImporter",
+                    "registerRenderStageImporter",
+                    "registerRenderFlowImporter",
+                    "registerInstantiationMaterialImporter",
+                    "registerInstantiationMeshImporter",
+                    "registerInstantiationSkeletonImporter",
+                    "registerInstantiationAnimationImporter",
+                    "registerVideoImporter"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.left {
+    min-width: 140px;
+    max-width: 300px;
+}
+
+ui-prop {
+    > div[slot="content"] {
+        display: flex;
+        flex: 1;
+    }
+}
+
+.platform-debug-tools {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .container {
+        flex: 1;
+    }
+
+    section {
+        border: 1px solid var(--color-normal-fill-emphasis);
+        min-height: 150px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        header {
+            background-color: var(--color-normal-fill-emphasis);
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 8px;
+        }
+
+        main {
+            flex: 1;
+            overflow-y: auto;
+        }
+    }
+
+    .project {
+        height: 400px;
+
+        .project-item {
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .project-item:hover,
+        .project-item[active] {
+            background-color: var(--color-active-fill);
+        }
+    }
+
+    .left,
+    .right {
+        flex-direction: column;
+    }
+
+    .right {
+        main {
+            padding: 10px;
+
+            ui-prop {
+                margin-bottom: 10px;
+            }
+
+            ui-file {
+                flex: 1;
+            }
+        }
+
+        .compile {
+            display: flex;
+        }
+    }
+}

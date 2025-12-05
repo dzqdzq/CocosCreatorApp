@@ -1,0 +1,1 @@
+"use strict";function getOriginalAnimationLibraryPath(i,t){return`__original-animation-${t}.cconb`}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getOriginalAnimationLibraryPath=void 0,exports.getOriginalAnimationLibraryPath=getOriginalAnimationLibraryPath;

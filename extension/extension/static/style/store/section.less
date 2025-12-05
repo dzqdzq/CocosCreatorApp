@@ -1,0 +1,70 @@
+.store {
+
+    > section {
+        flex: 1;
+        display: flex;
+        position: relative;
+
+        > webview {
+            flex: 1;
+        }
+
+        > .slider {
+            width: 260px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            transform: translateX(260px);
+            transition: transform 0.3s;
+            background: var(--color-normal-fill-weakest);
+            color: var(--color-normal-contrast-weakest);
+            display: flex;
+            flex-direction: column;
+
+            > header {
+                border-bottom: 1px solid;
+                padding: 0 10px;
+                line-height: 30px;
+
+                > span {
+                    font-size: 16px;
+                    display: inline-block;
+                    margin: 7px 0;
+
+                    &#deleteAll {
+                        float: right;
+                        font-size: 10px;
+                        color: var(--color-normal-contrast-weaker);
+                        cursor: pointer;
+
+                        &:hover{
+                            color: var(--color-normal-contrast-weakest);
+                        }
+                    }
+                }
+
+                > ui-icon {
+                    float: right;
+                    cursor: pointer;
+                    margin: 7px 0;
+                    font-size: 20px;
+                }
+            }
+
+            > section {
+                flex: 1;
+                overflow: auto;
+            }
+        }
+
+        &[slider] {
+            > webview {
+                pointer-events: none;
+            }
+
+            > .slider {
+                transform: translateX(0);
+            }
+        }
+    }
+}

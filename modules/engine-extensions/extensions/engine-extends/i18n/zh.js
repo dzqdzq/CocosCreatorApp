@@ -1,0 +1,1 @@
+module.exports={importers:{sharpError:"无法启动 sharp，如果项目路径含有特殊字符，请去除特殊字符后重试。"}};

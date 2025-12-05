@@ -1,0 +1,126 @@
+.lightmap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > header {
+        margin-top: 14px;
+        text-align: center;
+    }
+
+    section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+
+        .properties {
+            padding: 8px 14px;
+
+            ui-prop {
+                > div[slot='content'] {
+                    width: 100%;
+
+                    > :first-child {
+                        width: 100%;
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+
+            &.result{
+                width: 340px;
+                margin: auto;
+            }
+        }
+
+        .generate,
+        .clear {
+            margin: 14px auto;
+        }
+
+        .progress {
+            height: 6px;
+            margin: 10px 14px;
+            width: inherit;
+        }
+
+        .output {
+            flex: 1;
+            min-height: 120px;
+            background-color: var(--color-normal-fill-emphasis);
+            overflow: auto;
+            margin: 0 14px 14px 14px;
+            padding: 7px 14px;
+            border-radius: 4px;
+
+            .label {
+                width: 100%;
+                height: auto;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow: hidden;
+                display: inline-block;
+            }
+
+            .data {
+                width: 100%;
+                height: auto;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow: hidden;
+                display: inline-block;
+            }
+        }
+
+        .channels {
+            min-height: 20px;
+            margin-top: 14px;
+            margin-bottom: 4px;
+            display: flex;
+            user-select:none;
+            justify-content: center;
+
+            &>ui-label {
+                height: 20px;
+                width: 42px;
+                text-align: center;
+                line-height: 20px;
+                border: calc(var(--size-normal-border) * 1px) solid var(--color-normal-border);
+                background-color: var(--color-default-fill);
+                border-radius: calc(var(--size-normal-radius) * 1px);
+
+                &:nth-child(2) {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+                &:nth-child(3) {
+                    margin-right: 5px;
+                }
+                &.select {
+                    background-color: var(--color-default-fill-emphasis);
+                }
+            }
+        }
+        
+        .image-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 200px;
+            max-height: 300px;
+            overflow: auto;
+            border: calc(var(--size-normal-border) * 1px) solid var(--color-primary-contrast-weaker);
+            border-radius: calc(var(--size-normal-radius) * 1px);
+
+            ui-image {
+                width: 150px;
+                height: 150px;
+                min-height: 150px;
+                background-color: var(--color-normal-fill-emphasis);
+                margin-top: 5px;
+            }
+        }
+    }
+}

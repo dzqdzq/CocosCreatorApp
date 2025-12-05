@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"外部程序",label:{wechat_devtools:"微信开发者工具",android_ndk:"安卓 NDK",android_sdk:"安卓 SDK",ohos_ndk:"鸿蒙 NDK",ohos_sdk:"鸿蒙 SDK",bytedance_devtools:"字节跳动开发者工具",script_editor:"默认脚本编辑器",picture_editor:"默认图片编辑器",browser:"默认浏览器"}};

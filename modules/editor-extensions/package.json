@@ -1,0 +1,41 @@
+{
+  "name": "@editor/creator-extensions",
+  "version": "1.0.0",
+  "description": "Creator 仓库内维护一个最小的框架，其余功能都在这个仓库提供。这里主要存放一些启动时不是强制需要的扩展。",
+  "main": "index.js",
+  "scripts": {
+    "init": "node ./scripts/init.js",
+    "build": "node ./scripts/build.js",
+    "test": "node ./scripts/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cocos-creator/creator-extensions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cocos-creator/creator-extensions/issues"
+  },
+  "homepage": "https://github.com/cocos-creator/creator-extensions#readme",
+  "devDependencies": {
+    "@editor/workflow": "^1.0.3",
+    "@types/node": "^15.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "chai": "^4.3.4",
+    "chalk": "^4.1.1",
+    "eslint": "^7.13.0",
+    "eslint-plugin-jsdoc": "^30.7.8",
+    "mocha": "^8.4.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "chroma-js": "^2.1.2",
+    "fs-extra": "^10.0.0",
+    "mkdirp": "^1.0.4",
+    "socket.io": "^2.3.0",
+    "vue": "^2.6.12"
+  }
+}
