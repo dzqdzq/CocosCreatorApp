@@ -1,0 +1,87 @@
+<div class="joint-wrap">
+    <header>
+        <ui-label value="i18n:project.joint.info"></ui-label>
+        <ui-link
+            :value="doc"
+        >
+            <ui-icon value="help"></ui-icon>
+        </ui-link>
+    </header>
+    
+    <div class="joint">
+        <!-- 侧边栏 -->
+        <div class="slider">
+            <div>
+                <template
+                    v-for="(layout, index) in layouts"
+                >
+                    <div
+                        :active="joint === layout"
+                        @click="joint = layout"
+                    >
+                        <span>{{`Texture - ${index}`}}</span>
+                        <ui-button class="transparent"
+                            @click.stop="removeLayout(index)"
+                        >
+                            <ui-icon color="red"
+                                value="close"
+                            ></ui-icon>
+                        </ui-button>
+                    </div>
+                </template>
+            </div>
+    
+            <footer>
+                <ui-button class="blue"
+                    @click="addLayout"
+                >
+                    <ui-icon value="add"></ui-icon>
+                    <ui-label value="Texture"></ui-label>
+                </ui-button>
+            </footer>
+        </div>
+        <!-- 内容区域 -->
+        <section class="content">
+            <header>
+                <ui-icon
+                    :warn="size >= 1024 && size <= 2048"
+                    :error="size > 2048"
+                    :tooltip="info"
+                    value="warn"
+                ></ui-icon>
+                <span>
+                    <ui-label value="i18n:project.joint.size"></ui-label>:
+                </span>
+                <span>{{size}} x {{size}}</span>
+            </header>
+
+            <section>
+                <template
+                    v-if="joint"
+                >
+                    <layout
+                        v-for="(content, index) in joint.contents"
+                        :key="index"
+                        :content="content"
+                        :index="index"
+                        :blocks="blocks"
+                        :size="size"
+                        @remove="removeContent(index)"
+                    ></layout>
+                </template>
+            </section>
+            <footer>
+                <ui-button class="blue"
+                    v-if="joint"
+                    @confirm="addContent($event);"
+                >
+                    <ui-icon value="add"></ui-icon>
+                    <ui-label value="Skeleton"></ui-label>
+                </ui-button>
+                <ui-label value="i18n:project.joint.missing_joint"
+                    v-else
+                ></ui-label>
+            </footer>
+        </section>
+    </div>
+</div>

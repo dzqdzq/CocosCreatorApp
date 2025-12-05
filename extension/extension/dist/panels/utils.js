@@ -1,0 +1,1 @@
+"use strict";function definePanel(e){return Object.assign(e,e.data),e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.definePanel=void 0,exports.definePanel=definePanel;

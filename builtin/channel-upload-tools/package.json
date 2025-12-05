@@ -1,0 +1,46 @@
+{
+    "name": "channel-upload-tools",
+    "title": "i18n:channel-upload-tools.title",
+    "version": "1.0.0",
+    "description": "",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "panels": {
+        "default": {
+            "main": "./dist/ui/index.js",
+            "title": "i18n:channel-upload-tools.title",
+            "size": {
+                "width": 650,
+                "min-width": 520,
+                "height": 400,
+                "min-height": 500,
+                "save": false
+            }
+        },
+        "oauth": {
+            "main": "./dist/oauth/index.js",
+            "title": "i18n:channel-upload-tools.title",
+            "size": {
+                "width": 800,
+                "min-width": 520,
+                "height": 600,
+                "min-height": 400,
+                "save": false
+            }
+        }
+    },
+    "contributions": {
+        "messages": {
+            "loginResult": {
+                "methods": [
+                    "default.loginResult"
+                ]
+            },
+            "oAuthWindowClose": {
+                "methods": [
+                    "default.oAuthWindowClose"
+                ]
+            }
+        }
+    }
+}

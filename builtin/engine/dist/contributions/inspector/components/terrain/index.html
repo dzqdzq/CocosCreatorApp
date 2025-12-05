@@ -1,0 +1,20 @@
+<div class="terrain">
+    <div class="content">
+        <ins-prop ref="insProp" auto="true"
+            :dump="dump.value.__asset"
+            :dumps="dumps?dumps.map(item => item.value.__asset):null"
+        >
+        </ins-prop>
+    </div>
+
+    <!-- 渲染其他没有接管的数据 -->
+    <div class="content"
+        v-for="item in shortProp(dump.value)"
+        v-if="item.dump.visible"
+    >
+        <ins-prop auto="true"
+            :dump="item.dump"
+            :dumps="dumps ? dumps.map(dump => dump.value[item.key]) : null"
+        ></ins-prop>
+    </div>
+</div>

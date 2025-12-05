@@ -1,0 +1,58 @@
+<div id="splashSetting" class="splash">
+    <div class="tips" v-if="netStatus !== 'success'">
+        {{tipsInfo}}
+    </div>
+    <webview class="webview" 
+        v-if="!hasSetSplash && netStatus === 'success'" 
+        ref="question3d"
+        :src="questionSrc"
+    ></webview>
+
+    <main v-if="hasSetSplash" @confirm="onConfirm">
+        <ui-prop>
+            <span slot="label">LogoImage</span>
+            <div slot="content">
+                <ui-image class="image-wrap"
+                    name="image"
+                    droppable="cc.ImageAsset,file"
+                    tooltip="i18n:builder.splash_setting.drag_img_here"
+                    :value="imageSrc"
+                ></ui-image>
+            </div>
+        </ui-prop>
+        <ui-prop>
+            <span slot="label">LogoPath</span>
+            <ui-file name="image-url" slot="content"
+                protocols="project, file"
+                :value="settings.url"
+            ></ui-file>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:builder.splash_setting.settings.total_time"></ui-label>
+            <ui-num-input name="totalTime" slot="content" unit="ms" step="1"
+                :value="settings.totalTime"
+            ></ui-num-input>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:builder.splash_setting.settings.display_ratio"></ui-label>
+            <ui-num-input :value="settings.displayRatio" step="0.1" name="displayRatio" slot="content"></ui-num-input>
+        </ui-prop>
+        <ui-prop>
+            <ui-label slot="label" value="i18n:builder.splash_setting.settings.display_watermark"></ui-label>
+            <ui-checkbox :value="settings.displayWatermark" name="displayWatermark" slot="content"></ui-checkbox>
+        </ui-prop>
+        <!-- <ui-prop>
+            <span slot="label">effect</span>
+            <ui-input slot="content" :value="settings.effect"></ui-input>
+        </ui-prop> -->
+        <ui-prop>
+            <ui-label slot="label" value="i18n:builder.splash_setting.settings.clear_color"></ui-label>
+            <ui-color :value="clearColor"  name="clearColor" slot="content"></ui-color>
+        </ui-prop>
+        <!-- <footer>
+            <ui-button class="green" :disabled="!dirty" @confirm="saveSettings">
+                <ui-label value="i18n:builder.splash_setting.confirm"></ui-label>
+            </ui-button>
+        </footer> -->
+    </main>
+</div>

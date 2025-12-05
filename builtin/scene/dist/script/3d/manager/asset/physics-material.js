@@ -1,0 +1,1 @@
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const edit_component_asset_1=__importDefault(require("./edit-component-asset"));class EditPhysicsMaterial extends edit_component_asset_1.default{}exports.default=new EditPhysicsMaterial;

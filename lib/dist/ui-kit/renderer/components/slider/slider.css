@@ -1,0 +1,84 @@
+:host {
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  border: calc(var(--size-normal-border) * 1px) solid transparent;
+  border-radius: calc(var(--size-normal-radius) * 1px);
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+:host([readonly]) {
+  pointer-events: none;
+}
+:host([hidden]) {
+  display: none;
+}
+:host {
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+  outline: none;
+}
+:host .wrap {
+  display: flex;
+  justify-content: space-between;
+}
+:host .track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+  width: 65%;
+  cursor: pointer;
+}
+:host .wrapper {
+  width: 100%;
+  background: var(--color-normal-fill-emphasis);
+  height: 3px;
+  border-radius: 3px;
+  border-top: 1px solid var(--color-normal-fill-important);
+  border-bottom: 1px solid var(--color-normal-border-weaker);
+}
+:host .cursor {
+  position: absolute;
+  margin-left: -5px;
+}
+:host .cursor div {
+  background: var(--color-active-fill-important);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 2px solid var(--color-normal-contrast-important);
+  box-shadow: 0 0 2px 2px var(--color-normal-fill-important) inset;
+}
+:host .cursor:hover div {
+  border-color: var(--color-active-contrast);
+}
+:host .input {
+  width: 25%;
+  height: 100%;
+  margin-left: 3%;
+  right: 0;
+  font-size: 12px;
+  vertical-align: top;
+  min-width: 20px;
+}
+:host([focused]:not([disabled])) .cursor div {
+  border-color: var(--color-active-contrast);
+}
+:host([focused]:not([disabled])) .input {
+  border-color: var(--color-focus-fill);
+}
+:host([hide-num-input]) .input {
+  display: none;
+}
+:host([hide-num-input]) .track {
+  width: 100%;
+}

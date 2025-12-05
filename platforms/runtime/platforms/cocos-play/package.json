@@ -1,0 +1,11 @@
+{
+    "name": "cocos-play",
+    "title": "i18n:cocos-play.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Runtime",
+    "description": "Cocos play platform plugin",
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "name": "preferences",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+
+    "title": "i18n:preferences.title",
+    "description": "i18n:preferences.description",
+    "main": "./dist/browser.js",
+
+    "panels": {
+        "settings": {
+            "title": "i18n:preferences.title",
+            "icon": "./static/icon.png",
+            "main": "./dist/settings/index.js",
+            "size": {
+                "min-width": 580,
+                "min-height": 430,
+                "width": 800,
+                "height": 550
+            }
+        }
+    },
+
+    "contributions": {
+        "menu": [
+            {
+                "path": "Cocos Creator",
+                "label": "i18n:preferences.title",
+                "message": "open-settings",
+                "order": -99
+            }
+        ],
+
+        "messages": {
+            "open-settings": {
+                "public": true,
+                "description": "i18n:preferences.contributions.messages.description.open_settings",
+                "doc": "i18n:preferences.contributions.messages.doc.open_settings",
+                "methods": ["openSettings"]
+            },
+            "change-settings-tab": {
+                "methods": ["settings.changeTab"]
+            }
+        }
+    }
+}

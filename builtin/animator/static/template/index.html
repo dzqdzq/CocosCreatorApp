@@ -1,0 +1,344 @@
+<div class="animator">
+    <tool-bar
+        :current-frame="currentFrame"
+        :state="animationState"
+        :clips-menu="clipsMenu"
+        :current-clip="currentClip"
+        :sample="clipConfig && clipConfig.sample || 60"
+    >
+    </tool-bar>
+    <div class="container" ref="container">
+        <div class="left" ref="left" :style="{width: layout.leftPec}">
+            <div class="content-device node-header">
+                <ui-label value="i18n:animator.node.title"></ui-label>
+                <ui-icon @click="toggleInvalidNode" 
+                    :value="filterInvalid ? 'eye-close' : 'eye-open'"
+                    :tooltip="filterInvalid ? 'i18n:animator.node.show_invalid_node' : 'i18n:animator.node.hide_invalid_node'"
+                ></ui-icon>
+                <ui-input 
+                    placeholder="i18n:animator.node.search_placeholder"
+                    tooltip="i18n:animator.node.search_placeholder"
+                    :value="filterName"
+                    @change="onFilter"
+                    show-clear
+                ></ui-input>
+            </div>
+            <div class="content nodes"
+                ref="nodes"
+                :style="{height: layout.topPec}"
+                @scroll="onScroll($event, 'node')"
+            >
+            <div class="wrap"
+                v-if="nodeDump && nodeDump.length"
+                :style="{height:nodesHeight+'px'}"
+            >
+                <template v-if="nodeDump">
+                    <node-tree
+                        v-for="(item, index) of nodeDump"
+                        v-if="typeof(item.top) === 'number'"
+                        :style="{transform: 'translateY('+nodeDump[0].top+'px)'}"
+                        :dumps="item"
+                        :index="index"
+                        :selected-ids="selectedIds"
+                        :select-path="computeSelectPath"
+                        :key="item.index + item.uuid + item.name + index"
+                        :move-path = "moveNodePath"
+                        :lock="clipConfig && clipConfig.isLock"
+                    ></node-tree>
+                </template>
+            </div>
+            </div>
+            <property-tools
+                :menu="propertiesMenu"
+                :lock="clipConfig && clipConfig.isLock || computeSelectPath && computeSelectPath.includes('//')"
+                :properties="properties"
+                :select-node="selectedId"
+                :node-path="computeSelectPath"
+                :selected-ids="selectedIds"
+            >
+                <ui-button class="transparent"
+                    @click="toggleAniCurve"
+                    :disabled="clipConfig && clipConfig.isLock"
+                    :tooltip="showAnimCurve ? 'i18n:animator.property.change_to_key' : 'i18n:animator.property.change_to_curve'"
+                >
+                    <ui-icon class="btn"
+                        :value="showAnimCurve ? 'slider' : 'curve'"
+                        :active="showAnimCurve"
+                    ></ui-icon>
+                    <ui-label :value="showAnimCurve ? 'Dopesheet' : 'Curve'"></ui-label>
+                </ui-button>
+            </property-tools>
+            <div 
+                id="properties"
+                class="flex-1 properties"
+                @scroll="onScroll($event, 'property')"
+            >
+                <template
+                    v-if="properties && Object.keys(properties).length > 0" 
+                >
+                    <property-tree v-for="(item, name, index) in properties"
+                        v-if="!item.hidden"
+                        :index="item.index"
+                        :key="name + index"
+                        :prop="item.prop"
+                        :type="item.type"
+                        :node-path="computeSelectPath"
+                        :frame="currentFrame"
+                        :select="selectProperty"
+                        :key-frames="item.keyFrames"
+                        :is-expand="expandInfo[name]"
+                        :lock="!selectedId || (clipConfig && clipConfig.isLock)"
+                        :color="showAnimCurve && item.color"
+                    ></property-tree>
+                </template>
+                <ui-label v-if="!computeSelectPath" value="i18n:animator.property.should_select_node_first"></ui-label>
+            </div>
+        </div>
+        <div class="right control" ref="right" 
+            @mousewheel="onMouseWheel"
+            @mousedown="onMouseDown"
+        >
+            <!-- 坐标网格线 -->
+            <div class="chart" ref="chart">
+                <div class="x-axis" ref="xAxis"><span>10:00</span></div>
+                <canvas 
+                    ref="gridCanvas"
+                    id="gridCanvas"
+                ></canvas>
+            </div>
+            <div class="content-device" 
+                name="time-pointer"
+            >
+                <div class="duration"
+                    v-if="lastFrameInfo"
+                    :style="queryDurationStyle(lastFrameInfo.frame)"
+                ></div>
+            </div>
+            <div class="control-pointer"
+                name = "pointer"
+                :style="'transform: translateX('+ pointerPosition(offset) +'px)'"
+            >
+                <ui-icon value="play"></ui-icon>
+                <span></span>
+            </div>
+            <events
+                v-if="eventsDump"
+                :events="eventsDump"
+                :offset="offset"
+                :select-Info="selectEventInfo"
+            >
+            </events>
+            <div class="content" 
+                ref="node-content"
+                name="node"
+                :style="{height: layout.topPec}"
+            >
+                <div class="wrap"
+                    :style="{height:nodesHeight+'px'}"
+                >
+                    <template
+                        v-if="nodeDump"
+                    >
+                        <preview-row 
+                            v-for="(item, index) in nodeDump"
+                            :param="[item.path]"
+                            :key-frames="item.keyFrames"
+                            :index="index"
+                            :list-index="item.listIndex"
+                            :select-Info="selectKeyInfo"
+                            :scroll="nodeScrollInfo"
+                            :key="item.uuid + item.path"
+                            :offset="offset"
+                            :lock="!item.uuid"
+                            :update-position="updatePosition"
+                            :update-frame="updateKeyFrame"
+                            :update-select="updateSelectKey"
+                        ></preview-row>
+                    </template>
+                </div>
+                <template v-if="boxStyle && boxInfo && boxInfo.type === 'node'">
+                    <div class="box" :style="boxStyle"></div>
+                </template>
+                <div class="lock-mask" v-if="clipConfig && clipConfig.isLock"></div>
+            </div> 
+            <div class="property-tools">
+                <div class="ani-prop"
+                    v-if="selectProperty && selectProperty.type"
+                    @confirm="onPropConfirm"
+                >
+                    <ani-prop
+                        :label="selectProperty.prop"
+                        :type="selectProperty.type.value"
+                        :value="selectProperty.value"
+                        :extend-arr="selectProperty.type.extends"
+                        :disabled="clipConfig && clipConfig.isLock || selectPropData.missing"
+                    ></ani-prop>
+                </div>
+                <div>
+                    <ui-label v-if="lightCurve" :value="lightCurve.name" :style="{'color': lightCurve.color}"></ui-label>
+                    <ui-icon v-if="showAnimCurve" value="canvas" tooltip="i18n:animator.toolbar.show_all_keys" @click="showAllKeys"></ui-icon>
+                </div>
+            </div> 
+            <div class="content flex-1"
+                ref="property-content"
+                name="property"
+            >
+                <div v-show="!showAnimCurve">
+                    <div
+                        class="wrap"
+                        v-if="!showAnimCurve && properties && computeSelectPath"
+                        :style="{height:propertyHeight+'px'}"
+                    >
+                        <template
+                            v-for="(item, name, index) in properties"
+                        >
+                            <preview-row
+                                v-if="!item.hidden"
+                                :key-frames="item.keyFrames"
+                                :param="[item.nodePath, item.prop]"
+                                :select-Info="selectKeyInfo"
+                                :type="item.type"
+                                :list-index="item.index"
+                                :index="item.index"
+                                :scroll="propertyScrollInfo"
+                                :key="item.nodePath + item.prop"
+                                :box="boxData"
+                                :lock="item.missing || !selectedId"
+                                :offset="offset"
+                                :hidden="item.hidden"
+                                :update-position="updatePosition"
+                                :update-frame="updateKeyFrame"
+                                :update-select="updateSelectKey"
+                            ></preview-row>
+                        </template>
+                    </div>
+                    <div class="mask" v-if="computeSelectPath && computeSelectPath.includes('//')">
+                        <ui-label value="i18n:animator.mask.empty_node_tips"></ui-label>
+                    </div>
+                    <div v-if="stickBoxStyle && !showAnimCurve" class="stick" name="stick" :style="stickBoxStyle"></div>
+                    <ctrl-stick
+                        v-if="stickInfo"
+                        :select-key="selectKeyInfo"
+                        :stick-info="stickInfo"
+                        name="left"
+                    ></ctrl-stick>
+                    <ctrl-stick
+                        v-if="stickInfo"
+                        :select-key="selectKeyInfo"
+                        :stick-info="stickInfo"
+                        name="right"
+                    ></ctrl-stick>
+                    <template v-if="boxStyle && boxInfo && boxInfo.type === 'property'">
+                        <div class="box" :style="boxStyle"></div>
+                    </template>
+                    <div class="lock-mask" v-if="clipConfig && clipConfig.isLock"></div>
+                </div>
+                <div class="content flex-1" v-show="showAnimCurve">
+                    <ui-curve-editor
+                        ref="curve"
+                        :style="curveStyle"
+                    ></ui-curve-editor>
+                    <div class="mask" v-if="showAnimCurve && !selectProperty">
+                        <ui-label value="i18n:animator.tips.select_prop_first"></ui-label>
+                    </div>
+                    <div class="mask" v-if="curveData && showAnimCurve && curveData.hasUserEasingMethod" @mousedown="onEditEasingMethodCurve">
+                        <ui-label value="i18n:animator.tips.has_easing_method"></ui-label>
+                    </div>
+                    <div class="mask" v-if="showAnimCurve && selectProperty && !selectProperty.curve">
+                        <ui-label value="i18n:animator.tips.curve_disabled"></ui-label>
+                    </div>
+                </div>
+                <div class="mask" v-if="clipConfig && clipConfig.isLock">
+                    <ui-label value="i18n:animator.tips.skeletal_animation"></ui-label>
+                </div>
+            </div>
+
+            <!-- 辅助小红线 -->
+            <template
+                v-if="previewPointer"
+            >
+                <div class="control-pointer preview"
+                    :style="'transform: translateX('+ previewPointer.x +'px)'"
+                >
+                    <!-- <ui-icon value="play"></ui-icon> -->
+                    <span></span>
+                </div>
+                <div class="mouse-info"
+                    :style="'transform: translate('+previewPointer.x+'px,'+previewPointer.y+'px)'"
+                >
+                    {{previewPointer.frame}}
+                </div>
+            </template>
+            <!-- 显示当前鼠标 moveInfo 移动过程中的关键帧信息 -->
+            <template v-if="moveInfo">
+                <div class="keyframe-move-info" 
+                    :style="'transform: translate('+moveInfo.x+'px,'+moveInfo.y+'px)'"
+                >
+                    <div v-if="typeof(moveInfo.frame) === 'number'">
+                        <span class="name">frame</span>
+                        <span>: {{moveInfo.frame}}</span>
+                    </div>
+                    <div v-if="typeof(moveInfo.offsetFrame) === 'number'">
+                        <span class="name">offset</span>
+                        <span>: {{moveInfo.offsetFrame}}</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="resize resize-v" :style="{left: layout.leftPec}" @mousedown.stop="onStartResize($event, 'left')"></div>
+        <div class="resize resize-h" :style="{top: layout.topPec, 'margin-top': '31px'}" @mousedown.stop="onStartResize($event, 'top')"></div>
+        <div class="resize resize-h" :style="{top: layout.topPec, 'margin-top': '58px'}" @mousedown.stop="onStartResize($event, 'top')"></div>
+    </div>
+    <div class="foot" v-if="clipConfig" @confirm="onConfirm">
+        <div class="left">
+            <ui-label value="i18n:animator.animationCurve.WrapMode.label"></ui-label>
+            <ui-select
+                :value="clipConfig.wrapMode || 0"
+                name="wrapMode"
+                :disabled="clipConfig && clipConfig.isLock"
+            >
+                <option v-for="item in wrapModeList"
+                    :value="item.value"
+                    :title="item.tip"
+                >{{item.name}}</option>
+            </ui-select>
+        </div> 
+        <div class="right">
+            <span>Sample</span>
+            <ui-num-input
+                :value="clipConfig.sample || 60"
+                :disabled="clipConfig && clipConfig.isLock"
+                step="1"
+                name="sample"
+            ></ui-num-input>
+            <span>Speed</span>
+            <ui-num-input :value="clipConfig.speed" name="speed"></ui-num-input>
+            <span v-if="clipConfig.duration">Duration :{{clipConfig.duration.toFixed(2)}}({{(clipConfig.duration / clipConfig.speed).toFixed(2)}})s</span>
+        </div> 
+    </div>
+    <ani-mask 
+        v-if="maskPanel === 'event'"
+    >
+        <event-editor
+            name="i18n:animator.event.title"
+            :events="eventsDump"
+            :frame="editEventFrame"
+            :uuid="currentClip"
+            @update="onUpdateEvent"
+            @close="maskPanel = ''"
+        ></event-editor>
+    </ani-mask>
+    <tips-mask
+        v-if = "!animationMode && !loading"
+        :root = "root"
+        :animation-mode = "animationMode"
+        :has-comp = "typeof(compIndex) === 'number'"
+        :has-clip = "currentClip"
+        :comp-index = "compIndex"
+        :active="active"
+    ></tips-mask>
+    <div class="loading" v-if="loading">
+        <ui-label :value="'i18n:animator.loading.' + loading"></ui-label>
+    </div>
+    <ui-label class="toast" v-if="toast.message" :value="toast.message"></ui-label>
+</div>

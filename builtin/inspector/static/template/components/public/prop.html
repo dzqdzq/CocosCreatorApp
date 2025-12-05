@@ -1,0 +1,449 @@
+<div class="ins-prop"
+    v-if="dump && dump.visible !== false || empty"
+    :type="dump ? dump.type : false"
+    :array="dump && dump.isArray"
+    :node="dump && isType('cc.Node')"
+    :asset="dump && isType('cc.Asset')"
+    :component="dump && isType('cc.Component')"
+
+    @change="_onChange($event)"
+    @confirm="_onConfirm($event)"
+    @cancel="_onCancel($event)"
+>
+
+    <!-- 如果 empty 为 true，则什么都不渲染 -->
+    <template
+        v-if="empty"
+    >
+        <slot></slot>
+    </template>
+
+    <!-- 如果标记 auto 为 false，则显示名字，但不进行渲染 -->
+    <template
+        v-else-if="!auto"
+    >
+        <div class="prop-name">
+            <span
+                :title="getTitle(dump)"
+            >{{getName(dump)}}</span>
+            <ui-icon value="lock"
+                v-if="readonly || (dump ? dump.readonly : false)"
+            ></ui-icon>
+        </div>
+        <ins-resize-line></ins-resize-line>
+        <div class="prop-content">
+            <slot></slot>
+        </div>
+    </template>
+
+    <!-- 如果标记 auto 为 true，则自动查找对应的类型进行渲染 -->
+
+    <!-- Array -->
+    <template
+        v-else-if="dump.isArray && Array.isArray(dump.value)"
+    >
+
+        <ins-array
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :expand-prefix="expandPrefix||''"
+            :type="dump ? dump.type : null"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-array>
+    </template>
+
+    <!-- Number -->
+    <template
+        v-else-if="dump.type === 'Number' || dump.type === 'number' || dump.type === 'Float' || dump.type === 'float' || dump.type === 'Integer' || dump.type === 'integer'"
+    >
+        <ins-number
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :radian="radian"
+            :readonly="readonly || dump.readonly"
+        ></ins-number>
+    </template>
+
+    <!-- Boolean -->
+    <template
+        v-else-if="dump.type === 'Boolean' || dump.type === 'boolean'"
+    >
+        <ins-bool
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-bool>
+    </template>
+
+    <!-- String -->
+    <template
+        v-else-if="dump.type === 'String' || dump.type === 'string'"
+    >
+        <ins-string
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-string>
+    </template>
+
+    <!-- Code -->
+    <template
+        v-else-if="dump.type === 'code'"
+    >
+        <ins-code>{{dump.value}}</ins-code>
+    </template>
+
+    <!-- Enum -->
+    <template
+        v-else-if="dump.type === 'Enum' || dump.type === 'enum'"
+    >
+        <ins-enum
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-enum>
+    </template>
+
+    <!-- Enum -->
+    <template
+        v-else-if="dump.type === 'BitMask'"
+    >
+        <ins-bit-mask
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-bit-mask>
+    </template>
+
+    <!-- Size -->
+    <template
+        v-else-if="dump.type === 'cc.Size'"
+    >
+        <ins-size
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-size>
+    </template>
+
+    <!-- Vec2 -->
+    <template
+        v-else-if="dump.type === 'cc.Vec2'"
+    >
+        <ins-vec2
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-vec2>
+    </template>
+
+    <!-- Vec3 -->
+    <template
+        v-else-if="dump.type === 'cc.Vec3'"
+    >
+        <ins-vec3
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-vec3>
+    </template>
+
+    <!-- Vec4 -->
+    <template
+        v-else-if="dump.type === 'cc.Vec4' || dump.type === 'cc.Quat'"
+    >
+        <ins-vec4
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-vec4>
+    </template>
+
+    <!-- Mat4 -->
+    <template
+        v-else-if="dump.type === 'cc.Mat4'"
+    >
+        <ins-mat4
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-mat4>
+    </template>
+
+    <!-- Color -->
+    <template
+        v-else-if="dump.type === 'cc.Color'"
+    >
+        <ins-color
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-color>
+    </template>
+
+    <!-- Rect -->
+    <template
+        v-else-if="dump.type === 'cc.Rect'"
+    >
+        <ins-rect
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-rect>
+    </template>
+
+    <!-- Node -->
+    <template
+        v-else-if="isType('cc.Node')"
+    >
+        <ins-node
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+
+            :type="dump.type"
+        ></ins-node>
+    </template>
+
+    <!-- Asset -->
+    <template
+        v-else-if="isType('cc.Asset')"
+    >
+        <ins-asset
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+
+            :type="dump.type"
+        ></ins-asset>
+    </template>
+
+    <!-- Component -->
+    <template
+        v-else-if="isType('cc.Component')"
+    >
+        <ins-component
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+
+            :type="dump.type"
+        ></ins-component>
+    </template>
+
+    <!-- AnimationCurve -->
+    <template
+        v-else-if="dump.type === 'cc.AnimationCurve'"
+    >
+        <ins-animation-curve
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-animation-curve>
+    </template>
+
+    <!-- CurveRange -->
+    <template
+        v-else-if="dump.type === 'cc.CurveRange'"
+    >
+        <ins-curve-range
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-curve-range>
+    </template>
+
+    <!-- Gradient -->
+    <template
+        v-else-if="dump.type === 'cc.Gradient'"
+    >
+        <ins-gradient
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-gradient>
+    </template>
+
+    <!-- GradientRange -->
+    <template
+        v-else-if="dump.type === 'cc.GradientRange'"
+    >
+        <ins-gradient-range
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-gradient-range>
+    </template>
+
+    <!-- Depend -->
+    <template
+        v-else-if="dump.type === 'ui.Depend'"
+    >
+        <ins-depend
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-depend>
+    </template>
+
+
+    <!-- renderPipeline RenderFlow -->
+    <template
+        v-else-if="dump.type === 'RenderFlow' || (dump.extends && dump.extends.includes('RenderFlow'))"
+    >
+        <ins-render-flow
+            v-model="dump"
+        ></ins-render-flow>
+    </template>
+
+    <!-- renderPipeline RenderStage -->
+    <template
+        v-else-if="dump.type === 'RenderStage' || (dump.extends && dump.extends.includes('RenderStage'))"
+    >
+        <ins-render-stage
+            v-model="dump"
+        ></ins-render-stage>
+    </template>
+
+
+    <!-- Object -->
+    <!-- Sockets 动画挂点 -->
+    <template
+        v-else-if="dump.type === 'cc.SkeletalAnimation.Socket'"
+    >
+        <ins-skeletal-animation-socket
+            v-if="dump.value"
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-skeletal-animation-socket>
+    </template>
+
+    <!-- Object -->
+    <!-- Spine Sockets 动画挂点 -->
+    <template
+        v-else-if="dump.type === 'sp.Skeleton.SpineSocket'"
+    >
+        <ins-spine-animation-socket
+            v-if="dump.value"
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-spine-animation-socket>
+    </template>
+
+    <!-- Object -->
+    <!-- DragonBones Sockets 动画挂点 -->
+    <template
+        v-else-if="dump.type === 'dragonBones.ArmatureDisplay.DragonBoneSocket'"
+    >
+        <ins-dragonbones-animation-socket
+            v-if="dump.value"
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-dragonbones-animation-socket>
+    </template>
+
+    <!-- Unknown -->
+    <template
+        v-else-if="dump.type === 'Unknown' || dump.type === 'unknown'"
+    >
+        <ins-unknown
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-unknown>
+    </template>
+
+    <!-- Null -->
+    <template
+        v-else-if="dump.value === null"
+    >
+        <ins-null
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-null>
+    </template>
+
+    <!-- ClickEvent，需要放在 ins-null 的后面，因为用户可能定义初始值为 null，而 ClickEvent 不接受 null 为默认值，其他组件有接受的 -->
+    <template
+        v-else-if="dump.type === 'cc.ClickEvent'"
+    >
+        <ins-click-event
+            v-if="dump.value"
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-click-event>
+    </template>
+
+    <!-- Object -->
+    <template
+        v-else
+    >
+        <ins-object
+            :title="getTitle(dump)"
+            :name="getName(dump)"
+            :expand-prefix="expandPrefix||''"
+            :dump="dump"
+            :dumps="dumps"
+            :readonly="readonly || dump.readonly"
+        ></ins-object>
+    </template>
+</div>

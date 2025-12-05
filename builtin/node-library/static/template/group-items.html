@@ -1,0 +1,30 @@
+
+<div class="groups">
+    <ui-section class="group"
+        v-for="(group, index) in groups"
+        v-if="group"
+        :key="index"
+        :expand="!!groups.length"
+    >
+        <ui-label slot="header"
+            :value="group.name"
+        ></ui-label>
+        <div class="content">
+            <ui-drag-item class="item"
+                v-for="(item, index) in group.items"
+                :key="index"
+                :type="item.type"
+                :value="item.assetUuid"
+                :additional="getAdditional(item)"
+                @click.right.stop="popupMenu(item)"
+            >
+                <img class="poster"
+                    :src="item.icon"
+                >    
+                <div class="name"
+                    :title="item.name"
+                >{{item.name}}</div>
+            </ui-drag-item>
+        </div>
+    </ui-section>
+</div>

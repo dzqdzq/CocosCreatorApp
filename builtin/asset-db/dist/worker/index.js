@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),window.Editor=require("editor"),require("./messages/database"),require("./messages/operation");const query_1=require("./messages/query"),ipc_1=require("./ipc");window.Manager={AssetWorker:{},Utils:{queryAssets:query_1.queryAssets,queryAssetInfo:query_1.queryAssetInfo}},ipc_1.ipcSend("asset-worker:startup");
