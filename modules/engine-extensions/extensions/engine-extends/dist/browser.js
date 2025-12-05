@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.methods={async inspectorDropScript(e,t){const s=await Editor.Message.request("scene","query-script-cid",e.value);if(s)for(const e of t)await Editor.Message.request("scene","create-component",{uuid:e.uuid.value,component:s})}};

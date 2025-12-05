@@ -1,0 +1,1 @@
+module.exports={importers:{sharpError:"无法启动 sharp，如果项目路径含有特殊字符，请去除特殊字符后重试。",invalidCubeMapSize:"当前图像的宽高比无法解析为 textureCube , 目前支持的类型有 Vertical / Horizon Cross 和 Long/Latitude ,请检查图像资源",invalidNodeData:"节点数据异常: 资源 {asset({assetUuid})} {type} 存在值为 {value}，已移除异常数据",node:"节点",component:"组件"}};

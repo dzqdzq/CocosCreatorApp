@@ -1,0 +1,133 @@
+<div class="detail">
+    <div
+        class="detail-layout"
+        v-if="info && !errorMessage && !loading"
+    >
+        <header class="header">
+            <div class="title">
+                <div class="logo">
+                    <!-- 优先显示detail的图片，其次显示info的图片，最后显示默认图片 -->
+                    <img
+                        :src="cover"
+                        @error="imageError"
+                    >
+                    <div
+                        class="tag"
+                        v-if="info.isCocosSource"
+                    >
+                        <span class="text">CC</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="top">
+                        <span class="name">{{info.name}}</span>
+                        <span
+                            class="tip"
+                            v-show="size"
+                        >{{size}}</span>
+                    </div>
+                    <div class="bottom">
+                        <div v-show="detail && detail.version">V{{detail && detail.version}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="desc">
+                <div class="prop">
+                    <div>
+                        <ui-label value="i18n:extension.manager.author"></ui-label>：
+                    </div>
+                    <div>
+                        <ui-label value="i18n:extension.manager.publish_date"></ui-label>：
+                    </div>
+                    <div>
+                        <ui-label value="i18n:extension.manager.version_limit"></ui-label>：
+                    </div>
+                    <div>
+                        <ui-label value="i18n:extension.manager.platform"></ui-label>：
+                    </div>
+                </div>
+                <div class="value">
+                    <div>{{(detail && detail.author &&
+                        detail.author.name) ? detail.author.name : '-'}}</div>
+                    <div>{{(detail && detail.publish_at) ? formatTime(detail.publish_at) : '-'}}</div>
+                    <div>{{(detail && detail.version_limit) ? detail.version_limit : '-'}}</div>
+                    <div
+                        class="platform"
+                        v-if="detail && detail.platform"
+                    >
+                        <div
+                            class="item"
+                            v-for="(item, index) of detail.platform"
+                            :key="item"
+                        >
+                            {{item}}
+                            <span v-if="index < detail.platform.length - 1">|</span>
+                        </div>
+                    </div>
+                    <div
+                        class="platform"
+                        v-if="!detail || !detail.platform"
+                    >
+                        <div class="item">
+                            -
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="tabs">
+            <div
+                class="tab"
+                :active="currentTab === 'desc'"
+                @click="currentTab = 'desc'"
+            >
+                <ui-label value="i18n:extension.manager.resource_introduction"></ui-label>
+            </div>
+            <!-- <div class="tab" :active="currentTab === 'history'" @click="currentTab = 'history'">历史版本</div> -->
+        </div>
+        <main
+            class="desc md"
+            v-show="currentTab === 'desc'"
+        >
+            <ui-markdown v-if="detail">{{detail.detail}}</ui-markdown>
+        </main>
+        <main
+            class="desc history"
+            v-show="currentTab === 'history'"
+        >
+            <!-- <div class="item">
+                <div class="version">
+                    <span class="ver">V1.0.4</span>
+                    <span class="date">2022-08-04</span>
+                </div>
+                <div class="title">
+                    首次发布
+                </div>
+                <div class="list">
+                    <li class="tip">3.6版本适配</li>
+                    <div class="tip">支持平面碰撞器</div>
+                    <div class="tip">3.6版本适配</div>
+                </div>
+            </div> -->
+        </main>
+    </div>
+    <div
+        class="extenstions-empty"
+        v-if="loading"
+    >
+        <ui-loading></ui-loading>
+    </div>
+    <div
+        class="extenstions-empty"
+        v-if="!loading && errorMessage"
+    >
+        <ui-label>{{errorMessage}}</ui-label>
+        <ui-button
+            outline
+            v-if="info"
+            @click.stop="refresh"
+        >
+            <ui-label value="i18n:extension.manager.refresh"></ui-label>
+        </ui-button>
+    </div>
+</div>

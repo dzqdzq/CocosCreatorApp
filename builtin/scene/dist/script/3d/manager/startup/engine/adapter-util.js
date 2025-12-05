@@ -1,0 +1,1 @@
+"use strict";function importWebAdapter(e){require(e)}function importNativeEngine(e){const t=require(e);return t.initEngine(""),t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.importNativeEngine=exports.importWebAdapter=void 0,exports.importWebAdapter=importWebAdapter,exports.importNativeEngine=importNativeEngine;

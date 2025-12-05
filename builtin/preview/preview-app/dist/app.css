@@ -1,0 +1,93 @@
+.splash {
+  --splash-display-ratio: 1;
+  background-color: #171717;
+}
+.splash__main {
+  position: absolute;
+  width: 100%;
+  height: calc(83.33%);
+  top: 0;
+}
+.splash__extra {
+  position: absolute;
+  width: 100%;
+  height: calc(16.67%);
+  bottom: 0;
+}
+.splash__progress-bar {
+  position: relative;
+  left: 17%;
+  width: 66%;
+  margin-bottom: 16px;
+  /* 先隐藏 progress bar */
+  display: none;
+}
+.splash-main {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
+}
+.splash-main .logo {
+  display: block;
+  object-fit: contain;
+  margin: auto;
+  margin-bottom: 16px;
+}
+.splash-extra {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 8.33%;
+}
+.splash-extra .watermark {
+  display: none;
+}
+.splash .watermark {
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: rgba(250, 250, 250, 0.4);
+  width: 100%;
+}
+.splash[data-watermark^="bottom"] .splash__main {
+  top: 0;
+  bottom: auto;
+}
+.splash[data-watermark^="bottom"] .splash__extra {
+  top: auto;
+  bottom: 0;
+}
+.splash[data-watermark^="top"] .splash__main {
+  top: auto;
+  bottom: 0;
+}
+.splash[data-watermark^="top"] .splash__extra {
+  top: 0;
+  bottom: auto;
+}
+.splash[data-watermark^="top"] .splash-extra .watermark,
+.splash[data-watermark^="bottom"] .splash-extra .watermark {
+  display: block;
+}
+.splash[data-watermark^="top"] .splash-main .watermark,
+.splash[data-watermark^="bottom"] .splash-main .watermark {
+  display: none;
+}
+.splash[data-watermark$="Left"] .splash-extra .watermark {
+  text-align: left;
+}
+.splash[data-watermark$="Right"] .splash-extra .watermark {
+  text-align: right;
+}
+.splash[data-platform="desktop"] .logo {
+  height: calc(200px * var(--splash-display-ratio, 1));
+}
+.splash[data-platform="desktop"] .watermark {
+  font-size: 24px;
+}
+.splash[data-platform="mobile"] .logo {
+  height: calc(100px * var(--splash-display-ratio, 1));
+}

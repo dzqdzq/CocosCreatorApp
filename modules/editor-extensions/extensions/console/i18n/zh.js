@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"控制台",description:"可视化 Cocos Creator 日志的工具",editorLog:"编辑器日志",cocosLog:"Cocos Console 日志",copy:"复制",clear:"清空",clearTip:"清空当前列表",openTip:"打开日志文件",search:"搜索",tabbar:{regex:"正则"},menu:{help:"帮助文档",setting:"设置"},preferences:{display_date:"显示日期",font_size:"文字大小"}};

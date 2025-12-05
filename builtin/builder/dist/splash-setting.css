@@ -1,0 +1,174 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 41px);
+  height: calc(100% - 50px);
+  margin-left: 6px;
+  padding: 25px 25px 25px 10px;
+}
+#splashSetting {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+#splashSetting .toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+#splashSetting ui-prop > *[slot='content'] > ui-prop {
+  --left-width: 20%;
+  max-width: 48%;
+  width: 200px;
+  height: 2em;
+  flex-grow: 1;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
+#splashSetting ui-prop {
+  --left-width: 45%;
+  margin-bottom: 4px;
+}
+#splashSetting ui-prop[disabled] {
+  color: #cccccc;
+}
+#splashSetting ui-prop > .image-wrap {
+  min-height: 30px;
+  border: 1px solid;
+}
+#splashSetting ui-file,
+#splashSetting ui-slider {
+  width: 100%;
+}
+#splashSetting .disabled-tip {
+  color: #707070;
+  margin-right: 8px;
+  white-space: pre-wrap;
+}
+#splashSetting footer {
+  text-align: right;
+}
+#splashSetting .preview-container {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+#splashSetting .preview-container:hover .image-wrap,
+#splashSetting .preview-container.empty .image-wrap {
+  display: block;
+}
+#splashSetting .image-wrap {
+  padding: 16px 0;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translate(0, -50%);
+  text-align: center;
+  background-color: rgba(5, 5, 5, 0.7);
+  cursor: pointer;
+  line-height: 20px;
+}
+#splashSetting .image-wrap ui-label {
+  display: block;
+  margin-top: 2px;
+}
+#splashSetting .preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(var(--preview-scale, 1));
+  transform-origin: top left;
+  background-color: #050505;
+  text-align: center;
+}
+#splashSetting .preview__main {
+  position: absolute;
+  height: 83.33%;
+  width: 100%;
+  top: 0;
+}
+#splashSetting .preview__sub {
+  position: absolute;
+  height: 16.67%;
+  width: 100%;
+  bottom: 0;
+}
+#splashSetting .preview .ab-center {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+#splashSetting .preview .main,
+#splashSetting .preview .sub {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+#splashSetting .preview .sub {
+  box-sizing: border-box;
+  padding: 0 8.33%;
+}
+#splashSetting .preview .sub .watermark {
+  display: none;
+}
+#splashSetting .preview .text {
+  font-size: 24px;
+  line-height: 1;
+  color: rgba(250, 250, 250, 0.4);
+}
+#splashSetting .preview .logo {
+  height: calc(200px * var(--preview-logo-scale, 1));
+}
+#splashSetting .preview[data-watermark^='bottom'] .preview__main {
+  top: 0;
+  bottom: auto;
+}
+#splashSetting .preview[data-watermark^='bottom'] .preview__sub {
+  top: auto;
+  bottom: 0;
+}
+#splashSetting .preview[data-watermark^='top'] .preview__sub {
+  top: 0;
+  bottom: auto;
+}
+#splashSetting .preview[data-watermark^='top'] .preview__main {
+  top: auto;
+  bottom: 0;
+}
+#splashSetting .preview[data-watermark^='top'] .sub .watermark,
+#splashSetting .preview[data-watermark^='bottom'] .sub .watermark {
+  display: block;
+}
+#splashSetting .preview[data-watermark^='top'] .main .watermark,
+#splashSetting .preview[data-watermark^='bottom'] .main .watermark {
+  display: none;
+}
+#splashSetting .preview[data-watermark$='Left'] .sub .watermark {
+  text-align: left;
+}
+#splashSetting .preview[data-watermark$='Right'] .sub .watermark {
+  text-align: right;
+}
+#splashSetting .preview ui-progress {
+  width: 66%;
+}
+#splashSetting .mask {
+  position: absolute;
+  top: 0;
+  left: -21px;
+  width: calc(100% + 21px);
+  height: 100%;
+  text-align: center;
+  background-color: #1b1d1db0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

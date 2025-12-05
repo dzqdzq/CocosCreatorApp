@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"消息管理器",default:{title:"消息列表"},debug:{title:"消息调试工具"}};

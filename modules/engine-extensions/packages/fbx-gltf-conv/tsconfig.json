@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "exclude": [
+      "test",
+      "lib",
+      "static",
+  ]
+}

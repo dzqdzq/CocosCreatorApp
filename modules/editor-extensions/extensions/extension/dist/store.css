@@ -1,0 +1,146 @@
+:host {
+  display: flex;
+}
+:host > .store {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+:host > .store .massive {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 25px;
+}
+.store > header {
+  padding: 0 10px;
+  background: var(--color-normal-fill-weakest);
+  color: var(--color-normal-contrast-weakest);
+  height: 38px;
+}
+.store > header > .left {
+  transform: rotate(90deg);
+}
+.store > header > .right {
+  transform: rotate(-90deg);
+}
+.store > header > .more {
+  float: right;
+}
+.store > header > ui-button {
+  padding: 4px 15px;
+  margin: 3px 2px;
+  font-size: 14px;
+  color: var(--color-normal-contrast-weakest);
+  vertical-align: middle;
+  border-color: transparent;
+}
+.store > header > ui-button:hover {
+  background-color: var(--color-normal-contrast-normal);
+  color: var(--color-normal-fill-normal);
+}
+.store > header > ui-icon {
+  padding: 0 4px;
+  margin: 7px 2px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.store > section {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+.store > section > webview {
+  flex: 1;
+}
+.store > section > .slider {
+  width: 260px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  transform: translateX(260px);
+  transition: transform 0.3s;
+  background: var(--color-normal-fill-weakest);
+  color: var(--color-normal-contrast-weakest);
+  display: flex;
+  flex-direction: column;
+}
+.store > section > .slider > header {
+  border-bottom: 1px solid;
+  padding: 0 10px;
+  line-height: 30px;
+}
+.store > section > .slider > header > span {
+  font-size: 16px;
+  display: inline-block;
+  margin: 7px 0;
+}
+.store > section > .slider > header > span#deleteAll {
+  float: right;
+  font-size: 10px;
+  color: var(--color-normal-contrast-weaker);
+  cursor: pointer;
+}
+.store > section > .slider > header > span#deleteAll:hover {
+  color: var(--color-normal-contrast-weakest);
+}
+.store > section > .slider > header > ui-icon {
+  float: right;
+  cursor: pointer;
+  margin: 7px 0;
+  font-size: 20px;
+}
+.store > section > .slider > section {
+  flex: 1;
+  overflow: auto;
+}
+.store > section[slider] > webview {
+  pointer-events: none;
+}
+.store > section[slider] > .slider {
+  transform: translateX(0);
+}
+.package-item {
+  display: flex;
+  padding: 10px 10px 10px 20px;
+  line-height: 24px;
+}
+.package-item > .info {
+  flex: 1;
+  overflow: hidden;
+}
+.package-item > .info > .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.package-item > .info > .date {
+  padding: 7px 0;
+}
+.package-item > .info > .date > ui-progress {
+  width: 100%;
+  line-height: 10px;
+}
+.package-item > .buttons {
+  margin-left: 6px;
+  padding: 12px 0;
+  box-sizing: border-box;
+}
+.package-item > .buttons > ui-button {
+  font-size: 16px;
+  color: var(--color-normal-contrast-weakest);
+  vertical-align: middle;
+  padding: 0px 13px;
+  border-color: transparent;
+}
+.package-item > .buttons > ui-button:hover {
+  background-color: var(--color-normal-contrast-normal);
+  color: var(--color-normal-fill-normal);
+}
+.package-item > .buttons > ui-icon {
+  padding: 0px 0px 7px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.package-item > .buttons > .more {
+  float: right;
+}

@@ -1,0 +1,1 @@
+module.exports={description:"Governs import, in-editor execution of project-wide codes and external codes.",clear_code_cache:"Clear code cache",openDevtools:"Open Programming DevTools (EXPERIMENTAL)",auto_update_import:"Automatically update script's import path after relocation",title:"Programming"};

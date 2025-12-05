@@ -1,0 +1,112 @@
+<div id="splashSetting" class="splash" @confirm="onConfirm">
+    <div class="toolbar">
+        <ui-button @confirm.stop="reset">
+            <ui-label value="i18n:builder.splashSetting.reset"></ui-label>
+        </ui-button>
+    </div>
+
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.splashSetting.settings.totalTime"></ui-label>
+        <ui-num-input name="totalTime" slot="content" unit="ms" step="1" min="500"
+            :value="settings.totalTime"
+        ></ui-num-input>
+    </ui-prop>
+    <!-- <ui-prop>
+        <ui-label slot="label" value="i18n:builder.splashSetting.settings.autoFit"></ui-label>
+        <ui-checkbox name="autoFit" slot="content" disabled="true"
+            :value="settings.autoFit"
+        ></ui-checkbox>
+    </ui-prop> -->
+    <ui-prop>
+        <ui-label slot="label" value="i18n:builder.splashSetting.settings.displayRatio"></ui-label>
+        <ui-num-input slot="content" step="1" min="0.01" name="displayRatio" unit="%"
+            :value="displayRatio"
+        ></ui-num-input>
+    </ui-prop>
+    <!-- <ui-prop>
+        <ui-label slot="label" value="i18n:builder.splashSetting.settings.watermarkLocation"></ui-label>
+        <ui-select name="watermarkLocation" slot="content" disabled="true"
+            :value="settings.watermarkLocation || 'default'"
+        >
+            <option v-for="info in watermarkLocationConfig" :value="info.value">{{info.label}}</option>
+        </ui-select>
+    </ui-prop> -->
+    <ui-prop>
+        <div slot="label">
+            <ui-label value="i18n:builder.splashSetting.preview"></ui-label>
+            <div class="disabled-tip">
+                <ui-label value="i18n:builder.splashSetting.tips"></ui-label>
+            </div>
+        </div>
+
+        <preview-container
+            slot="content"
+            :design-width="previewContainer.width"
+            :design-height="previewContainer.height"
+            class="preview-container"
+        >
+            <template #default="{ scale }">
+                <div
+                    class="preview"
+                    :class="{ empty: !settings.imageSrc }"
+                    :style="{ 
+                        '--preview-scale': scale,
+                        '--preview-logo-scale': settings.displayRatio ? settings.displayRatio : 1,
+
+                        width: `${previewContainer.width}px`,
+                        height: `${previewContainer.height}px`,
+                    }"
+                    :data-watermark="settings.watermarkLocation"
+                >
+                    <div class="preview__main">
+                        <div class="main">
+                            <ui-image
+                                v-if="settings.imageSrc"
+                                name="image"
+                                :value="settings.imageSrc"
+                                class="logo"
+                            ></ui-image>
+        
+                            <div class="text watermark">
+                                <ui-label
+                                    v-if="settings.imageSrc"
+                                    value="Created with Cocos"
+                                ></ui-label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview__sub">
+                        <div class="sub">
+                            <div class="text watermark">
+                                <ui-label
+                                    v-if="settings.imageSrc"
+                                    value="Created with Cocos"
+                                ></ui-label>
+                            </div>
+                            <!-- <div>
+                                    <ui-progress value="100" message="这里是进度消息"></ui-progress>
+                                </div>
+                                <div>
+                                    <ui-label value="进度条"></ui-label>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+        
+                <div
+                    class="image-wrap ab-center"
+                    @click="selectImage"
+                >
+                    <ui-icon value="add"></ui-icon>
+                    <ui-label value="i18n:builder.splashSetting.changeImage"></ui-label>
+                </div>
+            </template>
+        </preview-container>
+    </ui-prop>
+
+    <div v-if="showMask" class="mask">
+        <ui-button @confirm.stop="enableCustomSplash">
+            <ui-label value="i18n:builder.splashSetting.enableCustomSplash"></ui-label>
+        </ui-button>
+    </div>
+</div>

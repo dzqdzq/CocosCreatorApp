@@ -1,0 +1,1 @@
+"use strict";function load(){}function unload(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.unload=exports.load=exports.methods=void 0,exports.methods={async installExtension(e){await Editor.Panel.has("extension.manager")?Editor.Message.send("extension","search",e):Editor.Panel.open("extension.manager",{search:e})}},exports.load=load,exports.unload=unload;

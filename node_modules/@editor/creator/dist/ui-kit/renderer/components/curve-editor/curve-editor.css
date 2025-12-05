@@ -1,0 +1,109 @@
+:host {
+  display: inline-block;
+  transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s;
+  user-select: none;
+  overflow: hidden;
+  outline: none;
+}
+:host .curve-editor {
+  position: relative;
+}
+:host canvas {
+  top: 0;
+  left: 0;
+  user-select: none;
+}
+:host .ctrl,
+:host .curve {
+  position: absolute;
+  z-index: 0;
+}
+:host .ctrl {
+  z-index: 2;
+}
+:host .curve,
+:host .x-axis,
+:host .y-axis {
+  position: absolute;
+  left: 0;
+}
+:host .curve span,
+:host .x-axis span,
+:host .y-axis span {
+  position: absolute;
+  white-space: nowrap;
+}
+:host .x-axis {
+  bottom: 30px;
+}
+:host .y-axis {
+  top: 2px;
+}
+:host .scale-ctrl {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+:host .scale-ctrl > div {
+  position: absolute;
+  background-color: white;
+  background-clip: content-box;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  pointer-events: auto;
+}
+:host .scale-ctrl > div:hover {
+  background-color: yellow;
+}
+:host .scale-ctrl div[name="top"],
+:host .scale-ctrl div[name="bottom"] {
+  width: 100%;
+  height: 4px;
+  padding: 0 8px;
+}
+:host .scale-ctrl div[name="top"]:hover,
+:host .scale-ctrl div[name="bottom"]:hover {
+  cursor: n-resize;
+}
+:host .scale-ctrl div[name="bottom"] {
+  bottom: 0;
+}
+:host .scale-ctrl div[name="top"] {
+  top: 0;
+}
+:host .scale-ctrl div[name="right"],
+:host .scale-ctrl div[name="left"] {
+  width: 4px;
+  height: 100%;
+  padding: 8px 0;
+}
+:host .scale-ctrl div[name="right"]:hover,
+:host .scale-ctrl div[name="left"]:hover {
+  cursor: e-resize;
+}
+:host .scale-ctrl div[name="right"] {
+  right: 0;
+}
+:host .scale-ctrl div[name="left"] {
+  left: 0;
+}
+:host .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #30323973;
+  z-index: 3;
+}
+:host .mask .edit-box {
+  position: absolute;
+  width: 75px;
+  padding: 10px;
+  background: var(--color-normal-fill-normal);
+  border-radius: var(--size-normal-radius);
+  border: 1px solid;
+}

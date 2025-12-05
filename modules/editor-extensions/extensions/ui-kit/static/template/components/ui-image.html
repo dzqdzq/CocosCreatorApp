@@ -1,0 +1,265 @@
+<div class="wrap">
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.initialize">
+        <div class="row">
+            <h2>asset uuid value</h2>
+            <div>
+                <ui-image :value="subAssetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{subAssetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+
+            <h2>asset url value</h2>
+            <div>
+                <ui-image :value="assetUrl"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUrl}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>fill</h2>
+            <div>full of width and height</div>
+            <div>
+                <ui-image fill :value="assetUuid" style="width: 100px; height: 50px;"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image fill value="{{assetUuid}}" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>size</h2>
+            <div>generate image thumbnails</div>
+            <div>
+                <ui-image droppable="cc.ImageAsset" :value="assetUuid" size="50,50"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}" size="50,50"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>droppable</h2>
+            <div>Receive drag and drop, change its value.</div>
+            <div>Try to drop other image asset into here to replace it.</div>
+            <div>
+                <ui-image droppable="cc.ImageAsset" size="50,50" :value="assetUuid"></ui-image>
+                <ui-image droppable="cc.ImageAsset,file" :value="assetUrl" size="50,50"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image droppable="cc.ImageAsset" value="{{assetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+        
+        <div class="row">
+            <h2>position</h2>
+            <div>horizontal center, vertical middle</div>
+            <div>
+                <ui-image :value="assetUrl" style="width: 100px; height: 50px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUrl}}" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>origin width height</h2>
+            <div>
+                <ui-image :value="assetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>fixed width</h2>
+            <div>auto height</div>
+            <div>
+                <ui-image :value="assetUuid" style="width: 100px;"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}" style="width:100px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>fixed height</h2>
+            <div>auto width</div>
+            <div>
+                <ui-image :value="assetUuid" style="height: 80px;"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}" style="height:80px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>min height</h2>
+            <div>auto horizontal center</div>
+            <div>
+                <ui-image :value="assetUuid" style="width: 100px; height: 50px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}" style="width:100px;height:50px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>min width</h2>
+            <div>auto vertial middle</div>
+            <div>
+                <ui-image :value="assetUuid" style="width: 50px; height: 100px; background-color: var(--color-normal-fill-emphasis);"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUuid}}" style="width:50px;height:100px;"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>channel</h2>
+            <div>Show the channel data of one image.</div>
+            <div>The value is the combination of 'r','g','b','a'.</div>
+            <div>Usage cases: baked images in Light Map extension. </div>
+            <div>
+                <ui-image :value="assetUrl"></ui-image>
+                <ui-image channel="r" :value="assetUrl"></ui-image>
+                <ui-image channel="g" :value="assetUrl"></ui-image>
+                <ui-image channel="b" :value="assetUrl"></ui-image>
+                <ui-image channel="a" :value="assetUrl"></ui-image>
+                <ui-image channel="rgb" :value="assetUrl"></ui-image>
+                <ui-image channel="rgba" :value="assetUrl"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image value="{{assetUrl}}"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="r"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="g"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="b"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="a"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="rgb"&gt;&lt;/ui-image&gt;
+                &lt;ui-image value="{{assetUrl}}" channel="rgba"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>readonly</h2>
+            <div>
+                <ui-image readonly droppable="cc.ImageAsset" :value="subAssetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image readonly droppable="cc.ImageAsset" value="{{subAssetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>disabled</h2>
+            <div>
+                <ui-image disabled droppable="cc.ImageAsset" :value="subAssetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image disabled droppable="cc.ImageAsset" value="{{subAssetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+
+        <div class="row">
+            <h2>invalid</h2>
+            <div>
+                <ui-image invalid :value="subAssetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image invalid value="{{subAssetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+        
+        <div class="row">
+            <h2>hidden</h2>
+            <div>
+                <ui-image hidden :value="subAssetUuid"></ui-image>
+            </div>
+            <ui-code language="html">
+                &lt;ui-image hidden value="{{subAssetUuid}}"&gt;&lt;/ui-image&gt;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.parameters">
+        <div class="row">
+            <h2>Attributes</h2>
+            <ui-code language="typescript">
+                value;
+                fill;
+                size; // use its thumbnail, size="width,height", like: size="100,100"
+                droppable; // 'cc.ImageAsset',  enable accept drop
+                channel; // show the channel of a image, the value is the combination of 'r','g','b','a'.
+                readonly;
+                disabled;
+            </ui-code>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.events">
+        <div class="row">
+            <h2>image value:</h2>
+            <h4 ref="value"></h4>
+            <ui-image ref="image" droppable="cc.ImageAsset,cc.Texture2D,cc.SpriteFrame"
+                :value="value"
+                @confirm="confirm($event.target.value)"
+            ></ui-image>
+            <div>Try to drop other image asset into here to replace it.</div>
+
+            <div class="row">
+                <h2>Events</h2>
+                <ui-code language="typescript">
+                    confirm
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>VUE JS</h2>
+                <ui-code language="html">
+                    &lt;ui-image ref="image" droppable="cc.ImageAsset,cc.Texture2D,cc.SpriteFrame" value="{{value}}"
+                        @confirm="confirm($event.target.value)"
+                    &gt;&lt;/ui-image&gt;
+                </ui-code>
+            </div>
+
+            <div class="row">
+                <h2>Vanilla JS</h2>
+                <ui-code language="html">
+                    &lt;ui-image id="image" droppable="cc.ImageAsset" value="{{value}}"&gt;&lt;/ui-image&gt;
+                </ui-code>
+                <ui-code language="typescript">
+                    const element = document.getElementById('#image');
+
+                    // addEventListener
+                    element.addEventListener('confirm', (event) => {
+                        // get value
+                        const imageValue = event.target.value;
+                    });
+                </ui-code>
+            </div>
+        </div>
+    </ui-section>
+
+    <ui-section class="config section" expand header="i18n:ui-kit.preview.getSet">
+        <div class="row">
+            <ui-code language="typescript">
+                // set value
+                this.$refs.image.value = '{{value}}';
+
+                // get value
+                const imageValue = this.$refs.file.value;
+            </ui-code>
+            <ui-code language="typescript">
+                const element = document.getElementById('#image');
+
+                // set value
+                element.value = '{{value}}';
+                // get value
+                const imageValue = element.value;
+            </ui-code>
+        </div>
+    </ui-section>
+</div>
