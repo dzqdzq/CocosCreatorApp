@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"崩溃报告",description:"用于崩溃时，提交报告给开发人员提供分析工具",panel:{title:"崩溃信息",issue:"问题描述：",issue_placeholder:"请阐述下崩溃前的操作",report_tip:"以下信息将被收集并用于分析崩溃的原因，以便于我们更好地为您服务",cancel:"放弃提交",confirm:"提交并关闭"}};

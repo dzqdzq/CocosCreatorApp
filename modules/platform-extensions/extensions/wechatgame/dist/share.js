@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Paths=exports.OPEN_DATA_CONTEXT_ROOT=exports.PLATFORM=void 0;const path_1=require("path");exports.PLATFORM="wechatgame",exports.OPEN_DATA_CONTEXT_ROOT="openDataContext",exports.Paths={internalTemplateDir:(0,path_1.join)(__dirname,"../../../../../../resources/3d/engine/templates/"+exports.PLATFORM)};

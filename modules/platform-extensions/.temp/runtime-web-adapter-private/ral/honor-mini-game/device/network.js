@@ -1,0 +1,1 @@
+import _UTIL from"../../util";_UTIL.exportTo("getNetworkType",qg,ral),_UTIL.exportTo("onNetworkStatusChange",qg,ral),_UTIL.exportTo("offNetworkStatusChange",qg,ral);

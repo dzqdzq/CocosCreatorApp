@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"支付宝小游戏",options:{orientation:"设备方向",portrait:"竖屏",landscape:"横屏",start_scene_asset_bundle:"初始场景分包",start_scene_asset_bundle_tooltip:"将所有初始场景依赖的资源打包进独立的分包，分包命名为 'start-scene'",wasm_subpackage:"引擎 asm.js 分包",wasm_subpackage_tips:"将引擎的 asm.js 模块作为小游戏分包，以减少主包包体。"},error:{separate_engine:"支付宝引擎插件功能仅支持 Cocos Creator 正式版本并使用内置引擎"}};

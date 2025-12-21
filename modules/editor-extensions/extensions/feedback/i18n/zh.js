@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"意见反馈",placeholder:"请详细描述遇到的问题、建议或其他反馈内容。如有需要，可上传图片帮助我们更好地理解并进行改进。",atLeast:"至少20个字",imageTitle:"请选择图片（最多支持3张）",submit:"提交",submitTip:"提交成功",submitFail:"提交失败"};

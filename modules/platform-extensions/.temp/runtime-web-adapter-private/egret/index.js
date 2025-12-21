@@ -1,0 +1,1 @@
+let _oldCreateElement=document.createElement,_canvas;document.createElement=function(e){return"canvas"===e?_canvas=void 0===_canvas?new window.HTMLCanvasElement:_canvas:_oldCreateElement(e)};

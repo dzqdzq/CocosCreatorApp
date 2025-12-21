@@ -1,0 +1,23 @@
+.infobar {
+    --tabs-height: 30px;
+
+    line-height: calc(var(--size-small-line) * 1px);
+    font-size: calc(var(--size-small-font) * 1px);
+    display: flex;
+    position: absolute;
+    top: var(--tabs-height);
+    padding: 10px;
+
+    & > .left {
+        flex: 1;
+        display: flex;
+    }
+
+    & > .right {
+        display: flex;
+    }
+}
+
+.infobar.multi-tabs {
+    top: calc(var(--tabs-height) * 2);
+}

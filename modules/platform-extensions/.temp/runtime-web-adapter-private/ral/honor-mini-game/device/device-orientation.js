@@ -1,0 +1,1 @@
+import _UTIL from"../../util";qg.onDeviceOrientationChange&&(_UTIL.exportTo("onDeviceOrientationChange",qg,ral),_UTIL.exportTo("offDeviceOrientationChange",qg,ral));

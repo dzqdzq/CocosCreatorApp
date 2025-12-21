@@ -1,0 +1,54 @@
+.pkg-list {
+    height: 100%;
+    position: relative;
+
+    &__subtitle {
+        font-size: 12px;
+        color: #8f8f8f;
+        margin-bottom: 2px;
+    }
+
+    > .content {
+        height: 100%;
+
+        padding: 8px 8px 20px 8px;
+        overflow-y: auto;
+        position: relative;
+
+        .content-group:not(:last-of-type) {
+            margin-bottom: 8px;
+        }
+
+        .pkg-list-item {
+            transition: all 0.3s;
+            &:not(:last-of-type) {
+                margin-bottom: 8px;
+            }
+        }
+
+        .list-action-enter,
+        .list-action-leave-to {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .list-action-leave-active {
+            position: absolute;
+            width: calc(100% - 32px);
+        }
+
+        > .loading {
+            text-align: center;
+        }
+    }
+
+    > .extenstions-empty.error {
+        > ui-label {
+            height: 20px;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #8f8f8f;
+        }
+    }
+}

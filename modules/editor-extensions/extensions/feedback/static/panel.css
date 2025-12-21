@@ -1,0 +1,111 @@
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback-panel {
+    display: flex;
+    height: calc(100% - 24px);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+
+    & h1 {
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    & ui-textarea {
+        min-height: 180px;
+    }
+
+    & .text-tip {
+        display: flex;
+        justify-content: space-between;
+
+        & .counter {
+            text-align: right;
+        }
+    }
+
+    & .image-list-title {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-weight: bold;
+
+        ui-loading {
+            font-size: 12px;
+        }
+    }
+
+    & .image-list {
+        display: flex;
+
+        & .image-list-item {
+            position: relative;
+            overflow: hidden;
+            width: 120px;
+            border-radius: 4px;
+            margin-right: 12px;
+            aspect-ratio: 1/1;
+
+            &.add {
+                border: 1px dashed #cccccc;
+                cursor: pointer;
+
+                &.uploading {
+                    cursor: not-allowed;
+                }
+            }
+
+            & .close {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: rgb(0 0 0 / 50%);
+                color: #ffffff;
+            }
+
+            & img {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                max-height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    & .submit-box {
+        margin-bottom: 30px;
+        text-align: center;
+
+        & > ui-button {
+            height: 30px;
+            padding-right: 60px;
+            padding-left: 60px;
+            font-size: 16px;
+        }
+    }
+
+    & .tip {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        padding: 4px 12px;
+        border-radius: 4px;
+        background-color: #3d3d3d;
+        transform: translateX(-50%) translateY(-50px);
+        transition: transform 0.3s ease;
+
+        &.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+}

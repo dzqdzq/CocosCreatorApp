@@ -1,0 +1,131 @@
+.modules {
+  height: 100%;
+}
+.modules .configs-header {
+  padding-bottom: 12px;
+}
+.modules .configs-list {
+  display: flex;
+  height: calc(100% - 52px - 12px);
+  border-top: 1px solid #141414;
+  padding-top: 8px;
+}
+.modules .configs-list .configs-list-nav {
+  width: 160px;
+  flex-shrink: 0;
+  padding: 0 12px 12px 2px;
+  border-right: 1px solid #141414;
+  margin-right: 10px;
+}
+.modules .configs-list .configs-list-nav .add-config {
+  background-color: #40aaca;
+  border-radius: 2px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.modules .configs-list .configs-list-nav .scroll-box {
+  overflow: auto;
+  height: calc(100% - 24px - 8px);
+}
+.modules .configs-list .configs-list-nav .nav-item {
+  position: relative;
+  height: 28px;
+  line-height: 28px;
+  cursor: pointer;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modules .configs-list .configs-list-nav .nav-item.selected,
+.modules .configs-list .configs-list-nav .nav-item:hover {
+  background-color: #424242;
+}
+.modules .configs-list .configs-list-nav .nav-item.global .global-icon {
+  position: absolute;
+  left: 2px;
+  color: var(--color-warn-fill);
+  transform: rotateY(180deg);
+}
+.modules .configs-list .configs-list-nav .nav-item .operation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 8px;
+}
+.modules .configs-list .configs-list-nav .nav-item .operation:hover {
+  background-color: #424242;
+}
+.modules .configs-list .configs-list-content {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.modules .configs-list .configs-list-content .control-features {
+  margin-bottom: 4px;
+}
+.modules .configs-list .configs-list-content .control-features ui-prop {
+  margin-bottom: 4px;
+}
+.modules .configs-list .configs-list-content .control-features .restore {
+  background: #424242;
+  border-radius: 2px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+.modules .configs-list .configs-list-content .scroll-box {
+  border: 1px solid var(--color-normal-fill-weakest);
+  flex: 1;
+  overflow: scroll;
+  padding: 8px;
+}
+.modules .configs-list .configs-list-content .modules-section .require-tip {
+  text-indent: 8px;
+  opacity: 0.55;
+}
+.modules .configs-list .configs-list-content .modules-section .modules-section-content {
+  padding-left: 28px;
+}
+.modules-item {
+  flex: 1;
+  display: flex;
+}
+.modules-item .modules-item {
+  padding-left: 20px;
+  height: 20px;
+}
+.modules-item ui-section > .modules-item {
+  margin-left: 8px;
+}
+.modules-item div {
+  height: 20px;
+}
+.modules-item .option-wrap {
+  display: flex;
+  margin-left: 6px;
+}
+.modules-item .flag-wrap {
+  margin-left: 6px;
+  display: flex;
+}
+.modules-item .flags-ui-type-select {
+  display: flex;
+  margin-left: 6px;
+}
+.modules-item .flags-ui-type-select ui-label {
+  margin-right: 4px;
+}
+.modules-item ui-select-pro {
+  min-width: 200px;
+}
+.modules-item .icon-box {
+  white-space: nowrap;
+  padding-left: 4px;
+  opacity: 0.7;
+}

@@ -1,0 +1,1 @@
+"use strict";async function migrateProject(e){var t=await Editor.Profile.getConfig("asset-db","ignoreGlob");t&&(e.ignoreGlobList=t.replace(/^!/,""))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=migrateProject;

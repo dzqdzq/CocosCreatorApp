@@ -1,0 +1,1 @@
+class DOMRect{constructor(t,h,i,s){this.x=t||0,this.y=h||0,this.width=i||0,this.height=s||0,this.left=this.x,this.top=this.y,this.right=this.x+this.width,this.bottom=this.y+this.height}}module.exports=DOMRect;

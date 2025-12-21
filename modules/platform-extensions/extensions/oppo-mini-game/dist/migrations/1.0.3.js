@@ -1,0 +1,1 @@
+"use strict";async function migrateLocal(e){void 0!==e.builder?.options?.["oppo-mini-game"]?.wasmSubpackage&&delete e.builder.options["oppo-mini-game"].wasmSubpackage}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=migrateLocal;

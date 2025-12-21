@@ -1,0 +1,1 @@
+let _rt=loadRuntime();const _onWindowResize=_rt.onWindowResize;ral.onWindowResize=function(n){_onWindowResize(function(i){n(i.width||i.windowWidth,i.height||i.windowHeight)})},window.resize=function(){console.warn("window.resize() is deprecated")};

@@ -1,0 +1,57 @@
+{
+    "name": "process",
+    "title": "Process",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "description": "i18n:process.description",
+    "panels": {
+        "default": {
+            "title": "Process Tasks",
+            "main": "./dist/panel/index.js",
+            "size": {
+                "min-width": 500,
+                "min-height": 400,
+                "width": 540,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.develop",
+                "label": "i18n:process.title",
+                "message": "open"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "query-process-tree": {
+                "methods": [
+                    "queryProcessTree"
+                ]
+            },
+            "close-process-by-pid": {
+                "methods": [
+                    "closeProcessByPid"
+                ]
+            },
+            "open-panel-dev-tool": {
+                "methods": [
+                    "openPanelDevTool"
+                ]
+            },
+            "register-process-info": {
+                "methods": [
+                    "registerProcessInfo"
+                ]
+            }
+        }
+    }
+}

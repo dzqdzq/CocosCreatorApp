@@ -1,0 +1,1 @@
+window.jsb&&jsb.setPreferredFramesPerSecond?ral.setPreferredFramesPerSecond=jsb.setPreferredFramesPerSecond.bind(jsb):qg.setPreferredFramesPerSecond?ral.setPreferredFramesPerSecond=qg.setPreferredFramesPerSecond.bind(qg):ral.setPreferredFramesPerSecond=function(){console.error("The setPreferredFramesPerSecond is not define!")};

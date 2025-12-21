@@ -1,0 +1,1 @@
+const exec=require("child_process")["exec"];function runCommand(e){return new Promise((n,r)=>{console.log(`Running command: '${e}'`);const o=exec(e,{cwd:__dirname},(n,o,e)=>{n?r(n):(o&&console.log(o),e&&console.error(e))});o.on("close",()=>{n(o.exitCode)}),o.stderr.on("data",n=>{console.error(n)})})}(async()=>{await runCommand("npm install"),await runCommand("gulp")})();

@@ -1,0 +1,1 @@
+import AudioNode from"./AudioNode";class AudioScheduledSourceNode extends AudioNode{constructor(o){super(o)}onended(o){}start(o,d,e){}stop(o){}}export default AudioScheduledSourceNode;

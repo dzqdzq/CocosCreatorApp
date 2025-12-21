@@ -1,0 +1,177 @@
+{
+    "name": "console",
+    "title": "i18n:console.title",
+    "version": "1.0.0",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "i18n:console.description",
+    "main": "./dist/browser.js",
+    "panels": {
+        "default": {
+            "title": "i18n:console.title",
+            "main": "./dist/panel.js",
+            "icon": "./static/icon-2x.png",
+            "flags": {
+                "save": true
+            },
+            "size": {
+                "min-width": 350,
+                "min-height": 150,
+                "width": 600,
+                "height": 400
+            },
+            "menu": [
+                {
+                    "label": "i18n:console.menu.setting",
+                    "message": "open-setting"
+                },
+                {
+                    "label": "i18n:console.menu.help",
+                    "message": "open-docs"
+                }
+            ]
+        }
+    },
+    "contributions": {
+        "footer": {
+            "left": "./dist/footer/left.js",
+            "right": "./dist/footer/right.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.panel",
+                "label": "i18n:console.title",
+                "message": "open",
+                "icon": "./static/icon.png",
+                "order": -99
+            }
+        ],
+        "shortcuts": [
+            {
+                "message": "open",
+                "win": "ctrl+0",
+                "mac": "cmd+0"
+            }
+        ],
+        "profile": {
+            "editor": {
+                "panel.displayDate": {
+                    "label": "i18n:console.preferences.display_date",
+                    "message": "refresh-panel",
+                    "default": false
+                },
+                "panel.fontSize": {
+                    "label": "i18n:console.preferences.font_size",
+                    "message": "refresh-panel",
+                    "default": 12
+                },
+                "panel.lineHeight": {
+                    "label": "i18n:console.preferences.font_size",
+                    "message": "refresh-panel",
+                    "default": 24
+                },
+                "panel.filterType": {
+                    "label": "i18n:console.preferences.filter_type",
+                    "default": "all"
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "panel.displayDate": {
+                    "ui": "ui-checkbox"
+                },
+                "panel.fontSize": {
+                    "ui": "ui-select",
+                    "items": [
+                        {
+                            "label": "9",
+                            "value": 9
+                        },
+                        {
+                            "label": "10",
+                            "value": 10
+                        },
+                        {
+                            "label": "11",
+                            "value": 11
+                        },
+                        {
+                            "label": "12",
+                            "value": 12
+                        },
+                        {
+                            "label": "13",
+                            "value": 13
+                        },
+                        {
+                            "label": "14",
+                            "value": 14
+                        },
+                        {
+                            "label": "15",
+                            "value": 15
+                        },
+                        {
+                            "label": "16",
+                            "value": 16
+                        },
+                        {
+                            "label": "17",
+                            "value": 17
+                        },
+                        {
+                            "label": "18",
+                            "value": 18
+                        },
+                        {
+                            "label": "19",
+                            "value": 19
+                        },
+                        {
+                            "label": "20",
+                            "value": 20
+                        }
+                    ]
+                }
+            }
+        },
+        "messages": {
+            "open": {
+                "methods": [
+                    "open"
+                ]
+            },
+            "refresh-panel": {
+                "methods": [
+                    "refresh-panel"
+                ]
+            },
+            "refresh": {
+                "methods": [
+                    "default.refresh"
+                ]
+            },
+            "open-docs": {
+                "methods": [
+                    "openDocs"
+                ]
+            },
+            "open-setting": {
+                "methods": [
+                    "openSetting"
+                ]
+            },
+            "clear": {
+                "methods": [
+                    "clear"
+                ]
+            },
+            "update-extension-visible": {
+                "methods": [
+                    "default.updateExtensionVisible"
+                ]
+            }
+        }
+    }
+}

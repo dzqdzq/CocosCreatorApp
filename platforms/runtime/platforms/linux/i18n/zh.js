@@ -1,0 +1,1 @@
+"use strict";module.exports={title:"Linux",make:{label:"生成"},run:{label:"运行"}};

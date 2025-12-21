@@ -1,0 +1,70 @@
+/* -----curve editor -------------- */
+.curve-editor {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    .name {
+        padding-left: 21px;
+        text-transform: capitalize;
+        color: var(--color-focus-contrast);
+    }
+
+    .curve-config {
+        display: flex;
+        justify-content: center;
+
+        > * {
+            margin: 0 10px;
+        }
+    }
+
+    .multiplier {
+        position: absolute;
+        z-index: 2;
+        top: 47px;
+        left: 4px;
+        width: 34px;
+        margin: 0 2px;
+        background: rgba(193, 189, 189, 0.09);
+    }
+
+    .multiplier[focused] {
+        width: 80px;
+    }
+
+    .canvas-wrap {
+        position: relative;
+        height: 80vh;
+    }
+
+    .canvas {
+        position: absolute;
+        margin: auto;
+        background-size: 32px 32px;
+        background-position: center center;
+    }
+
+    .toolbar {
+        text-align: center;
+
+        canvas {
+            background: #716e6e;
+            margin: 5px;
+        }
+
+        .i-setting {
+            margin: 5px;
+        }
+    }
+}
+
+.presets {
+    height: 80vh;
+    position: absolute;
+}

@@ -1,0 +1,67 @@
+<div class="ohos">
+    <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.packageName ? 'danger' : ''"
+        :message="pkgErrorMap.packageName"
+    >
+        <ui-label slot="label" value="i18n:ohos.options.package_name"></ui-label>
+        <ui-input
+            slot="content"
+            path="packageName"
+            :value="pkgOptions.packageName"
+            :placeholder="getDefaultPackageName()"
+        ></ui-input>
+    </ui-prop>
+
+    <!-- <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.apiLevel ? 'danger' : ''"
+        :message="pkgErrorMap.apiLevel"
+    >
+        <ui-label slot="label">Target API Level</ui-label>
+        <div slot="content" style="display: block">
+            <ui-select path="apiLevel" :value="pkgOptions.apiLevel || apiLevels[0]">
+                <template v-for="item in apiLevels">
+                    <option :value="item">{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button @click="onSetSDK">
+                <ui-label value="i18n:ohos.tips.set_ohos_sdk"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop> -->
+
+    <!-- Orientation -->
+    <ui-prop :class="pkgErrorMap.orientation ? 'danger' : ''" :message="pkgErrorMap.orientation"  @change="onChange">
+        <ui-label slot="label" value="i18n:ohos.options.orientation"></ui-label>
+        <div slot="content" style="display: block">
+            <div>
+                <ui-checkbox
+                    path="orientation.portrait"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.portrait"
+                    tooltip="i18n:ohos.tips.orientation_portrait"
+                >
+                    <ui-label value="i18n:ohos.options.portrait"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeLeft"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                    tooltip="i18n:ohos.tips.orientation_landscape_left"
+                >
+                    <ui-label value="i18n:ohos.options.landscape_left"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeRight"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                    tooltip="i18n:ohos.tips.orientation_landscape_right"
+                >
+                    <ui-label value="i18n:ohos.options.landscape_right"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+</div>

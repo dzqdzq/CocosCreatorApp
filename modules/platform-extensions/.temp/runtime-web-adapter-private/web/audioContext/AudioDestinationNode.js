@@ -1,0 +1,1 @@
+import AudioNode from"./AudioNode";class AudioDestinationNode extends AudioNode{constructor(o){super(o),this.maxChannelCount=2}}export default AudioDestinationNode;

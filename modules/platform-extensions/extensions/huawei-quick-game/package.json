@@ -1,0 +1,25 @@
+{
+    "name": "huawei-quick-game",
+    "title": "i18n:huawei-quick-game.title",
+    "version": "1.0.3",
+    "package_version": 2,
+    "author": "Cocos Creator",
+    "description": "Huawei mini game platform plugin",
+    "migrations": [
+        {
+            "version": "1.0.1",
+            "profile": "./dist/migrations/1.0.1.js"
+        },
+        {
+            "version": "1.0.2",
+            "profile": "./dist/migrations/1.0.2.js"
+        },
+        {
+            "version": "1.0.3",
+            "profile": "./dist/migrations/1.0.3.js"
+        }
+    ],
+    "contributions": {
+        "builder": "./dist/build.js"
+    }
+}

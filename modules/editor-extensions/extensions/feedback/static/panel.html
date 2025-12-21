@@ -1,0 +1,52 @@
+<div class="feedback-panel">
+    <div>
+        <h1><ui-label value="i18n:feedback.title"></ui-label></h1>
+
+        <ui-textarea
+            :row="5"
+            :value="text"
+            placeholder="i18n:feedback.placeholder"
+            @paste="onPaste($event)"
+            @change="onChange($event.target.value)"
+            @confirm="onConfirm($event.target.value)"
+        ></ui-textarea>
+
+        <div class="text-tip">
+            <ui-label value="i18n:feedback.atLeast"> </ui-label>
+            <span class="counter">{{text.length}}/{{maxTextLength}}</span>
+        </div>
+
+        <div class="image-list-title">
+            <ui-label value="i18n:feedback.imageTitle" />
+            <ui-loading v-if="uploading"></ui-loading>
+        </div>
+
+        <div class="image-list">
+            <div class="image-list-item" v-for="(item, index) in imageList" :key="index">
+                <img :src="item.url" alt="image" />
+                <div class="close center" @click="deleteImage(index)">
+                    <ui-icon value="close-b"></ui-icon>
+                </div>
+            </div>
+            <label
+                :for="uploading ? '' : 'fileInput'"
+                class="image-list-item add center"
+                :class="{uploading: uploading}"
+                v-show="imageList.length < maxImageLength"
+            >
+                <input style="display: none" type="file" accept="image/*" multiple id="fileInput" @change="onFileChange" />
+                <ui-loading v-if="uploading"></ui-loading>
+                <ui-icon v-else value="add"></ui-icon>
+            </label>
+        </div>
+    </div>
+
+    <div class="submit-box">
+        <p :class="{tip: true, show: needShowTip}">
+            <ui-label :value="isPostSuccess ? 'i18n:feedback.submitTip' : 'i18n:feedback.submitFail'"></ui-label>
+        </p>
+        <ui-button :disabled="disableSubmit" @confirm="submit" :loading="isPosting">
+            <ui-label value="i18n:feedback.submit"></ui-label>
+        </ui-button>
+    </div>
+</div>

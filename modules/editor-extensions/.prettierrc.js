@@ -1,0 +1,1 @@
+module.exports={printWidth:140,tabWidth:4,useTabs:!1,singleQuote:!0,trailingComma:"all",bracketSpacing:!0,arrowParens:"always",proseWrap:"always",tslintIntegration:!1,eslintIntegration:!0};

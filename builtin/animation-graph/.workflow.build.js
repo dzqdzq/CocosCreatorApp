@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.less=function(){return[{source:"./static/style/index.less",dist:"./dist/index.css"},{source:"./static/style/inspector.less",dist:"./dist/inspector.css"}]},exports.file=function(){return[]},exports.npm=function(){return[]};

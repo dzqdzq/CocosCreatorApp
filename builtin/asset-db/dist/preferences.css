@@ -1,0 +1,23 @@
+ui-prop {
+  --left-width: 40%;
+  margin-bottom: 4px;
+}
+ui-icon {
+  cursor: pointer;
+}
+.setting[type='local'] {
+  color: var(--color-warn-fill);
+  padding-right: 2px;
+}
+.config-wrap {
+  padding-left: 16px;
+}
+.config-wrap ui-prop > ui-label {
+  padding-left: 2em;
+}
+.config-wrap ui-section ui-icon {
+  margin-right: 4px;
+}
+.config-wrap ui-section .extension {
+  opacity: 0.6;
+}

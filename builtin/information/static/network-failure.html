@@ -1,0 +1,144 @@
+<html lang="zh" spellcheck="false">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        :root {
+            height: 100%;
+            font-size: 16px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            font-family: sans-serif;
+            line-height: 1.4;
+        }
+
+        .container {
+            min-height: 520px;
+            margin: 0px auto;
+            background-color: #ffffff;
+            max-width: 460px;
+            min-width: 270px;
+            padding: 36px;
+        }
+
+        .container > .body {
+            display: block;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 300px;
+            text-align: center;
+        }
+
+        .container > .body.failed {
+            display: none;
+        }
+
+        .container > .body.loading {
+            display: block;
+        }
+
+        .container > .body > .row {
+            margin: 24px;
+        }
+        .container > .body > .row.icon .checked {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #f44336;
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 44px;
+            display: inline-block;
+        }
+
+        .container > .body > .row.text {
+            font-weight: 600;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.72);
+        }
+
+        .container > .body.loading .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #f44336;
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 1;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+<div id="container" class="container">
+    <div class="body failed">
+        <div class="row icon">
+            <span class="checked">X</span>
+        </div>
+        <div class="row text">
+            <p>The network connection failed. Please check your network connection or try again later.</p>
+            <p>网络连接失败，请检查您的网络连接或稍后再试！</p>
+        </div>
+    </div>
+    <div class="body loading">
+        <div class="row countdown">
+            <span id="timer">10</span> S
+        </div>
+        <div class="row text">
+            <p>Please wait for the network connection...</p>
+            <p>网络连接中，请稍等...</p>
+        </div>
+    </div>
+    <script>
+        let remainingTime = 10;
+        let countdownTimer;
+        function updateCountdown() {
+            const timerElement = document.getElementById('timer');
+            if (timerElement) {
+                timerElement.textContent = remainingTime;
+            }
+
+            if (remainingTime <= 0) {
+                showFailed();
+            } else {
+                remainingTime--;
+            }
+        }
+        function showFailed() {
+            clearInterval(countdownTimer);
+            const loadingBody = document.querySelector('.body.loading');
+            const failedBody = document.querySelector('.body.failed');
+            if (loadingBody && failedBody) {
+                loadingBody.style.display = 'none';
+                failedBody.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            countdownTimer = setInterval(updateCountdown, 1000);
+        });
+        window.addEventListener('beforeunload', () => {
+            clearInterval(countdownTimer);
+        });
+    </script>
+</div>
+</body>
+</html>

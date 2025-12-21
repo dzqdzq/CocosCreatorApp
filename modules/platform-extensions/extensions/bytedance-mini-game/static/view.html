@@ -1,0 +1,94 @@
+<div class="bytedance-mini-game" @change="onChange">
+    <ui-prop
+        :class="{ 'separate-engine-warning': !!separateEngineWarningTip }"
+        :tooltip="separateEngineWarningTip ? separateEngineWarningTip : isNormalVersion ? 'i18n:bytedance-mini-game.options.separate_engine_tips' : 'i18n:bytedance-mini-game.tips.separate_engine_only_in_normal_version'"
+    >
+        <ui-label
+            slot="label"
+            value="i18n:bytedance-mini-game.options.separate_engine"
+        ></ui-label>
+        <div slot="content">
+            <ui-checkbox path="separateEngine"
+                :value="pkgOptions.separateEngine"
+                :disabled="!isNormalVersion"
+            ></ui-checkbox>
+        </div>
+        <div slot="message"
+            v-if="separateEngineWarningTip"
+        >
+            <ui-label :value="separateEngineWarningTip"></ui-label>
+        </div>
+    </ui-prop>
+    <ui-prop v-if="physicsX">
+        <div slot="label">
+            <ui-label value="i18n:bytedance-mini-game.options.physX" ></ui-label>
+            <ui-icon color="true" value="experiment" tooltip="i18n:builder.experiment"></ui-icon>
+        </div>
+        <div slot="content" v-if="pkgOptions">
+            <ui-checkbox path="physX.use"
+                :value="pkgOptions.physX.use"
+                tooltip="i18n:bytedance-mini-game.options.physX_tips"
+            >
+            </ui-checkbox>
+            <ui-prop
+                style="--left-width: 80%"
+                tooltip="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs_tips"
+            >
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs"
+                ></ui-label>
+                <ui-checkbox
+                    slot="content"
+                    path="physX.notPackPhysXLibs"
+                    tooltip="i18n:bytedance-mini-game.options.physics.not_pack_physx_libs_tips"
+                    :value="pkgOptions.physX.notPackPhysXLibs"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-checkbox>
+            </ui-prop>
+            <ui-prop
+                style="--left-width: 80%"
+                tooltip="i18n:bytedance-mini-game.options.physics.multi_thread_tips"
+            >
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.multi_thread"
+                ></ui-label>
+                <ui-checkbox
+                    slot="content"
+                    path="physX.multiThread"
+                    :value="pkgOptions.physX.multiThread"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-checkbox>
+            </ui-prop>
+            <ui-prop tooltip="i18n:bytedance-mini-game.options.physics.sub_thread_tips">
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.sub_thread"
+                ></ui-label>
+                <ui-num-input
+                    slot="content"
+                    path="physX.subThreadCount"
+                    step="1"
+                    preci="0"
+                    min="1"
+                    :value="pkgOptions.physX.subThreadCount"
+                    :disabled="!pkgOptions.physX.use || !pkgOptions.physX.multiThread"
+                ></ui-num-input>
+            </ui-prop>
+            <ui-prop tooltip="i18n:bytedance-mini-game.options.physics.epsilon_tips">
+                <ui-label
+                    slot="label"
+                    value="i18n:bytedance-mini-game.options.physics.epsilon"
+                ></ui-label>
+                <ui-num-input
+                    slot="content"
+                    path="physX.epsilon"
+                    min="0"
+                    :value="pkgOptions.physX.epsilon"
+                    :disabled="!pkgOptions.physX.use"
+                ></ui-num-input>
+            </ui-prop>
+        </div>
+    </ui-prop>
+</div>

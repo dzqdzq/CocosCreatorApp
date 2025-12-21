@@ -1,0 +1,163 @@
+<div class="harmonyos-next">
+    <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.packageName ? 'danger' : ''"
+        :message="pkgErrorMap.packageName"
+    >
+        <ui-label slot="label" value="i18n:harmonyos-next.options.package_name"></ui-label>
+        <ui-input
+            slot="content"
+            path="packageName"
+            :value="pkgOptions.packageName"
+            :placeholder="getDefaultPackageName()"
+        ></ui-input>
+    </ui-prop>
+
+    <!-- <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.apiLevel ? 'danger' : ''"
+        :message="pkgErrorMap.apiLevel"
+    >
+        <ui-label slot="label">Target API Level</ui-label>
+        <div slot="content" style="display: block">
+            <ui-select path="apiLevel" :value="pkgOptions.apiLevel || apiLevels[0]">
+                <template v-for="item in apiLevels">
+                    <option :value="item">{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button @click="onSetSDK">
+                <ui-label value="i18n:harmonyos-next.tips.set_harmonyosnext_sdk"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop> -->
+    <!--
+    <ui-prop
+        @change="onChange"
+        :class="pkgErrorMap.apiLevel ? 'danger' : ''"
+        :message="pkgErrorMap.apiLevel">
+        <ui-label slot="label"></ui-label>
+        <div slot="content" style="display: block">
+            <ui-select path="apiLevel" :value="pkgOptions.apiLevel || apiLevels[0]">
+                <template v-for="item in apiLevels">
+                    <option :value="item">{{item}}</option>
+                </template>
+            </ui-select>
+            <ui-button @click="onSetSDK">
+                <ui-label value="i18n:harmonyos-next.tips.set_harmonyosnext_sdk"></ui-label>
+            </ui-button>
+        </div>
+    </ui-prop>
+    -->
+    <ui-prop :class="pkgErrorMap.appABIs ? 'danger' : ''" :message="pkgErrorMap.appABIs">
+        <ui-label slot="label" value="APP ABI" tooltip="i18n:harmonyos-next.tips.appABIs"></ui-label>
+        <div slot="content">
+            <div v-for="abi in appABIList">
+                <ui-checkbox readonly
+                    :value="pkgOptions.appABIs && pkgOptions.appABIs.includes(abi)"
+                    @change.stop="onChangeABI($event, abi)"
+                >
+                    {{abi}}
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+
+    <!-- Orientation -->
+    <ui-prop :class="pkgErrorMap.orientation ? 'danger' : ''" :message="pkgErrorMap.orientation"  @change="onChange">
+        <ui-label slot="label" value="i18n:harmonyos-next.options.orientation"></ui-label>
+        <div slot="content" style="display: block">
+            <div>
+                <ui-checkbox
+                    path="orientation.portrait"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.portrait"
+                    tooltip="i18n:harmonyos-next.tips.orientation_portrait"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.portrait"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeLeft"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeLeft"
+                    tooltip="i18n:harmonyos-next.tips.orientation_landscape_left"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.landscape_left"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="orientation.landscapeRight"
+                    :value="pkgOptions.orientation && pkgOptions.orientation.landscapeRight"
+                    tooltip="i18n:harmonyos-next.tips.orientation_landscape_right"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.landscape_right"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+    <!-- deviceTypes -->
+    <ui-prop :class="pkgErrorMap.deviceTypes ? 'danger' : ''" :message="pkgErrorMap.deviceTypes"  @change="onChange">
+        <ui-label slot="label" value="i18n:harmonyos-next.options.device_types"></ui-label>
+        <div slot="content" style="display: block">
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.phone"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.phone"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_phone"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.tablet"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.tablet"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_tablet"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.pc_2in1"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.pc_2in1"
+                    tooltip="i18n:harmonyos-next.tips.device_pc_2in1"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_pc_2in1"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.tv"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.tv"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_tv"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.wearable"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.wearable"
+                    tooltip="i18n:harmonyos-next.tips.device_wearable"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_wearable"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.car"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.car"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_car"></ui-label>
+                </ui-checkbox>
+            </div>
+            <div>
+                <ui-checkbox
+                    path="deviceTypes.default"
+                    :value="pkgOptions.deviceTypes && pkgOptions.deviceTypes.default"
+                    tooltip="i18n:harmonyos-next.tips.device_default"
+                >
+                    <ui-label value="i18n:harmonyos-next.options.device_default"></ui-label>
+                </ui-checkbox>
+            </div>
+        </div>
+    </ui-prop>
+</div>

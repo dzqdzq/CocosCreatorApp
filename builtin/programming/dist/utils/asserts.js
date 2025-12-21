@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.asserts=asserts,exports.assertsNonNullable=assertsNonNullable;const assert_1=require("assert");function asserts(s,e){if(!s)throw new assert_1.AssertionError({message:e})}function assertsNonNullable(s,e){asserts(!(null==s),e)}

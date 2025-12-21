@@ -1,0 +1,370 @@
+{
+    "left": [
+        [
+            {
+                "label": "esc",
+                "flex": 1
+            },
+            {},
+            {
+                "label": "f1",
+                "flex": 0
+            },
+            {
+                "label": "f2",
+                "flex": 0
+            },
+            {
+                "label": "f3",
+                "flex": 0
+            },
+            {
+                "label": "f4",
+                "flex": 0
+            },
+            {},
+            {
+                "label": "f5",
+                "flex": 0
+            },
+            {
+                "label": "f6",
+                "flex": 0
+            },
+            {
+                "label": "f7",
+                "flex": 0
+            },
+            {
+                "label": "f8",
+                "flex": 0
+            },
+            {},
+            {
+                "label": "f9",
+                "flex": 0
+            },
+            {
+                "label": "f10",
+                "flex": 0
+            },
+            {
+                "label": "f11",
+                "flex": 0
+            },
+            {
+                "label": "f12",
+                "flex": 0
+            }
+        ],
+        [
+            {
+                "label": "`",
+                "flex": 0
+            },
+            {
+                "label": "1",
+                "flex": 0
+            },
+            {
+                "label": "2",
+                "flex": 0
+            },
+            {
+                "label": "3",
+                "flex": 0
+            },
+            {
+                "label": "4",
+                "flex": 0
+            },
+            {
+                "label": "5",
+                "flex": 0
+            },
+            {
+                "label": "6",
+                "flex": 0
+            },
+            {
+                "label": "7",
+                "flex": 0
+            },
+            {
+                "label": "8",
+                "flex": 0
+            },
+            {
+                "label": "9",
+                "flex": 0
+            },
+            {
+                "label": "0",
+                "flex": 0
+            },
+            {
+                "label": "-",
+                "flex": 0
+            },
+            {
+                "label": "=",
+                "flex": 0
+            },
+            {
+                "label": "back",
+                "value": "backspace",
+                "flex": 1.5
+            }
+        ],
+        [
+            {
+                "label": "tab",
+                "flex": 1
+            },
+            {
+                "label": "q",
+                "flex": 0
+            },
+            {
+                "label": "w",
+                "flex": 0
+            },
+            {
+                "label": "e",
+                "flex": 0
+            },
+            {
+                "label": "r",
+                "flex": 0
+            },
+            {
+                "label": "t",
+                "flex": 0
+            },
+            {
+                "label": "y",
+                "flex": 0
+            },
+            {
+                "label": "u",
+                "flex": 0
+            },
+            {
+                "label": "i",
+                "flex": 0
+            },
+            {
+                "label": "o",
+                "flex": 0
+            },
+            {
+                "label": "p",
+                "flex": 0
+            },
+            {
+                "label": "[",
+                "flex": 0
+            },
+            {
+                "label": "]",
+                "flex": 0
+            },
+            {
+                "label": "\\",
+                "flex": 0.7
+            }
+        ],
+        [
+            {
+                "label": "caps",
+                "flex": 1
+            },
+            {
+                "label": "a",
+                "flex": 0
+            },
+            {
+                "label": "s",
+                "flex": 0
+            },
+            {
+                "label": "d",
+                "flex": 0
+            },
+            {
+                "label": "f",
+                "flex": 0
+            },
+            {
+                "label": "g",
+                "flex": 0
+            },
+            {
+                "label": "h",
+                "flex": 0
+            },
+            {
+                "label": "j",
+                "flex": 0
+            },
+            {
+                "label": "k",
+                "flex": 0
+            },
+            {
+                "label": "l",
+                "flex": 0
+            },
+            {
+                "label": ";",
+                "flex": 0
+            },
+            {
+                "label": "'",
+                "flex": 0
+            },
+            {
+                "label": "enter",
+                "flex": 1
+            }
+        ],
+        [
+            {
+                "label": "shift",
+                "flex": 1
+            },
+            {
+                "label": "z",
+                "flex": 0
+            },
+            {
+                "label": "x",
+                "flex": 0
+            },
+            {
+                "label": "c",
+                "flex": 0
+            },
+            {
+                "label": "v",
+                "flex": 0
+            },
+            {
+                "label": "b",
+                "flex": 0
+            },
+            {
+                "label": "n",
+                "flex": 0
+            },
+            {
+                "label": "m",
+                "flex": 0
+            },
+            {
+                "label": ",",
+                "flex": 0
+            },
+            {
+                "label": ".",
+                "flex": 0
+            },
+            {
+                "label": "/",
+                "flex": 0
+            },
+            {
+                "label": "shift",
+                "flex": 1
+            }
+        ],
+        [
+            {
+                "label": "ctrl",
+                "flex": 0
+            },
+            {
+                "label": "opt",
+                "flex": 0
+            },
+            {
+                "label": "cmd",
+                "flex": 0
+            },
+            {
+                "label": "space",
+                "flex": 1
+            },
+            {
+                "label": "cmd",
+                "flex": 0
+            },
+            {
+                "label": "opt",
+                "flex": 0
+            },
+            {
+                "label": "ctrl",
+                "flex": 0
+            }
+        ]
+    ],
+
+    "right": [
+        [],
+        [
+            {
+                "label": "ins",
+                "value": "inset",
+                "flex": 1
+            },
+            {
+                "label": "hom",
+                "value": "home",
+                "flex": 1
+            },
+            {
+                "label": "pgu",
+                "value": "pgUp",
+                "flex": 1
+            }
+        ],
+        [
+            {
+                "label": "del",
+                "value": "delete",
+                "flex": 1
+            },
+            {
+                "label": "end",
+                "flex": 1
+            },
+            {
+                "label": "pgd",
+                "value": "pgDn",
+                "flex": 1
+            }
+        ],
+        [],
+        [
+            {
+                "label": "↑",
+                "value": "top"
+            }
+        ],
+        [
+            {
+                "label": "←",
+                "value": "left"
+            },
+            {
+                "label": "↓",
+                "value": "down"
+            },
+            {
+                "label": "→",
+                "value": "right"
+            }
+        ]
+    ]
+}

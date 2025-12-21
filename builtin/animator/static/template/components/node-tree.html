@@ -1,0 +1,30 @@
+<div
+    :class="nodeClass"
+    v-if="dumps"
+    :active="!dumps.disabled && selectPath === dumps.path"
+    :selected="!dumps.disabled && selectedIds && selectedIds.has(dumps.uuid)"
+    :moving="movingProperty"
+    :draggable="!dumps.uuid && !lock && !dumps.disabled"
+    :hoving="hoving"
+    @mousedown="onMouseDown($event, dumps.path)"
+    @dragstart="onDragStart"
+    @dragover="onDragOver"
+    @dragleave="onDragLeave"
+    @drop="onDrop"
+    @dragend="onDragEnd"
+>
+    <!-- {{nodeStyle}} -->
+    <div class="node" :title="dumps.name" :style="nodeStyle">
+        <ui-icon v-if="lock || !dumps.uuid" value="lock" class="lock"></ui-icon>
+        <ui-label :value="dumps.name"></ui-label>
+        <span v-if="!dumps.uuid"> (missing)</span>
+        <span v-if="!dumps.name"> (Empty)</span>
+    </div>
+    <!-- <div class="operate">
+        <ui-icon v-if="!movePath" value="list" name="showPopMenu"></ui-icon>
+    </div> -->
+    <ui-label class="tips"
+        v-if="movePath && dumps.uuid && movePath !== dumps.path"
+        value="i18n:animator.node.move_data_to"
+    ></ui-label>
+</div>

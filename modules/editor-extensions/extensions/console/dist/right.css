@@ -1,0 +1,16 @@
+.console-footer-right {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.console-counter {
+  display: flex;
+  align-items: center;
+}
+.console-counter .icon-box {
+  margin-left: 8px;
+}
+.console-counter .icon-box ui-icon {
+  margin-right: 2px;
+}

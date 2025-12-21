@@ -1,0 +1,1 @@
+const exec=require("child_process")["exec"];exec("lessc statics/index.less > dist/index.css",(e,s,c)=>{e?console.log(e):console.log("build:css done")});

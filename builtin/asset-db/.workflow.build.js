@@ -1,0 +1,1 @@
+"use strict";exports.tsc=function(){return["./"]},exports.less=function(){return[{source:"./static/preferences.less",dist:"./dist/preferences.css"}]},exports.file=function(){return[]},exports.npm=function(){return[]};

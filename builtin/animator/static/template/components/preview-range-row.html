@@ -1,0 +1,32 @@
+<ui-drag-area
+    :class="previewClass" 
+    :style="previewStyle"
+    :droppable="trackInfo.type"
+    @mouseup.right.stop="showContextMenu"
+    @drop="onDrop"
+    @dragover="onDragOver"
+>
+    <div class="row-wrap" :style="{transform: 'translateX('+ offset +'px)'}">
+        <!-- 关键帧显示 -->
+        <template v-if="displayEmbeddedPlayerInfo">
+            <div name="range"
+                v-for="embeddedPlayer in displayEmbeddedPlayerInfo"
+                :class="['range', embeddedPlayer.playable.type, { active : selectEmbeddedPlayerKeys?.includes(embeddedPlayer.key)}]"
+                :style="queryKeyStyle(embeddedPlayer)"
+                :index="index"
+                :key="embeddedPlayer.key"
+                @mousedown.right.stop="showRangePopMenu($event, embeddedPlayer, selectEmbeddedPlayerKeys && selectEmbeddedPlayerKeys.includes(embeddedPlayer.key))"
+                @mousedown.stop="onRangeMouseDown($event, embeddedPlayer)"
+            >
+                <ui-drag-item :type="embeddedPlayer.playable.type" @dragstart="onDragStart($event, embeddedPlayer)">
+                    <ui-icon name="center"
+                        :value="embeddedPlayer.icon"
+                    ></ui-icon>
+                </ui-drag-item>
+                <ui-label name="center" :value="embeddedPlayer.displayName || embeddedPlayer.defaultDisplayName"></ui-label>
+                <span class="left" name="left" @dragstart.stop></span>
+                <span class="right" name="right" @dragstart.stop></span>
+            </div>
+        </template>
+    </div>
+</ui-drag-area>
