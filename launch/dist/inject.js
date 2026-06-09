@@ -1,1 +1,23 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.inject=inject;const app=require("electron")["app"],{join,resolve}=require("path"),existsSync=require("fs-extra")["existsSync"],MODULE_RELATIVE_PATH=resolve(join(app.getPath("appData"),"/CocosCreator/builder-wasm"));async function inject(){try{existsSync(MODULE_RELATIVE_PATH)&&await require(MODULE_RELATIVE_PATH).init()}catch(e){}}
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.inject = void 0;
+const { app } = require('electron');
+const { join, resolve } = require('path');
+const { existsSync } = require('fs-extra');
+/**
+ * 读取 electron 的 appData 目录，并加载 builder-wasm 这个 npm 模块
+ */
+const MODULE_RELATIVE_PATH = resolve(join(app.getPath('appData'), '/CocosCreator/builder-wasm'));
+async function inject() {
+    try {
+        if (existsSync(MODULE_RELATIVE_PATH)) {
+            const builderWasm = require(MODULE_RELATIVE_PATH);
+            await builderWasm.init();
+        }
+    }
+    catch (e) {
+        //失败就算了，啥也不干
+    }
+}
+exports.inject = inject;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5qZWN0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vc291cmNlL2luamVjdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxNQUFNLEVBQUUsR0FBRyxFQUFFLEdBQUcsT0FBTyxDQUFDLFVBQVUsQ0FBQyxDQUFDO0FBQ3BDLE1BQU0sRUFBRSxJQUFJLEVBQUUsT0FBTyxFQUFFLEdBQUcsT0FBTyxDQUFDLE1BQU0sQ0FBQyxDQUFDO0FBQzFDLE1BQU0sRUFBRSxVQUFVLEVBQUUsR0FBRyxPQUFPLENBQUMsVUFBVSxDQUFDLENBQUM7QUFDM0M7O0dBRUc7QUFDSCxNQUFNLG9CQUFvQixHQUFHLE9BQU8sQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBQyxTQUFTLENBQUMsRUFBRSw0QkFBNEIsQ0FBQyxDQUFDLENBQUM7QUFDMUYsS0FBSyxVQUFVLE1BQU07SUFDeEIsSUFBSTtRQUNBLElBQUksVUFBVSxDQUFDLG9CQUFvQixDQUFDLEVBQUU7WUFDbEMsTUFBTSxXQUFXLEdBQVEsT0FBTyxDQUFDLG9CQUFvQixDQUFDLENBQUM7WUFDdkQsTUFBTSxXQUFXLENBQUMsSUFBSSxFQUFFLENBQUM7U0FDNUI7S0FDSjtJQUFDLE9BQU8sQ0FBQyxFQUFFO1FBQ1IsWUFBWTtLQUNmO0FBQ0wsQ0FBQztBQVRELHdCQVNDIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgeyBhcHAgfSA9IHJlcXVpcmUoJ2VsZWN0cm9uJyk7XG5jb25zdCB7IGpvaW4sIHJlc29sdmUgfSA9IHJlcXVpcmUoJ3BhdGgnKTtcbmNvbnN0IHsgZXhpc3RzU3luYyB9ID0gcmVxdWlyZSgnZnMtZXh0cmEnKTtcbi8qKlxuICog6K+75Y+WIGVsZWN0cm9uIOeahCBhcHBEYXRhIOebruW9le+8jOW5tuWKoOi9vSBidWlsZGVyLXdhc20g6L+Z5LiqIG5wbSDmqKHlnZdcbiAqL1xuY29uc3QgTU9EVUxFX1JFTEFUSVZFX1BBVEggPSByZXNvbHZlKGpvaW4oYXBwLmdldFBhdGgoJ2FwcERhdGEnKSwgJy9Db2Nvc0NyZWF0b3IvYnVpbGRlci13YXNtJykpO1xuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGluamVjdCgpIHtcbiAgICB0cnkge1xuICAgICAgICBpZiAoZXhpc3RzU3luYyhNT0RVTEVfUkVMQVRJVkVfUEFUSCkpIHtcbiAgICAgICAgICAgIGNvbnN0IGJ1aWxkZXJXYXNtOiBhbnkgPSByZXF1aXJlKE1PRFVMRV9SRUxBVElWRV9QQVRIKTtcbiAgICAgICAgICAgIGF3YWl0IGJ1aWxkZXJXYXNtLmluaXQoKTtcbiAgICAgICAgfVxuICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgLy/lpLHotKXlsLHnrpfkuobvvIzllaXkuZ/kuI3lubJcbiAgICB9XG59XG5cbiJdfQ==
