@@ -1,1 +1,25 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.DumpDefines=void 0;const real_curve_dump_1=require("./types/real-curve-dump"),animation_curve_dump_1=require("./types/animation-curve-dump"),asset_dump_1=require("./types/asset-dump"),component_dump_1=require("./types/component-dump"),gradient_dump_1=require("./types/gradient-dump"),node_dump_1=require("./types/node-dump"),number_dump_1=require("./types/number-dump"),string_dump_1=require("./types/string-dump"),value_type_dump_1=require("./types/value-type-dump"),typed_array_dump_1=require("./types/typed-array-dump"),DumpDefines={};(exports.DumpDefines=DumpDefines)["cc.Gradient"]=gradient_dump_1.gradientDump,DumpDefines["cc.ValueType"]=value_type_dump_1.valueTypeDump,DumpDefines["cc.AnimationCurve"]=animation_curve_dump_1.animationCurveDump,DumpDefines["cc.RealCurve"]=real_curve_dump_1.realCurveDump,DumpDefines["cc.Node"]=node_dump_1.nodeDump,DumpDefines["cc.Component"]=component_dump_1.componentDump,DumpDefines["cc.Asset"]=asset_dump_1.assetDump,DumpDefines.Number=number_dump_1.numberDump,DumpDefines.Enum=number_dump_1.numberDump,DumpDefines.String=string_dump_1.stringDump,DumpDefines.TypedArray=typed_array_dump_1.typedArrayDump;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DumpDefines = undefined;
+const real_curve_dump_1 = require("./types/real-curve-dump");
+const animation_curve_dump_1 = require("./types/animation-curve-dump");
+const asset_dump_1 = require("./types/asset-dump");
+const component_dump_1 = require("./types/component-dump");
+const gradient_dump_1 = require("./types/gradient-dump");
+const node_dump_1 = require("./types/node-dump");
+const number_dump_1 = require("./types/number-dump");
+const string_dump_1 = require("./types/string-dump");
+const value_type_dump_1 = require("./types/value-type-dump");
+const typed_array_dump_1 = require("./types/typed-array-dump");
+const DumpDefines = {};
+(exports.DumpDefines = DumpDefines)["cc.Gradient"] =
+  gradient_dump_1.gradientDump;
+DumpDefines["cc.ValueType"] = value_type_dump_1.valueTypeDump;
+DumpDefines["cc.AnimationCurve"] = animation_curve_dump_1.animationCurveDump;
+DumpDefines["cc.RealCurve"] = real_curve_dump_1.realCurveDump;
+DumpDefines["cc.Node"] = node_dump_1.nodeDump;
+DumpDefines["cc.Component"] = component_dump_1.componentDump;
+DumpDefines["cc.Asset"] = asset_dump_1.assetDump;
+DumpDefines.Number = number_dump_1.numberDump;
+DumpDefines.Enum = number_dump_1.numberDump;
+DumpDefines.String = string_dump_1.stringDump;
+DumpDefines.TypedArray = typed_array_dump_1.typedArrayDump;

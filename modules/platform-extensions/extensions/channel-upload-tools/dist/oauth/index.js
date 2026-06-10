@@ -1,1 +1,96 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.$=exports.style=exports.template=void 0,exports.ready=ready,exports.beforeClose=beforeClose,exports.close=close;const fs_extra_1=require("fs-extra"),path_1=require("path"),remote=require("@electron/remote"),Vue=require("vue/dist/vue.js"),Pkg=(Vue.config.productionTip=!1,Vue.config.devtools=!1,require("../../package.json"));let params,panel=null,vm;async function ready(e){panel=this,params=e;var t={el:panel.$.oauth,data(){return{loading:!0,url:e.url,platform:e.platform,redirect:e.redirect}},methods:{clearCache(){var e=panel.$.webview.getWebContentsId(),e=remote.webContents.fromId(e);void 0!==e&&e.session.clearStorageData({storages:["appcache","cookies","filesystem","indexdb","localstorage","shadercache","websql","serviceworkers","cachestorage"]})},startLoading(e){this.loading=!0},finishLoading(e){var t=this;t.$refs.webview.src.startsWith(t.redirect)&&(this.notifyLoginResult(),Editor.Panel.close(Pkg.name+".oauth")),t.loading=!1},notifyLoginResult(){Editor.Message.send(""+Pkg.name,"loginResult",this.platform,"success")}}};vm=new Vue(t)}async function beforeClose(){}async function close(){Editor.Message.send(""+Pkg.name,"oAuthWindowClose",params.platform)}exports.template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../static/oauth/index.html"),"utf-8"),exports.style=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"index.css"),"utf8"),exports.$={oauth:".channel-oauth",webview:"#webview"},exports.methods={};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.$ = undefined;
+exports.style = undefined;
+exports.template = undefined;
+exports.ready = ready;
+exports.beforeClose = beforeClose;
+exports.close = close;
+
+const { readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const remote = require("@electron/remote");
+const Vue = require("vue/dist/vue.js");
+
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+const Pkg = require("../../package.json");
+
+let params;
+let panel = null;
+let vm;
+async function ready(e) {
+  panel = this;
+  params = e;
+  var t = {
+    el: panel.$.oauth,
+    data() {
+      return {
+        loading: true,
+        url: e.url,
+        platform: e.platform,
+        redirect: e.redirect,
+      };
+    },
+    methods: {
+      clearCache() {
+        var e = panel.$.webview.getWebContentsId();
+        var e = remote.webContents.fromId(e);
+
+        if (e !== undefined) {
+          e.session.clearStorageData({
+            storages: [
+              "appcache",
+              "cookies",
+              "filesystem",
+              "indexdb",
+              "localstorage",
+              "shadercache",
+              "websql",
+              "serviceworkers",
+              "cachestorage",
+            ],
+          });
+        }
+      },
+      startLoading(e) {
+        this.loading = true;
+      },
+      finishLoading(e) {
+        var t = this;
+
+        if (t.$refs.webview.src.startsWith(t.redirect)) {
+          this.notifyLoginResult();
+          Editor.Panel.close(Pkg.name + ".oauth");
+        }
+
+        t.loading = false;
+      },
+      notifyLoginResult() {
+        Editor.Message.send(
+          "" + Pkg.name,
+          "loginResult",
+          this.platform,
+          "success"
+        );
+      },
+    },
+  };
+  vm = new Vue(t);
+}
+async function beforeClose() {}
+async function close() {
+  Editor.Message.send("" + Pkg.name, "oAuthWindowClose", params.platform);
+}
+
+exports.template = readFileSync(
+  join(__dirname, "../../static/oauth/index.html"),
+  "utf-8"
+);
+
+exports.style = readFileSync(join(__dirname, "index.css"), "utf8");
+
+exports.$ = { oauth: ".channel-oauth", webview: "#webview" };
+exports.methods = {};

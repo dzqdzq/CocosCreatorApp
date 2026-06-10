@@ -1,1 +1,11 @@
-"use strict";var SceneModeType;Object.defineProperty(exports,"__esModule",{value:!0}),exports.SceneModeType=void 0,function(e){e.General="general",e.Prefab="prefab",e.Animation="animation",e.Preview="preview",e.Unset=""}(SceneModeType||(exports.SceneModeType=SceneModeType={}));
+var SceneModeType;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SceneModeType = undefined;
+
+((e) => {
+  e.General = "general";
+  e.Prefab = "prefab";
+  e.Animation = "animation";
+  e.Preview = "preview";
+  e.Unset = "";
+})(SceneModeType || (exports.SceneModeType = SceneModeType = {}));

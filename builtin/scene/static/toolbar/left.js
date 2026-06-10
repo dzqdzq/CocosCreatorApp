@@ -1,4 +1,4 @@
-"use strict";exports.style=`
+exports.style = `
 :host {
     display: flex;
     overflow: hidden;
@@ -33,10 +33,52 @@
     flex: 1;
     padding-left: 4px;
 }
-`,exports.template=`
+`;
+
+exports.template = `
 <div class="editor-title">
     <img src="packages://scene/static/icons/editor.png">
     <ui-label class="type" value="i18n:scene.project_2d_name" tooltip="i18n:scene.project_2d_tooltip"></ui-label>
     <div class="title"></div>
 </div>
-`,exports.$={editorLabel:".editor-title ui-label",editorTitle:".editor-title .title"},exports.ready=async function(){let t=!0;var e=(await Editor.Message.request("engine","query-engine-modules-profile"))?.includeModules||[];e&&e.includes("3d")?(t=!0,this.$.editorLabel.setAttribute("hidden","")):(t=!1,this.$.editorLabel.removeAttribute("hidden")),Editor.Message.addBroadcastListener("engine:engine-modules-global-config-changed",e=>{e&&e.includes("3d")?(t=!0,this.$.editorLabel.setAttribute("hidden","")):(t=!1,this.$.editorLabel.removeAttribute("hidden"))}),this.$.editorTitle.innerHTML=await Editor.Windows.__protected__.queryMainTitle(),Editor.Message.addBroadcastListener("editor-title-change",e=>{this.$.editorTitle.innerHTML=(t?"":": ")+e})};
+`;
+
+exports.$ = {
+  editorLabel: ".editor-title ui-label",
+  editorTitle: ".editor-title .title",
+};
+
+exports.ready = async function () {
+  let t = true;
+  var e =
+    (await Editor.Message.request("engine", "query-engine-modules-profile"))
+      ?.includeModules || [];
+
+  if (e && e.includes("3d")) {
+    t = true;
+    this.$.editorLabel.setAttribute("hidden", "");
+  } else {
+    t = false;
+    this.$.editorLabel.removeAttribute("hidden");
+  }
+
+  Editor.Message.addBroadcastListener(
+    "engine:engine-modules-global-config-changed",
+    (e) => {
+      if (e && e.includes("3d")) {
+        t = true;
+        this.$.editorLabel.setAttribute("hidden", "");
+      } else {
+        t = false;
+        this.$.editorLabel.removeAttribute("hidden");
+      }
+    }
+  );
+
+  this.$.editorTitle.innerHTML =
+    await Editor.Windows.__protected__.queryMainTitle();
+
+  Editor.Message.addBroadcastListener("editor-title-change", (e) => {
+    this.$.editorTitle.innerHTML = (t ? "" : ": ") + e;
+  });
+};

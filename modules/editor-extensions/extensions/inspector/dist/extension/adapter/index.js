@@ -1,1 +1,42 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.SimpleXMLInspectorComponent=exports.SimpleJSONInspectorComponent=exports.ElementInspectorComponent=exports.XMLInspectorComponent=void 0;var component_1=require("./xml/component"),component_2=(Object.defineProperty(exports,"XMLInspectorComponent",{enumerable:!0,get:function(){return component_1.XMLInspectorComponent}}),require("./element/component")),component_3=(Object.defineProperty(exports,"ElementInspectorComponent",{enumerable:!0,get:function(){return component_2.ElementInspectorComponent}}),require("./simple-json/component")),component_4=(Object.defineProperty(exports,"SimpleJSONInspectorComponent",{enumerable:!0,get:function(){return component_3.SimpleJSONInspectorComponent}}),require("./simple-xml/component"));Object.defineProperty(exports,"SimpleXMLInspectorComponent",{enumerable:!0,get:function(){return component_4.SimpleXMLInspectorComponent}});
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.SimpleXMLInspectorComponent = undefined;
+exports.SimpleJSONInspectorComponent = undefined;
+exports.ElementInspectorComponent = undefined;
+exports.XMLInspectorComponent = undefined;
+
+var component_1 = require("./xml/component");
+
+Object.defineProperty(exports, "XMLInspectorComponent", {
+  enumerable: true,
+  get() {
+    return component_1.XMLInspectorComponent;
+  },
+});
+
+var component_2 = require("./element/component");
+
+Object.defineProperty(exports, "ElementInspectorComponent", {
+  enumerable: true,
+  get() {
+    return component_2.ElementInspectorComponent;
+  },
+});
+
+var component_3 = require("./simple-json/component");
+
+Object.defineProperty(exports, "SimpleJSONInspectorComponent", {
+  enumerable: true,
+  get() {
+    return component_3.SimpleJSONInspectorComponent;
+  },
+});
+
+var component_4 = require("./simple-xml/component");
+
+Object.defineProperty(exports, "SimpleXMLInspectorComponent", {
+  enumerable: true,
+  get() {
+    return component_4.SimpleXMLInspectorComponent;
+  },
+});

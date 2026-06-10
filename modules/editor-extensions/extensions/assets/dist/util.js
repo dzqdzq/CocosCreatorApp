@@ -1,1 +1,110 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.collator=void 0,exports.getFileTree=getFileTree,exports.getPackageFileExtend=getPackageFileExtend,exports.openFile=openFile;const path_1=require("path"),fs_extra_1=require("fs-extra"),electron_1=require("electron"),child_process_1=require("child_process"),plist_1=require("plist");async function getFileTree(a,i){var e;return(0,fs_extra_1.existsSync)(a)?(e=await(0,fs_extra_1.readdir)(a),(await Promise.all(e.map(async e=>{var t=(0,path_1.join)(a,e);let r=!1;try{r=(0,fs_extra_1.statSync)(t).isDirectory()}catch(e){return}if(!e.startsWith("."))return t={detail:{value:e},showArrow:!1,isDirectory:r,filePath:t,root:i},r&&(e=await getFileTree((0,path_1.join)(a,e),i)??[],t.children=e,t.showArrow=!!e?.length),t}))).filter(e=>void 0!==e)):[]}async function getPackageFileExtend(e){return{detail:{value:(0,path_1.basename)(e)},showArrow:!0,isDirectory:!0,filePath:e,children:await getFileTree(e,e)}}async function getCodeEditor(){let e="";var t=await Editor.Message.request("program","query-program-info","scriptEditor");if(t?.path)e=t.path;else try{var r=await electron_1.app.getApplicationInfoForProtocol("vscode://");"Visual Studio Code"===r.name&&(e=r.path)}catch(e){}return e}function openAssetWithProgram(e,t,r){r=r||[];let a="";var i;"darwin"===process.platform?(a="open",t.endsWith(".app")&&(t=(0,path_1.join)(t,"/Contents/MacOS/"),i=(0,plist_1.parse)((0,fs_extra_1.readFileSync)((0,path_1.join)(t,"../Info.plist"),"utf8")),t=(0,path_1.join)(t,i.CFBundleExecutable)),r?r.unshift("-a",t):r=["-a",t,e]):"win32"===process.platform&&(a=t,r?.length||(r=[e])),(0,child_process_1.spawn)(a,r,{detached:!0,stdio:"ignore"}).unref()}async function openFile(e,t){openAssetWithProgram(e,await getCodeEditor(),[t,e])}exports.collator=new Intl.Collator("en",{numeric:!0,sensitivity:"base",ignorePunctuation:!0});
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.collator = undefined;
+exports.getFileTree = getFileTree;
+exports.getPackageFileExtend = getPackageFileExtend;
+exports.openFile = openFile;
+
+const { join, basename } = require("path");
+
+const { existsSync, readdir, statSync, readFileSync } = require("fs-extra");
+
+const electron_1 = require("electron");
+
+const { spawn } = require("child_process");
+
+const { parse } = require("plist");
+
+async function getFileTree(a, i) {
+  var e;
+  return existsSync(a)
+    ? ((e = await readdir(a)),
+      (
+        await Promise.all(
+          e.map(async (e) => {
+            var t = join(a, e);
+            let r = false;
+            try {
+              r = statSync(t).isDirectory();
+            } catch (e) {
+              return;
+            }
+            if (!e.startsWith(".")) {
+              t = {
+                detail: { value: e },
+                showArrow: false,
+                isDirectory: r,
+                filePath: t,
+                root: i,
+              };
+
+              if (r) {
+                e = (await getFileTree(join(a, e), i)) ?? [];
+                t.children = e;
+                t.showArrow = !!e?.length;
+              }
+
+              return t;
+            }
+          })
+        )
+      ).filter((e) => e !== undefined))
+    : [];
+}
+async function getPackageFileExtend(e) {
+  return {
+    detail: { value: basename(e) },
+    showArrow: true,
+    isDirectory: true,
+    filePath: e,
+    children: await getFileTree(e, e),
+  };
+}
+async function getCodeEditor() {
+  let e = "";
+  var t = await Editor.Message.request(
+    "program",
+    "query-program-info",
+    "scriptEditor"
+  );
+  if (t?.path) {
+    e = t.path;
+  } else {
+    try {
+      var r = await electron_1.app.getApplicationInfoForProtocol("vscode://");
+
+      if (r.name === "Visual Studio Code") {
+        e = r.path;
+      }
+    } catch (e) {}
+  }
+  return e;
+}
+function openAssetWithProgram(e, t, r) {
+  r = r || [];
+  let a = "";
+  var i;
+
+  if (process.platform === "darwin") {
+    a = "open";
+
+    t.endsWith(".app") &&
+      ((t = join(t, "/Contents/MacOS/")),
+      (i = parse(readFileSync(join(t, "../Info.plist"), "utf8"))),
+      (t = join(t, i.CFBundleExecutable)));
+
+    r ? r.unshift("-a", t) : (r = ["-a", t, e]);
+  } else if (process.platform === "win32") {
+    a = t;
+    r?.length || (r = [e]);
+  }
+
+  spawn(a, r, { detached: true, stdio: "ignore" }).unref();
+}
+async function openFile(e, t) {
+  openAssetWithProgram(e, await getCodeEditor(), [t, e]);
+}
+exports.collator = new Intl.Collator("en", {
+  numeric: true,
+  sensitivity: "base",
+  ignorePunctuation: true,
+});

@@ -1,1 +1,66 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.getPreviewUrl=getPreviewUrl;const path_1=require("path"),fs_extra_1=require("fs-extra"),server_1=require("./server"),lodash=require("lodash");async function load(){setPreviewPathFromTask().catch(e=>{console.error(e)})}async function setPreviewPathFromTask(){var e=await Editor.Profile.getConfig("builder","BuildTaskManager.taskMap")||{};Object.values(e).forEach(e=>{var t,r;1===e.progress&&(r=lodash.get(e,"options.platform"),t=lodash.get(e,"options.buildPath"),"web-desktop"===r)&&"string"==typeof t&&(r=(0,path_1.join)(Editor.UI.__protected__.File.resolveToRaw(t),e.options.outputName),(0,server_1.setRootPath)(r))})}async function getPreviewUrl(e,t=!1){var r=await Editor.Message.request("preview","query-preview-url"),o=new URL(r);return t&&"http:"===o.protocol?`http://localhost:${await Editor.Message.request("server","query-port")}/web-desktop/${e}/index.html`:r+`/web-desktop/${e}/index.html`}exports.methods={async preview(e,t=!1){return(0,server_1.setRootPath)(e),Editor.Message.send("program","open-url",await getPreviewUrl((0,path_1.basename)(e),t)),!0},"set-preview-path"(e){return!!(0,fs_extra_1.existsSync)(e)&&((0,server_1.setRootPath)(e),!0)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+exports.getPreviewUrl = getPreviewUrl;
+
+const { join, basename } = require("path");
+
+const { existsSync } = require("fs-extra");
+
+const { setRootPath } = require("./server");
+
+const lodash = require("lodash");
+async function load() {
+  setPreviewPathFromTask().catch((e) => {
+    console.error(e);
+  });
+}
+async function setPreviewPathFromTask() {
+  var e =
+    (await Editor.Profile.getConfig("builder", "BuildTaskManager.taskMap")) ||
+    {};
+  Object.values(e).forEach((e) => {
+    var t;
+    var r;
+
+    if (
+      e.progress === 1 &&
+      ((r = lodash.get(e, "options.platform")),
+      (t = lodash.get(e, "options.buildPath")),
+      r === "web-desktop") &&
+      typeof t == "string"
+    ) {
+      r = join(
+        Editor.UI.__protected__.File.resolveToRaw(t),
+        e.options.outputName
+      );
+      setRootPath(r);
+    }
+  });
+}
+async function getPreviewUrl(e, t = false) {
+  var r = await Editor.Message.request("preview", "query-preview-url");
+  var o = new URL(r);
+  return t && o.protocol === "http:"
+    ? `http://localhost:${await Editor.Message.request(
+        "server",
+        "query-port"
+      )}/web-desktop/${e}/index.html`
+    : r + `/web-desktop/${e}/index.html`;
+}
+exports.methods = {
+  async preview(e, t = false) {
+    setRootPath(e);
+
+    Editor.Message.send(
+      "program",
+      "open-url",
+      await getPreviewUrl(basename(e), t)
+    );
+
+    return true;
+  },
+  "set-preview-path"(e) {
+    return !!existsSync(e) && (setRootPath(e), true);
+  },
+};

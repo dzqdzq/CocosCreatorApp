@@ -1,1 +1,69 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.buildSeparateEngine=void 0,exports.buildEngineCommand=buildEngineCommand;const ccbuild_1=require("@cocos/ccbuild"),path_1=require("path"),fs_extra_1=require("fs-extra"),defaultOptions={engine:"",out:"",platform:"INVALID_PLATFORM",moduleFormat:"system",compress:!0,split:!1,nativeCodeBundleMode:"both",assetURLFormat:"runtime-resolved",noDeprecatedFeatures:!1,sourceMap:!1,features:[],loose:!1,mode:"BUILD",flags:{DEBUG:!1},metaFile:"",mangleProperties:!1,inlineEnum:!0};async function buildEngineCommand(e){var t,a=Object.assign({},defaultOptions,e||{}),{features:i,out:n}=a,n=(await(0,fs_extra_1.remove)(n),await(0,fs_extra_1.ensureDir)((0,path_1.dirname)(n)),console.debug("start build engine with options: "+JSON.stringify(a)),await(0,ccbuild_1.buildEngine)(a)),i=(a.split&&(t=await ccbuild_1.StatsQuery.create(a.engine),t=await ccbuild_1.buildEngine.transform(t.evaluateIndexModuleSource(t.getUnitsOfFeatures(i)),"system"),i=(0,path_1.join)(e.out,"cc.js"),await(0,fs_extra_1.ensureDir)((0,path_1.dirname)(i)),await(0,fs_extra_1.writeFile)(i,t.code,"utf8"),n.exports.cc="cc.js"),n);0!==e.mangleConfigJsonMtime&&(i.mangleConfigJsonMtime=e.mangleConfigJsonMtime),await(0,fs_extra_1.ensureDir)((0,path_1.dirname)(a.metaFile)),await(0,fs_extra_1.writeJSON)(a.metaFile,i,{spaces:2})}var separate_engine_1=require("./separate-engine");Object.defineProperty(exports,"buildSeparateEngine",{enumerable:!0,get:function(){return separate_engine_1.buildSeparateEngine}});
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildSeparateEngine = undefined;
+exports.buildEngineCommand = buildEngineCommand;
+const ccbuild_1 = require("@cocos/ccbuild");
+
+const { buildEngine } = ccbuild_1;
+
+const { dirname, join } = require("path");
+
+const { remove, ensureDir, writeFile, writeJSON } = require("fs-extra");
+
+const defaultOptions = {
+  engine: "",
+  out: "",
+  platform: "INVALID_PLATFORM",
+  moduleFormat: "system",
+  compress: true,
+  split: false,
+  nativeCodeBundleMode: "both",
+  assetURLFormat: "runtime-resolved",
+  noDeprecatedFeatures: false,
+  sourceMap: false,
+  features: [],
+  loose: false,
+  mode: "BUILD",
+  flags: { DEBUG: false },
+  metaFile: "",
+  mangleProperties: false,
+  inlineEnum: true,
+};
+
+async function buildEngineCommand(e) {
+  var t;
+  var a = Object.assign({}, defaultOptions, e || {});
+  var { features, out } = a;
+
+  var out =
+    (await remove(out),
+    await ensureDir(dirname(out)),
+    console.debug("start build engine with options: " + JSON.stringify(a)),
+    await buildEngine(a));
+
+  var features =
+    (a.split &&
+      ((t = await ccbuild_1.StatsQuery.create(a.engine)),
+      (t = await ccbuild_1.buildEngine.transform(
+        t.evaluateIndexModuleSource(t.getUnitsOfFeatures(features)),
+        "system"
+      )),
+      (features = join(e.out, "cc.js")),
+      await ensureDir(dirname(features)),
+      await writeFile(features, t.code, "utf8"),
+      (out.exports.cc = "cc.js")),
+    out);
+
+  if (e.mangleConfigJsonMtime !== 0) {
+    features.mangleConfigJsonMtime = e.mangleConfigJsonMtime;
+  }
+
+  await ensureDir(dirname(a.metaFile));
+  await writeJSON(a.metaFile, features, { spaces: 2 });
+}
+var separate_engine_1 = require("./separate-engine");
+Object.defineProperty(exports, "buildSeparateEngine", {
+  enumerable: true,
+  get() {
+    return separate_engine_1.buildSeparateEngine;
+  },
+});

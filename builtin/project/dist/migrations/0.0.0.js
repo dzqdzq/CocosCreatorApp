@@ -1,1 +1,15 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=migrateProject;const _1_0_5_1=require("./1.0.5"),_1_0_6_1=require("./1.0.6");async function migrateProject(e){try{await(0,_1_0_5_1.migrateDesignResolution)(e)}catch(e){console.error(e)}await(0,_1_0_6_1.migratePreserveSymlinks)(e)}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateProject = migrateProject;
+
+const { migrateDesignResolution } = require("./1.0.5");
+
+const { migratePreserveSymlinks } = require("./1.0.6");
+
+async function migrateProject(e) {
+  try {
+    await migrateDesignResolution(e);
+  } catch (e) {
+    console.error(e);
+  }
+  await migratePreserveSymlinks(e);
+}

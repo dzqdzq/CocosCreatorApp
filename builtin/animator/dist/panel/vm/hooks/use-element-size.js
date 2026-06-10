@@ -1,1 +1,19 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.useElementSize=useElementSize;const vue_js_1=require("vue/dist/vue.js"),use_resize_observer_1=require("./use-resize-observer");function useElementSize(e){const s=(0,vue_js_1.ref)(0),r=(0,vue_js_1.ref)(0);return(0,use_resize_observer_1.useResizeObserver)(e,([e])=>{e=e.contentRect;s.value=e.width,r.value=e.height}),{width:s,height:r}}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useElementSize = useElementSize;
+
+const { ref } = require("vue/dist/vue.js");
+
+const { useResizeObserver } = require("./use-resize-observer");
+
+function useElementSize(e) {
+  const s = ref(0);
+  const r = ref(0);
+
+  useResizeObserver(e, ([e]) => {
+    e = e.contentRect;
+    s.value = e.width;
+    r.value = e.height;
+  });
+
+  return { width: s, height: r };
+}

@@ -1,1 +1,5 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.PLATFORM=exports.PLATFORM_NAME=void 0,exports.PLATFORM_NAME="qtt",exports.PLATFORM="QTT";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PLATFORM = undefined;
+exports.PLATFORM_NAME = undefined;
+exports.PLATFORM_NAME = "qtt";
+exports.PLATFORM = "QTT";

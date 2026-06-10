@@ -1,4 +1,87 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,o,i){void 0===i&&(i=o);var n=Object.getOwnPropertyDescriptor(t,o);n&&("get"in n?t.__esModule:!n.writable&&!n.configurable)||(n={enumerable:!0,get:function(){return t[o]}}),Object.defineProperty(e,i,n)}:function(e,t,o,i){e[i=void 0===i?o:i]=t[o]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var n=function(e){return(n=Object.getOwnPropertyNames||function(e){var t,o=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(o[o.length]=t);return o})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var o=n(e),i=0;i<o.length;i++)"default"!==o[i]&&__createBinding(t,e,o[i]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=exports.methods=exports.$=exports.template=void 0,exports.ready=ready,exports.close=close;const utils_1=require("./utils"),Vue=require("vue/dist/vue.js");Vue.config.productionTip=!1,Vue.config.devtools=!1;let panel=null,vm=null;const vueTemplate=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, o, i = o) => {
+        var n = Object.getOwnPropertyDescriptor(t, o);
+
+        if (
+          !n ||
+          (!("get" in n) ? !n.writable && !n.configurable : t.__esModule)
+        ) {
+          n = {
+            enumerable: true,
+            get() {
+              return t[o];
+            },
+          };
+        }
+
+        Object.defineProperty(e, i, n);
+      }
+    : (e, t, o, i) => {
+        e[(i = i === undefined ? o : i)] = t[o];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var n = (e) =>
+      (n =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var o = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              o[o.length] = t;
+            }
+          }
+          return o;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var o = n(e), i = 0; i < o.length; i++) {
+          if (o[i] !== "default") {
+            __createBinding(t, e, o[i]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.ready = ready;
+exports.close = close;
+
+const { getParentRecursive } = require("./utils");
+
+const Vue = require("vue/dist/vue.js");
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+let panel = null;
+let vm = null;
+
+const vueTemplate = `
 <div class="camera-size" v-show="show" >
     <view-select tooltip="i18n:scene.camera_size.render_target_resolution"
         :options="options"
@@ -14,7 +97,162 @@
         <ui-icon value="rotate"></ui-icon>
     </div>
 </div>
-`,SceneCameraSizeVM=Vue.extend({name:"SceneCameraSizeVM",components:{"view-select":require("../../../../ui-kit/view-select/index")},data(){return{options:[],outputDevice:"__default_design__",show:!0,deviceRotate:!1}},methods:{async refresh(){var e=await Editor.Message.request("device","query")||[],t=await Editor.Profile.getProject("project","general.designResolution")||{},o=await Editor.Profile.getConfig("scene","camera.size")||"__default_design__",i=await Editor.Profile.getConfig("scene","camera.size_rotate")??!1,o=(this.outputDevice=o,this.deviceRotate=i,e.map(e=>({label:`${e.name} (${e.width}x${e.height})`,name:e.name})));this.options=[{label:`${Editor.I18n.t("scene.game_view.design_resolution")} (${t.width}x${t.height})`,name:"__default_design__"},{name:"__separator__"},...o,{name:"__separator__"},{label:Editor.I18n.t("scene.game_view.edit"),name:"edit..."}]},async onChange(e){"edit..."===e?Editor.Message.send("preferences","open-settings","device"):(this.outputDevice=e||"__default_design__",await Editor.Profile.setConfig("scene","camera.size",this.outputDevice),Editor.Message.send("scene","change-target-resolution"))},async handleOnRotate(){this.deviceRotate=!this.deviceRotate,await Editor.Profile.setConfig("scene","camera.size_rotate",this.deviceRotate),Editor.Message.send("scene","change-target-resolution")}},template:vueTemplate});async function ready(){close(),panel=this,vm?.$destroy(),(vm=new SceneCameraSizeVM).$mount(panel.$.container),Editor.Profile.__protected__.on("change",panel.generalDesignResolutionChanged),Editor.Message.__protected__.addBroadcastListener("device:devices-changed",panel.deviceChanged),Editor.Message.__protected__.addBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.addBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.addBroadcastListener("i18n:change",vm.refresh),vm&&await vm.refresh(),panel&&await panel.sceneReady()}function close(){panel&&(Editor.Profile.__protected__.removeListener("change",panel.generalDesignResolutionChanged),Editor.Message.__protected__.removeBroadcastListener("device:devices-changed",panel.deviceChanged),Editor.Message.__protected__.removeBroadcastListener("device:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.removeBroadcastListener("scene:ready",panel.sceneReady)),vm&&Editor.Message.__protected__.removeBroadcastListener("i18n:change",vm.refresh),vm?.$destroy(),vm=null,panel=null}exports.template=`
+`;
+
+const SceneCameraSizeVM = Vue.extend({
+  name: "SceneCameraSizeVM",
+  components: {
+    "view-select": require("../../../../ui-kit/view-select/index"),
+  },
+  data() {
+    return {
+      options: [],
+      outputDevice: "__default_design__",
+      show: true,
+      deviceRotate: false,
+    };
+  },
+  methods: {
+    async refresh() {
+      var e = (await Editor.Message.request("device", "query")) || [];
+
+      var t =
+        (await Editor.Profile.getProject(
+          "project",
+          "general.designResolution"
+        )) || {};
+
+      var o =
+        (await Editor.Profile.getConfig("scene", "camera.size")) ||
+        "__default_design__";
+
+      var i =
+        (await Editor.Profile.getConfig("scene", "camera.size_rotate")) ??
+        false;
+
+      var o =
+        ((this.outputDevice = o),
+        (this.deviceRotate = i),
+        e.map((e) => ({
+          label: `${e.name} (${e.width}x${e.height})`,
+          name: e.name,
+        })));
+
+      this.options = [
+        {
+          label: `${Editor.I18n.t("scene.game_view.design_resolution")} (${
+            t.width
+          }x${t.height})`,
+          name: "__default_design__",
+        },
+        { name: "__separator__" },
+        ...o,
+        { name: "__separator__" },
+        { label: Editor.I18n.t("scene.game_view.edit"), name: "edit..." },
+      ];
+    },
+    async onChange(e) {
+      if (e === "edit...") {
+        Editor.Message.send("preferences", "open-settings", "device");
+      } else {
+        this.outputDevice = e || "__default_design__";
+
+        await Editor.Profile.setConfig(
+          "scene",
+          "camera.size",
+          this.outputDevice
+        );
+
+        Editor.Message.send("scene", "change-target-resolution");
+      }
+    },
+    async handleOnRotate() {
+      this.deviceRotate = !this.deviceRotate;
+
+      await Editor.Profile.setConfig(
+        "scene",
+        "camera.size_rotate",
+        this.deviceRotate
+      );
+
+      Editor.Message.send("scene", "change-target-resolution");
+    },
+  },
+  template: vueTemplate,
+});
+
+async function ready() {
+  close();
+  panel = this;
+  vm?.$destroy();
+  (vm = new SceneCameraSizeVM()).$mount(panel.$.container);
+
+  Editor.Profile.__protected__.on(
+    "change",
+    panel.generalDesignResolutionChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "device:devices-changed",
+    panel.deviceChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:dimension-changed",
+    panel.dimensionChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.addBroadcastListener("i18n:change", vm.refresh);
+
+  if (vm) {
+    await vm.refresh();
+  }
+
+  if (panel) {
+    await panel.sceneReady();
+  }
+}
+function close() {
+  if (panel) {
+    Editor.Profile.__protected__.removeListener(
+      "change",
+      panel.generalDesignResolutionChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "device:devices-changed",
+      panel.deviceChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "device:dimension-changed",
+      panel.dimensionChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:ready",
+      panel.sceneReady
+    );
+  }
+
+  if (vm) {
+    Editor.Message.__protected__.removeBroadcastListener(
+      "i18n:change",
+      vm.refresh
+    );
+  }
+
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+}
+
+exports.template = `
 <style>
     .view-select-container {
         user-select: none;
@@ -187,4 +425,50 @@
 </style>
 
 <div class="camera-size"></div>
-`,exports.$={container:".camera-size"},exports.methods={async deviceChanged(){vm&&(await vm.refresh(),vm)&&"__default_design__"!==vm.outputDevice&&!vm.options.find(e=>e.name===vm.outputDevice)&&vm.onChange("__default_design__")},generalDesignResolutionChanged(e,t,o,i){"project"===e&&t.includes("project")&&o.includes("general.designResolution")&&panel&&panel.deviceChanged()},dimensionChanged(e){vm&&(vm.show=!e)},async sceneReady(){var e;vm&&(e=(0,utils_1.getParentRecursive)(vm.$el,e=>e instanceof HTMLElement&&"ENGINE-VIEW"===e.tagName))&&(e=await e.callSceneMethod("queryIs2D"),vm)&&(vm.show=!e)}},exports.default=__importStar(require("./camera-size"));
+`;
+
+exports.$ = { container: ".camera-size" };
+
+exports.methods = {
+  async deviceChanged() {
+    if (
+      vm &&
+      (await vm.refresh(), vm) &&
+      vm.outputDevice !== "__default_design__" &&
+      !vm.options.find((e) => e.name === vm.outputDevice)
+    ) {
+      vm.onChange("__default_design__");
+    }
+  },
+  generalDesignResolutionChanged(e, t, o, i) {
+    if (
+      e === "project" &&
+      t.includes("project") &&
+      o.includes("general.designResolution") &&
+      panel
+    ) {
+      panel.deviceChanged();
+    }
+  },
+  dimensionChanged(e) {
+    if (vm) {
+      vm.show = !e;
+    }
+  },
+  async sceneReady() {
+    var e;
+
+    if (
+      vm &&
+      (e = getParentRecursive(
+        vm.$el,
+        (e) => e instanceof HTMLElement && e.tagName === "ENGINE-VIEW"
+      )) &&
+      ((e = await e.callSceneMethod("queryIs2D")), vm)
+    ) {
+      vm.show = !e;
+    }
+  },
+};
+
+exports.default = __importStar(require("./camera-size"));

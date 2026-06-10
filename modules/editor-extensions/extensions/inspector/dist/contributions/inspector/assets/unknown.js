@@ -1,1 +1,8 @@
-"use strict";async function update(e){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.update=exports.$=exports.template=void 0,exports.template="",exports.$={},exports.update=update;
+async function update(e) {}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.update = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.template = "";
+exports.$ = {};
+exports.update = update;

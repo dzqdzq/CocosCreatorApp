@@ -1,1 +1,1 @@
-"use strict";module.exports={title:"进程管理器",description:"进程管理器面板"};
+module.exports = { title: "进程管理器", description: "进程管理器面板" };

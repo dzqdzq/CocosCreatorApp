@@ -1,1 +1,17 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.createStore=createStore,exports.useProvideStore=useProvideStore,exports.useInjectStore=useInjectStore;const vue_js_1=require("vue/dist/vue.js");function createStore(e){return{startupParams:(0,vue_js_1.ref)({})}}function useProvideStore(e){return(0,vue_js_1.provide)("store",e),{store:e}}function useInjectStore(){return(0,vue_js_1.inject)("store")}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createStore = createStore;
+exports.useProvideStore = useProvideStore;
+exports.useInjectStore = useInjectStore;
+
+const { ref, provide, inject } = require("vue/dist/vue.js");
+
+function createStore(e) {
+  return { startupParams: ref({}) };
+}
+function useProvideStore(e) {
+  provide("store", e);
+  return { store: e };
+}
+function useInjectStore() {
+  return inject("store");
+}

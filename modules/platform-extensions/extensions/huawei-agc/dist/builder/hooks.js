@@ -1,1 +1,20 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.throwError=void 0,exports.onBeforeBuild=onBeforeBuild,exports.onAfterBuild=onAfterBuild;const util_1=require("./util");async function onBeforeBuild(o,e){o.polyfills&&(o.polyfills.asyncFunctions=!1);var r=(0,util_1.getNameFromConfig)();r&&(o.packages.android.packageName=r)}async function onAfterBuild(o,e){}exports.throwError=!0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.throwError = undefined;
+exports.onBeforeBuild = onBeforeBuild;
+exports.onAfterBuild = onAfterBuild;
+
+const { getNameFromConfig } = require("./util");
+
+async function onBeforeBuild(o, e) {
+  if (o.polyfills) {
+    o.polyfills.asyncFunctions = false;
+  }
+
+  var r = getNameFromConfig();
+
+  if (r) {
+    o.packages.android.packageName = r;
+  }
+}
+async function onAfterBuild(o, e) {}
+exports.throwError = true;

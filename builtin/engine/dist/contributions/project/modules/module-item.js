@@ -1,4 +1,11 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.computed=exports.methods=exports.props=exports.template=void 0,exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.computed = undefined;
+exports.methods = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.template = `
 <div
     v-if="moduleCache && module && !module.hidden"
     :class="['modules-item', module.options && moduleCache[moduleId] ? 'flex' : '']"
@@ -94,4 +101,54 @@
             </template>
         </div>
     </div>
-</div>`,exports.props=["module","moduleId","moduleCache","category","categoryDetail","envLimitModuleIconMap"],exports.methods={t(e){return e?(e=e.replace("i18n:",""),Editor.I18n.t(e)||e):""},onModuleChange(e,o,l){this.$emit("change",this.category,e,o,l)},onChangeFlag(e,o,l){l="boolean"==typeof l?l:Number(l);this.$emit("change-flag",e,o,l)},disableOpt(){const l=this;return!!l.categoryDetail?.required&&1===Object.entries(l.categoryDetail.modules??{}).filter(([e,o])=>!o.hidden&&Boolean(l.moduleCache[e]?._value)).length}},exports.computed={value(){var{module:e,moduleCache:o,moduleId:l}=this;return!!e.required||o[l]&&o[l]._value},optionFlags(){var e=this;if(e.module.options&&e.moduleCache[e.moduleId]?._value){e=e.module.options[e.moduleCache[e.moduleId]._option];if(e?.flags)return e.flags}}};
+</div>`;
+
+exports.props = [
+  "module",
+  "moduleId",
+  "moduleCache",
+  "category",
+  "categoryDetail",
+  "envLimitModuleIconMap",
+];
+
+exports.methods = {
+  t(e) {
+    return e ? ((e = e.replace("i18n:", "")), Editor.I18n.t(e) || e) : "";
+  },
+  onModuleChange(e, o, l) {
+    this.$emit("change", this.category, e, o, l);
+  },
+  onChangeFlag(e, o, l) {
+    l = typeof l == "boolean" ? l : Number(l);
+    this.$emit("change-flag", e, o, l);
+  },
+  disableOpt() {
+    const l = this;
+    return (
+      !!l.categoryDetail?.required &&
+      Object.entries(l.categoryDetail.modules ?? {}).filter(
+        ([e, o]) => !o.hidden && Boolean(l.moduleCache[e]?._value)
+      ).length === 1
+    );
+  },
+};
+
+exports.computed = {
+  value() {
+    var { module, moduleCache, moduleId } = this;
+    return (
+      !!module.required ||
+      (moduleCache[moduleId] && moduleCache[moduleId]._value)
+    );
+  },
+  optionFlags() {
+    var e = this;
+    if (e.module.options && e.moduleCache[e.moduleId]?._value) {
+      e = e.module.options[e.moduleCache[e.moduleId]._option];
+      if (e?.flags) {
+        return e.flags;
+      }
+    }
+  },
+};

@@ -1,1 +1,41 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const edit_component_asset_1=__importDefault(require("./edit-component-asset")),cc_1=require("cc"),asset_1=require("../../../utils/asset");class EditAnimationMask extends edit_component_asset_1.default{async importSkeleton(e){try{var t=await(0,asset_1.loadAssetUncached)(e,cc_1.Prefab);if(!(t.data instanceof cc_1.Node))return console.error("Bad prefab object!"),null;const s=(e,t="")=>{for(const o of e.children){var n=t?t+"/"+o.name:o.name;this.component.addJoint(n,!0),s(o,n)}};return s(t.data),this.encodeComponent(this.component)}catch(e){return console.error(e),null}}clearNodes(){return this.component.clear(),this.encodeComponent(this.component)}}exports.default=new EditAnimationMask;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const edit_component_asset_1 = __importDefault(
+  require("./edit-component-asset")
+);
+
+const cc_1 = require("cc");
+
+const { loadAssetUncached } = require("../../../utils/asset");
+
+class EditAnimationMask extends edit_component_asset_1.default {
+  async importSkeleton(e) {
+    try {
+      var t = await loadAssetUncached(e, cc_1.Prefab);
+      if (!(t.data instanceof cc_1.Node)) {
+        console.error("Bad prefab object!");
+        return null;
+      }
+      const s = (e, t = "") => {
+        for (const o of e.children) {
+          var n = t ? t + "/" + o.name : o.name;
+          this.component.addJoint(n, true);
+          s(o, n);
+        }
+      };
+      s(t.data);
+      return this.encodeComponent(this.component);
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
+  clearNodes() {
+    this.component.clear();
+    return this.encodeComponent(this.component);
+  }
+}
+exports.default = new EditAnimationMask();

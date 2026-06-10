@@ -5,37 +5,35 @@
 //     pathsDump: { },
 //     menu: [],
 // }
-const ps = require('path');
-const fse = require('fs-extra');
-const TEST_DATA_DEST = ps.join(__dirname, 'mock-data.json');
+const ps = require("path");
+const fse = require("fs-extra");
+const TEST_DATA_DEST = ps.join(__dirname, "mock-data.json");
 
 async function getMockData() {
-    if (!(await fse.pathExists(TEST_DATA_DEST))) {
-        return {};
-    }
-    try {
-        return await fse.readJSON(TEST_DATA_DEST);
-    } catch (error) {
-        console.warn(error);
-        return {};
-    }
+  if (!(await fse.pathExists(TEST_DATA_DEST))) {
+    return {};
+  }
+  try {
+    return await fse.readJSON(TEST_DATA_DEST);
+  } catch (error) {
+    console.warn(error);
+    return {};
+  }
 }
 
 async function outputMockData(json) {
-    return await fse.outputJSON(TEST_DATA_DEST, json, {
-        spaces: 4,
-    });
+  return await fse.outputJSON(TEST_DATA_DEST, json, {
+    spaces: 4,
+  });
 }
 
 function generateMockData() {
-    return {
-        pathsDump: AnimationEditor.animationCtrl.clipsDump.pathsDump,
-        menu: AnimationEditor.animationCtrl.vm.propertiesMenu,
-        curvesDump: AnimationEditor.animationCtrl.__copyNodeInfo,
-    };
+  return {
+    pathsDump: AnimationEditor.animationCtrl.clipsDump.pathsDump,
+    menu: AnimationEditor.animationCtrl.vm.propertiesMenu,
+    curvesDump: AnimationEditor.animationCtrl.__copyNodeInfo,
+  };
 }
-exports.outputMockData = function () {
-    return outputMockData(generateMockData());
-};
+exports.outputMockData = () => outputMockData(generateMockData());
 
 exports.getMockData = getMockData;

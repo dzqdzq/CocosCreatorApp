@@ -1,1 +1,97 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,n,r){void 0===r&&(r=n);var o=Object.getOwnPropertyDescriptor(t,n);o&&("get"in o?t.__esModule:!o.writable&&!o.configurable)||(o={enumerable:!0,get:function(){return t[n]}}),Object.defineProperty(e,r,o)}:function(e,t,n,r){e[r=void 0===r?n:r]=t[n]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var o=function(e){return(o=Object.getOwnPropertyNames||function(e){var t,n=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(n[n.length]=t);return n})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n=o(e),r=0;r<n.length;r++)"default"!==n[r]&&__createBinding(t,e,n[r]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.parseMangleConfig=parseMangleConfig;const fs=__importStar(require("fs-extra"));function mergeConfigs(e,t){return{mangleProtected:(void 0!==t.mangleProtected?t:e).mangleProtected,mangleList:[...e.mangleList||[],...t.mangleList||[]],dontMangleList:[...e.dontMangleList||[],...t.dontMangleList||[]],extends:e.extends}}function parseMangleConfig(t,n){if(fs.existsSync(t)){var r=fs.readJSONSync(t,"utf-8");if(!r[n])throw new Error(`Platform ${n} not found in the configuration file.`);let e=r[n];for(;e.extends;){var o=r[e.extends];if(!o)throw new Error(`Base configuration ${e.extends} not found.`);e=mergeConfigs(o,e)}return e}}
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, n, r = n) => {
+        var o = Object.getOwnPropertyDescriptor(t, n);
+
+        if (
+          !o ||
+          (!("get" in o) ? !o.writable && !o.configurable : t.__esModule)
+        ) {
+          o = {
+            enumerable: true,
+            get() {
+              return t[n];
+            },
+          };
+        }
+
+        Object.defineProperty(e, r, o);
+      }
+    : (e, t, n, r) => {
+        e[(r = r === undefined ? n : r)] = t[n];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var o = (e) =>
+      (o =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var n = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              n[n.length] = t;
+            }
+          }
+          return n;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var n = o(e), r = 0; r < n.length; r++) {
+          if (n[r] !== "default") {
+            __createBinding(t, e, n[r]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseMangleConfig = parseMangleConfig;
+const fs = __importStar(require("fs-extra"));
+function mergeConfigs(e, t) {
+  return {
+    mangleProtected: (t.mangleProtected !== undefined ? t : e).mangleProtected,
+    mangleList: [...(e.mangleList || []), ...(t.mangleList || [])],
+    dontMangleList: [...(e.dontMangleList || []), ...(t.dontMangleList || [])],
+    extends: e.extends,
+  };
+}
+function parseMangleConfig(t, n) {
+  if (fs.existsSync(t)) {
+    var r = fs.readJSONSync(t, "utf-8");
+    if (!r[n]) {
+      throw new Error(`Platform ${n} not found in the configuration file.`);
+    }
+    let e = r[n];
+
+    while (e.extends) {
+      var o = r[e.extends];
+      if (!o) {
+        throw new Error(`Base configuration ${e.extends} not found.`);
+      }
+      e = mergeConfigs(o, e);
+    }
+
+    return e;
+  }
+}

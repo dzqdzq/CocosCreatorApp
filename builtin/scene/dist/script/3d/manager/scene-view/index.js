@@ -1,1 +1,82 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.sceneViewManager=exports.SceneViewManager=void 0;const cc_1=require("cc"),light_manager_1=require("./light-manager"),scene_view_data_1=require("./scene-view-data"),camera_1=__importDefault(require("../camera")),EventEmitter_1=__importDefault(require("../../../public/EventEmitter"));class SceneViewManager extends EventEmitter_1.default{_sceneViewLight=null;_isVisible=!1;constructor(){super();var e=new cc_1.Node("SceneViewLight");e.layer=cc_1.Layers.Enum.EDITOR,this._sceneViewLight=e.addComponent(cc_1.DirectionalLight),this._sceneViewLight.enabled=!scene_view_data_1.sceneViewData.isSceneLightOn,this._makeSureDirectionLightActiveBeforeProjectScene()}_makeSureDirectionLightActiveBeforeProjectScene(){var e;this._sceneViewLight&&(e=new cc.Scene,(this._sceneViewLight.node.parent=e)._load(),e._activate())}get isVisible(){return this._isVisible}set isVisible(e){this._isVisible=e,this.emit("isVisible",this._isVisible)}async init(){scene_view_data_1.sceneViewData.on("is-scene-light-on",this.onIsSceneLightOn.bind(this)),this._sceneViewLight&&(this._sceneViewLight.node.parent=camera_1.default.camera.node)}setSceneLightOn(e){scene_view_data_1.sceneViewData.isSceneLightOn=e}querySceneLightOn(){return scene_view_data_1.sceneViewData.isSceneLightOn}async onSceneOpened(e){light_manager_1.lightManager.onSceneOpened(e,!!scene_view_data_1.sceneViewData.isGameViewPlaying()||scene_view_data_1.sceneViewData.isSceneLightOn)}onComponentAdded(e){light_manager_1.lightManager.onComponentAdded(e)}onComponentRemoved(e){light_manager_1.lightManager.onComponentRemoved(e)}onIsSceneLightOn(e){e?(light_manager_1.lightManager.enableSceneLights(),this._sceneViewLight.enabled=!1):(light_manager_1.lightManager.disableSceneLights(),this._sceneViewLight.enabled=!0),cce.Engine.repaintInEditMode()}}const sceneViewManager=new(exports.SceneViewManager=SceneViewManager);exports.sceneViewManager=sceneViewManager;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sceneViewManager = undefined;
+exports.SceneViewManager = undefined;
+const cc_1 = require("cc");
+const light_manager_1 = require("./light-manager");
+const scene_view_data_1 = require("./scene-view-data");
+const camera_1 = __importDefault(require("../camera"));
+const EventEmitter_1 = __importDefault(require("../../../public/EventEmitter"));
+class SceneViewManager extends EventEmitter_1.default {
+  _sceneViewLight = null;
+  _isVisible = false;
+  constructor() {
+    super();
+    var e = new cc_1.Node("SceneViewLight");
+    e.layer = cc_1.Layers.Enum.EDITOR;
+    this._sceneViewLight = e.addComponent(cc_1.DirectionalLight);
+    this._sceneViewLight.enabled =
+      !scene_view_data_1.sceneViewData.isSceneLightOn;
+    this._makeSureDirectionLightActiveBeforeProjectScene();
+  }
+  _makeSureDirectionLightActiveBeforeProjectScene() {
+    var e;
+
+    if (this._sceneViewLight) {
+      e = new cc.Scene();
+      (this._sceneViewLight.node.parent = e)._load();
+      e._activate();
+    }
+  }
+  get isVisible() {
+    return this._isVisible;
+  }
+  set isVisible(e) {
+    this._isVisible = e;
+    this.emit("isVisible", this._isVisible);
+  }
+  async init() {
+    scene_view_data_1.sceneViewData.on(
+      "is-scene-light-on",
+      this.onIsSceneLightOn.bind(this)
+    );
+
+    if (this._sceneViewLight) {
+      this._sceneViewLight.node.parent = camera_1.default.camera.node;
+    }
+  }
+  setSceneLightOn(e) {
+    scene_view_data_1.sceneViewData.isSceneLightOn = e;
+  }
+  querySceneLightOn() {
+    return scene_view_data_1.sceneViewData.isSceneLightOn;
+  }
+  async onSceneOpened(e) {
+    light_manager_1.lightManager.onSceneOpened(
+      e,
+      !!scene_view_data_1.sceneViewData.isGameViewPlaying() ||
+        scene_view_data_1.sceneViewData.isSceneLightOn
+    );
+  }
+  onComponentAdded(e) {
+    light_manager_1.lightManager.onComponentAdded(e);
+  }
+  onComponentRemoved(e) {
+    light_manager_1.lightManager.onComponentRemoved(e);
+  }
+  onIsSceneLightOn(e) {
+    if (e) {
+      light_manager_1.lightManager.enableSceneLights();
+      this._sceneViewLight.enabled = false;
+    } else {
+      light_manager_1.lightManager.disableSceneLights();
+      this._sceneViewLight.enabled = true;
+    }
+
+    cce.Engine.repaintInEditMode();
+  }
+}
+const sceneViewManager = new (exports.SceneViewManager = SceneViewManager)();
+exports.sceneViewManager = sceneViewManager;

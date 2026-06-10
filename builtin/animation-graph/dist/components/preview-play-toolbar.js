@@ -1,4 +1,10 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.watch=exports.props=exports.template=void 0,exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.watch = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.template = `
 <div class="toolbar"
     :disable="state!==$root.queryData.previewState.NO_ERROR"
 >
@@ -36,4 +42,43 @@
         ></ui-scale-plate>
     </div>
 </div>
-`,exports.props=["play","state"],exports.watch={play(){this.update()}},exports.methods={prevClick(){var e=this,t=e.play.time-e.play.speed;e.$parent.timePlay(t<0?0:t)},nextClick(){var e=this,t=e.play.time+e.play.speed;e.$parent.timePlay(t)},update(){var e=this;e.$refs.plate.setConfig({min:0,max:e.play.status.timeLineLength,preci:2}),e.$refs.plate.value=e.play.time},setTime(e){e=e.target.value;isFinite(e)&&this.$parent.timePlay(e)}};
+`;
+
+exports.props = ["play", "state"];
+
+exports.watch = {
+  play() {
+    this.update();
+  },
+};
+
+exports.methods = {
+  prevClick() {
+    var e = this;
+    var t = e.play.time - e.play.speed;
+    e.$parent.timePlay(t < 0 ? 0 : t);
+  },
+  nextClick() {
+    var e = this;
+    var t = e.play.time + e.play.speed;
+    e.$parent.timePlay(t);
+  },
+  update() {
+    var e = this;
+
+    e.$refs.plate.setConfig({
+      min: 0,
+      max: e.play.status.timeLineLength,
+      preci: 2,
+    });
+
+    e.$refs.plate.value = e.play.time;
+  },
+  setTime(e) {
+    e = e.target.value;
+
+    if (isFinite(e)) {
+      this.$parent.timePlay(e);
+    }
+  },
+};

@@ -1,4 +1,15 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.$=exports.template=exports.style=void 0,exports.ready=ready;const utils_1=require("../utils"),Vue=require("vue/dist/vue.js");let vm=null;exports.style=`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.$ = undefined;
+exports.template = undefined;
+exports.style = undefined;
+exports.ready = ready;
+
+const { checkProgramConfig } = require("../utils");
+
+const Vue = require("vue/dist/vue.js");
+let vm = null;
+
+exports.style = `
 .row { display: flex; }
 .row > ui-prop {
     --left-width: 40%;
@@ -16,7 +27,9 @@
     color: var(--color-warn-fill);
     visibility: visible;
 }
-`,exports.template=`
+`;
+
+exports.template = `
 <div class="program" @confirm="onConfirm">
     <div class=row>
         <ui-icon value="setting" tooltip="i18n:preferences.menu.position_info"
@@ -54,4 +67,80 @@
         </ui-prop>
     </div>
 </div>
-`,exports.$={program:".program"};const component={data:{androidNDK:{path:"",commandArgument:""},androidSDK:{path:"",commandArgument:""},types:{androidNDK:"global",androidSDK:"global"},errorMap:{androidNDK:"",androidSDK:""}},methods:{async refresh(i){var o=await Editor.Profile.getConfig("android",i,"local");this.types[i]=null!=o?"local":"global"},async onConfirm(i){var o=this,e=i.target.getAttribute("path"),r=i.target.getAttribute("data"),i=i.target.value;o[e][r]=i,await Editor.Profile.setConfig("android",e+"."+r,i,o.types[e]),o.errorMap[e]=(0,utils_1.checkProgramConfig)(e,o[e].path)},onChangePosition(i,o,e){const r=this;Editor.Menu.popup({x:i,y:o,menu:[{label:Editor.I18n.t("preferences.menu.copyConfigKey"),click(){Editor.Clipboard.write("text",`'android', '${e}'`)}},{label:Editor.I18n.t("preferences.menu.move_local"),enabled:"global"===r.types[e],async click(){let i=await Editor.Profile.getConfig("android",e);null==i&&(i={path:""}),await Editor.Profile.setConfig("android",e,i,"local"),r.refresh()}},{label:Editor.I18n.t("preferences.menu.move_global"),enabled:"local"===r.types[e],async click(){var i=await Editor.Profile.getConfig("android",e,"local");await Editor.Profile.setConfig("android",e,i,"global"),await Editor.Profile.removeConfig("android",e,"local"),r.refresh()}}]})}}};async function ready(){component.el=this.$.program,(vm=new Vue(component)).androidNDK=await Editor.Profile.getConfig("android","androidNDK"),vm.androidSDK=await Editor.Profile.getConfig("android","androidSDK");for(const i of Object.keys(vm.types))await vm.refresh(i),vm.errorMap[i]=(0,utils_1.checkProgramConfig)(i,vm[i].path)}
+`;
+
+exports.$ = { program: ".program" };
+const component = {
+  data: {
+    androidNDK: { path: "", commandArgument: "" },
+    androidSDK: { path: "", commandArgument: "" },
+    types: { androidNDK: "global", androidSDK: "global" },
+    errorMap: { androidNDK: "", androidSDK: "" },
+  },
+  methods: {
+    async refresh(i) {
+      var o = await Editor.Profile.getConfig("android", i, "local");
+      this.types[i] = o != null ? "local" : "global";
+    },
+    async onConfirm(i) {
+      var o = this;
+      var e = i.target.getAttribute("path");
+      var r = i.target.getAttribute("data");
+      var i = i.target.value;
+      o[e][r] = i;
+      await Editor.Profile.setConfig("android", e + "." + r, i, o.types[e]);
+      o.errorMap[e] = checkProgramConfig(e, o[e].path);
+    },
+    onChangePosition(i, o, e) {
+      const r = this;
+      Editor.Menu.popup({
+        x: i,
+        y: o,
+        menu: [
+          {
+            label: Editor.I18n.t("preferences.menu.copyConfigKey"),
+            click() {
+              Editor.Clipboard.write("text", `'android', '${e}'`);
+            },
+          },
+          {
+            label: Editor.I18n.t("preferences.menu.move_local"),
+            enabled: r.types[e] === "global",
+            async click() {
+              let i = await Editor.Profile.getConfig("android", e);
+
+              if (i == null) {
+                i = { path: "" };
+              }
+
+              await Editor.Profile.setConfig("android", e, i, "local");
+              r.refresh();
+            },
+          },
+          {
+            label: Editor.I18n.t("preferences.menu.move_global"),
+            enabled: r.types[e] === "local",
+            async click() {
+              var i = await Editor.Profile.getConfig("android", e, "local");
+              await Editor.Profile.setConfig("android", e, i, "global");
+              await Editor.Profile.removeConfig("android", e, "local");
+              r.refresh();
+            },
+          },
+        ],
+      });
+    },
+  },
+};
+async function ready() {
+  component.el = this.$.program;
+  vm = new Vue(component);
+
+  vm.androidNDK = await Editor.Profile.getConfig("android", "androidNDK");
+
+  vm.androidSDK = await Editor.Profile.getConfig("android", "androidSDK");
+  for (const i of Object.keys(vm.types)) {
+    await vm.refresh(i);
+    vm.errorMap[i] = checkProgramConfig(i, vm[i].path);
+  }
+}

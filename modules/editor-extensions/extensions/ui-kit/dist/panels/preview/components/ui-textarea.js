@@ -1,1 +1,29 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.template=void 0,exports.data=data;const fs_1=require("fs"),path_1=require("path");function data(){return{}}exports.template=(0,fs_1.readFileSync)((0,path_1.join)(__dirname,"../../../../static/template/components/ui-textarea.html"),"utf8"),exports.methods={onConfirm(e){console.log("onConfirm",e)},onChange(e){console.log("onChange",e)},onCancel(e){console.log("onCancel",e)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.template = undefined;
+exports.data = data;
+
+const { readFileSync } = require("fs");
+
+const { join } = require("path");
+
+function data() {
+  return {};
+}
+
+exports.template = readFileSync(
+  join(__dirname, "../../../../static/template/components/ui-textarea.html"),
+  "utf8"
+);
+
+exports.methods = {
+  onConfirm(e) {
+    console.log("onConfirm", e);
+  },
+  onChange(e) {
+    console.log("onChange", e);
+  },
+  onCancel(e) {
+    console.log("onCancel", e);
+  },
+};

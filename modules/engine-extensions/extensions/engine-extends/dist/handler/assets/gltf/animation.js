@@ -1,1 +1,269 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,a,t,i){void 0===i&&(i=t);var r=Object.getOwnPropertyDescriptor(a,t);r&&("get"in r?a.__esModule:!r.writable&&!r.configurable)||(r={enumerable:!0,get:function(){return a[t]}}),Object.defineProperty(e,i,r)}:function(e,a,t,i){e[i=void 0===i?t:i]=a[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,a){Object.defineProperty(e,"default",{enumerable:!0,value:a})}:function(e,a){e.default=a}),__importStar=this&&this.__importStar||function(){var r=function(e){return(r=Object.getOwnPropertyNames||function(e){var a,t=[];for(a in e)Object.prototype.hasOwnProperty.call(e,a)&&(t[t.length]=a);return t})(e)};return function(e){if(e&&e.__esModule)return e;var a={};if(null!=e)for(var t=r(e),i=0;i<t.length;i++)"default"!==t[i]&&__createBinding(a,e,t[i]);return __setModuleDefault(a,e),a}}(),__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.GltfAnimationHandler=void 0;const cc=__importStar(require("cc")),embedded_player_1=require("cc/editor/embedded-player"),exotic_animation_1=require("cc/editor/exotic-animation"),url_1=require("url"),serialize_library_1=require("../utils/serialize-library"),split_animation_1=require("../utils/split-animation"),load_asset_sync_1=require("../utils/load-asset-sync"),original_animation_1=require("./original-animation"),utils_1=require("../../utils"),assert_1=__importDefault(require("assert"));function migrateEvents_3_3_0(e){var a=e.meta.userData.events;a&&(a=a.map(e=>({frame:e.frame,func:e.functionName,params:e.parameters.slice()})),e.meta.userData.events=a)}exports.GltfAnimationHandler={name:"gltf-animation",assetType:"cc.AnimationClip",instantiation:".animation",importer:{version:"1.0.18",versionCode:3,migrations:[{version:"1.0.16",migrate:migrateEvents_3_3_0}],async import(e){if(!e.parent)return!1;var a=e.userData,t=(a.events??=[],e.parent.getFilePath((0,original_animation_1.getOriginalAnimationLibraryPath)(a.gltfIndex)));let r=(0,url_1.pathToFileURL)(t).href;r=r&&r.replace(".bin",".cconb");t=await new Promise((t,i)=>{cc.assetManager.loadAny({url:r},{preset:"remote"},null,(e,a)=>{e?i(e):t(a)})});let i=a.span;var n=(i=i&&0===i.from&&i.to===e.parent.userData.duration?void 0:i)?(0,split_animation_1.splitAnimation)(t,i.from,i.to):t;if(n.name=e._name,n.name.endsWith(".animation")&&(n.name=n.name.substr(0,n.name.length-".animation".length)),n.events=a.events.map(e=>({frame:e.frame,func:e.func,params:e.params.slice()})),n.wrapMode=a.wrapMode??cc.AnimationClip.WrapMode.Loop,void 0!==a.speed&&(n.speed=a.speed),void 0!==a.sample&&(n.sample=a.sample),void 0!==a.editorExtras&&(n[cc.editorExtrasTag]=JSON.parse(JSON.stringify(a.editorExtras))),a.embeddedPlayers){var o,l,s,d,p,t=a["embeddedPlayers"];for({begin:o,end:l,reconciledSpeed:s,editorExtras:d,playable:p}of t){var c,u=new embedded_player_1.EmbeddedPlayer;void 0!==d&&(u[cc.editorExtrasTag]=JSON.parse(JSON.stringify(d))),u.begin=o,u.end=l,u.reconciledSpeed=s,"animation-clip"===p.type?((c=new embedded_player_1.EmbeddedAnimationClipPlayable).path=p.path,p.clip&&(c.clip=(0,load_asset_sync_1.loadAssetSync)(p.clip,cc.AnimationClip)??null),u.playable=c):"particle-system"===p.type&&((c=new embedded_player_1.EmbeddedParticleSystemPlayable).path=p.path,u.playable=c),n[embedded_player_1.addEmbeddedPlayerTag](u)}}const m=n[exotic_animation_1.additiveSettingsTag];m.enabled=!1,m.refClip=null;t=[];if(void 0!==a.additive){const m=n[exotic_animation_1.additiveSettingsTag];a.additive.enabled&&(m.enabled=!0,a.additive.refClip)&&(t.push(a.additive.refClip),m.refClip=(0,load_asset_sync_1.loadAssetSync)(a.additive.refClip,cc.AnimationClip)??null)}if(void 0!==a.auxiliaryCurves)for(var[_,{curve:f}]of Object.entries(a.auxiliaryCurves)){f=cc.deserialize(f,void 0,void 0),_=((0,assert_1.default)(f instanceof cc.RealCurve),n.addAuxiliaryCurve_experimental(_));_.preExtrapolation=f.preExtrapolation,_.postExtrapolation=f.postExtrapolation,_.assignSorted(f.keyframes())}n.hash;var{extension:a,data:v}=(0,serialize_library_1.serializeForLibrary)(n),a=(await e.saveToLibrary(a,v),(0,utils_1.getDependUUIDList)(v));return e.setData("depends",Array.from(new Set([...a,...t]))),!0}}},exports.default=exports.GltfAnimationHandler;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, a, t, i = t) => {
+        var r = Object.getOwnPropertyDescriptor(a, t);
+
+        if (
+          !r ||
+          (!("get" in r) ? !r.writable && !r.configurable : a.__esModule)
+        ) {
+          r = {
+            enumerable: true,
+            get() {
+              return a[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, i, r);
+      }
+    : (e, a, t, i) => {
+        e[(i = i === undefined ? t : i)] = a[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, a) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: a });
+      }
+    : (e, a) => {
+        e.default = a;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var r = (e) =>
+      (r =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var a;
+          var t = [];
+          for (a in e) {
+            if (Object.prototype.hasOwnProperty.call(e, a)) {
+              t[t.length] = a;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var a = {};
+      if (e != null) {
+        for (var t = r(e), i = 0; i < t.length; i++) {
+          if (t[i] !== "default") {
+            __createBinding(a, e, t[i]);
+          }
+        }
+      }
+      __setModuleDefault(a, e);
+      return a;
+    };
+  })();
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GltfAnimationHandler = undefined;
+const cc = __importStar(require("cc"));
+const embedded_player_1 = require("cc/editor/embedded-player");
+const exotic_animation_1 = require("cc/editor/exotic-animation");
+
+const { pathToFileURL } = require("url");
+
+const { serializeForLibrary } = require("../utils/serialize-library");
+
+const { splitAnimation } = require("../utils/split-animation");
+
+const { loadAssetSync } = require("../utils/load-asset-sync");
+
+const { getOriginalAnimationLibraryPath } = require("./original-animation");
+
+const { getDependUUIDList } = require("../../utils");
+
+const assert_1 = __importDefault(require("assert"));
+function migrateEvents_3_3_0(e) {
+  var a = e.meta.userData.events;
+
+  if (a) {
+    a = a.map((e) => ({
+      frame: e.frame,
+      func: e.functionName,
+      params: e.parameters.slice(),
+    }));
+
+    e.meta.userData.events = a;
+  }
+}
+
+exports.GltfAnimationHandler = {
+  name: "gltf-animation",
+  assetType: "cc.AnimationClip",
+  instantiation: ".animation",
+  importer: {
+    version: "1.0.18",
+    versionCode: 3,
+    migrations: [{ version: "1.0.16", migrate: migrateEvents_3_3_0 }],
+    async import(e) {
+      if (!e.parent) {
+        return false;
+      }
+      var extension = e.userData;
+
+      extension.events ??= [];
+
+      var e_userData_embeddedPlayers = e.parent.getFilePath(
+        getOriginalAnimationLibraryPath(extension.gltfIndex)
+      );
+
+      let r = pathToFileURL(e_userData_embeddedPlayers).href;
+      r = r && r.replace(".bin", ".cconb");
+      e_userData_embeddedPlayers = await new Promise((t, i) => {
+        cc.assetManager.loadAny(
+          { url: r },
+          { preset: "remote" },
+          null,
+          (e, a) => {
+            if (e) {
+              i(e);
+            } else {
+              t(a);
+            }
+          }
+        );
+      });
+      let e_userData_span = extension.span;
+      var n = (e_userData_span =
+        e_userData_span &&
+        e_userData_span.from === 0 &&
+        e_userData_span.to === e.parent.userData.duration
+          ? undefined
+          : e_userData_span)
+        ? splitAnimation(
+            e_userData_embeddedPlayers,
+            e_userData_span.from,
+            e_userData_span.to
+          )
+        : e_userData_embeddedPlayers;
+      n.name = e._name;
+
+      if (n.name.endsWith(".animation")) {
+        n.name = n.name.substr(0, n.name.length - ".animation".length);
+      }
+
+      n.events = extension.events.map((e) => ({
+        frame: e.frame,
+        func: e.func,
+        params: e.params.slice(),
+      }));
+
+      n.wrapMode = extension.wrapMode ?? cc.AnimationClip.WrapMode.Loop;
+
+      if (extension.speed !== undefined) {
+        n.speed = extension.speed;
+      }
+
+      if (extension.sample !== undefined) {
+        n.sample = extension.sample;
+      }
+
+      if (extension.editorExtras !== undefined) {
+        n[cc.editorExtrasTag] = JSON.parse(
+          JSON.stringify(extension.editorExtras)
+        );
+      }
+
+      if (extension.embeddedPlayers) {
+        var o;
+        var l;
+        var s;
+        var d;
+        var p;
+        var e_userData_embeddedPlayers = extension.embeddedPlayers;
+        for ({
+          begin: o,
+          end: l,
+          reconciledSpeed: s,
+          editorExtras: d,
+          playable: p,
+        } of e_userData_embeddedPlayers) {
+          var c;
+          var u = new embedded_player_1.EmbeddedPlayer();
+
+          if (d !== undefined) {
+            u[cc.editorExtrasTag] = JSON.parse(JSON.stringify(d));
+          }
+
+          u.begin = o;
+          u.end = l;
+          u.reconciledSpeed = s;
+
+          if (p.type === "animation-clip") {
+            c = new embedded_player_1.EmbeddedAnimationClipPlayable();
+            c.path = p.path;
+
+            p.clip &&
+              (c.clip = loadAssetSync(p.clip, cc.AnimationClip) ?? null);
+
+            u.playable = c;
+          } else if (p.type === "particle-system") {
+            c = new embedded_player_1.EmbeddedParticleSystemPlayable();
+            c.path = p.path;
+            u.playable = c;
+          }
+
+          n[embedded_player_1.addEmbeddedPlayerTag](u);
+        }
+      }
+
+      const m = n[exotic_animation_1.additiveSettingsTag];
+      m.enabled = false;
+      m.refClip = null;
+      e_userData_embeddedPlayers = [];
+      if (extension.additive !== undefined) {
+        const m = n[exotic_animation_1.additiveSettingsTag];
+
+        if (
+          extension.additive.enabled &&
+          ((m.enabled = true), extension.additive.refClip)
+        ) {
+          e_userData_embeddedPlayers.push(extension.additive.refClip);
+          m.refClip =
+            loadAssetSync(extension.additive.refClip, cc.AnimationClip) ?? null;
+        }
+      }
+      if (extension.auxiliaryCurves !== undefined) {
+        for (var [_, { curve: f }] of Object.entries(
+          extension.auxiliaryCurves
+        )) {
+          f = cc.deserialize(f, undefined, undefined);
+          _ =
+            ((0, assert_1.default)(f instanceof cc.RealCurve),
+            n.addAuxiliaryCurve_experimental(_));
+          _.preExtrapolation = f.preExtrapolation;
+          _.postExtrapolation = f.postExtrapolation;
+          _.assignSorted(f.keyframes());
+        }
+      }
+      n.hash;
+
+      var { extension, data } = serializeForLibrary(n);
+
+      var extension =
+        (await e.saveToLibrary(extension, data), getDependUUIDList(data));
+      e.setData(
+        "depends",
+        Array.from(new Set([...extension, ...e_userData_embeddedPlayers]))
+      );
+      return true;
+    },
+  },
+};
+
+exports.default = exports.GltfAnimationHandler;

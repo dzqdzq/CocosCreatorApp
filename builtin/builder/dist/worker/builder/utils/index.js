@@ -1,1 +1,401 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,o){void 0===o&&(o=t);var s=Object.getOwnPropertyDescriptor(r,t);s&&("get"in s?r.__esModule:!s.writable&&!s.configurable)||(s={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,o,s)}:function(e,r,t,o){e[o=void 0===o?t:o]=r[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,r){Object.defineProperty(e,"default",{enumerable:!0,value:r})}:function(e,r){e.default=r}),__importStar=this&&this.__importStar||function(){var s=function(e){return(s=Object.getOwnPropertyNames||function(e){var r,t=[];for(r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[t.length]=r);return t})(e)};return function(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t=s(e),o=0;o<t.length;o++)"default"!==t[o]&&__createBinding(r,e,t[o]);return __setModuleDefault(r,e),r}}(),__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.quickSpawn=exports.transI18nName=void 0,exports.compareOptions=compareOptions,exports.pickDifferentOptions=pickDifferentOptions,exports.copyPaths=copyPaths,exports.recursively=recursively,exports.removeDbHeader=removeDbHeader,exports.dbUrlToRawPath=dbUrlToRawPath,exports.relativeUrl=relativeUrl,exports.isInstallNodeJs=isInstallNodeJs,exports.getFileSizeDeep=getFileSizeDeep,exports.copyDirSync=copyDirSync,exports.compressUuid=compressUuid,exports.decompressUuid=decompressUuid,exports.getUuidFromPath=getUuidFromPath,exports.nameToSubId=nameToSubId,exports.getResImportPath=getResImportPath,exports.getResRawAssetsPath=getResRawAssetsPath,exports.toBabelModules=toBabelModules,exports.transformCode=transformCode,exports.compileJS=compileJS,exports.getBuildPath=getBuildPath,exports.createBundle=createBundle,exports.appendMd5ToPaths=appendMd5ToPaths,exports.calcMd5=calcMd5,exports.patchMd5ToPath=patchMd5ToPath,exports.getLibraryDir=getLibraryDir,exports.queryImageAssetFromSubAssetByUuid=queryImageAssetFromSubAssetByUuid;const path_1=require("path"),child_process_1=require("child_process"),fs_1=require("fs"),fs_extra_1=require("fs-extra"),babel=__importStar(require("@babel/core")),preset_env_1=__importDefault(require("@babel/preset-env")),sub_process_manager_1=require("../../worker-pools/sub-process-manager"),utils_1=require("../../../share/utils");let EditorExtends;function getEditorExtends(){return EditorExtends=EditorExtends||require("@base/electron-module").require("EditorExtends")}function compareOptions(e,r){const t=pickDifferentOptions(e,r);return!!t.isEqual||(console.log("different options: "+Object.keys(t.diff).map(e=>`${e}: ${t.diff[e].old} -> `+t.diff[e].new)),!1)}function pickDifferentOptions(e,r,o="",s={}){let n=!0;var t=(e,r,t)=>{s[o?o+"."+e:e]={new:t,old:r},n=!1};if("object"!=typeof e||"object"!=typeof r)e!==r&&t("",e,r);else for(const u of new Set([...Object.keys(e),...Object.keys(r)])){var i=e[u],a=r[u];"object"==typeof i&&"object"==typeof a&&null!==i&&null!==a?pickDifferentOptions(i,a,o?o+"."+u:u,s).isEqual||(n=!1):i!==a&&t(u,i,a)}return{diff:s,isEqual:n}}function copyPaths(e){return Promise.all(e.map(e=>(0,fs_extra_1.copy)(e.src,e.dest)))}function recursively(r,t){r.subAssets&&(t&&t(r),Object.keys(r.subAssets).forEach(e=>{recursively(r.subAssets[e],t)}))}const DB_PROTOCOL_HEADER="db://";function removeDbHeader(e){return e?e.startsWith(DB_PROTOCOL_HEADER)?e.slice(DB_PROTOCOL_HEADER.length):(console.error("unknown path to build: "+e),e):""}function dbUrlToRawPath(e){return(0,path_1.join)(Editor.Project.path,removeDbHeader(e))}function relativeUrl(e,r){return(0,path_1.relative)(e,r).replace(/\\/g,"/")}function isInstallNodeJs(){return new Promise((r,e)=>{(0,child_process_1.exec)("node -v",{env:process.env},e=>{e?(console.error(e),"win32"===process.platform?console.error(new Error(Editor.I18n.t("builder.window_default_npm_path_error"))):console.error(new Error(Editor.I18n.t("builder.mac_default_npm_path_error"))),r(!1)):r(!0)})})}function getFileSizeDeep(r){if(!(0,fs_1.existsSync)(r))return 0;var e=(0,fs_1.statSync)(r);if(!e.isDirectory())return e.size;let t=0;return(0,fs_1.readdirSync)(r).forEach(e=>{t+=getFileSizeDeep((0,path_1.join)(r,e))}),t}function copyDirSync(r,t){var e;return(0,fs_1.existsSync)(r)?(0,fs_1.statSync)(r).isDirectory()?(e=(0,fs_1.readdirSync)(r),(0,fs_extra_1.ensureDirSync)(t),void e.forEach(e=>{copyDirSync((0,path_1.join)(r,e),(0,path_1.join)(t,e))})):((0,fs_extra_1.ensureDirSync)((0,path_1.dirname)(t)),(0,fs_1.copyFileSync)(r,t)):0}function compressUuid(e,r=!0){return getEditorExtends().UuidUtils.compressUuid(e,r)}function decompressUuid(e){return getEditorExtends().UuidUtils.decompressUuid(e)}function getUuidFromPath(e){return getEditorExtends().UuidUtils.getUuidFromLibPath(e)}function nameToSubId(e){return getEditorExtends().UuidUtils.nameToSubId(e)}function getResImportPath(e,r,t=".json"){return(0,path_1.join)(e,Build.IMPORT_HEADER,r.substr(0,2),r+t)}function getResRawAssetsPath(e,r,t){return(0,path_1.join)(e,Build.NATIVE_HEADER,r.substr(0,2),r+t)}function toBabelModules(e){return"esm"!==e&&e}async function transformCode(e,r){var{loose:r,importMapFormat:t}=r,e=await babel.transformAsync(e,{presets:[[preset_env_1.default,{modules:t?toBabelModules(t):void 0,loose:null==r||r}]]});if(e&&e.code)return e.code;throw new Error("Failed to transform!")}function compileJS(e,r){let t;try{var o=require("@babel/core");t=o.transform(e,{ast:!1,highlightCode:!1,sourceMaps:!1,compact:!1,filename:r,presets:[require("@babel/preset-env")],plugins:[[require("@babel/plugin-proposal-decorators"),{legacy:!0}],[require("@babel/plugin-proposal-class-properties"),{loose:!0}],[require("babel-plugin-add-module-exports")],[require("@babel/plugin-proposal-export-default-from")]]})}catch(e){throw e.stack=`Compile ${r} error: `+e.stack,e}return t.code}function getBuildPath(e){return(0,path_1.join)(Editor.UI.__protected__.File.resolveToRaw(e.buildPath),e.outputName)}async function createBundle(s,n,i){return new Promise((t,o)=>{var e=require("babelify");const r=require("browserify")(s);i&&i.excludes&&i.excludes.forEach(function(e){r.exclude(e)}),(0,fs_extra_1.ensureDirSync)((0,path_1.dirname)(n)),r.transform(e,{presets:[require("@babel/preset-env")],plugins:[require("@babel/plugin-proposal-class-properties")]}).bundle((e,r)=>{e?(console.error(e),o(e)):((0,fs_1.writeFileSync)(n,new Uint8Array(r),"utf8"),t())})})}exports.transI18nName=utils_1.transI18nName;const HASH_LEN=5;async function appendMd5ToPaths(e){if(!Array.isArray(e))return null;var r,t=[];for(const n of e=e.sort())try{r=await(0,fs_extra_1.readFile)(n),t.push(r)}catch(e){console.error(e),console.error(`readFile {link(${n})}`);continue}const o=calcMd5(t),s=[];return await Promise.all(e.map((e,r)=>(s[r]=patchMd5ToPath(e,o),(0,fs_extra_1.rename)(e,s[r])))),{paths:s,hash:o}}function calcMd5(e){e=Array.isArray(e)?e:[e];var r=require("crypto")["createHash"];const t=r("md5");return e.forEach(e=>{t.update(e)}),t.digest("hex").slice(0,HASH_LEN)}function patchMd5ToPath(e,r){e=(0,path_1.parse)(e);return e.base="",e.name+="."+r,(0,path_1.format)(e)}function getLibraryDir(e){return e.match(/(.*)[/\\][0-9a-fA-F]{2}[/\\][0-9a-fA-F-]{8,}((@[0-9a-fA-F]{5,})+)?.*/)[1]}function queryImageAssetFromSubAssetByUuid(e){return e.split("@")[0]}exports.quickSpawn=sub_process_manager_1.workerManager.quickSpawn.bind(sub_process_manager_1.workerManager);
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, r, t, o = t) => {
+        var s = Object.getOwnPropertyDescriptor(r, t);
+
+        if (
+          !s ||
+          (!("get" in s) ? !s.writable && !s.configurable : r.__esModule)
+        ) {
+          s = {
+            enumerable: true,
+            get() {
+              return r[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, s);
+      }
+    : (e, r, t, o) => {
+        e[(o = o === undefined ? t : o)] = r[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, r) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: r });
+      }
+    : (e, r) => {
+        e.default = r;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var s = (e) =>
+      (s =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var r;
+          var t = [];
+          for (r in e) {
+            if (Object.prototype.hasOwnProperty.call(e, r)) {
+              t[t.length] = r;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var r = {};
+      if (e != null) {
+        for (var t = s(e), o = 0; o < t.length; o++) {
+          if (t[o] !== "default") {
+            __createBinding(r, e, t[o]);
+          }
+        }
+      }
+      __setModuleDefault(r, e);
+      return r;
+    };
+  })();
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.quickSpawn = undefined;
+exports.transI18nName = undefined;
+exports.compareOptions = compareOptions;
+exports.pickDifferentOptions = pickDifferentOptions;
+exports.copyPaths = copyPaths;
+exports.recursively = recursively;
+exports.removeDbHeader = removeDbHeader;
+exports.dbUrlToRawPath = dbUrlToRawPath;
+exports.relativeUrl = relativeUrl;
+exports.isInstallNodeJs = isInstallNodeJs;
+exports.getFileSizeDeep = getFileSizeDeep;
+exports.copyDirSync = copyDirSync;
+exports.compressUuid = compressUuid;
+exports.decompressUuid = decompressUuid;
+exports.getUuidFromPath = getUuidFromPath;
+exports.nameToSubId = nameToSubId;
+exports.getResImportPath = getResImportPath;
+exports.getResRawAssetsPath = getResRawAssetsPath;
+exports.toBabelModules = toBabelModules;
+exports.transformCode = transformCode;
+exports.compileJS = compileJS;
+exports.getBuildPath = getBuildPath;
+exports.createBundle = createBundle;
+exports.appendMd5ToPaths = appendMd5ToPaths;
+exports.calcMd5 = calcMd5;
+exports.patchMd5ToPath = patchMd5ToPath;
+exports.getLibraryDir = getLibraryDir;
+exports.queryImageAssetFromSubAssetByUuid = queryImageAssetFromSubAssetByUuid;
+
+const { join, relative, dirname, parse, format } = require("path");
+
+const { exec } = require("child_process");
+
+const {
+  existsSync,
+  statSync,
+  readdirSync,
+  copyFileSync,
+  writeFileSync,
+} = require("fs");
+
+const { copy, ensureDirSync, readFile, rename } = require("fs-extra");
+
+const babel = __importStar(require("@babel/core"));
+const preset_env_1 = __importDefault(require("@babel/preset-env"));
+const sub_process_manager_1 = require("../../worker-pools/sub-process-manager");
+const utils_1 = require("../../../share/utils");
+let EditorExtends;
+function getEditorExtends() {
+  return (EditorExtends =
+    EditorExtends || require("@base/electron-module").require("EditorExtends"));
+}
+function compareOptions(e, r) {
+  const t = pickDifferentOptions(e, r);
+  return (
+    !!t.isEqual ||
+    (console.log(
+      "different options: " +
+        Object.keys(t.diff).map(
+          (e) => `${e}: ${t.diff[e].old} -> ` + t.diff[e].new
+        )
+    ),
+    false)
+  );
+}
+function pickDifferentOptions(e, r, o = "", s = {}) {
+  let n = true;
+  var t = (e, r, t) => {
+    s[o ? o + "." + e : e] = { new: t, old: r };
+    n = false;
+  };
+  if (typeof e != "object" || typeof r != "object") {
+    if (e !== r) {
+      t("", e, r);
+    }
+  } else {
+    for (const u of new Set([...Object.keys(e), ...Object.keys(r)])) {
+      var i = e[u];
+      var a = r[u];
+
+      if (
+        typeof i == "object" &&
+        typeof a == "object" &&
+        i !== null &&
+        a !== null
+      ) {
+        if (!pickDifferentOptions(i, a, o ? o + "." + u : u, s).isEqual) {
+          n = false;
+        }
+      } else if (i !== a) {
+        t(u, i, a);
+      }
+    }
+  }
+  return { diff: s, isEqual: n };
+}
+function copyPaths(e) {
+  return Promise.all(e.map((e) => copy(e.src, e.dest)));
+}
+function recursively(r, t) {
+  if (r.subAssets) {
+    t && t(r);
+
+    Object.keys(r.subAssets).forEach((e) => {
+      recursively(r.subAssets[e], t);
+    });
+  }
+}
+const DB_PROTOCOL_HEADER = "db://";
+function removeDbHeader(e) {
+  return e
+    ? e.startsWith(DB_PROTOCOL_HEADER)
+      ? e.slice(DB_PROTOCOL_HEADER.length)
+      : (console.error("unknown path to build: " + e), e)
+    : "";
+}
+function dbUrlToRawPath(e) {
+  return join(Editor.Project.path, removeDbHeader(e));
+}
+function relativeUrl(e, r) {
+  return relative(e, r).replace(/\\/g, "/");
+}
+function isInstallNodeJs() {
+  return new Promise((r, e) => {
+    exec("node -v", { env: process.env }, (e) => {
+      if (e) {
+        console.error(e);
+
+        process.platform === "win32"
+          ? console.error(
+              new Error(Editor.I18n.t("builder.window_default_npm_path_error"))
+            )
+          : console.error(
+              new Error(Editor.I18n.t("builder.mac_default_npm_path_error"))
+            );
+
+        r(false);
+      } else {
+        r(true);
+      }
+    });
+  });
+}
+function getFileSizeDeep(r) {
+  if (!existsSync(r)) {
+    return 0;
+  }
+  var e = statSync(r);
+  if (!e.isDirectory()) {
+    return e.size;
+  }
+  let t = 0;
+
+  readdirSync(r).forEach((e) => {
+    t += getFileSizeDeep(join(r, e));
+  });
+
+  return t;
+}
+function copyDirSync(r, t) {
+  var e;
+  return existsSync(r)
+    ? statSync(r).isDirectory()
+      ? ((e = readdirSync(r)),
+        ensureDirSync(t),
+        void e.forEach((e) => {
+          copyDirSync(join(r, e), join(t, e));
+        }))
+      : (ensureDirSync(dirname(t)), copyFileSync(r, t))
+    : 0;
+}
+function compressUuid(e, r = true) {
+  return getEditorExtends().UuidUtils.compressUuid(e, r);
+}
+function decompressUuid(e) {
+  return getEditorExtends().UuidUtils.decompressUuid(e);
+}
+function getUuidFromPath(e) {
+  return getEditorExtends().UuidUtils.getUuidFromLibPath(e);
+}
+function nameToSubId(e) {
+  return getEditorExtends().UuidUtils.nameToSubId(e);
+}
+function getResImportPath(e, r, t = ".json") {
+  return join(e, Build.IMPORT_HEADER, r.substr(0, 2), r + t);
+}
+function getResRawAssetsPath(e, r, t) {
+  return join(e, Build.NATIVE_HEADER, r.substr(0, 2), r + t);
+}
+function toBabelModules(e) {
+  return e !== "esm" && e;
+}
+async function transformCode(e, r) {
+  var { loose: r, importMapFormat } = r;
+
+  var e = await babel.transformAsync(e, {
+    presets: [
+      [
+        preset_env_1.default,
+        {
+          modules: importMapFormat
+            ? toBabelModules(importMapFormat)
+            : undefined,
+          loose: r == null || r,
+        },
+      ],
+    ],
+  });
+
+  if (e && e.code) {
+    return e.code;
+  }
+  throw new Error("Failed to transform!");
+}
+function compileJS(e, r) {
+  let t;
+  try {
+    var o = require("@babel/core");
+    t = o.transform(e, {
+      ast: false,
+      highlightCode: false,
+      sourceMaps: false,
+      compact: false,
+      filename: r,
+      presets: [require("@babel/preset-env")],
+      plugins: [
+        [require("@babel/plugin-proposal-decorators"), { legacy: true }],
+        [require("@babel/plugin-proposal-class-properties"), { loose: true }],
+        [require("babel-plugin-add-module-exports")],
+        [require("@babel/plugin-proposal-export-default-from")],
+      ],
+    });
+  } catch (e) {
+    e.stack = `Compile ${r} error: ` + e.stack;
+    throw e;
+  }
+  return t.code;
+}
+function getBuildPath(e) {
+  return join(
+    Editor.UI.__protected__.File.resolveToRaw(e.buildPath),
+    e.outputName
+  );
+}
+async function createBundle(s, n, i) {
+  return new Promise((t, o) => {
+    var e = require("babelify");
+    const r = require("browserify")(s);
+
+    if (i && i.excludes) {
+      i.excludes.forEach((e) => {
+        r.exclude(e);
+      });
+    }
+
+    ensureDirSync(dirname(n));
+
+    r.transform(e, {
+      presets: [require("@babel/preset-env")],
+      plugins: [require("@babel/plugin-proposal-class-properties")],
+    }).bundle((e, r) => {
+      if (e) {
+        console.error(e);
+        o(e);
+      } else {
+        writeFileSync(n, new Uint8Array(r), "utf8");
+        t();
+      }
+    });
+  });
+}
+exports.transI18nName = utils_1.transI18nName;
+const HASH_LEN = 5;
+async function appendMd5ToPaths(e) {
+  if (!Array.isArray(e)) {
+    return null;
+  }
+  var r;
+  var t = [];
+  for (const n of (e = e.sort())) {
+    try {
+      r = await readFile(n);
+      t.push(r);
+    } catch (e) {
+      console.error(e);
+      console.error(`readFile {link(${n})}`);
+      continue;
+    }
+  }
+  const o = calcMd5(t);
+  const s = [];
+
+  await Promise.all(
+    e.map((e, r) => {
+      s[r] = patchMd5ToPath(e, o);
+      return rename(e, s[r]);
+    })
+  );
+
+  return { paths: s, hash: o };
+}
+function calcMd5(e) {
+  e = Array.isArray(e) ? e : [e];
+  var r = require("crypto").createHash;
+  const t = r("md5");
+
+  e.forEach((e) => {
+    t.update(e);
+  });
+
+  return t.digest("hex").slice(0, HASH_LEN);
+}
+function patchMd5ToPath(e, r) {
+  e = parse(e);
+  e.base = "";
+  e.name += "." + r;
+  return format(e);
+}
+function getLibraryDir(e) {
+  return e.match(
+    /(.*)[/\\][0-9a-fA-F]{2}[/\\][0-9a-fA-F-]{8,}((@[0-9a-fA-F]{5,})+)?.*/
+  )[1];
+}
+function queryImageAssetFromSubAssetByUuid(e) {
+  return e.split("@")[0];
+}
+exports.quickSpawn = sub_process_manager_1.workerManager.quickSpawn.bind(
+  sub_process_manager_1.workerManager
+);

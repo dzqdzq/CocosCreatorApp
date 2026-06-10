@@ -1,1 +1,54 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,o){void 0===o&&(o=t);var n=Object.getOwnPropertyDescriptor(r,t);n&&("get"in n?r.__esModule:!n.writable&&!n.configurable)||(n={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,o,n)}:function(e,r,t,o){e[o=void 0===o?t:o]=r[t]}),__exportStar=this&&this.__exportStar||function(e,r){for(var t in e)"default"===t||Object.prototype.hasOwnProperty.call(r,t)||__createBinding(r,e,t)},win_process_manage_1=(Object.defineProperty(exports,"__esModule",{value:!0}),exports.macProcess=exports.windowProcess=void 0,__exportStar(require("./process-manage"),exports),require("./win-process-manage")),mac_process_manage_1=(Object.defineProperty(exports,"windowProcess",{enumerable:!0,get:function(){return win_process_manage_1.windowProcess}}),require("./mac-process-manage"));Object.defineProperty(exports,"macProcess",{enumerable:!0,get:function(){return mac_process_manage_1.macProcess}});
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, r, t, o = t) => {
+        var n = Object.getOwnPropertyDescriptor(r, t);
+
+        if (
+          !n ||
+          (!("get" in n) ? !n.writable && !n.configurable : r.__esModule)
+        ) {
+          n = {
+            enumerable: true,
+            get() {
+              return r[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, n);
+      }
+    : (e, r, t, o) => {
+        e[(o = o === undefined ? t : o)] = r[t];
+      });
+
+var __exportStar =
+  (this && this.__exportStar) ||
+  ((e, r) => {
+    for (var t in e) {
+      if (t !== "default" && !Object.prototype.hasOwnProperty.call(r, t)) {
+        __createBinding(r, e, t);
+      }
+    }
+  });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.macProcess = exports.windowProcess = undefined;
+__exportStar(require("./process-manage"), exports);
+var win_process_manage_1 = require("./win-process-manage");
+
+Object.defineProperty(exports, "windowProcess", {
+  enumerable: true,
+  get() {
+    return win_process_manage_1.windowProcess;
+  },
+});
+
+var mac_process_manage_1 = require("./mac-process-manage");
+
+Object.defineProperty(exports, "macProcess", {
+  enumerable: true,
+  get() {
+    return mac_process_manage_1.macProcess;
+  },
+});

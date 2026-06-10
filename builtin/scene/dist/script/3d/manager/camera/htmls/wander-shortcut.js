@@ -1,4 +1,7 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const shortcut_1=require("../../shortcut");exports.default=Editor.Panel.define({style:`
+Object.defineProperty(exports, "__esModule", { value: true });
+const shortcut_1 = require("../../shortcut");
+exports.default = Editor.Panel.define({
+  style: `
         .wander-container {
             position: absolute;
             bottom: 10px;
@@ -81,11 +84,90 @@
             width: 100%;
             height: 4px
         }
-   `,template:`
+   `,
+  template: `
         <div class="wander-container"></div>
-    `,$:{container:".wander-container",shortcut:".wander-shortcut"},methods:{createWanderPadding(e){var t=document.createElement("div");t.className="wander-padding",e.appendChild(t)},createWanderKeyword(e,t,r,a){var n=document.createElement("div");n.className="wander-item-group",e.appendChild(n),n.innerHTML=`
+    `,
+  $: { container: ".wander-container", shortcut: ".wander-shortcut" },
+  methods: {
+    createWanderPadding(e) {
+      var t = document.createElement("div");
+      t.className = "wander-padding";
+      e.appendChild(t);
+    },
+    createWanderKeyword(e, t, r, a) {
+      var n = document.createElement("div");
+      n.className = "wander-item-group";
+      e.appendChild(n);
+
+      n.innerHTML = `
                 <ui-label class="wander-shortcut-text" value='${r}'></ui-label>
                 <div class="wander-key-item">
                    <ui-label class="wander-key ${t}" value='${a}'></ui-label>
                 </div>
-            `},createWanderShortcut(e,r){var t=document.createElement("div"),e=(t.className="wander-item-group",e.appendChild(t),document.createElement("ui-label")),e=(e.className="wander-shortcut-text",e.setAttribute("value",Editor.I18n.t("scene.shortcut.camera_wander")),t.appendChild(e),document.createElement("div"));t.appendChild(e);const a=document.createElement("div");a.className="wander-shortcut",e.appendChild(a),Object.keys(r).sort((e,t)=>r[e].order-r[t].order).forEach((e,t)=>{var r=document.createElement("div");r.className="wander-key",r.setAttribute("data-key",t+""),r.innerText=e.toUpperCase(),a.appendChild(r)})}},ready(){var e=this.$.container;e&&(this.createWanderShortcut(e,shortcut_1.Shortcut.wanderMap),this.createWanderPadding(e),this.createWanderKeyword(e,"wander-speed-key",Editor.I18n.t("scene.shortcut.wander_speed"),"Shift"),this.createWanderPadding(e),this.createWanderKeyword(e,"wander-wheel-key",Editor.I18n.t("scene.shortcut.wander_wheelUp"),"Wheel Up"),this.createWanderPadding(e),this.createWanderKeyword(e,"wander-wheel-key",Editor.I18n.t("scene.shortcut.wander_wheelDown"),"Wheel Down"))}});
+            `;
+    },
+    createWanderShortcut(e, r) {
+      var t = document.createElement("div");
+
+      var e =
+        ((t.className = "wander-item-group"),
+        e.appendChild(t),
+        document.createElement("ui-label"));
+
+      var e =
+        ((e.className = "wander-shortcut-text"),
+        e.setAttribute("value", Editor.I18n.t("scene.shortcut.camera_wander")),
+        t.appendChild(e),
+        document.createElement("div"));
+
+      t.appendChild(e);
+      const a = document.createElement("div");
+      a.className = "wander-shortcut";
+      e.appendChild(a);
+
+      Object.keys(r)
+        .sort((e, t) => r[e].order - r[t].order)
+        .forEach((e, t) => {
+          var r = document.createElement("div");
+          r.className = "wander-key";
+          r.setAttribute("data-key", String(t));
+          r.innerText = e.toUpperCase();
+          a.appendChild(r);
+        });
+    },
+  },
+  ready() {
+    var e = this.$.container;
+
+    if (e) {
+      this.createWanderShortcut(e, shortcut_1.Shortcut.wanderMap);
+      this.createWanderPadding(e);
+
+      this.createWanderKeyword(
+        e,
+        "wander-speed-key",
+        Editor.I18n.t("scene.shortcut.wander_speed"),
+        "Shift"
+      );
+
+      this.createWanderPadding(e);
+
+      this.createWanderKeyword(
+        e,
+        "wander-wheel-key",
+        Editor.I18n.t("scene.shortcut.wander_wheelUp"),
+        "Wheel Up"
+      );
+
+      this.createWanderPadding(e);
+
+      this.createWanderKeyword(
+        e,
+        "wander-wheel-key",
+        Editor.I18n.t("scene.shortcut.wander_wheelDown"),
+        "Wheel Down"
+      );
+    }
+  },
+});

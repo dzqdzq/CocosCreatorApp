@@ -1,1 +1,65 @@
-System.register(["./ui.js","./main.js"],function(o,e){"use strict";var c,r;e&&e.id;return o("bootstrap",async function(o){try{(async function(o){const t=await async function(){var o=window.location.search.substr(1).split("&"),n=await e.import("/socket.io/socket.io.js"),n=n.default();-1===o.indexOf("autoReload=false")&&(n.on("browser:reload",function(){window.location.reload()}),n.on("browser:close",function(){window.close()}),n.on("browser:disconnect",function(){window.location.reload()}));return n}(),n=new c.Ui({devices:o.devices,emit:(o,...n)=>{t.emit(o,...n)}});try{var i=await System.import("cc");n.bindEngine(i),await r.main(n,o)}catch(o){console.error(o)}})(o)}catch(o){console.error(o)}}),{setters:[function(o){c=o},function(o){r=o}],execute:function(){}}});
+System.register(["./ui.js", "./main.js"], (o, e) => {
+  var c;
+  var r;
+
+  if (e) {
+    e.id;
+  }
+
+  o("bootstrap", async (o) => {
+    try {
+      (async (o) => {
+        const t = await (async () => {
+          var o = window.location.search.substr(1).split("&");
+          var n = await e.import("/socket.io/socket.io.js");
+          var n = n.default();
+
+          if (!o.includes("autoReload=false")) {
+            n.on("browser:reload", () => {
+              window.location.reload();
+            });
+
+            n.on("browser:close", () => {
+              window.close();
+            });
+
+            n.on("browser:disconnect", () => {
+              window.location.reload();
+            });
+          }
+
+          return n;
+        })();
+
+        const n = new c.Ui({
+          devices: o.devices,
+          emit: (o, ...n) => {
+            t.emit(o, ...n);
+          },
+        });
+
+        try {
+          var i = await System.import("cc");
+          n.bindEngine(i);
+          await r.main(n, o);
+        } catch (o) {
+          console.error(o);
+        }
+      })(o);
+    } catch (o) {
+      console.error(o);
+    }
+  });
+
+  return {
+    setters: [
+      (o) => {
+        c = o;
+      },
+      (o) => {
+        r = o;
+      },
+    ],
+    execute() {},
+  };
+});

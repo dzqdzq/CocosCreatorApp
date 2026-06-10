@@ -1,1 +1,95 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const texture_base_1=require("./texture-base"),migrations_1=require("./image/migrations"),utils_1=require("../utils"),defaultAutoAtlasUserData={maxWidth:1024,maxHeight:1024,padding:2,allowRotation:!0,forceSquared:!1,powerOfTwo:!1,algorithm:"MaxRects",format:"png",quality:80,contourBleed:!0,paddingBleed:!0,filterUnused:!0,removeTextureInBundle:!0,removeImageInBundle:!0,removeSpriteAtlasInBundle:!0,compressSettings:{},textureSetting:(0,texture_base_1.makeDefaultTextureBaseAssetUserData)()},AutoAtlasHandler={name:"auto-atlas",assetType:"cc.SpriteAtlas",createInfo:{generateMenuInfo(){return[{label:"i18n:ENGINE.assets.newPac",fullFileName:"auto-atlas.pac",template:`db://internal/default_file_content/${AutoAtlasHandler.name}/default.pac`}]}},importer:{version:"1.0.8",migrations:[{version:"1.0.5",migrate:migrations_1.migratePlatformSettings},{version:"1.0.6",migrate:e=>{const t=e.userData;["removeTextureInBundle","removeImageInBundle","removeSpriteAtlasInBundle"].forEach(e=>{"boolean"!=typeof t[e]&&(t[e]=!1)})}},{version:"1.0.8",migrate:e=>{e=e.userData;e.allowRotation||(e.allowRotation=!0),e.algorithm&&"MaxRects"===e.algorithm||(e.algorithm="MaxRects")}}],async import(e){const t=e.userData;Object.keys(defaultAutoAtlasUserData).forEach(e=>{e in t||(t[e]=defaultAutoAtlasUserData[e])});var a=new cc.SpriteAtlas,a=(a.name=e.basename||"",EditorExtends.serialize(a)),a=(await e.saveToLibrary(".json",a),(0,utils_1.getDependUUIDList)(a));return e.setData("depends",a),!0}}};exports.default=AutoAtlasHandler;
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const { makeDefaultTextureBaseAssetUserData } = require("./texture-base");
+
+const migrations_1 = require("./image/migrations");
+
+const { getDependUUIDList } = require("../utils");
+
+const defaultAutoAtlasUserData = {
+  maxWidth: 1024,
+  maxHeight: 1024,
+  padding: 2,
+  allowRotation: true,
+  forceSquared: false,
+  powerOfTwo: false,
+  algorithm: "MaxRects",
+  format: "png",
+  quality: 80,
+  contourBleed: true,
+  paddingBleed: true,
+  filterUnused: true,
+  removeTextureInBundle: true,
+  removeImageInBundle: true,
+  removeSpriteAtlasInBundle: true,
+  compressSettings: {},
+  textureSetting: makeDefaultTextureBaseAssetUserData(),
+};
+
+const AutoAtlasHandler = {
+  name: "auto-atlas",
+  assetType: "cc.SpriteAtlas",
+  createInfo: {
+    generateMenuInfo() {
+      return [
+        {
+          label: "i18n:ENGINE.assets.newPac",
+          fullFileName: "auto-atlas.pac",
+          template: `db://internal/default_file_content/${AutoAtlasHandler.name}/default.pac`,
+        },
+      ];
+    },
+  },
+  importer: {
+    version: "1.0.8",
+    migrations: [
+      { version: "1.0.5", migrate: migrations_1.migratePlatformSettings },
+      {
+        version: "1.0.6",
+        migrate: (e) => {
+          const e_userData = e.userData;
+          [
+            "removeTextureInBundle",
+            "removeImageInBundle",
+            "removeSpriteAtlasInBundle",
+          ].forEach((e) => {
+            if (typeof e_userData[e] != "boolean") {
+              e_userData[e] = false;
+            }
+          });
+        },
+      },
+      {
+        version: "1.0.8",
+        migrate: (e) => {
+          e = e.userData;
+
+          if (!e.allowRotation) {
+            e.allowRotation = true;
+          }
+
+          if (!e.algorithm || e.algorithm !== "MaxRects") {
+            e.algorithm = "MaxRects";
+          }
+        },
+      },
+    ],
+    async import(e) {
+      const e_userData = e.userData;
+      Object.keys(defaultAutoAtlasUserData).forEach((e) => {
+        if (!(e in e_userData)) {
+          e_userData[e] = defaultAutoAtlasUserData[e];
+        }
+      });
+      var a = new cc.SpriteAtlas();
+      var a = ((a.name = e.basename || ""), EditorExtends.serialize(a));
+
+      var a = (await e.saveToLibrary(".json", a), getDependUUIDList(a));
+
+      e.setData("depends", a);
+      return true;
+    },
+  },
+};
+
+exports.default = AutoAtlasHandler;

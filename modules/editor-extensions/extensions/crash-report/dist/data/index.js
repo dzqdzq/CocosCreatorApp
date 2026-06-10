@@ -1,1 +1,48 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.validValue=validValue,exports.createCrashReport=createCrashReport;const os_1=__importDefault(require("os")),utils_1=require("../utils"),path_1=require("path");function validValue(e){return void 0===e?"unknow":e}async function createCrashReport(e){var t=validValue((await Editor.User.getData())?.cocos_uid);return{zipName:`${validValue(e?.param?.msgID)}-${t}-${validValue(e?.time?.getTime())}.zip`,process:validValue(e?.process),details:validValue(e?.details),version:Editor.App.version,userAgent:Editor.App.userAgent,cid:await(0,utils_1.getClientID)(),uid:t,time:validValue(e?.time?.toString()),editorLog:(0,path_1.join)(Editor.Project.path,"./temp/logs/project.log"),buildLog:(0,path_1.join)(Editor.Project.path,"temp","builder","log"),dbLog:(0,path_1.join)(Editor.Project.path,"temp","asset-db","log"),crashLog:(0,path_1.join)(Editor.Project.path,"temp","crash","win32"===process.platform?"reports":"pending"),projectJSON:(0,path_1.join)(Editor.Project.path,"package.json"),arch:os_1.default.arch(),osVersion:os_1.default.version(),platform:os_1.default.platform(),totalmem:os_1.default.totalmem(),freemem:os_1.default.freemem(),uptime:os_1.default.uptime(),packages:(0,utils_1.getPackages)(),cpus:os_1.default.cpus()}}
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validValue = validValue;
+exports.createCrashReport = createCrashReport;
+const os_1 = __importDefault(require("os"));
+
+const { getClientID, getPackages } = require("../utils");
+
+const { join } = require("path");
+
+function validValue(e) {
+  return e === undefined ? "unknow" : e;
+}
+async function createCrashReport(e) {
+  var t = validValue((await Editor.User.getData())?.cocos_uid);
+  return {
+    zipName: `${validValue(e?.param?.msgID)}-${t}-${validValue(
+      e?.time?.getTime()
+    )}.zip`,
+    process: validValue(e?.process),
+    details: validValue(e?.details),
+    version: Editor.App.version,
+    userAgent: Editor.App.userAgent,
+    cid: await getClientID(),
+    uid: t,
+    time: validValue(e?.time?.toString()),
+    editorLog: join(Editor.Project.path, "./temp/logs/project.log"),
+    buildLog: join(Editor.Project.path, "temp", "builder", "log"),
+    dbLog: join(Editor.Project.path, "temp", "asset-db", "log"),
+    crashLog: join(
+      Editor.Project.path,
+      "temp",
+      "crash",
+      process.platform === "win32" ? "reports" : "pending"
+    ),
+    projectJSON: join(Editor.Project.path, "package.json"),
+    arch: os_1.default.arch(),
+    osVersion: os_1.default.version(),
+    platform: os_1.default.platform(),
+    totalmem: os_1.default.totalmem(),
+    freemem: os_1.default.freemem(),
+    uptime: os_1.default.uptime(),
+    packages: getPackages(),
+    cpus: os_1.default.cpus(),
+  };
+}

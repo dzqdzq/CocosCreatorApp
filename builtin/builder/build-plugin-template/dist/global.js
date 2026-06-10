@@ -1,1 +1,3 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.PACKAGE_NAME=void 0,exports.PACKAGE_NAME="cocos-build-template";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PACKAGE_NAME = undefined;
+exports.PACKAGE_NAME = "cocos-build-template";

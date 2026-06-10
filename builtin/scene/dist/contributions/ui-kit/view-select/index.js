@@ -1,4 +1,27 @@
-"use strict";function data(){return{isOpen:!1,label:""}}function mounted(){const t=this;t.label||(t.label=t.options.find(e=>e.name===t.value)?.label)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.watch=exports.computed=exports.props=exports.template=exports.name=void 0,exports.data=data,exports.mounted=mounted,exports.name="view-select",exports.template=`
+function data() {
+  return { isOpen: false, label: "" };
+}
+function mounted() {
+  const t = this;
+
+  if (!t.label) {
+    t.label = t.options.find((e) => e.name === t.value)?.label;
+  }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.watch = undefined;
+exports.computed = undefined;
+exports.props = undefined;
+exports.template = undefined;
+exports.name = undefined;
+
+exports.data = data;
+exports.mounted = mounted;
+exports.name = "view-select";
+
+exports.template = `
 <div class="view-select-container" tabindex="-1"
     @mousedown.prevent
     @focus.prevent="activate()"
@@ -29,4 +52,67 @@
         </ul>
     </div>
 </div>
-`,exports.props={disable:{type:Boolean,default:!1},options:{type:Array,default(){return[]}},value:{type:[String,Number],default:""},placeholder:{type:String,default:""}},exports.computed={},exports.watch={value(t){this.label=this.options.find(e=>e.name===t)?.label},options(e){const t=this;let s=e.find(e=>e.name===t.value);s?t.label=s?.label:(s=e[0],this.selectItem(e[0]))}},exports.methods={toggle(){var e=this;e.isOpen?e.deActivate():e.activate()},activate(){var e=this;e.isOpen||(e.isOpen=!0,e.$el.focus())},deActivate(){var e=this;e.isOpen&&(e.isOpen=!1,e.$el.blur())},selectItem(e){this.$emit("change",e.name),this.isOpen=!1}};
+`;
+
+exports.props = {
+  disable: { type: Boolean, default: false },
+  options: {
+    type: Array,
+    default() {
+      return [];
+    },
+  },
+  value: { type: [String, Number], default: "" },
+  placeholder: { type: String, default: "" },
+};
+
+exports.computed = {};
+
+exports.watch = {
+  value(t) {
+    this.label = this.options.find((e) => e.name === t)?.label;
+  },
+  options(e) {
+    const t = this;
+    let s = e.find((e) => e.name === t.value);
+
+    if (s) {
+      t.label = s?.label;
+    } else {
+      s = e[0];
+      this.selectItem(e[0]);
+    }
+  },
+};
+
+exports.methods = {
+  toggle() {
+    var e = this;
+
+    if (e.isOpen) {
+      e.deActivate();
+    } else {
+      e.activate();
+    }
+  },
+  activate() {
+    var e = this;
+
+    if (!e.isOpen) {
+      e.isOpen = true;
+      e.$el.focus();
+    }
+  },
+  deActivate() {
+    var e = this;
+
+    if (e.isOpen) {
+      e.isOpen = false;
+      e.$el.blur();
+    }
+  },
+  selectItem(e) {
+    this.$emit("change", e.name);
+    this.isOpen = false;
+  },
+};

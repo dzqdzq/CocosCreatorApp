@@ -1,1 +1,37 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const cc_1=require("cc"),new_gen_anim_1=require("cc/editor/new-gen-anim"),fs_extra_1=require("fs-extra"),utils_1=require("../utils"),AnimationMaskHandler={name:"animation-mask",assetType:cc_1.js.getClassName(new_gen_anim_1.AnimationMask),createInfo:{generateMenuInfo(){return[{label:"i18n:ENGINE.assets.newAnimationMask",fullFileName:"Animation Mask.animask",template:`db://internal/default_file_content/${AnimationMaskHandler.name}/default.animask`,group:"animation"}]}},importer:{version:"1.0.0",async import(e){var a=await(0,fs_extra_1.readFile)(e.source,"utf8"),a=(await e.saveToLibrary(".json",a),(0,utils_1.getDependUUIDList)(a));return e.setData("depends",a),!0}}};exports.default=AnimationMaskHandler;
+Object.defineProperty(exports, "__esModule", { value: true });
+const cc_1 = require("cc");
+const new_gen_anim_1 = require("cc/editor/new-gen-anim");
+
+const { readFile } = require("fs-extra");
+
+const { getDependUUIDList } = require("../utils");
+
+const AnimationMaskHandler = {
+  name: "animation-mask",
+  assetType: cc_1.js.getClassName(new_gen_anim_1.AnimationMask),
+  createInfo: {
+    generateMenuInfo() {
+      return [
+        {
+          label: "i18n:ENGINE.assets.newAnimationMask",
+          fullFileName: "Animation Mask.animask",
+          template: `db://internal/default_file_content/${AnimationMaskHandler.name}/default.animask`,
+          group: "animation",
+        },
+      ];
+    },
+  },
+  importer: {
+    version: "1.0.0",
+    async import(e) {
+      var a = await readFile(e.source, "utf8");
+
+      var a = (await e.saveToLibrary(".json", a), getDependUUIDList(a));
+
+      e.setData("depends", a);
+      return true;
+    },
+  },
+};
+
+exports.default = AnimationMaskHandler;

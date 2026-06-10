@@ -1,1 +1,5 @@
-"use strict";module.exports={auto_tooltip:"Automatically runs all tests within the extension",play_tooltip:"Run the current test",pause_tooltip:"Pause the current test"};
+module.exports = {
+  auto_tooltip: "Automatically runs all tests within the extension",
+  play_tooltip: "Run the current test",
+  pause_tooltip: "Pause the current test",
+};

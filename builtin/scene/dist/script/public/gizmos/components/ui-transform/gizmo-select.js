@@ -1,1 +1,88 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0});const cc_1=require("cc"),external_1=__importDefault(require("../../utils/external")),base_1=require("../base"),rectangle_controller_1=require("../../node/rectangle-controller"),NodeUtils=external_1.default.NodeUtils,tempQuat_a=new cc_1.Quat;class UITransformComponentGizmo extends base_1.SelectGizmo{_controller;init(){this.createController()}onShow(){this._controller.show(),this.updateController()}onHide(){this._controller.hide()}createController(){this._controller=new rectangle_controller_1.RectangleController(this.getGizmoRoot()),this._controller.setColor(new cc.Color(0,153,255)),this._controller.onControllerMouseDown=this.onControllerMouseDown.bind(this),this._controller.onControllerMouseMove=this.onControllerMouseMove.bind(this),this._controller.onControllerMouseUp=this.onControllerMouseUp.bind(this)}onControllerMouseDown(){}onControllerMouseMove(){}onControllerMouseUp(){}onGizmoKeyDown(t){}onGizmoKeyUp(t){}updateControllerTransform(){var t,o,e;this._isInitialized&&null!=this.target&&(e=this.target.node,NodeUtils.hasComponentInSelfAndParent(e,["cc.UISkew"])?this._controller.setWorldMatrix(e.worldMatrix):(t=NodeUtils.getWorldPosition3D(e),o=tempQuat_a,NodeUtils.getWorldRotation3D(e,o),e=NodeUtils.getWorldScale3D(e),this._controller.setPosition(t),this._controller.setRotation(o),this._controller.setScale(e)))}updateControllerData(){var t,o,e;this._isInitialized&&null!=this.target&&((o=this.target)?(t=o.contentSize,o=o.anchorPoint,(e=cc.v3()).x=(.5-o.x)*t.width,e.y=(.5-o.y)*t.height,this._controller.updateSize(e,cc.v2(t.width,t.height))):this._controller.hide())}updateController(){this.updateControllerTransform(),this.updateControllerData()}onTargetUpdate(){this.updateController()}onNodeChanged(){this.updateController()}}exports.default=UITransformComponentGizmo;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((t) => (t && t.__esModule ? t : { default: t }));
+Object.defineProperty(exports, "__esModule", { value: true });
+const cc_1 = require("cc");
+const external_1 = __importDefault(require("../../utils/external"));
+const base_1 = require("../base");
+const rectangle_controller_1 = require("../../node/rectangle-controller");
+const NodeUtils = external_1.default.NodeUtils;
+const tempQuat_a = new cc_1.Quat();
+class UITransformComponentGizmo extends base_1.SelectGizmo {
+  _controller;
+  init() {
+    this.createController();
+  }
+  onShow() {
+    this._controller.show();
+    this.updateController();
+  }
+  onHide() {
+    this._controller.hide();
+  }
+  createController() {
+    this._controller = new rectangle_controller_1.RectangleController(
+      this.getGizmoRoot()
+    );
+
+    this._controller.setColor(new cc.Color(0, 153, 255));
+    this._controller.onControllerMouseDown =
+      this.onControllerMouseDown.bind(this);
+    this._controller.onControllerMouseMove =
+      this.onControllerMouseMove.bind(this);
+    this._controller.onControllerMouseUp = this.onControllerMouseUp.bind(this);
+  }
+  onControllerMouseDown() {}
+  onControllerMouseMove() {}
+  onControllerMouseUp() {}
+  onGizmoKeyDown(t) {}
+  onGizmoKeyUp(t) {}
+  updateControllerTransform() {
+    var t;
+    var o;
+    var e;
+
+    if (this._isInitialized && this.target != null) {
+      e = this.target.node;
+
+      NodeUtils.hasComponentInSelfAndParent(e, ["cc.UISkew"])
+        ? this._controller.setWorldMatrix(e.worldMatrix)
+        : ((t = NodeUtils.getWorldPosition3D(e)),
+          (o = tempQuat_a),
+          NodeUtils.getWorldRotation3D(e, o),
+          (e = NodeUtils.getWorldScale3D(e)),
+          this._controller.setPosition(t),
+          this._controller.setRotation(o),
+          this._controller.setScale(e));
+    }
+  }
+  updateControllerData() {
+    var t;
+    var o;
+    var e;
+
+    if (this._isInitialized && this.target != null) {
+      if ((o = this.target)) {
+        t = o.contentSize;
+        o = o.anchorPoint;
+        e = cc.v3();
+        e.x = (0.5 - o.x) * t.width;
+        e.y = (0.5 - o.y) * t.height;
+        this._controller.updateSize(e, cc.v2(t.width, t.height));
+      } else {
+        this._controller.hide();
+      }
+    }
+  }
+  updateController() {
+    this.updateControllerTransform();
+    this.updateControllerData();
+  }
+  onTargetUpdate() {
+    this.updateController();
+  }
+  onNodeChanged() {
+    this.updateController();
+  }
+}
+exports.default = UITransformComponentGizmo;

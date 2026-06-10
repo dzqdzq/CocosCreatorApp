@@ -1,4 +1,73 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.update=exports.ready=exports.template=exports.$=exports.platformSettings=void 0;const const_1=require("./utils/const");let settings;async function ready(t){settings=await Editor.Profile.getConfig(const_1.PLATFORM_NAME,"options."+t.platform),settings=Object.assign({},exports.platformSettings,settings),Object.assign(settings,t.packages[const_1.PLATFORM_NAME]||{}),t.packages[const_1.PLATFORM_NAME]=settings;let o=this;o.dispatch("update","packages."+const_1.PLATFORM_NAME,settings),new(require("vue/dist/vue.js"))({el:o.$.root,data:function(){return settings},methods:{i18n(t){return Editor.I18n.t(const_1.PLATFORM_NAME+"."+t)},onChange(t){var t=t.target,i=t.getAttribute("id");settings[i]=t.value,o.dispatch("update",`packages.${const_1.PLATFORM_NAME}.`+i,settings[i])}}})}async function update(t,i){i&&!i.startsWith("packages."+const_1.PLATFORM_NAME)||(settings=Object.assign(settings,t.packages[const_1.PLATFORM_NAME]))}exports.platformSettings={runtimeVersion:"1.0.0",deviceOrientation:"portrait",statusbarDisplay:!1,startSceneAssetBundle:!1,workerPath:"",XHRTimeout:6e4,WSTimeout:6e4,uploadFileTimeout:6e4,downloadFileTimeout:6e4,cameraPermissionHint:"",userInfoPermissionHint:"",locationPermissionHint:"",albumPermissionHint:""},exports.$={root:".root"},exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.update = undefined;
+exports.ready = undefined;
+exports.template = undefined;
+exports.$ = undefined;
+exports.platformSettings = undefined;
+
+const const_1 = require("./utils/const");
+let settings;
+async function ready(t) {
+  settings = await Editor.Profile.getConfig(
+    const_1.PLATFORM_NAME,
+    "options." + t.platform
+  );
+
+  settings = Object.assign({}, exports.platformSettings, settings);
+  Object.assign(settings, t.packages[const_1.PLATFORM_NAME] || {});
+  t.packages[const_1.PLATFORM_NAME] = settings;
+  let o = this;
+  o.dispatch("update", "packages." + const_1.PLATFORM_NAME, settings);
+
+  new (require("vue/dist/vue.js"))({
+    el: o.$.root,
+    data() {
+      return settings;
+    },
+    methods: {
+      i18n(t) {
+        return Editor.I18n.t(const_1.PLATFORM_NAME + "." + t);
+      },
+      onChange(t) {
+        var t = t.target;
+        var i = t.getAttribute("id");
+        settings[i] = t.value;
+
+        o.dispatch(
+          "update",
+          `packages.${const_1.PLATFORM_NAME}.` + i,
+          settings[i]
+        );
+      },
+    },
+  });
+}
+async function update(t, i) {
+  if (!i || i.startsWith("packages." + const_1.PLATFORM_NAME)) {
+    settings = Object.assign(settings, t.packages[const_1.PLATFORM_NAME]);
+  }
+}
+
+exports.platformSettings = {
+  runtimeVersion: "1.0.0",
+  deviceOrientation: "portrait",
+  statusbarDisplay: false,
+  startSceneAssetBundle: false,
+  workerPath: "",
+  XHRTimeout: 60000 /* 6e4 */,
+  WSTimeout: 60000 /* 6e4 */,
+  uploadFileTimeout: 60000 /* 6e4 */,
+  downloadFileTimeout: 60000 /* 6e4 */,
+  cameraPermissionHint: "",
+  userInfoPermissionHint: "",
+  locationPermissionHint: "",
+  albumPermissionHint: "",
+};
+
+exports.$ = { root: ".root" };
+
+exports.template = `
 <div class="root" @change="onChange">
     <!--
     <ui-prop>
@@ -64,4 +133,7 @@
     </ui-section>
     -->
 </div>
-`,exports.ready=ready,exports.update=update;
+`;
+
+exports.ready = ready;
+exports.update = update;

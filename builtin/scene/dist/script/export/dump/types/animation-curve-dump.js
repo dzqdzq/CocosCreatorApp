@@ -1,1 +1,83 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,n){void 0===n&&(n=t);var u=Object.getOwnPropertyDescriptor(r,t);u&&("get"in u?r.__esModule:!u.writable&&!u.configurable)||(u={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,n,u)}:function(e,r,t,n){e[n=void 0===n?t:n]=r[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,r){Object.defineProperty(e,"default",{enumerable:!0,value:r})}:function(e,r){e.default=r}),__importStar=this&&this.__importStar||function(){var u=function(e){return(u=Object.getOwnPropertyNames||function(e){var r,t=[];for(r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[t.length]=r);return t})(e)};return function(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t=u(e),n=0;n<t.length;n++)"default"!==t[n]&&__createBinding(r,e,t[n]);return __setModuleDefault(r,e),r}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.animationCurveDump=void 0;const real_curve_dump_1=require("./real-curve-dump"),cc=__importStar(require("cc"));class AnimationCurveDump{encode(e,r,t){real_curve_dump_1.realCurveDump.encode(e._internalCurve,r,t)}decode(e,r,t,n){"cc.CurveRange"!==cc.js.getClassName(e)&&(e=e[r.key]._internalCurve,real_curve_dump_1.realCurveDump.decodeByDump(t,e,n))}}exports.animationCurveDump=new AnimationCurveDump;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, r, t, n = t) => {
+        var u = Object.getOwnPropertyDescriptor(r, t);
+
+        if (
+          !u ||
+          (!("get" in u) ? !u.writable && !u.configurable : r.__esModule)
+        ) {
+          u = {
+            enumerable: true,
+            get() {
+              return r[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, n, u);
+      }
+    : (e, r, t, n) => {
+        e[(n = n === undefined ? t : n)] = r[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, r) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: r });
+      }
+    : (e, r) => {
+        e.default = r;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var u = (e) =>
+      (u =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var r;
+          var t = [];
+          for (r in e) {
+            if (Object.prototype.hasOwnProperty.call(e, r)) {
+              t[t.length] = r;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var r = {};
+      if (e != null) {
+        for (var t = u(e), n = 0; n < t.length; n++) {
+          if (t[n] !== "default") {
+            __createBinding(r, e, t[n]);
+          }
+        }
+      }
+      __setModuleDefault(r, e);
+      return r;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.animationCurveDump = undefined;
+const real_curve_dump_1 = require("./real-curve-dump");
+const cc = __importStar(require("cc"));
+class AnimationCurveDump {
+  encode(e, r, t) {
+    real_curve_dump_1.realCurveDump.encode(e._internalCurve, r, t);
+  }
+  decode(e, r, t, n) {
+    if (cc.js.getClassName(e) !== "cc.CurveRange") {
+      e = e[r.key]._internalCurve;
+      real_curve_dump_1.realCurveDump.decodeByDump(t, e, n);
+    }
+  }
+}
+exports.animationCurveDump = new AnimationCurveDump();

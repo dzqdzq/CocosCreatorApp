@@ -1,1 +1,47 @@
-const{join,relative}=require("path");exports.getSourcesFromPackageJson=function(t,o,e=!0){const i=[];function n(n){if("string"==typeof n){let t=relative(o,n);e&&(t=t.replace(".js",".ts")),i.push(t)}}var r,s=t.panels;if(s)for(const u in s)if(Object.hasOwnProperty.call(s,u)){const c=s[u].main;c&&n(c)}const c=t.main;return c&&n(c),t.contributions&&((r=t.contributions.scene)&&(r=r.script)&&n(r),(r=t.contributions.builder)&&n(r),(r=t.contributions.preferences)&&(r=r.custom)&&n(r),r=t.contributions.project)&&(t=r.custom)&&n(t),i};
+const { join, relative } = require("path");
+exports.getSourcesFromPackageJson = (t, o, e = true) => {
+  const i = [];
+  function n(n) {
+    if (typeof n == "string") {
+      let t = relative(o, n);
+
+      if (e) {
+        t = t.replace(".js", ".ts");
+      }
+
+      i.push(t);
+    }
+  }
+  var r;
+
+  var { panels, main } = t;
+
+  if (panels) {
+    for (const u in panels) {
+      if (Object.hasOwnProperty.call(panels, u)) {
+        const main = panels[u].main;
+
+        if (main) {
+          n(main);
+        }
+      }
+    }
+  }
+
+  if (main) {
+    n(main);
+  }
+
+  if (
+    t.contributions &&
+    ((r = t.contributions.scene) && (r = r.script) && n(r),
+    (r = t.contributions.builder) && n(r),
+    (r = t.contributions.preferences) && (r = r.custom) && n(r),
+    (r = t.contributions.project)) &&
+    (t = r.custom)
+  ) {
+    n(t);
+  }
+
+  return i;
+};

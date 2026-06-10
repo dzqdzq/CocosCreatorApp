@@ -1,1 +1,12 @@
-"use strict";module.exports={title:"Facebook Instant Games",options:{web_debugger:"VConsole",web_debugger_tooltip:"Similar to devtools mini version, used to help debug.",orientation:"Orientation",auto:"Auto",portrait:"Portrait",landscape:"Landscape"}};
+module.exports = {
+  title: "Facebook Instant Games",
+  options: {
+    web_debugger: "VConsole",
+    web_debugger_tooltip:
+      "Similar to devtools mini version, used to help debug.",
+    orientation: "Orientation",
+    auto: "Auto",
+    portrait: "Portrait",
+    landscape: "Landscape",
+  },
+};

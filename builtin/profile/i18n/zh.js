@@ -1,1 +1,1 @@
-"use strict";module.exports={title:"Profile",description:"用于编辑器存储数据插件"};
+module.exports = { title: "Profile", description: "用于编辑器存储数据插件" };

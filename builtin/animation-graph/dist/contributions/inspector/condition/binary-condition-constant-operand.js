@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const template = `
     <div>
         <ui-num-input v-if="isInteger" class="constant" step="1"
             :value="value"
@@ -11,4 +13,11 @@
             @change="$emit('value-changed', parseFloat($event.target.value))"
         ></ui-num-input>
     </div>
-`,binaryConditionConstantOperand={props:["value","isInteger"],template:template};exports.default=binaryConditionConstantOperand;
+`;
+
+const binaryConditionConstantOperand = {
+  props: ["value", "isInteger"],
+  template,
+};
+
+exports.default = binaryConditionConstantOperand;

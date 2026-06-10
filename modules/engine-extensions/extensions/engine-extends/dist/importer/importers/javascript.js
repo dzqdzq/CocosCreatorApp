@@ -1,1 +1,101 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.JavascriptImporter=void 0;const asset_db_1=require("@editor/asset-db"),fs_extra_1=require("fs-extra"),script_compiler_1=require("./utils/script-compiler"),utils_1=require("../utils");class JavascriptImporter extends asset_db_1.Importer{constructor(e){super(e)}get version(){return"4.0.23"}get name(){return"javascript"}get assetType(){return"cc.Script"}get migrations(){return[{version:"4.0.22",migrate(e){var r=e.userData,e=e.userData;!0===r.simulateGlobals?e.simulateGlobals=void 0:!1!==r.simulateGlobals&&void 0!==r.simulateGlobals||(e.simulateGlobals=[])}},{version:"4.0.23",migrate(e){e=e.userData;void 0!==e.importAsPlugin&&delete e.importAsPlugin}}]}async import(r){if(!(r instanceof asset_db_1.Asset))return console.error("Expect non-virtual asset"),!1;var e=r.userData;try{return!e.isPlugin||await this._importPluginScript(r)}catch(e){return console.error(utils_1.i18nTranslate("asset-db.importers.javascript.transform_failure",{path:r.source,reason:e}),utils_1.linkToAssetTarget(r.uuid)),!1}}async _importPluginScript(e){var r=await fs_extra_1.readFile(e.source,"utf-8"),{executionScope:t="enclosed",experimentalHideCommonJs:s,experimentalHideAmd:a,simulateGlobals:i}=e.userData;return"global"===t?await e.saveToLibrary(".js",r):(t=void 0===i?["self","window","global","globalThis"]:i,i=await script_compiler_1.transformPluginScript(r,{simulateGlobals:t,hideCommonJs:null==s||s,hideAmd:null==a||a}),await e.saveToLibrary(".js",i.code)),!0}}exports.JavascriptImporter=JavascriptImporter;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.JavascriptImporter = undefined;
+const asset_db_1 = require("@editor/asset-db");
+const fs_extra_1 = require("fs-extra");
+const script_compiler_1 = require("./utils/script-compiler");
+const utils_1 = require("../utils");
+class JavascriptImporter extends asset_db_1.Importer {
+  constructor(e) {
+    super(e);
+  }
+  get version() {
+    return "4.0.23";
+  }
+  get name() {
+    return "javascript";
+  }
+  get assetType() {
+    return "cc.Script";
+  }
+  get migrations() {
+    return [
+      {
+        version: "4.0.22",
+        migrate(e) {
+          var e_userData = e.userData;
+          var e = e.userData;
+
+          if (e_userData.simulateGlobals === true) {
+            e.simulateGlobals = undefined;
+          } else if (
+            e_userData.simulateGlobals === false ||
+            e_userData.simulateGlobals === undefined
+          ) {
+            e.simulateGlobals = [];
+          }
+        },
+      },
+      {
+        version: "4.0.23",
+        migrate(e) {
+          e = e.userData;
+
+          if (e.importAsPlugin !== undefined) {
+            delete e.importAsPlugin;
+          }
+        },
+      },
+    ];
+  }
+  async import(r) {
+    if (!(r instanceof asset_db_1.Asset)) {
+      console.error("Expect non-virtual asset");
+      return false;
+    }
+    var r_userData = r.userData;
+    try {
+      return !r_userData.isPlugin || (await this._importPluginScript(r));
+    } catch (e) {
+      console.error(
+        utils_1.i18nTranslate(
+          "asset-db.importers.javascript.transform_failure",
+          { path: r.source, reason: e }
+        ),
+        utils_1.linkToAssetTarget(r.uuid)
+      );
+
+      return false;
+    }
+  }
+  async _importPluginScript(e) {
+    var r = await fs_extra_1.readFile(e.source, "utf-8");
+
+    var {
+      executionScope = "enclosed",
+      experimentalHideCommonJs,
+      experimentalHideAmd,
+      simulateGlobals,
+    } = e.userData;
+
+    if (executionScope === "global") {
+      await e.saveToLibrary(".js", r);
+    } else {
+      executionScope =
+        simulateGlobals === undefined
+          ? ["self", "window", "global", "globalThis"]
+          : simulateGlobals;
+
+      simulateGlobals = await script_compiler_1.transformPluginScript(r, {
+        simulateGlobals: executionScope,
+        hideCommonJs:
+          experimentalHideCommonJs == null || experimentalHideCommonJs,
+        hideAmd: experimentalHideAmd == null || experimentalHideAmd,
+      });
+
+      await e.saveToLibrary(".js", simulateGlobals.code);
+    }
+
+    return true;
+  }
+}
+exports.JavascriptImporter = JavascriptImporter;

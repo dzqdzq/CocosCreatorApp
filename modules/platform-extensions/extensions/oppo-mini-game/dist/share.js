@@ -1,1 +1,21 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.subpackagePrefix=exports.ICON_NAME=exports.Paths=exports.ENGINE_PLUGIN_NAME=exports.PLATFORM=void 0;const path_1=require("path");exports.PLATFORM="oppo-mini-game",exports.ENGINE_PLUGIN_NAME="cocos-library",exports.Paths={temp:(0,path_1.join)(Editor.Project.path,"temp","builder",exports.PLATFORM,"temp"),packPath:(0,path_1.join)(Editor.App.path,"../tools/quickgame-toolkit"),internalTemplateDir:(0,path_1.join)(__dirname,"../static/build-template")},exports.ICON_NAME="logo",exports.subpackagePrefix="usr_";
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.subpackagePrefix = undefined;
+exports.ICON_NAME = undefined;
+exports.Paths = undefined;
+exports.ENGINE_PLUGIN_NAME = undefined;
+exports.PLATFORM = undefined;
+
+const { join } = require("path");
+
+exports.PLATFORM = "oppo-mini-game";
+exports.ENGINE_PLUGIN_NAME = "cocos-library";
+
+exports.Paths = {
+  temp: join(Editor.Project.path, "temp", "builder", exports.PLATFORM, "temp"),
+  packPath: join(Editor.App.path, "../tools/quickgame-toolkit"),
+  internalTemplateDir: join(__dirname, "../static/build-template"),
+};
+
+exports.ICON_NAME = "logo";
+exports.subpackagePrefix = "usr_";

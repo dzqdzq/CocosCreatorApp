@@ -1,1 +1,10 @@
-"use strict";var TangentMode;Object.defineProperty(exports,"__esModule",{value:!0}),exports.TangentMode=void 0,function(e){e[e.AUTO=0]="AUTO",e[e.USER=1]="USER",e[e.BREAK=2]="BREAK",e[e.NONE=3]="NONE"}(TangentMode||(exports.TangentMode=TangentMode={}));
+var TangentMode;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TangentMode = undefined;
+
+((e) => {
+  e[(e.AUTO = 0)] = "AUTO";
+  e[(e.USER = 1)] = "USER";
+  e[(e.BREAK = 2)] = "BREAK";
+  e[(e.NONE = 3)] = "NONE";
+})(TangentMode || (exports.TangentMode = TangentMode = {}));

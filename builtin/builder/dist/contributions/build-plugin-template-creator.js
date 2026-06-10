@@ -1,1 +1,32 @@
-"use strict";const fs_extra_1=require("fs-extra"),path_1=require("path"),packages={methods:{async create(s,e){var t=s.dist;e.title=`i18n:${s.name}.title`,e.description=`i18n:${s.name}.description`,[(0,path_1.join)(t,"source","global.ts"),(0,path_1.join)(t,"dist","global.js"),(0,path_1.join)(t,"@types","index.d.ts")].forEach(e=>{let t=(0,fs_extra_1.readFileSync)(e,{encoding:"utf-8"});t=t.replace("PACKAGE_NAME = 'cocos-build-template';",`PACKAGE_NAME = '${s.name}';`),(0,fs_extra_1.outputFileSync)(e,t)}),console.log(`create build extension in ${t} success`)}}};module.exports=packages;
+const { readFileSync, outputFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const packages = {
+  methods: {
+    async create(s, e) {
+      var s_dist = s.dist;
+      e.title = `i18n:${s.name}.title`;
+      e.description = `i18n:${s.name}.description`;
+
+      [
+        join(s_dist, "source", "global.ts"),
+        join(s_dist, "dist", "global.js"),
+        join(s_dist, "@types", "index.d.ts"),
+      ].forEach((e) => {
+        let t = readFileSync(e, { encoding: "utf-8" });
+
+        t = t.replace(
+          "PACKAGE_NAME = 'cocos-build-template';",
+          `PACKAGE_NAME = '${s.name}';`
+        );
+
+        outputFileSync(e, t);
+      });
+
+      console.log(`create build extension in ${s_dist} success`);
+    },
+  },
+};
+
+module.exports = packages;

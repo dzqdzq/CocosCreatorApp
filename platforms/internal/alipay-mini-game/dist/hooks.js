@@ -1,1 +1,238 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,i,r){void 0===r&&(r=i),Object.defineProperty(e,r,{enumerable:!0,get:function(){return t[i]}})}:function(e,t,i,r){e[r=void 0===r?i:r]=t[i]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var i in e)"default"!==i&&Object.prototype.hasOwnProperty.call(e,i)&&__createBinding(t,e,i);return __setModuleDefault(t,e),t},__awaiter=this&&this.__awaiter||function(e,n,s,l){return new(s=s||Promise)(function(i,t){function r(e){try{o(l.next(e))}catch(e){t(e)}}function a(e){try{o(l.throw(e))}catch(e){t(e)}}function o(e){var t;e.done?i(e.value):((t=e.value)instanceof s?t:new s(function(e){e(t)})).then(r,a)}o((l=l.apply(e,n||[])).next())})},__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.onAfterBuild=exports.onBeforeCompressSettings=exports.onAfterInit=exports.throwError=void 0;const fs_extra_1=require("fs-extra"),path_1=require("path"),ejs_1=__importDefault(require("ejs")),Editor=__importStar(require("editor")),globby=require("globby");function onAfterInit(i,r,a){return __awaiter(this,void 0,void 0,function*(){Editor.Metrics.trackEvent({category:"Project",action:"BetaPlatforms",label:"alipay-minigame"}),window.__manager.taskManager.debug||fs_extra_1.emptyDirSync(r.paths.dir);let e=i.packages["alipay-mini-game"].remoteUrl||"";e&&!e.endsWith("/")&&(e+="/"),Object.assign(i.appTemplateData,{showFPS:!1,server:e}),i.moveRemoteBundleScript=!0,Object.assign(i.buildEngineParam,{platform:"ALIPAY"}),i.buildScriptParam.importMapFormat="commonjs",i.buildScriptParam.polyfills=i.packages["alipay-mini-game"].polyfills,i.buildScriptParam.system={preset:"commonjs-like"},-1!==i.includeModules.indexOf("gfx-webgl2")&&(i.includeModules.splice(i.includeModules.indexOf("gfx-webgl2"),1),i.assetSerializeOptions["cc.EffectAsset"].glsl3=!1),i.assetSerializeOptions.exportCCON=!0;var t={orientation:i.packages["alipay-mini-game"].deviceOrientation,remoteServerAddress:i.packages["alipay-mini-game"].remoteUrl};a.__addStaticsInfo(t)})}function onBeforeCompressSettings(e,t,i){return __awaiter(this,void 0,void 0,function*(){t.settings.orientation=e.packages["alipay-mini-game"].deviceOrientation})}function onAfterBuild(i,r,e){return __awaiter(this,void 0,void 0,function*(){var e,t;r.paths.dir&&(t=(yield Editor.Message.request("engine","query-info")).path,t=path_1.join(t,"platforms/minigame"),i.buildEngineParam.engineName,e=path_1.join(__dirname,"../static/build-template"),copyAdapter(t,r.paths.dir),this.getTaskResult("build-task/script"),t={polyfillsBundleFile:r.paths.polyfillsJs&&Build.Utils.relativeUrl(r.paths.dir,r.paths.polyfillsJs)||!1,systemJsBundleFile:Build.Utils.relativeUrl(r.paths.dir,r.paths.systemJs),importMapFile:Build.Utils.relativeUrl(r.paths.dir,r.paths.importMap),applicationJs:"./"+Build.Utils.relativeUrl(r.paths.dir,r.paths.applicationJS)},t=yield ejs_1.default.renderFile(path_1.join(e,"game.ejs"),t),fs_extra_1.writeFileSync(path_1.join(r.paths.dir,"game.js"),t),t=path_1.join(Build.buildTemplateDir,i.platform),fs_extra_1.existsSync(t)&&(fs_extra_1.copySync(t,r.paths.dir),console.debug(`Use build-template {link(${t})}.`)),(e=fs_extra_1.readJSONSync(path_1.join(e,"game.json"))).screenOrientation=i.packages["alipay-mini-game"].deviceOrientation,t=path_1.join(t,"game.json"),fs_extra_1.existsSync(t)&&(t=fs_extra_1.readJSONSync(t),Object.assign(e,t)),t=path_1.join(r.paths.dir,"game.json"),fs_extra_1.writeJSONSync(t,e))})}function copyAdapter(i,r){return __awaiter(this,void 0,void 0,function*(){var e=yield globby(path_1.join(i,"common/**/*"),{nodir:!0}),e=(yield Promise.all(e.map(e=>{var t=compileJS(fs_extra_1.readFileSync(e,"utf8"),e),e=path_1.relative(i,e),e=path_1.join(r,"libs",e);fs_extra_1.outputFileSync(e,t,"utf8")})).catch(e=>{e.stack="BuildWechatLibTemplate error: "+e.stack,console.error(e)}),yield globby(path_1.join(i,"platforms/alipay/wrapper/**/*"),{nodir:!0}));yield Promise.all(e.map(e=>{var t=compileJS(fs_extra_1.readFileSync(e,"utf8"),e),e=path_1.relative(path_1.join(i,"platforms/alipay/"),e),e=path_1.join(r,"libs",e);fs_extra_1.outputFileSync(e,t,"utf8")})).catch(e=>{e.stack="BuildWechatLibTemplate error: "+e.stack,console.error(e)})})}function compileJS(e,t){let i;try{var r=require("@babel/core");i=r.transform(e,{ast:!1,highlightCode:!1,sourceMaps:!1,compact:!1,filename:t,presets:[require("@babel/preset-env")],plugins:[[require("@babel/plugin-proposal-decorators"),{legacy:!0}],[require("@babel/plugin-proposal-class-properties"),{loose:!0}],[require("babel-plugin-add-module-exports")],[require("@babel/plugin-proposal-export-default-from")]]})}catch(e){throw e.stack=`Compile ${name} error: `+e.stack,e}return i.code}exports.throwError=!0,exports.onAfterInit=onAfterInit,exports.onBeforeCompressSettings=onBeforeCompressSettings,exports.onAfterBuild=onAfterBuild;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, i, r = i) => {
+        Object.defineProperty(e, r, {
+          enumerable: true,
+          get() {
+            return t[i];
+          },
+        });
+      }
+    : (e, t, i, r) => {
+        e[(r = r === undefined ? i : r)] = t[i];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  ((e) => {
+    if (e && e.__esModule) {
+      return e;
+    }
+    var t = {};
+    if (e != null) {
+      for (var i in e) {
+        if (i !== "default" && Object.prototype.hasOwnProperty.call(e, i)) {
+          __createBinding(t, e, i);
+        }
+      }
+    }
+    __setModuleDefault(t, e);
+    return t;
+  });
+
+var __awaiter =
+  (this && this.__awaiter) ||
+  ((e, n, s, l) =>
+    new (s = s || Promise)((i, t) => {
+      function r(e) {
+        try {
+          o(l.next(e));
+        } catch (e) {
+          t(e);
+        }
+      }
+      function a(e) {
+        try {
+          o(l.throw(e));
+        } catch (e) {
+          t(e);
+        }
+      }
+      function o(e) {
+        var t;
+
+        if (e.done) {
+          i(e.value);
+        } else {
+          ((t = e.value) instanceof s
+            ? t
+            : new s((e) => {
+                e(t);
+              })
+          ).then(r, a);
+        }
+      }
+      o((l = l.apply(e, n || [])).next());
+    }));
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.onAfterBuild = undefined;
+exports.onBeforeCompressSettings = undefined;
+exports.onAfterInit = undefined;
+exports.throwError = undefined;
+
+const fs_extra_1 = require("fs-extra");
+const path_1 = require("path");
+const ejs_1 = __importDefault(require("ejs"));
+const Editor = __importStar(require("editor"));
+const globby = require("globby");
+async function onAfterInit(i, r, a) {
+  Editor.Metrics.trackEvent({
+    category: "Project",
+    action: "BetaPlatforms",
+    label: "alipay-minigame",
+  });
+
+  if (!window.__manager.taskManager.debug) {
+    fs_extra_1.emptyDirSync(r.paths.dir);
+  }
+
+  let e = i.packages["alipay-mini-game"].remoteUrl || "";
+
+  if (e && !e.endsWith("/")) {
+    e += "/";
+  }
+
+  Object.assign(i.appTemplateData, { showFPS: false, server: e });
+  i.moveRemoteBundleScript = true;
+  Object.assign(i.buildEngineParam, { platform: "ALIPAY" });
+  i.buildScriptParam.importMapFormat = "commonjs";
+  i.buildScriptParam.polyfills = i.packages["alipay-mini-game"].polyfills;
+  i.buildScriptParam.system = { preset: "commonjs-like" };
+
+  if (i.includeModules.includes("gfx-webgl2")) {
+    i.includeModules.splice(i.includeModules.indexOf("gfx-webgl2"), 1);
+    i.assetSerializeOptions["cc.EffectAsset"].glsl3 = false;
+  }
+
+  i.assetSerializeOptions.exportCCON = true;
+  var t = {
+    orientation: i.packages["alipay-mini-game"].deviceOrientation,
+    remoteServerAddress: i.packages["alipay-mini-game"].remoteUrl,
+  };
+  a.__addStaticsInfo(t);
+}
+async function onBeforeCompressSettings(e, t, i) {
+  t.settings.orientation = e.packages["alipay-mini-game"].deviceOrientation;
+}
+async function onAfterBuild(i, r, e) {
+  var e;
+  var t;
+
+  if (r.paths.dir) {
+    t = (await Editor.Message.request("engine", "query-info")).path;
+    t = path_1.join(t, "platforms/minigame");
+    i.buildEngineParam.engineName;
+    e = path_1.join(__dirname, "../static/build-template");
+    copyAdapter(t, r.paths.dir);
+    this.getTaskResult("build-task/script");
+
+    t = {
+      polyfillsBundleFile:
+        (r.paths.polyfillsJs &&
+          Build.Utils.relativeUrl(r.paths.dir, r.paths.polyfillsJs)) ||
+        false,
+      systemJsBundleFile: Build.Utils.relativeUrl(
+        r.paths.dir,
+        r.paths.systemJs
+      ),
+      importMapFile: Build.Utils.relativeUrl(r.paths.dir, r.paths.importMap),
+      applicationJs:
+        "./" + Build.Utils.relativeUrl(r.paths.dir, r.paths.applicationJS),
+    };
+
+    t = await ejs_1.default.renderFile(path_1.join(e, "game.ejs"), t);
+    fs_extra_1.writeFileSync(path_1.join(r.paths.dir, "game.js"), t);
+    t = path_1.join(Build.buildTemplateDir, i.platform);
+
+    fs_extra_1.existsSync(t) &&
+      (fs_extra_1.copySync(t, r.paths.dir),
+      console.debug(`Use build-template {link(${t})}.`));
+
+    e = fs_extra_1.readJSONSync(path_1.join(e, "game.json"));
+
+    e.screenOrientation = i.packages["alipay-mini-game"].deviceOrientation;
+    t = path_1.join(t, "game.json");
+
+    fs_extra_1.existsSync(t) &&
+      ((t = fs_extra_1.readJSONSync(t)), Object.assign(e, t));
+
+    t = path_1.join(r.paths.dir, "game.json");
+    fs_extra_1.writeJSONSync(t, e);
+  }
+}
+async function copyAdapter(i, r) {
+  var e = await globby(path_1.join(i, "common/**/*"), { nodir: true });
+
+  var e =
+    (await Promise.all(
+      e.map((e) => {
+        var t = compileJS(fs_extra_1.readFileSync(e, "utf8"), e);
+        var e = path_1.relative(i, e);
+        var e = path_1.join(r, "libs", e);
+        fs_extra_1.outputFileSync(e, t, "utf8");
+      })
+    ).catch((e) => {
+      e.stack = "BuildWechatLibTemplate error: " + e.stack;
+      console.error(e);
+    }),
+    await globby(path_1.join(i, "platforms/alipay/wrapper/**/*"), {
+      nodir: true,
+    }));
+
+  await Promise.all(
+    e.map((e) => {
+      var t = compileJS(fs_extra_1.readFileSync(e, "utf8"), e);
+      var e = path_1.relative(path_1.join(i, "platforms/alipay/"), e);
+      var e = path_1.join(r, "libs", e);
+      fs_extra_1.outputFileSync(e, t, "utf8");
+    })
+  ).catch((e) => {
+    e.stack = "BuildWechatLibTemplate error: " + e.stack;
+    console.error(e);
+  });
+}
+function compileJS(e, t) {
+  let i;
+  try {
+    var r = require("@babel/core");
+    i = r.transform(e, {
+      ast: false,
+      highlightCode: false,
+      sourceMaps: false,
+      compact: false,
+      filename: t,
+      presets: [require("@babel/preset-env")],
+      plugins: [
+        [require("@babel/plugin-proposal-decorators"), { legacy: true }],
+        [require("@babel/plugin-proposal-class-properties"), { loose: true }],
+        [require("babel-plugin-add-module-exports")],
+        [require("@babel/plugin-proposal-export-default-from")],
+      ],
+    });
+  } catch (e) {
+    e.stack = `Compile ${name} error: ` + e.stack;
+    throw e;
+  }
+  return i.code;
+}
+exports.throwError = true;
+exports.onAfterInit = onAfterInit;
+exports.onBeforeCompressSettings = onBeforeCompressSettings;
+exports.onAfterBuild = onAfterBuild;

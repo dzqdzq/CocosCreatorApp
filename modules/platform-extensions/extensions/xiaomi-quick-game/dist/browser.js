@@ -1,1 +1,27 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0;const path_1=require("path"),fs_extra_1=require("fs-extra");exports.methods={async run(e,r){r=r.packages["xiaomi-quick-game"],e=(0,path_1.join)(e,"dist",`${r.package}${r.useDebugKey?".debug.":".release."}rpk`);return(0,fs_extra_1.existsSync)(e)?(await Editor.Panel.open("xiaomi-quick-game.preview"),Editor.Message.send("xiaomi-quick-game","update-rpk-path",e),!0):(console.error(`xiaomi rpk (${e}) does not exist, please build before preview!`),!1)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+
+const { join } = require("path");
+
+const { existsSync } = require("fs-extra");
+
+exports.methods = {
+  async run(e, r) {
+    r = r.packages["xiaomi-quick-game"];
+
+    e = join(
+      e,
+      "dist",
+      `${r.package}${r.useDebugKey ? ".debug." : ".release."}rpk`
+    );
+
+    return existsSync(e)
+      ? (await Editor.Panel.open("xiaomi-quick-game.preview"),
+        Editor.Message.send("xiaomi-quick-game", "update-rpk-path", e),
+        true)
+      : (console.error(
+          `xiaomi rpk (${e}) does not exist, please build before preview!`
+        ),
+        false);
+  },
+};

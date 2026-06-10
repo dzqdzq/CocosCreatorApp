@@ -1,1 +1,30 @@
-"use strict";var PanelName,EditorPreviewState,PanelBackgroundPriority;Object.defineProperty(exports,"__esModule",{value:!0}),exports.PanelBackgroundPriority=exports.EditorPreviewState=exports.PanelName=void 0,function(e){e.Default="",e.Scene="scene",e.Preview="preview"}(PanelName||(exports.PanelName=PanelName={})),function(e){e[e.Changing=0]="Changing",e[e.Start=1]="Start",e[e.Stop=2]="Stop"}(EditorPreviewState||(exports.EditorPreviewState=EditorPreviewState={})),function(e){e[e.normal=0]="normal",e[e.preview=1]="preview"}(PanelBackgroundPriority||(exports.PanelBackgroundPriority=PanelBackgroundPriority={}));
+var PanelName;
+var EditorPreviewState;
+var PanelBackgroundPriority;
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.PanelBackgroundPriority = undefined;
+exports.EditorPreviewState = undefined;
+exports.PanelName = undefined;
+
+((e) => {
+  e.Default = "";
+  e.Scene = "scene";
+  e.Preview = "preview";
+})(PanelName || (exports.PanelName = PanelName = {}));
+
+((e) => {
+  e[(e.Changing = 0)] = "Changing";
+  e[(e.Start = 1)] = "Start";
+  e[(e.Stop = 2)] = "Stop";
+})(
+  EditorPreviewState || (exports.EditorPreviewState = EditorPreviewState = {})
+);
+
+((e) => {
+  e[(e.normal = 0)] = "normal";
+  e[(e.preview = 1)] = "preview";
+})(
+  PanelBackgroundPriority ||
+    (exports.PanelBackgroundPriority = PanelBackgroundPriority = {})
+);

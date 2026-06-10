@@ -1,1 +1,116 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,a){void 0===a&&(a=r);var i=Object.getOwnPropertyDescriptor(t,r);i&&("get"in i?t.__esModule:!i.writable&&!i.configurable)||(i={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,a,i)}:function(e,t,r,a){e[a=void 0===a?r:a]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var i=function(e){return(i=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=i(e),a=0;a<r.length;a++)"default"!==r[a]&&__createBinding(t,e,r[a]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.particleMgr=void 0;const plist=__importStar(require("plist")),path_1=require("path"),fs_1=require("fs");class ParticleManager{async exportParticlePlist(e,t){var r=(await Editor.Dialog.save({title:"Save Particle",path:(0,path_1.join)(Editor.Project.path,"assets"),filters:[{name:"Particle",extensions:["plist"]}]})).filePath;if(r){var a=(0,path_1.join)(Editor.Project.path,"assets");if(Editor.Utils.Path.contains(a,r))try{var i=e||"db://internal/default_ui/atom.plist",s=await Editor.Message.request("asset-db","query-path",i),n=plist.parse((0,fs_1.readFileSync)(s,"utf8")),o=Object.assign(n,t),l="db://assets/"+(0,path_1.relative)(a,r);return await Editor.Message.request("asset-db","create-asset",l,plist.build(o),{overwrite:!0})}catch(e){console.error(e)}else await Editor.Dialog.warn(Editor.I18n.t("scene.messages.warning"),{detail:Editor.I18n.t("scene.messages.particle_system_2d.export_error"),buttons:[Editor.I18n.t("scene.messages.confirm")]})}}}const particleMgr=new ParticleManager;exports.particleMgr=particleMgr;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, a = r) => {
+        var i = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !i ||
+          (!("get" in i) ? !i.writable && !i.configurable : t.__esModule)
+        ) {
+          i = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, a, i);
+      }
+    : (e, t, r, a) => {
+        e[(a = a === undefined ? r : a)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var i = (e) =>
+      (i =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = i(e), a = 0; a < r.length; a++) {
+          if (r[a] !== "default") {
+            __createBinding(t, e, r[a]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.particleMgr = undefined;
+const plist = __importStar(require("plist"));
+
+const { join, relative } = require("path");
+
+const { readFileSync } = require("fs");
+
+class ParticleManager {
+  async exportParticlePlist(e, t) {
+    var r = (
+      await Editor.Dialog.save({
+        title: "Save Particle",
+        path: join(Editor.Project.path, "assets"),
+        filters: [{ name: "Particle", extensions: ["plist"] }],
+      })
+    ).filePath;
+    if (r) {
+      var a = join(Editor.Project.path, "assets");
+      if (Editor.Utils.Path.contains(a, r)) {
+        try {
+          var i = e || "db://internal/default_ui/atom.plist";
+          var s = await Editor.Message.request("asset-db", "query-path", i);
+          var n = plist.parse(readFileSync(s, "utf8"));
+          var o = Object.assign(n, t);
+          var l = "db://assets/" + relative(a, r);
+          return await Editor.Message.request(
+            "asset-db",
+            "create-asset",
+            l,
+            plist.build(o),
+            { overwrite: true }
+          );
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        await Editor.Dialog.warn(Editor.I18n.t("scene.messages.warning"), {
+          detail: Editor.I18n.t(
+            "scene.messages.particle_system_2d.export_error"
+          ),
+          buttons: [Editor.I18n.t("scene.messages.confirm")],
+        });
+      }
+    }
+  }
+}
+const particleMgr = new ParticleManager();
+exports.particleMgr = particleMgr;

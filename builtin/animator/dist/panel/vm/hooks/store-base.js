@@ -1,1 +1,35 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.useBaseStore=void 0;const vue_js_1=require("vue/dist/vue.js"),pinia_1=require("pinia"),defaultClipConfig={sample:60,isLock:!1,speed:1,duration:60,wrapMode:0};exports.useBaseStore=(0,pinia_1.defineStore)("animator_base",()=>{const e=(0,vue_js_1.ref)(""),u=(0,vue_js_1.ref)(null),r=(0,vue_js_1.ref)(!1),s=(0,vue_js_1.ref)("");var i=(0,vue_js_1.computed)(()=>u.value?.sample??defaultClipConfig.sample);return{reset:function(){e.value="",u.value=null,r.value=!1,s.value=""},currentClip:e,clipConfig:u,currentSample:i,isSkeletonClip:r,focusedCurve:s}});
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useBaseStore = undefined;
+
+const { ref, computed } = require("vue/dist/vue.js");
+
+const { defineStore } = require("pinia");
+
+const defaultClipConfig = {
+  sample: 60,
+  isLock: false,
+  speed: 1,
+  duration: 60,
+  wrapMode: 0,
+};
+
+exports.useBaseStore = defineStore("animator_base", () => {
+  const e = ref("");
+  const u = ref(null);
+  const r = ref(false);
+  const s = ref("");
+  var i = computed(() => u.value?.sample ?? defaultClipConfig.sample);
+  return {
+    reset() {
+      e.value = "";
+      u.value = null;
+      r.value = false;
+      s.value = "";
+    },
+    currentClip: e,
+    clipConfig: u,
+    currentSample: i,
+    isSkeletonClip: r,
+    focusedCurve: s,
+  };
+});

@@ -1,1 +1,18 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.InspectorPropComponent=exports.InspectorComponent=void 0;var component_1=require("./component");Object.defineProperty(exports,"InspectorComponent",{enumerable:!0,get:function(){return component_1.InspectorComponent}}),Object.defineProperty(exports,"InspectorPropComponent",{enumerable:!0,get:function(){return component_1.InspectorPropComponent}});
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.InspectorPropComponent = undefined;
+exports.InspectorComponent = undefined;
+var component_1 = require("./component");
+
+Object.defineProperty(exports, "InspectorComponent", {
+  enumerable: true,
+  get() {
+    return component_1.InspectorComponent;
+  },
+});
+
+Object.defineProperty(exports, "InspectorPropComponent", {
+  enumerable: true,
+  get() {
+    return component_1.InspectorPropComponent;
+  },
+});

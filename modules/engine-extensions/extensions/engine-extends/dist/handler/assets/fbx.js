@@ -1,1 +1,119 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,a){void 0===a&&(a=r);var i=Object.getOwnPropertyDescriptor(t,r);i&&("get"in i?t.__esModule:!i.writable&&!i.configurable)||(i={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,a,i)}:function(e,t,r,a){e[a=void 0===a?r:a]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var i=function(e){return(i=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=i(e),a=0;a<r.length;a++)"default"!==r[a]&&__createBinding(t,e,r[a]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.FbxHandler=void 0,exports.getGltfFilePath=getGltfFilePath;const gltf_1=__importStar(require("./gltf")),fbx_to_gltf_1=require("./gltf/fbx-to-gltf"),fbx_converter_1=require("./utils/fbx-converter"),model_convert_routine_1=require("./utils/model-convert-routine");async function getGltfFilePath(e){var t=e.userData;void 0===t.fbx?.smartMaterialEnabled&&((t.fbx??={}).smartMaterialEnabled=await Editor.Profile.getProject("project","fbx.material.smart"));let r;if(t.legacyFbxImporter)r=await(0,fbx_to_gltf_1.fbxToGlTf)(e,e._assetDB,exports.FbxHandler.importer.version);else{var a={},a=(a.unitConversion=t.fbx?.unitConversion,a.animationBakeRate=t.fbx?.animationBakeRate,a.preferLocalTimeSpan=t.fbx?.preferLocalTimeSpan,a.smartMaterialEnabled=t.fbx?.smartMaterialEnabled??!1,a.matchMeshNames=t.fbx?.matchMeshNames??!0,(0,fbx_converter_1.createFbxConverter)(a)),a=await(0,model_convert_routine_1.modelConvertRoutine)("fbx.FBX-glTF-conv",e,e._assetDB,exports.FbxHandler.importer.version,a);if(!a)throw new Error("Failed to import "+e.source);r=a}return t.meshSimplify&&t.meshSimplify.enable?(0,gltf_1.getOptimizerPath)(e,r,t.meshSimplify):r}exports.FbxHandler={...gltf_1.default,name:"fbx"},exports.default=exports.FbxHandler;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, a = r) => {
+        var i = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !i ||
+          (!("get" in i) ? !i.writable && !i.configurable : t.__esModule)
+        ) {
+          i = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, a, i);
+      }
+    : (e, t, r, a) => {
+        e[(a = a === undefined ? r : a)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var i = (e) =>
+      (i =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = i(e), a = 0; a < r.length; a++) {
+          if (r[a] !== "default") {
+            __createBinding(t, e, r[a]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FbxHandler = undefined;
+exports.getGltfFilePath = getGltfFilePath;
+const gltf_1 = __importStar(require("./gltf"));
+
+const { fbxToGlTf } = require("./gltf/fbx-to-gltf");
+
+const { createFbxConverter } = require("./utils/fbx-converter");
+
+const { modelConvertRoutine } = require("./utils/model-convert-routine");
+
+async function getGltfFilePath(e) {
+  var e_userData = e.userData;
+
+  if (e_userData.fbx?.smartMaterialEnabled === undefined) {
+    (e_userData.fbx ??= {}).smartMaterialEnabled =
+      await Editor.Profile.getProject("project", "fbx.material.smart");
+  }
+
+  let r;
+  if (e_userData.legacyFbxImporter) {
+    r = await fbxToGlTf(e, e._assetDB, exports.FbxHandler.importer.version);
+  } else {
+    var a = {};
+
+    var a =
+      ((a.unitConversion = e_userData.fbx?.unitConversion),
+      (a.animationBakeRate = e_userData.fbx?.animationBakeRate),
+      (a.preferLocalTimeSpan = e_userData.fbx?.preferLocalTimeSpan),
+      (a.smartMaterialEnabled = e_userData.fbx?.smartMaterialEnabled ?? false),
+      (a.matchMeshNames = e_userData.fbx?.matchMeshNames ?? true),
+      createFbxConverter(a));
+
+    var a = await modelConvertRoutine(
+      "fbx.FBX-glTF-conv",
+      e,
+      e._assetDB,
+      exports.FbxHandler.importer.version,
+      a
+    );
+
+    if (!a) {
+      throw new Error("Failed to import " + e.source);
+    }
+    r = a;
+  }
+  return e_userData.meshSimplify && e_userData.meshSimplify.enable
+    ? (0, gltf_1.getOptimizerPath)(e, r, e_userData.meshSimplify)
+    : r;
+}
+exports.FbxHandler = { ...gltf_1.default, name: "fbx" };
+exports.default = exports.FbxHandler;

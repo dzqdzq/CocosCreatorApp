@@ -1,1 +1,5 @@
-"use strict";function adaptDirectives(e){return e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.adaptDirectives=adaptDirectives;
+function adaptDirectives(e) {
+  return e;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.adaptDirectives = adaptDirectives;

@@ -1,1 +1,18 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.AnimationImporter=void 0;const asset_1=__importDefault(require("./asset"));class AnimationImporter extends asset_1.default{get version(){return"1.0.0"}get name(){return"instantiation-animation"}get assetType(){return"cc.AnimationClip"}}exports.AnimationImporter=AnimationImporter;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((t) => (t && t.__esModule ? t : { default: t }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimationImporter = undefined;
+const asset_1 = __importDefault(require("./asset"));
+class AnimationImporter extends asset_1.default {
+  get version() {
+    return "1.0.0";
+  }
+  get name() {
+    return "instantiation-animation";
+  }
+  get assetType() {
+    return "cc.AnimationClip";
+  }
+}
+exports.AnimationImporter = AnimationImporter;

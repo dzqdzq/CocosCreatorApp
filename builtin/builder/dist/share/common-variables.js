@@ -1,1 +1,8 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.GLOBAL_CACHE_DIR=exports.LOCAL_CACHE_DIR=void 0;const path_1=require("path");exports.LOCAL_CACHE_DIR=(0,path_1.join)(Editor.Project.tmpDir,"builder"),exports.GLOBAL_CACHE_DIR=(0,path_1.join)(Editor.App.temp,"builder");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GLOBAL_CACHE_DIR = undefined;
+exports.LOCAL_CACHE_DIR = undefined;
+
+const { join } = require("path");
+
+exports.LOCAL_CACHE_DIR = join(Editor.Project.tmpDir, "builder");
+exports.GLOBAL_CACHE_DIR = join(Editor.App.temp, "builder");

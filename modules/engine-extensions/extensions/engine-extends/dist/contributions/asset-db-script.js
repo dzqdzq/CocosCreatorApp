@@ -1,1 +1,103 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,n){void 0===n&&(n=r);var o=Object.getOwnPropertyDescriptor(t,r);o&&("get"in o?t.__esModule:!o.writable&&!o.configurable)||(o={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,n,o)}:function(e,t,r,n){e[n=void 0===n?r:n]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var o=function(e){return(o=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=o(e),n=0;n<r.length;n++)"default"!==r[n]&&__createBinding(t,e,r[n]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0;const asset_db_1=require("@editor/asset-db"),handler_1=require("../handler"),effect_1=require("../handler/assets/effect"),AssetDBHook=__importStar(require("./asset-db-hook"));exports.methods={async refreshAllEffect(){effect_1.autoGenEffectBinInfo.autoGenEffectBin=!1;const t=[];(0,asset_db_1.forEach)(e=>{e.path2asset.forEach(e=>{e&&"effect"===e.meta.importer&&t.push(e)})}),await Promise.all(t.map(e=>e._assetDB.reimport(e.uuid))),effect_1.autoGenEffectBinInfo.autoGenEffectBin=!0;try{await(0,effect_1.recompileAllEffects)(t)}catch(e){console.error(e)}},...AssetDBHook,...handler_1.registerMap};
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, n = r) => {
+        var o = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !o ||
+          (!("get" in o) ? !o.writable && !o.configurable : t.__esModule)
+        ) {
+          o = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, n, o);
+      }
+    : (e, t, r, n) => {
+        e[(n = n === undefined ? r : n)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var o = (e) =>
+      (o =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = o(e), n = 0; n < r.length; n++) {
+          if (r[n] !== "default") {
+            __createBinding(t, e, r[n]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+
+const { forEach } = require("@editor/asset-db");
+
+const handler_1 = require("../handler");
+const effect_1 = require("../handler/assets/effect");
+
+const { recompileAllEffects } = effect_1;
+
+const AssetDBHook = __importStar(require("./asset-db-hook"));
+exports.methods = {
+  async refreshAllEffect() {
+    effect_1.autoGenEffectBinInfo.autoGenEffectBin = false;
+    const t = [];
+
+    forEach((e) => {
+      e.path2asset.forEach((e) => {
+        if (e && e.meta.importer === "effect") {
+          t.push(e);
+        }
+      });
+    });
+
+    await Promise.all(t.map((e) => e._assetDB.reimport(e.uuid)));
+
+    effect_1.autoGenEffectBinInfo.autoGenEffectBin = true;
+    try {
+      await recompileAllEffects(t);
+    } catch (e) {
+      console.error(e);
+    }
+  },
+  ...AssetDBHook,
+  ...handler_1.registerMap,
+};

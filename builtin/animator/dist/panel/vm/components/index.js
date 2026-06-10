@@ -1,1 +1,151 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,o){void 0===o&&(o=t);var i=Object.getOwnPropertyDescriptor(r,t);i&&("get"in i?r.__esModule:!i.writable&&!i.configurable)||(i={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,o,i)}:function(e,r,t,o){e[o=void 0===o?t:o]=r[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,r){Object.defineProperty(e,"default",{enumerable:!0,value:r})}:function(e,r){e.default=r}),__importStar=this&&this.__importStar||function(){var i=function(e){return(i=Object.getOwnPropertyNames||function(e){var r,t=[];for(r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[t.length]=r);return t})(e)};return function(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t=i(e),o=0;o<t.length;o++)"default"!==t[o]&&__createBinding(r,e,t[o]);return __setModuleDefault(r,e),r}}(),auxiliary_curve_list_1=(Object.defineProperty(exports,"__esModule",{value:!0}),exports.PropertyCurve=exports.PropertyTools=exports.PropertyTree=exports.AnimatorToolbar=exports.AniMask=exports.TipsMask=exports.PreviewRow=exports.PreviewRangeRow=exports.NodeTree=exports.EventsRow=exports.EventEditor=exports.CtrlStick=exports.ControlTrackTree=exports.ControlPointer=exports.CurvePresets=exports.AuxiliaryCurveFrames=exports.AuxiliaryCurves=void 0,require("./auxiliary-curve-list")),auxiliary_curves_1=(Object.defineProperty(exports,"AuxiliaryCurves",{enumerable:!0,get:function(){return auxiliary_curve_list_1.AuxiliaryCurves}}),require("./auxiliary-curves")),curve_presets_1=(Object.defineProperty(exports,"AuxiliaryCurveFrames",{enumerable:!0,get:function(){return auxiliary_curves_1.AuxiliaryCurveFrames}}),require("./curve-presets")),control_track_tree_1=(Object.defineProperty(exports,"CurvePresets",{enumerable:!0,get:function(){return curve_presets_1.CurvePresets}}),exports.ControlPointer=__importStar(require("./control-pointer")),require("./control-track-tree")),preview_range_row_1=(Object.defineProperty(exports,"ControlTrackTree",{enumerable:!0,get:function(){return control_track_tree_1.ControlTrackTree}}),exports.CtrlStick=__importStar(require("./ctrl-stick")),exports.EventEditor=__importStar(require("./event-editor")),exports.EventsRow=__importStar(require("./events")),exports.NodeTree=__importStar(require("./node-tree")),require("./preview-range-row")),property_curve_1=(Object.defineProperty(exports,"PreviewRangeRow",{enumerable:!0,get:function(){return preview_range_row_1.PreviewRangeRow}}),exports.PreviewRow=__importStar(require("./preview-row")),exports.TipsMask=__importStar(require("./tips-mask")),exports.AniMask=__importStar(require("./mask")),exports.AnimatorToolbar=__importStar(require("./toolbar")),exports.PropertyTree=__importStar(require("./property-tree")),exports.PropertyTools=__importStar(require("./property-tools")),require("./property-curve"));Object.defineProperty(exports,"PropertyCurve",{enumerable:!0,get:function(){return property_curve_1.PropertyCurve}});
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, r, t, o = t) => {
+        var i = Object.getOwnPropertyDescriptor(r, t);
+
+        if (
+          !i ||
+          (!("get" in i) ? !i.writable && !i.configurable : r.__esModule)
+        ) {
+          i = {
+            enumerable: true,
+            get() {
+              return r[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, i);
+      }
+    : (e, r, t, o) => {
+        e[(o = o === undefined ? t : o)] = r[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, r) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: r });
+      }
+    : (e, r) => {
+        e.default = r;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var i = (e) =>
+      (i =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var r;
+          var t = [];
+          for (r in e) {
+            if (Object.prototype.hasOwnProperty.call(e, r)) {
+              t[t.length] = r;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var r = {};
+      if (e != null) {
+        for (var t = i(e), o = 0; o < t.length; o++) {
+          if (t[o] !== "default") {
+            __createBinding(r, e, t[o]);
+          }
+        }
+      }
+      __setModuleDefault(r, e);
+      return r;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.PropertyCurve = undefined;
+exports.PropertyTools = undefined;
+exports.PropertyTree = undefined;
+exports.AnimatorToolbar = undefined;
+exports.AniMask = undefined;
+exports.TipsMask = undefined;
+exports.PreviewRow = undefined;
+exports.PreviewRangeRow = undefined;
+exports.NodeTree = undefined;
+exports.EventsRow = undefined;
+exports.EventEditor = undefined;
+exports.CtrlStick = undefined;
+exports.ControlTrackTree = undefined;
+exports.ControlPointer = undefined;
+exports.CurvePresets = undefined;
+exports.AuxiliaryCurveFrames = undefined;
+exports.AuxiliaryCurves = undefined;
+
+var auxiliary_curve_list_1 = require("./auxiliary-curve-list");
+
+Object.defineProperty(exports, "AuxiliaryCurves", {
+  enumerable: true,
+  get() {
+    return auxiliary_curve_list_1.AuxiliaryCurves;
+  },
+});
+
+var auxiliary_curves_1 = require("./auxiliary-curves");
+
+Object.defineProperty(exports, "AuxiliaryCurveFrames", {
+  enumerable: true,
+  get() {
+    return auxiliary_curves_1.AuxiliaryCurveFrames;
+  },
+});
+
+var curve_presets_1 = require("./curve-presets");
+
+Object.defineProperty(exports, "CurvePresets", {
+  enumerable: true,
+  get() {
+    return curve_presets_1.CurvePresets;
+  },
+});
+
+exports.ControlPointer = __importStar(require("./control-pointer"));
+var control_track_tree_1 = require("./control-track-tree");
+
+Object.defineProperty(exports, "ControlTrackTree", {
+  enumerable: true,
+  get() {
+    return control_track_tree_1.ControlTrackTree;
+  },
+});
+
+exports.CtrlStick = __importStar(require("./ctrl-stick"));
+exports.EventEditor = __importStar(require("./event-editor"));
+exports.EventsRow = __importStar(require("./events"));
+exports.NodeTree = __importStar(require("./node-tree"));
+var preview_range_row_1 = require("./preview-range-row");
+
+Object.defineProperty(exports, "PreviewRangeRow", {
+  enumerable: true,
+  get() {
+    return preview_range_row_1.PreviewRangeRow;
+  },
+});
+
+exports.PreviewRow = __importStar(require("./preview-row"));
+exports.TipsMask = __importStar(require("./tips-mask"));
+exports.AniMask = __importStar(require("./mask"));
+exports.AnimatorToolbar = __importStar(require("./toolbar"));
+exports.PropertyTree = __importStar(require("./property-tree"));
+exports.PropertyTools = __importStar(require("./property-tools"));
+var property_curve_1 = require("./property-curve");
+
+Object.defineProperty(exports, "PropertyCurve", {
+  enumerable: true,
+  get() {
+    return property_curve_1.PropertyCurve;
+  },
+});

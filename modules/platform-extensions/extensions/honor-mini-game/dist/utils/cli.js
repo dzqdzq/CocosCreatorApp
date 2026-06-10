@@ -1,1 +1,36 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isInitHonor=isInitHonor,exports.isInstallHonorMiniGameTool=isInstallHonorMiniGameTool,exports.install=install;const child_process_1=require("child_process"),fs_1=require("fs"),path_1=require("path"),fs_extra_1=require("fs-extra");function isInitHonor(e){return!!(0,fs_1.existsSync)((0,path_1.join)(e,"node_modules/quickgame-cli/lib"))}function isInstallHonorMiniGameTool(){try{(0,child_process_1.execSync)("minigame -V")}catch(e){return console.error(e),!1}return!0}function install(e){return(0,fs_extra_1.ensureDirSync)(e),Build.Utils.quickSpawn("npm",["install","--no-package-lock"],{cwd:e,downGradeError:!0,ignoreLog:!0,downGradeWaring:!0,shell:!0})}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isInitHonor = isInitHonor;
+exports.isInstallHonorMiniGameTool = isInstallHonorMiniGameTool;
+exports.install = install;
+
+const { execSync } = require("child_process");
+
+const { existsSync } = require("fs");
+
+const { join } = require("path");
+
+const { ensureDirSync } = require("fs-extra");
+
+function isInitHonor(e) {
+  return !!existsSync(join(e, "node_modules/quickgame-cli/lib"));
+}
+function isInstallHonorMiniGameTool() {
+  try {
+    execSync("minigame -V");
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+  return true;
+}
+function install(e) {
+  ensureDirSync(e);
+
+  return Build.Utils.quickSpawn("npm", ["install", "--no-package-lock"], {
+    cwd: e,
+    downGradeError: true,
+    ignoreLog: true,
+    downGradeWaring: true,
+    shell: true,
+  });
+}

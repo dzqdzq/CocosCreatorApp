@@ -1,4 +1,21 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.components=exports.computed=exports.watch=exports.props=exports.template=void 0,exports.data=data,exports.mounted=mounted;const defaultParams={string:"param",number:0,boolean:!1};function data(){return{isEmpty:!1}}function mounted(){}exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.components = undefined;
+exports.computed = undefined;
+exports.watch = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.data = data;
+exports.mounted = mounted;
+const defaultParams = { string: "param", number: 0, boolean: false };
+function data() {
+  return { isEmpty: false };
+}
+function mounted() {}
+
+exports.template = `
 <div @change="onConfirm" v-if="event">
     <ui-section class="config" expand>
         <div slot="header" class="header" :style="isEmpty ? {border: '1px solid red'} : {}" @click.stop>
@@ -78,4 +95,91 @@
         </div>
     </ui-section>
 </div>
-`,exports.props=["event","index"],exports.watch={},exports.computed={selectEvent(){return this.selectInfo?this.selectInfo.data:null}},exports.components={},exports.methods={onConfirm(a){var t=this,n=a.target.getAttribute("name");if(n){var i=a.target.getAttribute("index"),o=a.target.value,r=t.event;let e;switch(n){case"changeParamType":(e=r.params).splice(i,1,defaultParams[o]);break;case"param":if((e=r.params)[i]===o)return;e.splice(i,1,o)}t.$emit("update",t.event,t.index)}},async onMouseDown(e){var a=this,t=e.currentTarget.getAttribute("name"),n=e.currentTarget.getAttribute("index"),i=a.event;let o=!1;switch(t){case"delFunc":return void a.$emit("update",null,a.index);case"addParams":o=!0,i.params.push("param");break;case"delParams":o=!0,i.params.splice(n,1);break;case"clearParams":i.params.length&&(o=!0,i.params=[])}o&&a.$emit("update",a.event,a.index)},validateFunName(e){this.isEmpty=""===e.target.value},updateFunName(e){var a=this,t=e.target.value;t?t!==a.event.func&&a.$emit("update",Object.assign(a.event,{func:t}),a.index):(a.$emit("showToast",Editor.I18n.t("animator.event.enter_func_name")),e.target.value=a.event.func,a.isEmpty=!1)}};
+`;
+
+exports.props = ["event", "index"];
+exports.watch = {};
+
+exports.computed = {
+  selectEvent() {
+    return this.selectInfo ? this.selectInfo.data : null;
+  },
+};
+
+exports.components = {};
+
+exports.methods = {
+  onConfirm(a) {
+    var t = this;
+    var n = a.target.getAttribute("name");
+    if (n) {
+      var i = a.target.getAttribute("index");
+      var o = a.target.value;
+      var t_event = t.event;
+      let e;
+      switch (n) {
+        case "changeParamType": {
+          (e = t_event.params).splice(i, 1, defaultParams[o]);
+          break;
+        }
+        case "param": {
+          if ((e = t_event.params)[i] === o) {
+            return;
+          }
+          e.splice(i, 1, o);
+        }
+      }
+      t.$emit("update", t.event, t.index);
+    }
+  },
+  async onMouseDown(e) {
+    var a = this;
+    var t = e.currentTarget.getAttribute("name");
+    var n = e.currentTarget.getAttribute("index");
+    var a_event = a.event;
+    let o = false;
+    switch (t) {
+      case "delFunc": {
+        return void a.$emit("update", null, a.index);
+      }
+      case "addParams": {
+        o = true;
+        a_event.params.push("param");
+        break;
+      }
+      case "delParams": {
+        o = true;
+        a_event.params.splice(n, 1);
+        break;
+      }
+      case "clearParams": {
+        if (a_event.params.length) {
+          o = true;
+          a_event.params = [];
+        }
+      }
+    }
+
+    if (o) {
+      a.$emit("update", a.event, a.index);
+    }
+  },
+  validateFunName(e) {
+    this.isEmpty = e.target.value === "";
+  },
+  updateFunName(e) {
+    var a = this;
+    var t = e.target.value;
+
+    if (t) {
+      if (t !== a.event.func) {
+        a.$emit("update", Object.assign(a.event, { func: t }), a.index);
+      }
+    } else {
+      a.$emit("showToast", Editor.I18n.t("animator.event.enter_func_name"));
+
+      e.target.value = a.event.func;
+      a.isEmpty = false;
+    }
+  },
+};

@@ -1,1 +1,270 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.nestedPrefabTest=void 0;const unit_test_interface_1=require("./unit-test-interface"),node_1=__importDefault(require("../node")),cc_1=require("cc"),common_1=require("./common"),multi_scene_1=__importDefault(require("../multi-scene")),cubeAssetUUID="30da77a1-f02d-4ede-aa56-403452ee7fde",boxColliderClassName=cc_1.js.getClassName(cc_1.BoxCollider),testPrefabAssetUrl=(0,unit_test_interface_1.getTestDir)()+"/testPrefab.prefab",childPrefabAssetUrl=(0,unit_test_interface_1.getTestDir)()+"/childPrefab.prefab",cubeNode2PrefabAssetUrl=(0,unit_test_interface_1.getTestDir)()+"/CubeNode2.prefab";class NestedPrefabTest{async test(a){console.log("NestedPrefabTest-----------");const n=1e3;await a.loadEmptyScene();var e=await a.createNode({name:"testPrefab"});if(!e)return(0,common_1.returnFalseWithLog)("testNodeUUID check failed");var t=await a.createPrefab(e,testPrefabAssetUrl);if(!t)return(0,common_1.returnFalseWithLog)("testPrefabAssetUUID check failed");e=(await a.queryNodesByAssetUuid(t))[0],await(0,unit_test_interface_1.delay)(n);let i=node_1.default.query(e);var r=(0,common_1.getPrefabInfo)(i);if(!r?.fileId)return(0,common_1.returnFalseWithLog)("rootNodePrefabInfo.fileID check failed");r=r.instance?.propertyOverrides;if(!r||4!==r.length)return(0,common_1.returnFalseWithLog)("property overrides doesn't match");let c="",s=null;async function d(e,t="testPrefab"){if(await(0,unit_test_interface_1.delay)(n),await a.openScene(e),!(s=cc_1.director.getScene()))return(0,common_1.returnFalseWithLog)("scene is null");i=s.getChildByName(t),c=i.uuid}await d(t);await a.createNode({name:"childCylinderNode",assetUuid:"ab3e16f9-671e-48a7-90b7-d0884d9cbb85",parent:c});var r=await a.createNode({name:"childPrefab",assetUuid:cubeAssetUUID,parent:c}),r=(await a.createNode({name:"CubeNode",assetUuid:cubeAssetUUID,parent:r}),await a.createPrefab(r,childPrefabAssetUrl)),o=(await(0,unit_test_interface_1.delay)(n),await a.saveScene(),await(0,unit_test_interface_1.delay)(n),await a.openScene(r),multi_scene_1.default.useMultipleEdit&&multi_scene_1.default.multiSceneClose(t,"prefab"),await a.saveScene(),await(0,unit_test_interface_1.delay)(n),await d(t),multi_scene_1.default.useMultipleEdit&&multi_scene_1.default.multiSceneClose(r,"prefab"),i.children[1]),u="CubeNode2",l=await a.createNode({name:u,assetUuid:cubeAssetUUID,parent:o.uuid});await a.createNode({name:"CubeNode2Child",assetUuid:cubeAssetUUID,parent:l});let f=o.children[0];if(node_1.default.createComponent(f.uuid,boxColliderClassName),await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),await d(t),2!==(o=i.children[1]).children.length)return(0,common_1.returnFalseWithLog)("mounted child in nested prefab save failed. "+o.children.length);if(!(f=o.children[0]).getComponent(boxColliderClassName))return(0,common_1.returnFalseWithLog)("mounted component in nested prefab save failed");if(1!==o.children[1].children.length)return(0,common_1.returnFalseWithLog)("mounted component in nested prefab save failed");l=o.children[1].uuid,await a.createPrefab(l,cubeNode2PrefabAssetUrl);if(await(0,unit_test_interface_1.delay)(n),!(s=cc_1.director.getScene()))return(0,common_1.returnFalseWithLog)("scene is null");i=s.getChildByName("testPrefab"),c=i.uuid;l=(o=i.children[1]).children[1];if(l.name!==u)return(0,common_1.returnFalseWithLog)("mounted prefabInstance node in nested prefab save failed");u="CubeNode2NewName";if(await a.setNodeProperty({uuid:l.uuid,path:"name",dump:{type:"String",value:u}}),await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),await d(t),(l=(o=i.children[1]).children[1]).name!==u)return(0,common_1.returnFalseWithLog)("mounted prefabInstance node in nested prefab change name failed");if(await a.unlinkPrefab(l.uuid,!1),await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),await d(t),(l=(o=i.children[1]).children[1]).name!==u)return(0,common_1.returnFalseWithLog)("mounted prefabInstance node in nested prefab change name failed");if(1!==l.children.length)return(0,common_1.returnFalseWithLog)("mounted prefabInstance node in nested prefab unWrap failed");await a.duplicateNode(o.uuid);var u=i.children[2],l=(0,common_1.getPrefabInfo)(o),_=(0,common_1.getPrefabInfo)(u);if(l?.instance&&_?.instance&&l.instance.fileId===_.instance.fileId)return(0,common_1.returnFalseWithLog)("duplicate prefabInstance node has the same fileId");if(a.unlinkPrefab(o.uuid,!1),a.unlinkPrefab(u.uuid,!1),await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),!(s=cc_1.director.getScene()))return(0,common_1.returnFalseWithLog)("scene is null");if(i=s.getChildByName("testPrefab"),c=i.uuid,o=i.children[1],u=i.children[2],o.uuid===u.uuid)return(0,common_1.returnFalseWithLog)("unWrap duplicate prefabInstance node has the same uuid");if(l=(0,common_1.getPrefabInfo)(o),_=(0,common_1.getPrefabInfo)(u),l&&_&&l.fileId===_.fileId)return(0,common_1.returnFalseWithLog)("unWrap duplicate prefabInstance node has the same fileId");await d(t),o=i.children[1],u=i.children[2],a.removeNode({uuid:o.uuid}),a.removeNode({uuid:u.uuid});a.createNode({parent:c,type:"cc.Prefab",assetUuid:r});await(0,unit_test_interface_1.delay)(n),o=i.children[1],f=o.children[0],a.setNodeProperty({uuid:f.uuid,path:"__comps__.0.shadowCastingMode",dump:{type:"Enum",value:1}}),await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),await d(t),o=i.children[1];l=(f=o.children[0]).getComponent(cc_1.MeshRenderer);return 1!==l?.shadowCastingMode?(0,common_1.returnFalseWithLog)("component value in nested prefab not saved correctly"):(await a.saveScene(),await a.closeScene(),await(0,unit_test_interface_1.delay)(n),(s=cc_1.director.getScene())?(e=(i=s.getChildByName("testPrefab")).uuid,a.removeNode({uuid:e}),!0):(0,common_1.returnFalseWithLog)("scene is null"))}async clear(){return cce.Selection.clear(),await(0,unit_test_interface_1.clearTestDir)(),!0}}const nestedPrefabTest=new NestedPrefabTest;exports.nestedPrefabTest=nestedPrefabTest;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.nestedPrefabTest = undefined;
+
+const { getTestDir, delay, clearTestDir } = require("./unit-test-interface");
+
+const node_1 = __importDefault(require("../node"));
+const cc_1 = require("cc");
+
+const { returnFalseWithLog, getPrefabInfo } = require("./common");
+
+const multi_scene_1 = __importDefault(require("../multi-scene"));
+const cubeAssetUUID = "30da77a1-f02d-4ede-aa56-403452ee7fde";
+const boxColliderClassName = cc_1.js.getClassName(cc_1.BoxCollider);
+
+const testPrefabAssetUrl = getTestDir() + "/testPrefab.prefab";
+
+const childPrefabAssetUrl = getTestDir() + "/childPrefab.prefab";
+
+const cubeNode2PrefabAssetUrl = getTestDir() + "/CubeNode2.prefab";
+
+class NestedPrefabTest {
+  async test(a) {
+    console.log("NestedPrefabTest-----------");
+    const n = 1000; /* 1e3 */
+    await a.loadEmptyScene();
+    var e = await a.createNode({ name: "testPrefab" });
+    if (!e) {
+      return returnFalseWithLog("testNodeUUID check failed");
+    }
+    var t = await a.createPrefab(e, testPrefabAssetUrl);
+    if (!t) {
+      return returnFalseWithLog("testPrefabAssetUUID check failed");
+    }
+    e = (await a.queryNodesByAssetUuid(t))[0];
+    await delay(n);
+    let i = node_1.default.query(e);
+    var r = getPrefabInfo(i);
+    if (!r?.fileId) {
+      return returnFalseWithLog("rootNodePrefabInfo.fileID check failed");
+    }
+    r = r.instance?.propertyOverrides;
+    if (!r || r.length !== 4) {
+      return returnFalseWithLog("property overrides doesn't match");
+    }
+    let c = "";
+    let s = null;
+    async function d(e, t = "testPrefab") {
+      await delay(n);
+      await a.openScene(e);
+
+      if (!(s = cc_1.director.getScene())) {
+        return returnFalseWithLog("scene is null");
+      }
+
+      i = s.getChildByName(t);
+      c = i.uuid;
+    }
+    await d(t);
+    await a.createNode({
+      name: "childCylinderNode",
+      assetUuid: "ab3e16f9-671e-48a7-90b7-d0884d9cbb85",
+      parent: c,
+    });
+
+    var r = await a.createNode({
+      name: "childPrefab",
+      assetUuid: cubeAssetUUID,
+      parent: c,
+    });
+
+    var r =
+      (await a.createNode({
+        name: "CubeNode",
+        assetUuid: cubeAssetUUID,
+        parent: r,
+      }),
+      await a.createPrefab(r, childPrefabAssetUrl));
+
+    await delay(n);
+    await a.saveScene();
+    await delay(n);
+    await a.openScene(r);
+
+    if (multi_scene_1.default.useMultipleEdit) {
+      multi_scene_1.default.multiSceneClose(t, "prefab");
+    }
+
+    await a.saveScene();
+    await delay(n);
+    await d(t);
+
+    if (multi_scene_1.default.useMultipleEdit) {
+      multi_scene_1.default.multiSceneClose(r, "prefab");
+    }
+
+    var o = i.children[1];
+
+    var u = "CubeNode2";
+
+    var l = await a.createNode({
+      name: u,
+      assetUuid: cubeAssetUUID,
+      parent: o.uuid,
+    });
+
+    await a.createNode({
+      name: "CubeNode2Child",
+      assetUuid: cubeAssetUUID,
+      parent: l,
+    });
+    let f = o.children[0];
+    node_1.default.createComponent(f.uuid, boxColliderClassName);
+    await a.saveScene();
+    await a.closeScene();
+    await delay(n);
+    await d(t);
+
+    if ((o = i.children[1]).children.length !== 2) {
+      return returnFalseWithLog(
+        "mounted child in nested prefab save failed. " + o.children.length
+      );
+    }
+
+    if (!(f = o.children[0]).getComponent(boxColliderClassName)) {
+      return returnFalseWithLog(
+        "mounted component in nested prefab save failed"
+      );
+    }
+    if (o.children[1].children.length !== 1) {
+      return returnFalseWithLog(
+        "mounted component in nested prefab save failed"
+      );
+    }
+    l = o.children[1].uuid;
+    await a.createPrefab(l, cubeNode2PrefabAssetUrl);
+    await delay(n);
+
+    if (!(s = cc_1.director.getScene())) {
+      return returnFalseWithLog("scene is null");
+    }
+
+    i = s.getChildByName("testPrefab");
+    c = i.uuid;
+    l = (o = i.children[1]).children[1];
+    if (l.name !== u) {
+      return returnFalseWithLog(
+        "mounted prefabInstance node in nested prefab save failed"
+      );
+    }
+    u = "CubeNode2NewName";
+
+    await a.setNodeProperty({
+      uuid: l.uuid,
+      path: "name",
+      dump: { type: "String", value: u },
+    });
+
+    await a.saveScene();
+    await a.closeScene();
+    await delay(n);
+    await d(t);
+
+    if ((l = (o = i.children[1]).children[1]).name !== u) {
+      return returnFalseWithLog(
+        "mounted prefabInstance node in nested prefab change name failed"
+      );
+    }
+
+    await a.unlinkPrefab(l.uuid, false);
+    await a.saveScene();
+    await a.closeScene();
+    await delay(n);
+    await d(t);
+
+    if ((l = (o = i.children[1]).children[1]).name !== u) {
+      return returnFalseWithLog(
+        "mounted prefabInstance node in nested prefab change name failed"
+      );
+    }
+
+    if (l.children.length !== 1) {
+      return returnFalseWithLog(
+        "mounted prefabInstance node in nested prefab unWrap failed"
+      );
+    }
+    await a.duplicateNode(o.uuid);
+    var u = i.children[2];
+    var l = getPrefabInfo(o);
+    var _ = getPrefabInfo(u);
+    if (l?.instance && _?.instance && l.instance.fileId === _.instance.fileId) {
+      return returnFalseWithLog(
+        "duplicate prefabInstance node has the same fileId"
+      );
+    }
+    a.unlinkPrefab(o.uuid, false);
+    a.unlinkPrefab(u.uuid, false);
+    await a.saveScene();
+    await a.closeScene();
+    await delay(n);
+
+    if (!(s = cc_1.director.getScene())) {
+      return returnFalseWithLog("scene is null");
+    }
+
+    i = s.getChildByName("testPrefab");
+    c = i.uuid;
+    o = i.children[1];
+    u = i.children[2];
+
+    if (o.uuid === u.uuid) {
+      return returnFalseWithLog(
+        "unWrap duplicate prefabInstance node has the same uuid"
+      );
+    }
+
+    l = getPrefabInfo(o);
+    _ = getPrefabInfo(u);
+
+    if (l && _ && l.fileId === _.fileId) {
+      return returnFalseWithLog(
+        "unWrap duplicate prefabInstance node has the same fileId"
+      );
+    }
+
+    await d(t);
+    o = i.children[1];
+    u = i.children[2];
+    a.removeNode({ uuid: o.uuid });
+    a.removeNode({ uuid: u.uuid });
+    a.createNode({ parent: c, type: "cc.Prefab", assetUuid: r });
+    await delay(n);
+    o = i.children[1];
+    f = o.children[0];
+
+    a.setNodeProperty({
+      uuid: f.uuid,
+      path: "__comps__.0.shadowCastingMode",
+      dump: { type: "Enum", value: 1 },
+    });
+
+    await a.saveScene();
+    await a.closeScene();
+    await delay(n);
+    await d(t);
+    o = i.children[1];
+    l = (f = o.children[0]).getComponent(cc_1.MeshRenderer);
+    return l?.shadowCastingMode !== 1
+      ? returnFalseWithLog(
+          "component value in nested prefab not saved correctly"
+        )
+      : (await a.saveScene(),
+        await a.closeScene(),
+        await delay(n),
+        (s = cc_1.director.getScene())
+          ? ((e = (i = s.getChildByName("testPrefab")).uuid),
+            a.removeNode({ uuid: e }),
+            true)
+          : returnFalseWithLog("scene is null"));
+  }
+  async clear() {
+    cce.Selection.clear();
+    await clearTestDir();
+    return true;
+  }
+}
+const nestedPrefabTest = new NestedPrefabTest();
+exports.nestedPrefabTest = nestedPrefabTest;

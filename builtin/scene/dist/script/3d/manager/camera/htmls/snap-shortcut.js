@@ -1,4 +1,7 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const shortcut_1=require("../../shortcut");exports.default=Editor.Panel.define({style:`
+Object.defineProperty(exports, "__esModule", { value: true });
+const shortcut_1 = require("../../shortcut");
+exports.default = Editor.Panel.define({
+  style: `
         .snap-container {
             position: absolute;
             bottom: 10px;
@@ -68,6 +71,62 @@
         .snap-padding {
             width: 100%;
             height: 4px
-    }`,template:`
+    }`,
+  template: `
         <div class="snap-container"></div>
-    `,$:{container:".snap-container"},methods:{createSnapShortcut(o,p){o&&Object.keys(p).sort((e,t)=>p[e].order-p[t].order).forEach((e,t)=>{var n=p[e],a=document.createElement("key-combination"),i=(a.className="snap-item-group",document.createElement("ui-label"));i.className="snap-shortcut-text",i.innerText=Editor.I18n.t(n.title??""),a.appendChild(i);const r=document.createElement("div"),s=(r.className="snap-shortcut-key-group",a.appendChild(r),e.split("+"));s.forEach((e,t)=>{var n=document.createElement("div");n.className="snap-shortcut-item";const a=document.createElement("div");if(a.className="snap-key",a.innerText=e.charAt(0).toUpperCase()+e.slice(1),n.appendChild(a),0<t&&t<s.length){const a=document.createElement("div");a.className="snap-key-plus",a.innerText="+",r.appendChild(a)}r.appendChild(n)}),0<t&&t<s.length&&((n=document.createElement("div")).className="snap-padding",o.appendChild(n)),o.appendChild(a)})}},ready(){this.createSnapShortcut(this.$.container,shortcut_1.Shortcut.snapMap)}});
+    `,
+  $: { container: ".snap-container" },
+  methods: {
+    createSnapShortcut(o, p) {
+      if (o) {
+        Object.keys(p)
+          .sort((e, t) => p[e].order - p[t].order)
+          .forEach((e, t) => {
+            var n = p[e];
+            var a = document.createElement("key-combination");
+
+            a.className = "snap-item-group";
+            var i = document.createElement("ui-label");
+
+            i.className = "snap-shortcut-text";
+            i.innerText = Editor.I18n.t(n.title ?? "");
+            a.appendChild(i);
+            const r = document.createElement("div");
+
+            r.className = "snap-shortcut-key-group";
+            a.appendChild(r);
+            const s = e.split("+");
+
+            s.forEach((e, t) => {
+              var n = document.createElement("div");
+              n.className = "snap-shortcut-item";
+              const a = document.createElement("div");
+              a.className = "snap-key";
+              a.innerText = e.charAt(0).toUpperCase() + e.slice(1);
+              n.appendChild(a);
+
+              if (t > 0 && t < s.length) {
+                const a = document.createElement("div");
+                a.className = "snap-key-plus";
+                a.innerText = "+";
+                r.appendChild(a);
+              }
+
+              r.appendChild(n);
+            });
+
+            if (t > 0 && t < s.length) {
+              n = document.createElement("div");
+              n.className = "snap-padding";
+              o.appendChild(n);
+            }
+
+            o.appendChild(a);
+          });
+      }
+    },
+  },
+  ready() {
+    this.createSnapShortcut(this.$.container, shortcut_1.Shortcut.snapMap);
+  },
+});

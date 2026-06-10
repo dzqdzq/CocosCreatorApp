@@ -1,1 +1,22 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.versionDev=exports.buildTempDir=exports.previewTempDir=exports.texturePackerTempDir=exports.version=void 0;const path_1=require("path");exports.version="1.0.1",exports.texturePackerTempDir=(0,path_1.join)(Editor.Project.path,"temp/builder/TexturePacker"+exports.version),exports.previewTempDir=(0,path_1.join)(exports.texturePackerTempDir,"preview"),exports.buildTempDir=(0,path_1.join)(exports.texturePackerTempDir,"build"),exports.versionDev="1.0.2";
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.versionDev = undefined;
+exports.buildTempDir = undefined;
+exports.previewTempDir = undefined;
+exports.texturePackerTempDir = undefined;
+exports.version = undefined;
+
+const { join } = require("path");
+
+exports.version = "1.0.1";
+
+exports.texturePackerTempDir = join(
+  Editor.Project.path,
+  "temp/builder/TexturePacker" + exports.version
+);
+
+exports.previewTempDir = join(exports.texturePackerTempDir, "preview");
+
+exports.buildTempDir = join(exports.texturePackerTempDir, "build");
+
+exports.versionDev = "1.0.2";

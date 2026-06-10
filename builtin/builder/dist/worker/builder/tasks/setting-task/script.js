@@ -1,1 +1,23 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.title=void 0,exports.handle=handle;const path_1=require("path"),utils_1=require("../../utils");async function handle(s,i,e){var t=i.settings;t.scripting.scriptPackages=i.scriptPackages.map(e=>Build.Utils.relativeUrl(i.paths.engineDir,e)),t.plugins.jsList=i.pluginScripts.map(e=>{let t=(0,utils_1.removeDbHeader)(e.url);return t=s.md5Cache&&i.paths.plugins[e.uuid]?t.replace(/[^\/]*$/,()=>(0,path_1.basename)(i.paths.plugins[e.uuid])):t})}exports.title="i18n:builder.tasks.settings.script";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.title = undefined;
+exports.handle = handle;
+
+const { basename } = require("path");
+
+const { removeDbHeader } = require("../../utils");
+
+async function handle(s, i, e) {
+  var i_settings = i.settings;
+
+  i_settings.scripting.scriptPackages = i.scriptPackages.map((e) =>
+    Build.Utils.relativeUrl(i.paths.engineDir, e)
+  );
+
+  i_settings.plugins.jsList = i.pluginScripts.map((e) => {
+    let t = removeDbHeader(e.url);
+    return (t = s.md5Cache && i.paths.plugins[e.uuid]
+      ? t.replace(/[^\/]*$/, () => basename(i.paths.plugins[e.uuid]))
+      : t);
+  });
+}
+exports.title = "i18n:builder.tasks.settings.script";

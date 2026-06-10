@@ -1,4 +1,19 @@
-"use strict";function data(){return{mouseDownPoint:null}}function mounted(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.watch=exports.computed=exports.props=exports.template=void 0,exports.data=data,exports.mounted=mounted,exports.template=`
+function data() {
+  return { mouseDownPoint: null };
+}
+function mounted() {}
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.watch = undefined;
+exports.computed = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.data = data;
+exports.mounted = mounted;
+
+exports.template = `
     <div class="line"
         :class="isCircle?'circle':''"
         :style="style"
@@ -11,4 +26,129 @@
             :value="dump.siblings.length+1"
         ></ui-label>
     </div>
-`,exports.props=["dump"],exports.computed={isCircle(){var t=this;return t.$fromState=t.$parent.$refs[t.dump.fromStateId][0],t.$toState=t.$parent.$refs[t.dump.toStateId][0],!(!t.$fromState||!t.$toState)&&t.$fromState===t.$toState},style(){var o=this;if(o.$fromState=o.$parent.$refs[o.dump.fromStateId][0],o.$toState=o.$parent.$refs[o.dump.toStateId][0],!o.$fromState||!o.$toState)return{};if(o.$fromState===o.$toState)return r=o.$fromState.getCenter(),{offsetHeight:n,offsetWidth:i}=o.$fromState.$el,{top:r.top-n/2-13+"px",left:r.left+i/2-16+"px",width:"30px",height:"30px",borderRadius:i/2+"px"};{var n=!!o.$parent.lines[o.dump.reverseId],r=o.$fromState.getCenter(),i=o.$toState.getCenter(),s=i.left-r.left,i=i.top-r.top,a=Math.sqrt(s**2+i**2),i=Math.atan2(i,s),s=i*(180/Math.PI),o=(o.$refs.count&&(o.$refs.count.style=`transform: rotate(${360-s}deg)`),o.$parent.lineHeight/2);let t=r.top-o,e=r.left;return n&&(r=o*Math.sin(i),n=o*Math.cos(i),e+=r,t-=n),{top:t+"px",left:e+"px",width:a+"px",transform:`rotate(${s}deg)`}}},countTip(){return Editor.I18n.t("animation-graph.transition.countTip").replace("${count}",this.dump.siblings.length+1)}},exports.watch={},exports.methods={resize(){},mouseDown(t){const o=this;o.mouseDownPoint={button:0===t.button?"left":"right"},"right"===o.mouseDownPoint.button&&t.stopPropagation(),document.addEventListener("mouseup",function t(e){o.mouseDownPoint&&"right"===o.mouseDownPoint.button?o.mouseDownPoint.hasMoved||o.contextMenu(o.mouseDownPoint):o.mouseDownPoint.hasMoved||o.$parent.select(o.dump),document.removeEventListener("mouseup",t),o.mouseDownPoint=null})},contextMenu(){const t=this;t.dump.siblings.length?Editor.Menu.popup({menu:[{label:Editor.I18n.t("animation-graph.transition.removeAll"),click(){t.$root.removeTransition(t.dump.index,!0)}}]}):Editor.Menu.popup({menu:[{label:Editor.I18n.t("animation-graph.transition.remove"),click(){t.$root.removeTransition(t.dump.index,!1)}}]})}};
+`;
+
+exports.props = ["dump"];
+
+exports.computed = {
+  isCircle() {
+    var t = this;
+    t.$fromState = t.$parent.$refs[t.dump.fromStateId][0];
+    t.$toState = t.$parent.$refs[t.dump.toStateId][0];
+    return !(!t.$fromState || !t.$toState) && t.$fromState === t.$toState;
+  },
+  style() {
+    var o = this;
+    o.$fromState = o.$parent.$refs[o.dump.fromStateId][0];
+    o.$toState = o.$parent.$refs[o.dump.toStateId][0];
+
+    if (!o.$fromState || !o.$toState) {
+      return {};
+    }
+
+    if (o.$fromState === o.$toState) {
+      r = o.$fromState.getCenter();
+      ({ offsetHeight: n, offsetWidth: i } = o.$fromState.$el);
+
+      return {
+        top: r.top - n / 2 - 13 + "px",
+        left: r.left + i / 2 - 16 + "px",
+        width: "30px",
+        height: "30px",
+        borderRadius: i / 2 + "px",
+      };
+    }
+    {
+      var n = !!o.$parent.lines[o.dump.reverseId];
+      var r = o.$fromState.getCenter();
+      var i = o.$toState.getCenter();
+      var s = i.left - r.left;
+      var i = i.top - r.top;
+      var a = Math.sqrt(s ** 2 + i ** 2);
+      var i = Math.atan2(i, s);
+      var s = i * (180 / Math.PI);
+
+      var o =
+        (o.$refs.count &&
+          (o.$refs.count.style = `transform: rotate(${360 - s}deg)`),
+        o.$parent.lineHeight / 2);
+
+      let t = r.top - o;
+      let r_left = r.left;
+
+      if (n) {
+        r = o * Math.sin(i);
+        n = o * Math.cos(i);
+        r_left += r;
+        t -= n;
+      }
+
+      return {
+        top: t + "px",
+        left: r_left + "px",
+        width: a + "px",
+        transform: `rotate(${s}deg)`,
+      };
+    }
+  },
+  countTip() {
+    return Editor.I18n.t("animation-graph.transition.countTip").replace(
+      "${count}",
+      this.dump.siblings.length + 1
+    );
+  },
+};
+
+exports.watch = {};
+
+exports.methods = {
+  resize() {},
+  mouseDown(t) {
+    const o = this;
+    o.mouseDownPoint = { button: t.button === 0 ? "left" : "right" };
+
+    if (o.mouseDownPoint.button === "right") {
+      t.stopPropagation();
+    }
+
+    document.addEventListener("mouseup", function t(e) {
+      if (o.mouseDownPoint && o.mouseDownPoint.button === "right") {
+        if (!o.mouseDownPoint.hasMoved) {
+          o.contextMenu(o.mouseDownPoint);
+        }
+      } else if (!o.mouseDownPoint.hasMoved) {
+        o.$parent.select(o.dump);
+      }
+
+      document.removeEventListener("mouseup", t);
+      o.mouseDownPoint = null;
+    });
+  },
+  contextMenu() {
+    const t = this;
+
+    if (t.dump.siblings.length) {
+      Editor.Menu.popup({
+        menu: [
+          {
+            label: Editor.I18n.t("animation-graph.transition.removeAll"),
+            click() {
+              t.$root.removeTransition(t.dump.index, true);
+            },
+          },
+        ],
+      });
+    } else {
+      Editor.Menu.popup({
+        menu: [
+          {
+            label: Editor.I18n.t("animation-graph.transition.remove"),
+            click() {
+              t.$root.removeTransition(t.dump.index, false);
+            },
+          },
+        ],
+      });
+    }
+  },
+};

@@ -1,1 +1,5 @@
-"use strict";function isValidAnimationClipForGraph(i){return!0}Object.defineProperty(exports,"__esModule",{value:!0}),exports.isValidAnimationClipForGraph=isValidAnimationClipForGraph;
+function isValidAnimationClipForGraph(i) {
+  return true;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isValidAnimationClipForGraph = isValidAnimationClipForGraph;

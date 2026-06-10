@@ -1,1 +1,407 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r);var a=Object.getOwnPropertyDescriptor(t,r);a&&("get"in a?t.__esModule:!a.writable&&!a.configurable)||(a={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,i,a)}:function(e,t,r,i){e[i=void 0===i?r:i]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var a=function(e){return(a=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=a(e),i=0;i<r.length;i++)"default"!==r[i]&&__createBinding(t,e,r[i]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.SpriteFrameHandler=void 0,exports.trimImage=trimImage;const asset_db_1=require("@editor/asset-db"),cc=__importStar(require("cc")),utils_1=require("../utils"),utils_2=require("./image/utils");try{require("sharp")}catch(e){console.error(e),console.error(Editor.I18n.t("engine-extends.importers.sharpError"))}const Sharp=require("sharp");async function trimImage(e,t,r){e=Sharp(e).extract({left:r.trimX,top:r.trimY,width:r.rotated?r.height:r.width,height:r.rotated?r.width:r.height});return r.rotated&&e.rotate(270),e.toFile(t)}function createSpriteFrame(e){var t=e.userData,r=new cc.SpriteFrame;return r.name=e.displayName||e._name,r.atlasUuid=t.atlasUuid,r._rect=cc.rect(t.trimX,t.trimY,t.width,t.height),r._originalSize=cc.size(t.rawWidth,t.rawHeight),r._offset=cc.v2(t.offsetX,t.offsetY),r._capInsets=[t.borderLeft,t.borderTop,t.borderRight,t.borderBottom],r._rotated=t.rotated,r._packable=t.packable,r._pixelsToUnit=t.pixelsToUnit,r._pivot=cc.v2(t.pivotX,t.pivotY),r._meshType=t.meshType,initVertices(r,t),r}function getTexture(t,r){var t=t.userData,i=t.imageUuidOrDatabaseUri;if(i){let e=null;t.isUuid?e=i:(e=(0,asset_db_1.queryUUID)(i))||console.warn(`Cannot find image ${(0,asset_db_1.queryPath)(i)||""}.`),null!==e&&(r._texture=EditorExtends.serialize.asAsset(e,cc.Texture2D))}}function initVerticesData(e){void 0===e.vertices&&(e.vertices={rawPosition:[],indexes:[],uv:[],nuv:[],minPos:[],maxPos:[]});var t,r,i,a,o,n,s,c,d,m=e.vertices;m.rawPosition.length=0,e.meshType!==cc.SpriteFrame.MeshType.POLYGON&&(t=e.width,r=e.height,s=e.rawWidth,d=e.rawHeight,o=e.trimX,e=d-e.trimY-r,n=0===s?0:o/s,s=0===s?1:(o+t)/s,c=0===d?1:(e+r)/d,d=0===d?0:e/d,m.rawPosition=[-(i=t/2),-(a=r/2),0,i,-a,0,-i,a,0,i,a,0],m.uv=[o,e+r,o+t,e+r,o,e,o+t,e],m.nuv=[n,d,s,d,n,c,s,c],m.indexes=[0,1,2,2,1,3],m.minPos=[-i,-a,0],m.maxPos=[i,a,0])}function initVertices(e,t){var t=t.vertices,r=(e.vertices={rawPosition:[],positions:[],indexes:t.indexes,uv:t.uv,nuv:t.nuv,minPos:cc.v3(t.minPos[0],t.minPos[1],t.minPos[2]),maxPos:cc.v3(t.maxPos[0],t.maxPos[1],t.maxPos[2])},e.vertices),i=t.rawPosition,a=cc.v3();for(let e=0;e<i.length;e+=3)a.set(i[e],i[e+1],i[e+2]),r.rawPosition.push(a.clone())}Sharp.cache(!1),exports.SpriteFrameHandler={name:"sprite-frame",assetType:"cc.SpriteFrame",iconInfo:{default:utils_2.defaultIconConfig,async generateThumbnail(e){let t=(0,asset_db_1.queryAsset)(e.meta.userData.imageUuidOrDatabaseUri);if((t="image"!==t.meta.importer?t.parent:t).invalid)return utils_2.defaultIconConfig;var r=t.meta.files.find(e=>".json"!==e)||".png",i=t.library+r,r=e.library+"_sprite_trim_"+r,e=e.userData;try{await trimImage(i,r,e)}catch(e){return console.warn(`trim image {file(${i})} to generate thumbnail failed~`),console.warn(e),utils_2.defaultIconConfig}return{type:"image",value:r}}},userDataConfig:{default:{trimType:{default:"auto",label:"i18n:ENGINE.assets.spriteFrame.trimType",render:{ui:"ui-select",items:[{label:"auto",value:"auto"},{label:"custom",value:"custom"},{label:"none",value:"none"}]}}}},importer:{version:"1.0.12",async import(t){if(!t.parent)return!1;if("image"===t.parent.meta.importer){var r=t.userData;let e;e=[".tga",".hdr",".bmp",".exr",".znt",".psd"].includes(t.parent.extname.toLowerCase())?t.parent.library+".png":t.parent.source;var i=await Sharp(e).raw().toBuffer({resolveWithObject:!0});if(!i)return!1;void 0===r.trimThreshold&&(r.trimThreshold=1),r.rotated=!!r.rotated,r.packable=void 0===r.packable||r.packable,r.rawHeight=i.info.height,r.rawWidth=i.info.width,"auto"===r.trimType?4!==i.info.channels?(r.width=i.info.width,r.height=i.info.height,r.trimX=0,r.trimY=0):(a=(0,utils_1.getTrimRect)(Buffer.from(i.data),r.rawWidth,r.rawHeight,r.trimThreshold),r.width=Math.max(a[2],1),r.height=Math.max(a[3],1),r.trimX=cc.clamp(a[0],0,r.rawWidth-r.width),r.trimY=cc.clamp(a[1],0,r.rawHeight-r.height)):"none"===r.trimType?(r.trimX=0,r.trimY=0,r.width=i.info.width,r.height=i.info.height):(r.trimX=cc.clamp(r.trimX,0,r.rawWidth-1),r.trimY=cc.clamp(r.trimY,0,r.rawHeight-1),r.width=cc.clamp(-1===r.width?r.rawWidth:r.width,1,r.rawWidth-r.trimX),r.height=cc.clamp(-1===r.height?r.rawHeight:r.height,1,r.rawHeight-r.trimY)),r.offsetX=r.trimX+r.width/2-r.rawWidth/2,r.offsetY=-(r.trimY+r.height/2-r.rawHeight/2),r.borderLeft=cc.clamp(r.borderLeft,0,r.width),r.borderRight=cc.clamp(r.borderRight,0,r.width-r.borderLeft),r.borderTop=cc.clamp(r.borderTop,0,r.height),r.borderBottom=cc.clamp(r.borderBottom,0,r.height-r.borderTop),initVerticesData(r)}var a=createSpriteFrame(t),i=(t.parent instanceof asset_db_1.Asset&&(a.name=a.name||t.parent.basename||""),getTexture(t,a),EditorExtends.serialize(a)),r=(await t.saveToLibrary(".json",i),(0,utils_1.getDependUUIDList)(JSON.parse(i)));return t.setData("depends",r),!0}}},exports.default=exports.SpriteFrameHandler;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, i = r) => {
+        var a = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !a ||
+          (!("get" in a) ? !a.writable && !a.configurable : t.__esModule)
+        ) {
+          a = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, i, a);
+      }
+    : (e, t, r, i) => {
+        e[(i = i === undefined ? r : i)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var a = (e) =>
+      (a =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = a(e), i = 0; i < r.length; i++) {
+          if (r[i] !== "default") {
+            __createBinding(t, e, r[i]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SpriteFrameHandler = undefined;
+exports.trimImage = trimImage;
+const asset_db_1 = require("@editor/asset-db");
+
+const { queryUUID, queryPath, queryAsset } = asset_db_1;
+
+const cc = __importStar(require("cc"));
+
+const { getTrimRect, getDependUUIDList } = require("../utils");
+
+const utils_2 = require("./image/utils");
+try {
+  require("sharp");
+} catch (e) {
+  console.error(e);
+  console.error(Editor.I18n.t("engine-extends.importers.sharpError"));
+}
+const Sharp = require("sharp");
+async function trimImage(e, t, r) {
+  e = Sharp(e).extract({
+    left: r.trimX,
+    top: r.trimY,
+    width: r.rotated ? r.height : r.width,
+    height: r.rotated ? r.width : r.height,
+  });
+
+  if (r.rotated) {
+    e.rotate(270);
+  }
+
+  return e.toFile(t);
+}
+function createSpriteFrame(e) {
+  var e_userData = e.userData;
+  var r = new cc.SpriteFrame();
+  r.name = e.displayName || e._name;
+  r.atlasUuid = e_userData.atlasUuid;
+  r._rect = cc.rect(
+    e_userData.trimX,
+    e_userData.trimY,
+    e_userData.width,
+    e_userData.height
+  );
+  r._originalSize = cc.size(e_userData.rawWidth, e_userData.rawHeight);
+  r._offset = cc.v2(e_userData.offsetX, e_userData.offsetY);
+  r._capInsets = [
+    e_userData.borderLeft,
+    e_userData.borderTop,
+    e_userData.borderRight,
+    e_userData.borderBottom,
+  ];
+  r._rotated = e_userData.rotated;
+  r._packable = e_userData.packable;
+  r._pixelsToUnit = e_userData.pixelsToUnit;
+  r._pivot = cc.v2(e_userData.pivotX, e_userData.pivotY);
+  r._meshType = e_userData.meshType;
+  initVertices(r, e_userData);
+  return r;
+}
+function getTexture(t, r) {
+  var t = t.userData;
+  var t_imageUuidOrDatabaseUri = t.imageUuidOrDatabaseUri;
+  if (t_imageUuidOrDatabaseUri) {
+    let e = null;
+
+    if (t.isUuid) {
+      e = t_imageUuidOrDatabaseUri;
+    } else if (!(e = queryUUID(t_imageUuidOrDatabaseUri))) {
+      console.warn(
+        `Cannot find image ${queryPath(t_imageUuidOrDatabaseUri) || ""}.`
+      );
+    }
+
+    if (e !== null) {
+      r._texture = EditorExtends.serialize.asAsset(e, cc.Texture2D);
+    }
+  }
+}
+function initVerticesData(e) {
+  if (e.vertices === undefined) {
+    e.vertices = {
+      rawPosition: [],
+      indexes: [],
+      uv: [],
+      nuv: [],
+      minPos: [],
+      maxPos: [],
+    };
+  }
+
+  var t;
+  var r;
+  var i;
+  var a;
+  var o;
+  var n;
+  var s;
+  var c;
+  var d;
+  var e_vertices = e.vertices;
+  e_vertices.rawPosition.length = 0;
+
+  if (e.meshType !== cc.SpriteFrame.MeshType.POLYGON) {
+    t = e.width;
+    r = e.height;
+    s = e.rawWidth;
+    d = e.rawHeight;
+    o = e.trimX;
+    e = d - e.trimY - r;
+    n = s === 0 ? 0 : o / s;
+    s = s === 0 ? 1 : (o + t) / s;
+    c = d === 0 ? 1 : (e + r) / d;
+    d = d === 0 ? 0 : e / d;
+
+    e_vertices.rawPosition = [
+      -(i = t / 2),
+      -(a = r / 2),
+      0,
+      i,
+      -a,
+      0,
+      -i,
+      a,
+      0,
+      i,
+      a,
+      0,
+    ];
+
+    e_vertices.uv = [o, e + r, o + t, e + r, o, e, o + t, e];
+    e_vertices.nuv = [n, d, s, d, n, c, s, c];
+    e_vertices.indexes = [0, 1, 2, 2, 1, 3];
+    e_vertices.minPos = [-i, -a, 0];
+    e_vertices.maxPos = [i, a, 0];
+  }
+}
+function initVertices(e, t) {
+  var t = t.vertices;
+
+  e.vertices = {
+    rawPosition: [],
+    positions: [],
+    indexes: t.indexes,
+    uv: t.uv,
+    nuv: t.nuv,
+    minPos: cc.v3(t.minPos[0], t.minPos[1], t.minPos[2]),
+    maxPos: cc.v3(t.maxPos[0], t.maxPos[1], t.maxPos[2]),
+  };
+
+  var e_vertices = e.vertices;
+
+  var t_rawPosition = t.rawPosition;
+  var a = cc.v3();
+  for (let e = 0; e < t_rawPosition.length; e += 3) {
+    a.set(t_rawPosition[e], t_rawPosition[e + 1], t_rawPosition[e + 2]);
+    e_vertices.rawPosition.push(a.clone());
+  }
+}
+Sharp.cache(false);
+
+exports.SpriteFrameHandler = {
+  name: "sprite-frame",
+  assetType: "cc.SpriteFrame",
+  iconInfo: {
+    default: utils_2.defaultIconConfig,
+    async generateThumbnail(e) {
+      let t = queryAsset(e.meta.userData.imageUuidOrDatabaseUri);
+      if ((t = t.meta.importer !== "image" ? t.parent : t).invalid) {
+        return utils_2.defaultIconConfig;
+      }
+
+      var r = t.meta.files.find((e) => e !== ".json") || ".png";
+
+      var i = t.library + r;
+      var r = e.library + "_sprite_trim_" + r;
+      var e = e.userData;
+      try {
+        await trimImage(i, r, e);
+      } catch (e) {
+        console.warn(`trim image {file(${i})} to generate thumbnail failed~`);
+
+        console.warn(e);
+        return utils_2.defaultIconConfig;
+      }
+      return { type: "image", value: r };
+    },
+  },
+  userDataConfig: {
+    default: {
+      trimType: {
+        default: "auto",
+        label: "i18n:ENGINE.assets.spriteFrame.trimType",
+        render: {
+          ui: "ui-select",
+          items: [
+            { label: "auto", value: "auto" },
+            { label: "custom", value: "custom" },
+            { label: "none", value: "none" },
+          ],
+        },
+      },
+    },
+  },
+  importer: {
+    version: "1.0.12",
+    async import(t) {
+      if (!t.parent) {
+        return false;
+      }
+      if (t.parent.meta.importer === "image") {
+        var t_userData = t.userData;
+        let e;
+        e = [".tga", ".hdr", ".bmp", ".exr", ".znt", ".psd"].includes(
+          t.parent.extname.toLowerCase()
+        )
+          ? t.parent.library + ".png"
+          : t.parent.source;
+        var i = await Sharp(e).raw().toBuffer({ resolveWithObject: true });
+        if (!i) {
+          return false;
+        }
+
+        if (t_userData.trimThreshold === undefined) {
+          t_userData.trimThreshold = 1;
+        }
+
+        t_userData.rotated = !!t_userData.rotated;
+        t_userData.packable =
+          t_userData.packable === undefined || t_userData.packable;
+        t_userData.rawHeight = i.info.height;
+        t_userData.rawWidth = i.info.width;
+
+        if (t_userData.trimType === "auto") {
+          if (i.info.channels !== 4) {
+            t_userData.width = i.info.width;
+            t_userData.height = i.info.height;
+            t_userData.trimX = 0;
+            t_userData.trimY = 0;
+          } else {
+            a = getTrimRect(
+              Buffer.from(i.data),
+              t_userData.rawWidth,
+              t_userData.rawHeight,
+              t_userData.trimThreshold
+            );
+            t_userData.width = Math.max(a[2], 1);
+            t_userData.height = Math.max(a[3], 1);
+            t_userData.trimX = cc.clamp(
+              a[0],
+              0,
+              t_userData.rawWidth - t_userData.width
+            );
+            t_userData.trimY = cc.clamp(
+              a[1],
+              0,
+              t_userData.rawHeight - t_userData.height
+            );
+          }
+        } else if (t_userData.trimType === "none") {
+          t_userData.trimX = 0;
+          t_userData.trimY = 0;
+          t_userData.width = i.info.width;
+          t_userData.height = i.info.height;
+        } else {
+          t_userData.trimX = cc.clamp(
+            t_userData.trimX,
+            0,
+            t_userData.rawWidth - 1
+          );
+          t_userData.trimY = cc.clamp(
+            t_userData.trimY,
+            0,
+            t_userData.rawHeight - 1
+          );
+
+          t_userData.width = cc.clamp(
+            -1 === t_userData.width ? t_userData.rawWidth : t_userData.width,
+            1,
+            t_userData.rawWidth - t_userData.trimX
+          );
+
+          t_userData.height = cc.clamp(
+            -1 === t_userData.height ? t_userData.rawHeight : t_userData.height,
+            1,
+            t_userData.rawHeight - t_userData.trimY
+          );
+        }
+
+        t_userData.offsetX =
+          t_userData.trimX + t_userData.width / 2 - t_userData.rawWidth / 2;
+        t_userData.offsetY = -(
+          t_userData.trimY +
+          t_userData.height / 2 -
+          t_userData.rawHeight / 2
+        );
+        t_userData.borderLeft = cc.clamp(
+          t_userData.borderLeft,
+          0,
+          t_userData.width
+        );
+
+        t_userData.borderRight = cc.clamp(
+          t_userData.borderRight,
+          0,
+          t_userData.width - t_userData.borderLeft
+        );
+
+        t_userData.borderTop = cc.clamp(
+          t_userData.borderTop,
+          0,
+          t_userData.height
+        );
+
+        t_userData.borderBottom = cc.clamp(
+          t_userData.borderBottom,
+          0,
+          t_userData.height - t_userData.borderTop
+        );
+
+        initVerticesData(t_userData);
+      }
+      var a = createSpriteFrame(t);
+
+      if (t.parent instanceof asset_db_1.Asset) {
+        a.name = a.name || t.parent.basename || "";
+      }
+
+      getTexture(t, a);
+      var i = EditorExtends.serialize(a);
+      await t.saveToLibrary(".json", i);
+      var t_userData = getDependUUIDList(JSON.parse(i));
+
+      t.setData("depends", t_userData);
+      return true;
+    },
+  },
+};
+
+exports.default = exports.SpriteFrameHandler;

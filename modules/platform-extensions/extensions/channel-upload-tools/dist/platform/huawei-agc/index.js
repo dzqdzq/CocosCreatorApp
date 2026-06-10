@@ -1,1 +1,32 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const fs_extra_1=require("fs-extra"),path_1=require("path"),Constant=require("./const"),uploadInfo=require("./upload"),list=require("./upload-list"),components=(exports.name=Constant.PLATFORM,exports.template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../../static",`platform/${Constant.PLATFORM}/index.html`),"utf8"),exports.created=function(){},{});components[""+uploadInfo.name]=uploadInfo,components[""+list.name]=list,exports.components=components,exports.data=function(){return{compName:Constant.PLATFORM+"-upload",info:{}}};
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const { readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const Constant = require("./const");
+const uploadInfo = require("./upload");
+const list = require("./upload-list");
+
+exports.name = Constant.PLATFORM;
+
+exports.template = readFileSync(
+  join(
+    __dirname,
+    "../../../static",
+    `platform/${Constant.PLATFORM}/index.html`
+  ),
+  "utf8"
+);
+
+exports.created = () => {};
+const components = {};
+
+components["" + uploadInfo.name] = uploadInfo;
+components["" + list.name] = list;
+exports.components = components;
+
+exports.data = () => ({
+  compName: Constant.PLATFORM + "-upload",
+  info: {},
+});

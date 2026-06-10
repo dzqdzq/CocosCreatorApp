@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const template = `
     <ui-section class="config"
         header="Event Bindings"
         cache-expand="asset-animation-graph-state-event-bindings"
@@ -18,4 +20,12 @@
             ></ui-input>
         </ui-prop>
     </ui-section>
-`,eventBindingsArea={props:["eventBindings"],emits:["change"],template:template};exports.default=eventBindingsArea;
+`;
+
+const eventBindingsArea = {
+  props: ["eventBindings"],
+  emits: ["change"],
+  template,
+};
+
+exports.default = eventBindingsArea;

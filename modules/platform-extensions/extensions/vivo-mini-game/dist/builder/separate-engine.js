@@ -1,1 +1,84 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.buildCocos=buildCocos,exports.outputSignatureMd5WithPath=outputSignatureMd5WithPath,exports.outputSignatureMd5WithCode=outputSignatureMd5WithCode;const ccbuild_1=require("@cocos/ccbuild"),fs_extra_1=require("fs-extra"),path_1=require("path"),crypto_1=require("crypto");function excludeFeatures(e,t){return e.filter(e=>!t.includes(e))}async function buildCocos(e){var e=e||(Editor?(0,path_1.join)(Editor.App.path,"../resources/3d/engine"):(0,path_1.join)(__dirname,"../../../../../../../../resources/3d/engine")),t=(0,path_1.join)(e,"bin/.cache/editor-cache/vivo-mini-game");const r=(0,path_1.join)(t,"cocos");var a=excludeFeatures((await ccbuild_1.StatsQuery.create(e)).getFeatures(),["gfx-webgpu","vendor-google","spine-4.2","xr"]),e={platform:"VIVO",engine:e,out:r,moduleFormat:"system",compress:!0,split:!0,mode:"BUILD",nativeCodeBundleMode:"asmjs",flags:{DEBUG:!1,SERVER_MODE:!1},features:a,inlineEnum:!1},a=(0,path_1.join)(t,"options.json");if((0,fs_extra_1.existsSync)(a)){var i=(0,fs_extra_1.readJSONSync)(a);if(require("lodash").isEqual(i,e))return t}(0,fs_extra_1.emptyDirSync)(t);const o=await(0,ccbuild_1.buildEngine)(e),u={};return await Promise.all(Object.keys(o.exports).map(async e=>{var t=await outputSignatureMd5WithPath((0,path_1.join)(r,o.exports[e]));u[o.exports[e]]=t})),await(0,fs_extra_1.writeJSONSync)((0,path_1.join)(t,"meta.json"),Object.assign(o,{md5Map:u}),{spaces:2}),(0,fs_extra_1.outputJSONSync)(a,e,{spaces:4}),t}async function outputSignatureMd5WithPath(e){return outputSignatureMd5WithCode((0,fs_extra_1.readFileSync)(e))}async function outputSignatureMd5WithCode(e){return(0,crypto_1.createHash)("md5").update(e).digest("hex")}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildCocos = buildCocos;
+exports.outputSignatureMd5WithPath = outputSignatureMd5WithPath;
+exports.outputSignatureMd5WithCode = outputSignatureMd5WithCode;
+const ccbuild_1 = require("@cocos/ccbuild");
+
+const { buildEngine } = ccbuild_1;
+
+const {
+  existsSync,
+  readJSONSync,
+  emptyDirSync,
+  writeJSONSync,
+  outputJSONSync,
+  readFileSync,
+} = require("fs-extra");
+
+const { join } = require("path");
+
+const { createHash } = require("crypto");
+
+function excludeFeatures(e, t) {
+  return e.filter((e) => !t.includes(e));
+}
+async function buildCocos(e) {
+  var e =
+    e ||
+    (Editor
+      ? join(Editor.App.path, "../resources/3d/engine")
+      : join(__dirname, "../../../../../../../../resources/3d/engine"));
+
+  var t = join(e, "bin/.cache/editor-cache/vivo-mini-game");
+  const r = join(t, "cocos");
+
+  var a = excludeFeatures(
+    (await ccbuild_1.StatsQuery.create(e)).getFeatures(),
+    ["gfx-webgpu", "vendor-google", "spine-4.2", "xr"]
+  );
+
+  var e = {
+    platform: "VIVO",
+    engine: e,
+    out: r,
+    moduleFormat: "system",
+    compress: true,
+    split: true,
+    mode: "BUILD",
+    nativeCodeBundleMode: "asmjs",
+    flags: { DEBUG: false, SERVER_MODE: false },
+    features: a,
+    inlineEnum: false,
+  };
+
+  var a = join(t, "options.json");
+  if (existsSync(a)) {
+    var i = readJSONSync(a);
+    if (require("lodash").isEqual(i, e)) {
+      return t;
+    }
+  }
+  emptyDirSync(t);
+  const o = await buildEngine(e);
+  const u = {};
+
+  await Promise.all(
+    Object.keys(o.exports).map(async (e) => {
+      var t = await outputSignatureMd5WithPath(join(r, o.exports[e]));
+      u[o.exports[e]] = t;
+    })
+  );
+
+  await writeJSONSync(join(t, "meta.json"), Object.assign(o, { md5Map: u }), {
+    spaces: 2,
+  });
+
+  outputJSONSync(a, e, { spaces: 4 });
+  return t;
+}
+async function outputSignatureMd5WithPath(e) {
+  return outputSignatureMd5WithCode(readFileSync(e));
+}
+async function outputSignatureMd5WithCode(e) {
+  return createHash("md5").update(e).digest("hex");
+}

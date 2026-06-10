@@ -1,1 +1,8 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=migrateProject;const _1_3_4_1=require("./1.3.4");async function migrateProject(e){(0,_1_3_4_1.migrateGenMipmaps)(e)}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateProject = migrateProject;
+
+const { migrateGenMipmaps } = require("./1.3.4");
+
+async function migrateProject(e) {
+  migrateGenMipmaps(e);
+}

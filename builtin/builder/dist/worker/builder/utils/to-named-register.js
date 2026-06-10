@@ -1,1 +1,23 @@
-"use strict";function $({types:r},n){if(n&&n.name)return{visitor:{CallExpression:e=>{r.isMemberExpression(e.node.callee)&&r.isIdentifier(e.node.callee.object)&&"System"===e.node.callee.object.name&&r.isIdentifier(e.node.callee.property)&&"register"===e.node.callee.property.name&&2===e.node.arguments.length&&e.node.arguments.unshift(r.stringLiteral(n.name))}}};throw new Error("'name' options is required.")}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=$;
+function $({ types }, n) {
+  if (n && n.name) {
+    return {
+      visitor: {
+        CallExpression: (e) => {
+          if (
+            types.isMemberExpression(e.node.callee) &&
+            types.isIdentifier(e.node.callee.object) &&
+            e.node.callee.object.name === "System" &&
+            types.isIdentifier(e.node.callee.property) &&
+            e.node.callee.property.name === "register" &&
+            e.node.arguments.length === 2
+          ) {
+            e.node.arguments.unshift(types.stringLiteral(n.name));
+          }
+        },
+      },
+    };
+  }
+  throw new Error("'name' options is required.");
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = $;

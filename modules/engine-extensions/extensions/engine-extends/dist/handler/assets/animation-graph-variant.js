@@ -1,1 +1,37 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const cc_1=require("cc"),new_gen_anim_1=require("cc/editor/new-gen-anim"),fs_extra_1=require("fs-extra"),utils_1=require("../utils"),AnimationGraphVariantHandler={name:"animation-graph-variant",assetType:cc_1.js.getClassName(new_gen_anim_1.AnimationGraphVariant),createInfo:{generateMenuInfo(){return[{label:"i18n:ENGINE.assets.newAnimationGraphVariant",fullFileName:"Animation Graph Varint.animgraphvari",template:`db://internal/default_file_content/${AnimationGraphVariantHandler.name}/default.animgraphvari`,group:"animation"}]}},importer:{version:"1.0.0",async import(a){var e=await(0,fs_extra_1.readFile)(a.source,"utf8"),e=(await a.saveToLibrary(".json",e),(0,utils_1.getDependUUIDList)(e));return a.setData("depends",e),!0}}};exports.default=AnimationGraphVariantHandler;
+Object.defineProperty(exports, "__esModule", { value: true });
+const cc_1 = require("cc");
+const new_gen_anim_1 = require("cc/editor/new-gen-anim");
+
+const { readFile } = require("fs-extra");
+
+const { getDependUUIDList } = require("../utils");
+
+const AnimationGraphVariantHandler = {
+  name: "animation-graph-variant",
+  assetType: cc_1.js.getClassName(new_gen_anim_1.AnimationGraphVariant),
+  createInfo: {
+    generateMenuInfo() {
+      return [
+        {
+          label: "i18n:ENGINE.assets.newAnimationGraphVariant",
+          fullFileName: "Animation Graph Varint.animgraphvari",
+          template: `db://internal/default_file_content/${AnimationGraphVariantHandler.name}/default.animgraphvari`,
+          group: "animation",
+        },
+      ];
+    },
+  },
+  importer: {
+    version: "1.0.0",
+    async import(a) {
+      var e = await readFile(a.source, "utf8");
+
+      var e = (await a.saveToLibrary(".json", e), getDependUUIDList(e));
+
+      a.setData("depends", e);
+      return true;
+    },
+  },
+};
+
+exports.default = AnimationGraphVariantHandler;

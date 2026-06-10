@@ -1,1 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0;let tempState;exports.methods={open(){Editor.Panel.open("inspector")},staging(e){e&&(tempState=e)},async unstaging(){return tempState||null}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+let tempState;
+exports.methods = {
+  open() {
+    Editor.Panel.open("inspector");
+  },
+  staging(e) {
+    if (e) {
+      tempState = e;
+    }
+  },
+  async unstaging() {
+    return tempState || null;
+  },
+};

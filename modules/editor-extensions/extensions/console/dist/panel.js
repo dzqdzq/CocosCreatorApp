@@ -1,1 +1,247 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.listeners=exports.methods=exports.$=exports.template=exports.style=void 0,exports.ready=ready,exports.close=close;const remote_1=require("@electron/remote"),fs_1=require("fs"),path_1=require("path"),extension_1=require("./extension"),Vue=require("vue/dist/vue.js"),Manager=(Vue.config.productionTip=!1,Vue.config.devtools=!1,require("./manager")),allLogTypes=["log","warn","error","info"];let panel=null,vm=null;const vueTemplate=(0,fs_1.readFileSync)((0,path_1.join)(__dirname,"../static","/template/index.html"),"utf8"),ConsolePanelVM=Vue.extend({components:{"console-list":require("./components/list")},data(){return{updateAnimationId:null,tabbar:{displayDate:"",fontSize:12,lineHeight:24,filterTypes:[...allLogTypes],filterRegex:!1},extendsList:[],logTypes:[{label:"Log",value:"log"},{label:"Info",value:"info"},{label:"Warning",value:"warn"},{label:"Error",value:"error"}]}},mounted(){this.init()},methods:{async onHeaderChange(e,t){var a=t.target,r=a.value??"";switch(e){case"clear":Editor.Logger.clear(),Manager.clear();break;case"filterRegex":Manager.setFilterRegex(r);break;case"filterText":Manager.setFilterText(r);break;case"filterType":{const s=a.dataset.value;r?s&&!this.tabbar.filterTypes.includes(s)&&this.tabbar.filterTypes.push(s):-1!==(i=this.tabbar.filterTypes.findIndex(e=>e===s))&&this.tabbar.filterTypes.splice(i,1),Manager.setFilterType(this.tabbar.filterTypes),await Editor.Profile.setConfig("console","panel.filterTypes",this.tabbar.filterTypes);break}case"filterTypeAll":this.tabbar.filterTypes=r?[...allLogTypes]:[],Manager.setFilterType(this.tabbar.filterTypes),await Editor.Profile.setConfig("console","panel.filterTypes",this.tabbar.filterTypes);break;case"openLog":var i=(0,path_1.join)(Editor.Project.path,"./temp/logs/project.log");await Editor.Message.request("program","open-program","scriptEditor",{_args:[i]})||remote_1.shell.openPath(i)}},update(...t){window.cancelAnimationFrame(this.updateAnimationId),this.updateAnimationId=window.requestAnimationFrame(()=>{var e=this.$refs.list;e&&e.renderList(...t)})},t(e){return Editor.I18n.t("console."+e)},async init(){await this.refresh(),Manager.setUpdateFn(this.update.bind(this)),Editor.Logger.__protected__.on("record",exports.methods.record),Editor.Logger.__protected__.on("clear",exports.methods.refresh)},async refresh(){var e=await Editor.Logger.query(),t=await Editor.Profile.getConfig("console","panel"),a=t.filterType?"all"===t.filterType?[...allLogTypes]:[t.filterType]:null,r=+t.fontSize||12;this.tabbar.displayDate=t.displayDate,this.tabbar.filterTypes=t.filterTypes||a,this.tabbar.fontSize=r,this.tabbar.lineHeight=2*r,Manager.reset(e),Manager.setFilterType(this.tabbar.filterTypes),Manager.showDate(this.tabbar.displayDate),Manager.setLineHeight(this.tabbar.lineHeight)},onClearChange(e,t){Editor.Profile.setConfig(e.name,e.key,{value:t.target.value,show:!0},"global")}},template:vueTemplate});async function ready(e){panel=this,e&&await Editor.Profile.setConfig("console","panel.filterTypes",[e]),vm?.$destroy(),(vm=new ConsolePanelVM).$mount(panel.$.container),Editor.Package.__protected__.on("enable",async e=>{(0,extension_1.attach)(e),panel.updateExtensionVisible()}),Editor.Package.__protected__.on("disable",async e=>{(0,extension_1.detach)(e),panel.updateExtensionVisible()}),(0,extension_1.init)(),panel.updateExtensionVisible()}async function close(){Manager.setUpdateFn(null),Editor.Logger.__protected__.removeListener("record",exports.methods.record),Editor.Logger.__protected__.removeListener("clear",exports.methods.refresh),vm?.$destroy(),vm=null,panel=null}exports.style=(0,fs_1.readFileSync)((0,path_1.join)(__dirname,"../dist/index.css"),"utf8"),exports.template='<div class="container"></div>',exports.$={container:".container"},exports.methods={record(e){Manager.addItem(e),Manager.update()},async refresh(e){e&&await Editor.Profile.setConfig("console","panel.filterType",e),vm&&await vm.refresh()},async updateExtensionVisible(){vm&&(vm.extendsList=await(0,extension_1.getConfig)())}},exports.listeners={resize(){Manager?.update?.(!0)},show(){Manager.update()}};
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.listeners = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.style = undefined;
+
+exports.ready = ready;
+exports.close = close;
+const remote_1 = require("@electron/remote");
+
+const { readFileSync } = require("fs");
+
+const { join } = require("path");
+
+const { attach, detach, init, getConfig } = require("./extension");
+
+const Vue = require("vue/dist/vue.js");
+
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+const Manager = require("./manager");
+
+const allLogTypes = ["log", "warn", "error", "info"];
+let panel = null;
+let vm = null;
+
+const vueTemplate = readFileSync(
+  join(__dirname, "../static", "/template/index.html"),
+  "utf8"
+);
+
+const ConsolePanelVM = Vue.extend({
+  components: { "console-list": require("./components/list") },
+  data() {
+    return {
+      updateAnimationId: null,
+      tabbar: {
+        displayDate: "",
+        fontSize: 12,
+        lineHeight: 24,
+        filterTypes: [...allLogTypes],
+        filterRegex: false,
+      },
+      extendsList: [],
+      logTypes: [
+        { label: "Log", value: "log" },
+        { label: "Info", value: "info" },
+        { label: "Warning", value: "warn" },
+        { label: "Error", value: "error" },
+      ],
+    };
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    async onHeaderChange(e, t) {
+      var t_target = t.target;
+      var r = t_target.value ?? "";
+      switch (e) {
+        case "clear": {
+          Editor.Logger.clear();
+          Manager.clear();
+          break;
+        }
+        case "filterRegex": {
+          Manager.setFilterRegex(r);
+          break;
+        }
+        case "filterText": {
+          Manager.setFilterText(r);
+          break;
+        }
+        case "filterType": {
+          const s = t_target.dataset.value;
+
+          if (r) {
+            if (s && !this.tabbar.filterTypes.includes(s)) {
+              this.tabbar.filterTypes.push(s);
+            }
+          } else if (
+            -1 !== (i = this.tabbar.filterTypes.findIndex((e) => e === s))
+          ) {
+            this.tabbar.filterTypes.splice(i, 1);
+          }
+
+          Manager.setFilterType(this.tabbar.filterTypes);
+
+          await Editor.Profile.setConfig(
+            "console",
+            "panel.filterTypes",
+            this.tabbar.filterTypes
+          );
+
+          break;
+        }
+        case "filterTypeAll": {
+          this.tabbar.filterTypes = r ? [...allLogTypes] : [];
+          Manager.setFilterType(this.tabbar.filterTypes);
+
+          await Editor.Profile.setConfig(
+            "console",
+            "panel.filterTypes",
+            this.tabbar.filterTypes
+          );
+
+          break;
+        }
+        case "openLog": {
+          var i = join(Editor.Project.path, "./temp/logs/project.log");
+
+          if (
+            !(await Editor.Message.request(
+              "program",
+              "open-program",
+              "scriptEditor",
+              { _args: [i] }
+            ))
+          ) {
+            remote_1.shell.openPath(i);
+          }
+        }
+      }
+    },
+    update(...t) {
+      window.cancelAnimationFrame(this.updateAnimationId);
+
+      this.updateAnimationId = window.requestAnimationFrame(() => {
+        var e = this.$refs.list;
+
+        if (e) {
+          e.renderList(...t);
+        }
+      });
+    },
+    t(e) {
+      return Editor.I18n.t("console." + e);
+    },
+    async init() {
+      await this.refresh();
+      Manager.setUpdateFn(this.update.bind(this));
+      Editor.Logger.__protected__.on("record", exports.methods.record);
+      Editor.Logger.__protected__.on("clear", exports.methods.refresh);
+    },
+    async refresh() {
+      var e = await Editor.Logger.query();
+      var t = await Editor.Profile.getConfig("console", "panel");
+
+      var a = t.filterType
+        ? t.filterType === "all"
+          ? [...allLogTypes]
+          : [t.filterType]
+        : null;
+
+      var r = +t.fontSize || 12;
+      this.tabbar.displayDate = t.displayDate;
+      this.tabbar.filterTypes = t.filterTypes || a;
+      this.tabbar.fontSize = r;
+      this.tabbar.lineHeight = 2 * r;
+      Manager.reset(e);
+      Manager.setFilterType(this.tabbar.filterTypes);
+      Manager.showDate(this.tabbar.displayDate);
+      Manager.setLineHeight(this.tabbar.lineHeight);
+    },
+    onClearChange(e, t) {
+      Editor.Profile.setConfig(
+        e.name,
+        e.key,
+        { value: t.target.value, show: true },
+        "global"
+      );
+    },
+  },
+  template: vueTemplate,
+});
+
+async function ready(e) {
+  panel = this;
+
+  if (e) {
+    await Editor.Profile.setConfig("console", "panel.filterTypes", [e]);
+  }
+
+  vm?.$destroy();
+  (vm = new ConsolePanelVM()).$mount(panel.$.container);
+
+  Editor.Package.__protected__.on("enable", async (e) => {
+    attach(e);
+    panel.updateExtensionVisible();
+  });
+
+  Editor.Package.__protected__.on("disable", async (e) => {
+    detach(e);
+    panel.updateExtensionVisible();
+  });
+
+  init();
+  panel.updateExtensionVisible();
+}
+async function close() {
+  Manager.setUpdateFn(null);
+
+  Editor.Logger.__protected__.removeListener("record", exports.methods.record);
+
+  Editor.Logger.__protected__.removeListener("clear", exports.methods.refresh);
+
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+}
+
+exports.style = readFileSync(join(__dirname, "../dist/index.css"), "utf8");
+
+exports.template = '<div class="container"></div>';
+exports.$ = { container: ".container" };
+
+exports.methods = {
+  record(e) {
+    Manager.addItem(e);
+    Manager.update();
+  },
+  async refresh(e) {
+    if (e) {
+      await Editor.Profile.setConfig("console", "panel.filterType", e);
+    }
+
+    if (vm) {
+      await vm.refresh();
+    }
+  },
+  async updateExtensionVisible() {
+    if (vm) {
+      vm.extendsList = await getConfig();
+    }
+  },
+};
+
+exports.listeners = {
+  resize() {
+    Manager?.update?.(true);
+  },
+  show() {
+    Manager.update();
+  },
+};

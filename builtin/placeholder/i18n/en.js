@@ -1,1 +1,6 @@
-"use strict";module.exports={menu:{localization:"Localization Editor",import:"Import Cocos Creator 2.x project"}};
+module.exports = {
+  menu: {
+    localization: "Localization Editor",
+    import: "Import Cocos Creator 2.x project",
+  },
+};

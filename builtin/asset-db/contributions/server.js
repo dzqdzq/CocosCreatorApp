@@ -1,1 +1,9 @@
-"use strict";exports.get=[{url:"/asset-db/refresh",async handle(s,e,t){await Editor.Message.request("asset-db","refresh-asset","db://assets"),e.send("success")}}];
+exports.get = [
+  {
+    url: "/asset-db/refresh",
+    async handle(s, e, t) {
+      await Editor.Message.request("asset-db", "refresh-asset", "db://assets");
+      e.send("success");
+    },
+  },
+];

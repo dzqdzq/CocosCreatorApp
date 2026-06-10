@@ -1,1 +1,77 @@
-"use strict";function checkPackageNameValidity(e){return/^[a-zA-Z]\w*(\.[a-zA-Z]\w*)+$/.test(e)}function translate(e){return Editor.I18n.t("ohos."+e)}function verificationFunc(e,t,a){var r={error:"",newValue:t};switch(e){case"packageName":checkIsEmpty(t)?(r.newValue=exports.defaultOptions.packageName,r.error=translate("tips.not_empty")):checkPackageNameValidity(t)||(r.newValue=exports.defaultOptions.packageName,r.error=translate("tips.package_name_error"));break;case"apiLevel":checkIsEmpty(t)&&(r.error="API Level"+translate("tips.not_empty"))}return r}function getVerifyMap(){const e={};return["packageName","apiLevel"].forEach(a=>{e[a]=(e,t)=>verificationFunc(a,e,t)}),e}function checkIsEmpty(e){return null==e||""===e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.checkIsEmpty=exports.getVerifyMap=exports.verificationFunc=exports.translate=exports.defaultOptions=exports.checkPackageNameValidity=void 0,exports.checkPackageNameValidity=checkPackageNameValidity,exports.defaultOptions={packageName:"com.cocos.ohos",orientation:{portrait:!1,upsideDown:!1,landscapeRight:!0,landscapeLeft:!0},apiLevel:"5",appABIs:[],useDebugKeystore:!0,keystorePath:"",keystorePassword:"",keystoreAlias:"",keystoreAliasPassword:"",appBundle:!1,androidInstant:!1,remoteUrl:"",sdkPath:"",ndkPath:""},exports.translate=translate,exports.verificationFunc=verificationFunc,exports.getVerifyMap=getVerifyMap,exports.checkIsEmpty=checkIsEmpty;
+function checkPackageNameValidity(e) {
+  return /^[a-zA-Z]\w*(\.[a-zA-Z]\w*)+$/.test(e);
+}
+function translate(e) {
+  return Editor.I18n.t("ohos." + e);
+}
+function verificationFunc(e, t, a) {
+  var r = { error: "", newValue: t };
+  switch (e) {
+    case "packageName": {
+      if (checkIsEmpty(t)) {
+        r.newValue = exports.defaultOptions.packageName;
+        r.error = translate("tips.not_empty");
+      } else if (!checkPackageNameValidity(t)) {
+        r.newValue = exports.defaultOptions.packageName;
+        r.error = translate("tips.package_name_error");
+      }
+
+      break;
+    }
+    case "apiLevel": {
+      if (checkIsEmpty(t)) {
+        r.error = "API Level" + translate("tips.not_empty");
+      }
+    }
+  }
+  return r;
+}
+function getVerifyMap() {
+  const e = {};
+
+  ["packageName", "apiLevel"].forEach((a) => {
+    e[a] = (e, t) => verificationFunc(a, e, t);
+  });
+
+  return e;
+}
+function checkIsEmpty(e) {
+  return e == null || e === "";
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.checkIsEmpty = undefined;
+exports.getVerifyMap = undefined;
+exports.verificationFunc = undefined;
+exports.translate = undefined;
+exports.defaultOptions = undefined;
+exports.checkPackageNameValidity = undefined;
+
+exports.checkPackageNameValidity = checkPackageNameValidity;
+
+exports.defaultOptions = {
+  packageName: "com.cocos.ohos",
+  orientation: {
+    portrait: false,
+    upsideDown: false,
+    landscapeRight: true,
+    landscapeLeft: true,
+  },
+  apiLevel: "5",
+  appABIs: [],
+  useDebugKeystore: true,
+  keystorePath: "",
+  keystorePassword: "",
+  keystoreAlias: "",
+  keystoreAliasPassword: "",
+  appBundle: false,
+  androidInstant: false,
+  remoteUrl: "",
+  sdkPath: "",
+  ndkPath: "",
+};
+
+exports.translate = translate;
+exports.verificationFunc = verificationFunc;
+exports.getVerifyMap = getVerifyMap;
+exports.checkIsEmpty = checkIsEmpty;

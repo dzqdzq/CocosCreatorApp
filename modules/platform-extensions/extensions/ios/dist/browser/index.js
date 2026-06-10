@@ -1,1 +1,20 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.unload=unload;const utils_1=require("../builder/utils");async function load(){}function unload(){}exports.methods={async queryTeamInfo(){var e=await(0,utils_1.findSignIdentify)();return e.length&&Editor.Profile.setConfig("ios","teamsInfo",e,"global"),e}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+exports.unload = unload;
+
+const { findSignIdentify } = require("../builder/utils");
+
+async function load() {}
+function unload() {}
+exports.methods = {
+  async queryTeamInfo() {
+    var e = await findSignIdentify();
+
+    if (e.length) {
+      Editor.Profile.setConfig("ios", "teamsInfo", e, "global");
+    }
+
+    return e;
+  },
+};

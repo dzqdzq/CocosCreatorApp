@@ -1,1 +1,19 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.get=void 0;const fs_extra_1=require("fs-extra"),path_1=require("path");exports.get=[{url:"/build/**/*",async handle(e,t,r){var s=(0,path_1.join)(Editor.Project.path,e.url);if(!(0,fs_extra_1.existsSync)(s))return t.status(404).send(e.params[0]+" 资源不存在");t.sendFile(s)}}];
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.get = undefined;
+
+const { existsSync } = require("fs-extra");
+
+const { join } = require("path");
+
+exports.get = [
+  {
+    url: "/build/**/*",
+    async handle(e, t, r) {
+      var s = join(Editor.Project.path, e.url);
+      if (!existsSync(s)) {
+        return t.status(404).send(e.params[0] + " 资源不存在");
+      }
+      t.sendFile(s);
+    },
+  },
+];

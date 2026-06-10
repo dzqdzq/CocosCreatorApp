@@ -1,1 +1,32 @@
-"use strict";exports.register=async function(i){var n=Editor.Package.getPackages();const e={localization:!1,importer:!1};n.forEach(i=>{"localization-editor"===i.name?e.localization=!0:"plugin-import-2x"===i.name&&(e.importer=!0)}),i.contributions.menu=i.contributions.menu||[],!1===e.localization&&i.contributions.menu.push({path:"i18n:menu.panel",label:"i18n:placeholder.menu.localization",message:"install-extension",params:["localization"]}),!1===e.importer&&i.contributions.menu.push({path:"i18n:menu.file",label:"i18n:placeholder.menu.import",message:"install-extension",params:["plugin-import-2x"]})};
+exports.register = async (i) => {
+  var n = Editor.Package.getPackages();
+  const e = { localization: false, importer: false };
+
+  n.forEach((i) => {
+    if (i.name === "localization-editor") {
+      e.localization = true;
+    } else if (i.name === "plugin-import-2x") {
+      e.importer = true;
+    }
+  });
+
+  i.contributions.menu = i.contributions.menu || [];
+
+  if (e.localization === false) {
+    i.contributions.menu.push({
+      path: "i18n:menu.panel",
+      label: "i18n:placeholder.menu.localization",
+      message: "install-extension",
+      params: ["localization"],
+    });
+  }
+
+  if (e.importer === false) {
+    i.contributions.menu.push({
+      path: "i18n:menu.file",
+      label: "i18n:placeholder.menu.import",
+      message: "install-extension",
+      params: ["plugin-import-2x"],
+    });
+  }
+};

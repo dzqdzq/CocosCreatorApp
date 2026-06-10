@@ -1,1 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Flags=void 0,exports.Flags={lockUuid:"",mouseDownName:"",onScrolling:!1,onSelecting:!1,sceneReady:!1,domReady:!1,startDragStickInfo:null,startDragGridInfo:null,startResizeInfo:null,startDragEmbeddedPlayerInfo:null,lastScrollTops:[]};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Flags = undefined;
+
+exports.Flags = {
+  lockUuid: "",
+  mouseDownName: "",
+  onScrolling: false,
+  onSelecting: false,
+  sceneReady: false,
+  domReady: false,
+  startDragStickInfo: null,
+  startDragGridInfo: null,
+  startResizeInfo: null,
+  startDragEmbeddedPlayerInfo: null,
+  lastScrollTops: [],
+};

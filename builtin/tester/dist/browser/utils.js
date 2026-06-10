@@ -1,2 +1,43 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.collectLog=collectLog;const fs_extra_1=require("fs-extra");async function collectLog(t,e,r){let s=e,n=!1;"object"==typeof e&&(n="error"===e.type,s=e.message);var a=`${n?"[X]":"   "} ${translateLogMsg(s)}
- `+e.stack;await(0,fs_extra_1.appendFile)(t,a),r&&r(e)}function translateLogMsg(t){if("string"!=typeof t||t.includes("\n")){if("string"==typeof t&&t.includes("\n"))return translateLogMsg(t.split("\n"));if(Array.isArray(t)){let e="";return t.forEach(t=>{e+=translateLogMsg(t)+"\r"}),e}try{return JSON.stringify(t)}catch(t){}}return t}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.collectLog = collectLog;
+
+const { appendFile } = require("fs-extra");
+
+async function collectLog(t, e, r) {
+  let s = e;
+  let n = false;
+
+  if (typeof e == "object") {
+    n = e.type === "error";
+    s = e.message;
+  }
+
+  var a =
+    `${n ? "[X]" : "   "} ${translateLogMsg(s)}
+ ` + e.stack;
+  await appendFile(t, a);
+
+  if (r) {
+    r(e);
+  }
+}
+function translateLogMsg(t) {
+  if (typeof t != "string" || t.includes("\n")) {
+    if (typeof t == "string" && t.includes("\n")) {
+      return translateLogMsg(t.split("\n"));
+    }
+    if (Array.isArray(t)) {
+      let e = "";
+
+      t.forEach((t) => {
+        e += translateLogMsg(t) + "\r";
+      });
+
+      return e;
+    }
+    try {
+      return JSON.stringify(t);
+    } catch (t) {}
+  }
+  return t;
+}

@@ -1,1 +1,121 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,o){void 0===o&&(o=r);var n=Object.getOwnPropertyDescriptor(t,r);n&&("get"in n?t.__esModule:!n.writable&&!n.configurable)||(n={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,o,n)}:function(e,t,r,o){e[o=void 0===o?r:o]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var n=function(e){return(n=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=n(e),o=0;o<r.length;o++)"default"!==r[o]&&__createBinding(t,e,r[o]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.watch=exports.methods=exports.prop=exports.style=exports.template=exports.components=void 0,exports.data=data,exports.created=created;const fs_extra_1=require("fs-extra"),path_1=require("path"),phone_1=require("../../utils/phone"),main=__importStar(require("./main")),console=__importStar(require("./console")),cPhone=__importStar(require("./phone")),info=__importStar(require("./info")),name="huawei-runtime";function data(){return{width:0,loading:!1,platform:phone_1.phone.options&&phone_1.phone.options.platform||name}}async function created(){}exports.components={pMain:main,console:console,phone:cPhone,info:info},exports.template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../../static/template/home.html"),"utf-8"),exports.style=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../style/index.css"),"utf8"),exports.prop=[],exports.methods={t(e){return Editor.I18n.t(e)}},exports.watch={};
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, o = r) => {
+        var n = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !n ||
+          (!("get" in n) ? !n.writable && !n.configurable : t.__esModule)
+        ) {
+          n = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, n);
+      }
+    : (e, t, r, o) => {
+        e[(o = o === undefined ? r : o)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var n = (e) =>
+      (n =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = n(e), o = 0; o < r.length; o++) {
+          if (r[o] !== "default") {
+            __createBinding(t, e, r[o]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.watch = undefined;
+exports.methods = undefined;
+exports.prop = undefined;
+exports.style = undefined;
+exports.template = undefined;
+exports.components = undefined;
+
+exports.data = data;
+exports.created = created;
+
+const { readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const phone_1 = require("../../utils/phone");
+const main = __importStar(require("./main"));
+const console = __importStar(require("./console"));
+const cPhone = __importStar(require("./phone"));
+const info = __importStar(require("./info"));
+const name = "huawei-runtime";
+function data() {
+  return {
+    width: 0,
+    loading: false,
+    platform: (phone_1.phone.options && phone_1.phone.options.platform) || name,
+  };
+}
+async function created() {}
+
+exports.components = {
+  pMain: main,
+  console,
+  phone: cPhone,
+  info,
+};
+
+exports.template = readFileSync(
+  join(__dirname, "../../../static/template/home.html"),
+  "utf-8"
+);
+
+exports.style = readFileSync(join(__dirname, "../../style/index.css"), "utf8");
+
+exports.prop = [];
+
+exports.methods = {
+  t(e) {
+    return Editor.I18n.t(e);
+  },
+};
+
+exports.watch = {};

@@ -1,1 +1,84 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.TextureHandler=void 0;const asset_db_1=require("@editor/asset-db"),cc_1=require("cc"),utils_1=require("../utils"),utils_2=require("./image/utils"),texture_base_1=require("./texture-base");function getImageUuid(e){var e=e.userData,t=e.imageUuidOrDatabaseUri;return t?e.isUuid?t:Manager.Utils.url2uuid(t)||null:null}function getImageAsset(e){e=getImageUuid(e);return null!==e?EditorExtends.serialize.asAsset(e,cc_1.ImageAsset):null}exports.TextureHandler={name:"texture",assetType:"cc.Texture2D",iconInfo:{default:utils_2.defaultIconConfig,generateThumbnail(e){var t,e=getImageUuid(e);return!e||(e=(0,asset_db_1.queryAsset)(e)).invalid?utils_2.defaultIconConfig:(t=e.meta.files.find(e=>".json"!==e)||".png",{type:"image",value:e.library+t})}},importer:{version:"1.0.22",migrations:[{version:"1.0.21",migrate:texture_base_1.migrateAnisotropy}],async import(e){var t=e.userData,a=new cc.Texture2D,t=(e.parent instanceof asset_db_1.Asset&&(a.name=e.parent.basename||"",!t.mipfilter)&&[".hdr",".exr"].includes(e.parent.extname)&&(t.mipfilter="none",t.minfilter="nearest",t.magfilter="nearest"),e.assignUserData((0,utils_2.makeDefaultTexture2DAssetUserData)()),(0,texture_base_1.applyTextureBaseAssetUserData)(t,a),getImageAsset(e));if(t)a._mipmaps=[t];else if(e.userData.imageUuidOrDatabaseUri)return e.depend(e.userData.imageUuidOrDatabaseUri),!1;t=EditorExtends.serialize(a),await e.saveToLibrary(".json",t),a=(0,utils_1.getDependUUIDList)(t);return e.setData("depends",a),!0}}},exports.default=exports.TextureHandler;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TextureHandler = undefined;
+const asset_db_1 = require("@editor/asset-db");
+
+const { queryAsset } = asset_db_1;
+
+const cc_1 = require("cc");
+
+const { getDependUUIDList } = require("../utils");
+
+const utils_2 = require("./image/utils");
+
+const { makeDefaultTexture2DAssetUserData } = utils_2;
+
+const texture_base_1 = require("./texture-base");
+
+const { applyTextureBaseAssetUserData } = texture_base_1;
+
+function getImageUuid(e) {
+  var e = e.userData;
+  var e_imageUuidOrDatabaseUri = e.imageUuidOrDatabaseUri;
+  return e_imageUuidOrDatabaseUri
+    ? e.isUuid
+      ? e_imageUuidOrDatabaseUri
+      : Manager.Utils.url2uuid(e_imageUuidOrDatabaseUri) || null
+    : null;
+}
+function getImageAsset(e) {
+  e = getImageUuid(e);
+  return e !== null
+    ? EditorExtends.serialize.asAsset(e, cc_1.ImageAsset)
+    : null;
+}
+
+exports.TextureHandler = {
+  name: "texture",
+  assetType: "cc.Texture2D",
+  iconInfo: {
+    default: utils_2.defaultIconConfig,
+    generateThumbnail(e) {
+      var t;
+      var e = getImageUuid(e);
+      return !e || queryAsset(e).invalid
+        ? utils_2.defaultIconConfig
+        : ((t = e.meta.files.find((e) => e !== ".json") || ".png"),
+          { type: "image", value: e.library + t });
+    },
+  },
+  importer: {
+    version: "1.0.22",
+    migrations: [
+      { version: "1.0.21", migrate: texture_base_1.migrateAnisotropy },
+    ],
+    async import(e) {
+      var e_userData = e.userData;
+      var a = new cc.Texture2D();
+
+      var e_userData =
+        (e.parent instanceof asset_db_1.Asset &&
+          ((a.name = e.parent.basename || ""), !e_userData.mipfilter) &&
+          [".hdr", ".exr"].includes(e.parent.extname) &&
+          ((e_userData.mipfilter = "none"),
+          (e_userData.minfilter = "nearest"),
+          (e_userData.magfilter = "nearest")),
+        e.assignUserData(makeDefaultTexture2DAssetUserData()),
+        applyTextureBaseAssetUserData(e_userData, a),
+        getImageAsset(e));
+
+      if (e_userData) {
+        a._mipmaps = [e_userData];
+      } else if (e.userData.imageUuidOrDatabaseUri) {
+        e.depend(e.userData.imageUuidOrDatabaseUri);
+        return false;
+      }
+      e_userData = EditorExtends.serialize(a);
+      await e.saveToLibrary(".json", e_userData);
+      a = getDependUUIDList(e_userData);
+      e.setData("depends", a);
+      return true;
+    },
+  },
+};
+
+exports.default = exports.TextureHandler;

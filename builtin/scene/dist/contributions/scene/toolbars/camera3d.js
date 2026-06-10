@@ -1,4 +1,88 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,a,t,r){void 0===r&&(r=t);var o=Object.getOwnPropertyDescriptor(a,t);o&&("get"in o?a.__esModule:!o.writable&&!o.configurable)||(o={enumerable:!0,get:function(){return a[t]}}),Object.defineProperty(e,r,o)}:function(e,a,t,r){e[r=void 0===r?t:r]=a[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,a){Object.defineProperty(e,"default",{enumerable:!0,value:a})}:function(e,a){e.default=a}),__importStar=this&&this.__importStar||function(){var o=function(e){return(o=Object.getOwnPropertyNames||function(e){var a,t=[];for(a in e)Object.prototype.hasOwnProperty.call(e,a)&&(t[t.length]=a);return t})(e)};return function(e){if(e&&e.__esModule)return e;var a={};if(null!=e)for(var t=o(e),r=0;r<t.length;r++)"default"!==t[r]&&__createBinding(a,e,t[r]);return __setModuleDefault(a,e),a}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=exports.methods=exports.$=exports.template=exports.position=void 0,exports.ready=ready,exports.close=close;const Vue=require("vue/dist/vue.js");Vue.config.productionTip=!1,Vue.config.devtools=!1;let $scene=null,panel=null,vm=null;const vueTemplate=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, a, t, r = t) => {
+        var o = Object.getOwnPropertyDescriptor(a, t);
+
+        if (
+          !o ||
+          (!("get" in o) ? !o.writable && !o.configurable : a.__esModule)
+        ) {
+          o = {
+            enumerable: true,
+            get() {
+              return a[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, r, o);
+      }
+    : (e, a, t, r) => {
+        e[(r = r === undefined ? t : r)] = a[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, a) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: a });
+      }
+    : (e, a) => {
+        e.default = a;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var o = (e) =>
+      (o =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var a;
+          var t = [];
+          for (a in e) {
+            if (Object.prototype.hasOwnProperty.call(e, a)) {
+              t[t.length] = a;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var a = {};
+      if (e != null) {
+        for (var t = o(e), r = 0; r < t.length; r++) {
+          if (t[r] !== "default") {
+            __createBinding(a, e, t[r]);
+          }
+        }
+      }
+      __setModuleDefault(a, e);
+      return a;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.default = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.position = undefined;
+
+exports.ready = ready;
+exports.close = close;
+const Vue = require("vue/dist/vue.js");
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+let $scene = null;
+let panel = null;
+let vm = null;
+
+const vueTemplate = `
 <div class="camera3d" :style-2d="is2D">
     <ui-button type="icon" class="transparent" @click.stop="toolbarMenu">
         <ui-icon value="camera"></ui-icon>
@@ -101,7 +185,175 @@
         </ui-section>
     </div>
 </div>
-`,SceneCamera3DVM=Vue.extend({name:"SceneCamera3dToolbar",data(){return{is2D:!1,showMenu:!1,menuName:"camera-3d",camera:{fov:45,far:1e4,near:.01,aperture:19,apertureList:[],iso:0,isoList:[],shutter:7,shutterList:[],color:[51,51,51,255],wheelSpeed:.01,wanderSpeed:10,enableAcceleration:!0}}},methods:{toolbarMenu(){Editor.Message.broadcast("scene:toolbar-menu-active",this.menuName)},setFov(e){this.camera.fov=e-=0,$scene&&$scene.callSceneMethod("setCameraProperty",[{fov:e}])},setFar(e){this.camera.far=e-=0,$scene&&$scene.callSceneMethod("setCameraProperty",[{far:e}])},setNear(e){this.camera.near=e-=0,$scene&&$scene.callSceneMethod("setCameraProperty",[{near:e}])},setColor(e){this.camera.color=e,$scene&&$scene.callSceneMethod("setCameraProperty",[{clearColor:e}])},setWheelSpeed(e){this.camera.wheelSpeed=e-=0,$scene&&$scene.callSceneMethod("setCameraWheelSpeed",[e])},setWanderSpeed(e){this.camera.wanderSpeed=e-=0,$scene&&$scene.callSceneMethod("setCameraWanderSpeed",[e])},setEnableAcceleration(e){this.camera.enableAcceleration=e,$scene&&$scene.callSceneMethod("setCameraEnableAcceleration",[e])},setAperture(e){this.camera.aperture=e,$scene&&$scene.callSceneMethod("setCameraProperty",[{aperture:e}])},setShutter(e){this.camera.shutter=e,$scene&&$scene.callSceneMethod("setCameraProperty",[{shutter:e}])},setIso(e){this.camera.iso=e,$scene&&$scene.callSceneMethod("setCameraProperty",[{iso:e}])},onCameraSettings(){Editor.Menu.popup({menu:[{label:"i18n:scene.editor_camera.settings.reset",click:async()=>{$scene&&(await $scene.callSceneMethod("resetCameraProperty"),await panel.cameraConfig())}}]})}},template:vueTemplate});function ready(e){close(),panel=this,$scene=e.nextElementSibling,vm?.$destroy(),(vm=new SceneCamera3DVM).$mount(panel.$.container),Editor.Message.__protected__.addBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.addBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.addBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive),panel.sceneReady()}function close(){panel&&(Editor.Message.__protected__.removeBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.removeBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.removeBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive)),vm?.$destroy(),vm=null,panel=null,$scene=null}exports.position="right",exports.template=`
+`;
+
+const SceneCamera3DVM = Vue.extend({
+  name: "SceneCamera3dToolbar",
+  data() {
+    return {
+      is2D: false,
+      showMenu: false,
+      menuName: "camera-3d",
+      camera: {
+        fov: 45,
+        far: 10000 /* 1e4 */,
+        near: 0.01,
+        aperture: 19,
+        apertureList: [],
+        iso: 0,
+        isoList: [],
+        shutter: 7,
+        shutterList: [],
+        color: [51, 51, 51, 255],
+        wheelSpeed: 0.01,
+        wanderSpeed: 10,
+        enableAcceleration: true,
+      },
+    };
+  },
+  methods: {
+    toolbarMenu() {
+      Editor.Message.broadcast("scene:toolbar-menu-active", this.menuName);
+    },
+    setFov(e) {
+      this.camera.fov = e -= 0;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ fov: e }]);
+      }
+    },
+    setFar(e) {
+      this.camera.far = e -= 0;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ far: e }]);
+      }
+    },
+    setNear(e) {
+      this.camera.near = e -= 0;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ near: e }]);
+      }
+    },
+    setColor(e) {
+      this.camera.color = e;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ clearColor: e }]);
+      }
+    },
+    setWheelSpeed(e) {
+      this.camera.wheelSpeed = e -= 0;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraWheelSpeed", [e]);
+      }
+    },
+    setWanderSpeed(e) {
+      this.camera.wanderSpeed = e -= 0;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraWanderSpeed", [e]);
+      }
+    },
+    setEnableAcceleration(e) {
+      this.camera.enableAcceleration = e;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraEnableAcceleration", [e]);
+      }
+    },
+    setAperture(e) {
+      this.camera.aperture = e;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ aperture: e }]);
+      }
+    },
+    setShutter(e) {
+      this.camera.shutter = e;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ shutter: e }]);
+      }
+    },
+    setIso(e) {
+      this.camera.iso = e;
+
+      if ($scene) {
+        $scene.callSceneMethod("setCameraProperty", [{ iso: e }]);
+      }
+    },
+    onCameraSettings() {
+      Editor.Menu.popup({
+        menu: [
+          {
+            label: "i18n:scene.editor_camera.settings.reset",
+            click: async () => {
+              if ($scene) {
+                await $scene.callSceneMethod("resetCameraProperty");
+                await panel.cameraConfig();
+              }
+            },
+          },
+        ],
+      });
+    },
+  },
+  template: vueTemplate,
+});
+
+function ready(e) {
+  close();
+  panel = this;
+  $scene = e.nextElementSibling;
+  vm?.$destroy();
+  (vm = new SceneCamera3DVM()).$mount(panel.$.container);
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:dimension-changed",
+    panel.dimensionChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:toolbar-menu-active",
+    panel.toolbarMenuActive
+  );
+
+  panel.sceneReady();
+}
+function close() {
+  if (panel) {
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:ready",
+      panel.sceneReady
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:dimension-changed",
+      panel.dimensionChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:toolbar-menu-active",
+      panel.toolbarMenuActive
+    );
+  }
+
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+  $scene = null;
+}
+exports.position = "right";
+
+exports.template = `
 <style>
 .camera3d {
     position: relative;
@@ -167,4 +419,66 @@
 </style>
 
 <div class="camera3d"></div>
-`,exports.$={container:".camera3d"},exports.methods={dimensionChanged(e){vm&&(vm.is2D=e)},async sceneReady(){var e=await Editor.Message.request("scene","query-is2D");panel&&panel.dimensionChanged(e)},toolbarMenuActive(e){vm&&(e!==vm.menuName||vm.showMenu?vm.showMenu&&(vm.showMenu=!1):(vm.showMenu=!0,panel.cameraConfig()))},async cameraConfig(){var e,a,t,r;$scene&&(e=await $scene.callSceneMethod("getCameraProperty"),a=await $scene.callSceneMethod("getCameraWheelSpeed"),t=await $scene.callSceneMethod("getCameraWanderSpeed"),r=await $scene.callSceneMethod("getCameraEnableAcceleration"),vm)&&vm.$set(vm,"camera",{fov:e.fov.value,far:e.far.value,near:e.near.value,aperture:e.aperture.value,apertureList:e.aperture.enumList,iso:e.iso.value,isoList:e.iso.enumList,shutter:e.shutter.value,shutterList:e.shutter.enumList,color:Object.values(e.clearColor.value),wheelSpeed:a,wanderSpeed:t,enableAcceleration:r})}},exports.default=__importStar(require("./camera3d"));
+`;
+
+exports.$ = { container: ".camera3d" };
+
+exports.methods = {
+  dimensionChanged(e) {
+    if (vm) {
+      vm.is2D = e;
+    }
+  },
+  async sceneReady() {
+    var e = await Editor.Message.request("scene", "query-is2D");
+
+    if (panel) {
+      panel.dimensionChanged(e);
+    }
+  },
+  toolbarMenuActive(e) {
+    if (vm) {
+      if (e !== vm.menuName || vm.showMenu) {
+        if (vm.showMenu) {
+          vm.showMenu = false;
+        }
+      } else {
+        vm.showMenu = true;
+        panel.cameraConfig();
+      }
+    }
+  },
+  async cameraConfig() {
+    var e;
+    var a;
+    var t;
+    var r;
+
+    if (
+      $scene &&
+      ((e = await $scene.callSceneMethod("getCameraProperty")),
+      (a = await $scene.callSceneMethod("getCameraWheelSpeed")),
+      (t = await $scene.callSceneMethod("getCameraWanderSpeed")),
+      (r = await $scene.callSceneMethod("getCameraEnableAcceleration")),
+      vm)
+    ) {
+      vm.$set(vm, "camera", {
+        fov: e.fov.value,
+        far: e.far.value,
+        near: e.near.value,
+        aperture: e.aperture.value,
+        apertureList: e.aperture.enumList,
+        iso: e.iso.value,
+        isoList: e.iso.enumList,
+        shutter: e.shutter.value,
+        shutterList: e.shutter.enumList,
+        color: Object.values(e.clearColor.value),
+        wheelSpeed: a,
+        wanderSpeed: t,
+        enableAcceleration: r,
+      });
+    }
+  },
+};
+
+exports.default = __importStar(require("./camera3d"));

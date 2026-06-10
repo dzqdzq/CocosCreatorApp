@@ -1,1 +1,10 @@
-"use strict";module.exports={menuTitle:"Light Baking",title:"Light Probe",description:"Light Probe",start:"Bake Light Probe",cancel:"Cancel",clear:"Clear Result",openWarn:"Please turn on the baking Light Probe feature in Cocos Creator / Preferences / Laboratory"};
+module.exports = {
+  menuTitle: "Light Baking",
+  title: "Light Probe",
+  description: "Light Probe",
+  start: "Bake Light Probe",
+  cancel: "Cancel",
+  clear: "Clear Result",
+  openWarn:
+    "Please turn on the baking Light Probe feature in Cocos Creator / Preferences / Laboratory",
+};

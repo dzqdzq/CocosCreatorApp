@@ -1,1 +1,35 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.TreeNodeIcon=void 0;const vue_js_1=__importDefault(require("vue/dist/vue.js")),fs_extra_1=require("fs-extra"),path_1=require("path"),template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../static/template/tree-node-icon.html"),"utf8");exports.TreeNodeIcon=vue_js_1.default.extend({name:"TreeNodeIcon",props:{asset:Object,origin:String,expand:Boolean},computed:{directoryIcon(){var e=this.asset;return e.isDirectory&&!e.isDB?e.isBundle?this.expand?"bundle-folder-open":"bundle-folder":this.expand?"folder-open":"folder":null}},template:template});
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TreeNodeIcon = undefined;
+const vue_js_1 = __importDefault(require("vue/dist/vue.js"));
+
+const { readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const template = readFileSync(
+  join(__dirname, "../../static/template/tree-node-icon.html"),
+  "utf8"
+);
+
+exports.TreeNodeIcon = vue_js_1.default.extend({
+  name: "TreeNodeIcon",
+  props: { asset: Object, origin: String, expand: Boolean },
+  computed: {
+    directoryIcon() {
+      var e = this.asset;
+      return e.isDirectory && !e.isDB
+        ? e.isBundle
+          ? this.expand
+            ? "bundle-folder-open"
+            : "bundle-folder"
+          : this.expand
+          ? "folder-open"
+          : "folder"
+        : null;
+    },
+  },
+  template,
+});

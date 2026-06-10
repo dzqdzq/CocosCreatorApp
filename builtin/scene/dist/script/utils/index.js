@@ -1,1 +1,24 @@
-"use strict";function promisify(i){return function(...t){return new Promise(function(e,n){t.push(function(t,i){t?n(t):e(i)}),i.apply(null,t)})}}function isObject(t){return"object"==typeof t&&null!==t}function isString(t){return"string"==typeof t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.promisify=promisify,exports.isObject=isObject,exports.isString=isString;
+function promisify(i) {
+  return (...t) =>
+    new Promise((e, n) => {
+      t.push((t, i) => {
+        if (t) {
+          n(t);
+        } else {
+          e(i);
+        }
+      });
+
+      i(...t);
+    });
+}
+function isObject(t) {
+  return typeof t == "object" && t !== null;
+}
+function isString(t) {
+  return typeof t == "string";
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.promisify = promisify;
+exports.isObject = isObject;
+exports.isString = isString;

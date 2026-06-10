@@ -1,4 +1,65 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ready=exports.update=exports.$=exports.template=exports.style=void 0;const lodash=require("lodash");let panel;function update(e,t){panel=this,t&&!t.startsWith("pacakges."+panel.pkgName)||(panel.options=e,panel.vm.init())}function ready(e,t,i,n){panel=this;var p=require("vue/dist/vue.js");panel.options=e,panel.pkgName=i,panel.errorMap=n,panel.vm=new p({el:panel.$.root,methods:methods,data(){return{pkgName:i,options:panel.options,errorMap:panel.errorMap,pkgOptions:{},verifyRes:{},nativeEngine:"builtin"}},computed:{JobSystemTips(){return"ios"===panel.options.platform?"i18n:native.options.JobSystemIOS":"i18n:native.options.JobSystemOther"}},async mounted(){this.init();var e=await Editor.Message.request("engine","query-info");"custom"===e.nativeVersion&&(this.nativeEngine=e.nativePath)},components:{"build-prop":BuildPanel.vueComps.buildProp,"template-comp":BuildPanel.vueComps.templateComp}})}exports.style=".",exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.ready = undefined;
+exports.update = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.style = undefined;
+
+const lodash = require("lodash");
+let panel;
+function update(e, t) {
+  panel = this;
+
+  if (!t || t.startsWith("pacakges." + panel.pkgName)) {
+    panel.options = e;
+    panel.vm.init();
+  }
+}
+function ready(e, t, i, n) {
+  panel = this;
+  var p = require("vue/dist/vue.js");
+  panel.options = e;
+  panel.pkgName = i;
+  panel.errorMap = n;
+
+  panel.vm = new p({
+    el: panel.$.root,
+    methods,
+    data() {
+      return {
+        pkgName: i,
+        options: panel.options,
+        errorMap: panel.errorMap,
+        pkgOptions: {},
+        verifyRes: {},
+        nativeEngine: "builtin",
+      };
+    },
+    computed: {
+      JobSystemTips() {
+        return panel.options.platform === "ios"
+          ? "i18n:native.options.JobSystemIOS"
+          : "i18n:native.options.JobSystemOther";
+      },
+    },
+    async mounted() {
+      this.init();
+      var e = await Editor.Message.request("engine", "query-info");
+
+      if (e.nativeVersion === "custom") {
+        this.nativeEngine = e.nativePath;
+      }
+    },
+    components: {
+      "build-prop": BuildPanel.vueComps.buildProp,
+      "template-comp": BuildPanel.vueComps.templateComp,
+    },
+  });
+}
+exports.style = ".";
+
+exports.template = `
 <div class="native">
     <ui-prop class="build-prop">
         <ui-label slot="label" value="i18n:native.encrypt.title"></ui-label>
@@ -46,4 +107,32 @@
         </div>
     </ui-prop>
 </div>
-`,exports.$={root:".native"},exports.update=update,exports.ready=ready;const methods={async updateValue(e,t){var i=this;i.pkgOptions[t]=e.target.value,panel.dispatch("update",`packages.${i.pkgName}.`+t,e.target.value,i.verifyRes[t])},onEditNativeEngine(){Editor.Message.request("preferences","open-settings","engine")},init(){var e=this;e.pkgOptions=lodash.get(panel.options,"packages."+e.pkgName)||{},e.verifyRes=lodash.get(panel.errorMap,"packages."+e.pkgName)||{}},t(e){return Editor.I18n.t(e)}};
+`;
+
+exports.$ = { root: ".native" };
+exports.update = update;
+exports.ready = ready;
+const methods = {
+  async updateValue(e, t) {
+    var i = this;
+    i.pkgOptions[t] = e.target.value;
+
+    panel.dispatch(
+      "update",
+      `packages.${i.pkgName}.` + t,
+      e.target.value,
+      i.verifyRes[t]
+    );
+  },
+  onEditNativeEngine() {
+    Editor.Message.request("preferences", "open-settings", "engine");
+  },
+  init() {
+    var e = this;
+    e.pkgOptions = lodash.get(panel.options, "packages." + e.pkgName) || {};
+    e.verifyRes = lodash.get(panel.errorMap, "packages." + e.pkgName) || {};
+  },
+  t(e) {
+    return Editor.I18n.t(e);
+  },
+};

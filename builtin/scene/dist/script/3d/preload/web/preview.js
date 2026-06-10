@@ -1,1 +1,17 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const main_1=require("../main");(0,main_1.preload)({isSceneNative:!1,isPreviewProcess:!0}),window.addEventListener("unhandledrejection",e=>{console.error(e),e&&e.reason&&console.error(e.reason)},!0);
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const { preload } = require("../main");
+
+preload({ isSceneNative: false, isPreviewProcess: true });
+
+window.addEventListener(
+  "unhandledrejection",
+  (e) => {
+    console.error(e);
+
+    if (e && e.reason) {
+      console.error(e.reason);
+    }
+  },
+  true
+);

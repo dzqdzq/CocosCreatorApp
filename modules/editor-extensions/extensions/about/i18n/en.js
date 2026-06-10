@@ -1,1 +1,12 @@
-"use strict";module.exports={title:"About",description:"Cocos Creator introduction",version:"Version",editor:"Editor",engine:"Engine",cocos2dx:"Native",external:"Native(External)",platformExtensions:"Platform extensions",engineExtensions:"Engine extensions",editorExtensions:"Editor extensions"};
+module.exports = {
+  title: "About",
+  description: "Cocos Creator introduction",
+  version: "Version",
+  editor: "Editor",
+  engine: "Engine",
+  cocos2dx: "Native",
+  external: "Native(External)",
+  platformExtensions: "Platform extensions",
+  engineExtensions: "Engine extensions",
+  editorExtensions: "Editor extensions",
+};

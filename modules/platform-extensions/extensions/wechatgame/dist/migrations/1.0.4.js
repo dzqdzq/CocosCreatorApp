@@ -1,1 +1,7 @@
-"use strict";async function migrateLocal(e){e.builder&&e.builder.common&&(e.builder.common.useSplashScreen=!0)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateLocal=migrateLocal;
+async function migrateLocal(e) {
+  if (e.builder && e.builder.common) {
+    e.builder.common.useSplashScreen = true;
+  }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateLocal = migrateLocal;

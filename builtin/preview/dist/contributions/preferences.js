@@ -1,4 +1,21 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.$=exports.template=exports.style=void 0,exports.ready=ready,exports.exportConfig=exportConfig,exports.importConfig=importConfig,exports.close=close;const Vue=require("vue/dist/vue.js"),lodash=(Vue.config.productionTip=!1,Vue.config.devtools=!1,require("lodash"));let panel=null,vm=null;const vueTemplate=`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.$ = undefined;
+exports.template = undefined;
+exports.style = undefined;
+exports.ready = ready;
+exports.exportConfig = exportConfig;
+exports.importConfig = importConfig;
+exports.close = close;
+const Vue = require("vue/dist/vue.js");
+
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+const lodash = require("lodash");
+
+let panel = null;
+let vm = null;
+
+const vueTemplate = `
 <div class="container">
     <div v-if="config.preview" class="preview" @confirm="onConfirm">
         <div>
@@ -134,7 +151,166 @@
         </div>
     </div>
 </div>
-`,PreviewPreferenceVM=Vue.extend({name:"PreviewPreferenceVM",data(){return{config:{preview:{simulator_debugger:null,wait_for_connect:null}},types:{"preview.simulator_debugger":"global","preview.wait_for_connect":"global"},waitForConnectDisabled:!1}},watch:{"config.preview.simulator_debugger":{async handler(e){this.waitForConnectDisabled=!1,e||(this.waitForConnectDisabled=!0,lodash.set(this.config,"preview.wait_for_connect",!1),await Editor.Profile.setConfig("preview","preview.wait_for_connect",!1,this.types["preview.wait_for_connect"]))},deep:!0}},async mounted(){var e=await Editor.Profile.getConfig("preview","preview.simulator_debugger"),i=await Editor.Profile.getConfig("preview","preview.wait_for_connect");this.config.preview.simulator_debugger=e,this.config.preview.wait_for_connect=i;for(const t of Object.keys(this.types))await this.refresh(t)},methods:{async refresh(e){var i=await Editor.Profile.getConfig("preview",e,"local");this.types[e]=null!=i?"local":"global"},async onConfirm(e){var i=e.target.value,e=e.target.getAttribute("path");lodash.set(this.config,e,i),await Editor.Profile.setConfig("preview",e,i,this.types[e])},onChangePosition(e,i,t){Editor.Menu.popup({x:e,y:i,menu:[{label:Editor.I18n.t("preferences.menu.move_local"),enabled:"global"===this.types[t],click:async()=>{var e=await Editor.Profile.getConfig("preview",t);await Editor.Profile.setConfig("preview",t,e),await this.refresh(t)}},{label:Editor.I18n.t("preferences.menu.move_global"),enabled:"local"===this.types[t],click:async()=>{var e=await Editor.Profile.getConfig("preview",t,"local");await Editor.Profile.setConfig("preview",t,e,"global"),await Editor.Profile.removeConfig("preview",t,this.types[t]),await this.refresh(t)}}]})}},template:vueTemplate});function ready(){panel=this,vm?.$destroy(),(vm=new PreviewPreferenceVM).$mount(panel.$.container)}async function exportConfig(){var i={};for(const o of["preview.simulator_debugger","preview.wait_for_connect"]){let e="global";var t=await Editor.Message.request("preferences","query-config","preview",o,"local");null!=t&&(e="local"),i[o]={type:e,value:await Editor.Message.request("preferences","query-config","preview",o)}}return i}async function importConfig(e){e["preview.simulator_debugger"]&&await Editor.Message.request("preferences","set-config","preview","preview.simulator_debugger",e["preview.simulator_debugger"].value,e["preview.simulator_debugger"].type),e["preview.wait_for_connect"]&&await Editor.Message.request("preferences","set-config","preview","preview.wait_for_connect",e["preview.wait_for_connect"].value,e["preview.wait_for_connect"].type)}function close(){vm?.$destroy(),vm=null,panel=null}exports.style=`
+`;
+
+const PreviewPreferenceVM = Vue.extend({
+  name: "PreviewPreferenceVM",
+  data() {
+    return {
+      config: {
+        preview: { simulator_debugger: null, wait_for_connect: null },
+      },
+      types: {
+        "preview.simulator_debugger": "global",
+        "preview.wait_for_connect": "global",
+      },
+      waitForConnectDisabled: false,
+    };
+  },
+  watch: {
+    "config.preview.simulator_debugger": {
+      async handler(e) {
+        this.waitForConnectDisabled = false;
+
+        if (!e) {
+          this.waitForConnectDisabled = true;
+          lodash.set(this.config, "preview.wait_for_connect", false);
+
+          await Editor.Profile.setConfig(
+            "preview",
+            "preview.wait_for_connect",
+            false,
+            this.types["preview.wait_for_connect"]
+          );
+        }
+      },
+      deep: true,
+    },
+  },
+  async mounted() {
+    var e = await Editor.Profile.getConfig(
+      "preview",
+      "preview.simulator_debugger"
+    );
+
+    var i = await Editor.Profile.getConfig(
+      "preview",
+      "preview.wait_for_connect"
+    );
+
+    this.config.preview.simulator_debugger = e;
+    this.config.preview.wait_for_connect = i;
+    for (const t of Object.keys(this.types)) {
+      await this.refresh(t);
+    }
+  },
+  methods: {
+    async refresh(e) {
+      var i = await Editor.Profile.getConfig("preview", e, "local");
+      this.types[e] = i != null ? "local" : "global";
+    },
+    async onConfirm(e) {
+      var i = e.target.value;
+      var e = e.target.getAttribute("path");
+      lodash.set(this.config, e, i);
+      await Editor.Profile.setConfig("preview", e, i, this.types[e]);
+    },
+    onChangePosition(e, i, t) {
+      Editor.Menu.popup({
+        x: e,
+        y: i,
+        menu: [
+          {
+            label: Editor.I18n.t("preferences.menu.move_local"),
+            enabled: this.types[t] === "global",
+            click: async () => {
+              var e = await Editor.Profile.getConfig("preview", t);
+              await Editor.Profile.setConfig("preview", t, e);
+              await this.refresh(t);
+            },
+          },
+          {
+            label: Editor.I18n.t("preferences.menu.move_global"),
+            enabled: this.types[t] === "local",
+            click: async () => {
+              var e = await Editor.Profile.getConfig("preview", t, "local");
+              await Editor.Profile.setConfig("preview", t, e, "global");
+
+              await Editor.Profile.removeConfig("preview", t, this.types[t]);
+
+              await this.refresh(t);
+            },
+          },
+        ],
+      });
+    },
+  },
+  template: vueTemplate,
+});
+
+function ready() {
+  panel = this;
+  vm?.$destroy();
+  (vm = new PreviewPreferenceVM()).$mount(panel.$.container);
+}
+async function exportConfig() {
+  var i = {};
+  for (const o of ["preview.simulator_debugger", "preview.wait_for_connect"]) {
+    let e = "global";
+    var t = await Editor.Message.request(
+      "preferences",
+      "query-config",
+      "preview",
+      o,
+      "local"
+    );
+
+    if (t != null) {
+      e = "local";
+    }
+
+    i[o] = {
+      type: e,
+      value: await Editor.Message.request(
+        "preferences",
+        "query-config",
+        "preview",
+        o
+      ),
+    };
+  }
+  return i;
+}
+async function importConfig(e) {
+  if (e["preview.simulator_debugger"]) {
+    await Editor.Message.request(
+      "preferences",
+      "set-config",
+      "preview",
+      "preview.simulator_debugger",
+      e["preview.simulator_debugger"].value,
+      e["preview.simulator_debugger"].type
+    );
+  }
+
+  if (e["preview.wait_for_connect"]) {
+    await Editor.Message.request(
+      "preferences",
+      "set-config",
+      "preview",
+      "preview.wait_for_connect",
+      e["preview.wait_for_connect"].value,
+      e["preview.wait_for_connect"].type
+    );
+  }
+}
+function close() {
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+}
+
+exports.style = `
 .preview > div { display: flex; }
 .preview ui-icon { visibility: hidden; cursor: pointer; }
 .preview ui-icon[type='local'] { color: var(--color-warn-fill); visibility: visible; }
@@ -146,4 +322,7 @@
 .http > div { display: flex; }
 .http > div > ui-setting { flex: 1; }
 .http > div > ui-icon { color: var(--color-warn-fill); }
-`,exports.template='<div class="container"></div>',exports.$={container:".container"};
+`;
+
+exports.template = '<div class="container"></div>';
+exports.$ = { container: ".container" };

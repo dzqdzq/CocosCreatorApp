@@ -1,1 +1,15 @@
-"use strict";async function migrateProject(e){e.textureCompressConfig&&e.textureCompressConfig.userPreset&&Object.values(e.textureCompressConfig.userPreset).forEach(e=>{Object.values(e.options).forEach(t=>{Object.keys(t).forEach(e=>{e.startsWith("astc")&&"string"==typeof t[e]&&(t[e]=t[e].replace("-",""))})})})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=migrateProject;
+async function migrateProject(e) {
+  if (e.textureCompressConfig && e.textureCompressConfig.userPreset) {
+    Object.values(e.textureCompressConfig.userPreset).forEach((e) => {
+      Object.values(e.options).forEach((t) => {
+        Object.keys(t).forEach((e) => {
+          if (e.startsWith("astc") && typeof t[e] == "string") {
+            t[e] = t[e].replace("-", "");
+          }
+        });
+      });
+    });
+  }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateProject = migrateProject;

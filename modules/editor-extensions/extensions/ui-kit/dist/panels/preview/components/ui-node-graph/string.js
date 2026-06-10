@@ -1,3 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.template=void 0,exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.template = undefined;
+
+exports.template = `
 Only String
 `;

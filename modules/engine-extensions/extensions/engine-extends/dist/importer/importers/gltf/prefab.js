@@ -1,1 +1,169 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,a){void 0===a&&(a=r),Object.defineProperty(e,a,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,a){e[a=void 0===a?r:a]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&__createBinding(t,e,r);return __setModuleDefault(t,e),t},__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.GltfPrefabImporter=void 0;const asset_db_1=require("@editor/asset-db"),cc=__importStar(require("cc")),path_1=__importDefault(require("path")),asset_finder_1=require("./asset-finder"),load_asset_sync_1=require("./load-asset-sync"),reader_manager_1=require("./reader-manager"),uuidV5=require("uuid")["v5"],utils_1=require("../../utils"),GLTF_PREFAB_NAMESPACE="8fa06a75-f07a-44d4-82cf-d08c3c986599";class GltfPrefabImporter extends asset_db_1.Importer{get version(){return"1.0.12"}get name(){return"gltf-scene"}get assetType(){return"cc.Prefab"}async import(e){if(!e.parent)return!1;var t=await reader_manager_1.glTfReaderManager.getOrCreate(e.parent),r=e.parent.userData,r=t.createScene(e.userData.gltfIndex,new asset_finder_1.DefaultGltfAssetFinder(r.assetFinder)),a=[];for(const s of Object.keys(e.parent.subAssets)){var n=e.parent.subAssets[s];"gltf-animation"===n.meta.importer&&a.push(n.uuid)}let i=null;if(r.getComponentInChildren(cc.SkinnedMeshRenderer)?(i=r.addComponent(cc.SkeletalAnimation))._sockets=t.createSockets(r):0!==a.length&&(i=r.addComponent(cc.Animation)),i){var o=a.map(e=>load_asset_sync_1.loadAssetSync(e,cc.AnimationClip)||null);for(const d of i._clips=o)if(d){i._defaultClip=d;break}}1===t.gltf.scenes.length&&(o=e.parent.basename,r.name=path_1.default.basename(o,path_1.default.extname(o)));t=generatePrefab(r),o=EditorExtends.serialize(t),await e.saveToLibrary(".json",o),r=utils_1.getDependUUIDList(o);return e.setData("depends",r),!0}}function getCompressedUuid(e){e=uuidV5(e,GLTF_PREFAB_NAMESPACE);return EditorExtends.UuidUtils.compressUuid(e,!0)}exports.GltfPrefabImporter=GltfPrefabImporter;const nodePathMap=new Map;function getNodePath(e){if(nodePathMap.has(e))return nodePathMap.get(e);var t,r=[];let a=e;for(;a;){var n=a.getSiblingIndex();r.push(a.name+n),a=a.parent}return t=r.reverse().join("/"),nodePathMap.set(e,t),t}function nodeFileIdGenerator(e){return getCompressedUuid(getNodePath(e))}function compFileIdGenerator(e,t){return getCompressedUuid(getNodePath(e.node)+"/comp"+t)}function getDumpableNode(e,t){return nodePathMap.clear(),EditorExtends.PrefabUtils.addPrefabInfo(e,e,t,{nodeFileIdGenerator:nodeFileIdGenerator,compFileIdGenerator:compFileIdGenerator}),EditorExtends.PrefabUtils.checkAndStripNode(e),e}function generatePrefab(e){var t=new cc.Prefab,e=getDumpableNode(e,t);return t.data=e,t}
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, a = r) => {
+        Object.defineProperty(e, a, {
+          enumerable: true,
+          get() {
+            return t[r];
+          },
+        });
+      }
+    : (e, t, r, a) => {
+        e[(a = a === undefined ? r : a)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  ((e) => {
+    if (e && e.__esModule) {
+      return e;
+    }
+    var t = {};
+    if (e != null) {
+      for (var r in e) {
+        if (r !== "default" && Object.prototype.hasOwnProperty.call(e, r)) {
+          __createBinding(t, e, r);
+        }
+      }
+    }
+    __setModuleDefault(t, e);
+    return t;
+  });
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GltfPrefabImporter = undefined;
+const asset_db_1 = require("@editor/asset-db");
+const cc = __importStar(require("cc"));
+const path_1 = __importDefault(require("path"));
+const asset_finder_1 = require("./asset-finder");
+const load_asset_sync_1 = require("./load-asset-sync");
+const reader_manager_1 = require("./reader-manager");
+const uuidV5 = require("uuid").v5;
+const utils_1 = require("../../utils");
+const GLTF_PREFAB_NAMESPACE = "8fa06a75-f07a-44d4-82cf-d08c3c986599";
+class GltfPrefabImporter extends asset_db_1.Importer {
+  get version() {
+    return "1.0.12";
+  }
+  get name() {
+    return "gltf-scene";
+  }
+  get assetType() {
+    return "cc.Prefab";
+  }
+  async import(e) {
+    if (!e.parent) {
+      return false;
+    }
+    var t = await reader_manager_1.glTfReaderManager.getOrCreate(e.parent);
+    var r = e.parent.userData;
+
+    var r = t.createScene(
+      e.userData.gltfIndex,
+      new asset_finder_1.DefaultGltfAssetFinder(r.assetFinder)
+    );
+
+    var a = [];
+    for (const s of Object.keys(e.parent.subAssets)) {
+      var n = e.parent.subAssets[s];
+
+      if (n.meta.importer === "gltf-animation") {
+        a.push(n.uuid);
+      }
+    }
+    let i = null;
+
+    if (r.getComponentInChildren(cc.SkinnedMeshRenderer)) {
+      i = r.addComponent(cc.SkeletalAnimation);
+      i._sockets = t.createSockets(r);
+    } else if (a.length !== 0) {
+      i = r.addComponent(cc.Animation);
+    }
+
+    if (i) {
+      var o = a.map(
+        (e) => load_asset_sync_1.loadAssetSync(e, cc.AnimationClip) || null
+      );
+      for (const d of (i._clips = o)) {
+        if (d) {
+          i._defaultClip = d;
+          break;
+        }
+      }
+    }
+
+    if (t.gltf.scenes.length === 1) {
+      o = e.parent.basename;
+      r.name = path_1.default.basename(o, path_1.default.extname(o));
+    }
+
+    t = generatePrefab(r);
+    o = EditorExtends.serialize(t);
+    await e.saveToLibrary(".json", o);
+    r = utils_1.getDependUUIDList(o);
+    e.setData("depends", r);
+    return true;
+  }
+}
+function getCompressedUuid(e) {
+  e = uuidV5(e, GLTF_PREFAB_NAMESPACE);
+  return EditorExtends.UuidUtils.compressUuid(e, true);
+}
+exports.GltfPrefabImporter = GltfPrefabImporter;
+const nodePathMap = new Map();
+function getNodePath(e) {
+  if (nodePathMap.has(e)) {
+    return nodePathMap.get(e);
+  }
+  var t;
+  var r = [];
+  let a = e;
+
+  while (a) {
+    var n = a.getSiblingIndex();
+    r.push(a.name + n);
+    a = a.parent;
+  }
+
+  t = r.reverse().join("/");
+  nodePathMap.set(e, t);
+  return t;
+}
+function nodeFileIdGenerator(e) {
+  return getCompressedUuid(getNodePath(e));
+}
+function compFileIdGenerator(e, t) {
+  return getCompressedUuid(getNodePath(e.node) + "/comp" + t);
+}
+function getDumpableNode(e, t) {
+  nodePathMap.clear();
+
+  EditorExtends.PrefabUtils.addPrefabInfo(e, e, t, {
+    nodeFileIdGenerator,
+    compFileIdGenerator,
+  });
+
+  EditorExtends.PrefabUtils.checkAndStripNode(e);
+  return e;
+}
+function generatePrefab(e) {
+  var t = new cc.Prefab();
+  var e = getDumpableNode(e, t);
+  t.data = e;
+  return t;
+}

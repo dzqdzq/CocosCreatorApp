@@ -1,4 +1,79 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const scene_message_1=require("../shared/scene-message");let isReadyUpdate=!1;const panelDataMap=new WeakMap;module.exports=Editor.Panel.define({ready(){isReadyUpdate=!0;const t=this.$.bake;this.$.bake.addEventListener("confirm",()=>{var e=panelDataMap.get(this).dump,e=e.value.uuid.values??[e.value.uuid.value];(0,scene_message_1.operation)("start-bake",e),Editor.Metrics._trackEventWithTimer({category:"bakingSystem",id:"A100014",value:1})});var e=e=>{var a=panelDataMap.get(this).dump;(a.value.uuid.values??[a.value.uuid.value]).some(a=>e.currentInfo?.uuid===a||e.remaining.some(e=>e.uuid===a))||!1===a.value.enabled.value?t.setAttribute("disabled","disabled"):t.removeAttribute("disabled")};panelDataMap.set(this,{onUpdateInfo:e}),(0,scene_message_1.addBroadcastListener)("reflection-probe:update-bake-info",e)},update(e){if(e){const s=panelDataMap.get(this);s.dump=e;var a=this.$.bake,t=e.value.probeType.values??[e.value.probeType.value];const i=e.value.probeType.enumList.findIndex(e=>"CUBE"===e.name);a.hidden=t.some(e=>e!==i),isReadyUpdate?a.hidden&&Editor.Metrics._trackEventWithTimer({category:"bakingSystem",id:"A100015",value:1}):isReadyUpdate=!0,(0,scene_message_1.query)("query-bake-info").then(e=>{e&&s?.onUpdateInfo(e)})}},$:{bake:".bake"},style:`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const {
+  operation,
+  addBroadcastListener,
+  query,
+  removeBroadcastListener,
+} = require("../shared/scene-message");
+
+let isReadyUpdate = false;
+const panelDataMap = new WeakMap();
+module.exports = Editor.Panel.define({
+  ready() {
+    isReadyUpdate = true;
+    const t = this.$.bake;
+    this.$.bake.addEventListener("confirm", () => {
+      var e = panelDataMap.get(this).dump;
+      var e = e.value.uuid.values ?? [e.value.uuid.value];
+      operation("start-bake", e);
+
+      Editor.Metrics._trackEventWithTimer({
+        category: "bakingSystem",
+        id: "A100014",
+        value: 1,
+      });
+    });
+    var e = (e) => {
+      var a = panelDataMap.get(this).dump;
+
+      if (
+        (a.value.uuid.values ?? [a.value.uuid.value]).some(
+          (a) =>
+            e.currentInfo?.uuid === a || e.remaining.some((e) => e.uuid === a)
+        ) ||
+        a.value.enabled.value === false
+      ) {
+        t.setAttribute("disabled", "disabled");
+      } else {
+        t.removeAttribute("disabled");
+      }
+    };
+    panelDataMap.set(this, { onUpdateInfo: e });
+
+    addBroadcastListener("reflection-probe:update-bake-info", e);
+  },
+  update(e) {
+    if (e) {
+      const s = panelDataMap.get(this);
+      s.dump = e;
+      var a = this.$.bake;
+      var t = e.value.probeType.values ?? [e.value.probeType.value];
+      const i = e.value.probeType.enumList.findIndex((e) => e.name === "CUBE");
+
+      a.hidden = t.some((e) => e !== i);
+
+      if (isReadyUpdate) {
+        if (a.hidden) {
+          Editor.Metrics._trackEventWithTimer({
+            category: "bakingSystem",
+            id: "A100015",
+            value: 1,
+          });
+        }
+      } else {
+        isReadyUpdate = true;
+      }
+
+      query("query-bake-info").then((e) => {
+        if (e) {
+          s?.onUpdateInfo(e);
+        }
+      });
+    }
+  },
+  $: { bake: ".bake" },
+  style: `
         .reflection-probe-footer {
             display: flex;
             flex-wrap: wrap;
@@ -12,8 +87,17 @@
         .bake {
             flex: 1;
         }
-    `,template:`
+    `,
+  template: `
         <div class="reflection-probe-footer">
             <ui-button class="bake blue">Bake</ui-button>
         </div>
-    `,close(){var e=panelDataMap.get(this);(0,scene_message_1.removeBroadcastListener)("reflection-probe:update-bake-info",e.onUpdateInfo)}});
+    `,
+  close() {
+    var e = panelDataMap.get(this);
+    removeBroadcastListener(
+      "reflection-probe:update-bake-info",
+      e.onUpdateInfo
+    );
+  },
+});

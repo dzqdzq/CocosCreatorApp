@@ -1,1 +1,8 @@
-"use strict";const join=require("path")["join"],{existsSync,outputJSONSync}=require("fs-extra"),lodash=require("lodash");exports.migrateProject=async function(e){join(Editor.Project.path,"settings",Editor.App.version,"./packages");lodash.get(e,"script.useDefineForClassFields",!1),lodash.get(e,"script.allowDeclareFields",!1)};
+const join = require("path").join;
+const { existsSync, outputJSONSync } = require("fs-extra");
+const lodash = require("lodash");
+exports.migrateProject = async (e) => {
+  join(Editor.Project.path, "settings", Editor.App.version, "./packages");
+  lodash.get(e, "script.useDefineForClassFields", false);
+  lodash.get(e, "script.allowDeclareFields", false);
+};

@@ -1,1 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.onAfterBuild=exports.onAfterInit=exports.throwError=void 0;const util_1=require("./util");async function onAfterInit(t,r){var e=util_1.getNameFromConfig();e&&(t.packages.android.packageName=e)}async function onAfterBuild(t,r){}exports.throwError=!0,exports.onAfterInit=onAfterInit,exports.onAfterBuild=onAfterBuild;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.onAfterBuild = undefined;
+exports.onAfterInit = undefined;
+exports.throwError = undefined;
+const util_1 = require("./util");
+async function onAfterInit(t, r) {
+  var e = util_1.getNameFromConfig();
+
+  if (e) {
+    t.packages.android.packageName = e;
+  }
+}
+async function onAfterBuild(t, r) {}
+exports.throwError = true;
+exports.onAfterInit = onAfterInit;
+exports.onAfterBuild = onAfterBuild;

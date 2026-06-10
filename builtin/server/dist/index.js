@@ -1,1 +1,66 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.unload=unload;const express_1=require("./express"),plugin_1=require("./plugin"),utils_1=require("./utils");async function load(){var e;Editor.Package.getPackages({enable:!0}).forEach(plugin_1.attach),Editor.Package.__protected__.on("enable",plugin_1.attach),Editor.Package.__protected__.on("disable",plugin_1.detach),await Editor.Profile.getConfig("server","server_port","local")||(e=await Editor.Profile.getConfig("server","server_port","global")||7456,await Editor.Profile.setConfig("server","server_port",e,"local")),(0,express_1.startup)()}function unload(){(0,express_1.stop)()}exports.methods={queryPort(){return(0,express_1.getPort)()},queryHTTPSEnabled:express_1.queryHTTPSEnabled,queryIPList(){return Editor.Network.queryIPList()},querySortIpList(){var e=Editor.Network.queryIPList();return(0,utils_1.sortIp)(e)},async scanLAN(){return(await(0,utils_1.scan)()).filter(Boolean)},async"change-preview-port"(e,r){(0,express_1.getPort)()!==r&&Editor.Task.addNotice({title:Editor.I18n.t("server.server_port_change_tips"),source:"server"})},async"change-https-options"(e,r){"enable"!==e&&!await Editor.Profile.getConfig("server","https.enable")||Editor.Task.addNotice({title:Editor.I18n.t("server.https.change_tips"),source:"server"})}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+exports.unload = unload;
+const express_1 = require("./express");
+
+const { startup, stop, getPort } = express_1;
+
+const plugin_1 = require("./plugin");
+
+const { sortIp, scan } = require("./utils");
+
+async function load() {
+  var e;
+  Editor.Package.getPackages({ enable: true }).forEach(plugin_1.attach);
+  Editor.Package.__protected__.on("enable", plugin_1.attach);
+  Editor.Package.__protected__.on("disable", plugin_1.detach);
+
+  if (!(await Editor.Profile.getConfig("server", "server_port", "local"))) {
+    e =
+      (await Editor.Profile.getConfig("server", "server_port", "global")) ||
+      7456;
+
+    await Editor.Profile.setConfig("server", "server_port", e, "local");
+  }
+
+  startup();
+}
+function unload() {
+  stop();
+}
+exports.methods = {
+  queryPort() {
+    return getPort();
+  },
+  queryHTTPSEnabled: express_1.queryHTTPSEnabled,
+  queryIPList() {
+    return Editor.Network.queryIPList();
+  },
+  querySortIpList() {
+    var e = Editor.Network.queryIPList();
+    return sortIp(e);
+  },
+  async scanLAN() {
+    return (await scan()).filter(Boolean);
+  },
+  async "change-preview-port"(e, r) {
+    if (getPort() !== r) {
+      Editor.Task.addNotice({
+        title: Editor.I18n.t("server.server_port_change_tips"),
+        source: "server",
+      });
+    }
+  },
+  async "change-https-options"(e, r) {
+    if (
+      e === "enable" ||
+      (await Editor.Profile.getConfig("server", "https.enable"))
+    ) {
+      Editor.Task.addNotice({
+        title: Editor.I18n.t("server.https.change_tips"),
+        source: "server",
+      });
+    }
+  },
+};

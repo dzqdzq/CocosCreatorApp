@@ -1,1 +1,9 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Ruler=void 0;class Ruler{show(e){}init(){}updateTicks(e){}resize(e,r){}}exports.Ruler=Ruler;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Ruler = undefined;
+class Ruler {
+  show(e) {}
+  init() {}
+  updateTicks(e) {}
+  resize(e, r) {}
+}
+exports.Ruler = Ruler;

@@ -1,4 +1,89 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,i,n){void 0===n&&(n=i);var o=Object.getOwnPropertyDescriptor(t,i);o&&("get"in o?t.__esModule:!o.writable&&!o.configurable)||(o={enumerable:!0,get:function(){return t[i]}}),Object.defineProperty(e,n,o)}:function(e,t,i,n){e[n=void 0===n?i:n]=t[i]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var o=function(e){return(o=Object.getOwnPropertyNames||function(e){var t,i=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(i[i.length]=t);return i})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var i=o(e),n=0;n<i.length;n++)"default"!==i[n]&&__createBinding(t,e,i[n]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=exports.methods=exports.$=exports.template=exports.position=void 0,exports.ready=ready,exports.update=update,exports.close=close;const Vue=require("vue/dist/vue.js");Vue.config.productionTip=!1,Vue.config.devtools=!1;let $scene=null,panel=null,vm=null;const vueTemplate=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, i, n = i) => {
+        var o = Object.getOwnPropertyDescriptor(t, i);
+
+        if (
+          !o ||
+          (!("get" in o) ? !o.writable && !o.configurable : t.__esModule)
+        ) {
+          o = {
+            enumerable: true,
+            get() {
+              return t[i];
+            },
+          };
+        }
+
+        Object.defineProperty(e, n, o);
+      }
+    : (e, t, i, n) => {
+        e[(n = n === undefined ? i : n)] = t[i];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var o = (e) =>
+      (o =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var i = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              i[i.length] = t;
+            }
+          }
+          return i;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var i = o(e), n = 0; n < i.length; n++) {
+          if (i[n] !== "default") {
+            __createBinding(t, e, i[n]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.default = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.position = undefined;
+
+exports.ready = ready;
+exports.update = update;
+exports.close = close;
+const Vue = require("vue/dist/vue.js");
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+let $scene = null;
+let panel = null;
+let vm = null;
+
+const vueTemplate = `
 <div class="align-2d" 
     v-show="is2D"
 >
@@ -99,7 +184,93 @@
         </div>
     </div>
 </div>
-`,SceneAlign2DVM=Vue.extend({name:"SceneAlign2DVM",data(){return{is2D:!1,showMenu:!1,menuName:"align-2d",validAlign:!1,validDistribute:!1}},methods:{toolbarMenu(){Editor.Message.broadcast("scene:toolbar-menu-active",this.menuName)},align(e){$scene&&$scene.callSceneMethod("alignSelectionUI",[e])},distribute(e){$scene&&$scene.callSceneMethod("distributeSelectionUI",[e])}},template:vueTemplate});function ready(e){close(),panel=this,$scene=e.nextElementSibling,vm?.$destroy(),(vm=new SceneAlign2DVM).$mount(panel.$.container),Editor.Message.__protected__.addBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.addBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.addBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive),panel.sceneReady()}function update(e){e&&vm&&(vm.validAlign=1<e.nodes.length,vm.validDistribute=2<e.nodes.length)}function close(){panel&&(Editor.Message.__protected__.removeBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.removeBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.removeBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive)),vm?.$destroy(),vm=null,panel=null,$scene=null}exports.position="left",exports.template=`
+`;
+
+const SceneAlign2DVM = Vue.extend({
+  name: "SceneAlign2DVM",
+  data() {
+    return {
+      is2D: false,
+      showMenu: false,
+      menuName: "align-2d",
+      validAlign: false,
+      validDistribute: false,
+    };
+  },
+  methods: {
+    toolbarMenu() {
+      Editor.Message.broadcast("scene:toolbar-menu-active", this.menuName);
+    },
+    align(e) {
+      if ($scene) {
+        $scene.callSceneMethod("alignSelectionUI", [e]);
+      }
+    },
+    distribute(e) {
+      if ($scene) {
+        $scene.callSceneMethod("distributeSelectionUI", [e]);
+      }
+    },
+  },
+  template: vueTemplate,
+});
+
+function ready(e) {
+  close();
+  panel = this;
+  $scene = e.nextElementSibling;
+  vm?.$destroy();
+  (vm = new SceneAlign2DVM()).$mount(panel.$.container);
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:dimension-changed",
+    panel.dimensionChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:toolbar-menu-active",
+    panel.toolbarMenuActive
+  );
+
+  panel.sceneReady();
+}
+function update(e) {
+  if (e && vm) {
+    vm.validAlign = e.nodes.length > 1;
+    vm.validDistribute = e.nodes.length > 2;
+  }
+}
+function close() {
+  if (panel) {
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:ready",
+      panel.sceneReady
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:dimension-changed",
+      panel.dimensionChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:toolbar-menu-active",
+      panel.toolbarMenuActive
+    );
+  }
+
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+  $scene = null;
+}
+exports.position = "left";
+
+exports.template = `
 <style>
     .align-2d {
         position: relative;
@@ -153,4 +324,34 @@
 </style>
 
 <div class="align-2d"></div>
-`,exports.$={container:".align-2d"},exports.methods={dimensionChanged(e){vm&&(vm.is2D=e)},async sceneReady(){var e=await Editor.Message.request("scene","query-is2D");panel&&panel.dimensionChanged(e)},toolbarMenuActive(e){vm&&(e!==vm.menuName||vm.showMenu?vm.showMenu&&(vm.showMenu=!1):vm.showMenu=!0)}},exports.default=__importStar(require("./align-2d"));
+`;
+
+exports.$ = { container: ".align-2d" };
+
+exports.methods = {
+  dimensionChanged(e) {
+    if (vm) {
+      vm.is2D = e;
+    }
+  },
+  async sceneReady() {
+    var e = await Editor.Message.request("scene", "query-is2D");
+
+    if (panel) {
+      panel.dimensionChanged(e);
+    }
+  },
+  toolbarMenuActive(e) {
+    if (vm) {
+      if (e !== vm.menuName || vm.showMenu) {
+        if (vm.showMenu) {
+          vm.showMenu = false;
+        }
+      } else {
+        vm.showMenu = true;
+      }
+    }
+  },
+};
+
+exports.default = __importStar(require("./align-2d"));

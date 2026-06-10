@@ -1,1 +1,54 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.unload=unload;const data_1=require("../data"),esm_require=require("esm")(module),uploadMgr=esm_require("../../dist/browser/upload")["uploadMgr"],crashReportArr=[];function load(){}function unload(){}exports.methods={async onCrashReport(r){var e=r&&r.details;if(!e||["crashed","oom"].includes(e.reason))if(await Editor.Network.__protected__.testConnectServer())try{if(r.param=await Editor.Metrics.__protected__._trackCrashEvent({category:"crash",value:r.value}),await uploadMgr.check()){const a=await(0,data_1.createCrashReport)(r);crashReportArr.find(r=>r.process===a.process)||crashReportArr.push(a),await Editor.Panel.has("crash-reporter")?Editor.Message.send("crash-reporter","refresh",a):Editor.Panel.open("crash-reporter",a)}}catch(r){console.debug(r)}else console.debug("[crash-report] Offline status, no reporting.")},queryCrashReportInfos(){return crashReportArr},async onUpload(r){0!==crashReportArr.length&&(await uploadMgr.packMultipleZipAndUpload(r,crashReportArr),crashReportArr.length=0)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+exports.unload = unload;
+
+const { createCrashReport } = require("../data");
+
+const esm_require = require("esm")(module);
+const uploadMgr = esm_require("../../dist/browser/upload").uploadMgr;
+const crashReportArr = [];
+function load() {}
+function unload() {}
+exports.methods = {
+  async onCrashReport(r) {
+    var e = r && r.details;
+    if (!e || ["crashed", "oom"].includes(e.reason)) {
+      if (await Editor.Network.__protected__.testConnectServer()) {
+        try {
+          r.param = await Editor.Metrics.__protected__._trackCrashEvent({
+            category: "crash",
+            value: r.value,
+          });
+
+          if (await uploadMgr.check()) {
+            const a = await createCrashReport(r);
+
+            if (!crashReportArr.find((r) => r.process === a.process)) {
+              crashReportArr.push(a);
+            }
+
+            if (await Editor.Panel.has("crash-reporter")) {
+              Editor.Message.send("crash-reporter", "refresh", a);
+            } else {
+              Editor.Panel.open("crash-reporter", a);
+            }
+          }
+        } catch (r) {
+          console.debug(r);
+        }
+      } else {
+        console.debug("[crash-report] Offline status, no reporting.");
+      }
+    }
+  },
+  queryCrashReportInfos() {
+    return crashReportArr;
+  },
+  async onUpload(r) {
+    if (crashReportArr.length !== 0) {
+      await uploadMgr.packMultipleZipAndUpload(r, crashReportArr);
+      crashReportArr.length = 0;
+    }
+  },
+};

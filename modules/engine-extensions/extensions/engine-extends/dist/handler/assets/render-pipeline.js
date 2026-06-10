@@ -1,1 +1,24 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.RenderPipelineAssetHandler=void 0;const fs_extra_1=require("fs-extra"),utils_1=require("../utils");exports.RenderPipelineAssetHandler={name:"render-pipeline",assetType:"cc.RenderPipeline",importer:{version:"1.0.0",async import(e){var r=await(0,fs_extra_1.readFile)(e.source,"utf8"),r=(await e.saveToLibrary(".json",r),(0,utils_1.getDependUUIDList)(r));return e.setData("depends",r),!0}}},exports.default=exports.RenderPipelineAssetHandler;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RenderPipelineAssetHandler = undefined;
+
+const { readFile } = require("fs-extra");
+
+const { getDependUUIDList } = require("../utils");
+
+exports.RenderPipelineAssetHandler = {
+  name: "render-pipeline",
+  assetType: "cc.RenderPipeline",
+  importer: {
+    version: "1.0.0",
+    async import(e) {
+      var r = await readFile(e.source, "utf8");
+
+      var r = (await e.saveToLibrary(".json", r), getDependUUIDList(r));
+
+      e.setData("depends", r);
+      return true;
+    },
+  },
+};
+
+exports.default = exports.RenderPipelineAssetHandler;

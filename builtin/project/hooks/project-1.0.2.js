@@ -1,1 +1,11 @@
-"use strict";exports.migrateProject=async function(e){e.fbx||(e.fbx={}),e.fbx.legacyFbxImporter||(e.fbx.legacyFbxImporter={}),e.fbx.legacyFbxImporter.visible=!0};
+exports.migrateProject = async (e) => {
+  if (!e.fbx) {
+    e.fbx = {};
+  }
+
+  if (!e.fbx.legacyFbxImporter) {
+    e.fbx.legacyFbxImporter = {};
+  }
+
+  e.fbx.legacyFbxImporter.visible = true;
+};

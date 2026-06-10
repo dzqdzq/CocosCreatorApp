@@ -1,1 +1,67 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.$=exports.style=exports.template=void 0,exports.ready=ready;const fs_extra_1=require("fs-extra"),path_1=require("path"),Vue=require("vue/dist/vue.js");Vue.config.productionTip=!1,Vue.config.devtools=!1;let panel=null,vm;const platforms={};async function ready(e){panel=this,loadComponents(),platforms[e]&&(vm=new Vue({el:panel.$.tools,components:platforms,data:{page:e}}))}function loadComponents(){try{const s=(0,path_1.join)(__dirname,"../platform");(0,fs_extra_1.readdirSync)(s).forEach(e=>{var t=(0,path_1.join)(s,e),o=(0,path_1.join)(s,e,"index");if((0,fs_extra_1.existsSync)(t))try{platforms[e]=require(o)}catch(e){console.error(e)}else console.error(`Load ${e} plugin failed`)})}catch(e){console.error("Load components failed")}}exports.template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../static/ui/index.html"),"utf-8"),exports.style=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"index.css"),"utf8"),exports.$={tools:".channel-upload-tools"},exports.methods={async loginResult(e,t){vm.$emit("loginResult",e,t)},async oAuthWindowClose(e){vm.$emit("oAuthWindowClose",e)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.$ = undefined;
+exports.style = undefined;
+exports.template = undefined;
+exports.ready = ready;
+
+const { readdirSync, existsSync, readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const Vue = require("vue/dist/vue.js");
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+let panel = null;
+let vm;
+const platforms = {};
+async function ready(e) {
+  panel = this;
+  loadComponents();
+
+  if (platforms[e]) {
+    vm = new Vue({
+      el: panel.$.tools,
+      components: platforms,
+      data: { page: e },
+    });
+  }
+}
+function loadComponents() {
+  try {
+    const s = join(__dirname, "../platform");
+    readdirSync(s).forEach((e) => {
+      var t = join(s, e);
+      var o = join(s, e, "index");
+      if (existsSync(t)) {
+        try {
+          platforms[e] = require(o);
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        console.error(`Load ${e} plugin failed`);
+      }
+    });
+  } catch (e) {
+    console.error("Load components failed");
+  }
+}
+
+exports.template = readFileSync(
+  join(__dirname, "../../static/ui/index.html"),
+  "utf-8"
+);
+
+exports.style = readFileSync(join(__dirname, "index.css"), "utf8");
+
+exports.$ = { tools: ".channel-upload-tools" };
+
+exports.methods = {
+  async loginResult(e, t) {
+    vm.$emit("loginResult", e, t);
+  },
+  async oAuthWindowClose(e) {
+    vm.$emit("oAuthWindowClose", e);
+  },
+};

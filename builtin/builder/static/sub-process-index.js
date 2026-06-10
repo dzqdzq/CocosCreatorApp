@@ -1,1 +1,3 @@
-"use strict";const ps=require("path");require("@editor/creator/dist/require"),require(ps.join(__dirname,"../dist/worker/worker-pools/sub-process"));
+const ps = require("path");
+require("@editor/creator/dist/require");
+require(ps.join(__dirname, "../dist/worker/worker-pools/sub-process"));

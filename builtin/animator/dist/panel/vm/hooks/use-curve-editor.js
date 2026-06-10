@@ -1,1 +1,141 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.generateOperateHandler=generateOperateHandler,exports.useCurveEditor=useCurveEditor;const vue_js_1=require("vue/dist/vue.js"),store_base_1=require("./store-base");function generateOperateHandler(u){return(...e)=>{var r=e[0];u[r]?.apply(void 0,e)}}function useCurveEditor(r){const{size:t,configure:u}=r,o=(0,vue_js_1.ref)(!1),s=(0,vue_js_1.ref)(),i=(0,vue_js_1.ref)(!1),v=(0,store_base_1.useBaseStore)();function a(){var e=(0,vue_js_1.unref)(s);if(e)return e;throw new Error("curve editor element is not ready")}const e=(0,vue_js_1.computed)(()=>s.value?.curveCtrl),n=(0,vue_js_1.customRef)((e,r)=>({get(){return e(),s.value?.sample??1},set(e){s.value&&(s.value.sample=e,r())}}));const l=(e,r)=>{var u=(0,vue_js_1.unref)(s);if(u){if(void 0===e){if(!t)throw new Error("boxSize is required");e=(0,vue_js_1.unref)(t.width)}if(void 0===r){if(!t)throw new Error("boxSize is required");r=(0,vue_js_1.unref)(t.height)}u.resize(e,r)}},_=e=>{var r=(0,vue_js_1.unref)(s);r&&r.curveCtrl.paint(e)},c=()=>{a().repaint()},d=()=>{a().curveCtrl.zoomToFit()},f=()=>{a().curveCtrl.zoomToSelectedKeyframes()};return{curveEditor:s,getElement:a,visible:o,show:()=>{o.value||(o.value=!0,(0,vue_js_1.nextTick)(()=>{var e;o.value&&(e=a(),i.value||(u(e),i.value=!0),l())}))},hide:()=>{o.value&&(o.value=!1)},onFocus:e=>{r.uniqueName&&(v.focusedCurve=r.uniqueName)},onBlur:e=>{r.uniqueName&&(v.focusedCurve="")},curveCtrl:e,paint:_,resize:l,repaint:c,zoomToFit:d,sample:n,getExposedAPI:()=>({editor:s,curveCtrl:e,paint:_,resize:l,repaint:c,zoomToFit:d,zoomToSelectedKeys:f,sample:n})}}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateOperateHandler = generateOperateHandler;
+exports.useCurveEditor = useCurveEditor;
+
+const {
+  ref,
+  unref,
+  computed,
+  customRef,
+  nextTick,
+} = require("vue/dist/vue.js");
+
+const { useBaseStore } = require("./store-base");
+
+function generateOperateHandler(u) {
+  return (...e) => {
+    var [r] = e;
+    u[r]?.apply(undefined, e);
+  };
+}
+function useCurveEditor(r) {
+  const { size, configure } = r;
+  const o = ref(false);
+  const s = ref();
+  const i = ref(false);
+  const v = useBaseStore();
+  function a() {
+    var e = unref(s);
+    if (e) {
+      return e;
+    }
+    throw new Error("curve editor element is not ready");
+  }
+
+  const e = computed(() => s.value?.curveCtrl);
+
+  const n = customRef((e, r) => ({
+    get() {
+      e();
+      return s.value?.sample ?? 1;
+    },
+
+    set(e) {
+      if (s.value) {
+        s.value.sample = e;
+        r();
+      }
+    },
+  }));
+
+  const l = (e, r) => {
+    var u = unref(s);
+    if (u) {
+      if (e === undefined) {
+        if (!size) {
+          throw new Error("boxSize is required");
+        }
+        e = unref(size.width);
+      }
+      if (r === undefined) {
+        if (!size) {
+          throw new Error("boxSize is required");
+        }
+        r = unref(size.height);
+      }
+      u.resize(e, r);
+    }
+  };
+
+  const _ = (e) => {
+    var r = unref(s);
+
+    if (r) {
+      r.curveCtrl.paint(e);
+    }
+  };
+
+  const c = () => {
+    a().repaint();
+  };
+
+  const d = () => {
+    a().curveCtrl.zoomToFit();
+  };
+
+  const f = () => {
+    a().curveCtrl.zoomToSelectedKeyframes();
+  };
+
+  return {
+    curveEditor: s,
+    getElement: a,
+    visible: o,
+    show: () => {
+      if (!o.value) {
+        o.value = true;
+
+        nextTick(() => {
+          var e;
+
+          if (o.value) {
+            e = a();
+            i.value || (configure(e), (i.value = true));
+            l();
+          }
+        });
+      }
+    },
+    hide: () => {
+      if (o.value) {
+        o.value = false;
+      }
+    },
+    onFocus: (e) => {
+      if (r.uniqueName) {
+        v.focusedCurve = r.uniqueName;
+      }
+    },
+    onBlur: (e) => {
+      if (r.uniqueName) {
+        v.focusedCurve = "";
+      }
+    },
+    curveCtrl: e,
+    paint: _,
+    resize: l,
+    repaint: c,
+    zoomToFit: d,
+    sample: n,
+    getExposedAPI: () => ({
+      editor: s,
+      curveCtrl: e,
+      paint: _,
+      resize: l,
+      repaint: c,
+      zoomToFit: d,
+      zoomToSelectedKeys: f,
+      sample: n,
+    }),
+  };
+}

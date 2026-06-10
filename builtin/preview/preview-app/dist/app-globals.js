@@ -1,1 +1,12 @@
-System.register([],function(e,t){"use strict";t&&t.id;return{setters:[],execute:function(){e("globals",{error:!1})}}});
+System.register([], (e, t) => {
+  if (t) {
+    t.id;
+  }
+
+  return {
+    setters: [],
+    execute() {
+      e("globals", { error: false });
+    },
+  };
+});

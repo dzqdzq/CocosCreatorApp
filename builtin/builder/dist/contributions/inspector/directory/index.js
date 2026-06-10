@@ -1,4 +1,107 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,i,t,n){void 0===n&&(n=t);var l=Object.getOwnPropertyDescriptor(i,t);l&&("get"in l?i.__esModule:!l.writable&&!l.configurable)||(l={enumerable:!0,get:function(){return i[t]}}),Object.defineProperty(e,n,l)}:function(e,i,t,n){e[n=void 0===n?t:n]=i[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,i){Object.defineProperty(e,"default",{enumerable:!0,value:i})}:function(e,i){e.default=i}),__importStar=this&&this.__importStar||function(){var l=function(e){return(l=Object.getOwnPropertyNames||function(e){var i,t=[];for(i in e)Object.prototype.hasOwnProperty.call(e,i)&&(t[t.length]=i);return t})(e)};return function(e){if(e&&e.__esModule)return e;var i={};if(null!=e)for(var t=l(e),n=0;n<t.length;n++)"default"!==t[n]&&__createBinding(i,e,t[n]);return __setModuleDefault(i,e),i}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.$=exports.template=exports.style=void 0,exports.update=update,exports.close=close;const fs_extra_1=require("fs-extra"),remote_1=require("@electron/remote"),path_1=require("path"),bundle_utils_1=require("../../../share/bundle-utils"),configItem=__importStar(require("./filter-config-item")),BundleConfigGroup=__importStar(require("../../bundle-config/bundle-config-group")),Vue=require("vue/dist/vue.js");function onProfileChange(e,i,t,n){"project"===e&&i.includes("builder")&&t.includes("bundleConfig.custom")&&this.updateBundleConfigs(n)}Vue.config.productionTip=!1,Vue.config.devtools=!1;const vueTemplate=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, i, t, n = t) => {
+        var l = Object.getOwnPropertyDescriptor(i, t);
+
+        if (
+          !l ||
+          (!("get" in l) ? !l.writable && !l.configurable : i.__esModule)
+        ) {
+          l = {
+            enumerable: true,
+            get() {
+              return i[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, n, l);
+      }
+    : (e, i, t, n) => {
+        e[(n = n === undefined ? t : n)] = i[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, i) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: i });
+      }
+    : (e, i) => {
+        e.default = i;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var l = (e) =>
+      (l =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var i;
+          var t = [];
+          for (i in e) {
+            if (Object.prototype.hasOwnProperty.call(e, i)) {
+              t[t.length] = i;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var i = {};
+      if (e != null) {
+        for (var t = l(e), n = 0; n < t.length; n++) {
+          if (t[n] !== "default") {
+            __createBinding(i, e, t[n]);
+          }
+        }
+      }
+      __setModuleDefault(i, e);
+      return i;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.style = undefined;
+exports.update = update;
+exports.close = close;
+
+const { readFileSync } = require("fs-extra");
+
+const remote_1 = require("@electron/remote");
+
+const { basename, join } = require("path");
+
+const bundle_utils_1 = require("../../../share/bundle-utils");
+
+const { getBundleDefaultName } = bundle_utils_1;
+
+const configItem = __importStar(require("./filter-config-item"));
+
+const BundleConfigGroup = __importStar(
+  require("../../bundle-config/bundle-config-group")
+);
+
+const Vue = require("vue/dist/vue.js");
+function onProfileChange(e, i, t, n) {
+  if (
+    e === "project" &&
+    i.includes("builder") &&
+    t.includes("bundleConfig.custom")
+  ) {
+    this.updateBundleConfigs(n);
+  }
+}
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+const vueTemplate = `
 <section class="asset-directory">
     <div class="path" v-for="info in infos">
         <div class="name">
@@ -194,10 +297,378 @@
         </div>
     </div>
 </section>
-`;function update(e,i){const t=this;t.vm||((n=new Vue({components:{"config-item":configItem,"config-group":BundleConfigGroup},data(){return{infos:[],info:{},metas:[],meta:{},curPlatform:"web-desktop",defaultValue:{isBundle:!1,bundleName:"",priority:1,bundleConfigID:"default"},assetUrl:"",previewList:[],selectArr:[],bundleConfigs:{},renderConfigs:null,hasPreview:!1}},computed:{_isResources(){return!!this.infos&&this.infos.some(e=>"db://assets/resources"===e.url)},_isBundle(){return this.meta.userData?.isBundle},_priority(){return this.meta.userData?.priority},bundleFilterConfig(){return this.meta.userData.bundleFilterConfig&&this.meta.userData.bundleFilterConfig.length?this.meta.userData.bundleFilterConfig:[]},bundleTooltip(){return this._isResources?`
-                        <ui-label value="i18n:engine.resources_docs_1"></ui-label><br>
-                        <ui-label value="i18n:engine.resources_docs_2"></ui-label>
-                        `:`
-                        <ui-label value="i18n:engine.bundle_docs1"></ui-label><br>
-                        <ui-label value="i18n:engine.bundle_docs2"></ui-label>
-                    `},currentBundleConfig(){var e=this.meta.userData.bundleConfigID||this.defaultValue.bundleConfigID;return this.bundleConfigs[e]?.configs}},mounted(){t.onProfileChangeBind=onProfileChange.bind(this),Editor.Profile.__protected__.on("change",t.onProfileChangeBind)},destroyed(){Editor.Profile.__protected__.removeListener("change",t.onProfileChangeBind)},methods:{reset(){this.previewList=[]},async refresh(){this.meta&&this.meta.uuid&&(e=await Editor.Message.request("asset-db","query-asset-info",this.meta.uuid))&&(this.assetUrl=e.url);var e=await Editor.Profile.getProject("builder","bundleConfig.custom"),e=(e&&await this.updateBundleConfigs(e),await Editor.Message.request("builder","query-bundle-config"));e&&(this.renderConfigs=Object.freeze(e))},async updateBundleConfigs(e){e.default||(e.default=bundle_utils_1.DefaultBundleConfig),this.bundleConfigs=e},onBuild(){Editor.Message.send("builder","open","build-bundle",{root:this.assetUrl}),Editor.Message.send("builder","change-build-bundle",{root:this.assetUrl})},t(e){return Editor.I18n.t("builder.asset_bundle."+e)},editBundleConfig(e){Editor.Message.send("project","open-settings","builder","bundle-config",e)},_onOpenDirectory(e,i){remote_1.shell.openPath(i.file)},_onPropertyChanged(e,i){let t=e.target.value;t===this.defaultValue[i]&&(t=void 0),this.metas&&this.metas.forEach(e=>{this.$set(e.userData,i,t)}),this._afterPropertyChanged()},_afterPropertyChanged(){t.dispatch("change"),t.dispatch("snapshot")},onConfigChange(){this._afterPropertyChanged()},removeConfig(t){if(this.meta.userData.bundleFilterConfig){if(this.selectArr.length)this.meta.userData.bundleFilterConfig=this.meta.userData.bundleFilterConfig.filter((e,i)=>!this.selectArr.includes(i)||e.range!==t),this.selectArr=[];else for(let e=this.meta.userData.bundleFilterConfig.length-1;0<=e;e--)if(this.meta.userData.bundleFilterConfig[e].range===t){this.meta.userData.bundleFilterConfig.splice(e,1);break}this._afterPropertyChanged()}},toggleSelect(e,i){this.selectArr.includes(i)?this.selectArr.splice(i,1):this.selectArr.splice(this.selectArr.length,0,i)},addConfig(e){var i=JSON.parse(JSON.stringify(configItem.defaultBundleFilterConfig));"include"===(i.range=e)&&i.patchOption&&(i.patchOption.value=this.assetUrl+"/**/*"),this.meta.userData.bundleFilterConfig?(this.meta.userData.bundleFilterConfig.splice(this.meta.userData.bundleFilterConfig.length-1,0,i),this.$set(this.meta.userData,"bundleFilterConfig",this.meta.userData.bundleFilterConfig)):this.$set(this.meta.userData,"bundleFilterConfig",[i]),this._afterPropertyChanged()},async onPreview(){this.previewList=await Editor.Message.request("asset-db","execute-script",{name:"builder",method:"queryAssetsInBundle",args:[this.meta.uuid,this.meta.userData.bundleFilterConfig]}),this.hasPreview=!0},getDefaultValue(){return this.info?(0,bundle_utils_1.getBundleDefaultName)(this.info):""},openDocs(){var e=this._isResources?Editor.Utils.Url.getDocUrl("asset/dynamic-load-resources.html"):Editor.Utils.Url.getDocUrl("asset/bundle.html");Editor.Message.send("program","open-url",e)},async apply(){if(this._isBundle&&this.meta){const s=this.meta.userData.bundleName||this.getDefaultValue();if(!/^[a-zA-Z0-9_-]+$/.test(s))return console.error(`Invalid bundle name(${s}), only numbers, letters, minus sign and underscores can be included in the bundle name.`),!1;var{MAIN:e,START_SCENE:i,RESOURCES:t,INTERNAL:n}=bundle_utils_1.BuiltinBundleName;if(l(t,s)&&!this._isResources||[e,i,n].find(e=>l(e,s)))return console.error(Editor.I18n.t("builder.asset_bundle.duplicate_reserved_keyword_message",{name:s})),!1;for(const r of await Editor.Message.request("asset-db","query-assets",{isBundle:!0}))if(this.info&&r.url!==this.info.url){if(l(r.meta.userData.bundleName||(0,path_1.basename)(r.url),s))return console.error(Editor.I18n.t("builder.asset_bundle.duplicate_name_message",{name:s,url:r.url})),!1;if(Editor.Utils.Path.contains(r.url,this.info.url))return console.error(Editor.I18n.t("builder.asset_bundle.nest_bundle",{url:r.url})),!1;if(Editor.Utils.Path.contains(this.info.url,r.url))return console.error(Editor.I18n.t("builder.asset_bundle.nest_bundle",{url:r.url})),!1}function l(e,i){return new RegExp(`^${e}$`,"i").test(i)}}},invalid(i){return!this.metas||!this.meta||this.metas.some(e=>e.userData[i]!==this.meta.userData[i])},invalidCompressionType(){return!this.metas||!this.meta||this.metas.some(e=>e.userData.compressionType[this.curPlatform]!==this.meta.userData.compressionType[this.curPlatform])},invalidIsRemoteBundle(){return!this.metas||!this.meta||this.metas.some(e=>e.userData.isRemoteBundle[this.curPlatform]!==this.meta.userData.isRemoteBundle[this.curPlatform])}},template:vueTemplate})).$mount(t.$.container),t.vm=n),t.vm.infos=e,t.vm.metas=i,t.vm.info=e[0];var n=i[0];t.vm.meta&&n&&t.vm.meta.uuid!==n.uuid&&t.vm.reset(),t.vm.meta=n,t.vm.refresh()}function close(){Editor.Profile.__protected__.removeListener("change",this.onProfileChangeBind),this.vm?.$destroy(),this.vm=null}exports.style=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"./style.css"),"utf8"),exports.template='<div class="container"></div>',exports.$={container:".container"},exports.methods={async apply(){return this.vm.apply()}};
+`;
+function update(e, i) {
+  const t = this;
+
+  if (!t.vm) {
+    (n = new Vue({
+      components: {
+        "config-item": configItem,
+        "config-group": BundleConfigGroup,
+      },
+      data() {
+        return {
+          infos: [],
+          info: {},
+          metas: [],
+          meta: {},
+          curPlatform: "web-desktop",
+          defaultValue: {
+            isBundle: false,
+            bundleName: "",
+            priority: 1,
+            bundleConfigID: "default",
+          },
+          assetUrl: "",
+          previewList: [],
+          selectArr: [],
+          bundleConfigs: {},
+          renderConfigs: null,
+          hasPreview: false,
+        };
+      },
+      computed: {
+        _isResources() {
+          return (
+            !!this.infos &&
+            this.infos.some((e) => e.url === "db://assets/resources")
+          );
+        },
+        _isBundle() {
+          return this.meta.userData?.isBundle;
+        },
+        _priority() {
+          return this.meta.userData?.priority;
+        },
+        bundleFilterConfig() {
+          return this.meta.userData.bundleFilterConfig &&
+            this.meta.userData.bundleFilterConfig.length
+            ? this.meta.userData.bundleFilterConfig
+            : [];
+        },
+        bundleTooltip() {
+          return this._isResources
+            ? `
+                          <ui-label value="i18n:engine.resources_docs_1"></ui-label><br>
+                          <ui-label value="i18n:engine.resources_docs_2"></ui-label>
+                          `
+            : `
+                          <ui-label value="i18n:engine.bundle_docs1"></ui-label><br>
+                          <ui-label value="i18n:engine.bundle_docs2"></ui-label>
+                      `;
+        },
+        currentBundleConfig() {
+          var e =
+            this.meta.userData.bundleConfigID ||
+            this.defaultValue.bundleConfigID;
+          return this.bundleConfigs[e]?.configs;
+        },
+      },
+      mounted() {
+        t.onProfileChangeBind = onProfileChange.bind(this);
+        Editor.Profile.__protected__.on("change", t.onProfileChangeBind);
+      },
+      destroyed() {
+        Editor.Profile.__protected__.removeListener(
+          "change",
+          t.onProfileChangeBind
+        );
+      },
+      methods: {
+        reset() {
+          this.previewList = [];
+        },
+        async refresh() {
+          if (
+            this.meta &&
+            this.meta.uuid &&
+            (e = await Editor.Message.request(
+              "asset-db",
+              "query-asset-info",
+              this.meta.uuid
+            ))
+          ) {
+            this.assetUrl = e.url;
+          }
+
+          var e = await Editor.Profile.getProject(
+            "builder",
+            "bundleConfig.custom"
+          );
+
+          var e =
+            (e && (await this.updateBundleConfigs(e)),
+            await Editor.Message.request("builder", "query-bundle-config"));
+
+          if (e) {
+            this.renderConfigs = Object.freeze(e);
+          }
+        },
+        async updateBundleConfigs(e) {
+          if (!e.default) {
+            e.default = bundle_utils_1.DefaultBundleConfig;
+          }
+
+          this.bundleConfigs = e;
+        },
+        onBuild() {
+          Editor.Message.send("builder", "open", "build-bundle", {
+            root: this.assetUrl,
+          });
+
+          Editor.Message.send("builder", "change-build-bundle", {
+            root: this.assetUrl,
+          });
+        },
+        t(e) {
+          return Editor.I18n.t("builder.asset_bundle." + e);
+        },
+        editBundleConfig(e) {
+          Editor.Message.send(
+            "project",
+            "open-settings",
+            "builder",
+            "bundle-config",
+            e
+          );
+        },
+        _onOpenDirectory(e, i) {
+          remote_1.shell.openPath(i.file);
+        },
+        _onPropertyChanged(e, i) {
+          let t = e.target.value;
+
+          if (t === this.defaultValue[i]) {
+            t = undefined;
+          }
+
+          if (this.metas) {
+            this.metas.forEach((e) => {
+              this.$set(e.userData, i, t);
+            });
+          }
+
+          this._afterPropertyChanged();
+        },
+        _afterPropertyChanged() {
+          t.dispatch("change");
+          t.dispatch("snapshot");
+        },
+        onConfigChange() {
+          this._afterPropertyChanged();
+        },
+        removeConfig(t) {
+          if (this.meta.userData.bundleFilterConfig) {
+            if (this.selectArr.length) {
+              this.meta.userData.bundleFilterConfig =
+                this.meta.userData.bundleFilterConfig.filter(
+                  (e, i) => !this.selectArr.includes(i) || e.range !== t
+                );
+
+              this.selectArr = [];
+            } else {
+              for (
+                let e = this.meta.userData.bundleFilterConfig.length - 1;
+                e >= 0;
+                e--
+              ) {
+                if (this.meta.userData.bundleFilterConfig[e].range === t) {
+                  this.meta.userData.bundleFilterConfig.splice(e, 1);
+                  break;
+                }
+              }
+            }
+            this._afterPropertyChanged();
+          }
+        },
+        toggleSelect(e, i) {
+          if (this.selectArr.includes(i)) {
+            this.selectArr.splice(i, 1);
+          } else {
+            this.selectArr.splice(this.selectArr.length, 0, i);
+          }
+        },
+        addConfig(e) {
+          var i = JSON.parse(
+            JSON.stringify(configItem.defaultBundleFilterConfig)
+          );
+
+          if ("include" === (i.range = e) && i.patchOption) {
+            i.patchOption.value = this.assetUrl + "/**/*";
+          }
+
+          if (this.meta.userData.bundleFilterConfig) {
+            this.meta.userData.bundleFilterConfig.splice(
+              this.meta.userData.bundleFilterConfig.length - 1,
+              0,
+              i
+            );
+
+            this.$set(
+              this.meta.userData,
+              "bundleFilterConfig",
+              this.meta.userData.bundleFilterConfig
+            );
+          } else {
+            this.$set(this.meta.userData, "bundleFilterConfig", [i]);
+          }
+
+          this._afterPropertyChanged();
+        },
+        async onPreview() {
+          this.previewList = await Editor.Message.request(
+            "asset-db",
+            "execute-script",
+            {
+              name: "builder",
+              method: "queryAssetsInBundle",
+              args: [this.meta.uuid, this.meta.userData.bundleFilterConfig],
+            }
+          );
+
+          this.hasPreview = true;
+        },
+        getDefaultValue() {
+          return this.info ? getBundleDefaultName(this.info) : "";
+        },
+        openDocs() {
+          var e = this._isResources
+            ? Editor.Utils.Url.getDocUrl("asset/dynamic-load-resources.html")
+            : Editor.Utils.Url.getDocUrl("asset/bundle.html");
+          Editor.Message.send("program", "open-url", e);
+        },
+        async apply() {
+          if (this._isBundle && this.meta) {
+            const s = this.meta.userData.bundleName || this.getDefaultValue();
+            if (!/^[a-zA-Z0-9_-]+$/.test(s)) {
+              console.error(
+                `Invalid bundle name(${s}), only numbers, letters, minus sign and underscores can be included in the bundle name.`
+              );
+
+              return false;
+            }
+            var { MAIN, START_SCENE, RESOURCES, INTERNAL } =
+              bundle_utils_1.BuiltinBundleName;
+            if (
+              (l(RESOURCES, s) && !this._isResources) ||
+              [MAIN, START_SCENE, INTERNAL].find((e) => l(e, s))
+            ) {
+              console.error(
+                Editor.I18n.t(
+                  "builder.asset_bundle.duplicate_reserved_keyword_message",
+                  { name: s }
+                )
+              );
+
+              return false;
+            }
+            for (const r of await Editor.Message.request(
+              "asset-db",
+              "query-assets",
+              { isBundle: true }
+            )) {
+              if (this.info && r.url !== this.info.url) {
+                if (l(r.meta.userData.bundleName || basename(r.url), s)) {
+                  console.error(
+                    Editor.I18n.t(
+                      "builder.asset_bundle.duplicate_name_message",
+                      { name: s, url: r.url }
+                    )
+                  );
+
+                  return false;
+                }
+                if (Editor.Utils.Path.contains(r.url, this.info.url)) {
+                  console.error(
+                    Editor.I18n.t("builder.asset_bundle.nest_bundle", {
+                      url: r.url,
+                    })
+                  );
+
+                  return false;
+                }
+                if (Editor.Utils.Path.contains(this.info.url, r.url)) {
+                  console.error(
+                    Editor.I18n.t("builder.asset_bundle.nest_bundle", {
+                      url: r.url,
+                    })
+                  );
+
+                  return false;
+                }
+              }
+            }
+            function l(e, i) {
+              return new RegExp(`^${e}$`, "i").test(i);
+            }
+          }
+        },
+        invalid(i) {
+          return (
+            !this.metas ||
+            !this.meta ||
+            this.metas.some((e) => e.userData[i] !== this.meta.userData[i])
+          );
+        },
+        invalidCompressionType() {
+          return (
+            !this.metas ||
+            !this.meta ||
+            this.metas.some(
+              (e) =>
+                e.userData.compressionType[this.curPlatform] !==
+                this.meta.userData.compressionType[this.curPlatform]
+            )
+          );
+        },
+        invalidIsRemoteBundle() {
+          return (
+            !this.metas ||
+            !this.meta ||
+            this.metas.some(
+              (e) =>
+                e.userData.isRemoteBundle[this.curPlatform] !==
+                this.meta.userData.isRemoteBundle[this.curPlatform]
+            )
+          );
+        },
+      },
+      template: vueTemplate,
+    })).$mount(t.$.container);
+
+    t.vm = n;
+  }
+
+  t.vm.infos = e;
+  t.vm.metas = i;
+  t.vm.info = e[0];
+  var [n] = i;
+
+  if (t.vm.meta && n && t.vm.meta.uuid !== n.uuid) {
+    t.vm.reset();
+  }
+
+  t.vm.meta = n;
+  t.vm.refresh();
+}
+function close() {
+  Editor.Profile.__protected__.removeListener(
+    "change",
+    this.onProfileChangeBind
+  );
+
+  this.vm?.$destroy();
+  this.vm = null;
+}
+
+exports.style = readFileSync(join(__dirname, "./style.css"), "utf8");
+
+exports.template = '<div class="container"></div>';
+exports.$ = { container: ".container" };
+
+exports.methods = {
+  async apply() {
+    return this.vm.apply();
+  },
+};

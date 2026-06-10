@@ -1,4 +1,211 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,n,o){void 0===o&&(o=n);var i=Object.getOwnPropertyDescriptor(t,n);i&&("get"in i?t.__esModule:!i.writable&&!i.configurable)||(i={enumerable:!0,get:function(){return t[n]}}),Object.defineProperty(e,o,i)}:function(e,t,n,o){e[o=void 0===o?n:o]=t[n]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var i=function(e){return(i=Object.getOwnPropertyNames||function(e){var t,n=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(n[n.length]=t);return n})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n=i(e),o=0;o<n.length;o++)"default"!==n[o]&&__createBinding(t,e,n[o]);return __setModuleDefault(t,e),t}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=exports.methods=exports.$=exports.template=exports.position=void 0,exports.ready=ready,exports.close=close;let panel=void 0;function ready(e){panel&&close(),(panel=this).sceneView=e.parentElement,panel.gizmoToolNames=["view","position","rotation","scale","rect"],Editor.Message.__protected__.addBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.addBroadcastListener("scene:gizmo-tool-changed",panel.gizmoToolChanged),Editor.Message.__protected__.addBroadcastListener("scene:gizmo-view-mode-changed",panel.gizmoViewModeChanged),Editor.Message.__protected__.addBroadcastListener("scene:gizmo-pivot-changed",panel.gizmoPivotChanged),Editor.Message.__protected__.addBroadcastListener("scene:gizmo-coordinate-changed",panel.gizmoCoordinateChanged),Editor.Message.__protected__.addBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive),Editor.Message.__protected__.addBroadcastListener("scene:light-probe-edit-mode-changed",panel.gizmoLightProbeAndBoundBoxEditModeChanged),Editor.Message.__protected__.addBroadcastListener("scene:light-probe-bounding-box-edit-mode-changed",panel.gizmoLightProbeAndBoundBoxEditModeChanged),panel.gizmoToolNames.forEach(e=>{panel.$[e].eventChangeGizmoToolBind=panel.eventChangeGizmoTool.bind(panel,e),panel.$[e].addEventListener("click",panel.$[e].eventChangeGizmoToolBind)}),panel.$.pivot.addEventListener("click",panel.eventChangeGizmoPivot),panel.$.coordinate.addEventListener("click",panel.eventChangeGizmoCoordinate),panel.initConfiguration(),document.body.addEventListener("keydown",panel.eventDocumentKeyDown),panel.sceneReady()}function close(){Editor.Message.__protected__.removeBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.removeBroadcastListener("scene:gizmo-tool-changed",panel.gizmoToolChanged),Editor.Message.__protected__.removeBroadcastListener("scene:gizmo-view-mode-changed",panel.gizmoViewModeChanged),Editor.Message.__protected__.removeBroadcastListener("scene:gizmo-pivot-changed",panel.gizmoPivotChanged),Editor.Message.__protected__.removeBroadcastListener("scene:gizmo-coordinate-changed",panel.gizmoCoordinateChanged),Editor.Message.__protected__.removeBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive),Editor.Message.__protected__.removeBroadcastListener("scene:light-probe-edit-mode-changed",panel.gizmoLightProbeAndBoundBoxEditModeChanged),Editor.Message.__protected__.removeBroadcastListener("scene:light-probe-bounding-box-edit-mode-changed",panel.gizmoLightProbeAndBoundBoxEditModeChanged),panel.$.pivot.removeEventListener("click",panel.eventChangeGizmoPivot),panel.$.coordinate.removeEventListener("click",panel.eventChangeGizmoCoordinate),panel.gizmoToolNames.forEach(e=>{panel.$[e].removeEventListener("click",panel.$[e].eventChangeGizmoToolBind)}),document.body.removeEventListener("keydown",panel.eventDocumentKeyDown),panel=void 0}exports.position="left",exports.template=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, n, o = n) => {
+        var i = Object.getOwnPropertyDescriptor(t, n);
+
+        if (
+          !i ||
+          (!("get" in i) ? !i.writable && !i.configurable : t.__esModule)
+        ) {
+          i = {
+            enumerable: true,
+            get() {
+              return t[n];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, i);
+      }
+    : (e, t, n, o) => {
+        e[(o = o === undefined ? n : o)] = t[n];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var i = (e) =>
+      (i =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var n = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              n[n.length] = t;
+            }
+          }
+          return n;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var n = i(e), o = 0; o < n.length; o++) {
+          if (n[o] !== "default") {
+            __createBinding(t, e, n[o]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.default = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.position = undefined;
+
+exports.ready = ready;
+exports.close = close;
+let panel = undefined;
+function ready(e) {
+  if (panel) {
+    close();
+  }
+
+  panel = this;
+  panel.sceneView = e.parentElement;
+  panel.gizmoToolNames = ["view", "position", "rotation", "scale", "rect"];
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:gizmo-tool-changed",
+    panel.gizmoToolChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:gizmo-view-mode-changed",
+    panel.gizmoViewModeChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:gizmo-pivot-changed",
+    panel.gizmoPivotChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:gizmo-coordinate-changed",
+    panel.gizmoCoordinateChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:toolbar-menu-active",
+    panel.toolbarMenuActive
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:light-probe-edit-mode-changed",
+    panel.gizmoLightProbeAndBoundBoxEditModeChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:light-probe-bounding-box-edit-mode-changed",
+    panel.gizmoLightProbeAndBoundBoxEditModeChanged
+  );
+
+  panel.gizmoToolNames.forEach((e) => {
+    panel.$[e].eventChangeGizmoToolBind = panel.eventChangeGizmoTool.bind(
+      panel,
+      e
+    );
+
+    panel.$[e].addEventListener("click", panel.$[e].eventChangeGizmoToolBind);
+  });
+
+  panel.$.pivot.addEventListener("click", panel.eventChangeGizmoPivot);
+
+  panel.$.coordinate.addEventListener(
+    "click",
+    panel.eventChangeGizmoCoordinate
+  );
+
+  panel.initConfiguration();
+  document.body.addEventListener("keydown", panel.eventDocumentKeyDown);
+  panel.sceneReady();
+}
+function close() {
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:gizmo-tool-changed",
+    panel.gizmoToolChanged
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:gizmo-view-mode-changed",
+    panel.gizmoViewModeChanged
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:gizmo-pivot-changed",
+    panel.gizmoPivotChanged
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:gizmo-coordinate-changed",
+    panel.gizmoCoordinateChanged
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:toolbar-menu-active",
+    panel.toolbarMenuActive
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:light-probe-edit-mode-changed",
+    panel.gizmoLightProbeAndBoundBoxEditModeChanged
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "scene:light-probe-bounding-box-edit-mode-changed",
+    panel.gizmoLightProbeAndBoundBoxEditModeChanged
+  );
+
+  panel.$.pivot.removeEventListener("click", panel.eventChangeGizmoPivot);
+
+  panel.$.coordinate.removeEventListener(
+    "click",
+    panel.eventChangeGizmoCoordinate
+  );
+
+  panel.gizmoToolNames.forEach((e) => {
+    panel.$[e].removeEventListener(
+      "click",
+      panel.$[e].eventChangeGizmoToolBind
+    );
+  });
+
+  document.body.removeEventListener("keydown", panel.eventDocumentKeyDown);
+  panel = undefined;
+}
+exports.position = "left";
+
+exports.template = `
 <style>
     .scene-toolbar {
         display: flex;
@@ -167,4 +374,387 @@
         </ui-button>
     </div>
 </div>
-`,exports.$={sceneToolbar:".scene-toolbar",view:".view",viewIcon:".view > ui-icon",position:".position",rotation:".rotation",scale:".scale",rect:".rect",config:".config",configuration:".configuration",translateButton:".translate-button",rotateButton:".rotate-button",scaleButton:".scale-button",xInput:".x-input",yInput:".y-input",zInput:".z-input",togetherButton:".together-button",togetherButtonIcon:".together-button > ui-icon",rotateInput:".rotate-input",scaleInput:".scale-input",rectToolSnapEnable:".rect-tool-snap-enable",rectToolSnapThresholdInput:".threshold-input",pivot:".pivot",pivotIcon:".pivot > ui-icon",coordinate:".coordinate",coordinateIcon:".coordinate > ui-icon"},exports.methods={async sceneReady(){var e=await Editor.Message.request("scene","query-gizmo-tool-name"),e=(panel.gizmoToolChanged(e),await Editor.Message.request("scene","query-gizmo-view-mode")),e=(panel.gizmoViewModeChanged(e),await Editor.Message.request("scene","query-gizmo-pivot")),e=(panel.gizmoPivotChanged(e),await Editor.Message.request("scene","query-gizmo-coordinate")),e=(panel.gizmoCoordinateChanged(e),await Editor.Message.request("scene","query-light-probe-edit-mode")),e=(panel.gizmoLightProbeAndBoundBoxEditModeChanged(e),await Editor.Message.request("scene","query-light-probe-bounding-box-edit-mode"));panel.gizmoLightProbeAndBoundBoxEditModeChanged(e)},setSceneViewCursor(e){panel.sceneView&&(panel.sceneView.style.cursor=e)},gizmoToolChanged(t){panel.activeName=t,panel.gizmoToolNames.forEach(e=>{e===t?panel.$[e].setAttribute("active",""):panel.$[e].removeAttribute("active")})},gizmoViewModeChanged(e){"view"===(panel.viewMode=e)?(panel.$.viewIcon.value="gizmo-grab",panel.setSceneViewCursor("grab")):"select"===e&&(panel.$.viewIcon.value="gizmo-select",panel.setSceneViewCursor("default"))},gizmoPivotChanged(e){panel.pivot=e,"center"===panel.pivot&&(panel.$.pivot.setAttribute("tooltip","i18n:scene.tooltips.centerTip"),panel.$.pivotIcon.value="center"),"pivot"===panel.pivot&&(panel.$.pivot.setAttribute("tooltip","i18n:scene.tooltips.pivotTip"),panel.$.pivotIcon.value="anchor")},gizmoCoordinateChanged(e){panel.coordinate=e,"global"===panel.coordinate&&(panel.$.coordinate.setAttribute("tooltip","i18n:scene.tooltips.global_gizmo"),panel.$.coordinateIcon.value="coordinates-world"),"local"===panel.coordinate&&(panel.$.coordinate.setAttribute("tooltip","i18n:scene.tooltips.local_gizmo"),panel.$.coordinateIcon.value="coordinates-local")},toolbarMenuActive(e){var t=panel.$.configuration.hasAttribute("active");"increment"!==e||t?t&&panel.$.configuration.removeAttribute("active"):(panel.$.configuration.setAttribute("active",""),panel.refreshConfiguration())},gizmoLightProbeAndBoundBoxEditModeChanged(t){["view","rotation","scale","rect","config","pivot","coordinate"].forEach(e=>{t?panel.$[e].setAttribute("disabled",""):panel.$[e].removeAttribute("disabled")})},initConfiguration(){panel.$.config.addEventListener("click",e=>{e.stopPropagation(),Editor.Message.broadcast("scene:toolbar-menu-active","increment")}),panel.$.configuration.addEventListener("click",e=>{e.stopPropagation()}),panel.$.togetherButton.addEventListener("click",()=>{panel.$.togetherButton.toggleAttribute("active"),panel.$.yInput.toggleAttribute("disabled"),panel.$.zInput.toggleAttribute("disabled"),panel.$.togetherButton.hasAttribute("active")?(panel.setConfigurationPositionYZSameAsX(),panel.$.togetherButtonIcon.value="unlink"):panel.$.togetherButtonIcon.value="link"}),panel.$.translateButton.addEventListener("click",()=>{panel.$.translateButton.toggleAttribute("active"),panel.submitConfiguration("isPositionSnapEnabled",panel.$.translateButton.hasAttribute("active"))}),panel.$.xInput.addEventListener("change",e=>{panel.configData.position.x=e.target.value,panel.$.togetherButton.hasAttribute("active")?panel.setConfigurationPositionYZSameAsX():panel.submitConfiguration("position",panel.configData.position)}),panel.$.yInput.addEventListener("change",e=>{panel.configData.position.y=e.target.value,panel.submitConfiguration("position",panel.configData.position)}),panel.$.zInput.addEventListener("change",e=>{panel.configData.position.z=e.target.value,panel.submitConfiguration("position",panel.configData.position)}),panel.$.rotateButton.addEventListener("click",()=>{panel.$.rotateButton.toggleAttribute("active"),panel.submitConfiguration("isRotationSnapEnabled",panel.$.rotateButton.hasAttribute("active"))}),panel.$.rotateInput.addEventListener("change",e=>{panel.submitConfiguration("rotation",e.target.value)}),panel.$.scaleButton.addEventListener("click",()=>{panel.$.scaleButton.toggleAttribute("active"),panel.submitConfiguration("isScaleSnapEnabled",panel.$.scaleButton.hasAttribute("active"))}),panel.$.scaleInput.addEventListener("change",e=>{panel.submitConfiguration("scale",e.target.value)}),panel.$.rectToolSnapEnable.addEventListener("change",e=>{Editor.Message.request("scene","set-rect-snapping-configs","enableSnapping",e.target.value)}),panel.$.rectToolSnapThresholdInput.addEventListener("change",e=>{Editor.Message.request("scene","set-rect-snapping-configs","snapThreshold",e.target.value)})},async refreshConfiguration(){var e=await Editor.Message.request("scene","query-transform-snap-configs");e&&(panel.configData=e,panel.$.xInput.setAttribute("value",panel.configData.position.x),panel.$.yInput.setAttribute("value",panel.configData.position.y),panel.$.zInput.setAttribute("value",panel.configData.position.z),panel.$.rotateInput.setAttribute("value",panel.configData.rotation),panel.$.scaleInput.setAttribute("value",panel.configData.scale),panel.rectToolConfigData=await Editor.Message.request("scene","query-rect-snapping-configs"),panel.$.rectToolSnapEnable.setAttribute("value",panel.rectToolConfigData.enableSnapping),panel.$.rectToolSnapThresholdInput.setAttribute("value",panel.rectToolConfigData.snapThreshold),panel.refreshConfigurationButtons(),panel.refreshConfigurationInputs())},refreshConfigurationButtons(){var e={translateButton:"isPositionSnapEnabled",rotateButton:"isRotationSnapEnabled",scaleButton:"isScaleSnapEnabled"};for(const n in e){var t=e[n];panel.configData[t]?panel.$[n].setAttribute("active",""):panel.$[n].removeAttribute("active")}},refreshConfigurationInputs(){panel.configData.position.x===panel.configData.position.y&&panel.configData.position.x===panel.configData.position.z?(panel.$.togetherButton.setAttribute("active",""),panel.$.yInput.setAttribute("disabled",""),panel.$.zInput.setAttribute("disabled",""),panel.$.togetherButtonIcon.value="unlink"):(panel.$.togetherButton.removeAttribute("active"),panel.$.yInput.removeAttribute("disabled"),panel.$.zInput.removeAttribute("disabled"),panel.$.togetherButtonIcon.value="link")},setConfigurationPositionYZSameAsX(){panel.configData.position.z=panel.configData.position.y=panel.configData.position.x,panel.$.yInput.setAttribute("value",panel.configData.position.y),panel.$.zInput.setAttribute("value",panel.configData.position.z),panel.submitConfiguration("position",panel.configData.position)},submitConfiguration(e,t){Editor.Message.send("scene","set-transform-snap-configs",e,t)},eventChangeGizmoTool(e){Editor.Message.send("scene","change-gizmo-tool",e)},eventChangeGizmoPivot(){var e="pivot"===panel.pivot?"center":"pivot";Editor.Message.send("scene","change-gizmo-pivot",e)},eventChangeGizmoCoordinate(){var e="local"===panel.coordinate?"global":"local";Editor.Message.send("scene","change-gizmo-coordinate",e)},eventDocumentKeyDown(e){var t=function e(t){return t&&t.shadowRoot?e(t.shadowRoot.activeElement):t}(document.activeElement);if(!t||"INPUT"!==t.tagName&&"TEXTAREA"!==t.tagName){t=e.key.toLowerCase();if(e.ctrlKey||e.metaKey||e.altKey||e.shiftKey)"f"===t&&e.ctrlKey&&e.shiftKey&&(e=Editor.Selection.getSelected("node"))&&e.length&&Editor.Message.send("scene","align-node-to-scene-view",e);else switch(t){case"q":Editor.Message.send("scene","change-gizmo-tool","view");break;case"w":Editor.Message.send("scene","change-gizmo-tool","position");break;case"e":Editor.Message.send("scene","change-gizmo-tool","rotation");break;case"r":Editor.Message.send("scene","change-gizmo-tool","scale");break;case"t":Editor.Message.send("scene","change-gizmo-tool","rect");break;case"f":var n=Editor.Selection.getSelected("node");n&&n.length&&Editor.Message.send("scene","focus-camera",n)}}}},exports.default=__importStar(require("./scene-toolbar"));
+`;
+
+exports.$ = {
+  sceneToolbar: ".scene-toolbar",
+  view: ".view",
+  viewIcon: ".view > ui-icon",
+  position: ".position",
+  rotation: ".rotation",
+  scale: ".scale",
+  rect: ".rect",
+  config: ".config",
+  configuration: ".configuration",
+  translateButton: ".translate-button",
+  rotateButton: ".rotate-button",
+  scaleButton: ".scale-button",
+  xInput: ".x-input",
+  yInput: ".y-input",
+  zInput: ".z-input",
+  togetherButton: ".together-button",
+  togetherButtonIcon: ".together-button > ui-icon",
+  rotateInput: ".rotate-input",
+  scaleInput: ".scale-input",
+  rectToolSnapEnable: ".rect-tool-snap-enable",
+  rectToolSnapThresholdInput: ".threshold-input",
+  pivot: ".pivot",
+  pivotIcon: ".pivot > ui-icon",
+  coordinate: ".coordinate",
+  coordinateIcon: ".coordinate > ui-icon",
+};
+
+exports.methods = {
+  async sceneReady() {
+    var e = await Editor.Message.request("scene", "query-gizmo-tool-name");
+
+    var e =
+      (panel.gizmoToolChanged(e),
+      await Editor.Message.request("scene", "query-gizmo-view-mode"));
+
+    var e =
+      (panel.gizmoViewModeChanged(e),
+      await Editor.Message.request("scene", "query-gizmo-pivot"));
+
+    var e =
+      (panel.gizmoPivotChanged(e),
+      await Editor.Message.request("scene", "query-gizmo-coordinate"));
+
+    var e =
+      (panel.gizmoCoordinateChanged(e),
+      await Editor.Message.request("scene", "query-light-probe-edit-mode"));
+
+    var e =
+      (panel.gizmoLightProbeAndBoundBoxEditModeChanged(e),
+      await Editor.Message.request(
+        "scene",
+        "query-light-probe-bounding-box-edit-mode"
+      ));
+
+    panel.gizmoLightProbeAndBoundBoxEditModeChanged(e);
+  },
+  setSceneViewCursor(e) {
+    if (panel.sceneView) {
+      panel.sceneView.style.cursor = e;
+    }
+  },
+  gizmoToolChanged(t) {
+    panel.activeName = t;
+
+    panel.gizmoToolNames.forEach((e) => {
+      if (e === t) {
+        panel.$[e].setAttribute("active", "");
+      } else {
+        panel.$[e].removeAttribute("active");
+      }
+    });
+  },
+  gizmoViewModeChanged(e) {
+    if ("view" === (panel.viewMode = e)) {
+      panel.$.viewIcon.value = "gizmo-grab";
+      panel.setSceneViewCursor("grab");
+    } else if (e === "select") {
+      panel.$.viewIcon.value = "gizmo-select";
+      panel.setSceneViewCursor("default");
+    }
+  },
+  gizmoPivotChanged(e) {
+    panel.pivot = e;
+
+    if (panel.pivot === "center") {
+      panel.$.pivot.setAttribute("tooltip", "i18n:scene.tooltips.centerTip");
+
+      panel.$.pivotIcon.value = "center";
+    }
+
+    if (panel.pivot === "pivot") {
+      panel.$.pivot.setAttribute("tooltip", "i18n:scene.tooltips.pivotTip");
+
+      panel.$.pivotIcon.value = "anchor";
+    }
+  },
+  gizmoCoordinateChanged(e) {
+    panel.coordinate = e;
+
+    if (panel.coordinate === "global") {
+      panel.$.coordinate.setAttribute(
+        "tooltip",
+        "i18n:scene.tooltips.global_gizmo"
+      );
+
+      panel.$.coordinateIcon.value = "coordinates-world";
+    }
+
+    if (panel.coordinate === "local") {
+      panel.$.coordinate.setAttribute(
+        "tooltip",
+        "i18n:scene.tooltips.local_gizmo"
+      );
+
+      panel.$.coordinateIcon.value = "coordinates-local";
+    }
+  },
+  toolbarMenuActive(e) {
+    var t = panel.$.configuration.hasAttribute("active");
+
+    if (e !== "increment" || t) {
+      if (t) {
+        panel.$.configuration.removeAttribute("active");
+      }
+    } else {
+      panel.$.configuration.setAttribute("active", "");
+      panel.refreshConfiguration();
+    }
+  },
+  gizmoLightProbeAndBoundBoxEditModeChanged(t) {
+    [
+      "view",
+      "rotation",
+      "scale",
+      "rect",
+      "config",
+      "pivot",
+      "coordinate",
+    ].forEach((e) => {
+      if (t) {
+        panel.$[e].setAttribute("disabled", "");
+      } else {
+        panel.$[e].removeAttribute("disabled");
+      }
+    });
+  },
+  initConfiguration() {
+    panel.$.config.addEventListener("click", (e) => {
+      e.stopPropagation();
+      Editor.Message.broadcast("scene:toolbar-menu-active", "increment");
+    });
+
+    panel.$.configuration.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    panel.$.togetherButton.addEventListener("click", () => {
+      panel.$.togetherButton.toggleAttribute("active");
+      panel.$.yInput.toggleAttribute("disabled");
+      panel.$.zInput.toggleAttribute("disabled");
+
+      if (panel.$.togetherButton.hasAttribute("active")) {
+        panel.setConfigurationPositionYZSameAsX();
+        panel.$.togetherButtonIcon.value = "unlink";
+      } else {
+        panel.$.togetherButtonIcon.value = "link";
+      }
+    });
+
+    panel.$.translateButton.addEventListener("click", () => {
+      panel.$.translateButton.toggleAttribute("active");
+
+      panel.submitConfiguration(
+        "isPositionSnapEnabled",
+        panel.$.translateButton.hasAttribute("active")
+      );
+    });
+
+    panel.$.xInput.addEventListener("change", (e) => {
+      panel.configData.position.x = e.target.value;
+
+      if (panel.$.togetherButton.hasAttribute("active")) {
+        panel.setConfigurationPositionYZSameAsX();
+      } else {
+        panel.submitConfiguration("position", panel.configData.position);
+      }
+    });
+
+    panel.$.yInput.addEventListener("change", (e) => {
+      panel.configData.position.y = e.target.value;
+      panel.submitConfiguration("position", panel.configData.position);
+    });
+
+    panel.$.zInput.addEventListener("change", (e) => {
+      panel.configData.position.z = e.target.value;
+      panel.submitConfiguration("position", panel.configData.position);
+    });
+
+    panel.$.rotateButton.addEventListener("click", () => {
+      panel.$.rotateButton.toggleAttribute("active");
+
+      panel.submitConfiguration(
+        "isRotationSnapEnabled",
+        panel.$.rotateButton.hasAttribute("active")
+      );
+    });
+
+    panel.$.rotateInput.addEventListener("change", (e) => {
+      panel.submitConfiguration("rotation", e.target.value);
+    });
+
+    panel.$.scaleButton.addEventListener("click", () => {
+      panel.$.scaleButton.toggleAttribute("active");
+
+      panel.submitConfiguration(
+        "isScaleSnapEnabled",
+        panel.$.scaleButton.hasAttribute("active")
+      );
+    });
+
+    panel.$.scaleInput.addEventListener("change", (e) => {
+      panel.submitConfiguration("scale", e.target.value);
+    });
+
+    panel.$.rectToolSnapEnable.addEventListener("change", (e) => {
+      Editor.Message.request(
+        "scene",
+        "set-rect-snapping-configs",
+        "enableSnapping",
+        e.target.value
+      );
+    });
+
+    panel.$.rectToolSnapThresholdInput.addEventListener("change", (e) => {
+      Editor.Message.request(
+        "scene",
+        "set-rect-snapping-configs",
+        "snapThreshold",
+        e.target.value
+      );
+    });
+  },
+  async refreshConfiguration() {
+    var e = await Editor.Message.request(
+      "scene",
+      "query-transform-snap-configs"
+    );
+
+    if (e) {
+      panel.configData = e;
+      panel.$.xInput.setAttribute("value", panel.configData.position.x);
+      panel.$.yInput.setAttribute("value", panel.configData.position.y);
+      panel.$.zInput.setAttribute("value", panel.configData.position.z);
+      panel.$.rotateInput.setAttribute("value", panel.configData.rotation);
+      panel.$.scaleInput.setAttribute("value", panel.configData.scale);
+
+      panel.rectToolConfigData = await Editor.Message.request(
+        "scene",
+        "query-rect-snapping-configs"
+      );
+
+      panel.$.rectToolSnapEnable.setAttribute(
+        "value",
+        panel.rectToolConfigData.enableSnapping
+      );
+
+      panel.$.rectToolSnapThresholdInput.setAttribute(
+        "value",
+        panel.rectToolConfigData.snapThreshold
+      );
+
+      panel.refreshConfigurationButtons();
+      panel.refreshConfigurationInputs();
+    }
+  },
+  refreshConfigurationButtons() {
+    var e = {
+      translateButton: "isPositionSnapEnabled",
+      rotateButton: "isRotationSnapEnabled",
+      scaleButton: "isScaleSnapEnabled",
+    };
+    for (const n in e) {
+      var t = e[n];
+
+      if (panel.configData[t]) {
+        panel.$[n].setAttribute("active", "");
+      } else {
+        panel.$[n].removeAttribute("active");
+      }
+    }
+  },
+  refreshConfigurationInputs() {
+    if (
+      panel.configData.position.x === panel.configData.position.y &&
+      panel.configData.position.x === panel.configData.position.z
+    ) {
+      panel.$.togetherButton.setAttribute("active", "");
+      panel.$.yInput.setAttribute("disabled", "");
+      panel.$.zInput.setAttribute("disabled", "");
+      panel.$.togetherButtonIcon.value = "unlink";
+    } else {
+      panel.$.togetherButton.removeAttribute("active");
+      panel.$.yInput.removeAttribute("disabled");
+      panel.$.zInput.removeAttribute("disabled");
+      panel.$.togetherButtonIcon.value = "link";
+    }
+  },
+  setConfigurationPositionYZSameAsX() {
+    panel.configData.position.z = panel.configData.position.y =
+      panel.configData.position.x;
+
+    panel.$.yInput.setAttribute("value", panel.configData.position.y);
+    panel.$.zInput.setAttribute("value", panel.configData.position.z);
+    panel.submitConfiguration("position", panel.configData.position);
+  },
+  submitConfiguration(e, t) {
+    Editor.Message.send("scene", "set-transform-snap-configs", e, t);
+  },
+  eventChangeGizmoTool(e) {
+    Editor.Message.send("scene", "change-gizmo-tool", e);
+  },
+  eventChangeGizmoPivot() {
+    var e = panel.pivot === "pivot" ? "center" : "pivot";
+    Editor.Message.send("scene", "change-gizmo-pivot", e);
+  },
+  eventChangeGizmoCoordinate() {
+    var e = panel.coordinate === "local" ? "global" : "local";
+    Editor.Message.send("scene", "change-gizmo-coordinate", e);
+  },
+  eventDocumentKeyDown(e) {
+    var t = (function e(t) {
+      return t && t.shadowRoot ? e(t.shadowRoot.activeElement) : t;
+    })(document.activeElement);
+    if (!t || (t.tagName !== "INPUT" && t.tagName !== "TEXTAREA")) {
+      t = e.key.toLowerCase();
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) {
+        if (
+          t === "f" &&
+          e.ctrlKey &&
+          e.shiftKey &&
+          (e = Editor.Selection.getSelected("node")) &&
+          e.length
+        ) {
+          Editor.Message.send("scene", "align-node-to-scene-view", e);
+        }
+      } else {
+        switch (t) {
+          case "q": {
+            Editor.Message.send("scene", "change-gizmo-tool", "view");
+            break;
+          }
+          case "w": {
+            Editor.Message.send("scene", "change-gizmo-tool", "position");
+            break;
+          }
+          case "e": {
+            Editor.Message.send("scene", "change-gizmo-tool", "rotation");
+            break;
+          }
+          case "r": {
+            Editor.Message.send("scene", "change-gizmo-tool", "scale");
+            break;
+          }
+          case "t": {
+            Editor.Message.send("scene", "change-gizmo-tool", "rect");
+            break;
+          }
+          case "f": {
+            var n = Editor.Selection.getSelected("node");
+
+            if (n && n.length) {
+              Editor.Message.send("scene", "focus-camera", n);
+            }
+          }
+        }
+      }
+    }
+  },
+};
+
+exports.default = __importStar(require("./scene-toolbar"));

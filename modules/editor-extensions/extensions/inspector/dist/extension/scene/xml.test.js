@@ -1,18 +1,26 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.XMLLabelInspectorComponent=void 0;const cc_1=require("cc"),adapter_1=require("../adapter");class XMLLabelInspectorComponent extends adapter_1.XMLInspectorComponent{render(e){return`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.XMLLabelInspectorComponent = undefined;
+const cc_1 = require("cc");
+const adapter_1 = require("../adapter");
+class XMLLabelInspectorComponent extends adapter_1.XMLInspectorComponent {
+  render(e) {
+    return `
             <div style="border-top: 1px solid #000; padding: 10px;">
                 XML Pasrser
             </div>
             <ui-prop>
                 <ui-label slot="label">CustomMaterial</ui-label>
                 <ui-asset slot="content" droppable="cc.Material"
-                    value="${e.customMaterial?e.customMaterial.uuid:""}"
+                    value="${e.customMaterial ? e.customMaterial.uuid : ""}"
                     @change="onMaterialChange"
                 ></ui-asset>
             </ui-prop>
             <ui-prop>
                 <ui-label slot="label">Color</ui-label>
                 <ui-color slot="content"
-                    value="[${cc_1.Color.toArray([],e.color).map(e=>Math.round(255*e))}]"
+                    value="[${cc_1.Color.toArray([], e.color).map((e) =>
+                      Math.round(255 * e)
+                    )}]"
                     @change="onColorChange"
                 ></ui-asset>
             </ui-prop>
@@ -62,4 +70,36 @@
                     @click="onTestButtonClick"
                 >Test</ui-button>
             </ui-prop>
-        `}onStringChange(e,o){e.string=o.getAttribute("value"),cce.Node.emit("change",e.node)}onMaterialChange(t,e){e=e.getAttribute("value");cc_1.assetManager.loadAny(e,(e,o)=>{t.customMaterial=o}),cce.Node.emit("change",t.node)}onColorChange(e,o){o=JSON.parse(o.getAttribute("value")).map(e=>e/255);e.color=cc_1.Color.fromArray(o,new cc_1.Color),cce.Node.emit("change",e.node)}onOverflowChange(e,o){e.overflow=parseInt(o.getAttribute("value")),cce.Node.emit("change",e.node)}onHorizontalAlignChange(e,o){e.horizontalAlign=parseInt(o.getAttribute("value")),cce.Node.emit("change",e.node)}onTestButtonClick(e,o){console.log("XML Test Click")}}exports.XMLLabelInspectorComponent=XMLLabelInspectorComponent;
+        `;
+  }
+  onStringChange(e, o) {
+    e.string = o.getAttribute("value");
+    cce.Node.emit("change", e.node);
+  }
+  onMaterialChange(t, e) {
+    e = e.getAttribute("value");
+
+    cc_1.assetManager.loadAny(e, (e, o) => {
+      t.customMaterial = o;
+    });
+
+    cce.Node.emit("change", t.node);
+  }
+  onColorChange(e, o) {
+    o = JSON.parse(o.getAttribute("value")).map((e) => e / 255);
+    e.color = cc_1.Color.fromArray(o, new cc_1.Color());
+    cce.Node.emit("change", e.node);
+  }
+  onOverflowChange(e, o) {
+    e.overflow = parseInt(o.getAttribute("value"));
+    cce.Node.emit("change", e.node);
+  }
+  onHorizontalAlignChange(e, o) {
+    e.horizontalAlign = parseInt(o.getAttribute("value"));
+    cce.Node.emit("change", e.node);
+  }
+  onTestButtonClick(e, o) {
+    console.log("XML Test Click");
+  }
+}
+exports.XMLLabelInspectorComponent = XMLLabelInspectorComponent;

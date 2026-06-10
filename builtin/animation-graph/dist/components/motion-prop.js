@@ -1,4 +1,23 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.props=exports.components=exports.template=void 0,exports.data=data,require("../clip-related/animation-graph-clip-asset");const variable_selection_1=__importDefault(require("../contributions/inspector/variable-selection"));function data(){return{}}exports.template=`
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.props = undefined;
+exports.components = undefined;
+exports.template = undefined;
+
+exports.data = data;
+require("../clip-related/animation-graph-clip-asset");
+const variable_selection_1 = __importDefault(
+  require("../contributions/inspector/variable-selection")
+);
+function data() {
+  return {};
+}
+
+exports.template = `
 <div class="motion"
     @mousedown.stop
 >
@@ -50,4 +69,32 @@
         </ui-prop>
     </template>
 </div>
-`,exports.components={"variable-selection":variable_selection_1.default},exports.props=["dump"],exports.methods={changeMotionValue(e,a,t,o){var l=this;switch(a.type){case l.$root.queryData.envType.ClipMotion:l.$root.changeClipMotionInMotion(a.level,e);break;case l.$root.queryData.envType.AnimationBlend1D:l.$root.changeAnimationBlend1DInMotion(a.level,t,e);break;case l.$root.queryData.envType.AnimationBlend2D:l.$root.changeAnimationBlend2DInMotion(a.level,o,t,e)}},getSliderTooltip(e,a){return Editor.I18n.t("animation-graph.motion.thresholdTip",{min:e,max:a})}};
+`;
+
+exports.components = { "variable-selection": variable_selection_1.default };
+exports.props = ["dump"];
+
+exports.methods = {
+  changeMotionValue(e, a, t, o) {
+    var l = this;
+    switch (a.type) {
+      case l.$root.queryData.envType.ClipMotion: {
+        l.$root.changeClipMotionInMotion(a.level, e);
+        break;
+      }
+      case l.$root.queryData.envType.AnimationBlend1D: {
+        l.$root.changeAnimationBlend1DInMotion(a.level, t, e);
+        break;
+      }
+      case l.$root.queryData.envType.AnimationBlend2D: {
+        l.$root.changeAnimationBlend2DInMotion(a.level, o, t, e);
+      }
+    }
+  },
+  getSliderTooltip(e, a) {
+    return Editor.I18n.t("animation-graph.motion.thresholdTip", {
+      min: e,
+      max: a,
+    });
+  },
+};

@@ -1,1 +1,3 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.configs=void 0,exports.configs={"*":{hooks:"./hooks"}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.configs = undefined;
+exports.configs = { "*": { hooks: "./hooks" } };

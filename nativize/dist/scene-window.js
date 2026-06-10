@@ -1,1 +1,25 @@
-"use strict";let Nativize;class SceneWindow{constructor(i,t){this.JSBWindow=i,this.windowID=t}resize(i){"darwin"===process.platform?(Nativize=Nativize||require("./native-manager").Nativize).request({type:"resize",data:{x:i.x,y:i.y,w:i.w,h:i.h,windowID:this.windowID}}).then(i=>{this.windowID=i.data.windowID,console.log("updateContext",this.windowID,i.data.windowID),this.JSBWindow.updateContext(this.windowID)}):(i.x&&i.y&&this.JSBWindow.setPos(i.x,i.y),i.w&&i.h&&this.JSBWindow.setSize(i.w,i.h))}}module.exports=SceneWindow;
+let Nativize;
+class SceneWindow {
+  constructor(i, t) {
+    this.JSBWindow = i;
+    this.windowID = t;
+  }
+  resize(i) {
+    if (process.platform === "darwin") {
+      (Nativize = Nativize || require("./native-manager").Nativize)
+        .request({
+          type: "resize",
+          data: { x: i.x, y: i.y, w: i.w, h: i.h, windowID: this.windowID },
+        })
+        .then((i) => {
+          this.windowID = i.data.windowID;
+          console.log("updateContext", this.windowID, i.data.windowID);
+          this.JSBWindow.updateContext(this.windowID);
+        });
+    } else {
+      i.x && i.y && this.JSBWindow.setPos(i.x, i.y);
+      i.w && i.h && this.JSBWindow.setSize(i.w, i.h);
+    }
+  }
+}
+module.exports = SceneWindow;

@@ -1,4 +1,28 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.components=exports.computed=exports.watch=exports.props=exports.template=void 0,exports.data=data,exports.mounted=mounted;const animation_ctrl_1=require("../../share/animation-ctrl"),animation_editor_1=require("../../share/animation-editor"),pop_menu_1=require("../../share/pop-menu"),utils_1=require("../../utils");function data(){return{}}function mounted(){}exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.components = undefined;
+exports.computed = undefined;
+exports.watch = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.data = data;
+exports.mounted = mounted;
+const animation_ctrl_1 = require("../../share/animation-ctrl");
+const animation_editor_1 = require("../../share/animation-editor");
+const pop_menu_1 = require("../../share/pop-menu");
+
+const { getPopMenuMap } = pop_menu_1;
+
+const { checkCtrlOrCommand } = require("../../utils");
+
+function data() {
+  return {};
+}
+function mounted() {}
+
+exports.template = `
 <div class="events" :style="'transform: translateX(' + offset + 'px)'">
     <template
         v-if="events"
@@ -23,4 +47,90 @@
         ></ui-icon>
     </template>
 </div>
-`,exports.props=["events","offset","selectInfo"],exports.watch={},exports.computed={selectEvent(){return this.selectInfo?this.selectInfo.data:null}},exports.components={},exports.methods={t(e,t="event."){return Editor.I18n.t("animator."+t+e)},display(e){return 0<=e},onPopMenu(e,t){const n=this;var o=(0,pop_menu_1.getPopMenuMap)(pop_menu_1.onEventMenus,!0);o.editEventKey.click=()=>{n.openEventEditor(t)},o.copyEventKey.click=()=>{animation_ctrl_1.animationCtrl.copyEvents(n.selectEvent?n.selectEvent.map(e=>e.frame):[t])},o.pasteEventKey.enabled=!!animation_ctrl_1.animationCtrl.copyEventInfo,o.pasteEventKey.click=()=>{animation_ctrl_1.animationCtrl.pasteEvent(t)},o.removeEventKey.click=()=>{animation_ctrl_1.animationCtrl.deleteEvent(n.selectEvent?n.selectEvent.map(e=>e.frame):[t])},Editor.Menu.popup({menu:Object.values(o)})},onMouseDown(t,n){var o=this;if(t.stopPropagation(),0===t.button){let e={};var a=JSON.parse(JSON.stringify(n)),i=o.selectInfo&&o.selectInfo.frames.indexOf(n.frame),r=(0,utils_1.checkCtrlOrCommand)(t);r&&o.selectInfo?(e=JSON.parse(JSON.stringify(o.selectInfo)),-1!==i?(e.data.splice(i,1),e.frames.splice(i,1)):(e.data.push(a),e.frames.push(n.frame))):e="number"!=typeof i||-1===i?{startX:t.x,data:[a],offset:0,offsetFrame:0,frames:[n.frame]}:(o.selectInfo.startX=t.x,o.selectInfo),animation_editor_1.animationEditor.startDragEvent(e,r)}},openEventEditor(e){animation_editor_1.animationEditor.openEventEditor(e)},queryKeyStyle(e){return`transform: translateX(${e-6|0}px);`}};
+`;
+
+exports.props = ["events", "offset", "selectInfo"];
+exports.watch = {};
+
+exports.computed = {
+  selectEvent() {
+    return this.selectInfo ? this.selectInfo.data : null;
+  },
+};
+
+exports.components = {};
+
+exports.methods = {
+  t(e, t = "event.") {
+    return Editor.I18n.t("animator." + t + e);
+  },
+  display(e) {
+    return e >= 0;
+  },
+  onPopMenu(e, t) {
+    const n = this;
+    var o = getPopMenuMap(pop_menu_1.onEventMenus, true);
+
+    o.editEventKey.click = () => {
+      n.openEventEditor(t);
+    };
+
+    o.copyEventKey.click = () => {
+      animation_ctrl_1.animationCtrl.copyEvents(
+        n.selectEvent ? n.selectEvent.map((e) => e.frame) : [t]
+      );
+    };
+
+    o.pasteEventKey.enabled = !!animation_ctrl_1.animationCtrl.copyEventInfo;
+
+    o.pasteEventKey.click = () => {
+      animation_ctrl_1.animationCtrl.pasteEvent(t);
+    };
+
+    o.removeEventKey.click = () => {
+      animation_ctrl_1.animationCtrl.deleteEvent(
+        n.selectEvent ? n.selectEvent.map((e) => e.frame) : [t]
+      );
+    };
+
+    Editor.Menu.popup({ menu: Object.values(o) });
+  },
+  onMouseDown(t, n) {
+    var o = this;
+    t.stopPropagation();
+
+    if (t.button === 0) {
+      let e = {};
+      var a = JSON.parse(JSON.stringify(n));
+      var i = o.selectInfo && o.selectInfo.frames.indexOf(n.frame);
+      var r = checkCtrlOrCommand(t);
+
+      if (r && o.selectInfo) {
+        e = JSON.parse(JSON.stringify(o.selectInfo));
+
+        -1 !== i
+          ? (e.data.splice(i, 1), e.frames.splice(i, 1))
+          : (e.data.push(a), e.frames.push(n.frame));
+      } else {
+        e =
+          typeof i != "number" || -1 === i
+            ? {
+                startX: t.x,
+                data: [a],
+                offset: 0,
+                offsetFrame: 0,
+                frames: [n.frame],
+              }
+            : ((o.selectInfo.startX = t.x), o.selectInfo);
+      }
+
+      animation_editor_1.animationEditor.startDragEvent(e, r);
+    }
+  },
+  openEventEditor(e) {
+    animation_editor_1.animationEditor.openEventEditor(e);
+  },
+  queryKeyStyle(e) {
+    return `transform: translateX(${(e - 6) | 0}px);`;
+  },
+};

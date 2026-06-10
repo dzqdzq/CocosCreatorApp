@@ -1,1 +1,90 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.unload=unload;const browser_1=require("../worker/browser"),intelligence_1=require("../intelligence"),query_shared_settings_1=require("../shared/query-shared-settings");async function load(){Editor.Message.__protected__.addBroadcastListener("asset-db:ready",regenerateCommonTsConfig),Editor.Message.__protected__.addBroadcastListener("asset-db:db-ready",regenerateCommonTsConfig),Editor.Message.__protected__.addBroadcastListener("asset-db:db-close",regenerateCommonTsConfig),await(0,browser_1.load)()}async function unload(){Editor.Message.__protected__.removeBroadcastListener("asset-db:ready",regenerateCommonTsConfig),Editor.Message.__protected__.removeBroadcastListener("asset-db:db-ready",regenerateCommonTsConfig),Editor.Message.__protected__.removeBroadcastListener("asset-db:db-close",regenerateCommonTsConfig)}async function regenerateCommonTsConfig(){await(0,intelligence_1.generateCommonTsConfig)()}exports.methods={...browser_1.methods,async"query-shared-settings"(){return(0,query_shared_settings_1.querySharedSettings)(console)},async"custom-macro-changed"(){await(0,intelligence_1.updateCustomMacro)()},async querySortedPlugins(e={}){const o=await Editor.Message.request("asset-db","query-assets",{ccType:"cc.Script",userData:{...e,isPlugin:!0}});if(!o.length)return[];o.sort((e,r)=>e.name.localeCompare(r.name));e=await Editor.Profile.getProject("project","script.sortingPlugin");return Array.isArray(e)&&e.length&&e.filter(r=>o.find(e=>e.uuid===r)).reverse().reduce((e,r)=>{var s,t=o.findIndex(e=>e.uuid===r);return e<t?(s=o.splice(t,1),o.splice(e,0,s[0]),e):t},o.length),o.map(e=>({uuid:e.uuid,file:e.library[".js"],url:e.url}))}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+exports.unload = unload;
+const browser_1 = require("../worker/browser");
+
+const { load: load_2 } = browser_1;
+
+const {
+  generateCommonTsConfig,
+  updateCustomMacro,
+} = require("../intelligence");
+
+const { querySharedSettings } = require("../shared/query-shared-settings");
+
+async function load() {
+  Editor.Message.__protected__.addBroadcastListener(
+    "asset-db:ready",
+    regenerateCommonTsConfig
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "asset-db:db-ready",
+    regenerateCommonTsConfig
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "asset-db:db-close",
+    regenerateCommonTsConfig
+  );
+
+  await load_2();
+}
+async function unload() {
+  Editor.Message.__protected__.removeBroadcastListener(
+    "asset-db:ready",
+    regenerateCommonTsConfig
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "asset-db:db-ready",
+    regenerateCommonTsConfig
+  );
+
+  Editor.Message.__protected__.removeBroadcastListener(
+    "asset-db:db-close",
+    regenerateCommonTsConfig
+  );
+}
+async function regenerateCommonTsConfig() {
+  await generateCommonTsConfig();
+}
+exports.methods = {
+  ...browser_1.methods,
+  async "query-shared-settings"() {
+    return querySharedSettings(console);
+  },
+  async "custom-macro-changed"() {
+    await updateCustomMacro();
+  },
+  async querySortedPlugins(e = {}) {
+    const o = await Editor.Message.request("asset-db", "query-assets", {
+      ccType: "cc.Script",
+      userData: { ...e, isPlugin: true },
+    });
+    if (!o.length) {
+      return [];
+    }
+    o.sort((e, r) => e.name.localeCompare(r.name));
+    e = await Editor.Profile.getProject("project", "script.sortingPlugin");
+
+    if (Array.isArray(e) && e.length) {
+      e.filter((r) => o.find((e) => e.uuid === r))
+        .reverse()
+        .reduce((e, r) => {
+          var s;
+
+          var t = o.findIndex((e) => e.uuid === r);
+
+          return e < t ? ((s = o.splice(t, 1)), o.splice(e, 0, s[0]), e) : t;
+        }, o.length);
+    }
+
+    return o.map((e) => ({
+      uuid: e.uuid,
+      file: e.library[".js"],
+      url: e.url,
+    }));
+  },
+};

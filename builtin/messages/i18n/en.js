@@ -1,1 +1,10 @@
-"use strict";module.exports={title:"Message manager",description:"Message manager",default:{title:"Message Manager"},debug:{title:"Message DevTools"},tools:{copy:"Copy",expand_or_collapse:"Expand/Collapse Message Details"}};
+module.exports = {
+  title: "Message manager",
+  description: "Message manager",
+  default: { title: "Message Manager" },
+  debug: { title: "Message DevTools" },
+  tools: {
+    copy: "Copy",
+    expand_or_collapse: "Expand/Collapse Message Details",
+  },
+};

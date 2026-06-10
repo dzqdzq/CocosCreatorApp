@@ -1,1 +1,28 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.deserialize=exports.serialize=exports.VirtualElement=void 0;var virtual_1=require("./virtual"),serialize_1=(Object.defineProperty(exports,"VirtualElement",{enumerable:!0,get:function(){return virtual_1.VirtualElement}}),require("./serialize"));Object.defineProperty(exports,"serialize",{enumerable:!0,get:function(){return serialize_1.serialize}}),Object.defineProperty(exports,"deserialize",{enumerable:!0,get:function(){return serialize_1.deserialize}});
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deserialize = undefined;
+exports.serialize = undefined;
+exports.VirtualElement = undefined;
+var virtual_1 = require("./virtual");
+
+Object.defineProperty(exports, "VirtualElement", {
+  enumerable: true,
+  get() {
+    return virtual_1.VirtualElement;
+  },
+});
+
+var serialize_1 = require("./serialize");
+
+Object.defineProperty(exports, "serialize", {
+  enumerable: true,
+  get() {
+    return serialize_1.serialize;
+  },
+});
+
+Object.defineProperty(exports, "deserialize", {
+  enumerable: true,
+  get() {
+    return serialize_1.deserialize;
+  },
+});

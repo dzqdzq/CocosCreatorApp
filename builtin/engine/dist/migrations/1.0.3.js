@@ -1,1 +1,7 @@
-"use strict";function migrateProject(e){e.macroConfig&&!1===e.macroConfig.ENABLE_WEBGL_ANTIALIAS&&(e.macroConfig.ENABLE_WEBGL_ANTIALIAS=!0)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateProject=migrateProject;
+function migrateProject(e) {
+  if (e.macroConfig && e.macroConfig.ENABLE_WEBGL_ANTIALIAS === false) {
+    e.macroConfig.ENABLE_WEBGL_ANTIALIAS = true;
+  }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateProject = migrateProject;

@@ -1,1 +1,54 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.handle=handle;const fs_extra_1=require("fs-extra");async function handle(e){e=await(0,fs_extra_1.readJSON)(e);if(e){var s=e.uuids,r=e.rawAssets,t=e.assetTypes,a=e.rawAssets={};for(const h in r){var n=r[h],o=a[h]={};for(const y in n){var u=n[y],f=u[1];"number"==typeof f&&(u[1]=t[f]),o[s[y]||y]=u}}var i=e.scenes;for(let e=0;e<i.length;++e){var c=i[e];"number"==typeof c.uuid&&(c.uuid=s[c.uuid])}var d=e.packedAssets;for(const b in d){var l=d[b];for(let e=0;e<l.length;++e)"number"==typeof l[e]&&(l[e]=s[l[e]])}var p=e.subpackages;for(const g in p){var v=p[g].uuids;if(v)for(let e=0,r=v.length;e<r;e++)"number"==typeof v[e]&&(v[e]=s[v[e]])}return e}console.error("can't get cache settings...")}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.handle = handle;
+
+const { readJSON } = require("fs-extra");
+
+async function handle(e) {
+  e = await readJSON(e);
+  if (e) {
+    var { uuids, rawAssets, assetTypes, scenes, packedAssets, subpackages } = e;
+
+    var a = (e.rawAssets = {});
+    for (const h in rawAssets) {
+      var n = rawAssets[h];
+      var o = (a[h] = {});
+      for (const y in n) {
+        var u = n[y];
+        var [, f] = u;
+
+        if (typeof f == "number") {
+          u[1] = assetTypes[f];
+        }
+
+        o[uuids[y] || y] = u;
+      }
+    }
+    for (let e = 0; e < scenes.length; ++e) {
+      var c = scenes[e];
+
+      if (typeof c.uuid == "number") {
+        c.uuid = uuids[c.uuid];
+      }
+    }
+    for (const b in packedAssets) {
+      var l = packedAssets[b];
+      for (let e = 0; e < l.length; ++e) {
+        if (typeof l[e] == "number") {
+          l[e] = uuids[l[e]];
+        }
+      }
+    }
+    for (const g in subpackages) {
+      var v = subpackages[g].uuids;
+      if (v) {
+        for (let e = 0, rawAssets = v.length; e < rawAssets; e++) {
+          if (typeof v[e] == "number") {
+            v[e] = uuids[v[e]];
+          }
+        }
+      }
+    }
+    return e;
+  }
+  console.error("can't get cache settings...");
+}

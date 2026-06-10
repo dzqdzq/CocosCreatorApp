@@ -1,1 +1,6 @@
-"use strict";require("chai").should();const fse=require("fs-extra"),path=require("path");describe("Type",()=>{it("test",async function(){})});
+require("chai").should();
+const fse = require("fs-extra");
+const path = require("path");
+describe("Type", () => {
+  it("test", async () => {});
+});

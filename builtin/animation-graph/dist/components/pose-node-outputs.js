@@ -1,4 +1,13 @@
-"use strict";function data(){return{}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.props=exports.template=void 0,exports.data=data,exports.template=`
+function data() {
+  return {};
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.props = undefined;
+exports.template = undefined;
+exports.data = data;
+
+exports.template = `
 <div class="outputs">
     <div class="row"
         v-for="(output,index) in dump.outputs" 
@@ -21,4 +30,24 @@
         ></ui-icon>
     </div>
 </div>
-`,exports.props=["dump"],exports.methods={mouseDownStarter(t){var o=new Array(4);o[1]=t.id,this.$parent.addShadowLine(!0,o)},outputPointStyle(t){t=this.$root.queryData.view.poseExpr.inputOutputTypeInfos[t.type];return!!t&&"--input-output-color:"+t.themeColor},isPoseOutput(t){return 5===t.type},isConnect(t){return t.destinationInputs&&0<t.destinationInputs.length}};
+`;
+
+exports.props = ["dump"];
+
+exports.methods = {
+  mouseDownStarter(t) {
+    var o = new Array(4);
+    o[1] = t.id;
+    this.$parent.addShadowLine(true, o);
+  },
+  outputPointStyle(t) {
+    t = this.$root.queryData.view.poseExpr.inputOutputTypeInfos[t.type];
+    return !!t && "--input-output-color:" + t.themeColor;
+  },
+  isPoseOutput(t) {
+    return t.type === 5;
+  },
+  isConnect(t) {
+    return t.destinationInputs && t.destinationInputs.length > 0;
+  },
+};

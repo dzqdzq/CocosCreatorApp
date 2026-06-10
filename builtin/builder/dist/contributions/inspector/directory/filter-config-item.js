@@ -1,4 +1,20 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.computed=exports.data=exports.props=exports.template=exports.defaultBundleFilterConfig=void 0,exports.defaultBundleFilterConfig={range:"exclude",type:"url",patchOption:{patchType:"glob",value:"db://assets/*.test"},assets:[""]},exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.methods = undefined;
+exports.computed = undefined;
+exports.data = undefined;
+exports.props = undefined;
+exports.template = undefined;
+exports.defaultBundleFilterConfig = undefined;
+
+exports.defaultBundleFilterConfig = {
+  range: "exclude",
+  type: "url",
+  patchOption: { patchType: "glob", value: "db://assets/*.test" },
+  assets: [""],
+};
+
+exports.template = `
 <div class="filter-item indent" @click="toggleSelect">
     <ui-select-pro
         option-pure
@@ -54,4 +70,81 @@
         </div>
     </ui-drag-area>
 </div>
-`,exports.props=["config","range","assetUrl"];const data=function(){return{}};exports.data=data,exports.computed={filterConfig(){return JSON.stringify({pattern:this.assetUrl+"/**/*"})}},exports.methods={t(e){return Editor.I18n.t("builder.asset_bundle."+e)},onAssetDrop(e,t){var i=(JSON.parse(JSON.stringify(Editor.UI.__protected__.DragArea.currentDragInfo))||{})["additional"];t.assets=t.assets.concat(i.map(e=>e.value)),t.assets=Array.from(new Set(t.assets));this.$emit("change")},onConfigChange(e,t,i){switch(e){case"type":i.type=t,"url"!==i.type||i.patchOption?i.assets=[""]:i.patchOption=JSON.parse(JSON.stringify(exports.defaultBundleFilterConfig.patchOption));break;case"patchOption.value":i.patchOption.value=t;break;case"patchOption.patchType":i.patchOption.patchType=t;break;default:return}this.$emit("change")},onAssets(e,t,i){i.assets[e]=t;this.$emit("change")},toggleSelect(){this.$emit("select")},changeConfigType(e,t){e.type=t,"url"!==e.type||e.patchOption?e.assets=[""]:e.patchOption=JSON.parse(JSON.stringify(exports.defaultBundleFilterConfig.patchOption));this.$emit("change")}};
+`;
+
+exports.props = ["config", "range", "assetUrl"];
+const data = () => ({});
+exports.data = data;
+
+exports.computed = {
+  filterConfig() {
+    return JSON.stringify({ pattern: this.assetUrl + "/**/*" });
+  },
+};
+
+exports.methods = {
+  t(e) {
+    return Editor.I18n.t("builder.asset_bundle." + e);
+  },
+  onAssetDrop(e, t) {
+    var i = (
+      JSON.parse(
+        JSON.stringify(Editor.UI.__protected__.DragArea.currentDragInfo)
+      ) || {}
+    ).additional;
+
+    t.assets = t.assets.concat(i.map((e) => e.value));
+
+    t.assets = Array.from(new Set(t.assets));
+    this.$emit("change");
+  },
+  onConfigChange(e, t, i) {
+    switch (e) {
+      case "type": {
+        i.type = t;
+
+        if (i.type !== "url" || i.patchOption) {
+          i.assets = [""];
+        } else {
+          i.patchOption = JSON.parse(
+            JSON.stringify(exports.defaultBundleFilterConfig.patchOption)
+          );
+        }
+
+        break;
+      }
+      case "patchOption.value": {
+        i.patchOption.value = t;
+        break;
+      }
+      case "patchOption.patchType": {
+        i.patchOption.patchType = t;
+        break;
+      }
+      default: {
+        return;
+      }
+    }
+    this.$emit("change");
+  },
+  onAssets(e, t, i) {
+    i.assets[e] = t;
+    this.$emit("change");
+  },
+  toggleSelect() {
+    this.$emit("select");
+  },
+  changeConfigType(e, t) {
+    e.type = t;
+
+    if (e.type !== "url" || e.patchOption) {
+      e.assets = [""];
+    } else {
+      e.patchOption = JSON.parse(
+        JSON.stringify(exports.defaultBundleFilterConfig.patchOption)
+      );
+    }
+
+    this.$emit("change");
+  },
+};

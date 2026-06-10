@@ -1,1 +1,3 @@
-"use strict";require("editor/preload").init(),globalThis.Editor=require("editor"),document.title="Programming DevTools";
+require("editor/preload").init();
+globalThis.Editor = require("editor");
+document.title = "Programming DevTools";

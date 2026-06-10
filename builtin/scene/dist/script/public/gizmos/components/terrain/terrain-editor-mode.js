@@ -1,1 +1,28 @@
-"use strict";var eTerrainEditorMode;Object.defineProperty(exports,"__esModule",{value:!0}),exports.TerrainEditorMode=exports.eTerrainEditorMode=void 0,function(e){e[e.MANAGE=0]="MANAGE",e[e.SCULPT=1]="SCULPT",e[e.PAINT=2]="PAINT",e[e.SELECT=3]="SELECT"}(eTerrainEditorMode||(exports.eTerrainEditorMode=eTerrainEditorMode={}));class TerrainEditorMode{_gizmo;constructor(e){this._gizmo=e}get gizmo(){return this._gizmo}onUpdate(e,r,o){}onActivate(){}onDeactivate(){}forceUpdate(){}}exports.TerrainEditorMode=TerrainEditorMode;
+var eTerrainEditorMode;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TerrainEditorMode = undefined;
+exports.eTerrainEditorMode = undefined;
+
+((e) => {
+  e[(e.MANAGE = 0)] = "MANAGE";
+  e[(e.SCULPT = 1)] = "SCULPT";
+  e[(e.PAINT = 2)] = "PAINT";
+  e[(e.SELECT = 3)] = "SELECT";
+})(
+  eTerrainEditorMode || (exports.eTerrainEditorMode = eTerrainEditorMode = {})
+);
+
+class TerrainEditorMode {
+  _gizmo;
+  constructor(e) {
+    this._gizmo = e;
+  }
+  get gizmo() {
+    return this._gizmo;
+  }
+  onUpdate(e, r, o) {}
+  onActivate() {}
+  onDeactivate() {}
+  forceUpdate() {}
+}
+exports.TerrainEditorMode = TerrainEditorMode;

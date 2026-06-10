@@ -1,1 +1,40 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.watch=exports.methods=exports.computed=exports.props=exports.template=void 0,exports.created=created,exports.data=data;const fs_extra_1=require("fs-extra"),path_1=require("path"),log_1=require("../../utils/log");function created(){}function data(){return{logs:log_1.log.logs}}exports.template=(0,fs_extra_1.readFileSync)((0,path_1.join)(__dirname,"../../../static/template/console.html"),"utf8"),exports.props=[],exports.computed={},exports.methods={t(t){return Editor.I18n.t(t)}},exports.watch={logs:function(t){this.$el.scrollTop=this.$el.scrollHeight}};
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.watch = undefined;
+exports.methods = undefined;
+exports.computed = undefined;
+exports.props = undefined;
+exports.template = undefined;
+
+exports.created = created;
+exports.data = data;
+
+const { readFileSync } = require("fs-extra");
+
+const { join } = require("path");
+
+const log_1 = require("../../utils/log");
+function created() {}
+function data() {
+  return { logs: log_1.log.logs };
+}
+
+exports.template = readFileSync(
+  join(__dirname, "../../../static/template/console.html"),
+  "utf8"
+);
+
+exports.props = [];
+exports.computed = {};
+
+exports.methods = {
+  t(t) {
+    return Editor.I18n.t(t);
+  },
+};
+
+exports.watch = {
+  logs(t) {
+    this.$el.scrollTop = this.$el.scrollHeight;
+  },
+};

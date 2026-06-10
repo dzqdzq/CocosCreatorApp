@@ -1,1 +1,13 @@
-"use strict";function decodeBase64ToArrayBuffer(e){return Uint8Array.from(atob(e),e=>e.charCodeAt(0)).buffer}function encodeArrayBufferToBase64(e){return btoa(String.fromCharCode.apply(null,e))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.encodeArrayBufferToBase64=exports.decodeBase64ToArrayBuffer=void 0,exports.decodeBase64ToArrayBuffer=decodeBase64ToArrayBuffer,exports.encodeArrayBufferToBase64=encodeArrayBufferToBase64;
+function decodeBase64ToArrayBuffer(e) {
+  return Uint8Array.from(atob(e), (e) => e.charCodeAt(0)).buffer;
+}
+function encodeArrayBufferToBase64(e) {
+  return btoa(String.fromCharCode.apply(null, e));
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.encodeArrayBufferToBase64 = undefined;
+exports.decodeBase64ToArrayBuffer = undefined;
+
+exports.decodeBase64ToArrayBuffer = decodeBase64ToArrayBuffer;
+exports.encodeArrayBufferToBase64 = encodeArrayBufferToBase64;

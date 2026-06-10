@@ -1,1 +1,1 @@
-module.exports={console:{clearOnPlay:"预览时清空"}};
+module.exports = { console: { clearOnPlay: "预览时清空" } };

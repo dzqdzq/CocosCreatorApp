@@ -1,1 +1,3 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.Worker=void 0,exports.Worker=window.ccWorker;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Worker = undefined;
+exports.Worker = window.ccWorker;

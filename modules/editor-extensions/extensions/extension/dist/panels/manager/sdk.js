@@ -1,1 +1,44 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.generateSdk=generateSdk,exports.useProvideSdk=useProvideSdk,exports.useProvideExtensionPaths=useProvideExtensionPaths,exports.injectSdk=injectSdk,exports.useInjectSdk=useInjectSdk;const vue_js_1=require("vue/dist/vue.js"),extension_sdk_1=require("@editor/extension-sdk"),config_1=require("../../shared/config");async function generateSdk(){var{customSdkDomain:e,extensionPaths:n}=await(0,config_1.readConfigs)();return{sdk:new extension_sdk_1.Manager({extensionPaths:[n.project],domain:e}),extensionPaths:n}}function useProvideSdk(e){return(0,vue_js_1.provide)("sdk",e),{sdk:e}}function useProvideExtensionPaths(e){return(0,vue_js_1.provide)("extensionPaths",e),{extensionPaths:e}}function injectSdk(){return{sdk:{from:"sdk"},extensionPaths:{from:"extensionPaths"}}}function useInjectSdk(){return{sdk:(0,vue_js_1.inject)("sdk"),extensionPaths:(0,vue_js_1.inject)("extensionPaths",{builtin:"",global:"",project:""})}}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateSdk = generateSdk;
+exports.useProvideSdk = useProvideSdk;
+exports.useProvideExtensionPaths = useProvideExtensionPaths;
+exports.injectSdk = injectSdk;
+exports.useInjectSdk = useInjectSdk;
+
+const { provide, inject } = require("vue/dist/vue.js");
+
+const extension_sdk_1 = require("@editor/extension-sdk");
+
+const { readConfigs } = require("../../shared/config");
+
+async function generateSdk() {
+  var { customSdkDomain, extensionPaths } = await readConfigs();
+  return {
+    sdk: new extension_sdk_1.Manager({
+      extensionPaths: [extensionPaths.project],
+      domain: customSdkDomain,
+    }),
+    extensionPaths: extensionPaths,
+  };
+}
+function useProvideSdk(e) {
+  provide("sdk", e);
+  return { sdk: e };
+}
+function useProvideExtensionPaths(e) {
+  provide("extensionPaths", e);
+  return { extensionPaths: e };
+}
+function injectSdk() {
+  return { sdk: { from: "sdk" }, extensionPaths: { from: "extensionPaths" } };
+}
+function useInjectSdk() {
+  return {
+    sdk: inject("sdk"),
+    extensionPaths: inject("extensionPaths", {
+      builtin: "",
+      global: "",
+      project: "",
+    }),
+  };
+}

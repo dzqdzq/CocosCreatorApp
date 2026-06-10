@@ -1,1 +1,7 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const scene_manager_1=__importDefault(require("./scene-manager")),sceneManager=new scene_manager_1.default;exports.default=sceneManager;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+const scene_manager_1 = __importDefault(require("./scene-manager"));
+const sceneManager = new scene_manager_1.default();
+exports.default = sceneManager;

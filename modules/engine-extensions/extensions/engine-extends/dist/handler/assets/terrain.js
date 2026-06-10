@@ -1,1 +1,134 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,r,t,n){void 0===n&&(n=t);var a=Object.getOwnPropertyDescriptor(r,t);a&&("get"in a?r.__esModule:!a.writable&&!a.configurable)||(a={enumerable:!0,get:function(){return r[t]}}),Object.defineProperty(e,n,a)}:function(e,r,t,n){e[n=void 0===n?t:n]=r[t]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,r){Object.defineProperty(e,"default",{enumerable:!0,value:r})}:function(e,r){e.default=r}),__importStar=this&&this.__importStar||function(){var a=function(e){return(a=Object.getOwnPropertyNames||function(e){var r,t=[];for(r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[t.length]=r);return t})(e)};return function(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t=a(e),n=0;n<t.length;n++)"default"!==t[n]&&__createBinding(r,e,t[n]);return __setModuleDefault(r,e),r}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.TerrainHandler=void 0;const fs=__importStar(require("fs-extra")),index_1=require("./scene/index"),cc_1=require("cc"),utils_1=require("../utils");exports.TerrainHandler={name:"terrain",assetType:"cc.TerrainAsset",createInfo:{generateMenuInfo(){return[{label:"i18n:ENGINE.assets.newTerrain",fullFileName:"terrain.terrain",template:`db://internal/default_file_content/${exports.TerrainHandler.name}/default.terrain`}]}},importer:{version:index_1.version,async import(e){await e.copyToLibrary(".bin",e.source);var r=new cc_1.TerrainAsset;if(r._loadNativeData(new Uint8Array(fs.readFileSync(e.source)))){r.layerInfos.length=r.layerBinaryInfos.length;for(let e=0;e<r.layerInfos.length;++e){var t=r.layerBinaryInfos[e],n=new cc_1.TerrainLayerInfo;n.slot=t.slot,n.tileSize=t.tileSize,t.detailMapId&&""!=t.detailMapId&&(n.detailMap=EditorExtends.serialize.asAsset(t.detailMapId,cc_1.Texture2D)),t.normalMapId&&""!=t.normalMapId&&(n.normalMap=EditorExtends.serialize.asAsset(t.normalMapId,cc_1.Texture2D)),n.metallic=t.metallic,n.roughness=t.roughness,r.layerInfos[e]=n}}r.name=e.basename,r._setRawAsset(".bin");var a=EditorExtends.serialize(r),a=(await e.saveToLibrary(".json",a),(0,utils_1.getDependUUIDList)(a));return e.setData("depends",a),!0}}},exports.default=exports.TerrainHandler;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, r, t, n = t) => {
+        var a = Object.getOwnPropertyDescriptor(r, t);
+
+        if (
+          !a ||
+          (!("get" in a) ? !a.writable && !a.configurable : r.__esModule)
+        ) {
+          a = {
+            enumerable: true,
+            get() {
+              return r[t];
+            },
+          };
+        }
+
+        Object.defineProperty(e, n, a);
+      }
+    : (e, r, t, n) => {
+        e[(n = n === undefined ? t : n)] = r[t];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, r) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: r });
+      }
+    : (e, r) => {
+        e.default = r;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var a = (e) =>
+      (a =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var r;
+          var t = [];
+          for (r in e) {
+            if (Object.prototype.hasOwnProperty.call(e, r)) {
+              t[t.length] = r;
+            }
+          }
+          return t;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var r = {};
+      if (e != null) {
+        for (var t = a(e), n = 0; n < t.length; n++) {
+          if (t[n] !== "default") {
+            __createBinding(r, e, t[n]);
+          }
+        }
+      }
+      __setModuleDefault(r, e);
+      return r;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TerrainHandler = undefined;
+const fs = __importStar(require("fs-extra"));
+const index_1 = require("./scene/index");
+const cc_1 = require("cc");
+
+const { getDependUUIDList } = require("../utils");
+
+exports.TerrainHandler = {
+  name: "terrain",
+  assetType: "cc.TerrainAsset",
+  createInfo: {
+    generateMenuInfo() {
+      return [
+        {
+          label: "i18n:ENGINE.assets.newTerrain",
+          fullFileName: "terrain.terrain",
+          template: `db://internal/default_file_content/${exports.TerrainHandler.name}/default.terrain`,
+        },
+      ];
+    },
+  },
+  importer: {
+    version: index_1.version,
+    async import(e) {
+      await e.copyToLibrary(".bin", e.source);
+      var r = new cc_1.TerrainAsset();
+      if (r._loadNativeData(new Uint8Array(fs.readFileSync(e.source)))) {
+        r.layerInfos.length = r.layerBinaryInfos.length;
+        for (let e = 0; e < r.layerInfos.length; ++e) {
+          var t = r.layerBinaryInfos[e];
+          var n = new cc_1.TerrainLayerInfo();
+          n.slot = t.slot;
+          n.tileSize = t.tileSize;
+
+          if (t.detailMapId && t.detailMapId != "") {
+            n.detailMap = EditorExtends.serialize.asAsset(
+              t.detailMapId,
+              cc_1.Texture2D
+            );
+          }
+
+          if (t.normalMapId && t.normalMapId != "") {
+            n.normalMap = EditorExtends.serialize.asAsset(
+              t.normalMapId,
+              cc_1.Texture2D
+            );
+          }
+
+          n.metallic = t.metallic;
+          n.roughness = t.roughness;
+          r.layerInfos[e] = n;
+        }
+      }
+      r.name = e.basename;
+      r._setRawAsset(".bin");
+      var a = EditorExtends.serialize(r);
+
+      var a = (await e.saveToLibrary(".json", a), getDependUUIDList(a));
+
+      e.setData("depends", a);
+      return true;
+    },
+  },
+};
+
+exports.default = exports.TerrainHandler;

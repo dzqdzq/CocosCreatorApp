@@ -1,1 +1,28 @@
-"use strict";async function load(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0,exports.load=load,exports.methods={async query(){const o=await Editor.Profile.getConfig("device",""),s=[];return o.deviceConfig.forEach(e=>{o.enableDevice[e.name]&&s.push(e)}),o.custom.forEach(e=>{o.enableDevice[e.name]&&s.push(e)}),s},async customDeviceChanged(){Editor.Message.broadcast("device:devices-changed")}};
+async function load() {}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.load = load;
+
+exports.methods = {
+  async query() {
+    const o = await Editor.Profile.getConfig("device", "");
+    const s = [];
+
+    o.deviceConfig.forEach((e) => {
+      if (o.enableDevice[e.name]) {
+        s.push(e);
+      }
+    });
+
+    o.custom.forEach((e) => {
+      if (o.enableDevice[e.name]) {
+        s.push(e);
+      }
+    });
+
+    return s;
+  },
+  async customDeviceChanged() {
+    Editor.Message.broadcast("device:devices-changed");
+  },
+};

@@ -1,1 +1,22 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isInit=isInit,exports.install=install;const fs_extra_1=require("fs-extra"),path_1=require("path");function isInit(e){return!!(0,fs_extra_1.existsSync)((0,path_1.join)(e,"node_modules/quickgame-cli/lib"))}function install(e){return(0,fs_extra_1.ensureDirSync)(e),Build.Utils.quickSpawn("npm",["install"],{cwd:e,downGradeError:!0,ignoreLog:!0,downGradeWaring:!0,shell:!0})}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isInit = isInit;
+exports.install = install;
+
+const { existsSync, ensureDirSync } = require("fs-extra");
+
+const { join } = require("path");
+
+function isInit(e) {
+  return !!existsSync(join(e, "node_modules/quickgame-cli/lib"));
+}
+function install(e) {
+  ensureDirSync(e);
+
+  return Build.Utils.quickSpawn("npm", ["install"], {
+    cwd: e,
+    downGradeError: true,
+    ignoreLog: true,
+    downGradeWaring: true,
+    shell: true,
+  });
+}

@@ -1,1 +1,21 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=void 0;const path_1=require("path"),fs_extra_1=require("fs-extra"),share_1=require("../share");exports.methods={async run(e,r){e=(0,path_1.join)(e,"dist",r.packages[share_1.PLATFORM_NAME].package+".rpk");return(0,fs_extra_1.existsSync)(e)?(await Editor.Panel.open(share_1.PLATFORM_NAME+".preview",e),Editor.Message.send(share_1.PLATFORM_NAME,"update-rpk-path",e),!0):(console.error(`honor rpk (${e}) does not exist, please build before preview!`),!1)}};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+
+const { join } = require("path");
+
+const { existsSync } = require("fs-extra");
+
+const share_1 = require("../share");
+exports.methods = {
+  async run(e, r) {
+    e = join(e, "dist", r.packages[share_1.PLATFORM_NAME].package + ".rpk");
+    return existsSync(e)
+      ? (await Editor.Panel.open(share_1.PLATFORM_NAME + ".preview", e),
+        Editor.Message.send(share_1.PLATFORM_NAME, "update-rpk-path", e),
+        true)
+      : (console.error(
+          `honor rpk (${e}) does not exist, please build before preview!`
+        ),
+        false);
+  },
+};

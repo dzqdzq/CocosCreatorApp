@@ -1,1 +1,109 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const dum_element_base_1=require("../dum-element-base"),utils_1=require("../utils"),tagName={slider:"UI-SLIDER",num:"UI-NUM-INPUT"};class Number extends dum_element_base_1.DumpElementBase{type=["Number","Float","Integer"];$content=null;_listeners=["change"];parseAndSetData(n,r,e){return e&&e.radian&&(n=r.radian?n/Math.PI*180:n),r.radian&&(n=n/180*Math.PI),r.value=n,Reflect.has(r,"values")&&r.values.forEach((e,t)=>{r.values[t]=n}),!0}change(e,t){e.target&&void 0!==(e=e.target.value)&&this.parseAndSetData(+e,t)}template='<ui-label slot="label"></ui-label>';style="";mounted(e){}ready(){super.ready()}updateContent(t,n,r){if(this.$parentElement){let e=this.$parentElement.querySelector('[slot="content"]');e&&e.tagName!==n&&(this.$parentElement.removeChild(e),e=null),e||((e=r()).setAttribute("slot","content"),this.$parentElement.appendChild(e));var{unit:n,type:r,step:a,min:i,max:u,value:s,radian:l}=t,n=(void 0!==n&&e.setAttribute("unit",String(n)),"Integer"===r&&(e.setAttribute("step","1"),e.setAttribute("preci","0")),void 0!==a&&e.setAttribute("step",String(t.step)),void 0!==t.default&&e.setAttribute("default",String(t.default)),!0===l);return void 0!==i&&(r=n?180*i/Math.PI:i,e.setAttribute("min",String(r))),void 0!==u&&(a=n?180*u/Math.PI:u,e.setAttribute("max",String(a))),void 0!==s&&(t=n?180*s/Math.PI:s,n&&(e.setAttribute("unit","deg"),e.setAttribute("step","1")),e.setAttribute("value",String(t))),e}}renderSlider(e){return this.updateContent(e,tagName.slider,()=>document.createElement("ui-slider"))}renderNumberInput(e){return this.updateContent(e,tagName.num,()=>document.createElement("ui-num-input"))}update(e){var t;super.update(e),this.$parentElement&&(t=e["slide"],t=!0===t?this.renderSlider(e):this.renderNumberInput(e))&&(this.$content=t,(0,utils_1.setElementInvalid)(e,this.$content),(0,utils_1.setElementReadonly)(e,this.$content))}}exports.default=Number;
+Object.defineProperty(exports, "__esModule", { value: true });
+const dum_element_base_1 = require("../dum-element-base");
+
+const { setElementInvalid, setElementReadonly } = require("../utils");
+
+const tagName = { slider: "UI-SLIDER", num: "UI-NUM-INPUT" };
+class Number extends dum_element_base_1.DumpElementBase {
+  type = ["Number", "Float", "Integer"];
+  $content = null;
+  _listeners = ["change"];
+  parseAndSetData(n, r, e) {
+    if (e && e.radian) {
+      n = r.radian ? (n / Math.PI) * 180 : n;
+    }
+
+    if (r.radian) {
+      n = (n / 180) * Math.PI;
+    }
+
+    r.value = n;
+
+    if (Reflect.has(r, "values")) {
+      r.values.forEach((e, t) => {
+        r.values[t] = n;
+      });
+    }
+
+    return true;
+  }
+  change(e, t) {
+    if (e.target && undefined !== (e = e.target.value)) {
+      this.parseAndSetData(Number(e), t);
+    }
+  }
+  template = '<ui-label slot="label"></ui-label>';
+  style = "";
+  mounted(e) {}
+  ready() {
+    super.ready();
+  }
+  updateContent(t, n, r) {
+    if (this.$parentElement) {
+      let e = this.$parentElement.querySelector('[slot="content"]');
+
+      if (e && e.tagName !== n) {
+        this.$parentElement.removeChild(e);
+        e = null;
+      }
+
+      if (!e) {
+        (e = r()).setAttribute("slot", "content");
+        this.$parentElement.appendChild(e);
+      }
+
+      var { unit: n, type: r, step, min, max, value, radian } = t;
+
+      var n =
+        (n !== undefined && e.setAttribute("unit", String(n)),
+        r === "Integer" &&
+          (e.setAttribute("step", "1"), e.setAttribute("preci", "0")),
+        step !== undefined && e.setAttribute("step", String(t.step)),
+        t.default !== undefined && e.setAttribute("default", String(t.default)),
+        radian === true);
+
+      if (min !== undefined) {
+        r = n ? (180 * min) / Math.PI : min;
+        e.setAttribute("min", String(r));
+      }
+
+      if (max !== undefined) {
+        step = n ? (180 * max) / Math.PI : max;
+        e.setAttribute("max", String(step));
+      }
+
+      if (value !== undefined) {
+        t = n ? (180 * value) / Math.PI : value;
+        n && (e.setAttribute("unit", "deg"), e.setAttribute("step", "1"));
+        e.setAttribute("value", String(t));
+      }
+
+      return e;
+    }
+  }
+  renderSlider(e) {
+    return this.updateContent(e, tagName.slider, () =>
+      document.createElement("ui-slider")
+    );
+  }
+  renderNumberInput(e) {
+    return this.updateContent(e, tagName.num, () =>
+      document.createElement("ui-num-input")
+    );
+  }
+  update(e) {
+    var t;
+    super.update(e);
+
+    if (
+      this.$parentElement &&
+      ((t = e.slide),
+      (t = t === true ? this.renderSlider(e) : this.renderNumberInput(e)))
+    ) {
+      this.$content = t;
+      setElementInvalid(e, this.$content);
+      setElementReadonly(e, this.$content);
+    }
+  }
+}
+exports.default = Number;

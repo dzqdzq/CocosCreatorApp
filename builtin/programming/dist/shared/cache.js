@@ -1,1 +1,5 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.blockAssetUUIDSet=exports.assetInfoCache=void 0,exports.assetInfoCache=new Map,exports.blockAssetUUIDSet=new Set;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.blockAssetUUIDSet = undefined;
+exports.assetInfoCache = undefined;
+exports.assetInfoCache = new Map();
+exports.blockAssetUUIDSet = new Set();

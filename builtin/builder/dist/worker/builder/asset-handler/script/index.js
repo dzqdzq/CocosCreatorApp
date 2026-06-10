@@ -1,1 +1,276 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(t,e,r,a){void 0===a&&(a=r);var i=Object.getOwnPropertyDescriptor(e,r);i&&("get"in i?e.__esModule:!i.writable&&!i.configurable)||(i={enumerable:!0,get:function(){return e[r]}}),Object.defineProperty(t,a,i)}:function(t,e,r,a){t[a=void 0===a?r:a]=e[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(t,e){Object.defineProperty(t,"default",{enumerable:!0,value:e})}:function(t,e){t.default=e}),__importStar=this&&this.__importStar||function(){var i=function(t){return(i=Object.getOwnPropertyNames||function(t){var e,r=[];for(e in t)Object.prototype.hasOwnProperty.call(t,e)&&(r[r.length]=e);return r})(t)};return function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var r=i(t),a=0;a<r.length;a++)"default"!==r[a]&&__createBinding(e,t,r[a]);return __setModuleDefault(e,t),e}}(),__importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.ScriptBuilder=void 0;const path_1=require("path"),build_time_constants_1=require("./build-time-constants"),fs_extra_1=require("fs-extra"),sub_process_manager_1=require("../../../worker-pools/sub-process-manager"),asset_library_1=require("../../manager/asset-library"),babel=__importStar(require("@babel/core")),preset_env_1=__importDefault(require("@babel/preset-env"));class ScriptBuilder{_scriptOptions;_importMapOptions;scriptPackages=[];static projectOptions;initTaskOptions(t){var e={};t.buildScriptParam.polyfills?.asyncFunctions||(e.excludes??(e.excludes=[])).push("transform-regenerator"),t.buildScriptParam.targets&&(e.targets=t.buildScriptParam.targets);let r="facade";t.buildScriptParam.experimentalEraseModules&&(r="erase");var a=t.buildScriptParam.hotModuleReload??!1;return{scriptOptions:{modulePreservation:r=a?"preserve":r,debug:t.debug,sourceMaps:t.sourceMaps,hotModuleReload:a,transform:e,moduleFormat:"system",commonDir:t.buildScriptParam.commonDir||"",bundleCommonChunk:t.buildScriptParam.bundleCommonChunk??!1},importMapOptions:{format:t.buildScriptParam.importMapFormat,data:{imports:{}},output:""}}}async initProjectOptions(t){var{scriptOptions:e,importMapOptions:r}=this.initTaskOptions(t),e=(this._scriptOptions=e,this._importMapOptions=r,await(0,build_time_constants_1.getCCEnvConstants)({platform:t.buildScriptParam.platform,flags:t.buildScriptParam.flags})),r=await Editor.Message.request("programming","query-shared-settings"),t=await Editor.Message.request("asset-db","query-db-list"),t=await Promise.all(t.map(async t=>{return{dbID:t,target:(await Editor.Message.request("asset-db","query-db-info",t)).target}})),a=await Editor.Profile.getProject("engine","macroCustom");ScriptBuilder.projectOptions={customMacroList:a,dbInfos:t,ccEnvConstants:e,...r}}async buildBundleScript(t){const e=[],r={};if(t.forEach(t=>{t.output&&(t.config.hasPreloadScript=!this._scriptOptions.hotModuleReload,e.push({id:t.name,scripts:t.scripts.map(t=>(r[t]=Build.Utils.compressUuid(t,!1),asset_library_1.buildAssetLibrary.getAssetInfo(t))).sort((t,e)=>t.name.localeCompare(e.name)),outFile:t.scriptDest}))}),e.length)return t=Editor.Message.request("programming","packer-driver/query-cc-editor-module-map"),t={...this._scriptOptions,...ScriptBuilder.projectOptions,bundles:e,uuidCompressMap:r,applicationJS:"",cceModuleMap:t},await sub_process_manager_1.workerManager.registerTask({name:"build-script",path:(0,path_1.join)(__dirname,"./build-script")}),(t=await sub_process_manager_1.workerManager.runTask("build-script","buildScriptCommand",[t]))&&(t.scriptPackages&&this.scriptPackages.push(...t.scriptPackages),t.importMappings)&&Object.assign(this._importMapOptions.data.imports,t.importMappings),sub_process_manager_1.workerManager.kill("build-script"),console.debug("Copy externalScripts success!"),t;console.debug("[script] no script to build")}static async buildPolyfills(t={},e){return await sub_process_manager_1.workerManager.registerTask({name:"build-script",path:(0,path_1.join)(__dirname,"./build-script")}),sub_process_manager_1.workerManager.runTask("build-script","buildPolyfillsCommand",[t,e])}static async buildSystemJs(t){return await sub_process_manager_1.workerManager.registerTask({name:"build-script",path:(0,path_1.join)(__dirname,"./build-script")}),sub_process_manager_1.workerManager.runTask("build-script","buildSystemJsCommand",[t])}static async outputImportMap(t,e){t=(await transformImportMap(t,e)).content;await(0,fs_extra_1.ensureDir)((0,path_1.dirname)(e.dest)),await(0,fs_extra_1.writeFile)(e.dest,t,{encoding:"utf8"})}}async function transformImportMap(t,e){var r=e["importMapFormat"];let a,i=JSON.stringify(t,void 0,e.debug?2:0);return void 0===r?a=".json":(a=".js",t="export default "+i,i=(await babel.transformAsync(t,{presets:[[preset_env_1.default,{modules:"esm"!==r&&r}]]}))?.code),{extension:a,content:i}}exports.ScriptBuilder=ScriptBuilder;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (t, e, r, a = r) => {
+        var i = Object.getOwnPropertyDescriptor(e, r);
+
+        if (
+          !i ||
+          (!("get" in i) ? !i.writable && !i.configurable : e.__esModule)
+        ) {
+          i = {
+            enumerable: true,
+            get() {
+              return e[r];
+            },
+          };
+        }
+
+        Object.defineProperty(t, a, i);
+      }
+    : (t, e, r, a) => {
+        t[(a = a === undefined ? r : a)] = e[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (t, e) => {
+        Object.defineProperty(t, "default", { enumerable: true, value: e });
+      }
+    : (t, e) => {
+        t.default = e;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var i = (t) =>
+      (i =
+        Object.getOwnPropertyNames ||
+        ((t) => {
+          var e;
+          var r = [];
+          for (e in t) {
+            if (Object.prototype.hasOwnProperty.call(t, e)) {
+              r[r.length] = e;
+            }
+          }
+          return r;
+        }))(t);
+    return (t) => {
+      if (t && t.__esModule) {
+        return t;
+      }
+      var e = {};
+      if (t != null) {
+        for (var r = i(t), a = 0; a < r.length; a++) {
+          if (r[a] !== "default") {
+            __createBinding(e, t, r[a]);
+          }
+        }
+      }
+      __setModuleDefault(e, t);
+      return e;
+    };
+  })();
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((t) => (t && t.__esModule ? t : { default: t }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ScriptBuilder = undefined;
+
+const { join, dirname } = require("path");
+
+const { getCCEnvConstants } = require("./build-time-constants");
+
+const { ensureDir, writeFile } = require("fs-extra");
+
+const sub_process_manager_1 = require("../../../worker-pools/sub-process-manager");
+const asset_library_1 = require("../../manager/asset-library");
+const babel = __importStar(require("@babel/core"));
+const preset_env_1 = __importDefault(require("@babel/preset-env"));
+class ScriptBuilder {
+  _scriptOptions;
+  _importMapOptions;
+  scriptPackages = [];
+  static projectOptions;
+  initTaskOptions(t) {
+    var e = {};
+
+    if (!t.buildScriptParam.polyfills?.asyncFunctions) {
+      (e.excludes ?? (e.excludes = [])).push("transform-regenerator");
+    }
+
+    if (t.buildScriptParam.targets) {
+      e.targets = t.buildScriptParam.targets;
+    }
+
+    let r = "facade";
+
+    if (t.buildScriptParam.experimentalEraseModules) {
+      r = "erase";
+    }
+
+    var a = t.buildScriptParam.hotModuleReload ?? false;
+    return {
+      scriptOptions: {
+        modulePreservation: (r = a ? "preserve" : r),
+        debug: t.debug,
+        sourceMaps: t.sourceMaps,
+        hotModuleReload: a,
+        transform: e,
+        moduleFormat: "system",
+        commonDir: t.buildScriptParam.commonDir || "",
+        bundleCommonChunk: t.buildScriptParam.bundleCommonChunk ?? false,
+      },
+      importMapOptions: {
+        format: t.buildScriptParam.importMapFormat,
+        data: { imports: {} },
+        output: "",
+      },
+    };
+  }
+  async initProjectOptions(t) {
+    var { scriptOptions, importMapOptions } = this.initTaskOptions(t);
+
+    var scriptOptions =
+      ((this._scriptOptions = scriptOptions),
+      (this._importMapOptions = importMapOptions),
+      await getCCEnvConstants({
+        platform: t.buildScriptParam.platform,
+        flags: t.buildScriptParam.flags,
+      }));
+
+    var importMapOptions = await Editor.Message.request(
+      "programming",
+      "query-shared-settings"
+    );
+    var t = await Editor.Message.request("asset-db", "query-db-list");
+
+    var t = await Promise.all(
+      t.map(async (t) => ({
+        dbID: t,
+
+        target: (
+          await Editor.Message.request("asset-db", "query-db-info", t)
+        ).target,
+      }))
+    );
+
+    var a = await Editor.Profile.getProject("engine", "macroCustom");
+    ScriptBuilder.projectOptions = {
+      customMacroList: a,
+      dbInfos: t,
+      ccEnvConstants: scriptOptions,
+      ...importMapOptions,
+    };
+  }
+  async buildBundleScript(t) {
+    const e = [];
+    const r = {};
+
+    t.forEach((t) => {
+      if (t.output) {
+        t.config.hasPreloadScript = !this._scriptOptions.hotModuleReload;
+
+        e.push({
+          id: t.name,
+          scripts: t.scripts
+            .map((t) => {
+              r[t] = Build.Utils.compressUuid(t, false);
+              return asset_library_1.buildAssetLibrary.getAssetInfo(t);
+            })
+            .sort((t, e) => t.name.localeCompare(e.name)),
+          outFile: t.scriptDest,
+        });
+      }
+    });
+
+    if (e.length) {
+      t = Editor.Message.request(
+        "programming",
+        "packer-driver/query-cc-editor-module-map"
+      );
+
+      t = {
+        ...this._scriptOptions,
+        ...ScriptBuilder.projectOptions,
+        bundles: e,
+        uuidCompressMap: r,
+        applicationJS: "",
+        cceModuleMap: t,
+      };
+
+      await sub_process_manager_1.workerManager.registerTask({
+        name: "build-script",
+        path: join(__dirname, "./build-script"),
+      });
+
+      if (
+        (t = await sub_process_manager_1.workerManager.runTask(
+          "build-script",
+          "buildScriptCommand",
+          [t]
+        )) &&
+        (t.scriptPackages && this.scriptPackages.push(...t.scriptPackages),
+        t.importMappings)
+      ) {
+        Object.assign(this._importMapOptions.data.imports, t.importMappings);
+      }
+
+      sub_process_manager_1.workerManager.kill("build-script");
+      console.debug("Copy externalScripts success!");
+      return t;
+    }
+
+    console.debug("[script] no script to build");
+  }
+  static async buildPolyfills(t = {}, e) {
+    await sub_process_manager_1.workerManager.registerTask({
+      name: "build-script",
+      path: join(__dirname, "./build-script"),
+    });
+
+    return sub_process_manager_1.workerManager.runTask(
+      "build-script",
+      "buildPolyfillsCommand",
+      [t, e]
+    );
+  }
+  static async buildSystemJs(t) {
+    await sub_process_manager_1.workerManager.registerTask({
+      name: "build-script",
+      path: join(__dirname, "./build-script"),
+    });
+
+    return sub_process_manager_1.workerManager.runTask(
+      "build-script",
+      "buildSystemJsCommand",
+      [t]
+    );
+  }
+  static async outputImportMap(t, e) {
+    t = (await transformImportMap(t, e)).content;
+    await ensureDir(dirname(e.dest));
+    await writeFile(e.dest, t, { encoding: "utf8" });
+  }
+}
+async function transformImportMap(t, e) {
+  var e_importMapFormat = e.importMapFormat;
+  let a;
+  let i = JSON.stringify(t, undefined, e.debug ? 2 : 0);
+
+  if (e_importMapFormat === undefined) {
+    a = ".json";
+  } else {
+    a = ".js";
+    t = "export default " + i;
+
+    i = (
+      await babel.transformAsync(t, {
+        presets: [
+          [
+            preset_env_1.default,
+            { modules: e_importMapFormat !== "esm" && e_importMapFormat },
+          ],
+        ],
+      })
+    )?.code;
+  }
+
+  return { extension: a, content: i };
+}
+exports.ScriptBuilder = ScriptBuilder;

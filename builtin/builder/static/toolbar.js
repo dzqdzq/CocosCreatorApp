@@ -1,4 +1,4 @@
-"use strict";exports.style=`
+exports.style = `
 :host {
     display: flex;
     margin-right: 8px;
@@ -23,11 +23,25 @@
     top: 1px;
     vertical-align: text-top;
 }
-`,exports.template=`
+`;
+
+exports.template = `
 <div class="builder-operation">
     <ui-button class="open-builder transparent">
         <ui-icon value="builder"></ui-icon>
         <ui-label value="i18n:builder.title"></ui-label>
     </ui-button>
 </div>
-`,exports.$={builder:".open-builder",wrap:".builder-operation"},exports.ready=function(){this.$.wrap.addEventListener("dblclick",r=>{r.stopPropagation()}),this.$.builder.addEventListener("click",()=>{Editor.Panel.open("builder")})};
+`;
+
+exports.$ = { builder: ".open-builder", wrap: ".builder-operation" };
+
+exports.ready = function () {
+  this.$.wrap.addEventListener("dblclick", (r) => {
+    r.stopPropagation();
+  });
+
+  this.$.builder.addEventListener("click", () => {
+    Editor.Panel.open("builder");
+  });
+};

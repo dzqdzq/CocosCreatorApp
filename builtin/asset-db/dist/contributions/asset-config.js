@@ -1,4 +1,16 @@
-"use strict";function data(){return{assetConfigMap:{},userData:{}}}function mounted(){this.initDefaultMeta()}Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.template=void 0,exports.data=data,exports.mounted=mounted,exports.template=`
+function data() {
+  return { assetConfigMap: {}, userData: {} };
+}
+function mounted() {
+  this.initDefaultMeta();
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.template = undefined;
+exports.data = data;
+exports.mounted = mounted;
+
+exports.template = `
 <div class="config-wrap">
     <template
         v-for="(assetConfig, handler) in assetConfigMap"
@@ -29,4 +41,47 @@
         </ui-section>
     </template>
 </div>
-`,exports.methods={getRenderText(e,t){var a=e.render;return a.attributes=a.attributes||{},a.attributes.value=t in this.userData?this.userData[t]:e.default,JSON.stringify(a)},async initDefaultMeta(){const t=await Editor.Message.request("asset-db","query-asset-config-map"),a={};Object.keys(t).forEach(e=>{t[e].userDataConfig&&Object.keys(t[e].userDataConfig).length&&(a[e]=t[e])}),this.assetConfigMap=a},async defaultMetaConfirm(e,t,a){this.assetConfigMap[t].userDataConfig[a].default=e.target.value,await Editor.Message.request("asset-db","update-default-user-data",t,a,e.target.value),Editor.Task.addNotice({title:"Asset-DB",message:"User data has been updated.",timeout:5e3})}};
+`;
+
+exports.methods = {
+  getRenderText(e, t) {
+    var e_render = e.render;
+    e_render.attributes = e_render.attributes || {};
+    e_render.attributes.value =
+      t in this.userData ? this.userData[t] : e.default;
+    return JSON.stringify(e_render);
+  },
+  async initDefaultMeta() {
+    const t = await Editor.Message.request(
+      "asset-db",
+      "query-asset-config-map"
+    );
+
+    const a = {};
+
+    Object.keys(t).forEach((e) => {
+      if (t[e].userDataConfig && Object.keys(t[e].userDataConfig).length) {
+        a[e] = t[e];
+      }
+    });
+
+    this.assetConfigMap = a;
+  },
+  async defaultMetaConfirm(e, t, a) {
+    this.assetConfigMap[t].userDataConfig[a].default = e.target.value;
+
+    await Editor.Message.request(
+      "asset-db",
+      "update-default-user-data",
+      t,
+      a,
+      e.target.value
+    );
+
+    Editor.Task.addNotice({
+      title: "Asset-DB",
+      message: "User data has been updated.",
+      timeout: 5000 /* 5e3 */,
+    });
+  },
+};

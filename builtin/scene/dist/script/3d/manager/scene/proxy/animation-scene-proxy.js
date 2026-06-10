@@ -1,1 +1,231 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,o){void 0===o&&(o=r);var n=Object.getOwnPropertyDescriptor(t,r);n&&("get"in n?t.__esModule:!n.writable&&!n.configurable)||(n={enumerable:!0,get:function(){return t[r]}}),Object.defineProperty(e,o,n)}:function(e,t,r,o){e[o=void 0===o?r:o]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__importStar=this&&this.__importStar||function(){var n=function(e){return(n=Object.getOwnPropertyNames||function(e){var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[r.length]=t);return r})(e)};return function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r=n(e),o=0;o<r.length;o++)"default"!==r[o]&&__createBinding(t,e,r[o]);return __setModuleDefault(t,e),t}}(),__importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});const scene_proxy_1=__importDefault(require("./scene-proxy")),dumpEncode=__importStar(require("../../../../export/dump/encode")),dumpDecode=__importStar(require("../../../../export/dump/decode")),utils_1=__importDefault(require("../utils")),cc_1=require("cc"),animation_1=__importDefault(require("../../animation")),message_1=require("../../message"),event_enum_1=require("../../../../public/event-enum"),animCompRE=/Animation/;class AnimationSceneProxy extends scene_proxy_1.default{root="";rootNodeDump=null;materialsDump=null;duplicateMatUuids=[];get name(){return"animation"}constructor(e,t){super(e,t),this.root="",this.rootNodeDump=null,this.materialsDump=null,this.duplicateMatUuids=[]}getType(e,t){let r=null;return r=cc_1.CCClass._isCCClass(e.constructor)?require("../../animation/utils").utils.getCCClassAnimablePropType(e,t):typeof e[t]}async open(e){this.root=e,this.rootNodeDump=null;var t=cce.Node.query(this.root);return t?(t.walk(e=>{e.components.forEach(e=>{e instanceof cc_1.ParticleSystem2D&&e.onFocusInEditor()})}),this._sceneMgr.emit("animation-start",e),message_1.messageManager.broadcast("scene:animation-start",e),super.open(e),Promise.resolve(!0)):Promise.resolve(!1)}async checkClose(){return animation_1.default.saveCheck()}async close(){var e=cce.Node.query(this.root);return!!e&&(animation_1.default.restoreData(),this.rootNodeDump=dumpEncode.encodeNode(e),animation_1.default.record(this.root,!1),this.root="",this._sceneMgr.emit("animation-end"),message_1.messageManager.broadcast("scene:animation-end"),super.close(),!0)}async reload(){return Promise.resolve(!0)}async softReload(){var e=cc_1.director.getScene();if(!e)return!1;if(this._isSoftReloading)return!(this._needOneMoreReload=!0);try{this._isSoftReloading=!0;var t=this.storePrefabUUID(e),r=new cc.SceneAsset,o=(r.scene=e,cce.Utils.serialize(r)),n=(this._sceneMgr.sendSceneCloseMsg(e),await utils_1.default.loadSceneByJson(o),this.restorePrefabUUID(cc_1.director.getScene(),t),cc_1.director.getScene());this._sceneMgr.sendSceneOpenMsg(n,n.uuid,cce.Node.query(this.root)),this._isSoftReloading=!1,this._needOneMoreReload&&(this._needOneMoreReload=!1,this.softReload())}catch(e){console.error("Failed to refresh the current scene"),console.error(e)}return!0}serialize(){return animation_1.default.getSerializedEditClip()}async queryDirty(){return animation_1.default.isDirty()}async save(){var e=await animation_1.default.save();return e&&this._sceneFacade._undoMgr.save(),e}async patch(){if(!this.rootNodeDump)return Promise.resolve(!1);var e=cce.Node.query(this.rootNodeDump.uuid.value);if(!e)return Promise.resolve(!1);var t=e.getComponent("cc.Animation");let r=null;if(this.rootNodeDump.__comps__.some(e=>!!animCompRE.test(e.cid)&&(r=e,!0)),!t||!r)return Promise.resolve(!1);if(!animation_1.default.isComponentDirty())return Promise.resolve(!1);for(const n in r.value)n in r.value&&await dumpDecode.decodePatch(n,r.value[n],t);dumpDecode.decodeMountedRoot(t,r.mountedRoot);var o=e.components.indexOf(t),o={type:event_enum_1.NodeOperationType.SET_PROPERTY,propPath:"__comps__."+o,dumpImmediately:!1};return cce.Node.emit("change",e,o),Promise.resolve(!0)}getRootNode(){return cc_1.director.getScene()}}exports.default=AnimationSceneProxy;
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, o = r) => {
+        var n = Object.getOwnPropertyDescriptor(t, r);
+
+        if (
+          !n ||
+          (!("get" in n) ? !n.writable && !n.configurable : t.__esModule)
+        ) {
+          n = {
+            enumerable: true,
+            get() {
+              return t[r];
+            },
+          };
+        }
+
+        Object.defineProperty(e, o, n);
+      }
+    : (e, t, r, o) => {
+        e[(o = o === undefined ? r : o)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var n = (e) =>
+      (n =
+        Object.getOwnPropertyNames ||
+        ((e) => {
+          var t;
+          var r = [];
+          for (t in e) {
+            if (Object.prototype.hasOwnProperty.call(e, t)) {
+              r[r.length] = t;
+            }
+          }
+          return r;
+        }))(e);
+    return (e) => {
+      if (e && e.__esModule) {
+        return e;
+      }
+      var t = {};
+      if (e != null) {
+        for (var r = n(e), o = 0; o < r.length; o++) {
+          if (r[o] !== "default") {
+            __createBinding(t, e, r[o]);
+          }
+        }
+      }
+      __setModuleDefault(t, e);
+      return t;
+    };
+  })();
+
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const scene_proxy_1 = __importDefault(require("./scene-proxy"));
+const dumpEncode = __importStar(require("../../../../export/dump/encode"));
+const dumpDecode = __importStar(require("../../../../export/dump/decode"));
+const utils_1 = __importDefault(require("../utils"));
+const cc_1 = require("cc");
+const animation_1 = __importDefault(require("../../animation"));
+const message_1 = require("../../message");
+const event_enum_1 = require("../../../../public/event-enum");
+const animCompRE = /Animation/;
+class AnimationSceneProxy extends scene_proxy_1.default {
+  root = "";
+  rootNodeDump = null;
+  materialsDump = null;
+  duplicateMatUuids = [];
+  get name() {
+    return "animation";
+  }
+  constructor(e, t) {
+    super(e, t);
+    this.root = "";
+    this.rootNodeDump = null;
+    this.materialsDump = null;
+    this.duplicateMatUuids = [];
+  }
+  getType(e, t) {
+    let r = null;
+    return (r = cc_1.CCClass._isCCClass(e.constructor)
+      ? require("../../animation/utils").utils.getCCClassAnimablePropType(e, t)
+      : typeof e[t]);
+  }
+  async open(e) {
+    this.root = e;
+    this.rootNodeDump = null;
+    var t = cce.Node.query(this.root);
+    return t
+      ? (t.walk((e) => {
+          e.components.forEach((e) => {
+            if (e instanceof cc_1.ParticleSystem2D) {
+              e.onFocusInEditor();
+            }
+          });
+        }),
+        this._sceneMgr.emit("animation-start", e),
+        message_1.messageManager.broadcast("scene:animation-start", e),
+        super.open(e),
+        Promise.resolve(true))
+      : Promise.resolve(false);
+  }
+  async checkClose() {
+    return animation_1.default.saveCheck();
+  }
+  async close() {
+    var e = cce.Node.query(this.root);
+    return (
+      !!e &&
+      (animation_1.default.restoreData(),
+      (this.rootNodeDump = dumpEncode.encodeNode(e)),
+      animation_1.default.record(this.root, false),
+      (this.root = ""),
+      this._sceneMgr.emit("animation-end"),
+      message_1.messageManager.broadcast("scene:animation-end"),
+      super.close(),
+      true)
+    );
+  }
+  async reload() {
+    return Promise.resolve(true);
+  }
+  async softReload() {
+    var e = cc_1.director.getScene();
+    if (!e) {
+      return false;
+    }
+    if (this._isSoftReloading) {
+      return !(this._needOneMoreReload = true);
+    }
+    try {
+      this._isSoftReloading = true;
+      var t = this.storePrefabUUID(e);
+      var r = new cc.SceneAsset();
+      r.scene = e;
+      var o = cce.Utils.serialize(r);
+      this._sceneMgr.sendSceneCloseMsg(e);
+      await utils_1.default.loadSceneByJson(o);
+      this.restorePrefabUUID(cc_1.director.getScene(), t);
+      var n = cc_1.director.getScene();
+
+      this._sceneMgr.sendSceneOpenMsg(n, n.uuid, cce.Node.query(this.root));
+      this._isSoftReloading = false;
+
+      if (this._needOneMoreReload) {
+        this._needOneMoreReload = false;
+        this.softReload();
+      }
+    } catch (e) {
+      console.error("Failed to refresh the current scene");
+      console.error(e);
+    }
+    return true;
+  }
+  serialize() {
+    return animation_1.default.getSerializedEditClip();
+  }
+  async queryDirty() {
+    return animation_1.default.isDirty();
+  }
+  async save() {
+    var e = await animation_1.default.save();
+
+    if (e) {
+      this._sceneFacade._undoMgr.save();
+    }
+
+    return e;
+  }
+  async patch() {
+    if (!this.rootNodeDump) {
+      return Promise.resolve(false);
+    }
+    var e = cce.Node.query(this.rootNodeDump.uuid.value);
+    if (!e) {
+      return Promise.resolve(false);
+    }
+    var t = e.getComponent("cc.Animation");
+    let r = null;
+
+    this.rootNodeDump.__comps__.some(
+      (e) => !!animCompRE.test(e.cid) && ((r = e), true)
+    );
+
+    if (!t || !r) {
+      return Promise.resolve(false);
+    }
+
+    if (!animation_1.default.isComponentDirty()) {
+      return Promise.resolve(false);
+    }
+    for (const n in r.value) {
+      if (n in r.value) {
+        await dumpDecode.decodePatch(n, r.value[n], t);
+      }
+    }
+    dumpDecode.decodeMountedRoot(t, r.mountedRoot);
+    var o = e.components.indexOf(t);
+
+    var o = {
+      type: event_enum_1.NodeOperationType.SET_PROPERTY,
+      propPath: "__comps__." + o,
+      dumpImmediately: false,
+    };
+
+    cce.Node.emit("change", e, o);
+    return Promise.resolve(true);
+  }
+  getRootNode() {
+    return cc_1.director.getScene();
+  }
+}
+exports.default = AnimationSceneProxy;

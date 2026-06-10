@@ -1,1 +1,4 @@
-"use strict";module.exports={title:"Profile",description:"For editor storage data extension"};
+module.exports = {
+  title: "Profile",
+  description: "For editor storage data extension",
+};

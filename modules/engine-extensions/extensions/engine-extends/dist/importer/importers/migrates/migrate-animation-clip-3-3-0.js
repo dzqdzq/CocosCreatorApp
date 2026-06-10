@@ -1,1 +1,187 @@
-"use strict";var Helper_1,__createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,i){void 0===i&&(i=r),Object.defineProperty(e,i,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,i){e[i=void 0===i?r:i]=t[r]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),__decorate=this&&this.__decorate||function(e,t,r,i){var a,o=arguments.length,c=o<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,r):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,r,i);else for(var n=e.length-1;0<=n;n--)(a=e[n])&&(c=(o<3?a(c):3<o?a(t,r,c):a(t,r))||c);return 3<o&&c&&Object.defineProperty(t,r,c),c},__importStar=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)"default"!==r&&Object.prototype.hasOwnProperty.call(e,r)&&__createBinding(t,e,r);return __setModuleDefault(t,e),t};Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateAnimationClip330=void 0;const migration_utils_1=require("../utils/migration-utils"),cc=__importStar(require("cc")),archive_space_1=require("./archive-space"),animation_clip_migration_1=require("cc/editor/animation-clip-migration");let Helper=Helper_1=class{constructor(){this.duration=0,this._keys=[],this._curves=[],this._commonTargets=[]}static createFromSerializedLegacyClip(e){const t=new ArrayBuffer(0);var r=null!=(r=e.duration)?r:0,i=(null!=(i=e._keys)?i:[]).map(e=>decodeMaybeCompactValueTypeArray(e,t)),a=null!=(a=e._curves)?a:[],e=(a.forEach(e=>{decodeMaybeCompactValueTypeArray(e.data.values,t)}),null!=(e=e._commonTargets)?e:[]),o=new migration_utils_1.Archive,c=o.addTypedObject(cc.js.getClassName(Helper_1)),n=(c.duration=r,c._keys=i,c._curves=a,c._commonTargets=e,cc.deserialize.Details.pool.get()),r=o.get(c),i=cc.deserialize(r,n,void 0),s=n.uuidList.length;for(let e=0;e<s;++e){var l=n.uuidList[e],_=n.uuidObjList[e],u=n.uuidPropList[e],d=n.uuidTypeList[e],d=new(null!=(d=cc.js.getClassById(d))?d:cc.Asset);d._uuid=l+"",_[u]=d}return i}toLegacyData(){var e=new animation_clip_migration_1.AnimationClipLegacyData(this.duration);return e.keys=this._keys,e.curves=this._curves,e.commonTargets=this._commonTargets,e}};async function migrateAnimationClip330(e){e.visitTypedObject(archive_space_1.ArchiveSpace.ANIMATION_CLIP_TYPE_NAME,e=>{var t=Helper.createFromSerializedLegacyClip(e).toLegacyData(),r=e.events,t=(delete e._keys,delete e._curves,delete e._commonTargets,delete e._stepness,delete e.events,t.toTracks()),t=new migration_utils_1.Archive(EditorExtends.serialize(t,{stringify:!1}));e._tracks=t.root,e._events=r,e._exoticAnimation=null})}function decodeMaybeCompactValueTypeArray(e,t){return Array.isArray(e)?e:cc.deserialize(e,void 0,void 0).decompress(t)}__decorate([cc._decorator.property],Helper.prototype,"duration",void 0),__decorate([cc._decorator.property],Helper.prototype,"_keys",void 0),__decorate([cc._decorator.property],Helper.prototype,"_curves",void 0),__decorate([cc._decorator.property],Helper.prototype,"_commonTargets",void 0),Helper=Helper_1=__decorate([cc._decorator.ccclass("cc._internal.migrate-animation_clip-3-3-0.Helper")],Helper),exports.migrateAnimationClip330=migrateAnimationClip330;
+var Helper_1;
+
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, i = r) => {
+        Object.defineProperty(e, i, {
+          enumerable: true,
+          get() {
+            return t[r];
+          },
+        });
+      }
+    : (e, t, r, i) => {
+        e[(i = i === undefined ? r : i)] = t[r];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (e, t) => {
+        Object.defineProperty(e, "default", { enumerable: true, value: t });
+      }
+    : (e, t) => {
+        e.default = t;
+      });
+
+var __decorate =
+  (this && this.__decorate) ||
+  function (e, t, r, i) {
+    var a;
+    var arguments_length = arguments.length;
+
+    var c =
+      arguments_length < 3
+        ? t
+        : i === null
+        ? (i = Object.getOwnPropertyDescriptor(t, r))
+        : i;
+
+    if (typeof Reflect == "object" && typeof Reflect.decorate == "function") {
+      c = Reflect.decorate(e, t, r, i);
+    } else {
+      for (var n = e.length - 1; n >= 0; n--) {
+        if ((a = e[n])) {
+          c =
+            (arguments_length < 3
+              ? a(c)
+              : arguments_length > 3
+              ? a(t, r, c)
+              : a(t, r)) || c;
+        }
+      }
+    }
+
+    if (arguments_length > 3 && c) {
+      Object.defineProperty(t, r, c);
+    }
+
+    return c;
+  };
+
+var __importStar =
+  (this && this.__importStar) ||
+  ((e) => {
+    if (e && e.__esModule) {
+      return e;
+    }
+    var t = {};
+    if (e != null) {
+      for (var r in e) {
+        if (r !== "default" && Object.prototype.hasOwnProperty.call(e, r)) {
+          __createBinding(t, e, r);
+        }
+      }
+    }
+    __setModuleDefault(t, e);
+    return t;
+  });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateAnimationClip330 = undefined;
+const migration_utils_1 = require("../utils/migration-utils");
+const cc = __importStar(require("cc"));
+const archive_space_1 = require("./archive-space");
+const animation_clip_migration_1 = require("cc/editor/animation-clip-migration");
+let Helper = (Helper_1 = class {
+  constructor() {
+    this.duration = 0;
+    this._keys = [];
+    this._curves = [];
+    this._commonTargets = [];
+  }
+  static createFromSerializedLegacyClip(e) {
+    const t = new ArrayBuffer(0);
+    var r = null != (r = e.duration) ? r : 0;
+
+    var i = (null != (i = e._keys) ? i : []).map((e) =>
+      decodeMaybeCompactValueTypeArray(e, t)
+    );
+
+    var a = null != (a = e._curves) ? a : [];
+
+    var e =
+      (a.forEach((e) => {
+        decodeMaybeCompactValueTypeArray(e.data.values, t);
+      }),
+      null != (e = e._commonTargets) ? e : []);
+
+    var o = new migration_utils_1.Archive();
+    var c = o.addTypedObject(cc.js.getClassName(Helper_1));
+
+    c.duration = r;
+    c._keys = i;
+    c._curves = a;
+    c._commonTargets = e;
+    var n = cc.deserialize.Details.pool.get();
+
+    var r = o.get(c);
+    var i = cc.deserialize(r, n, undefined);
+    var s = n.uuidList.length;
+    for (let e = 0; e < s; ++e) {
+      var l = n.uuidList[e];
+      var _ = n.uuidObjList[e];
+      var u = n.uuidPropList[e];
+      var d = n.uuidTypeList[e];
+      var d = new (null != (d = cc.js.getClassById(d)) ? d : cc.Asset)();
+      d._uuid = String(l);
+      _[u] = d;
+    }
+    return i;
+  }
+  toLegacyData() {
+    var e = new animation_clip_migration_1.AnimationClipLegacyData(
+      this.duration
+    );
+    e.keys = this._keys;
+    e.curves = this._curves;
+    e.commonTargets = this._commonTargets;
+    return e;
+  }
+});
+async function migrateAnimationClip330(e) {
+  e.visitTypedObject(
+    archive_space_1.ArchiveSpace.ANIMATION_CLIP_TYPE_NAME,
+    (e) => {
+      var t = Helper.createFromSerializedLegacyClip(e).toLegacyData();
+      var e_events = e.events;
+      delete e._keys;
+      delete e._curves;
+      delete e._commonTargets;
+      delete e._stepness;
+      delete e.events;
+      var t = t.toTracks();
+
+      var t = new migration_utils_1.Archive(
+        EditorExtends.serialize(t, { stringify: false })
+      );
+
+      e._tracks = t.root;
+      e._events = e_events;
+      e._exoticAnimation = null;
+    }
+  );
+}
+function decodeMaybeCompactValueTypeArray(e, t) {
+  return Array.isArray(e)
+    ? e
+    : cc.deserialize(e, undefined, undefined).decompress(t);
+}
+__decorate([cc._decorator.property], Helper.prototype, "duration", undefined);
+__decorate([cc._decorator.property], Helper.prototype, "_keys", undefined);
+__decorate([cc._decorator.property], Helper.prototype, "_curves", undefined);
+
+__decorate(
+  [cc._decorator.property],
+  Helper.prototype,
+  "_commonTargets",
+  undefined
+);
+
+Helper = Helper_1 = __decorate(
+  [cc._decorator.ccclass("cc._internal.migrate-animation_clip-3-3-0.Helper")],
+  Helper
+);
+
+exports.migrateAnimationClip330 = migrateAnimationClip330;

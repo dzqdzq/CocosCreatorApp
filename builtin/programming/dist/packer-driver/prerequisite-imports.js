@@ -1,14 +1,20 @@
-"use strict";function makePrerequisiteImportsMod(e){return`
+function makePrerequisiteImportsMod(e) {
+  return `
 // Auto generated represents the prerequisite imports of project modules.
 
-${e.map(e=>`import ${createStringLiteralCode(e)};`).join("\n")}
+${e.map((e) => `${""}import ${createStringLiteralCode(e)};`).join("\n")}
 
-export { }; // To make sure this module can by recognized as ES2015 module even no imports.
-    `}function makeTentativePrerequisiteImports(e){return`
+${""}export { }; // To make sure this module can by recognized as ES2015 module even no imports.
+    `;
+}
+function makeTentativePrerequisiteImports(e) {
+  return `
 // Auto generated represents the prerequisite imports of project modules.
 
 await (async () => {
-    const requests = [${e.map(e=>`() => import(${createStringLiteralCode(e)})`).join(", ")}];
+    const requests = [${e
+      .map((e) => `() => import(${createStringLiteralCode(e)})`)
+      .join(", ")}];
     for (const request of requests) {
         try {
             await request();
@@ -17,4 +23,13 @@ await (async () => {
         }
     }
 })();
-    `}function createStringLiteralCode(e){return JSON.stringify(e)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.prerequisiteImportsModURL=void 0,exports.makePrerequisiteImportsMod=makePrerequisiteImportsMod,exports.makeTentativePrerequisiteImports=makeTentativePrerequisiteImports,exports.prerequisiteImportsModURL="cce:/internal/x/prerequisite-imports";
+    `;
+}
+function createStringLiteralCode(e) {
+  return JSON.stringify(e);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.prerequisiteImportsModURL = undefined;
+exports.makePrerequisiteImportsMod = makePrerequisiteImportsMod;
+exports.makeTentativePrerequisiteImports = makeTentativePrerequisiteImports;
+exports.prerequisiteImportsModURL = "cce:/internal/x/prerequisite-imports";

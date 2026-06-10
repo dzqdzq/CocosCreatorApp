@@ -1,4 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const template = `
     <ui-select
         :value="value"
         :tooltip="tooltip"
@@ -13,4 +15,22 @@
             {{variableName}}
         </option>
     </ui-select>
-`,variableSelection={props:["value","variables","typeFilter","tooltip"],emits:["change"],template:template,methods:{isTypeIncluded(e){return void 0===this.typeFilter||("string"==typeof this.typeFilter?e===this.typeFilter:!Array.isArray(this.typeFilter)||this.typeFilter.includes(e))}}};exports.default=variableSelection;
+`;
+
+const variableSelection = {
+  props: ["value", "variables", "typeFilter", "tooltip"],
+  emits: ["change"],
+  template,
+  methods: {
+    isTypeIncluded(e) {
+      return (
+        this.typeFilter === undefined ||
+        (typeof this.typeFilter == "string"
+          ? e === this.typeFilter
+          : !Array.isArray(this.typeFilter) || this.typeFilter.includes(e))
+      );
+    },
+  },
+};
+
+exports.default = variableSelection;

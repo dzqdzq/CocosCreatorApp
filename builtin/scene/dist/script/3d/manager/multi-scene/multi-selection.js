@@ -1,1 +1,17 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.MultiSelection=void 0;class MultiSelection{selectionMap=new Map;stashSelection(e,t){console.debug("stashSelection=>",e,t),this.selectionMap.set(e,t)}getSelection(e){return console.debug("getSelection=>",e,this.selectionMap.get(e)),this.selectionMap.get(e)}clearSelection(e){this.selectionMap.delete(e)}}exports.MultiSelection=MultiSelection;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MultiSelection = undefined;
+class MultiSelection {
+  selectionMap = new Map();
+  stashSelection(e, t) {
+    console.debug("stashSelection=>", e, t);
+    this.selectionMap.set(e, t);
+  }
+  getSelection(e) {
+    console.debug("getSelection=>", e, this.selectionMap.get(e));
+    return this.selectionMap.get(e);
+  }
+  clearSelection(e) {
+    this.selectionMap.delete(e);
+  }
+}
+exports.MultiSelection = MultiSelection;

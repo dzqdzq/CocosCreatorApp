@@ -1,1 +1,45 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.get=void 0,exports.setRootPath=setRootPath,exports.removeServerRoot=removeServerRoot;const fs_extra_1=require("fs-extra"),path_1=require("path"),rootMap={};function setRootPath(e){rootMap[(0,path_1.basename)(e)]=e}function removeServerRoot(e){delete rootMap[(0,path_1.basename)(e)]}async function handle(e,t,s){var r=(0,path_1.join)(Editor.Project.path,"build-templates","web-mobile"),a=e.params[1],o=rootMap[e.params[0]];if(!o)return t.status(503).send(e.params[0]+" 未启动服务");let n=(0,path_1.join)(r,a);if((0,fs_extra_1.existsSync)(n)){const i=(0,fs_extra_1.statSync)(n);i.isDirectory()&&(n=(0,path_1.join)(n,"index.html"),(0,fs_extra_1.existsSync)(n))&&t.sendFile(n)}if(n=(0,path_1.join)(o,a),!(0,fs_extra_1.existsSync)(n))return t.status(404).send(e.params[0]+" 资源不存在");const i=(0,fs_extra_1.statSync)(n);if(i.isDirectory()&&(n=(0,path_1.join)(n,"index.html"),!(0,fs_extra_1.existsSync)(n)))return t.status(404).send(e.params[0]+" 资源不存在");t.sendFile(n)}exports.get=[{url:"/web-mobile/*/*",handle:handle}];
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.get = undefined;
+exports.setRootPath = setRootPath;
+exports.removeServerRoot = removeServerRoot;
+
+const { existsSync, statSync } = require("fs-extra");
+
+const { basename, join } = require("path");
+
+const rootMap = {};
+function setRootPath(e) {
+  rootMap[basename(e)] = e;
+}
+function removeServerRoot(e) {
+  delete rootMap[basename(e)];
+}
+async function handle(e, t, s) {
+  var r = join(Editor.Project.path, "build-templates", "web-mobile");
+
+  var a = e.params[1];
+  var o = rootMap[e.params[0]];
+  if (!o) {
+    return t.status(503).send(e.params[0] + " 未启动服务");
+  }
+  let n = join(r, a);
+  if (existsSync(n)) {
+    const i = statSync(n);
+
+    if (i.isDirectory() && ((n = join(n, "index.html")), existsSync(n))) {
+      t.sendFile(n);
+    }
+  }
+  n = join(o, a);
+
+  if (!existsSync(n)) {
+    return t.status(404).send(e.params[0] + " 资源不存在");
+  }
+
+  const i = statSync(n);
+  if (i.isDirectory() && ((n = join(n, "index.html")), !existsSync(n))) {
+    return t.status(404).send(e.params[0] + " 资源不存在");
+  }
+  t.sendFile(n);
+}
+exports.get = [{ url: "/web-mobile/*/*", handle }];

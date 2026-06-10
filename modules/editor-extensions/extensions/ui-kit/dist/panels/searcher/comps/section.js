@@ -1,4 +1,11 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.methods=exports.props=exports.template=exports.name=void 0,exports.name="comps-section",exports.template=`
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.methods = undefined;
+exports.props = undefined;
+exports.template = undefined;
+exports.name = undefined;
+exports.name = "comps-section";
+
+exports.template = `
 <ui-section class="section"
     :header="header"
     :expand="expand"
@@ -27,4 +34,19 @@
         @confirm="onSelect"
     ></comps-section>
 </ui-section>
-`,exports.props=["data","header","expand"],exports.methods={getName(e){var o=e.path.split(/\//);return o?o[o.length-1]:e.name},onSelect(e,o){this.$emit("confirm",e,o)},twinkle(e){Editor.Message.send("assets","twinkle",e)}};
+`;
+
+exports.props = ["data", "header", "expand"];
+
+exports.methods = {
+  getName(e) {
+    var o = e.path.split(/\//);
+    return o ? o[o.length - 1] : e.name;
+  },
+  onSelect(e, o) {
+    this.$emit("confirm", e, o);
+  },
+  twinkle(e) {
+    Editor.Message.send("assets", "twinkle", e);
+  },
+};

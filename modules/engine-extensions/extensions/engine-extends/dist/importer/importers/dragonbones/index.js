@@ -1,1 +1,28 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(e,t,r,n){void 0===n&&(n=r),Object.defineProperty(e,n,{enumerable:!0,get:function(){return t[r]}})}:function(e,t,r,n){e[n=void 0===n?r:n]=t[r]}),__exportStar=this&&this.__exportStar||function(e,t){for(var r in e)"default"===r||Object.prototype.hasOwnProperty.call(t,r)||__createBinding(t,e,r)};Object.defineProperty(exports,"__esModule",{value:!0}),__exportStar(require("./dragonbones"),exports),__exportStar(require("./dragonbones-atlas"),exports);
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (e, t, r, n = r) => {
+        Object.defineProperty(e, n, {
+          enumerable: true,
+          get() {
+            return t[r];
+          },
+        });
+      }
+    : (e, t, r, n) => {
+        e[(n = n === undefined ? r : n)] = t[r];
+      });
+
+var __exportStar =
+  (this && this.__exportStar) ||
+  ((e, t) => {
+    for (var r in e) {
+      if (r !== "default" && !Object.prototype.hasOwnProperty.call(t, r)) {
+        __createBinding(t, e, r);
+      }
+    }
+  });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(require("./dragonbones"), exports);
+__exportStar(require("./dragonbones-atlas"), exports);

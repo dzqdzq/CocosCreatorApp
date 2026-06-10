@@ -1,4 +1,10 @@
-"use strict";const Vue=require("vue/dist/vue.js"),ipc=(Vue.config.productionTip=!1,Vue.config.devtools=!1,require("@base/electron-base-ipc"));exports.style=`
+const Vue = require("vue/dist/vue.js");
+
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+const ipc = require("@base/electron-base-ipc");
+
+exports.style = `
 :host {
     padding-left: 8px;
 }
@@ -189,7 +195,9 @@
 .footer-notice .bell-content .content .button ui-button {
     margin-right: 6px;
 }
-`,exports.template=`
+`;
+
+exports.template = `
 <div class="footer-notice">
     <ui-button class="bell transparent"
         @click="notify.active=!notify.active"
@@ -251,4 +259,109 @@
         </ul>
     </div>
 </div>
-`,exports.$={footerNotice:".footer-notice"},exports.methods={noticeMessage(e,t,o){const i=this;if(i.vm&&t&&o)if("add-notice"===t)i.vm.notify.list.push(o),i.vm.notify.active=!0,i.vm.$nextTick(()=>{var e=i.vm.$refs.content;e&&(e.scrollTop=e.scrollHeight)});else{for(let e=0;e<i.vm.notify.list.length;e++)if(i.vm.notify.list[e].id===o.id){i.vm.notify.list.splice(e,1);break}0===i.vm.notify.list.length&&(i.vm.notify.active=!1)}}},exports.ready=function(){var e=this,t=(e.vm?.$destroy(),new Vue({el:e.$.footerNotice,data:{notify:{active:!1,list:[]}},methods:{removeAllNotices(){this.notify.list.forEach(e=>{this.removeNotice(e.id)}),this.notify.list=[],this.notify.active=!1},removeNotice(e){ipc.sendSync("editor-lib-task:call","removeNotice",e)},keepNotice(e,t,o){ipc.sendSync("editor-lib-task:call","changeNoticeTimeout",e,t?-1:o)},onButtonClick(e){var t,o;if(e.message)return"string"==typeof e.message?e.target?void Editor.Message.send(e.target,e.message,...e.params||[]):void console.warn(Editor.I18n.t("utils.notice.missing.target")):({name:e,target:t,params:o}=e.message,void Editor.Message.send(t,e,...o||[]));console.warn(Editor.I18n.t("utils.notice.missing.message"))}}})),o=(e.vm=t,e._noticeMessage=e.noticeMessage.bind(e),Editor.Task.queryNotices());(t.notify.list=o).length&&(t.notify.active=!0),ipc.on("editor-lib-task:emit",e._noticeMessage)},exports.close=function(){var e=this;ipc.removeListener("editor-lib-task:emit",e._noticeMessage),e.vm?.$destroy(),e.vm=null};
+`;
+
+exports.$ = { footerNotice: ".footer-notice" };
+
+exports.methods = {
+  noticeMessage(e, t, o) {
+    const i = this;
+    if (i.vm && t && o) {
+      if (t === "add-notice") {
+        i.vm.notify.list.push(o);
+        i.vm.notify.active = true;
+
+        i.vm.$nextTick(() => {
+          var e = i.vm.$refs.content;
+
+          if (e) {
+            e.scrollTop = e.scrollHeight;
+          }
+        });
+      } else {
+        for (let e = 0; e < i.vm.notify.list.length; e++) {
+          if (i.vm.notify.list[e].id === o.id) {
+            i.vm.notify.list.splice(e, 1);
+            break;
+          }
+        }
+
+        if (i.vm.notify.list.length === 0) {
+          i.vm.notify.active = false;
+        }
+      }
+    }
+  },
+};
+
+exports.ready = function () {
+  var e = this;
+
+  e.vm?.$destroy();
+
+  var t = new Vue({
+    el: e.$.footerNotice,
+    data: { notify: { active: false, list: [] } },
+    methods: {
+      removeAllNotices() {
+        this.notify.list.forEach((e) => {
+          this.removeNotice(e.id);
+        });
+
+        this.notify.list = [];
+        this.notify.active = false;
+      },
+      removeNotice(e) {
+        ipc.sendSync("editor-lib-task:call", "removeNotice", e);
+      },
+      keepNotice(e, t, o) {
+        ipc.sendSync(
+          "editor-lib-task:call",
+          "changeNoticeTimeout",
+          e,
+          t ? -1 : o
+        );
+      },
+      onButtonClick(e) {
+        var t;
+        var o;
+        if (e.message) {
+          if (typeof e.message == "string") {
+            if (e.target) {
+              return void Editor.Message.send(
+                e.target,
+                e.message,
+                ...(e.params || [])
+              );
+            }
+
+            return void console.warn(
+              Editor.I18n.t("utils.notice.missing.target")
+            );
+          }
+
+          ({ name: e, target: t, params: o } = e.message);
+          return void Editor.Message.send(t, e, ...(o || []));
+        }
+        console.warn(Editor.I18n.t("utils.notice.missing.message"));
+      },
+    },
+  });
+
+  e.vm = t;
+  e._noticeMessage = e.noticeMessage.bind(e);
+  var o = Editor.Task.queryNotices();
+
+  if ((t.notify.list = o).length) {
+    t.notify.active = true;
+  }
+
+  ipc.on("editor-lib-task:emit", e._noticeMessage);
+};
+
+exports.close = function () {
+  var e = this;
+  ipc.removeListener("editor-lib-task:emit", e._noticeMessage);
+  e.vm?.$destroy();
+  e.vm = null;
+};

@@ -1,1 +1,5 @@
-"use strict";function loadAssetSync(e,s){return EditorExtends.serialize.asAsset(e,s)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.loadAssetSync=loadAssetSync;
+function loadAssetSync(e, s) {
+  return EditorExtends.serialize.asAsset(e, s);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.loadAssetSync = loadAssetSync;

@@ -1,1 +1,5 @@
-"use strict";module.exports={title:"Linux",make:{label:"Make"},run:{label:"Run"}};
+module.exports = {
+  title: "Linux",
+  make: { label: "Make" },
+  run: { label: "Run" },
+};

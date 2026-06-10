@@ -1,1 +1,5 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const main_1=require("../main");(0,main_1.preload)({isSceneNative:!0,isPreviewProcess:!1});
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const { preload } = require("../main");
+
+preload({ isSceneNative: true, isPreviewProcess: false });

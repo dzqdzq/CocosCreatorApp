@@ -1,4 +1,88 @@
-"use strict";var __createBinding=this&&this.__createBinding||(Object.create?function(i,e,o,t){void 0===t&&(t=o);var s=Object.getOwnPropertyDescriptor(e,o);s&&("get"in s?e.__esModule:!s.writable&&!s.configurable)||(s={enumerable:!0,get:function(){return e[o]}}),Object.defineProperty(i,t,s)}:function(i,e,o,t){i[t=void 0===t?o:t]=e[o]}),__setModuleDefault=this&&this.__setModuleDefault||(Object.create?function(i,e){Object.defineProperty(i,"default",{enumerable:!0,value:e})}:function(i,e){i.default=e}),__importStar=this&&this.__importStar||function(){var s=function(i){return(s=Object.getOwnPropertyNames||function(i){var e,o=[];for(e in i)Object.prototype.hasOwnProperty.call(i,e)&&(o[o.length]=e);return o})(i)};return function(i){if(i&&i.__esModule)return i;var e={};if(null!=i)for(var o=s(i),t=0;t<o.length;t++)"default"!==o[t]&&__createBinding(e,i,o[t]);return __setModuleDefault(e,i),e}}();Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=exports.methods=exports.$=exports.template=exports.position=void 0,exports.ready=ready,exports.close=close;const Vue=require("vue/dist/vue.js");Vue.config.productionTip=!1,Vue.config.devtools=!1;let $scene=null,panel=null,vm=null;const vueTemplate=`
+var __createBinding =
+  (this && this.__createBinding) ||
+  (Object.create
+    ? (i, e, o, t = o) => {
+        var s = Object.getOwnPropertyDescriptor(e, o);
+
+        if (
+          !s ||
+          (!("get" in s) ? !s.writable && !s.configurable : e.__esModule)
+        ) {
+          s = {
+            enumerable: true,
+            get() {
+              return e[o];
+            },
+          };
+        }
+
+        Object.defineProperty(i, t, s);
+      }
+    : (i, e, o, t) => {
+        i[(t = t === undefined ? o : t)] = e[o];
+      });
+
+var __setModuleDefault =
+  (this && this.__setModuleDefault) ||
+  (Object.create
+    ? (i, e) => {
+        Object.defineProperty(i, "default", { enumerable: true, value: e });
+      }
+    : (i, e) => {
+        i.default = e;
+      });
+
+var __importStar =
+  (this && this.__importStar) ||
+  (() => {
+    var s = (i) =>
+      (s =
+        Object.getOwnPropertyNames ||
+        ((i) => {
+          var e;
+          var o = [];
+          for (e in i) {
+            if (Object.prototype.hasOwnProperty.call(i, e)) {
+              o[o.length] = e;
+            }
+          }
+          return o;
+        }))(i);
+    return (i) => {
+      if (i && i.__esModule) {
+        return i;
+      }
+      var e = {};
+      if (i != null) {
+        for (var o = s(i), t = 0; t < o.length; t++) {
+          if (o[t] !== "default") {
+            __createBinding(e, i, o[t]);
+          }
+        }
+      }
+      __setModuleDefault(e, i);
+      return e;
+    };
+  })();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+exports.default = undefined;
+exports.methods = undefined;
+exports.$ = undefined;
+exports.template = undefined;
+exports.position = undefined;
+
+exports.ready = ready;
+exports.close = close;
+const Vue = require("vue/dist/vue.js");
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+let $scene = null;
+let panel = null;
+let vm = null;
+
+const vueTemplate = `
 <div class="gizmo-settings"
     :style-2d="is2D"
 >
@@ -71,7 +155,168 @@
         </ui-prop>
     </div>
 </div>
-`,SceneGizmoVM=Vue.extend({name:"SceneGizmoVM",data(){return{menuName:"gizmo-settings",toolsVisibility3d:!1,is2D:!1,showMenu:!1,mouseOver:!1,showColorPanel:!1,gizmo:{originAxis2D:{x_visible:!0,y_visible:!0,z_visible:!0},originAxis3D:{x_visible:!0,y_visible:!0,z_visible:!0}}}},methods:{getOriginAxis(){var i=this.is2D?this.gizmo.originAxis2D:this.gizmo.originAxis3D;return i.x_visible||i.y_visible||i.z_visible},getOriginAxisByXYZ(i){var e=this.is2D?this.gizmo.originAxis2D:this.gizmo.originAxis3D;return"x"===i?e.x_visible:"y"===i?e.y_visible:"z"===i&&e.z_visible},toolbarMenu(){Editor.Message.broadcast("scene:toolbar-menu-active",this.menuName)},async setGridVisible(i){$scene&&await $scene.callSceneMethod("setGridVisible",[i]),await Editor.Profile.setConfig("scene","gizmos-infos.gridVisible",i)},changeOriginAxis(i){i={x_visible:i,y_visible:i,z_visible:i};this.is2D?(this.gizmo.originAxis2D=i,Editor.Profile.setConfig("scene","gizmos-infos.originAxis2D",i)):(this.gizmo.originAxis3D=i,Editor.Profile.setConfig("scene","gizmos-infos.originAxis3D",i))},onCheckOriginAxisButton(i,e){var o,e=e+"_visible";this.is2D?(o=!this.gizmo.originAxis2D[e],this.gizmo.originAxis2D[e]=o,Editor.Profile.setConfig("scene","gizmos-infos.originAxis2D",this.gizmo.originAxis2D)):(o=!this.gizmo.originAxis3D[e],this.gizmo.originAxis3D[e]=o,Editor.Profile.setConfig("scene","gizmos-infos.originAxis3D",this.gizmo.originAxis3D))},async set3DToolsVisibility(i){$scene&&await $scene.callSceneMethod("setToolsVisibility3d",[i]),await Editor.Profile.setConfig("scene","gizmos-infos.toolsVisibility3d",i)},async set3DIcon(i){$scene&&await $scene.callSceneMethod("setIconGizmo3D",[i]),await Editor.Profile.setConfig("scene","gizmos-infos.is3DIcon",i)},async setIconSize(i){$scene&&await $scene.callSceneMethod("setIconGizmoSize",[i]),await Editor.Profile.setConfig("scene","gizmos-infos.iconSize",i)},async setGridLineColor(i){$scene&&await $scene.callSceneMethod("setGridLineColor",[i]),await Editor.Profile.setConfig("scene","gizmos-infos.gridColor",i)}},template:vueTemplate});function ready(i){close(),panel=this,$scene=i.nextElementSibling,vm?.$destroy(),(vm=new SceneGizmoVM).$mount(panel.$.container),Editor.Message.__protected__.addBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.addBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.addBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive),panel.sceneReady()}function close(){panel&&(Editor.Message.__protected__.removeBroadcastListener("scene:ready",panel.sceneReady),Editor.Message.__protected__.removeBroadcastListener("scene:dimension-changed",panel.dimensionChanged),Editor.Message.__protected__.removeBroadcastListener("scene:toolbar-menu-active",panel.toolbarMenuActive)),vm?.$destroy(),vm=null,panel=null,$scene=null}exports.position="right",exports.template=`
+`;
+
+const SceneGizmoVM = Vue.extend({
+  name: "SceneGizmoVM",
+  data() {
+    return {
+      menuName: "gizmo-settings",
+      toolsVisibility3d: false,
+      is2D: false,
+      showMenu: false,
+      mouseOver: false,
+      showColorPanel: false,
+      gizmo: {
+        originAxis2D: { x_visible: true, y_visible: true, z_visible: true },
+        originAxis3D: { x_visible: true, y_visible: true, z_visible: true },
+      },
+    };
+  },
+  methods: {
+    getOriginAxis() {
+      var i = this.is2D ? this.gizmo.originAxis2D : this.gizmo.originAxis3D;
+      return i.x_visible || i.y_visible || i.z_visible;
+    },
+    getOriginAxisByXYZ(i) {
+      var e = this.is2D ? this.gizmo.originAxis2D : this.gizmo.originAxis3D;
+      return i === "x"
+        ? e.x_visible
+        : i === "y"
+        ? e.y_visible
+        : i === "z" && e.z_visible;
+    },
+    toolbarMenu() {
+      Editor.Message.broadcast("scene:toolbar-menu-active", this.menuName);
+    },
+    async setGridVisible(i) {
+      if ($scene) {
+        await $scene.callSceneMethod("setGridVisible", [i]);
+      }
+
+      await Editor.Profile.setConfig("scene", "gizmos-infos.gridVisible", i);
+    },
+    changeOriginAxis(i) {
+      i = { x_visible: i, y_visible: i, z_visible: i };
+
+      if (this.is2D) {
+        this.gizmo.originAxis2D = i;
+        Editor.Profile.setConfig("scene", "gizmos-infos.originAxis2D", i);
+      } else {
+        this.gizmo.originAxis3D = i;
+        Editor.Profile.setConfig("scene", "gizmos-infos.originAxis3D", i);
+      }
+    },
+    onCheckOriginAxisButton(i, e) {
+      var o;
+      var e = e + "_visible";
+
+      if (this.is2D) {
+        o = !this.gizmo.originAxis2D[e];
+        this.gizmo.originAxis2D[e] = o;
+
+        Editor.Profile.setConfig(
+          "scene",
+          "gizmos-infos.originAxis2D",
+          this.gizmo.originAxis2D
+        );
+      } else {
+        o = !this.gizmo.originAxis3D[e];
+        this.gizmo.originAxis3D[e] = o;
+
+        Editor.Profile.setConfig(
+          "scene",
+          "gizmos-infos.originAxis3D",
+          this.gizmo.originAxis3D
+        );
+      }
+    },
+    async set3DToolsVisibility(i) {
+      if ($scene) {
+        await $scene.callSceneMethod("setToolsVisibility3d", [i]);
+      }
+
+      await Editor.Profile.setConfig(
+        "scene",
+        "gizmos-infos.toolsVisibility3d",
+        i
+      );
+    },
+    async set3DIcon(i) {
+      if ($scene) {
+        await $scene.callSceneMethod("setIconGizmo3D", [i]);
+      }
+
+      await Editor.Profile.setConfig("scene", "gizmos-infos.is3DIcon", i);
+    },
+    async setIconSize(i) {
+      if ($scene) {
+        await $scene.callSceneMethod("setIconGizmoSize", [i]);
+      }
+
+      await Editor.Profile.setConfig("scene", "gizmos-infos.iconSize", i);
+    },
+    async setGridLineColor(i) {
+      if ($scene) {
+        await $scene.callSceneMethod("setGridLineColor", [i]);
+      }
+
+      await Editor.Profile.setConfig("scene", "gizmos-infos.gridColor", i);
+    },
+  },
+  template: vueTemplate,
+});
+
+function ready(i) {
+  close();
+  panel = this;
+  $scene = i.nextElementSibling;
+  vm?.$destroy();
+  (vm = new SceneGizmoVM()).$mount(panel.$.container);
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:ready",
+    panel.sceneReady
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:dimension-changed",
+    panel.dimensionChanged
+  );
+
+  Editor.Message.__protected__.addBroadcastListener(
+    "scene:toolbar-menu-active",
+    panel.toolbarMenuActive
+  );
+
+  panel.sceneReady();
+}
+function close() {
+  if (panel) {
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:ready",
+      panel.sceneReady
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:dimension-changed",
+      panel.dimensionChanged
+    );
+
+    Editor.Message.__protected__.removeBroadcastListener(
+      "scene:toolbar-menu-active",
+      panel.toolbarMenuActive
+    );
+  }
+
+  vm?.$destroy();
+  vm = null;
+  panel = null;
+  $scene = null;
+}
+exports.position = "right";
+
+exports.template = `
 <style>
 .gizmo-settings {
     position: relative;
@@ -130,4 +375,42 @@
 </style>
 
 <div class="gizmo-settings"></div>
-`,exports.$={container:".gizmo-settings"},exports.methods={dimensionChanged(i){vm&&(vm.is2D=i)},async sceneReady(){var i=await Editor.Message.request("scene","query-is2D");panel&&panel.dimensionChanged(i)},toolbarMenuActive(i){vm&&(i!==vm.menuName||vm.showMenu?vm.showMenu&&(vm.showMenu=!1):(vm.showMenu=!0,panel.gizmoConfig()))},async gizmoConfig(){var i=await Editor.Profile.getConfig("scene","gizmos-infos");vm&&vm.$set(vm,"gizmo",i)}},exports.default=__importStar(require("./gizmo"));
+`;
+
+exports.$ = { container: ".gizmo-settings" };
+
+exports.methods = {
+  dimensionChanged(i) {
+    if (vm) {
+      vm.is2D = i;
+    }
+  },
+  async sceneReady() {
+    var i = await Editor.Message.request("scene", "query-is2D");
+
+    if (panel) {
+      panel.dimensionChanged(i);
+    }
+  },
+  toolbarMenuActive(i) {
+    if (vm) {
+      if (i !== vm.menuName || vm.showMenu) {
+        if (vm.showMenu) {
+          vm.showMenu = false;
+        }
+      } else {
+        vm.showMenu = true;
+        panel.gizmoConfig();
+      }
+    }
+  },
+  async gizmoConfig() {
+    var i = await Editor.Profile.getConfig("scene", "gizmos-infos");
+
+    if (vm) {
+      vm.$set(vm, "gizmo", i);
+    }
+  },
+};
+
+exports.default = __importStar(require("./gizmo"));

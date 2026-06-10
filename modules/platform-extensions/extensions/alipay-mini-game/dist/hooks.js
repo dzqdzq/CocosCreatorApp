@@ -1,1 +1,172 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.throwError=void 0,exports.onAfterInit=onAfterInit,exports.onBeforeBundleInit=onBeforeBundleInit,exports.onBeforeCompressSettings=onBeforeCompressSettings,exports.onBeforeCopyBuildTemplate=onBeforeCopyBuildTemplate,exports.onAfterCopyBuildTemplate=onAfterCopyBuildTemplate;const fs_extra_1=require("fs-extra"),path_1=require("path"),ejs_1=__importDefault(require("ejs")),share_1=require("./share");async function onAfterInit(e,a,i){Editor.Metrics.trackEvent({category:"Project",action:"BetaPlatforms",label:"alipay-minigame",value:{orientation:e.packages["alipay-mini-game"].deviceOrientation}});var t=e.packages["alipay-mini-game"];t.separateEngine&&(e.buildEngineParam.separateEngineOptions={useCacheForce:Editor.App.isPackaged,pluginFeatures:"default",outputLocalPlugin:!0,pluginName:"cocos",checkVersionValid:!0},e.buildEngineParam.nativeCodeBundleMode="wasm"),e.server&&!e.server.endsWith("/")&&(e.server+="/"),a.staticsInfo.B100011=e.packages["alipay-mini-game"].deviceOrientation,e.buildScriptParam.flags.WASM_SUBPACKAGE=t.wasmSubpackage}function onBeforeBundleInit(e){e.polyfills&&(e.polyfills.asyncFunctions=!1),e.moveRemoteBundleScript=!0,e.buildScriptParam.importMapFormat="commonjs",e.buildScriptParam.system={preset:"commonjs-like"}}async function onBeforeCompressSettings(e,a,i){a.settings.screen.orientation=e.packages["alipay-mini-game"].deviceOrientation}async function onBeforeCopyBuildTemplate(e,a,i){var t,s,n=e.engineInfo.typescript.path;share_1.Paths.internalTemplateDir=(0,path_1.join)(n,"templates/alipay-mini-game");for(const r of["web-adapter","engine-adapter"])await(0,fs_extra_1.copy)((0,path_1.join)(n,"bin/adapter/minigame/alipay",`${r}.${e.debug?"":"min."}js`),(0,path_1.join)(a.paths.dir,r+".js"));this.buildTemplate.findFile("game.js")||(s=this.buildTemplate.initUrl("game.ejs")||(0,path_1.join)(share_1.Paths.internalTemplateDir,"game.ejs"),t={polyfillsBundleFile:a.paths.polyfillsJs&&Build.Utils.relativeUrl(a.paths.dir,a.paths.polyfillsJs)||!1,systemJsBundleFile:Build.Utils.relativeUrl(a.paths.dir,a.paths.systemJs),importMapFile:Build.Utils.relativeUrl(a.paths.dir,a.paths.importMap),applicationJs:"./"+Build.Utils.relativeUrl(a.paths.dir,a.paths.applicationJS)},s=await ejs_1.default.renderFile(s,t),(0,fs_extra_1.writeFileSync)((0,path_1.join)(a.paths.dir,"game.js"),s),e.md5CacheOptions.replaceOnly.push("game.js"))}async function onAfterCopyBuildTemplate(e,a,i){var t=(0,fs_extra_1.readJSONSync)((0,path_1.join)(share_1.Paths.internalTemplateDir,"game.json")),s=this.buildTemplate.findFile("game.json"),s=(s&&(s=(0,fs_extra_1.readJSONSync)(s),Object.assign(t,s)),t.screenOrientation=e.packages["alipay-mini-game"].deviceOrientation,e.packages["alipay-mini-game"]);if(s.separateEngine){var n=(0,path_1.join)(Build.buildTemplateDir,"patch.json");let e=Editor.App.version;(0,fs_extra_1.existsSync)(n)&&(e=await Editor.Profile.getConfig("alipay-mini-game","plugin-version")||Editor.App.version),t.plugins={cocos:{version:e,pluginId:require((0,path_1.join)(__dirname,"../static/cocos/signature.json")).pluginId,path:"cocos"}}}var r,o=[];for(const p of this.bundleManager.bundles)p.isSubpackage&&(r=(0,path_1.join)((0,path_1.dirname)(p.scriptDest),"game.js"),(0,fs_extra_1.existsSync)(p.scriptDest)?(0,fs_extra_1.renameSync)(p.scriptDest,r):(0,fs_extra_1.outputFileSync)(r,`console.log('${p.name}: no script in subPackage.')`,"utf8"),p.scriptDest=r,o.push({name:p.name,root:`subpackages/${p.name}/`}));s.wasmSubpackage&&(n=(0,path_1.join)(a.paths.engineDir,"./assets/"),s=(0,path_1.join)(a.paths.engineDir,"./chunks/"),(0,fs_extra_1.existsSync)(n)&&o.push({name:"__ccWasmAssetSubpkg__",root:"cocos-js/assets/"}),(0,fs_extra_1.existsSync)(s))&&o.push({name:"__ccWasmChunkSubpkg__",root:"cocos-js/chunks/"}),0<o.length&&(t.subpackages=o);n=(0,path_1.join)(a.paths.dir,"game.json");e.md5CacheOptions.excludes.push("game.json"),(0,fs_extra_1.writeJSONSync)(n,t)}exports.throwError=!0;
+var __importDefault =
+  (this && this.__importDefault) ||
+  ((e) => (e && e.__esModule ? e : { default: e }));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.throwError = undefined;
+exports.onAfterInit = onAfterInit;
+exports.onBeforeBundleInit = onBeforeBundleInit;
+exports.onBeforeCompressSettings = onBeforeCompressSettings;
+exports.onBeforeCopyBuildTemplate = onBeforeCopyBuildTemplate;
+exports.onAfterCopyBuildTemplate = onAfterCopyBuildTemplate;
+
+const {
+  copy,
+  writeFileSync,
+  readJSONSync,
+  existsSync,
+  renameSync,
+  outputFileSync,
+  writeJSONSync,
+} = require("fs-extra");
+
+const { join, dirname } = require("path");
+
+const ejs_1 = __importDefault(require("ejs"));
+const share_1 = require("./share");
+async function onAfterInit(e, a, i) {
+  Editor.Metrics.trackEvent({
+    category: "Project",
+    action: "BetaPlatforms",
+    label: "alipay-minigame",
+    value: { orientation: e.packages["alipay-mini-game"].deviceOrientation },
+  });
+  var t = e.packages["alipay-mini-game"];
+
+  if (t.separateEngine) {
+    e.buildEngineParam.separateEngineOptions = {
+      useCacheForce: Editor.App.isPackaged,
+      pluginFeatures: "default",
+      outputLocalPlugin: true,
+      pluginName: "cocos",
+      checkVersionValid: true,
+    };
+
+    e.buildEngineParam.nativeCodeBundleMode = "wasm";
+  }
+
+  if (e.server && !e.server.endsWith("/")) {
+    e.server += "/";
+  }
+
+  a.staticsInfo.B100011 = e.packages["alipay-mini-game"].deviceOrientation;
+  e.buildScriptParam.flags.WASM_SUBPACKAGE = t.wasmSubpackage;
+}
+function onBeforeBundleInit(e) {
+  if (e.polyfills) {
+    e.polyfills.asyncFunctions = false;
+  }
+
+  e.moveRemoteBundleScript = true;
+  e.buildScriptParam.importMapFormat = "commonjs";
+  e.buildScriptParam.system = { preset: "commonjs-like" };
+}
+async function onBeforeCompressSettings(e, a, i) {
+  a.settings.screen.orientation =
+    e.packages["alipay-mini-game"].deviceOrientation;
+}
+async function onBeforeCopyBuildTemplate(e, a, i) {
+  var t;
+  var s;
+  var n = e.engineInfo.typescript.path;
+  share_1.Paths.internalTemplateDir = join(n, "templates/alipay-mini-game");
+  for (const r of ["web-adapter", "engine-adapter"]) {
+    await copy(
+      join(n, "bin/adapter/minigame/alipay", `${r}.${e.debug ? "" : "min."}js`),
+      join(a.paths.dir, r + ".js")
+    );
+  }
+
+  if (!this.buildTemplate.findFile("game.js")) {
+    s =
+      this.buildTemplate.initUrl("game.ejs") ||
+      join(share_1.Paths.internalTemplateDir, "game.ejs");
+
+    t = {
+      polyfillsBundleFile:
+        (a.paths.polyfillsJs &&
+          Build.Utils.relativeUrl(a.paths.dir, a.paths.polyfillsJs)) ||
+        false,
+      systemJsBundleFile: Build.Utils.relativeUrl(
+        a.paths.dir,
+        a.paths.systemJs
+      ),
+      importMapFile: Build.Utils.relativeUrl(a.paths.dir, a.paths.importMap),
+      applicationJs:
+        "./" + Build.Utils.relativeUrl(a.paths.dir, a.paths.applicationJS),
+    };
+
+    s = await ejs_1.default.renderFile(s, t);
+    writeFileSync(join(a.paths.dir, "game.js"), s);
+    e.md5CacheOptions.replaceOnly.push("game.js");
+  }
+}
+async function onAfterCopyBuildTemplate(e, a, i) {
+  var t = readJSONSync(join(share_1.Paths.internalTemplateDir, "game.json"));
+
+  var s = this.buildTemplate.findFile("game.json");
+
+  var s =
+    (s && ((s = readJSONSync(s)), Object.assign(t, s)),
+    (t.screenOrientation = e.packages["alipay-mini-game"].deviceOrientation),
+    e.packages["alipay-mini-game"]);
+
+  if (s.separateEngine) {
+    var n = join(Build.buildTemplateDir, "patch.json");
+    let e = Editor.App.version;
+
+    if (existsSync(n)) {
+      e =
+        (await Editor.Profile.getConfig(
+          "alipay-mini-game",
+          "plugin-version"
+        )) || Editor.App.version;
+    }
+
+    t.plugins = {
+      cocos: {
+        version: e,
+        pluginId: require(join(__dirname, "../static/cocos/signature.json"))
+          .pluginId,
+        path: "cocos",
+      },
+    };
+  }
+  var r;
+  var o = [];
+  for (const p of this.bundleManager.bundles) {
+    if (p.isSubpackage) {
+      r = join(dirname(p.scriptDest), "game.js");
+
+      existsSync(p.scriptDest)
+        ? renameSync(p.scriptDest, r)
+        : outputFileSync(
+            r,
+            `console.log('${p.name}: no script in subPackage.')`,
+            "utf8"
+          );
+
+      p.scriptDest = r;
+      o.push({ name: p.name, root: `subpackages/${p.name}/` });
+    }
+  }
+
+  if (
+    s.wasmSubpackage &&
+    ((n = join(a.paths.engineDir, "./assets/")),
+    (s = join(a.paths.engineDir, "./chunks/")),
+    existsSync(n) &&
+      o.push({ name: "__ccWasmAssetSubpkg__", root: "cocos-js/assets/" }),
+    existsSync(s))
+  ) {
+    o.push({ name: "__ccWasmChunkSubpkg__", root: "cocos-js/chunks/" });
+  }
+
+  if (o.length > 0) {
+    t.subpackages = o;
+  }
+
+  n = join(a.paths.dir, "game.json");
+  e.md5CacheOptions.excludes.push("game.json");
+  writeJSONSync(n, t);
+}
+exports.throwError = true;

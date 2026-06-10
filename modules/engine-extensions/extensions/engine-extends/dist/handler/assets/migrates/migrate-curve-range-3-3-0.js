@@ -1,1 +1,22 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.migrateCurveRange330=migrateCurveRange330;const archive_space_1=require("./archive-space");async function migrateCurveRange330(e){e.visitTypedObject(archive_space_1.ArchiveSpace.CURVE_RANGE_TYPE_NAME,c=>{const i=c;var e=(e,r)=>{var a=c[e];void 0!==a&&(i[r]=a._curve,delete c[e])};e("curve","spline"),e("curveMin","splineMin"),e("curveMax","splineMax")})}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.migrateCurveRange330 = migrateCurveRange330;
+const archive_space_1 = require("./archive-space");
+async function migrateCurveRange330(e) {
+  e.visitTypedObject(
+    archive_space_1.ArchiveSpace.CURVE_RANGE_TYPE_NAME,
+    (c) => {
+      const i = c;
+      var e = (e, r) => {
+        var a = c[e];
+
+        if (a !== undefined) {
+          i[r] = a._curve;
+          delete c[e];
+        }
+      };
+      e("curve", "spline");
+      e("curveMin", "splineMin");
+      e("curveMax", "splineMax");
+    }
+  );
+}
