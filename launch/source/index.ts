@@ -56,18 +56,11 @@ process.on('uncaughtException', _uncaughtExceptionFunc);
 
 /**
  * Editor.App.path 默认由 __dirname 推导，Node 会解析软链接为真实路径。
- * 使用 Electron app.getAppPath()，使路径与 .app 内 Resources/app 一致（保留软链接路径）。
+ * 使用 bundle 内路径，使 ../tools/cmft 等工具指向 .app/Contents/Resources/tools。
  */
 function patchAppPathToBundleRoot(): void {
-    const { App } = require('@editor/creator/dist/app');
-    const bundleAppPath = app.getAppPath();
-    Object.defineProperty(App, 'path', {
-        get() {
-            return bundleAppPath;
-        },
-        configurable: true,
-    });
-    console.debug(`[launch] Editor.App.path -> ${bundleAppPath}`);
+    const { patchAppPathToBundleRoot: patch } = require('../../builtin/utils/modules/editor/patch-app-path');
+    patch('launch');
 }
 
 (async function() {
