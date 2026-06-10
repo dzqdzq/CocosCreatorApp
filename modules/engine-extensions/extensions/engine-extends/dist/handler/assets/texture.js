@@ -39,8 +39,8 @@ exports.TextureHandler = {
     default: utils_2.defaultIconConfig,
     generateThumbnail(e) {
       var t;
-      var e = getImageUuid(e);
-      return !e || queryAsset(e).invalid
+      var uuid = getImageUuid(e);
+      return !uuid || queryAsset(uuid).invalid
         ? utils_2.defaultIconConfig
         : ((t = e.meta.files.find((e) => e !== ".json") || ".png"),
           { type: "image", value: e.library + t });

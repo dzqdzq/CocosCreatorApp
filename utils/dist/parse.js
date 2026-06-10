@@ -29,7 +29,7 @@ function checkWhen(when) {
   const $panel = require("@editor/panel");
   const $focusPanel = $panel.getFocusPanel();
   const EditMode = Editor.EditMode.getMode();
-  const $focusPanel_current = $focusPanel.current;
+  const PanelName = $focusPanel.current;
   try {
     return eval(when);
   } catch (error) {
