@@ -4,6 +4,7 @@ const dum_element_base_1 = require("../dum-element-base");
 const { setElementInvalid, setElementReadonly } = require("../utils");
 
 const tagName = { slider: "UI-SLIDER", num: "UI-NUM-INPUT" };
+const toNumber = globalThis.Number;
 class Number extends dum_element_base_1.DumpElementBase {
   type = ["Number", "Float", "Integer"];
   $content = null;
@@ -29,7 +30,7 @@ class Number extends dum_element_base_1.DumpElementBase {
   }
   change(e, t) {
     if (e.target && undefined !== (e = e.target.value)) {
-      this.parseAndSetData(Number(e), t);
+      this.parseAndSetData(toNumber(e), t);
     }
   }
   template = '<ui-label slot="label"></ui-label>';
